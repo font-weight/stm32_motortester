@@ -1,0 +1,116 @@
+{
+  "base_sha": "c89c12df984390b34785eba81665abd6418658e2",
+  "provisional_contract_sha": "b6ae8025baf1a47e8173997029d2d8b858ada74c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "environment": {
+    "QT_QPA_PLATFORM": "offscreen",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/tmp/motortester-host-session/host:/tmp/motortester-deps"
+  },
+  "contract_source_sha256": {
+    "protocol/wire-v0.1.md": "81a627aaad25f0bbdf0f3b846d49e8a23faea83434ec607e309ff99775206269",
+    "docs/session-guard.md": "cddb17168be9d936b1b19c4a2363026988e656ff50ed526c750ec7165cb7a6ae"
+  },
+  "files_before": {
+    "host/motortester/session.py": "4049e5fda8499010bcdcad781af5a5ebfefde5de2b583e04b606b59bf1f61f61",
+    "host/motortester/wire.py": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+    "host/tests/test_session.py": "9848192158c9486befaaca46941e35ba9781dc9578e89098273c6f46160c2c6b",
+    "host/tests/test_session_conformance.py": "3418393713072e8c14c583f1592e66f98e16bd139f0166bfad6fc2ba2453a582",
+    "host/docs/session-controller.md": "392eb74caa56937aa4afb7d280df6b34690d004713ec5edb94d481376e999a9e",
+    "host/tests/fixtures/session/reference.py": "bc521fcbe2798d016b1b4776d5f7293c3e84c2ad60b8edef72163c4e80f0ba66",
+    "host/tests/fixtures/session/transcript.json": "306803a369df6684e9708e4f1217d7b2b5bb8fdd230cf709690515ba31bd831b",
+    "host/tests/fixtures/session/run_checks.py": "d2597150cd2b05a5d327777b5dfa28ae19220a4496c83922f7f760a7e130d0b5",
+    "host/tests/fixtures/session/README.md": "a65f7cb01e2c29c14967e24b75da1841271bf84c74f75cd69102d28c9df75c6e"
+  },
+  "files_after": {
+    "host/motortester/session.py": "4049e5fda8499010bcdcad781af5a5ebfefde5de2b583e04b606b59bf1f61f61",
+    "host/motortester/wire.py": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+    "host/tests/test_session.py": "9848192158c9486befaaca46941e35ba9781dc9578e89098273c6f46160c2c6b",
+    "host/tests/test_session_conformance.py": "3418393713072e8c14c583f1592e66f98e16bd139f0166bfad6fc2ba2453a582",
+    "host/docs/session-controller.md": "392eb74caa56937aa4afb7d280df6b34690d004713ec5edb94d481376e999a9e",
+    "host/tests/fixtures/session/reference.py": "bc521fcbe2798d016b1b4776d5f7293c3e84c2ad60b8edef72163c4e80f0ba66",
+    "host/tests/fixtures/session/transcript.json": "306803a369df6684e9708e4f1217d7b2b5bb8fdd230cf709690515ba31bd831b",
+    "host/tests/fixtures/session/run_checks.py": "d2597150cd2b05a5d327777b5dfa28ae19220a4496c83922f7f760a7e130d0b5",
+    "host/tests/fixtures/session/README.md": "a65f7cb01e2c29c14967e24b75da1841271bf84c74f75cd69102d28c9df75c6e"
+  },
+  "unchanged_during_checks": true,
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_session_conformance.py",
+        "-v"
+      ],
+      "cwd": "/tmp/motortester-host-session/host",
+      "log": "focused-final.log",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_session*.py",
+        "-v"
+      ],
+      "cwd": "/tmp/motortester-host-session/host",
+      "log": "session-all.log",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_session*.py",
+        "-v"
+      ],
+      "cwd": "/tmp/motortester-host-session/host",
+      "log": "session-optimized.log",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-v"
+      ],
+      "cwd": "/tmp/motortester-host-session",
+      "log": "host-full.log",
+      "returncode": 0
+    }
+  ],
+  "evidence_sha256": {
+    "coordinator-delta-run.log": "9305a986959d01f676dd4ec4c6f401673d5c1dcca2dccf82eb6e234c0c35b622",
+    "corrected-run.log": "fdf546a9077c3c077f63b6408121e991b9123e8a9145f954f278dee8ed36d4ba",
+    "dependencies.log": "5bb78ac53e753e9cf0f30452087186d1a982341d0fcdab5c9d3db027aca9901a",
+    "first-run.log": "a86805e840a78b166b17e2a9207d0934d42b228fe5d830d1e05c46a9e29ed884",
+    "focused-final.log": "ccbeb3070c0fc7bef454fa146629699f113e9304b31e39b94d048c945c76c2ed",
+    "focused.log": "258b04f471f55a83efeb9a6049fbbfd22b0718eb254fbf33da1cdcf8a76498f1",
+    "host-full.log": "b08b69b7baf46174cdf5c822313340bfc537ccd1e58a60baa9ffc3763b1377c0",
+    "pre-freeze.log": "293e6eb8e6783b0461962ebf541430ae6416dfe6eeb3fd6064e780cea16466b3",
+    "session-all.log": "dbc5829812b440c1175f441d491116bf55060833f803911063d24a266b6faaaf",
+    "session-optimized.log": "6dd58b03fa28056548df2d4acf9c5a82c6ef8b41a52abf969b399c56a31371f6"
+  },
+  "scope": "draft_normal_analog_control, synthetic Linux only; no independent critic score"
+}

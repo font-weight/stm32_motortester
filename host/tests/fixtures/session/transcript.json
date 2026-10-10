@@ -1,0 +1,149 @@
+{
+  "provisional_contract_sha": "b6ae8025baf1a47e8173997029d2d8b858ada74c",
+  "vectors": [
+    {
+      "name": "hello",
+      "direction": "tx",
+      "message_type": 1,
+      "session": 0,
+      "sequence": 1,
+      "request_id": 1,
+      "payload_hex": "1122334455667788",
+      "packet_hex": "0103010102080101010101010101010102010101020101010d1122334455667788c955d5e700",
+      "phase_after": "HELLO",
+      "events": []
+    },
+    {
+      "name": "hello_ack",
+      "direction": "rx",
+      "message_type": 129,
+      "session": 9833440827789222417,
+      "sequence": 1,
+      "request_id": 1,
+      "payload_hex": "0001010c000200087856341209000000",
+      "packet_hex": "01030181021001010a112233445566778801010102010101010401010c0202070878563412090101057e8ec37100",
+      "phase_after": "CAPS",
+      "events": [
+        "HELLO_ACCEPTED"
+      ]
+    },
+    {
+      "name": "get_caps",
+      "direction": "tx",
+      "message_type": 2,
+      "session": 9833440827789222417,
+      "sequence": 2,
+      "request_id": 2,
+      "payload_hex": "",
+      "packet_hex": "01030102010101010a1122334455667788020101020201010501d1e0e900",
+      "phase_after": "CAPS",
+      "events": []
+    },
+    {
+      "name": "caps",
+      "direction": "rx",
+      "message_type": 130,
+      "session": 9833440827789222417,
+      "sequence": 2,
+      "request_id": 2,
+      "payload_hex": "0100010000a24a0447001300001bb7008f00000801020103000000000000",
+      "packet_hex": "01030182021e01010a112233445566778802010102020101020102010105a24a0447021301031bb7028f01060801020103010101010105b32339c100",
+      "phase_after": "READY",
+      "events": [
+        "CAPABILITIES"
+      ]
+    },
+    {
+      "name": "configure",
+      "direction": "tx",
+      "message_type": 3,
+      "session": 9833440827789222417,
+      "sequence": 3,
+      "request_id": 3,
+      "payload_hex": "01000100000000080000000000000000",
+      "packet_hex": "01030103021001010a1122334455667788030101020301010201020101010102080101010101010105ef93a01d00",
+      "phase_after": "READY",
+      "events": []
+    },
+    {
+      "name": "config_ack",
+      "direction": "rx",
+      "message_type": 131,
+      "session": 9833440827789222417,
+      "sequence": 3,
+      "request_id": 3,
+      "payload_hex": "0100000001000100000000080000000000000000",
+      "packet_hex": "01030183021401010a11223344556677880301010203010102010101020102010101010208010101010101010537e7d0e900",
+      "phase_after": "READY",
+      "events": [
+        "CONFIGURED"
+      ]
+    },
+    {
+      "name": "arm",
+      "direction": "tx",
+      "message_type": 4,
+      "session": 9833440827789222417,
+      "sequence": 4,
+      "request_id": 4,
+      "payload_hex": "01000000",
+      "packet_hex": "01030104020401010a1122334455667788040101020401010201010105a2c62d5500",
+      "phase_after": "READY",
+      "events": []
+    },
+    {
+      "name": "arm_ack",
+      "direction": "rx",
+      "message_type": 132,
+      "session": 9833440827789222417,
+      "sequence": 4,
+      "request_id": 4,
+      "payload_hex": "0400000001000000",
+      "packet_hex": "01030184020801010a112233445566778804010102040101020401010201010105fb8288a200",
+      "phase_after": "ARMED",
+      "events": [
+        "ARMED"
+      ]
+    },
+    {
+      "name": "waiting",
+      "direction": "rx",
+      "message_type": 134,
+      "session": 9833440827789222417,
+      "sequence": 5,
+      "request_id": 0,
+      "payload_hex": "020000000400000000000000000000000000000000000000",
+      "packet_hex": "01030186021801010a11223344556677880501010101010102020101020401010101010101010101010101010101010105069da14c00",
+      "phase_after": "ARMED",
+      "events": [
+        "STATUS"
+      ]
+    },
+    {
+      "name": "stop",
+      "direction": "tx",
+      "message_type": 5,
+      "session": 9833440827789222417,
+      "sequence": 5,
+      "request_id": 5,
+      "payload_hex": "04000000",
+      "packet_hex": "01030105020401010a1122334455667788050101020501010204010105f6dce1d200",
+      "phase_after": "ARMED",
+      "events": []
+    },
+    {
+      "name": "stop_ack",
+      "direction": "rx",
+      "message_type": 133,
+      "session": 9833440827789222417,
+      "sequence": 6,
+      "request_id": 5,
+      "payload_hex": "040000000000000000000000",
+      "packet_hex": "01030185020c01010a112233445566778806010102050101020401010101010101010101054cfd14a400",
+      "phase_after": "READY",
+      "events": [
+        "STOPPED"
+      ]
+    }
+  ]
+}
