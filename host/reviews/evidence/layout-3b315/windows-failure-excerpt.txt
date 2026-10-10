@@ -1,0 +1,25 @@
+Source: GitHub workflow run 38055733142, job 114223753438; fetched independently 2026-10-10.
+This is the OLD 2376 failure, not a Windows result for 3b315.
+2026-10-10T13:26:45.6245949Z   SOURCE_SHA: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:45.8967404Z   ref: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:45.8972791Z   SOURCE_SHA: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:48.4819642Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:49.4766651Z  * branch            2376d325d573b1aa3da6feaf8fddf05d2e1cb601 -> FETCH_HEAD
+2026-10-10T13:26:49.4789705Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --verify --quiet 2376d325d573b1aa3da6feaf8fddf05d2e1cb601^{object}
+2026-10-10T13:26:49.5054592Z 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:49.5586203Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:49.6071250Z Note: switching to '2376d325d573b1aa3da6feaf8fddf05d2e1cb601'.
+2026-10-10T13:26:49.6556646Z 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:50.9121504Z   SOURCE_SHA: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:51.1616209Z source=2376d325d573b1aa3da6feaf8fddf05d2e1cb601 workflow=317137d6f24f16a16bb4251249ec6cab3cdbee79 image=win22/20261004.326.1
+2026-10-10T13:26:51.2166708Z   SOURCE_SHA: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:26:51.3347961Z   SOURCE_SHA: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:27:08.9281455Z FAIL: test_minimum_window_with_cursors_has_no_overlapping_plot_labels (test_gui.ViewerTests.test_minimum_window_with_cursors_has_no_overlapping_plot_labels)
+2026-10-10T13:27:08.9287576Z AssertionError: 158 not less than 111
+2026-10-10T13:27:08.9287946Z Ran 77 tests in 3.247s
+2026-10-10T13:27:08.9288066Z FAILED (failures=1)
+2026-10-10T13:27:09.0814386Z   SOURCE_SHA: 2376d325d573b1aa3da6feaf8fddf05d2e1cb601
+2026-10-10T13:27:09.2980685Z FAIL: test_minimum_window_with_cursors_has_no_overlapping_plot_labels (test_gui.ViewerTests.test_minimum_window_with_cursors_has_no_overlapping_plot_labels)
+2026-10-10T13:27:09.2984151Z AssertionError: 158 not less than 111
+2026-10-10T13:27:09.2984728Z Ran 77 tests in 3.247s
+2026-10-10T13:27:09.2984910Z FAILED (failures=1)

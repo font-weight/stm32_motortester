@@ -1,0 +1,298 @@
+{
+  "status": "PASS",
+  "dpi": 2.0,
+  "geometry_cases": [
+    {
+      "font_px": 13,
+      "size": [
+        1000,
+        710
+      ],
+      "plot_height": 127,
+      "plot_bottom": 188,
+      "trigger_top": 198,
+      "trigger_bottom": 213,
+      "cursor_top": 248,
+      "scroll_max": 0,
+      "viewport": [
+        672,
+        293
+      ],
+      "card_width": 672,
+      "cursor_bottom_in_viewport": 279
+    },
+    {
+      "font_px": 13,
+      "size": [
+        1240,
+        800
+      ],
+      "plot_height": 230,
+      "plot_bottom": 291,
+      "trigger_top": 301,
+      "trigger_bottom": 316,
+      "cursor_top": 351,
+      "scroll_max": 0,
+      "viewport": [
+        912,
+        396
+      ],
+      "card_width": 912,
+      "cursor_bottom_in_viewport": 382
+    },
+    {
+      "font_px": 13,
+      "size": [
+        1240,
+        900
+      ],
+      "plot_height": 330,
+      "plot_bottom": 391,
+      "trigger_top": 401,
+      "trigger_bottom": 416,
+      "cursor_top": 451,
+      "scroll_max": 0,
+      "viewport": [
+        912,
+        496
+      ],
+      "card_width": 912,
+      "cursor_bottom_in_viewport": 482
+    },
+    {
+      "font_px": 13,
+      "size": [
+        1600,
+        1000
+      ],
+      "plot_height": 430,
+      "plot_bottom": 491,
+      "trigger_top": 501,
+      "trigger_bottom": 516,
+      "cursor_top": 551,
+      "scroll_max": 0,
+      "viewport": [
+        1272,
+        596
+      ],
+      "card_width": 1272,
+      "cursor_bottom_in_viewport": 582
+    },
+    {
+      "font_px": 13,
+      "size": [
+        1000,
+        710
+      ],
+      "plot_height": 127,
+      "plot_bottom": 188,
+      "trigger_top": 198,
+      "trigger_bottom": 213,
+      "cursor_top": 248,
+      "scroll_max": 0,
+      "viewport": [
+        672,
+        293
+      ],
+      "card_width": 672,
+      "cursor_bottom_in_viewport": 279
+    },
+    {
+      "font_px": 18,
+      "size": [
+        1000,
+        710
+      ],
+      "plot_height": 100,
+      "plot_bottom": 166,
+      "trigger_top": 176,
+      "trigger_bottom": 217,
+      "cursor_top": 257,
+      "scroll_max": 91,
+      "viewport": [
+        660,
+        242
+      ],
+      "card_width": 660,
+      "cursor_bottom_in_viewport": 228
+    },
+    {
+      "font_px": 18,
+      "size": [
+        1240,
+        800
+      ],
+      "plot_height": 175,
+      "plot_bottom": 241,
+      "trigger_top": 251,
+      "trigger_bottom": 271,
+      "cursor_top": 311,
+      "scroll_max": 0,
+      "viewport": [
+        912,
+        366
+      ],
+      "card_width": 912,
+      "cursor_bottom_in_viewport": 352
+    },
+    {
+      "font_px": 18,
+      "size": [
+        1240,
+        900
+      ],
+      "plot_height": 275,
+      "plot_bottom": 341,
+      "trigger_top": 351,
+      "trigger_bottom": 371,
+      "cursor_top": 411,
+      "scroll_max": 0,
+      "viewport": [
+        912,
+        466
+      ],
+      "card_width": 912,
+      "cursor_bottom_in_viewport": 452
+    },
+    {
+      "font_px": 18,
+      "size": [
+        1600,
+        1000
+      ],
+      "plot_height": 375,
+      "plot_bottom": 441,
+      "trigger_top": 451,
+      "trigger_bottom": 471,
+      "cursor_top": 511,
+      "scroll_max": 0,
+      "viewport": [
+        1272,
+        566
+      ],
+      "card_width": 1272,
+      "cursor_bottom_in_viewport": 552
+    },
+    {
+      "font_px": 18,
+      "size": [
+        1000,
+        710
+      ],
+      "plot_height": 100,
+      "plot_bottom": 166,
+      "trigger_top": 176,
+      "trigger_bottom": 217,
+      "cursor_top": 257,
+      "scroll_max": 91,
+      "viewport": [
+        660,
+        242
+      ],
+      "card_width": 660,
+      "cursor_bottom_in_viewport": 228
+    },
+    {
+      "font_px": 22,
+      "size": [
+        1000,
+        710
+      ],
+      "plot_height": 100,
+      "plot_bottom": 171,
+      "trigger_top": 181,
+      "trigger_bottom": 232,
+      "cursor_top": 303,
+      "scroll_max": 213,
+      "viewport": [
+        660,
+        181
+      ],
+      "card_width": 660,
+      "cursor_bottom_in_viewport": 167
+    },
+    {
+      "font_px": 22,
+      "size": [
+        1240,
+        800
+      ],
+      "plot_height": 120,
+      "plot_bottom": 191,
+      "trigger_top": 201,
+      "trigger_bottom": 226,
+      "cursor_top": 271,
+      "scroll_max": 0,
+      "viewport": [
+        912,
+        336
+      ],
+      "card_width": 912,
+      "cursor_bottom_in_viewport": 322
+    },
+    {
+      "font_px": 22,
+      "size": [
+        1240,
+        900
+      ],
+      "plot_height": 220,
+      "plot_bottom": 291,
+      "trigger_top": 301,
+      "trigger_bottom": 326,
+      "cursor_top": 371,
+      "scroll_max": 0,
+      "viewport": [
+        912,
+        436
+      ],
+      "card_width": 912,
+      "cursor_bottom_in_viewport": 422
+    },
+    {
+      "font_px": 22,
+      "size": [
+        1600,
+        1000
+      ],
+      "plot_height": 320,
+      "plot_bottom": 391,
+      "trigger_top": 401,
+      "trigger_bottom": 426,
+      "cursor_top": 471,
+      "scroll_max": 0,
+      "viewport": [
+        1272,
+        536
+      ],
+      "card_width": 1272,
+      "cursor_bottom_in_viewport": 522
+    },
+    {
+      "font_px": 22,
+      "size": [
+        1000,
+        710
+      ],
+      "plot_height": 100,
+      "plot_bottom": 171,
+      "trigger_top": 181,
+      "trigger_bottom": 232,
+      "cursor_top": 303,
+      "scroll_max": 213,
+      "viewport": [
+        660,
+        181
+      ],
+      "card_width": 660,
+      "cursor_bottom_in_viewport": 167
+    }
+  ],
+  "raw_unchanged": true,
+  "restored_scroll_max": 0,
+  "cursor_indices": [
+    512,
+    562
+  ],
+  "png_export_available": false
+}
