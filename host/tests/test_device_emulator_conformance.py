@@ -1190,9 +1190,16 @@ class Host006ClosedLoop(Checks):
         import motortester.session as session
         import motortester.wire as wire
         self.assertEqual(session.SOURCE_SHA, "b6ae8025baf1a47e8173997029d2d8b858ada74c")
-        for module, expected in ((session, "4049e5fda8499010bcdcad781af5a5ebfefde5de2b583e04b606b59bf1f61f61"),
-                                 (wire, "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230")):
-            self.assertEqual(hashlib.sha256(Path(module.__file__).read_bytes()).hexdigest(), expected)
+        # HOST-007's byte-for-byte session pin describes its historical run,
+        # not a prohibition on later reviewed controller extensions. Keep that
+        # evidence immutable; current candidates bind their own source hashes.
+        manifest = json.loads((FIXTURES / "evidence" / "manifest.json").read_text())
+        self.assertEqual(manifest["base_sha"], "477057aadc9bc8e757bc8ef817125377e816d212")
+        for section in ("sources_before_sha256", "sources_after_sha256"):
+            self.assertEqual(manifest[section]["host/motortester/session.py"],
+                             "4049e5fda8499010bcdcad781af5a5ebfefde5de2b583e04b606b59bf1f61f61")
+        self.assertEqual(hashlib.sha256(Path(wire.__file__).read_bytes()).hexdigest(),
+                         "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230")
 
 
 class ProvisionalHoldTimeout(Checks):

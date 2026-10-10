@@ -1,13 +1,18 @@
-"""HOST-006: pure, bounded draft control; no transport or sample assembly.
+"""HOST-006/008: bounded draft control and verified-window release.
 
 Only this module adopts shared PR14 at SOURCE_SHA. Existing wire.py keeps its
 own older provenance. WINDOW_END_ADMITTED never proves a complete measurement.
 """
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from enum import Enum
 import struct
+import zlib
 
 from .wire import Frame, WireError, encode_frame
+from .window import (
+    BeginMetadata, ExpectedContext, MAX_DATA_SAMPLES, MAX_WINDOW_SAMPLES,
+    PROTOCOL_SOURCE_SHA, SampleBlock, WindowCode, WindowError, WindowResult,
+)
 
 SOURCE_SHA = "b6ae8025baf1a47e8173997029d2d8b858ada74c"
 VALIDATION_SCOPE = "draft_normal_analog_control"
@@ -61,6 +66,7 @@ class EventKind(str, Enum):
     WINDOW_BEGIN = "WINDOW_BEGIN"
     WINDOW_DATA = "WINDOW_DATA"
     WINDOW_END_ADMITTED = "WINDOW_END_ADMITTED"
+    WINDOW_RELEASED = "WINDOW_RELEASED"
     WINDOW_ABORT = "WINDOW_ABORT"
     RECOVERY = "RECOVERY"
 
@@ -120,6 +126,123 @@ class Config:
         return struct.pack("<HBBBBHHHI", self.profile, self.mode, self.source,
                            self.edge, 0, self.level_code,
                            self.pretrigger_samples, 0, self.auto_timeout_ms)
+
+
+@dataclass(frozen=True, slots=True)
+class WindowReceipt:
+    """Локальный допуск RELEASE, не доказательство происхождения данных.
+
+    Только from_window создаёт пригодный допуск. Вызывающая сторона обязана
+    передать тот же доверенный context, с которым работал WindowReceiver.
+    """
+
+    session: int
+    generation: int
+    window_id: int
+    sample_count: int
+    samples_crc32: int
+    _validated: tuple[int, ...] | None = field(default=None, init=False,
+                                             repr=False, compare=False)
+
+    def __post_init__(self):
+        _uint(self.session, MAX_TIME_MS, 1)
+        _uint(self.generation, MAX_ID, 2)
+        _uint(self.window_id, MAX_ID, 1)
+        _uint(self.sample_count, MAX_WINDOW_SAMPLES, MAX_WINDOW_SAMPLES)
+        _uint(self.samples_crc32, 0xFFFFFFFF)
+
+    def _values(self):
+        return (self.session, self.generation, self.window_id,
+                self.sample_count, self.samples_crc32)
+
+    @classmethod
+    def from_window(cls, context, result):
+        if (cls is not WindowReceipt or type(context) is not ExpectedContext
+                or type(result) is not WindowResult):
+            raise SessionError(ErrorCode.ARGUMENT)
+        try:
+            return cls._from_window(context, result)
+        except AttributeError:
+            raise SessionError(ErrorCode.ARGUMENT) from None
+        except WindowError as exc:
+            code = ErrorCode.ARGUMENT if exc.code is WindowCode.ARGUMENT else ErrorCode.RANGE
+            raise SessionError(code) from exc
+
+    @classmethod
+    def _from_window(cls, context, result):
+        context.__post_init__()
+        _uint(context.generation, MAX_ID, 2)
+        _uint(context.config_id, MAX_ID, 1)
+        if context.acquisition_mode != 1 or context.source != 0:
+            raise SessionError(ErrorCode.UNSUPPORTED)
+        if (type(result.complete) is not bool or type(result.reason) is not WindowCode
+                or type(result.rail_observed) is not bool
+                or type(result.protocol_source_sha) is not str
+                or type(result.validation_scope) is not str
+                or any(type(value) is not tuple for value in (
+                    result.fragments, result.missing_ranges,
+                    result.deferred_checks, result.metadata_issues))):
+            raise SessionError(ErrorCode.ARGUMENT)
+        if len(result.fragments) > MAX_WINDOW_SAMPLES:
+            raise SessionError(ErrorCode.RANGE)
+        if (not result.complete or result.reason is not WindowCode.COMPLETE
+                or result.missing_ranges or result.metadata_issues
+                or result.abort_reason is not None
+                or result.protocol_source_sha != PROTOCOL_SOURCE_SHA
+                or result.validation_scope != "draft_window_receive"):
+            raise SessionError(ErrorCode.STATE)
+        if result.deferred_checks:
+            raise SessionError(ErrorCode.UNSUPPORTED)
+        if type(result.begin) is not BeginMetadata or type(result.samples) is not tuple:
+            raise SessionError(ErrorCode.ARGUMENT)
+        if len(result.samples) != MAX_WINDOW_SAMPLES:
+            raise SessionError(ErrorCode.RANGE)
+        _uint(result.samples_crc32, 0xFFFFFFFF)
+        b = result.begin
+        # Точные типы и пределы проверяются до обхода/упаковки массива.
+        for name in BeginMetadata.__dataclass_fields__:
+            _uint(getattr(b, name), 0xFFFFFFFF)
+        _uint(b.window_id, MAX_ID, 1)
+        if ((b.generation, b.config_id, b.profile, b.sample_count,
+             b.pretrigger_samples, b.trigger_index, b.trigger_kind,
+             b.source, b.edge, b.channel, b.level_code, b.timer_clock_hz,
+             b.timer_psc, b.timer_arr, b.external_edge_id) !=
+                (context.generation, context.config_id, context.profile,
+                 MAX_WINDOW_SAMPLES, context.pretrigger_samples,
+                 context.pretrigger_samples, 0, context.source, context.edge,
+                 0, context.level_code, 72000000, 71, 19, 0)
+                or b.quality_flags & ~6):
+            raise SessionError(ErrorCode.STATE)
+        offset = 0
+        for block in result.fragments:
+            if type(block) is not SampleBlock or type(block.samples) is not tuple:
+                raise SessionError(ErrorCode.ARGUMENT)
+            _uint(block.offset, MAX_WINDOW_SAMPLES - 1)
+            count = len(block.samples)
+            if not 1 <= count <= MAX_DATA_SAMPLES or offset + count > MAX_WINDOW_SAMPLES:
+                raise SessionError(ErrorCode.RANGE)
+            if block.offset != offset:
+                raise SessionError(ErrorCode.STATE)
+            offset += count
+        if offset != MAX_WINDOW_SAMPLES:
+            raise SessionError(ErrorCode.STATE)
+        crc, rail = 0, False
+        for block in result.fragments:
+            for index, code in enumerate(block.samples, block.offset):
+                _uint(code, 4095)
+                _uint(result.samples[index], 4095)
+                if code != result.samples[index]:
+                    raise SessionError(ErrorCode.STATE)
+                rail = rail or code in (0, 4095)
+            crc = zlib.crc32(struct.pack(f"<{len(block.samples)}H", *block.samples), crc)
+        if (crc != result.samples_crc32 or rail != result.rail_observed
+                or bool(b.quality_flags & 2) != rail):
+            raise SessionError(ErrorCode.STATE)
+        receipt = cls(context.session, b.generation, b.window_id, b.sample_count, crc)
+        # Фиксированная привязка защищает от случайного прямого вызова/replace,
+        # но не аутентифицирует объект против обхода Python через object.__setattr__.
+        object.__setattr__(receipt, "_validated", receipt._values())
+        return receipt
 
 
 @dataclass(frozen=True, slots=True)
@@ -205,7 +328,7 @@ class _Pending:
 
 
 _DEVICE_TYPES = frozenset((129, 130, 131, 132, 133, 134, 135, 144, 145, 146, 147, 255))
-_REPLY_TYPES = {1: 129, 2: 130, 3: 131, 4: 132, 5: 133}
+_REPLY_TYPES = {1: 129, 2: 130, 3: 131, 4: 132, 5: 133, 7: 135}
 
 
 class SessionController:
@@ -217,7 +340,8 @@ class SessionController:
     __slots__ = ("_phase", "_session", "_now", "_next_tx", "_next_rx",
                  "_next_request", "_ordinary", "_stop", "_ticket", "_last_rx",
                  "_hello", "_caps", "_config", "_config_id", "_generation",
-                 "_window_id", "_active_window", "_window_barrier", "_terminal")
+                 "_window_id", "_active_window", "_window_barrier", "_terminal",
+                 "_released_window")
 
     def __init__(self):
         self._now = None
@@ -230,6 +354,7 @@ class SessionController:
         self._ordinary = self._stop = self._ticket = self._last_rx = None
         self._hello = self._caps = self._config = self._terminal = None
         self._config_id = self._generation = self._window_id = self._active_window = 0
+        self._released_window = 0
         self._window_barrier = False
 
     def snapshot(self):
@@ -333,6 +458,32 @@ class SessionController:
         generation = (self._ordinary.request_id
                       if self._ordinary and self._ordinary.kind == 4 else self._generation)
         return self._queue(5, struct.pack("<I", generation), now_ms, generation=generation)
+
+    def release(self, receipt, now_ms):
+        self._time(now_ms)
+        if type(receipt) is not WindowReceipt:
+            raise SessionError(ErrorCode.ARGUMENT)
+        try:
+            receipt.__post_init__()
+            if type(receipt._validated) is not tuple or receipt._validated != receipt._values():
+                raise SessionError(ErrorCode.STATE)
+        except AttributeError:
+            raise SessionError(ErrorCode.ARGUMENT) from None
+        terminal = self._terminal
+        if (self._phase not in (Phase.ARMED, Phase.READY)
+                or self._ordinary is not None or self._stop is not None
+                or self._active_window or terminal is None
+                or terminal.kind is not EventKind.WINDOW_END_ADMITTED
+                or receipt.session != self._session
+                or (receipt.generation, receipt.window_id, receipt.samples_crc32) !=
+                    (terminal.generation, terminal.window_id, terminal.samples_crc32)
+                or receipt.generation != self._generation
+                or receipt.window_id != self._window_id
+                or receipt.window_id == self._released_window):
+            raise SessionError(ErrorCode.STATE)
+        return self._queue(7, struct.pack("<III", receipt.generation, receipt.window_id,
+                                         receipt.samples_crc32), now_ms,
+                           generation=receipt.generation)
 
     def prepare_tx(self):
         if self._ticket is not None:
@@ -453,7 +604,7 @@ class SessionController:
                 self._stop = None
                 return (event,) + self._recover(RecoveryReason.DEVICE_ERROR)
             self._ordinary = None
-            if pending.kind in (1, 2):
+            if pending.kind in (1, 2, 7):
                 return (event,) + self._recover(RecoveryReason.DEVICE_ERROR)
             return (event,)
         if kind == 129:
@@ -505,6 +656,16 @@ class SessionController:
             self._window_barrier = False
             return (Event(EventKind.STOPPED, pending.request_id,
                           generation, last_window, frame=frame),)
+        if kind == 135:
+            if len(data) != 8 or data != pending.payload[:8]:
+                return self._recover(RecoveryReason.PAYLOAD)
+            generation, window = struct.unpack("<II", data)
+            self._ordinary = None
+            self._released_window = window
+            self._window_barrier = False
+            # ACK снимает только прежний барьер; READY после Stop остаётся READY.
+            return (Event(EventKind.WINDOW_RELEASED, pending.request_id,
+                          generation, window, frame=frame),)
         return self._recover(RecoveryReason.REPLY)
 
     def _parse_caps(self, data):
