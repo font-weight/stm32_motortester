@@ -1,5 +1,5 @@
 {
-  "status": "DRAFT, generated with separate JS reference arithmetic; C codec not executed; independent conformance review pending",
+  "status": "DRAFT; original JS-generated codec vector unchanged. Native C conformance evidence: PR21 commit 8dfc32b2c7558624e8d02dde49404501e3fc2622. Shared exact-SHA acceptance and hardware/USB verification remain open.",
   "crc_check": {
     "ascii": "123456789",
     "hex": "cbf43926"
