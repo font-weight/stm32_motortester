@@ -1,0 +1,172 @@
+[
+  {
+    "argv": [
+      "gcc",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DSTM32F103xB=1",
+      "-DEXPECT_FIXED=1",
+      "-DMODEL_ENDPOINTS=3",
+      "-I",
+      "/workspace/shared/usb004-critic-all-ctr-patterns",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_all_ctr_patterns.c",
+      "-o",
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep3-strict"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep3-strict"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS Critic-A all CTR patterns: logical_endpoints=3 patterns=65536 assertions=6815745\n",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DSTM32F103xB=1",
+      "-DEXPECT_FIXED=1",
+      "-DMODEL_ENDPOINTS=3",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/usb004-critic-all-ctr-patterns",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_all_ctr_patterns.c",
+      "-o",
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep3-san"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep3-san"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS Critic-A all CTR patterns: logical_endpoints=3 patterns=65536 assertions=6815745\n",
+    "stderr": "",
+    "sanitizers": true
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DSTM32F103xB=1",
+      "-DEXPECT_FIXED=1",
+      "-DMODEL_ENDPOINTS=8",
+      "-I",
+      "/workspace/shared/usb004-critic-all-ctr-patterns",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_all_ctr_patterns.c",
+      "-o",
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep8-strict"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep8-strict"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS Critic-A all CTR patterns: logical_endpoints=8 patterns=65536 assertions=7471105\n",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DSTM32F103xB=1",
+      "-DEXPECT_FIXED=1",
+      "-DMODEL_ENDPOINTS=8",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/usb004-critic-all-ctr-patterns",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_all_ctr_patterns.c",
+      "-o",
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep8-san"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "sanitizers": false
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-critic-all-ctr-patterns/ep8-san"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS Critic-A all CTR patterns: logical_endpoints=8 patterns=65536 assertions=7471105\n",
+    "stderr": "",
+    "sanitizers": true
+  }
+]

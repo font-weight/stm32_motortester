@@ -1,0 +1,38 @@
+/workspace/shared/critic-a-fsdev-reset-review/arm-reproduction/upstream.o  :
+section                           size   addr
+.text                                0      0
+.data                                0      0
+.bss                                 0      0
+.text.__NVIC_EnableIRQ              28      0
+.text.__NVIC_DisableIRQ             36      0
+.text.dcd_ep_alloc                 128      0
+.text.dcd_transmit_packet          252      0
+.text.dcd_pma_alloc.constprop.0     60      0
+.text.edpt_xfer.isra.0             156      0
+.text.handle_bus_reset.isra.0      148      0
+.text.dcd_init                      52      0
+.text.dcd_deinit                    10      0
+.text.dcd_sof_enable                36      0
+.text.dcd_remote_wakeup             32      0
+.text.dcd_int_handler              908      0
+.text.dcd_edpt0_status_complete     32      0
+.text.dcd_edpt_open                232      0
+.text.dcd_edpt_iso_alloc            68      0
+.text.dcd_edpt_iso_activate        132      0
+.text.dcd_edpt_xfer                 44      0
+.text.dcd_set_address               20      0
+.text.dcd_edpt_xfer_fifo            44      0
+.text.dcd_edpt_stall               124      0
+.text.dcd_edpt_clear_stall         136      0
+.text.dcd_int_enable                26      0
+.text.dcd_int_disable               18      0
+.text.dcd_edpt_close_all            68      0
+.bss.ep_buf_ptr                      2      0
+.bss.remoteWakeCountdown             1      0
+.bss.ep_alloc_status                32      0
+.bss.xfer_status                    96      0
+.comment                            39      0
+.ARM.attributes                     45      0
+Total                             3005
+
+
