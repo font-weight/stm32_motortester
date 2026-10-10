@@ -1,0 +1,12 @@
+         U dcd_int_handler
+         U tu_fifo_config
+         U tu_fifo_read_n_access_mode
+         U tu_fifo_write_n_access_mode
+         U tud_deinit
+         U tud_inited
+         U tud_rhport_init
+         U tusb_time_millis_api
+         U usbd_edpt_claim
+         U usbd_edpt_release
+         U usbd_edpt_xfer
+         U usbd_edpt_xfer_fifo

@@ -1,0 +1,534 @@
+[
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "--version"
+    ],
+    "exit_code": 0,
+    "log": "compiler-version.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-as",
+      "--version"
+    ],
+    "exit_code": 0,
+    "log": "assembler-version.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=gnu11",
+      "-Os",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fno-common",
+      "-fno-short-enums",
+      "-fstack-usage",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-DSTM32F103xB",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-I/workspace/shared/usb-dependencies/evidence/config",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include",
+      "-MMD",
+      "-MF",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.d",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.c",
+      "-o",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb-compile.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb-size.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "-a",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-g",
+      "-P",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb-global-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb-unresolved.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "-SW",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb-elf.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=gnu11",
+      "-Os",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fno-common",
+      "-fno-short-enums",
+      "-fstack-usage",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-DSTM32F103xB",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-I/workspace/shared/usb-dependencies/evidence/config",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include",
+      "-MMD",
+      "-MF",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.d",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_fifo.c",
+      "-o",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb_fifo-compile.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb_fifo-size.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "-a",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb_fifo-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-g",
+      "-P",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb_fifo-global-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb_fifo-unresolved.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "-SW",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb_fifo.o"
+    ],
+    "exit_code": 0,
+    "log": "tusb_fifo-elf.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=gnu11",
+      "-Os",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fno-common",
+      "-fno-short-enums",
+      "-fstack-usage",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-DSTM32F103xB",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-I/workspace/shared/usb-dependencies/evidence/config",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include",
+      "-MMD",
+      "-MF",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.d",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.c",
+      "-o",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.o"
+    ],
+    "exit_code": 0,
+    "log": "usbd-compile.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.o"
+    ],
+    "exit_code": 0,
+    "log": "usbd-size.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "-a",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.o"
+    ],
+    "exit_code": 0,
+    "log": "usbd-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-g",
+      "-P",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.o"
+    ],
+    "exit_code": 0,
+    "log": "usbd-global-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.o"
+    ],
+    "exit_code": 0,
+    "log": "usbd-unresolved.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "-SW",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/usbd.o"
+    ],
+    "exit_code": 0,
+    "log": "usbd-elf.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=gnu11",
+      "-Os",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fno-common",
+      "-fno-short-enums",
+      "-fstack-usage",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-DSTM32F103xB",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-I/workspace/shared/usb-dependencies/evidence/config",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include",
+      "-MMD",
+      "-MF",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.d",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "-o",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.o"
+    ],
+    "exit_code": 0,
+    "log": "cdc_device-compile.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.o"
+    ],
+    "exit_code": 0,
+    "log": "cdc_device-size.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "-a",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.o"
+    ],
+    "exit_code": 0,
+    "log": "cdc_device-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-g",
+      "-P",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.o"
+    ],
+    "exit_code": 0,
+    "log": "cdc_device-global-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.o"
+    ],
+    "exit_code": 0,
+    "log": "cdc_device-unresolved.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "-SW",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/cdc_device.o"
+    ],
+    "exit_code": 0,
+    "log": "cdc_device-elf.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=gnu11",
+      "-Os",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fno-common",
+      "-fno-short-enums",
+      "-fstack-usage",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-DSTM32F103xB",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-I/workspace/shared/usb-dependencies/evidence/config",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include",
+      "-MMD",
+      "-MF",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.d",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
+      "-o",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.o"
+    ],
+    "exit_code": 0,
+    "log": "dcd_stm32_fsdev-compile.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.o"
+    ],
+    "exit_code": 0,
+    "log": "dcd_stm32_fsdev-size.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "-a",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.o"
+    ],
+    "exit_code": 0,
+    "log": "dcd_stm32_fsdev-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-g",
+      "-P",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.o"
+    ],
+    "exit_code": 0,
+    "log": "dcd_stm32_fsdev-global-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.o"
+    ],
+    "exit_code": 0,
+    "log": "dcd_stm32_fsdev-unresolved.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "-SW",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.o"
+    ],
+    "exit_code": 0,
+    "log": "dcd_stm32_fsdev-elf.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=gnu11",
+      "-Os",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fno-common",
+      "-fno-short-enums",
+      "-fstack-usage",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-DSTM32F103xB",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-I/workspace/shared/usb-dependencies/evidence/config",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include",
+      "-I/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include",
+      "-MMD",
+      "-MF",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.d",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c",
+      "-o",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o"
+    ],
+    "exit_code": 0,
+    "log": "fsdev_common-compile.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o"
+    ],
+    "exit_code": 0,
+    "log": "fsdev_common-size.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "-a",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o"
+    ],
+    "exit_code": 0,
+    "log": "fsdev_common-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-g",
+      "-P",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o"
+    ],
+    "exit_code": 0,
+    "log": "fsdev_common-global-symbols.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o"
+    ],
+    "exit_code": 0,
+    "log": "fsdev_common-unresolved.log"
+  },
+  {
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "-SW",
+      "/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o"
+    ],
+    "exit_code": 0,
+    "log": "fsdev_common-elf.log"
+  }
+]

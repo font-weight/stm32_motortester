@@ -1,0 +1,34 @@
+/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/tusb.o  :
+section                                    size   addr
+.text                                         0      0
+.data                                         0      0
+.bss                                          0      0
+.text.stream_claim                           18      0
+.text.stream_xfer                            50      0
+.text.stream_release.isra.0                  14      0
+.text.tusb_time_delay_ms_api                 22      0
+.text.tusb_app_virt_to_phys                   2      0
+.text.tusb_app_phys_to_virt                   2      0
+.text.tusb_rhport_init                      100      0
+.text.tusb_inited                             4      0
+.text.tusb_int_handler                       24      0
+.text.tusb_deinit                            56      0
+.text.tu_desc_find                           22      0
+.text.tu_desc_find2                          30      0
+.text.tu_desc_find3                          40      0
+.text.tu_edpt_claim                          34      0
+.text.tu_edpt_release                        28      0
+.text.tu_bind_driver_to_ep_itf               90      0
+.text.tu_edpt_stream_init                    42      0
+.text.tu_edpt_stream_write_zlp_if_needed     70      0
+.text.tu_edpt_stream_write_xfer             134      0
+.text.tu_edpt_stream_write                   72      0
+.text.tu_edpt_stream_write_available         36      0
+.text.tu_edpt_stream_read_xfer              148      0
+.text.tu_edpt_stream_read                    26      0
+.bss._tusb_rhport_role                        8      0
+.comment                                     39      0
+.ARM.attributes                              45      0
+Total                                      1156
+
+

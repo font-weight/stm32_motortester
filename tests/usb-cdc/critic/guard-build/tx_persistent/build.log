@@ -1,0 +1,4 @@
++ /workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc -std=c11 -Os -mcpu=cortex-m3 -mthumb -ffreestanding -fno-short-enums -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -DSTM32F103xB -isystem /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib -isystem /workspace/shared/usb-dependencies/vendor/tinyusb/src -I /workspace/shared/critic-a-usb-review/guard-build/tx_persistent -c /workspace/shared/critic-a-usb-review/snapshot/firmware/transport/mt_usb_cdc.c -o /workspace/shared/critic-a-usb-review/guard-build/tx_persistent/adapter.o
+/workspace/shared/critic-a-usb-review/snapshot/firmware/transport/mt_usb_cdc.c:5:2: error: #error "USB adapter requires one non-overwritable, nonpersistent CDC interface"
+    5 | #error "USB adapter requires one non-overwritable, nonpersistent CDC interface"
+      |  ^~~~~

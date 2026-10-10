@@ -1,0 +1,14 @@
+/workspace/shared/usb-dependencies/evidence/arm-objects-gnu11-restored/fsdev_common.o  :
+section                       size   addr
+.text                            0      0
+.data                            0      0
+.bss                             0      0
+.text.fsdev_core_reset          80      0
+.text.fsdev_deinit              48      0
+.text.pma_align_buffer_size     36      0
+.text.btable_set_rx_bufsize     66      0
+.comment                        39      0
+.ARM.attributes                 45      0
+Total                          314
+
+

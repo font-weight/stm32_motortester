@@ -1,0 +1,156 @@
+{
+  "scope": "USB001 issue46 supporting native fake-DCD evidence",
+  "base_git_sha": "06178f31be79c3e7dbc5b46281a67a5c1d1da7f0",
+  "tinyusb_git_sha": "dae3f9a366bfcddbf9dcf1b48d7500286a849539",
+  "implementation": {
+    "mt_usb_cdc.c": "4127541694a00521f0eddce314bbce8383da892b2a5adbb0e5bace6576d0193f",
+    "mt_usb_cdc.h": "9ab7a12dcfb1d0d3282d151f0c07884d8b30fcee3cd4e4ef893b6bc13a78f7b4"
+  },
+  "matrix": [
+    {
+      "configuration": "buffered-normal",
+      "target": "core",
+      "result": "PASS",
+      "log": "evidence/buffered-normal/core.log",
+      "receipt": "evidence/buffered-normal/core-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "1b91002efe8cc11ac06b02fe5b1d6a5425ed36aca79d91ee508f3538fde05d40",
+        "adapter.log": "428c0b5fd3ec991e11333a1c23b2ce3af798c256a7c2d4ad62658ec5568219ff",
+        "core-receipt.json": "bc2408ff13858c31e19c7d2a98a976a4836198239c6858f2460f9a68d64579e4",
+        "core.log": "832d9bddb2380b78dc7960cfdb41c490fe7bf047e20d7e18c0b767299f024e4a",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "buffered-normal",
+      "target": "adapter",
+      "result": "PASS",
+      "log": "evidence/buffered-normal/adapter.log",
+      "receipt": "evidence/buffered-normal/adapter-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "1b91002efe8cc11ac06b02fe5b1d6a5425ed36aca79d91ee508f3538fde05d40",
+        "adapter.log": "428c0b5fd3ec991e11333a1c23b2ce3af798c256a7c2d4ad62658ec5568219ff",
+        "core-receipt.json": "bc2408ff13858c31e19c7d2a98a976a4836198239c6858f2460f9a68d64579e4",
+        "core.log": "832d9bddb2380b78dc7960cfdb41c490fe7bf047e20d7e18c0b767299f024e4a",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "hwfifo-normal",
+      "target": "core",
+      "result": "PASS",
+      "log": "evidence/hwfifo-normal/core.log",
+      "receipt": "evidence/hwfifo-normal/core-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "d5d4b54df60e53a495cfdcc3457424f6a7354088333b668a9728764f6a34eb74",
+        "adapter.log": "e8812e7e7d6e55e54a0e43fc374c89cec81883ee2a834577ab62621bf2af0e69",
+        "core-receipt.json": "18bd2734777827c2699c974d2c60bd9500b958f03204f6836b0561497698b934",
+        "core.log": "db9eea79a79046ce0c3b65fdfc8a4dd2eaafcb1900d5ae4a19dec8b7c13144d4",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "hwfifo-normal",
+      "target": "adapter",
+      "result": "PASS",
+      "log": "evidence/hwfifo-normal/adapter.log",
+      "receipt": "evidence/hwfifo-normal/adapter-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "d5d4b54df60e53a495cfdcc3457424f6a7354088333b668a9728764f6a34eb74",
+        "adapter.log": "e8812e7e7d6e55e54a0e43fc374c89cec81883ee2a834577ab62621bf2af0e69",
+        "core-receipt.json": "18bd2734777827c2699c974d2c60bd9500b958f03204f6836b0561497698b934",
+        "core.log": "db9eea79a79046ce0c3b65fdfc8a4dd2eaafcb1900d5ae4a19dec8b7c13144d4",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "buffered-sanitize",
+      "target": "core",
+      "result": "PASS",
+      "log": "evidence/buffered-sanitize/core.log",
+      "receipt": "evidence/buffered-sanitize/core-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "b262b4ed335f3385c453d92aea675d553c78746f11ddc0931f5a208f08584ce5",
+        "adapter.log": "2b93c5a1481f4d6095a86405e7a7c68533a1a4b57bc6a87c253ab502fa20f08e",
+        "core-receipt.json": "2281c7f8c044a2b5153ddaba3c5e30a40be55afe245af7be8a3296f37bf8ba2d",
+        "core.log": "669a1f622c612a09e9ceef24de2a62b13464253e49a1d8debee15e34aa0d34d5",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "buffered-sanitize",
+      "target": "adapter",
+      "result": "PASS",
+      "log": "evidence/buffered-sanitize/adapter.log",
+      "receipt": "evidence/buffered-sanitize/adapter-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "b262b4ed335f3385c453d92aea675d553c78746f11ddc0931f5a208f08584ce5",
+        "adapter.log": "2b93c5a1481f4d6095a86405e7a7c68533a1a4b57bc6a87c253ab502fa20f08e",
+        "core-receipt.json": "2281c7f8c044a2b5153ddaba3c5e30a40be55afe245af7be8a3296f37bf8ba2d",
+        "core.log": "669a1f622c612a09e9ceef24de2a62b13464253e49a1d8debee15e34aa0d34d5",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "hwfifo-sanitize",
+      "target": "core",
+      "result": "PASS",
+      "log": "evidence/hwfifo-sanitize/core.log",
+      "receipt": "evidence/hwfifo-sanitize/core-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "e3a9150d6b95bd8d54859adc5dc766b946c9b580d6569b920dd489c44cf39803",
+        "adapter.log": "9232451da2fa0e38cb70359d555b24401eeb4b51079cf4f02b01cabf62bfc1d5",
+        "core-receipt.json": "3f0c2a0761d19d4f4efdf96659afb7a12e80d356e459c42ca9c21edcbffea586",
+        "core.log": "e1cf2f531dbe33833255259aab3e749f38d9064f3cf6811f0c44d7c09be7a215",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    },
+    {
+      "configuration": "hwfifo-sanitize",
+      "target": "adapter",
+      "result": "PASS",
+      "log": "evidence/hwfifo-sanitize/adapter.log",
+      "receipt": "evidence/hwfifo-sanitize/adapter-receipt.json",
+      "artifacts": {
+        "adapter-receipt.json": "e3a9150d6b95bd8d54859adc5dc766b946c9b580d6569b920dd489c44cf39803",
+        "adapter.log": "9232451da2fa0e38cb70359d555b24401eeb4b51079cf4f02b01cabf62bfc1d5",
+        "core-receipt.json": "3f0c2a0761d19d4f4efdf96659afb7a12e80d356e459c42ca9c21edcbffea586",
+        "core.log": "e1cf2f531dbe33833255259aab3e749f38d9064f3cf6811f0c44d7c09be7a215",
+        "prefix-host-completed.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-positive.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7",
+        "prefix-submissions.csv": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+        "prefix-submitted.bin": "b903eaa836ac3f46be6aeb451c95d79066871e12dec9d264f1cf4836de325cf7"
+      }
+    }
+  ],
+  "not_implemented_not_tested": [
+    "production reset producer latch",
+    "full event queue plus lost reset",
+    "stale queued event epoch barrier",
+    "production reset/submission IRQ races",
+    "automatic DCD failure detection",
+    "physical USB/STM32/Windows10"
+  ],
+  "lsan_claimed": false
+}

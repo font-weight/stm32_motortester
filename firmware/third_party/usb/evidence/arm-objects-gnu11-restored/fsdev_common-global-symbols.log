@@ -1,0 +1,4 @@
+btable_set_rx_bufsize T 0 42
+fsdev_core_reset T 0 50
+fsdev_deinit T 0 30
+pma_align_buffer_size T 0 24

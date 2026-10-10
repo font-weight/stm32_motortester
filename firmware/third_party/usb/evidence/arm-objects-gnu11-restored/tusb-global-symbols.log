@@ -1,0 +1,33 @@
+_tusb_rhport_role B 0 8
+dcd_int_handler U         
+tu_bind_driver_to_ep_itf T 0 5a
+tu_desc_find T 0 16
+tu_desc_find2 T 0 1e
+tu_desc_find3 T 0 28
+tu_edpt_claim T 0 22
+tu_edpt_release T 0 1c
+tu_edpt_stream_init T 0 2a
+tu_edpt_stream_read T 0 1a
+tu_edpt_stream_read_xfer T 0 94
+tu_edpt_stream_write T 0 48
+tu_edpt_stream_write_available T 0 24
+tu_edpt_stream_write_xfer T 0 86
+tu_edpt_stream_write_zlp_if_needed T 0 46
+tu_fifo_config U         
+tu_fifo_read_n_access_mode U         
+tu_fifo_write_n_access_mode U         
+tud_deinit U         
+tud_inited U         
+tud_rhport_init U         
+tusb_app_phys_to_virt W 0 2
+tusb_app_virt_to_phys W 0 2
+tusb_deinit T 0 38
+tusb_inited T 0 4
+tusb_int_handler T 0 18
+tusb_rhport_init T 0 64
+tusb_time_delay_ms_api W 0 16
+tusb_time_millis_api U         
+usbd_edpt_claim U         
+usbd_edpt_release U         
+usbd_edpt_xfer U         
+usbd_edpt_xfer_fifo U         
