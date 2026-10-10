@@ -1,0 +1,5 @@
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c: In function ‘test_timeout_interbyte_wrap’:
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:195:17: error: conversion from ‘unsigned int’ to ‘uint8_t’ {aka ‘unsigned char’} may change value [-Werror=conversion]
+  195 |         else {b=mode==2u?0u:1u;CHECK(mt_control_rx_feed(&f.rx,&b,1,f.now+1000u,&used)==MT_CONTROL_OK&&used==1);}
+      |                 ^~~~
+cc1: all warnings being treated as errors
