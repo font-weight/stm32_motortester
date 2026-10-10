@@ -94,10 +94,10 @@
   },
   {
     "path": "firmware/platform/README.md",
-    "size": 14858,
-    "sha256": "a640c8ea2e17de2455bc205d0311b14b8abbdb586c968a4c3d8e03b678cd1080",
-    "git_blob_sha": "0f7dcc3b51e9b640b9fcfb469f0fe8373df412c4",
-    "provenance": "aligned PR27 imported; C/H add only profile1 no-write readiness API",
+    "size": 15228,
+    "sha256": "caa52a4a0dafe3072cea0c009f4762ec67f01bfbac57711c9c6f1b93fe825d3b",
+    "git_blob_sha": "df25d6bcd7b2eb6a84b9a70f65976993fcc9a042",
+    "provenance": "aligned PR27 README with Dot A documentation-only repair: immutable original test-doc link and current ADC-control documentation link",
     "commit": "5215177100453c6f77e5c5a637197fd626e57aec",
     "base_blob": "0f7dcc3b51e9b640b9fcfb469f0fe8373df412c4"
   },

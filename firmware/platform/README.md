@@ -143,7 +143,8 @@ Stop выполняется синхронно: TIM3.CEN=0 → ADC_CR2=0 (trigge
 
 ## Что проверить дальше
 
-Команды и программные результаты — [tests/platform/README.md](../../tests/platform/README.md).
+Исходные команды и результаты отдельного ADC-кандидата — [tests/platform/README.md на PR27](https://github.com/font-weight/stm32_motortester/blob/5215177100453c6f77e5c5a637197fd626e57aec/tests/platform/README.md).
+В этом интеграционном дереве воспроизводимые проверки драйвера вместе с контроллером описаны в [ADC_CONTROL_README.md](../app/ADC_CONTROL_README.md).
 До признания даже интегрированного программного кандидата: независимое ревью,
 полный linker map, стек/callback chain/IRQ/USB RAM, поддержанный startup и
 воспроизводимая сборка всего образа. Лишь отдельный объект здесь не закрывает MVP-F01.
