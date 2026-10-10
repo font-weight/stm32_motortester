@@ -1,0 +1,58 @@
+{
+  "started_utc": "2026-10-10T12:33:52.867380+00:00",
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "source_root": "/workspace/shared/protocol-conformance-context",
+  "output_dir": "/tmp/protocol-conformance-run-1",
+  "stages": [],
+  "source_files": {
+    "firmware/protocol/mt_wire.c": {
+      "git_blob_sha": "6fb5e017ea568138e542baefd464d77f8b4ba178",
+      "expected_blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "sha256": "fb9eef3f0867406e030271d69f3ead99117687dfeb714a62a9483d8e3c5d5460",
+      "size": 4103
+    },
+    "firmware/protocol/mt_wire.h": {
+      "git_blob_sha": "23df72967d8c84bafc9d20100b16e780817df86c",
+      "expected_blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "sha256": "a4afcb80ca87b30e3e4d4a561ec7e45066e13aaf4afcc643bdb2e6d02aa640ee",
+      "size": 1680
+    },
+    "firmware/protocol/mt_stream.c": {
+      "git_blob_sha": "80b2c6317167755ace1cc8fe1438633459475278",
+      "expected_blob_sha": "419e78a74548387db990296357c4fd16d03556a4",
+      "sha256": "77c6f2d377027c943f2820c1a49b971ac46eed42e1420a8817a2df4d16996b6c",
+      "size": 1471
+    },
+    "firmware/protocol/mt_stream.h": {
+      "git_blob_sha": "3962620ecd3daafb1e7481c5af05463e2306c8aa",
+      "expected_blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "sha256": "a5bc3f5cf6592d98dda13511ebaa6aa0dfa0d0329f73e07fc6c2576ea4fb812f",
+      "size": 1922
+    },
+    "firmware/protocol/mt_command.c": {
+      "git_blob_sha": "94184c907cedeb7d73b1da9269b1f87f627f526c",
+      "expected_blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "sha256": "deefd039af4992158d71ab09ff14c557abf80cd150b85679b3f1979d91b3b733",
+      "size": 3567
+    },
+    "firmware/protocol/mt_command.h": {
+      "git_blob_sha": "5a66ce9d87257521f2c231b17a7929716a6e3614",
+      "expected_blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "sha256": "68055bfc3e63e7f6886b82c8f5ac913ee43aab74e4233141e19dbd051d87d4d2",
+      "size": 2398
+    }
+  },
+  "implementation_commits": {
+    "wire": "124b3f32e1e7f7282bce283baa4c9406d4d72950",
+    "stream_command": "0f285510c1b9b6bd21bb7b60ae6098f7584ae71a"
+  },
+  "leak_detection": "disabled: address/UB checks only; LSan not claimed",
+  "scope": "native software conformance only; no hardware, dispatcher, or review gate",
+  "exact_pinned_sources": false,
+  "status": "FAILED_OR_BLOCKED",
+  "error": "source fingerprint differs: firmware/protocol/mt_wire.c, firmware/protocol/mt_wire.h, firmware/protocol/mt_stream.c, firmware/protocol/mt_stream.h, firmware/protocol/mt_command.c, firmware/protocol/mt_command.h",
+  "finished_utc": "2026-10-10T12:33:52.871540+00:00"
+}

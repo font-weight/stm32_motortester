@@ -1,0 +1,28 @@
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Python 3.12.14
+Strict stream test: PASS
+Strict command test: PASS
+ASan+UBSan stream test: PASS (LSan disabled due ptrace runtime limitation)
+ASan+UBSan command test: PASS (LSan disabled due ptrace runtime limitation)
+{
+  "exact_sha": "0f285510c1b9b6bd21bb7b60ae6098f7584ae71a",
+  "status": "PASS for listed checks only",
+  "independent_crc_and_vector": true,
+  "codec_roundtrips": 2565,
+  "capacity_refusals": 544,
+  "random_decode_inputs": 20000,
+  "host_layout_vectors": 7,
+  "wrong_command_lengths": 3584,
+  "config_support_cases": 9216,
+  "host_sizes": {
+    "Msg": 544,
+    "Config": 16,
+    "Command": 24,
+    "Support": 4,
+    "Stream": 568
+  }
+}

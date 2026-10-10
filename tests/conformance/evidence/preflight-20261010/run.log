@@ -1,0 +1,3 @@
+Independent conformance; pinned Git blob checks run before compilation.
+source fingerprint differs: firmware/protocol/mt_wire.c, firmware/protocol/mt_wire.h, firmware/protocol/mt_stream.c, firmware/protocol/mt_stream.h, firmware/protocol/mt_command.c, firmware/protocol/mt_command.h
+Evidence: /tmp/protocol-conformance-run-1

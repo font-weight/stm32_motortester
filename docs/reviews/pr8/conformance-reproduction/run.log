@@ -1,0 +1,33 @@
+Independent conformance; pinned Git blob checks run before compilation.
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 /workspace/shared/protocol-conformance-context/tests/conformance/generate_vectors.py --check
+Reference fixtures verified
+$ cc --version
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+$ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -I /workspace/shared/critic-a-pr8-0f28551/firmware/protocol /workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_wire.c /workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_stream.c /workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_command.c /workspace/shared/protocol-conformance-context/tests/conformance/test_conformance.c -O2 -o /workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-reproduction/conformance-strict
+
+$ /workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-reproduction/conformance-strict
+Independent conformance, deterministic xorshift seed 0x6d747031
+PASS: independent CRC/COBS and fixed wire vectors
+PASS: wire rejection, precedence and failure atomicity
+PASS: 4096 differential wire messages
+PASS: stream fragmentation/coalescing/recovery
+PASS: stream deadlines/wrap/overflow/reset
+PASS: command payload syntax and parsing
+PASS: CONFIG capabilities and semantic domains
+PASS: all independent conformance checks (3294116 assertions)
+$ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -I /workspace/shared/critic-a-pr8-0f28551/firmware/protocol /workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_wire.c /workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_stream.c /workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_command.c /workspace/shared/protocol-conformance-context/tests/conformance/test_conformance.c -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -o /workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-reproduction/conformance-sanitized
+
+$ /workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-reproduction/conformance-sanitized
+Independent conformance, deterministic xorshift seed 0x6d747031
+PASS: independent CRC/COBS and fixed wire vectors
+PASS: wire rejection, precedence and failure atomicity
+PASS: 4096 differential wire messages
+PASS: stream fragmentation/coalescing/recovery
+PASS: stream deadlines/wrap/overflow/reset
+PASS: command payload syntax and parsing
+PASS: CONFIG capabilities and semantic domains
+PASS: all independent conformance checks (3294116 assertions)
+Evidence: /workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-reproduction
