@@ -25,7 +25,8 @@ typedef struct {
 /* CRC-32/ISO-HDLC: poly 0x04C11DB7 reflected, init/xorout 0xffffffff. */
 uint32_t mt_wire_crc32(const uint8_t *bytes, size_t length);
 /* Encode one message with trailing zero delimiter. Output capacity must be
- * MT_WIRE_FRAME_MAX; output and message must not overlap. On failure neither
+ * MT_WIRE_FRAME_MAX; output, message and written must be pairwise non-overlapping objects.
+ * On failure neither
  * output nor *written changes. Version/reserved fields are generated here. */
 mt_wire_result mt_wire_encode(const mt_wire_message *message,
                              uint8_t *output, size_t capacity, size_t *written);

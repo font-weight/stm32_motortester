@@ -70,3 +70,99 @@ RAM включает окно, DMA staging, packet buffers, globals и стек.
 Предварительно резервируются PA0 для ADC1_IN0, PA11/PA12 для USB, PA13/PA14 для SWD. Вывод внешнего запуска — TBD: PB12 EXTI не равнозначен аппаратному input capture. Распиновка конкретной платы не проверена.
 
 Дальнейшие обязательные результаты: тактирование/ADC, карта выводов, допустимые Fs/window/pretrigger, все payloads и состояния, независимые векторы и реальные compile/tests, два проходных заключения критиков. Неполнота этого draft не уменьшает требования MVP.
+
+## Полный кандидат сообщений для обсуждения A/B
+
+Этот раздел дополняет draft, но не отменяет его непринятый статус. Числа ниже — ограничения проекта, не измеренная производительность. До принятия заменяют перечисленные выше TBD только в части явно определённых правил; USB VID/PID, библиотека и физическая карта остаются отдельными открытыми решениями.
+
+### Сеанс и порядок
+
+HELLO type=1 содержит единственный uint64 nonce, отличный от нуля; header session=0, sequence=1, request_id=1. Повторять старый nonce нельзя. Новый HELLO прерывает текущий захват и очередь данных, сбрасывает конфигурацию/идентификаторы и устанавливает новый connection_session_id. После этого HELLO_ACK type=129 использует session=nonce, sequence=1, request_id=1. Последующие sequence обеих сторон начинаются с 2. Случайность nonce обеспечивает ПК; это не секрет. Экспериментальный сеанс измерений в файле — другой идентификатор.
+
+У запросов request_id последовательно возрастает с 2. У ответа тот же request_id; у событий request_id=0. Все отправленные кадры каждой стороны, включая события и ошибки, имеют собственный последовательный sequence. Значения не оборачиваются: до UINT32_MAX выполняется новое соединение/HELLO. Идентичный повтор предыдущего кадра игнорируется без повторения действия; повтор sequence с другим содержимым, пропуск или более старый sequence переводит получателя в восстановление. Для сравнения последнего кадра хранится его полный decoded образ, не только CRC. Ошибка CRC сама по себе не меняет состояние захвата; следующий выявленный sequence gap требует восстановления, поэтому потерянная команда не считается исполненной.
+
+Восстановление ПК: прекратить публикацию активного окна, пометить полученные блоки неполными, закрыть/открыть транспорт, очистить очереди и выполнить HELLO с новым nonce. Устройство при ошибке порядка останавливает захват, очищает pending TX и ждёт HELLO. Потеря USB configuration также останавливает захват и сбрасывает сеанс. Недоступный USB не должен удерживать включённый таймер захвата.
+
+Автоматических повторов ARM/CONFIG нет. Timeout неопределённого результата требует нового сеанса, а не второго ARM. STOP может повторяться только как новый запрос с новым request_id и тем же generation. В каждый момент допускается один обычный неотвеченный запрос; STOP имеет отдельный приоритетный слот и может прервать ожидание ответа/данных. Новый ARM до STOP_ACK запрещён.
+
+### Типы и точные payloads
+
+Поля записаны в порядке байтов; u8/u16/u32/u64 — беззнаковые little-endian. Все длины должны совпадать точно, не только быть меньше максимума. Неописанный тип либо ненулевое reserved получает ERROR, без изменения конфигурации.
+
+| Type | Имя | Payload |
+|---:|---|---|
+| 1 | HELLO | nonce:u64 |
+| 2 | GET_CAPS | пусто |
+| 3 | CONFIG | profile:u16, mode:u8, source:u8, edge:u8, reserved:u8=0, level_code:u16, pretrigger_samples:u16, reserved:u16=0, auto_timeout_ms:u32 |
+| 4 | ARM | config_id:u32 |
+| 5 | STOP | generation:u32 |
+| 6 | GET_STATUS | пусто |
+| 7 | RELEASE_WINDOW | generation:u32, window_id:u32, samples_crc32:u32 |
+| 129 | HELLO_ACK | major:u8=0, minor:u8=1, channel_count:u8=1, adc_bits:u8=12, max_payload:u16=512, max_window:u16=2048, firmware_build:u32, capability_bits:u32 |
+| 130 | CAPS | profile_count:u8=1, reserved:u8=0, profile:u16=1, timer_clock_hz:u32=72000000, timer_psc:u16=71, timer_arr:u16=19, adc_clock_hz:u32=12000000, adc_sample_cycles_x2:u16=143, window_samples:u16=2048, pre_count:u8=3, mode_bits:u8, source_bits:u8, edge_bits:u8, pre0:u16=0, pre1:u16=512, pre2:u16=1024 |
+| 131 | CONFIG_ACK | config_id:u32, затем точные 16 байт принятого CONFIG |
+| 132 | ARM_ACK | generation:u32 (=request_id ARM), config_id:u32 |
+| 133 | STOP_ACK | generation:u32, last_window_id:u32, status:u8=0, reserved:3 байта=0 |
+| 134 | STATUS | state:u8, reason:u8, reserved:u16=0, generation:u32, window_id:u32, observed_external_edges:u32, busy_external_edges:u32, dropped_windows:u32 |
+| 135 | RELEASE_ACK | generation:u32, window_id:u32 |
+| 144 | WINDOW_BEGIN | см. ниже, 40 байт |
+| 145 | WINDOW_DATA | generation:u32, window_id:u32, offset_samples:u16, count_samples:u16, count_samples×u16 codes |
+| 146 | WINDOW_END | generation:u32, window_id:u32, total_samples:u16, reserved:u16=0, samples_crc32:u32 |
+| 147 | WINDOW_ABORT | generation:u32, window_id:u32, reason:u16, reserved:u16=0 |
+| 255 | ERROR | rejected_type:u8, code:u8, reserved:u16=0, generation:u32 |
+
+STATUS с request_id=0 является событием, с request_id GET_STATUS — ответом. Переходы состояния отправляются отдельным STATUS. Ошибка синтаксиса без достоверного header/CRC не получает ERROR с выдуманным request_id. Unsupported version не входит в текущий сеанс; ПК показывает несовместимость и не вооружает устройство.
+
+CONFIG mode: 0 Auto, 1 Normal, 2 Single; source: 0 аналоговый канал, 1 внешний; edge: 0 rising, 1 falling. level_code 1..4094; поле сохраняется и при внешнем источнике, но не применяется к нему. Для Auto timeout допускается 100..60000 ms; для остальных режимов требуется 0. Pretrigger принимает только значения из CAPS. Фактический timeout начинает отсчёт после подготовки предыстории. CONFIG только в STOPPED; при ошибке старые настройки неизменны.
+
+config_id увеличивается устройством при успешном CONFIG с 1. ARM без принятого CONFIG или с чужим config_id отвергается. Generation равна request_id успешного ARM и не меняется при автоматическом повторении окон. Window_id возрастает с 1 на каждое начало окна в сеансе. Числовые capabilities: bit0 analog trigger, bit1 external trigger, bit2 Auto, bit3 Normal, bit4 Single, bit5 pretrigger. Не реализованная возможность имеет 0; ACK не должен обещать будущую функцию. CAPS перечисляет фактически собранные возможности; режимы выше описывают целевой контракт, не текущий codec.
+
+### Окно
+
+WINDOW_BEGIN payload (40 байт):
+generation:u32; window_id:u32; config_id:u32;
+profile:u16; sample_count:u16; pretrigger_samples:u16; trigger_index:u16;
+trigger_kind:u8; source:u8; edge:u8; channel:u8;
+level_code:u16; quality_flags:u16;
+timer_clock_hz:u32; timer_psc:u16; timer_arr:u16; external_edge_id:u32.
+
+trigger_kind: 0 analog, 1 external, 2 auto_timeout. Для auto_timeout trigger_index=0xffff и external_edge_id=0. Для analog index — индекс первого отсчёта перехода; внешний индекс — привязка к сетке выборок выбранным механизмом с неопределённостью TBD до аппаратной проверки. Без реального события индекс не выдумывается. Для реального события trigger_index=pretrigger_samples; если предыстория не готова, событие не запускает окно. Channel=0, один канал. Коды только 0..4095, остальные отклоняются как нарушение данных.
+
+Window sample_count всегда 2048 для profile1. WINDOW_DATA содержит 1..250 отсчётов (12+2×250=512 байт). Offset/count не выходят за окно. Блоки следуют без пропусков по offset. Повтор с новым sequence и теми же session/generation/window/offset/count и кодами может быть проигнорирован; конфликт или перекрытие означает incomplete/error, не перезапись. Изменение идентификаторов посреди окна отвергается. CRC окна считается по исходным 4096 байтам little-endian кодов в порядке offset; metadata защищена CRC отдельных кадров.
+
+Успешное окно публикуется только после полного массива, согласованного WINDOW_END и совпавшего CRC. Проверенные фрагменты неполного окна могут сохраняться отдельно с явной маской пропусков и причиной; они не дополняются нулями и не становятся полным измерением. Файловую сериализацию выбирает B.
+
+Quality flags: bit0 auto_timeout; bit1 ADC rail code observed (0 либо4095, не доказательство отсутствия/наличия аналоговой перегрузки); bit2 external timing unverified; остальные0. Ошибка DMA/дедлайна не выдаёт полное WINDOW_END: окно отменяется с reason. Время между окнами включает подготовку, захват, передачу и подтверждение; непрерывность не обещается.
+
+После WINDOW_END устройство удерживает замороженный буфер до RELEASE_WINDOW с совпавшими id/CRC либо Stop/HELLO. RELEASE_ACK разрешает Auto/Normal снова готовить предысторию; Single остаётся STOPPED. ПК отправляет RELEASE только после проверенной приёмки массива, не ждёт записи файла на диск. Срок ожидания RELEASE — 5000 ms; истечение отменяет продолжение и переводит устройство в ERROR. ПК при отсутствии прогресса передачи 3000 ms прерывает окно; ожидание Normal/Single само по себе не является таким timeout.
+
+### Stop и отказы
+
+Состояния: 0 STOPPED, 1 PREPARING, 2 WAITING, 3 CAPTURING, 4 TRANSFERRING, 5 ERROR.
+STOP с generation, отличной от текущей, получает STALE_GENERATION и не останавливает новый захват. Для текущей либо последней остановленной generation повтор безопасен.
+При активном неполном окне: остановить sampling/DMA, завершить WINDOW_ABORT, затем STOP_ACK. При уже отправленном WINDOW_END: окно завершено до Stop; оно остаётся успешным, новое не начинается. Очередь после STOP_ACK не содержит DATA/BEGIN/END отменённой generation. Полностью доставленное окно и отменённое окно не имеют двух терминальных исходов.
+Возможный уже поставленный в USB кадр должен завершиться до terminal/ACK; это порядок байтов одного CDC stream, не обещание отмены байтов внутри USB endpoint.
+
+ERROR codes: 1 INVALID_CONFIG, 2 BUSY, 3 STALE_CONFIG, 4 STALE_GENERATION, 5 UNKNOWN_TYPE, 6 INVALID_PAYLOAD, 7 BAD_WINDOW_RELEASE, 8 NOT_NEGOTIATED.
+Abort reasons: 1 STOP, 2 DMA_ERROR, 3 ACQ_DEADLINE, 4 TRANSFER_TIMEOUT, 5 DISCONNECT, 6 INTERNAL.
+Отсоединённый прибор не обязан передать сообщение об отсоединении по уже разорванному USB; ПК фиксирует причину сам. Счётчики внешних фронтов считают обнаруженные аппаратурой события, а не гарантированное количество команд стенда. Их предел частоты и точность требуют измерения; пропуск/занятость не обозначает отсутствие искры.
+
+### Сроки команд и проверка
+
+Ответ на обычную команду ожидается до 1000 ms с завершения её записи в транспорт; Stop также1000 ms, независимо от ожидания запуска. Истечение означает неизвестный результат и процедуру восстановления, не автоматический повтор ARM.
+Профиль50kS/s/2048 — кандидат для первого пути. Поддержка этого профиля должна подтверждаться сборкой/ресурсами, а реальная частота — отдельным измерением.
+
+Для принятия требуются независимые положительные/отрицательные векторы каждого payload, fragmented/coalesced/oversize/CRC tests, сценарии handshake/reconnect/Stop/rearm и двадцать синтетических окон с побитным round-trip у B. Этот PR пока содержит только byte codec и один вектор; эти критерии открыты.
+
+## Совместимость версии и источники
+
+В этом draft требуется точное совпадение major=0 и minor=1. Любое другое значение возвращает MT_WIRE_VERSION после проверки целостности; низкоуровневый codec не отправляет ответ. Dispatch/ПК обязан показать несовместимость, не вооружать захват и не выдавать данные. Обновление minor пока не считается автоматически совместимым: таблица миграции и новые векторы нужны отдельным PR.
+
+Исследовательские основания (не аппаратные доказательства):
+- [ST DS5319](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf): ресурсы, выводы, ADC/USB.
+- [ST RM0008](https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf): таймеры, ADC, DMA, USB.
+- [ST ES096](https://www.st.com/resource/en/errata_sheet/cd00190234.pdf): ограничения DMA, ADC, таймеров и USB. Выбранные обходы должны попасть в реализацию и тесты.
+- [Microsoft Usbser](https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-driver-installation-based-on-compatible-ids): CDC ACM в Windows 10.
+- [COBS, Cheshire/Baker](https://stuartcheshire.org/papers/COBSforSIGCOMM/): framing.
+
+RAM проекта должна дополнительно включать полный последний принятый кадр для проверки дубля, RX accumulation, TX staging и стек. Источники не подтверждают полезную скорость конкретного готового прибора.
