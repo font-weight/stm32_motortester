@@ -1,0 +1,8 @@
+5217ea87a2d5fef6f336420d7ae440ad352b737a708cdb0b3271222e1f0912ea  /workspace/shared/control-independent-tests/run-baseline-preserved/test_control_independent.c
+0c20b280f53348e93b2cbbfce22f1d3cdc040cff865d8ad0f75ce4f04db94f2d  /workspace/shared/control-independent-tests/snapshot/firmware/app/mt_control.c
+f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd  /workspace/shared/control-independent-tests/snapshot/firmware/app/mt_capture_link.c
+edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d  /workspace/shared/control-independent-tests/snapshot/firmware/acquisition/acquisition.c
+84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c  /workspace/shared/control-independent-tests/snapshot/firmware/protocol/mt_wire.c
+7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294  /workspace/shared/control-independent-tests/snapshot/firmware/protocol/mt_command.c
+27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40  /workspace/shared/control-independent-tests/snapshot/firmware/protocol/mt_session.c
+e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e  /workspace/shared/control-independent-tests/snapshot/firmware/transport/mt_tx.c

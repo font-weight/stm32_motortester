@@ -1,0 +1,3 @@
+native_exit=1
+sanitizer_exit=1
+independent_wire_exit=0
