@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "seed": 20261010,
+  "counts": {
+    "stop_byte_boundaries": 988,
+    "hello_byte_boundaries": 988,
+    "resource_limit": 1,
+    "io_recovery": 24,
+    "stall_timeout": 4,
+    "frame_timeout": 2,
+    "stop_timeout": 2,
+    "sequence_boundary": 1,
+    "physical_reset": 1,
+    "random_fragmentation_copy": 2000,
+    "initial_stop_no_window": 1,
+    "early_abort_no_begin": 1,
+    "repeat_stop_status_boundaries": 55,
+    "invalid_stop_atomicity": 28,
+    "argument_shape": 11264,
+    "zero_window_identity": 8,
+    "caller_header_rejected": 2,
+    "null_guards": 1
+  },
+  "checks": 2369244,
+  "scope": "host native TX queue; independent COBS/header/CRC byte oracle; no dispatcher/USB/Windows/hardware proof"
+}

@@ -1,0 +1,1024 @@
+diff --git a/firmware/transport/README.md b/firmware/transport/README.md
+new file mode 100644
+index 0000000..b45f49a
+--- /dev/null
++++ b/firmware/transport/README.md
+@@ -0,0 +1,94 @@
++# Ограниченная очередь TX: черновая граница native USB
++
++Статус: **реализован и проверен на ПК только независимый от USB-стека модуль очереди**. Это не драйвер USB, не прошивка прибора и не подтверждение работы Windows 10 или платы. Требуется независимое ревью конкретного commit по [quality-gate](../../docs/quality-gate.md). Общая интеграция и согласование изменений контракта требуют обоих критиков.
++
++Основания: [MVP-F04/F06/F07](../../docs/mvp-spec.md), [wire v0.1](../../protocol/wire-v0.1.md), codec PR4 `124b3f32e1e7f7282bce283baa4c9406d4d72950`, stream PR7 `8d5f68c7b8b56ed3d0bd32b0468c10bed1e0e0b7`, command PR8 `0f285510c1b9b6bd21bb7b60ae6098f7584ae71a`. Все зависимости остаются черновиками до приёмки. Тесты используют точный byte codec этих входов, без изменения `firmware/protocol/**`.
++
++## Зачем отдельная очередь
++
++Захват может производить данные быстрее, чем USB временно принимает их. Неограниченная очередь исчерпает 20 KiB SRAM. Простое «выкинуть старые данные» опасно: ПК может увидеть половину кадра либо потерять обязательный ответ на команду. Здесь сообщение копируется в конечную очередь, а USB-адаптер принимает только ограниченные порции байтов.
++
++`mt_tx` принадлежит одному foreground-циклу. Нельзя вызывать его одновременно из IRQ, callback USB и главного цикла; нельзя повторно входить в очередь из write callback. IRQ только уведомляет владельца. Входящие байты независимо проходят `mt_stream` → проверку сеанса/порядка → `mt_command` → диспетчер. Очередь TX **не проверяет полномочия STOP, историю ARM или актуальность generation**.
++
++## Вместимость и backpressure
++
++- Шесть слотов сообщений, каждый со своим payload до 512 байт, и один COBS staging до 544 байт. Heap отсутствует.
++- Обычный поток занимает не более трёх слотов. Новые данные окна и события принимаются, пока общее число занятых слотов меньше двух. Это оставляет как минимум один слот для обязательного ответа на обычную команду.
++- Ещё три слота доступны только атомарному завершению Stop: нужный ABORT → STOP_ACK → STATUS(STOPPED). Даже худший допустимый состав из частично начатого кадра и двух прежних ответов плюс три сообщения Stop занимает ровно шесть слотов.
++- `MT_TX_FULL` ничего не изменяет. Producer удерживает исходное окно и пробует снова после прогресса TX, без busy loop. В этой очереди запрещено молча выбрасывать принятый ответ.
++- Диспетчер должен обеспечить место для ответа **до необратимого применения команды**. Если обязательный ответ поместить нельзя, это ошибка согласования/перегрузки: прекратить захват и перейти к восстановлению, а не выполнить команду без ответа.
++- В любой момент разрешён один обычный неподтверждённый запрос и один STOP. Это проверяет диспетчер; очередь не является заменой проверки request_id.
++
++Измерение `sizeof` в GCC 14.2.0, x86-64: слот 552 байта, `mt_tx` 3928 байт. Это расход объекта на данной ABI, не STM32 map. В него не входят окно 4096 байт, DMA staging, RX/parser/дубликат последней команды, внутренние буферы USB, остальные globals и стек. Шесть слотов выбраны ради доказуемого резерва Stop, а не как обещание потоковой скорости. До подключения к STM32 нужны map и полный бюджет 20 KiB.
++
++Локальный `-Os -fstack-usage` показал собственные кадры стека: `mt_tx_stop` 600 байт (сохранение прежнего ABORT), `mt_tx_poll` 160, `mt_wire_encode` 568. Вложенный вызов encode добавляется к poll; USB callback и IRQ добавляют свой расход. Это ориентир для этой host-сборки, не доказанный worst-case стек ARM.
++
++## Точка необратимости END и sequence
++
++`mt_tx_enqueue` принимает сообщение со значениями session=0, sequence=0 и копирует его. Сеанс задаёт `mt_tx_hello`. Перед попыткой записи очередь кодирует кадр с предварительным `next_sequence`.
++
++**Первое положительное число принятых байтов из write callback одновременно закрепляет sequence и, для END/ABORT, terminal outcome.** До этого даже полностью закодированный кадр остаётся отменяемым; callback с результатом 0 не расходует sequence. Отмена END перед первым принятым байтом не оставляет дырку в последовательности. `UINT32_MAX` не выдаётся: нужен новый HELLO до переполнения.
++
++Callback обязан синхронно скопировать ровно возвращённое число начальных байтов в упорядоченный USB TX FIFO, который больше нельзя очищать/перезаписывать при обычном STOP или HELLO. Отрицательный результат означает сбой без принятых байтов. Указатель в staging нельзя сохранять после возврата. Одно обращение предлагает не более 64 байт; весь кадр может занимать много USB-пакетов.
++
++`MT_TX_STARTED` означает этот первый commit. `MT_TX_FINISHED` означает принятие всего кадра FIFO. Ни одно событие не доказывает доставку в ПК. Физическое отключение может оборвать даже committed END, и тогда у ПК остаётся неполная запись.
++
++## Stop, порядок и повтор
++
++До `mt_tx_stop` диспетчер проверяет сеанс/generation и отключает таймер/DMA. Затем передаёт доказанный `active_window`:
++
++- `0`: выделенного незавершённого окна нет. В STOPPED, при ожидании запуска до выделения окна и после завершённого предыдущего Stop не нужно придумывать ABORT.
++- ненулевой id: действительно выделено окно, terminal ещё не завершён или уже committed и допередаётся. Постановка ABORT в очередь **сама по себе не завершает** жизненный цикл окна.
++
++`mt_tx_window_status` различает отсутствие окна, выделенное окно без байтов TX, очередь, начатый кадр, committed END и committed ABORT. Это сведения о TX, не доказательство выделения окна. Последний terminal marker хранится только для одного окна; CRC tombstone и длительная история состояния принадлежат диспетчеру.
++
++При Stop сохраняются частично начатый кадр и все более ранние обязательные ответы. Неначатые данные/события удаляются. Если terminal ещё не committed, нужен один ABORT. Уже стоящий в очереди ABORT сохраняет причину и перемещается после прежних ответов; второй ABORT не создаётся. Если END/ABORT committed, он допередаётся и нового terminal нет.
++
++Если окно выделено, но BEGIN ещё не начал передачу, допустим ABORT без ранее полученного BEGIN. ПК проверяет session/generation/id и отмечает отмену, не создавая заполненное нулями измерение. END/ABORT с window_id=0 запрещены; transport также не принимает оконные сообщения с generation=0.
++
++Порядок после уже начатого кадра: прежние ответы → нужный terminal → STOP_ACK → STATUS(STOPPED). Барьер Stop снимается при принятии последнего байта STOP_ACK в FIFO (`MT_TX_STOP_FINISHED` вместе с FINISHED). Следующее ARM/CONFIG диспетчер разрешает только после этого события; успешный приём ACK самим ПК остаётся отдельным условием на стороне ПК.
++
++STATUS(STOPPED), ещё ожидающий передачи после ACK, не продлевает барьер. Новый ответ встаёт после него. Повторный STOP с новым request_id допустим после предыдущего ACK: новый Stop может убрать лишь неначатое устаревшее событие STATUS; начатый STATUS допередаётся. Прежние ответы никогда не удаляются. До завершения ACK второй вызов Stop получает `MT_TX_DRAINING` без изменений; диспетчер не должен накапливать неподтверждённые STOP.
++
++При освобождении массива важно различать копирование и доставку: terminal FINISHED сообщает, что все необходимые байты уже скопированы по порядку в FIFO. Диспетчер не должен отпускать frozen buffer до нужного terminal и должен сохранить END tombstone согласно wire.
++
++## HELLO, физический сброс и тайм-ауты
++
++`mt_tx_hello` вызывается только после полной проверки нового ненулевого nonce и специального заголовка HELLO. Текущий nonce повторно отвергается. Очередь удаляет все неначатые кадры старого сеанса, включая ответы, и ставит новый HELLO_ACK с sequence=1. Один уже начатый старый кадр сначала допередаётся. Новый HELLO не очищает нижележащий USB FIFO; уже принятые туда кадры также остаются перед новым ACK. ПК отличает их по nonce.
++
++При USB reset/deconfiguration/disconnect диспетчер останавливает sampling, сбрасывает parser/session и вызывает `mt_tx_init`. Только физический разрыв делает допустимым потерять старый частичный кадр. После этого обычные сообщения отвергаются до HELLO.
++
++Проектные ограничения TX: 1000 ms без прогресса, 3000 ms на текущий кадр, 1000 ms на барьер Stop. Сравнение `>=`, monotonic uint32 миллисекунды с wrap, промежутки обслуживания меньше 2^31 ms. `poll` вызывается и при отсутствии готовности USB. Истечение/ошибка callback/исчерпание sequence защёлкивает fault: дальнейшего вывода нет до валидного нового HELLO при исправном backend либо физического reset. Диспетчер останавливает захват и помечает результат неполным.
++
++Это локальные защитные пределы, не обещание ответа ровно за 1000 ms при любых драйверах/кабелях. Wire timeout ПК остаётся независимым: если ответ не пришёл, результат команды неизвестен, нужен новый handshake. Ожидание запуска Normal/Single без передачи окна не является TX timeout.
++
++## USB-стек и идентификаторы: исследование, не утверждённый выбор
++
++Проверено по первичным источникам 10.10.2026:
++
++1. [TinyUSB](https://github.com/hathach/tinyusb) перечисляет STM32F102/F103 через `stm32_fsdev`, CDC и статические буферы. [Лицензия тега 0.21.0](https://raw.githubusercontent.com/hathach/tinyusb/0.21.0/LICENSE) — MIT с сохранением copyright/notice. Это предпочтительный кандидат для отдельной интеграционной итерации. Перед добавлением нужны точный commit, перечень действительно используемых файлов/подмодулей и лицензии CMSIS/BSP; этот PR не включает сторонние исходники и не устанавливает лицензию всему проекту.
++2. [ST USB Device middleware LICENSE](https://raw.githubusercontent.com/STMicroelectronics/stm32-mw-usb-device/master/LICENSE.md) направляет к лицензии пакета, иначе SLA0044 Rev6/Oct2025. Она ограничивает применение ST-устройствами и запрещает подчинять компонент перечисленным Open Source Terms. Называть этот компонент MIT нельзя. Условия конкретного пакета требуют отдельной проверки. [ST SA0069](https://www.st.com/resource/en/security_advisory/sa0069-stm32cube-usb-device-library-potential-issues-stmicroelectronics.pdf) указывает уязвимости USB Device до 2.11.5 включительно, исправление 2.11.6; затронуто и ядро, поэтому отказ от MSC сам по себе недостаточен.
++3. [Microsoft Usbser](https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-driver-installation-based-on-compatible-ids) описывает штатный CDC-драйвер и автоматическую привязку по корректным class/subclass. Это основание кандидата CDC ACM, но не проверка конкретных descriptors или Windows 10 на ноутбуке.
++
++Особенно важен будущий адаптер TinyUSB 0.21.0: [cdc_device.h](https://raw.githubusercontent.com/hathach/tinyusb/0.21.0/src/class/cdc/cdc_device.h) по умолчанию задаёт `CFG_TUD_CDC_TX_OVERWRITABLE_IF_NOT_CONNECTED=1`. Для этого проекта потребуется **0**, иначе при отсутствии DTR ранее принятые байты могут быть перезаписаны. `tud_cdc_write` возвращает принятые FIFO байты; `write_flush` инициирует отправку, `write_clear` удаляет данные. Обычный HELLO/STOP не должен вызывать `write_clear`. Сброс RX/TX persistence при физическом reset должен быть подтверждён тестами адаптера. DTR и USB configured — разные состояния; нельзя выводить одно из другого. Конкретное требование к DTR должен согласовать интегратор с ПК, а не молча добавить транспорт.
++
++Право использовать код библиотеки не предоставляет VID/PID:
++
++- [USB-IF](https://usb.org/developers) указывает исключительное назначение VID и запрещает неразрешённое использование назначенных и неназначенных номеров; официальный путь — [получение VID](https://usb.org/getting-vendor-id) владельцем проекта либо документированное разрешение владельца подходящего VID/PID.
++- [pid.codes/howto](https://pid.codes/howto/) требует общедоступный репозиторий, признанные лицензии исходников/аппаратуры и принятую заявку. [Сам pid.codes](https://pid.codes/about/) предупреждает, что USB-IF считает его VID устаревшим и не поддерживает этот реестр. Это нельзя представлять как бесспорный USB-IF-approved путь.
++- Ни принадлежность Blue Pill, ни пример ST/TinyUSB не дают разрешение копировать чужие identifiers. Назначенные этому проекту VID/PID: **TBD**. До descriptors и распространяемой USB-сборки владелец должен выбрать законный путь и явно определить лицензию своего проекта. В этом модуле нет выдуманных/заимствованных identifiers и заявок от имени пользователя.
++
++## Как воспроизвести программную проверку
++
++Из корня checkout:
++
++```sh
++sh tests/transport/run.sh
++SANITIZE=1 ASAN_OPTIONS=detect_leaks=0 sh tests/transport/run.sh
++```
++
++GCC 14.2.0 на Linux, C11, `-Wall -Wextra -Werror -pedantic -Wconversion -Wshadow`: 13 групп проверок прошли. Второй запуск использовал AddressSanitizer и UndefinedBehaviorSanitizer. LeakSanitizer в данной среде завершился сообщением о несовместимости с ptrace, поэтому отключён только поиск утечек; динамических выделений в модуле нет. Это ограничение не скрывается.
++
++Проверяются длины принимаемых порций 1..80 байт, максимальный payload/CRC round-trip, резервы очереди, сохранение прежних ответов при полном Stop, END до/после первого байта и после полной передачи, существующий ABORT, ABORT до BEGIN, повтор Stop, ACK-complete/STATUS-pending, HELLO поверх частичного кадра, flush неначатых ответов, stall/frame/Stop timeout и wrap времени, sequence exhaustion, ошибки backend, reset и неизменность выходов при ошибочных аргументах. Fake backend моделирует лишь байтовый FIFO; он не является USB-устройством. Полная семантика payload и состояния захвата проверяется в других компонентах.
++
++Не проверены: Cortex-M3 сборка/размеры/стек, USB enumeration, descriptors, PMA, clocks, IRQ, реальный backpressure/отсоединение, DTR, Windows 10, ADC/DMA и физические уровни. Следующий шаг — независимый review точного SHA, затем отдельный pinned USB adapter и его target-сборка/отказные тесты без заимствования чужого VID/PID.
+diff --git a/firmware/transport/mt_tx.c b/firmware/transport/mt_tx.c
+new file mode 100644
+index 0000000..617dafd
+--- /dev/null
++++ b/firmware/transport/mt_tx.c
+@@ -0,0 +1,226 @@
++#include "mt_tx.h"
++#include <string.h>
++
++static uint32_t read32(const uint8_t *p) {
++    return (uint32_t)p[0] | ((uint32_t)p[1] << 8) |
++           ((uint32_t)p[2] << 16) | ((uint32_t)p[3] << 24);
++}
++static int base_valid(const mt_wire_message *m) {
++    return m && m->session == 0u && m->sequence == 0u &&
++           m->payload_length <= MT_WIRE_PAYLOAD_MAX;
++}
++static int shape(const mt_wire_message *m, uint8_t type, size_t length,
++                 int reply) {
++    return base_valid(m) && m->type == type && m->payload_length == length &&
++           (reply ? m->request != 0u : m->request == 0u);
++}
++static int is_reply(const mt_wire_message *m) {
++    return m->request != 0u;
++}
++static int regular_valid(const mt_wire_message *m) {
++    if (!base_valid(m)) return 0;
++    if (m->type >= 144u && m->type <= 147u &&
++        (m->payload_length < 8u || read32(m->payload) == 0u ||
++         read32(m->payload + 4) == 0u)) return 0;
++    switch (m->type) {
++    case 130: return shape(m, 130, 30, 1);
++    case 131: return shape(m, 131, 20, 1);
++    case 132: return shape(m, 132, 8, 1);
++    case 134: return m->payload_length == 24u;
++    case 135: return shape(m, 135, 8, 1);
++    case 144: return shape(m, 144, 40, 0);
++    case 145: return m->request == 0u && m->payload_length >= 14u &&
++                     (m->payload_length & 1u) == 0u;
++    case 146: return shape(m, 146, 16, 0);
++    case 147: return shape(m, 147, 12, 0);
++    case 255: return shape(m, 255, 8, 1);
++    default: return 0;
++    }
++}
++static void append(mt_tx *t, const mt_wire_message *m) {
++    mt_tx_slot *s = &t->slots[t->count++];
++    s->message = *m;
++    s->message.session = t->session;
++    s->reply = (unsigned)is_reply(m);
++}
++static void head_timer(mt_tx *t, uint32_t now) {
++    t->head_ms = now;
++    t->progress_ms = now;
++}
++static mt_tx_result latch(mt_tx *t, mt_tx_result fault) {
++    t->fault = fault;
++    return fault;
++}
++void mt_tx_init(mt_tx *t) {
++    if (t) memset(t, 0, sizeof *t);
++}
++mt_tx_result mt_tx_hello(mt_tx *t, uint64_t nonce,
++                        const mt_wire_message *ack, uint32_t now) {
++    if (!t || nonce == 0u || nonce == t->session ||
++        !shape(ack, 129, 16, 1) || ack->request != 1u)
++        return MT_TX_ARGUMENT;
++    /* frame bytes stay untouched when its prefix has already left this object. */
++    t->count = t->offset != 0u ? 1u : 0u;
++    if (t->count == 0u) t->length = 0;
++    t->session = nonce;
++    t->next_sequence = 1;
++    t->stopping = 0;
++    t->terminal_type = 0;
++    t->terminal_generation = 0;
++    t->terminal_window = 0;
++    t->fault = MT_TX_OK;
++    head_timer(t, now);
++    append(t, ack);
++    return MT_TX_OK;
++}
++mt_tx_result mt_tx_enqueue(mt_tx *t, const mt_wire_message *m, uint32_t now) {
++    size_t limit;
++    if (!t || !regular_valid(m)) return MT_TX_ARGUMENT;
++    if (t->fault != MT_TX_OK) return MT_TX_FAULT;
++    if (t->session == 0u) return MT_TX_NOT_NEGOTIATED;
++    if (t->stopping) return MT_TX_DRAINING;
++    limit = is_reply(m) ? MT_TX_NORMAL_LIMIT : MT_TX_BULK_LIMIT;
++    if (t->count >= limit) return MT_TX_FULL;
++    if (t->count == 0u) head_timer(t, now);
++    append(t, m);
++    return MT_TX_OK;
++}
++uint8_t mt_tx_terminal_committed(const mt_tx *t, uint32_t gen, uint32_t win) {
++    if (!t || win == 0u || t->terminal_generation != gen ||
++        t->terminal_window != win) return 0;
++    return t->terminal_type;
++}
++mt_tx_window_phase mt_tx_window_status(const mt_tx *t, uint32_t gen,
++                                      uint32_t win) {
++    size_t i;
++    uint8_t terminal;
++    if (!t || win == 0u) return MT_TX_NO_WINDOW;
++    terminal = mt_tx_terminal_committed(t, gen, win);
++    if (terminal == 146u) return MT_TX_WINDOW_END_COMMITTED;
++    if (terminal == 147u) return MT_TX_WINDOW_ABORT_COMMITTED;
++    for (i = 0; i < t->count; ++i) {
++        const mt_wire_message *m = &t->slots[i].message;
++        if (m->session == t->session && m->type >= 144u && m->type <= 147u &&
++            read32(m->payload) == gen && read32(m->payload + 4) == win)
++            return i == 0u && t->offset != 0u ? MT_TX_WINDOW_STARTED
++                                            : MT_TX_WINDOW_QUEUED;
++    }
++    return MT_TX_WINDOW_NO_TX;
++}
++mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
++                       const mt_wire_message *abort_message,
++                       const mt_wire_message *ack,
++                       const mt_wire_message *status, uint32_t now) {
++    size_t i, kept = 0;
++    int terminal_needed;
++    mt_wire_message retained_abort;
++    const mt_wire_message *terminal = abort_message;
++    if (!t || (win != 0u && gen == 0u) || !shape(ack, 133, 12, 1) || !shape(status, 134, 24, 0) ||
++        read32(ack->payload) != gen || status->payload[0] != 0u ||
++        status->payload[1] != 0u || read32(status->payload + 4) != gen ||
++        read32(status->payload + 8) != read32(ack->payload + 4) ||
++        (win != 0u && read32(ack->payload + 4) != win)) return MT_TX_ARGUMENT;
++    if (t->fault != MT_TX_OK) return MT_TX_FAULT;
++    if (t->session == 0u) return MT_TX_NOT_NEGOTIATED;
++    if (t->stopping) return MT_TX_DRAINING;
++    terminal_needed = win != 0u && mt_tx_terminal_committed(t, gen, win) == 0u;
++    /* Preserve a pre-existing failure reason; move its unstarted ABORT behind
++     * prior replies. A partially started ABORT is already terminal-committed. */
++    if (terminal_needed) {
++        for (i = 0; i < t->count; ++i) {
++            const mt_wire_message *m = &t->slots[i].message;
++            if (m->session == t->session && m->type == 147u &&
++                read32(m->payload) == gen && read32(m->payload + 4) == win) {
++                retained_abort = *m;
++                retained_abort.session = 0;
++                retained_abort.sequence = 0;
++                terminal = &retained_abort;
++                break;
++            }
++        }
++        if (!shape(terminal, 147, 12, 0) || read32(terminal->payload) != gen ||
++            read32(terminal->payload + 4) != win) return MT_TX_ARGUMENT;
++    }
++    /* Preflight preserves atomicity even if queue layout changes in future. */
++    for (i = 0; i < t->count; ++i)
++        if ((i == 0u && t->offset != 0u) || t->slots[i].reply) ++kept;
++    if (kept + 2u + (size_t)terminal_needed > MT_TX_CAPACITY)
++        return MT_TX_FULL;
++    kept = 0;
++    for (i = 0; i < t->count; ++i)
++        if ((i == 0u && t->offset != 0u) || t->slots[i].reply)
++            t->slots[kept++] = t->slots[i];
++    t->count = kept;
++    if (t->offset == 0u) {
++        t->length = 0;
++        head_timer(t, now);
++    }
++    if (terminal_needed) append(t, terminal);
++    append(t, ack);
++    append(t, status);
++    t->stopping = 1;
++    t->stop_ms = now;
++    return MT_TX_OK;
++}
++mt_tx_result mt_tx_poll(mt_tx *t, uint32_t now, mt_tx_write_fn write,
++                       void *context, mt_tx_event *event) {
++    mt_wire_message *m;
++    mt_tx_event e = {0};
++    size_t offered;
++    int accepted;
++    if (!t || !write || !event) return MT_TX_ARGUMENT;
++    if (t->fault != MT_TX_OK) return MT_TX_FAULT;
++    if (t->count == 0u) return MT_TX_IDLE;
++    if ((uint32_t)(now - t->progress_ms) >= MT_TX_STALL_MS ||
++        (uint32_t)(now - t->head_ms) >= MT_TX_FRAME_MS ||
++        (t->stopping && (uint32_t)(now - t->stop_ms) >= MT_TX_STOP_MS))
++        return latch(t, MT_TX_TIMEOUT);
++    m = &t->slots[0].message;
++    if (t->offset == 0u) {
++        if (t->next_sequence == UINT32_MAX)
++            return latch(t, MT_TX_SEQUENCE);
++        /* A speculative number is encoded, but not consumed yet. */
++        m->sequence = t->next_sequence;
++        if (mt_wire_encode(m, t->frame, sizeof t->frame, &t->length) != MT_WIRE_OK)
++            return latch(t, MT_TX_ARGUMENT);
++    }
++    offered = t->length - t->offset;
++    if (offered > MT_TX_CHUNK_MAX) offered = MT_TX_CHUNK_MAX;
++    accepted = write(context, t->frame + t->offset, offered);
++    if (accepted < 0 || (size_t)accepted > offered) return latch(t, MT_TX_IO);
++    if (accepted == 0) return MT_TX_BLOCKED;
++    e.type = m->type;
++    e.session = m->session;
++    e.sequence = m->sequence;
++    e.request = m->request;
++    e.accepted = (size_t)accepted;
++    if (m->type >= 144u && m->type <= 147u) {
++        e.generation = read32(m->payload);
++        e.window_id = read32(m->payload + 4);
++    }
++    if (t->offset == 0u) {
++        e.flags |= MT_TX_STARTED;
++        ++t->next_sequence;
++        if (m->type == 146u || m->type == 147u) {
++            t->terminal_type = m->type;
++            t->terminal_generation = e.generation;
++            t->terminal_window = e.window_id;
++        }
++    }
++    t->offset += (size_t)accepted;
++    t->progress_ms = now;
++    if (t->offset == t->length) {
++        e.flags |= MT_TX_FINISHED;
++        --t->count;
++        memmove(t->slots, t->slots + 1, t->count * sizeof t->slots[0]);
++        t->offset = 0;
++        t->length = 0;
++        head_timer(t, now);
++        if (t->stopping && e.type == 133u && e.session == t->session) {
++            t->stopping = 0;
++            e.flags |= MT_TX_STOP_FINISHED;
++        }
++    }
++    *event = e;
++    return MT_TX_PROGRESS;
++}
+diff --git a/firmware/transport/mt_tx.h b/firmware/transport/mt_tx.h
+new file mode 100644
+index 0000000..c86ba73
+--- /dev/null
++++ b/firmware/transport/mt_tx.h
+@@ -0,0 +1,125 @@
++#ifndef MT_TX_H
++#define MT_TX_H
++#include "../protocol/mt_wire.h"
++
++#define MT_TX_CAPACITY 6u
++#define MT_TX_NORMAL_LIMIT 3u
++#define MT_TX_BULK_LIMIT 2u
++#define MT_TX_CHUNK_MAX 64u
++#define MT_TX_STALL_MS UINT32_C(1000)
++#define MT_TX_FRAME_MS UINT32_C(3000)
++#define MT_TX_STOP_MS UINT32_C(1000)
++
++typedef enum {
++    MT_TX_OK = 0, MT_TX_ARGUMENT, MT_TX_NOT_NEGOTIATED, MT_TX_FULL,
++    MT_TX_DRAINING, MT_TX_FAULT, MT_TX_SEQUENCE, MT_TX_TIMEOUT,
++    MT_TX_IO, MT_TX_IDLE, MT_TX_BLOCKED, MT_TX_PROGRESS
++} mt_tx_result;
++
++enum { MT_TX_STARTED = 1u, MT_TX_FINISHED = 2u, MT_TX_STOP_FINISHED = 4u };
++typedef struct {
++    unsigned flags;
++    uint8_t type;
++    uint64_t session;
++    uint32_t sequence;
++    uint32_t request;
++    uint32_t generation;
++    uint32_t window_id;
++    size_t accepted;
++} mt_tx_event;
++
++/* Must copy exactly the returned prefix to an irrevocable, ordered USB TX
++ * FIFO before returning. 0 means no bytes accepted; negative means failure
++ * with NO bytes accepted. Return must be <= length. Never retain bytes pointer.
++ * No recursive mt_tx calls; no ISR/concurrent call. This is NOT USB completion
++ * or proof that the host received anything. A software application queue that
++ * may later discard/reorder bytes does not meet this contract. */
++typedef int (*mt_tx_write_fn)(void *context, const uint8_t *bytes, size_t length);
++
++typedef struct {
++    mt_wire_message message;
++    unsigned reply;
++} mt_tx_slot;
++
++/* Single-owner foreground object, no heap. Treat fields as private. */
++typedef struct {
++    mt_tx_slot slots[MT_TX_CAPACITY];
++    uint8_t frame[MT_WIRE_FRAME_MAX];
++    size_t count, length, offset;
++    uint64_t session;
++    uint32_t next_sequence;
++    uint32_t head_ms, progress_ms, stop_ms;
++    uint32_t terminal_generation, terminal_window;
++    uint8_t terminal_type;
++    unsigned stopping;
++    mt_tx_result fault;
++} mt_tx;
++
++/* Physical USB reset/deconfiguration/disconnect: call this and separately stop
++ * acquisition, clear RX parser/session state. Queued/partial TX becomes invalid.
++ * Initialization alone does not negotiate a session. NULL is ignored. */
++void mt_tx_init(mt_tx *tx);
++
++/* Caller must first validate a NEW, nonzero HELLO nonce with mt_command and the
++ * session guard. Repeated current nonce is rejected here. Retain an old partial
++ * frame; discard all unstarted frames, then append HELLO_ACK for the new nonce.
++ * ack must have type129, request1, payload16, session0, sequence0.
++ * On invalid arguments nothing changes. Recoverable TX faults are cleared;
++ * caller must ensure the backend is usable. Physical reset uses init instead. */
++mt_tx_result mt_tx_hello(mt_tx *tx, uint64_t nonce,
++                        const mt_wire_message *ack, uint32_t now_ms);
++
++/* Enqueue a device message by VALUE. Caller supplies type/request/payload only:
++ * session/sequence must be 0. HELLO_ACK/STOP_ACK use the dedicated operations.
++ * Regular admission: <=3 frames; bulk/events stop at2, reserving one reply slot.
++ * FULL changes nothing. Retry bulk only while retaining its original buffer.
++ * A reply must be admitted BEFORE its command's state mutation; inability to
++ * admit a mandatory reply requires fail-closed recovery, never silent loss.
++ * No sequence is consumed until poll receives its first positive acceptance. */
++mt_tx_result mt_tx_enqueue(mt_tx *tx, const mt_wire_message *message,
++                          uint32_t now_ms);
++
++/* Returns 146 END / 147 ABORT after first-byte acceptance for this session and
++ * window, else0. Remembers only the latest committed terminal. The dispatcher
++ * owns the longer-lived END CRC tombstone and generation/window validity. */
++uint8_t mt_tx_terminal_committed(const mt_tx *tx, uint32_t generation,
++                                 uint32_t window_id);
++
++typedef enum {
++    MT_TX_NO_WINDOW = 0, MT_TX_WINDOW_NO_TX, MT_TX_WINDOW_QUEUED,
++    MT_TX_WINDOW_STARTED, MT_TX_WINDOW_END_COMMITTED,
++    MT_TX_WINDOW_ABORT_COMMITTED
++} mt_tx_window_phase;
++/* A diagnostic view of TX, not proof that a window was allocated. Caller owns
++ * that proof. A nonzero id absent from TX returns WINDOW_NO_TX. */
++mt_tx_window_phase mt_tx_window_status(const mt_tx *tx, uint32_t generation,
++                                      uint32_t active_window);
++
++/* Caller first validates STOP/generation and synchronously disables sampling.
++ * Prune all unstarted bulk/events; preserve partial head and all earlier replies.
++ * Append (ABORT if active_window!=0 and terminal not committed), STOP_ACK,
++ * STATUS(STOPPED), atomically. Three reserved slots guarantee admission under
++ * normal queue limits. Existing STOP drain returns DRAINING unchanged.
++ * A queued matching ABORT is retained, including its original reason.
++ * abort_message may be NULL if no terminal is needed or one is already queued. ACK type133/request
++ * nonzero/payload12; status type134/request0/payload24; abort type147/request0/
++ * payload12. IDs must match generation/active_window as documented in README.
++ * Regular enqueue is blocked through final STOP_ACK byte acceptance. The
++ * trailing STATUS remains ordered but does not extend this Stop barrier.
++ * STOP_FINISHED accompanies ACK FINISHED; only host reception closes host Stop.
++ * FINISHED means FIFO acceptance, NOT USB transfer completion. */
++mt_tx_result mt_tx_stop(mt_tx *tx, uint32_t generation, uint32_t active_window,
++                       const mt_wire_message *abort_message,
++                       const mt_wire_message *ack,
++                       const mt_wire_message *stopped_status, uint32_t now_ms);
++
++/* At most one write of <=64 bytes; no busy wait. event changes only on PROGRESS.
++ * Call in monotonic wrapping uint32 milliseconds, gaps <2^31 ms, including when
++ * USB is blocked. Check >=1000 ms since last progress, >=3000 ms per head frame,
++ * >=1000 ms total Stop drain. Timeout/I/O/sequence failure latch, preserving
++ * diagnostics, and forbid further output until a new HELLO or physical reset.
++ * Caller must stop acquisition and invalidate incomplete windows on any fault.
++ * All input/output objects must be valid and non-overlapping. */
++mt_tx_result mt_tx_poll(mt_tx *tx, uint32_t now_ms, mt_tx_write_fn write,
++                       void *context, mt_tx_event *event);
++#endif
+diff --git a/tests/transport/evidence-native.txt b/tests/transport/evidence-native.txt
+new file mode 100644
+index 0000000..8f2e0a4
+--- /dev/null
++++ b/tests/transport/evidence-native.txt
+@@ -0,0 +1,49 @@
++TX-001 frozen transport candidate: native reproduction
++Date: 2026-10-10
++Base: font-weight/stm32_motortester @ b6ae8025baf1a47e8173997029d2d8b858ada74c
++Stack: dot-a/tx001-transport-draft -> dot-a/a004-session-draft (PR #14)
++Requirements: MVP-F04, MVP-F06, MVP-F07 (partial software coverage only).
++Review: independent Critic-A review of the published SHA is still required.
++Shared contract acceptance/integration still requires both critics under docs/quality-gate.md.
++No score, acceptance, merge, or readiness level is granted by this log.
++
++Publication scope:
++- Five author-provided frozen files, byte-for-byte unchanged.
++- This bounded provenance log.
++- No firmware/protocol, protocol, docs/progress, host, USB adapter, or hardware changes.
++
++SHA-256 of frozen inputs:
++6f8bef11297116388a2f3cf91a0717d9f42e0762eae9615beddb37168ed907ac  firmware/transport/mt_tx.c
++68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9  firmware/transport/mt_tx.h
++4ff12db3688ccae7564f48c61451ebd6ea89105bdaaffdd91f7e69c5375f7319  firmware/transport/README.md
++ca6046c75414b131a85fef502b38a8c5790961ea144756b1a33cd1974ead5c2e  tests/transport/test_mt_tx.c
++bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7  tests/transport/run.sh
++
++Git blob hashes for the unchanged codec dependencies at the base above:
++3d76b7f6725615f3fad4305575312997e72152f9  firmware/protocol/mt_wire.c
++dcd14d8507f2812d488e4ad9264c3875b4f368d6  firmware/protocol/mt_wire.h
++Local codec bytes were verified against these exact remote blobs before running.
++
++Environment: Linux x86_64
++Compiler: cc (Debian 14.2.0-19) 14.2.0
++Strict flags: -std=c11 -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -O2
++Sanitized flags: same strict flags, -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer
++Execution began: 2026-10-10T12:43:09Z
++
++$ sh tests/transport/run.sh
++mt_tx: 13 suites passed; sizeof(mt_tx)=3928, slot=552
++Exit: 0
++
++$ SANITIZE=1 ASAN_OPTIONS=detect_leaks=0 sh tests/transport/run.sh
++mt_tx: 13 suites passed; sizeof(mt_tx)=3928, slot=552
++Exit: 0
++
++The publication worker reran the supplied tests; this is reproduction of author tests,
++not a substitute for independent final acceptance. Leak detection was disabled to match
++the documented author environment; ASan and UBSan were enabled. No leak result is claimed.
++
++Not tested here: ARM code generation/link/map/stack, actual USB adapter or descriptors,
++VID/PID authorization, enumeration, PMA/clocks/IRQ/DTR, physical disconnect/backpressure,
++Windows 10, ADC/DMA, sampling timing, analog/electrical behavior, or full dispatcher integration.
++The reported sizes are host ABI sizes. Fake FIFO tests are not USB hardware evidence.
++The Russian guide is preserved unchanged and records its source research and limitations.
+diff --git a/tests/transport/run.sh b/tests/transport/run.sh
+new file mode 100755
+index 0000000..581a7e1
+--- /dev/null
++++ b/tests/transport/run.sh
+@@ -0,0 +1,16 @@
++#!/bin/sh
++set -eu
++root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
++build=$(mktemp -d "${TMPDIR:-/tmp}/mt-tx-tests.XXXXXX")
++trap 'rm -rf "$build"' EXIT HUP INT TERM
++cc=${CC:-cc}
++set -- -std=c11 -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow
++if [ "${SANITIZE:-0}" = 1 ]; then
++    set -- "$@" -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer
++else
++    set -- "$@" -O2
++fi
++"$cc" "$@" "$root/firmware/protocol/mt_wire.c" \
++    "$root/firmware/transport/mt_tx.c" "$root/tests/transport/test_mt_tx.c" \
++    -o "$build/test_mt_tx"
++"$build/test_mt_tx"
+diff --git a/tests/transport/test_mt_tx.c b/tests/transport/test_mt_tx.c
+new file mode 100644
+index 0000000..ad17814
+--- /dev/null
++++ b/tests/transport/test_mt_tx.c
+@@ -0,0 +1,478 @@
++#include "../../firmware/transport/mt_tx.h"
++#include <assert.h>
++#include <stdio.h>
++#include <string.h>
++
++typedef struct {
++    uint8_t bytes[32768];
++    size_t used, step, calls, largest;
++    int fail;
++} fake_usb;
++static int write_fake(void *context, const uint8_t *p, size_t n) {
++    fake_usb *f = context;
++    ++f->calls;
++    if (n > f->largest) f->largest = n;
++    if (f->fail) return f->fail;
++    if (n > f->step) n = f->step;
++    assert(f->used + n <= sizeof f->bytes);
++    memcpy(f->bytes + f->used, p, n);
++    f->used += n;
++    return (int)n;
++}
++static void put32(uint8_t *p, uint32_t v) {
++    unsigned i;
++    for (i = 0; i < 4u; ++i) p[i] = (uint8_t)(v >> (8u * i));
++}
++static mt_wire_message message(uint8_t type, uint32_t request) {
++    mt_wire_message m = {0};
++    m.type = type;
++    m.request = request;
++    switch (type) {
++    case 129: m.payload_length = 16; break;
++    case 130: m.payload_length = 30; break;
++    case 131: m.payload_length = 20; break;
++    case 132: case 135: case 255: m.payload_length = 8; break;
++    case 133: case 147: m.payload_length = 12; break;
++    case 134: m.payload_length = 24; break;
++    case 144: m.payload_length = 40; break;
++    case 145: m.payload_length = 512; break;
++    case 146: m.payload_length = 16; break;
++    default: assert(0);
++    }
++    if (type >= 144u && type <= 147u) {
++        put32(m.payload, 7);
++        put32(m.payload + 4, 3);
++    }
++    return m;
++}
++static void drain(mt_tx *t, fake_usb *f, uint32_t now) {
++    mt_tx_event event;
++    size_t budget = 10000;
++    mt_tx_result r;
++    do {
++        assert(budget-- != 0u);
++        r = mt_tx_poll(t, now, write_fake, f, &event);
++        assert(r == MT_TX_PROGRESS || r == MT_TX_IDLE);
++    } while (r != MT_TX_IDLE);
++}
++static size_t decode(const fake_usb *f, mt_wire_message *out, size_t cap) {
++    size_t start = 0, i, count = 0;
++    for (i = 0; i < f->used; ++i) if (f->bytes[i] == 0u) {
++        assert(count < cap);
++        assert(mt_wire_decode(f->bytes + start, i - start, out + count) == MT_WIRE_OK);
++        ++count;
++        start = i + 1;
++    }
++    assert(start == f->used);
++    return count;
++}
++static void connected(mt_tx *t, fake_usb *f, uint32_t now) {
++    mt_wire_message hello = message(129, 1);
++    mt_tx_init(t);
++    memset(f, 0, sizeof *f);
++    f->step = 64;
++    assert(mt_tx_hello(t, UINT64_C(0x1122334455667788), &hello, now) == MT_TX_OK);
++    drain(t, f, now);
++    f->used = 0;
++}
++static mt_tx_result stop_request(mt_tx *t, uint32_t win, uint32_t now, uint32_t request) {
++    mt_wire_message abort = message(147, 0), ack = message(133, request);
++    mt_wire_message status = message(134, 0);
++    abort.payload[8] = 1; /* STOP */
++    put32(ack.payload, 7);
++    put32(ack.payload + 4, 3);
++    put32(status.payload + 4, 7);
++    put32(status.payload + 8, 3);
++    return mt_tx_stop(t, 7, win, &abort, &ack, &status, now);
++}
++static mt_tx_result stop(mt_tx *t, uint32_t win, uint32_t now) {
++    return stop_request(t, win, now, 9);
++}
++static void test_fragmentation(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_wire_message src = message(145, 0), out[2];
++    size_t step, i;
++    for (i = 8; i < sizeof src.payload; ++i) src.payload[i] = (uint8_t)i;
++    for (step = 1; step <= 80; ++step) {
++        connected(&t, &f, 0);
++        f.step = step;
++        assert(mt_tx_enqueue(&t, &src, 0) == MT_TX_OK);
++        drain(&t, &f, 1);
++        assert(decode(&f, out, 2) == 1u);
++        assert(out[0].sequence == 2u && out[0].session == t.session);
++        assert(memcmp(out[0].payload, src.payload, 512) == 0);
++        assert(f.largest <= MT_TX_CHUNK_MAX);
++    }
++}
++static void test_reservation_and_stop_order(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event event;
++    mt_wire_message data = message(145, 0), reply = message(132, 7), out[8];
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    f.step = 1;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &event) == MT_TX_PROGRESS);
++    assert(event.flags == MT_TX_STARTED);
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_OK);
++    ++reply.request;
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_OK);
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_FULL);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_FULL);
++    assert(stop(&t, 3, 0) == MT_TX_OK);
++    assert(t.count == MT_TX_CAPACITY);
++    assert(stop(&t, 3, 0) == MT_TX_DRAINING);
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_DRAINING);
++    f.step = 64;
++    drain(&t, &f, 1);
++    assert(decode(&f, out, 8) == 6u);
++    assert(out[0].type == 145 && out[1].type == 132 && out[2].type == 132);
++    assert(out[3].type == 147 && out[4].type == 133 && out[5].type == 134);
++    for (size_t i = 0; i < 6u; ++i) assert(out[i].sequence == i + 2u);
++    assert(out[1].request == 7u && out[2].request == 8u);
++    assert(!t.stopping && t.count == 0u);
++}
++static void test_stop_before_end_commit(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event event = {0};
++    mt_wire_message end = message(146, 0), out[4];
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &end, 0) == MT_TX_OK);
++    f.step = 0;
++    assert(mt_tx_poll(&t, 20, write_fake, &f, &event) == MT_TX_BLOCKED);
++    assert(t.next_sequence == 2u && t.length != 0u && t.offset == 0u);
++    assert(mt_tx_terminal_committed(&t, 7, 3) == 0u);
++    assert(stop(&t, 3, 21) == MT_TX_OK);
++    f.step = 64;
++    drain(&t, &f, 22);
++    assert(decode(&f, out, 4) == 3u);
++    assert(out[0].type == 147 && out[0].sequence == 2u);
++    assert(out[1].type == 133 && out[1].sequence == 3u);
++    assert(mt_tx_terminal_committed(&t, 7, 3) == 147u);
++}
++static void test_stop_after_end_commit(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message end = message(146, 0), out[4];
++    size_t initial;
++    for (initial = 1; initial <= 64u; ++initial) {
++        connected(&t, &f, 0);
++        assert(mt_tx_enqueue(&t, &end, 0) == MT_TX_OK);
++        f.step = initial;
++        assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++        assert((e.flags & MT_TX_STARTED) != 0u && e.type == 146u);
++        assert(mt_tx_terminal_committed(&t, 7, 3) == 146u);
++        assert(stop(&t, 3, 0) == MT_TX_OK);
++        f.step = 64;
++        drain(&t, &f, 1);
++        assert(decode(&f, out, 4) == 3u);
++        assert(out[0].type == 146u && out[1].type == 133u && out[2].type == 134u);
++        assert(out[0].sequence == 2u && out[1].sequence == 3u);
++    }
++}
++static void test_existing_abort_and_idle_stop(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_wire_message abort = message(147, 0), out[4];
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &abort, 0) == MT_TX_OK);
++    drain(&t, &f, 0);
++    assert(stop(&t, 3, 1) == MT_TX_OK);
++    drain(&t, &f, 1);
++    assert(decode(&f, out, 4) == 3u && out[0].type == 147u && out[1].type == 133u);
++    connected(&t, &f, 0);
++    assert(stop(&t, 0, 0) == MT_TX_OK);
++    drain(&t, &f, 0);
++    assert(decode(&f, out, 4) == 2u && out[0].type == 133u);
++}
++static void test_hello_flush(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message data = message(145, 0), reply = message(132, 7);
++    mt_wire_message hello = message(129, 1), out[4];
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    f.step = 1;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_OK);
++    assert(mt_tx_hello(&t, 42, &hello, 1) == MT_TX_OK);
++    assert(t.count == 2u && t.next_sequence == 1u);
++    /* Another new HELLO replaces an ACK not yet started, retaining old partial. */
++    assert(mt_tx_hello(&t, 43, &hello, 2) == MT_TX_OK);
++    f.step = 64;
++    drain(&t, &f, 3);
++    assert(decode(&f, out, 4) == 2u);
++    assert(out[0].type == 145u && out[0].session == UINT64_C(0x1122334455667788));
++    assert(out[1].type == 129u && out[1].session == 43u && out[1].sequence == 1u);
++    assert(t.next_sequence == 2u);
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_OK);
++    f.step = 0;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_BLOCKED);
++    assert(mt_tx_hello(&t, 99, &hello, 1) == MT_TX_OK);
++    f.step = 64;
++    drain(&t, &f, 1);
++    assert(decode(&f, out, 4) == 1u && out[0].session == 99u);
++}
++static void test_timeouts_and_recovery(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message data = message(145, 0), hello = message(129, 1), out[3];
++    uint32_t start = UINT32_MAX - 499u;
++    connected(&t, &f, start);
++    assert(mt_tx_enqueue(&t, &data, start) == MT_TX_OK);
++    f.step = 0;
++    assert(mt_tx_poll(&t, start + 999u, write_fake, &f, &e) == MT_TX_BLOCKED);
++    assert(mt_tx_poll(&t, start + 1000u, write_fake, &f, &e) == MT_TX_TIMEOUT);
++    assert(mt_tx_poll(&t, start + 1001u, write_fake, &f, &e) == MT_TX_FAULT);
++    assert(mt_tx_enqueue(&t, &data, start + 1001u) == MT_TX_FAULT);
++    assert(mt_tx_hello(&t, 55, &hello, 600) == MT_TX_OK);
++    f.step = 64;
++    drain(&t, &f, 600);
++    assert(decode(&f, out, 3) == 1u && out[0].session == 55u);
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    f.step = 1;
++    for (uint32_t now = 0; now < 3000u; now += 500u)
++        assert(mt_tx_poll(&t, now, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(mt_tx_poll(&t, 3000, write_fake, &f, &e) == MT_TX_TIMEOUT);
++    assert(mt_tx_hello(&t, 56, &hello, 3001) == MT_TX_OK);
++    f.step = 64;
++    drain(&t, &f, 3001);
++    assert(decode(&f, out, 3) == 2u && out[1].session == 56u);
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    f.step = 1;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(stop(&t, 3, 1) == MT_TX_OK);
++    assert(mt_tx_poll(&t, 500, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(mt_tx_poll(&t, 1000, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(mt_tx_poll(&t, 1001, write_fake, &f, &e) == MT_TX_TIMEOUT);
++}
++static void test_input_immutability_and_sequence(void) {
++    mt_tx t, before;
++    fake_usb f;
++    mt_tx_event e, old_event;
++    mt_wire_message data = message(145, 0), hello = message(129, 1);
++    mt_tx_init(&t);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_NOT_NEGOTIATED);
++    connected(&t, &f, 0);
++    before = t;
++    assert(mt_tx_hello(&t, t.session, &hello, 0) == MT_TX_ARGUMENT);
++    assert(memcmp(&before, &t, sizeof t) == 0);
++    data.payload_length = 513;
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_ARGUMENT);
++    assert(memcmp(&before, &t, sizeof t) == 0);
++    data.payload_length = 512;
++    data.sequence = 2;
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_ARGUMENT);
++    data.sequence = 0;
++    put32(data.payload + 4, 0);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_ARGUMENT);
++    put32(data.payload + 4, 3);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    t.next_sequence = UINT32_MAX - 1u;
++    drain(&t, &f, 0);
++    assert(t.next_sequence == UINT32_MAX);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    memset(&e, 0xa5, sizeof e);
++    old_event = e;
++    size_t calls = f.calls;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_SEQUENCE);
++    assert(f.calls == calls && memcmp(&old_event, &e, sizeof e) == 0);
++    assert(mt_tx_hello(&t, 77, &hello, 0) == MT_TX_OK);
++    assert(t.next_sequence == 1u);
++}
++static void test_io_faults_and_reset(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message data = message(145, 0);
++    int errors[2] = {-1, 1000};
++    for (size_t i = 0; i < 2u; ++i) {
++        connected(&t, &f, 0);
++        assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++        f.fail = errors[i];
++        assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_IO);
++        size_t calls = f.calls;
++        assert(mt_tx_poll(&t, 1, write_fake, &f, &e) == MT_TX_FAULT);
++        assert(f.calls == calls);
++        mt_tx_init(&t);
++        assert(t.session == 0u && t.count == 0u && t.offset == 0u);
++        assert(mt_tx_enqueue(&t, &data, 1) == MT_TX_NOT_NEGOTIATED);
++    }
++}
++static void test_stop_flags_and_drop_events(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message status = message(134, 0), data = message(145, 0), out[4];
++    unsigned stop_done = 0, ack_done = 0;
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &status, 0) == MT_TX_OK);
++    assert(mt_tx_enqueue(&t, &data, 0) == MT_TX_OK);
++    assert(stop(&t, 3, 0) == MT_TX_OK);
++    while (mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS) {
++        if ((e.flags & MT_TX_STOP_FINISHED) != 0u) {
++            ++stop_done;
++            assert(e.type == 133u && (e.flags & MT_TX_FINISHED) != 0u);
++        }
++        if (e.type == 133u && (e.flags & MT_TX_FINISHED) != 0u) ++ack_done;
++    }
++    assert(stop_done == 1u && ack_done == 1u);
++    assert(decode(&f, out, 4) == 3u && out[0].type == 147u);
++}
++static void test_queued_abort_reason_preserved(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_wire_message abort = message(147, 0), ack = message(133, 9);
++    mt_wire_message reply = message(132, 7), status = message(134, 0), out[5];
++    connected(&t, &f, 0);
++    abort.payload[8] = 2; /* DMA_ERROR must not silently become STOP. */
++    assert(mt_tx_enqueue(&t, &abort, 0) == MT_TX_OK);
++    assert(mt_tx_enqueue(&t, &reply, 0) == MT_TX_OK);
++    put32(ack.payload, 7);
++    put32(ack.payload + 4, 3);
++    put32(status.payload + 4, 7);
++    put32(status.payload + 8, 3);
++    assert(mt_tx_stop(&t, 7, 3, NULL, &ack, &status, 0) == MT_TX_OK);
++    drain(&t, &f, 0);
++    assert(decode(&f, out, 5) == 4u);
++    assert(out[0].type == 132u && out[1].type == 147u);
++    assert(out[1].payload[8] == 2u && out[2].type == 133u);
++}
++static void through_stop_ack(mt_tx *t, fake_usb *f) {
++    mt_tx_event e;
++    do {
++        assert(mt_tx_poll(t, 0, write_fake, f, &e) == MT_TX_PROGRESS);
++    } while ((e.flags & MT_TX_STOP_FINISHED) == 0u);
++    assert(e.type == 133u && t->count == 1u && !t->stopping);
++}
++static void test_ack_boundary_new_command_and_repeat(void) {
++    mt_tx t;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message arm_ack = message(132, 10), out[8];
++    connected(&t, &f, 0);
++    assert(stop(&t, 0, 0) == MT_TX_OK);
++    through_stop_ack(&t, &f);
++    assert(mt_tx_enqueue(&t, &arm_ack, 0) == MT_TX_OK);
++    drain(&t, &f, 0);
++    assert(decode(&f, out, 8) == 3u);
++    assert(out[0].type == 133u && out[1].type == 134u && out[2].type == 132u);
++    connected(&t, &f, 0);
++    assert(stop(&t, 3, 0) == MT_TX_OK);
++    through_stop_ack(&t, &f);
++    /* Repeat after acknowledged Stop: no new active window, stale event drops. */
++    assert(stop_request(&t, 0, 0, 10) == MT_TX_OK);
++    drain(&t, &f, 0);
++    assert(decode(&f, out, 8) == 4u);
++    assert(out[0].type == 147u && out[1].type == 133u && out[2].type == 133u);
++    for (size_t i = 0; i < 4u; ++i) assert(out[i].sequence == i + 2u);
++    connected(&t, &f, 0);
++    assert(stop(&t, 0, 0) == MT_TX_OK);
++    through_stop_ack(&t, &f);
++    f.step = 1;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(e.type == 134u && (e.flags & MT_TX_STARTED) != 0u);
++    assert(mt_tx_enqueue(&t, &arm_ack, 0) == MT_TX_OK);
++    assert(stop_request(&t, 0, 0, 11) == MT_TX_OK);
++    f.step = 64;
++    drain(&t, &f, 0);
++    assert(decode(&f, out, 8) == 5u);
++    assert(out[0].type == 133u && out[1].type == 134u && out[2].type == 132u);
++    assert(out[3].type == 133u && out[4].type == 134u);
++}
++static void test_phase_and_atomic_invalid_stop(void) {
++    mt_tx t, before;
++    fake_usb f;
++    mt_tx_event e;
++    mt_wire_message begin = message(144, 0), end = message(146, 0);
++    mt_wire_message abort = message(147, 0), ack = message(133, 9);
++    mt_wire_message status = message(134, 0), out[4];
++    connected(&t, &f, 0);
++    assert(mt_tx_window_status(&t, 7, 0) == MT_TX_NO_WINDOW);
++    assert(mt_tx_window_status(&t, 7, 3) == MT_TX_WINDOW_NO_TX);
++    assert(mt_tx_enqueue(&t, &begin, 0) == MT_TX_OK);
++    assert(mt_tx_window_status(&t, 7, 3) == MT_TX_WINDOW_QUEUED);
++    put32(ack.payload, 7);
++    put32(ack.payload + 4, 3);
++    put32(status.payload + 4, 7);
++    put32(status.payload + 8, 3);
++    before = t;
++    assert(mt_tx_stop(&t, 7, 3, NULL, &ack, &status, 0) == MT_TX_ARGUMENT);
++    assert(memcmp(&before, &t, sizeof t) == 0);
++    put32(abort.payload + 4, 4);
++    assert(mt_tx_stop(&t, 7, 3, &abort, &ack, &status, 0) == MT_TX_ARGUMENT);
++    assert(memcmp(&before, &t, sizeof t) == 0);
++    /* Allocated window whose BEGIN has not started still needs one ABORT. */
++    assert(stop(&t, 3, 0) == MT_TX_OK);
++    drain(&t, &f, 0);
++    assert(mt_tx_window_status(&t, 7, 3) == MT_TX_WINDOW_ABORT_COMMITTED);
++    assert(decode(&f, out, 4) == 3u && out[0].type == 147u);
++    connected(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &begin, 0) == MT_TX_OK);
++    f.step = 1;
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(mt_tx_window_status(&t, 7, 3) == MT_TX_WINDOW_STARTED);
++    f.step = 64;
++    drain(&t, &f, 0);
++    assert(mt_tx_enqueue(&t, &end, 0) == MT_TX_OK);
++    assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++    assert(mt_tx_window_status(&t, 7, 3) == MT_TX_WINDOW_END_COMMITTED);
++    assert(mt_tx_window_status(&t, 8, 3) == MT_TX_WINDOW_NO_TX);
++}
++/* An old session's partially accepted Stop ACK must not release the new Stop. */
++static void test_old_stop_ack_after_hello(void) {
++    size_t prefix;
++    for (prefix = 1; prefix < 41u; ++prefix) {
++        mt_tx t;
++        fake_usb f;
++        mt_tx_event e;
++        mt_wire_message hello = message(129, 1);
++        unsigned completions = 0;
++        connected(&t, &f, 0);
++        assert(stop(&t, 0, 0) == MT_TX_OK);
++        f.step = prefix;
++        assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++        if ((e.flags & MT_TX_FINISHED) != 0u) continue;
++        assert(mt_tx_hello(&t, 99, &hello, 0) == MT_TX_OK);
++        assert(stop(&t, 0, 0) == MT_TX_OK);
++        f.step = 64;
++        while (t.count != 0u) {
++            assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
++            if (e.type == 133u && e.session != 99u) {
++                assert((e.flags & MT_TX_STOP_FINISHED) == 0u);
++                assert(t.stopping);
++            }
++            if ((e.flags & MT_TX_STOP_FINISHED) != 0u) {
++                assert(e.session == 99u);
++                ++completions;
++            }
++        }
++        assert(completions == 1u && !t.stopping);
++    }
++}
++int main(void) {
++    test_old_stop_ack_after_hello();
++    test_fragmentation();
++    test_reservation_and_stop_order();
++    test_stop_before_end_commit();
++    test_stop_after_end_commit();
++    test_existing_abort_and_idle_stop();
++    test_hello_flush();
++    test_timeouts_and_recovery();
++    test_input_immutability_and_sequence();
++    test_io_faults_and_reset();
++    test_stop_flags_and_drop_events();
++    test_phase_and_atomic_invalid_stop();
++    test_queued_abort_reason_preserved();
++    test_ack_boundary_new_command_and_repeat();
++    printf("mt_tx: 14 suites passed; sizeof(mt_tx)=%zu, slot=%zu\n", sizeof(mt_tx), sizeof(mt_tx_slot));
++    return 0;
++}

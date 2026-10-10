@@ -1,0 +1,12 @@
+test_cancel_and_rejected_overwrite_leave_state_unchanged (test_png_export.PngExportTests.test_cancel_and_rejected_overwrite_leave_state_unchanged) ... ok
+test_long_unbroken_quality_flags_fit_actual_png_text_rectangles (test_png_export.PngExportTests.test_long_unbroken_quality_flags_fit_actual_png_text_rectangles) ... ok
+test_no_recording_does_not_create_image (test_png_export.PngExportTests.test_no_recording_does_not_create_image) ... ok
+test_overwrite_requires_explicit_permission_and_handles_failure (test_png_export.PngExportTests.test_overwrite_requires_explicit_permission_and_handles_failure) ... ok
+test_png_from_current_view_keeps_raw_and_file_identity (test_png_export.PngExportTests.test_png_from_current_view_keeps_raw_and_file_identity) ... ok
+test_repeated_export_device_provenance_and_quality (test_png_export.PngExportTests.test_repeated_export_device_provenance_and_quality) ... ok
+test_wrong_extension_and_missing_directory_are_controlled_errors (test_png_export.PngExportTests.test_wrong_extension_and_missing_directory_are_controlled_errors) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 6.675s
+
+OK

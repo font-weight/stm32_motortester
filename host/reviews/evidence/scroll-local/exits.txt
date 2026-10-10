@@ -1,0 +1,1 @@
+default=0 optimized=0 dpi2=0

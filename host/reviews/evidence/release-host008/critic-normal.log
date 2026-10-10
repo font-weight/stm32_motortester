@@ -1,0 +1,23 @@
+test_20_real_windows_split_stream_same_generation_and_independent_crc (critic_probes.CriticProbes.test_20_real_windows_split_stream_same_generation_and_independent_crc) ... ok
+test_all_release_split_positions_with_queued_stop_preserve_order (critic_probes.CriticProbes.test_all_release_split_positions_with_queued_stop_preserve_order) ... ok
+test_context_links_complete_results_but_never_authenticates_session (critic_probes.CriticProbes.test_context_links_complete_results_but_never_authenticates_session) ... ok
+test_every_sample_consistent_mutation_with_old_crc_is_rejected (critic_probes.CriticProbes.test_every_sample_consistent_mutation_with_old_crc_is_rejected) ... ok
+test_factory_missing_attributes_fail_as_session_errors (critic_probes.CriticProbes.test_factory_missing_attributes_fail_as_session_errors) ... ok
+test_factory_rejects_nonexact_context_metadata_and_sample_types (critic_probes.CriticProbes.test_factory_rejects_nonexact_context_metadata_and_sample_types) ... ok
+test_maximum_fragment_count_and_bad_shape_before_sample_access (critic_probes.CriticProbes.test_maximum_fragment_count_and_bad_shape_before_sample_access) ... ok
+test_multiple_generations_stop_release_arm_window_ids_still_increase (critic_probes.CriticProbes.test_multiple_generations_stop_release_arm_window_ids_still_increase) ... ok
+test_new_request_stale_ack_foreign_ack_and_exact_duplicate (critic_probes.CriticProbes.test_new_request_stale_ack_foreign_ack_and_exact_duplicate) ... ok
+test_real_missing_and_corrupt_data_fail_factory_before_release (critic_probes.CriticProbes.test_real_missing_and_corrupt_data_fail_factory_before_release) ... ok
+test_release_and_stop_last_allowed_identifiers_no_reserved_emission (critic_probes.CriticProbes.test_release_and_stop_last_allowed_identifiers_no_reserved_emission) ... ok
+test_release_failure_preserves_terminal_and_blocks_old_context (critic_probes.CriticProbes.test_release_failure_preserves_terminal_and_blocks_old_context) ... ok
+test_response_deadline_starts_last_byte_no_retry_after_error (critic_probes.CriticProbes.test_response_deadline_starts_last_byte_no_retry_after_error) ... ok
+test_stop_then_late_release_never_rearms_and_old_window_is_barred (critic_probes.CriticProbes.test_stop_then_late_release_never_rearms_and_old_window_is_barred) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.810s
+
+OK
+CRITIC_DETAIL=release split cases 43
+CRITIC_DETAIL=all 2048 sample positions independently CRC rejected
+CRITIC_DETAIL=context/metadata scalar type cases 104
+CRITIC_RESULT={"errors": 0, "expected_failures": 0, "failures": 0, "optimized": false, "skipped": 0, "tests": 14, "unexpected_successes": 0}

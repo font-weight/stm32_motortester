@@ -1,0 +1,16 @@
+{
+  "remote_fetch_ref": "refs/pull/71/head",
+  "remote_pr_url": "https://github.com/font-weight/stm32_motortester/pull/71",
+  "verified_sha": "f0822f7b336b0cab0e01632eee33f0f9a24473cc",
+  "verified_tree": "89ee762ea583e587924ceb15bf7507b9d9afe29b",
+  "verified_parent": "bd58245ecf64f08dcfe6d6fec3981e26fd7ff0ed",
+  "tracked_files_verified": 105,
+  "remote_tree_equals_reviewed_tree": true,
+  "material_delta_since_tests": false,
+  "changed_files_from_parent": [
+    "host/tests/test_gui.py"
+  ],
+  "test_file_sha256": "d44e46031d56bbd1be1edae28b063a97c0628aba9a198fa581af0b39e0ed3b03",
+  "tests_repeated_for_binding": false,
+  "windows_result": "not performed for this SHA"
+}

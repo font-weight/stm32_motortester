@@ -1,0 +1,22 @@
+Non-provisional critic probes
+test_01_golden_crc_and_payload_vectors (__main__.CriticProbes.test_01_golden_crc_and_payload_vectors) ... ok
+test_02_release_loops_stop_extreme_thresholds (__main__.CriticProbes.test_02_release_loops_stop_extreme_thresholds) ... ok
+test_03_stop_at_every_byte_of_complete_window (__main__.CriticProbes.test_03_stop_at_every_byte_of_complete_window) ... CRITIC exhaustive Stop cuts 4699
+ok
+test_04_new_hello_every_offset_of_all_window_frame_kinds (__main__.CriticProbes.test_04_new_hello_every_offset_of_all_window_frame_kinds) ... CRITIC stale-window callbacks cuts 919
+ok
+test_05_all_message_types_direction_session_order (__main__.CriticProbes.test_05_all_message_types_direction_session_order) ... ok
+test_06_backpressure_random_chunks_mandatory_reply_conservation (__main__.CriticProbes.test_06_backpressure_random_chunks_mandatory_reply_conservation) ... CRITIC backpressure events 1282 mandatory replies 600
+ok
+test_07_maximum_counters_recovery_requires_new_nonce (__main__.CriticProbes.test_07_maximum_counters_recovery_requires_new_nonce) ... ok
+test_08_old_tombstone_during_new_end_and_abort (__main__.CriticProbes.test_08_old_tombstone_during_new_end_and_abort) ... ok
+test_09_retained_memory_control_pressure (__main__.CriticProbes.test_09_retained_memory_control_pressure) ... CRITIC retained memory delta 64
+ok
+test_10_exact_control_payloads_and_unsupported_capabilities (__main__.CriticProbes.test_10_exact_control_payloads_and_unsupported_capabilities) ... ok
+test_11_every_control_callback_cut_new_hello (__main__.CriticProbes.test_11_every_control_callback_cut_new_hello) ... CRITIC stale-control callbacks cuts 399
+ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 39.885s
+
+OK

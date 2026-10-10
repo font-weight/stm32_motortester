@@ -1,0 +1,79 @@
+{
+  "base_sha": "c54bd955aaf3cb863ef3df043ea237ea62e74ad4",
+  "head_sha": "6745fb0fa9802a510b49980e597e5f3679e025b8",
+  "tree_sha": "2d9185ebc9a7cba3e69f84d6bb247d700bca1b8f",
+  "paths": 37,
+  "unchanged_blobs_and_modes": 35,
+  "changed_paths": [
+    "protocol/vectors-v0.1.json",
+    "protocol/wire-v0.1.md"
+  ],
+  "archive_equal_to_git": true,
+  "normative_suffix_equal_after_only_four_status_substitutions": true,
+  "status_substitutions": [
+    {
+      "before": "авторские тесты подготовлены, но не выполнены.",
+      "after": "native-проверки выполнены, опубликованные свидетельства и их границы перечислены выше."
+    },
+    {
+      "before": "Дальнейшие обязательные результаты: тактирование/ADC, карта выводов, допустимые Fs/window/pretrigger, реализация payloads и состояний, независимые векторы и реальные compile/tests, два проходных заключения критиков. Неполнота этого draft не уменьшает требования MVP.",
+      "after": "До общей приёмки необходимо свести точные версии реализации payloads/состояний, независимых векторов и выполненных compile/tests в единый проверенный результат; отдельно подтвердить тактирование/ADC, карту выводов и допустимые Fs/window/pretrigger. Нужны два проходных заключения критиков на соответствующий результат. Уже выполненные ограниченные проверки перечислены выше; они не уменьшают требования MVP."
+    },
+    {
+      "before": "Это требования к будущей реализации, текущий codec не объявляет capabilities.",
+      "after": "Сам byte codec не объявляет capabilities; черновой контроллер PR35 реализует объявление поддерживаемого аналогового подмножества. Поддержка external trigger в этом контроллере не заявлена."
+    },
+    {
+      "before": "Этот PR пока содержит только byte codec и один вектор; эти критерии открыты.",
+      "after": "В файле vectors-v0.1.json сохранён один исходный codec-вектор; более широкие исполняемые проверки опубликованы отдельно по ссылкам выше. Полноту общих payload-векторов и совместных сценариев проверяют оба критика на конкретных SHA. Эти критерии нельзя считать закрытыми только по количеству тестов."
+    }
+  ],
+  "json_without_status_semantically_and_byte_identical": true,
+  "original_vector_cobs_crc_and_fields_verified": true,
+  "pr21_inputs_equal_to_pr14": {
+    "firmware/protocol/mt_wire.c": {
+      "blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "firmware/protocol/mt_wire.h": {
+      "blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "firmware/protocol/mt_stream.c": {
+      "blob_sha": "419e78a74548387db990296357c4fd16d03556a4",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    "firmware/protocol/mt_stream.h": {
+      "blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    "firmware/protocol/mt_command.c": {
+      "blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    "firmware/protocol/mt_command.h": {
+      "blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    }
+  },
+  "pr21_all_stage_exit_codes_zero": true,
+  "pr21_assertions_per_run": 3294024,
+  "session_native_hashes_match_base": {
+    "firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+    "firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+    "firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+    "firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+    "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "tests/protocol/test_mt_session.c": "e8c49173394002c194def82fd50d5b910e8ab2fac5756dd7fe890dfec8df7956"
+  },
+  "pr35_published_scenarios": 39,
+  "pr35_published_oracle_windows": 20,
+  "pr35_published_oracle_samples": 40960,
+  "pr30_pr35_modules_absent_from_base": true,
+  "relative_links_resolved": [],
+  "changed_sha256": {
+    "protocol/vectors-v0.1.json": "96c7ed5800256e7df50fb310b8fff7c145ed3fc6b83b4b8d04030567e8fe8ef9",
+    "protocol/wire-v0.1.md": "1903c692058e6ba6bdf92e90aba1ca5c913dbddb7a1420f4ec65e989380d4cf4"
+  },
+  "personally_executed": "documentation/source/hash/vector checks only; no new C/ARM/USB/Windows execution"
+}

@@ -1,0 +1,462 @@
+{
+  "head": "fd1d0ad6f131e1f08be64893da9c1d667dc15eed",
+  "tree": "d005e7aa2a3994ac2678beb3c42554bc35b5f5a2",
+  "base": "477057aadc9bc8e757bc8ef817125377e816d212",
+  "source_tar_sha256": "4613d2bd37397fdb2ca29bbcd2a11d813e70655ca758976ecd9cb9f0827a1a54",
+  "blob_count": 112,
+  "published_manifest_verified_counts": {
+    "sources_before_sha256": 97,
+    "sources_after_sha256": 97,
+    "evidence_sha256": 14
+  },
+  "files": {
+    "AGENTS.md": {
+      "git_blob": "1aa58bedd837e00501b611fd63d55dd1c4d5c627",
+      "sha256": "2767a628dc6c379e08f84c1575601ce6069423b71bcda6ab75917640f444b3eb"
+    },
+    "DOT_PEER_START.md": {
+      "git_blob": "5c521f51caa7140c46ce66496d44bc4d103b7311",
+      "sha256": "32acebcdb99758b7eddf0caa3b5b8a7baddc36fc5a82285620870b1575c7088f"
+    },
+    "DOT_START.md": {
+      "git_blob": "d935006ddd436db7e27aa24c5416ac424ec29ea9",
+      "sha256": "1d653e642648a6108ae8ce5fd81cb7778506f8c6f2c45e9bf258554136a66f40"
+    },
+    "README.md": {
+      "git_blob": "589a4524cbb79508069ce605f9b0cd41372826b6",
+      "sha256": "6ea8a0917a32ee26747bbc920a57e6ab82343812ad32bb7591e26107d171c8dd"
+    },
+    "docs/architecture.md": {
+      "git_blob": "cbc25180a1e8d54dd818a50832720d9fb87f30ad",
+      "sha256": "cbd5a35fab3212070757e3686470bf49a8e11bbb38800c18d8d9bce63bf654af"
+    },
+    "docs/bench.md": {
+      "git_blob": "2338e781eba17aab8d97be64e549df2107bcf76d",
+      "sha256": "3a19de8dad1c448b8e56ba675cbf46d776dffb20f8908005c1391113b822dede"
+    },
+    "docs/budget.md": {
+      "git_blob": "5746724c2a635b324818915bb1ff403f4b8e151b",
+      "sha256": "7f784cd90bb878afa0ffba6bbd6020185c706187d84d48b308ae965e1f4a232f"
+    },
+    "docs/coordination.md": {
+      "git_blob": "a173628f3365af6b2be8db51102986176574cc86",
+      "sha256": "77a2ae06f0501c69373dfc3e138b88ed0c386737d18fdb0c14d819c476d162da"
+    },
+    "docs/data-plan.md": {
+      "git_blob": "1ed1ae08ce2edf838469456934f34ad3a1b4ebca",
+      "sha256": "d5e9a22226f80b6a108a2da47a16e9b8c85a4452e5ed7c985564369987aff6c8"
+    },
+    "docs/decisions.md": {
+      "git_blob": "550bc557e9ff618c46dc4c7eaeb5bd5d02d6580a",
+      "sha256": "f637520745fb062412575aa475f4cc0646e3b5062cd70d8d7b4faffd8fa7ff68"
+    },
+    "docs/glossary.md": {
+      "git_blob": "2f96e7e8a13b1edb54da2545450c84becc3d2848",
+      "sha256": "8ab42a92dab3544467a43a1677ad665f57fb0f7473fe3ccfe89661ee14ac35df"
+    },
+    "docs/hardware.md": {
+      "git_blob": "708b1082083dca3c8bdfbfcb1ee26a9117800710",
+      "sha256": "2305b405c3e4f532185f7420027c029b0f1a542523bcdee5a5a115ef891f4044"
+    },
+    "docs/mvp-spec.md": {
+      "git_blob": "d6530867fea8d55e808d67b072d177995255dd5a",
+      "sha256": "5da1b56f59d65797c2bf72a5c347f2e97a5ece68100511e02b4885284d85beeb"
+    },
+    "docs/progress.md": {
+      "git_blob": "7b8db14b2b3daa9b63d083fdadf277a1b2bbf777",
+      "sha256": "64afa212486809dc299aacdb9bb869e2202fe84ba9b68b6a3781159dc81be73c"
+    },
+    "docs/quality-gate.md": {
+      "git_blob": "755f6fc48057fb41cead074b019f64757d10a752",
+      "sha256": "fc090fb7aa699f011b210033aac302ef4a3a0335712273e09daa610d8fbee969"
+    },
+    "docs/risks.md": {
+      "git_blob": "9d4e82c17b8659c3a24bde0e9b910e8df6682017",
+      "sha256": "826b63f82d79e0b9c9867b924f64d64e0562172f052308f36cbbbf6f2cd84073"
+    },
+    "docs/sources.md": {
+      "git_blob": "0c38f9a71408698f515debd3781f13142e30e381",
+      "sha256": "abff27590ed20580f4c1c2c070ff0ac641287828e98de9df067771bf8d04c21a"
+    },
+    "docs/validation.md": {
+      "git_blob": "6d0d421a52d870c150baeff56dc2e1fb03f1efe5",
+      "sha256": "4ccb6a3954d69df79b891e12f7743c3247f8b7c1f4fcf7924ad44eae0b756870"
+    },
+    "host/.gitignore": {
+      "git_blob": "309336f51bea7953365188e7a0aa2916131cf9e4",
+      "sha256": "c876de662f1d7a05dd8f15757b5f72218909efb5e3bfb205eb2d775208400df9"
+    },
+    "host/CHECKPOINT.md": {
+      "git_blob": "43731fddcb23d1a545bd08f2bf5f3b7dd84c51ec",
+      "sha256": "685f7225044ce557f78bfe217922fbaf623d416a58a5d47a571f5a303fd3d011"
+    },
+    "host/README.md": {
+      "git_blob": "0cf0e6a4167313a9e654ff52482689f70b413873",
+      "sha256": "adfe8c9a665be0ef548af1e49553a375ef83bf5a37ec5532d156642f36412a4d"
+    },
+    "host/docs/device-emulator.md": {
+      "git_blob": "d2f0d3b96ccccd3087b057ca321b33f604912148",
+      "sha256": "c40218af0a115a5333a8e12a4a3ef0ebb1266ecc2c28177d70917df5a8c94773"
+    },
+    "host/docs/format-v1.md": {
+      "git_blob": "addafdd19b47fdbc9d166d144d0d4406503d5a2a",
+      "sha256": "b899501cff321625cac9c3945a65b46b8e1ae7549c70ad06e8c76cf2a2d2598a"
+    },
+    "host/docs/help.md": {
+      "git_blob": "744d41122fc00060bb61700429c315ea0b1c1412",
+      "sha256": "f78757e2754c99e68c928f9598b9822ebc4b8e1a58ee7c2b7fbf7590850a013f"
+    },
+    "host/docs/session-controller.md": {
+      "git_blob": "20da1ea5b205c26c0b38a9e857ab6e2c6b595ad8",
+      "sha256": "392eb74caa56937aa4afb7d280df6b34690d004713ec5edb94d481376e999a9e"
+    },
+    "host/docs/stack.md": {
+      "git_blob": "2239af5f2d4ce9d8553fac6a2cfbe76e58dc9db3",
+      "sha256": "db28d4817ced4cc56d0178c1a4bd9a342cc2bd36b467f3b9db1c8ade418c661d"
+    },
+    "host/docs/wire-adapter.md": {
+      "git_blob": "725da1d0d7437335782409e3af07237183e88382",
+      "sha256": "8719b8227e59ad0be6fab125e65ec5ad1e25333f024cb2d8640eb4d89ecb2838"
+    },
+    "host/evidence/README.md": {
+      "git_blob": "2644eaad0954e36da4a768833294691c04e46ab5",
+      "sha256": "9f2491d12dc211cc80769afe310c54adb64a33b3dbf63f6f9187221d6fd3f695"
+    },
+    "host/evidence/control-synthetic.mtcap": {
+      "git_blob": "187bd38d559d139726517be6e86e8d9465355500",
+      "sha256": "69be281108d55ce71237b6185a84740fa7d17f1e9ea9856cf9a3204ace951327"
+    },
+    "host/evidence/host-001-linux-offscreen.png": {
+      "git_blob": "2a9f6d13d217f5bccb542bf329ed38fced1e3b6f",
+      "sha256": "77200e946f441863283f42f0086427e43c064a03203a7aa6801cc7189e7a2215"
+    },
+    "host/evidence/host-001-tests-linux.log": {
+      "git_blob": "dee3360daaf9f4a7beed016cfe6177cbde1c1415",
+      "sha256": "f049b9c8d865e55bd774f873b7f2b9c4a05a0cda062a62fd5a22cdac6f5e7008"
+    },
+    "host/evidence/window-synthetic.mtcap": {
+      "git_blob": "50c3b27fddd9a6cf9ae6492d7be523137ef99dbd",
+      "sha256": "d1cb1403b3b9cb322b1d23d00f2496642346bd8398edcff6dcbb78800c60f3f7"
+    },
+    "host/evidence/windows-wheel-resolution.log": {
+      "git_blob": "7f16a38e81ebe9e0013fecd94b4739568088dca1",
+      "sha256": "d692f048395b9cf73e547d7f076ef4f2788da333c60a6227e818a872e070d048"
+    },
+    "host/motortester/__init__.py": {
+      "git_blob": "d28c127dfa54012834ff6d15c3e13e11b3a35ada",
+      "sha256": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645"
+    },
+    "host/motortester/__main__.py": {
+      "git_blob": "7c1c4b886a432e93b67d1776a403d92de0b6da75",
+      "sha256": "e4872c82c89809b28285bd0ce5444eeae73e4b1600d897d61f9f237e4f67a86f"
+    },
+    "host/motortester/device_emulator.py": {
+      "git_blob": "4cb8115a8dcce6f68a469018cc30d4103768700b",
+      "sha256": "efb3761e5ad0693419df0abfe5498429a28ad7f4b7184c7d5cf8e48e1a97d0a2"
+    },
+    "host/motortester/emulator.py": {
+      "git_blob": "957c6a855fb7e89790e322fb0d5b48e5091faafe",
+      "sha256": "d44aa6e164a28efcdef1c49719af6b0344f202a8be2626e893b876a07d729b43"
+    },
+    "host/motortester/gui.py": {
+      "git_blob": "946cb10c33455e7bb599ac2975c40a5e766e1feb",
+      "sha256": "62691d89f785a6342b1ec9f46bbbffa3d2be1e08ad16dd1a5c19a198753d3542"
+    },
+    "host/motortester/model.py": {
+      "git_blob": "b5b586cfcf239e188753496515fb868777372c9f",
+      "sha256": "c4f86b6b59b7230823d45c55bca3714250a1c60ce0974e00f0ead65b9a7a834b"
+    },
+    "host/motortester/plotting.py": {
+      "git_blob": "ae04f1e63be4ad93dfcd76edce559351f00d8b7c",
+      "sha256": "66503e6c6d0e7b5e2e953a057c28dd50d3f96b85b7acfc56385ecd6a8e10115c"
+    },
+    "host/motortester/recording.py": {
+      "git_blob": "78a12927daa9af55c987767e2b77ed6f7ec6ec91",
+      "sha256": "b9888c3126cccc52fcc54e795c5a788610b4211082ef882c819376ed880fed5b"
+    },
+    "host/motortester/session.py": {
+      "git_blob": "d98b5b80ad727e701da8ceb24872bf18d5cd49f5",
+      "sha256": "4049e5fda8499010bcdcad781af5a5ebfefde5de2b583e04b606b59bf1f61f61"
+    },
+    "host/motortester/wire.py": {
+      "git_blob": "15f45c3902826f9025d3ffdcdb28b706d7e4836d",
+      "sha256": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230"
+    },
+    "host/packaging/LICENSE-REVIEW.md": {
+      "git_blob": "3907bd271c0e71182cb3b5340df09c6d466e5e13",
+      "sha256": "388533f3a52b96126c3c348fd11fff135d67e6db2d840abac9eee9c605c56d6b"
+    },
+    "host/packaging/build_windows.py": {
+      "git_blob": "4a1b5d7184253a11d342ba1db909879a2515a184",
+      "sha256": "a56b1aaabc5df114e174208500db8195377dbeeeccf32179e14434f790e4af81"
+    },
+    "host/packaging/collect_licenses.py": {
+      "git_blob": "6e06568815404f6f79de326118d2e5e43a6534fc",
+      "sha256": "78ee596eab8d10f47f7184290cef322a94c9595a1cf5543aada2bed90dc98b58"
+    },
+    "host/packaging/launch_gui.py": {
+      "git_blob": "b5d1b94f3c5ffb87339ab8a21752e44114b13782",
+      "sha256": "f3168139387b038f960c69737d1298e95190d2bcefc8f61d24fb40e44db8df26"
+    },
+    "host/packaging/motortester.spec": {
+      "git_blob": "77481f13a209baf87e877e5730327c311eb833ed",
+      "sha256": "7c29791cd9da951bb3ec5b9854744208eacd642d63d678b08cb0f03b67c8ea6b"
+    },
+    "host/packaging/requirements-win-x64.lock": {
+      "git_blob": "0d9c90c5975130694f128e1816f0105cf9f7f833",
+      "sha256": "b6a9484976eb430420f0635c76d99afbf3c08bd58114dcbc9aa06d3c315b1331"
+    },
+    "host/requirements-gui.txt": {
+      "git_blob": "54edfb4ef45e319b619e48997baa7850903b258f",
+      "sha256": "a9aa6fe0b7cb40e359fca0aed48db0afcd719dd30f5b8f3ab62172f59bf11d2a"
+    },
+    "host/reviews/HOST-001-acceptance-checklist.md": {
+      "git_blob": "bb2c4ee9474352d3fcb2ca7702bf080c6de457a8",
+      "sha256": "f37c15dfcb0ab8b84890a43d958f28e066c57b3fcd2395338b8b085a87301ffd"
+    },
+    "host/scripts/check_first_path.py": {
+      "git_blob": "14c095817e95677ff8a4f40b7d8099c94eecd21d",
+      "sha256": "578523b6089a976581fd015ba211417c1193b0375cdcfd542532702862eace3e"
+    },
+    "host/tests/fixtures/device_emulator/README.md": {
+      "git_blob": "0248440ee826c2c95830b88f5eb1354fb40d53ed",
+      "sha256": "c7b668a70e75ae541131aba347a5c52caa0aa435f67b1262946134df526490e9"
+    },
+    "host/tests/fixtures/device_emulator/evidence/diagnoses.md": {
+      "git_blob": "4dfce1a5b57a15074be998a9189d156e3c127288",
+      "sha256": "52d3cb12008dc9b5fad0b3fc9373f4e56ac64a610c33718ed425175440d5e661"
+    },
+    "host/tests/fixtures/device_emulator/evidence/expanded-conformance-initial.log": {
+      "git_blob": "6e81bf59afe258ff713697ad9387d3c66f9a42a6",
+      "sha256": "07cf426fce875bede2bf5d3d0ca02cbae4e33b568a11b0e235aa047388717fa3"
+    },
+    "host/tests/fixtures/device_emulator/evidence/final-focused.log": {
+      "git_blob": "36e17ccbd6d3c2c8b6c898ff13d0a4f1690aaba1",
+      "sha256": "b0f5484abb45fe6271ac36be678e1050d8b7f4d90de10b9bc3b295ed06514937"
+    },
+    "host/tests/fixtures/device_emulator/evidence/final-full-host.log": {
+      "git_blob": "9b037f259759a5ab1fb84d5aa02e41fabbaf7c30",
+      "sha256": "4f4a8716283cab216520c862d24ca208109b21c18ab193e303922d04e85967af"
+    },
+    "host/tests/fixtures/device_emulator/evidence/final-imports.log": {
+      "git_blob": "3fcf6b95ae85aa78ae61f80699a204500325a2ea",
+      "sha256": "1e44c09c74e70c5be27111df998677068536f2efb917efe8c6e152c27de99b46"
+    },
+    "host/tests/fixtures/device_emulator/evidence/final-new-normal.log": {
+      "git_blob": "7de68f943c9097a8107405cd4671c1789e24d9a4",
+      "sha256": "523755ab5d8e2383c419ddf676f6ea380d69872699add70ac35ff1efc0111256"
+    },
+    "host/tests/fixtures/device_emulator/evidence/final-new-optimized.log": {
+      "git_blob": "79515daced21af96f4a89593d0b4560b9d34d5f8",
+      "sha256": "d2350203f6665a2cf81c6d76c111ec80488f052139c7748208568d3c1dde84cf"
+    },
+    "host/tests/fixtures/device_emulator/evidence/final-provisional.log": {
+      "git_blob": "aed9ae0fcc25037062acdf9859942f06c022ac61",
+      "sha256": "9f880d7e9351c55b18ec98e0cb4be9b867a437fe40e925799648442b28c7c6ba"
+    },
+    "host/tests/fixtures/device_emulator/evidence/initial-bounds.log": {
+      "git_blob": "5e2bfe77b6b063f1ff3a00571360c1bb9b8c9424",
+      "sha256": "ce26ad1be6265c7b96ec474a6b621b1cbba223a8856b8d620d22e3e5940138a4"
+    },
+    "host/tests/fixtures/device_emulator/evidence/initial-conformance.log": {
+      "git_blob": "f862c719d1431aa2fb957ff092984c88168bb385",
+      "sha256": "7e6e6ac1ea0b65bfaf593150a72b50f4be0505625cca9416aa2f7532a0224bf6"
+    },
+    "host/tests/fixtures/device_emulator/evidence/initial-host006-provisional.log": {
+      "git_blob": "85a2eff0aeba686fa61b6d07baf4c861cb62a1e8",
+      "sha256": "9afdd6e0d990c708cff719d61ac6615ac2462bcfdc1a63bbbbeee234ba017300"
+    },
+    "host/tests/fixtures/device_emulator/evidence/initial-late-tombstone.log": {
+      "git_blob": "2cd4e2d9d346c8d7b6b75998e945d7ba042d1de0",
+      "sha256": "d295a666a7c7c0ee3d34eb4ace99592371c473be6c6578ad142dc3989c348eac"
+    },
+    "host/tests/fixtures/device_emulator/evidence/initial-remaining-boundaries.log": {
+      "git_blob": "56083ec3475faa2f73b9196201fabbb33d0ac9c6",
+      "sha256": "55239c9415a657e2db3ae36449d998553bfd8f1d4e1c8c9a2355d4b65a2a4ab1"
+    },
+    "host/tests/fixtures/device_emulator/evidence/manifest.json": {
+      "git_blob": "67fb77bf365f86241d469eef17d515b3f738e340",
+      "sha256": "9fb2074dae64c96d02f5cb29d016aaebf6f872b2c89befea9df33fe91464aeee"
+    },
+    "host/tests/fixtures/device_emulator/evidence/runner-console.log": {
+      "git_blob": "014e005e53a56b3982951eef59e80a55b6effad7",
+      "sha256": "96254a188df6c4a2f4ef2f63c2c8e767957e160dac9abbd7835179aff0009c66"
+    },
+    "host/tests/fixtures/device_emulator/golden-vectors.json": {
+      "git_blob": "506853e3b509e83698039b42c6d23a56f11143ba",
+      "sha256": "f7acbfba2a68cf2910ea970ada8eabbafa65d9802ba6907096c1708e32c76cae"
+    },
+    "host/tests/fixtures/device_emulator/reference.py": {
+      "git_blob": "532d0daad56e7d98315bce7e7db4dedbcd025768",
+      "sha256": "98bb3b6b6134f285b2e6180541dfc2d86013201f4dc2bf7924219bd088b3cd7d"
+    },
+    "host/tests/fixtures/device_emulator/run_evidence.py": {
+      "git_blob": "729559ee4ea32ea7fa22b29752607b927650501c",
+      "sha256": "c57dcfe84fa75f65cd9be2e9db088f5a721b7a6e81682fdd247365052f729031"
+    },
+    "host/tests/fixtures/device_emulator/samples-g4-w1-rising.bin": {
+      "git_blob": "42d2cada246c1e53e89a849addc635636cd59405",
+      "sha256": "0570134a7fb8dbbfa8cdf0aceca42e2270e72166d5c22572d610bfa406c65ed5"
+    },
+    "host/tests/fixtures/device_emulator/source/session-guard.md": {
+      "git_blob": "bcb96e1ed80d43d61c8b5089c82918f95d6f8f2e",
+      "sha256": "cddb17168be9d936b1b19c4a2363026988e656ff50ed526c750ec7165cb7a6ae"
+    },
+    "host/tests/fixtures/device_emulator/source/wire-v0.1.md": {
+      "git_blob": "c62e6fa14062596abd0b1ed013f4f8fdcb43e373",
+      "sha256": "e2576cd70b103ed580f57e132e1d3b6c9e8da3d8f491a9e12c74d47ae0764b6e"
+    },
+    "host/tests/fixtures/device_emulator/suite.py": {
+      "git_blob": "581cb18eda07b2174cd2c0ea02a95de459b0e830",
+      "sha256": "69177b485f62d504ed5dc8ca009ca6e0c6dab9144597dac5dc699c59bc45f97b"
+    },
+    "host/tests/fixtures/session/README.md": {
+      "git_blob": "ee10dddd88cba27c5f5e96858acc082870085b22",
+      "sha256": "a65f7cb01e2c29c14967e24b75da1841271bf84c74f75cd69102d28c9df75c6e"
+    },
+    "host/tests/fixtures/session/RESULTS.md": {
+      "git_blob": "5cee70ebb004169a069d95e17dc20a0ea663ba37",
+      "sha256": "72456a62605648e20860bacf8c755315fa3f08e0e946335071523153033ab691"
+    },
+    "host/tests/fixtures/session/SHA256SUMS": {
+      "git_blob": "cd51bf16b98bcc8bfc372a6986e4bb127afecdf5",
+      "sha256": "0b85ce3cb57d77fe5997bda1531df55ea9bfba1e876516745a3d661b63d8a02f"
+    },
+    "host/tests/fixtures/session/coordinator-delta-run.log": {
+      "git_blob": "c6442510637df61cb3061eb3e062093c06ab0937",
+      "sha256": "9305a986959d01f676dd4ec4c6f401673d5c1dcca2dccf82eb6e234c0c35b622"
+    },
+    "host/tests/fixtures/session/corrected-run.log": {
+      "git_blob": "3cc40adf5df39d0df95764324321488fa17edc2e",
+      "sha256": "fdf546a9077c3c077f63b6408121e991b9123e8a9145f954f278dee8ed36d4ba"
+    },
+    "host/tests/fixtures/session/dependencies.log": {
+      "git_blob": "5ae21c895531392b8e94b8702f9ac27e23363cab",
+      "sha256": "5bb78ac53e753e9cf0f30452087186d1a982341d0fcdab5c9d3db027aca9901a"
+    },
+    "host/tests/fixtures/session/first-run.log": {
+      "git_blob": "c3ff0c6316492cd64451f805f45820b013cc7aac",
+      "sha256": "a86805e840a78b166b17e2a9207d0934d42b228fe5d830d1e05c46a9e29ed884"
+    },
+    "host/tests/fixtures/session/focused-final.log": {
+      "git_blob": "0d51883d5def8988f91f865bcf0536fb8f565491",
+      "sha256": "ccbeb3070c0fc7bef454fa146629699f113e9304b31e39b94d048c945c76c2ed"
+    },
+    "host/tests/fixtures/session/focused.log": {
+      "git_blob": "90120fdf46b8e615f4183d2ac239619f1f919649",
+      "sha256": "258b04f471f55a83efeb9a6049fbbfd22b0718eb254fbf33da1cdcf8a76498f1"
+    },
+    "host/tests/fixtures/session/host-full.log": {
+      "git_blob": "2070e2bf934437a6b1ed0c20f42ab469b99207a6",
+      "sha256": "b08b69b7baf46174cdf5c822313340bfc537ccd1e58a60baa9ffc3763b1377c0"
+    },
+    "host/tests/fixtures/session/manifest.json": {
+      "git_blob": "dcb4552eae290f6280995373ca7862cef6ef3efa",
+      "sha256": "6d6095c9f91900260ec9c7b9733f614f4215df6be5909d45c873ab5d3f0276ef"
+    },
+    "host/tests/fixtures/session/pre-freeze.log": {
+      "git_blob": "10cce8e3481d097ad4b25fdd123d1d339fc53268",
+      "sha256": "293e6eb8e6783b0461962ebf541430ae6416dfe6eeb3fd6064e780cea16466b3"
+    },
+    "host/tests/fixtures/session/reference.py": {
+      "git_blob": "5167b933b61692004989c23ac9a3c27f57dac7be",
+      "sha256": "bc521fcbe2798d016b1b4776d5f7293c3e84c2ad60b8edef72163c4e80f0ba66"
+    },
+    "host/tests/fixtures/session/run_checks.py": {
+      "git_blob": "ccec914e8d8ccd5c8a8cf5cfde93527b6225c891",
+      "sha256": "d2597150cd2b05a5d327777b5dfa28ae19220a4496c83922f7f760a7e130d0b5"
+    },
+    "host/tests/fixtures/session/session-all.log": {
+      "git_blob": "cca183103ed22a8d7f3418336cb0940b174f763e",
+      "sha256": "dbc5829812b440c1175f441d491116bf55060833f803911063d24a266b6faaaf"
+    },
+    "host/tests/fixtures/session/session-optimized.log": {
+      "git_blob": "8aa9af3776f2aa7dae2eeade3e2365f8271e42e0",
+      "sha256": "6dd58b03fa28056548df2d4acf9c5a82c6ef8b41a52abf969b399c56a31371f6"
+    },
+    "host/tests/fixtures/session/transcript.json": {
+      "git_blob": "86f28fc6c7916e998b269a2cec5e5d5b04302d80",
+      "sha256": "306803a369df6684e9708e4f1217d7b2b5bb8fdd230cf709690515ba31bd831b"
+    },
+    "host/tests/fixtures/wire/README.md": {
+      "git_blob": "d8875d6f927a243b5b60b35348637d09205e3748",
+      "sha256": "7d7041a2c15cf18ec7471173f791ac91d318ee0d718586d0c6b92d943bf59be6"
+    },
+    "host/tests/fixtures/wire/c-crosscheck.json": {
+      "git_blob": "e05b72f447beae7e82bdd6cd97370e063a3a2389",
+      "sha256": "d15b7e3cee892c870350a9ef2eaf6be0338076b9889ef60a88d8ce050d3e1e42"
+    },
+    "host/tests/fixtures/wire/compare_c.py": {
+      "git_blob": "2fafa90562358dca3f087f30b3ceb05c08e08f82",
+      "sha256": "c4d47b9b633f4b8636f2df7b6de1f07b56addc4171dc5af722c28988d5867f54"
+    },
+    "host/tests/fixtures/wire/conformance-linux.log": {
+      "git_blob": "6dfbeec4a0a31a5c045275bc61e3af859c3403ad",
+      "sha256": "374d577827f57637e940aff6d0f366d4984565468fd19c2ade09edd10c26c6b4"
+    },
+    "host/tests/fixtures/wire/full-linux.log": {
+      "git_blob": "b9c773af3773f817ff840150093dc2bc07f014bf",
+      "sha256": "d713c4e999c342463df152172632cfbc09248eb782992af0f79768f337071b7a"
+    },
+    "host/tests/fixtures/wire/optimized-rejected.log": {
+      "git_blob": "c60b230802936a69f53256b4ce47d5485d44d3ab",
+      "sha256": "15bc4645a7efb14c68000decefcd3c712384614014399fce5e8dc318cb8eca40"
+    },
+    "host/tests/fixtures/wire/reference.py": {
+      "git_blob": "1e3d6db95a5cd3c8385691d0f443798122c35f99",
+      "sha256": "5e0709606c45c191192928cf88b094ab8feb4c6a9969c5bacc8a6e14df1ad329"
+    },
+    "host/tests/fixtures/wire/run-manifest.json": {
+      "git_blob": "46550e6615f67dc2a45893d13886f4fccd99baa8",
+      "sha256": "88c2fb7dd1f342f89299101b2b07d9d3e999e77e2caa6087f703c255518fb84a"
+    },
+    "host/tests/fixtures/wire/vectors.json": {
+      "git_blob": "d05e4067329bc8c9961eb0706a54568eba35cff5",
+      "sha256": "e183f2fe67e0af1882d01f0dbb151b74c1e69a76d405692edb990f87cae09f9e"
+    },
+    "host/tests/test_device_emulator.py": {
+      "git_blob": "5d9b1edf5c77d406b83d4621b136517bd6e059f8",
+      "sha256": "49986195412b66c902fef6428ce08c554570ef83d8c382cbb0e99f4455284b2c"
+    },
+    "host/tests/test_device_emulator_conformance.py": {
+      "git_blob": "0c043998e2ba5c40607dbf56fa36ab334a569712",
+      "sha256": "60a70c3409658a4243520a6f8fc42cc2975cde442d2f59ce4e731d40eac90921"
+    },
+    "host/tests/test_first_path.py": {
+      "git_blob": "40b443339a85d736cc8069ea582817bb14651d51",
+      "sha256": "4b3fe3bf558aa1ac728e3f917dd5490cb4e0ed9e265bc509008a1fefd8d3b8d5"
+    },
+    "host/tests/test_gui.py": {
+      "git_blob": "e1172cbe7dcef82f70f9094da31192c18a24e4ca",
+      "sha256": "298d6e8b7b5849ae45492cbf06837d0d5e4c6af86ab5916ddfe0153c4a2e5d36"
+    },
+    "host/tests/test_recording.py": {
+      "git_blob": "1ed71c8801c058eee098d5255906dd20bca6db62",
+      "sha256": "e5d61b4814bc60eb7cebb55b5704c57c7a9c95f5bea13e5ac9a82144d0295675"
+    },
+    "host/tests/test_session.py": {
+      "git_blob": "2c058a5aab8cac31d046d90c993075fc9b06308a",
+      "sha256": "9848192158c9486befaaca46941e35ba9781dc9578e89098273c6f46160c2c6b"
+    },
+    "host/tests/test_session_conformance.py": {
+      "git_blob": "c659ad8d066f6aafaf904020181f0afbe5bc3ca4",
+      "sha256": "3418393713072e8c14c583f1592e66f98e16bd139f0166bfad6fc2ba2453a582"
+    },
+    "host/tests/test_wire.py": {
+      "git_blob": "43c2800b414f2448da1ee07c0fde5e33377e8f81",
+      "sha256": "c43983bce4fc067040cec352caa3c4cc5cfb5a58fb29006fb810e25bd73962e5"
+    },
+    "host/tests/test_wire_conformance.py": {
+      "git_blob": "51e273531a28f33a1bb50885700a08c7567681e4",
+      "sha256": "dbb6cc0157023e725576c327311bd52c46caed8c39fe93c87da85a6e9f878cba"
+    },
+    "requirements.md": {
+      "git_blob": "cb6e6334951e31c53c3622be32ac190048b0ffd1",
+      "sha256": "219ce9190393bb65c28df33e4e21cda374e5c56ec5bf9d41156b16e21204f532"
+    },
+    "task.md": {
+      "git_blob": "9344eae0c450087158931102e3e81009d6295c58",
+      "sha256": "f770b0d1df1309c03dac15e0986b254f80bad137abc602501af85f99fe59ea56"
+    }
+  }
+}

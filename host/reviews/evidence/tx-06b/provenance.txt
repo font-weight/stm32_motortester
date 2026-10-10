@@ -1,0 +1,13 @@
+06b67622d9ef9dbcd462478eeaa46d01dc8fe4ad
+b6ae8025baf1a47e8173997029d2d8b858ada74c
+A	firmware/transport/README.md
+A	firmware/transport/mt_tx.c
+A	firmware/transport/mt_tx.h
+A	tests/transport/evidence-native.txt
+A	tests/transport/run.sh
+A	tests/transport/test_mt_tx.c
+Final remote refs rechecked 2026-10-10:
+c54bd955aaf3cb863ef3df043ea237ea62e74ad4 refs/heads/dot-a/a004-session-draft
+826bef255362b258d5dcde2100c90dc7d591edb3 refs/heads/dot-a/tx001-transport-draft
+Git archive 826bef255362b258d5dcde2100c90dc7d591edb3 SHA256:
+62b71d95de4fc72714f9c85668039d3a2c0ff23632dc489509042d99f017ba06

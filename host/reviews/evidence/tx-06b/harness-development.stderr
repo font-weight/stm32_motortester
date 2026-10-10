@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 289, in <module>
+    if __name__=="__main__": main()
+                             ^^^^^^
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 286, in main
+    stop_boundaries(); hello_boundaries(); resources_faults_timers(); random_integrity(); argument_matrix()
+                       ^^^^^^^^^^^^^^^^^^
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 202, in hello_boundaries
+    check(sum(bool(e.flags&4) for e in r.events)==1,"HELLO completion count")
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 52, in check
+    raise RuntimeError(note)
+RuntimeError: HELLO completion count
+
+Second harness-development error (tuple accessor, no C failure):
+Traceback (most recent call last):
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 336, in <module>
+    if __name__=="__main__": main()
+                             ^^^^^^
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 333, in main
+    stop_boundaries(); hello_boundaries(); resources_faults_timers(); random_integrity(); stop_lifecycle_and_atomicity(); argument_matrix()
+                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 278, in stop_lifecycle_and_atomicity
+    r.expect(expected); check(sum(e.type==147 for e in decode_all(r.data))==0)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 278, in <genexpr>
+    r.expect(expected); check(sum(e.type==147 for e in decode_all(r.data))==0)
+                                  ^^^^^^
+AttributeError: 'tuple' object has no attribute 'type'

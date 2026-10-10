@@ -1,0 +1,10 @@
+Sat Oct 10 14:30:25 UTC 2026
+6745fb0fa9802a510b49980e597e5f3679e025b8	refs/heads/dot-a/doc006-wire-status-draft
+6745fb0fa9802a510b49980e597e5f3679e025b8	refs/pull/38/head
+commit 6745fb0fa9802a510b49980e597e5f3679e025b8
+Author:     font-weight <62782801+font-weight@users.noreply.github.com>
+AuthorDate: Sat Oct 10 18:46:32 2026 +0500
+Commit:     font-weight <62782801+font-weight@users.noreply.github.com>
+CommitDate: Sat Oct 10 18:46:32 2026 +0500
+
+    docs(protocol): reconcile draft status with published evidence [skip ci]

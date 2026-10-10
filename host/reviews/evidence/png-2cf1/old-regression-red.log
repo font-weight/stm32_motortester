@@ -1,0 +1,14 @@
+test_long_unbroken_quality_flags_fit_actual_png_text_rectangles (test_png_export.PngExportTests.test_long_unbroken_quality_flags_fit_actual_png_text_rectangles) ... FAIL
+
+======================================================================
+FAIL: test_long_unbroken_quality_flags_fit_actual_png_text_rectangles (test_png_export.PngExportTests.test_long_unbroken_quality_flags_fit_actual_png_text_rectangles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-png-2cf/source/host/tests/test_png_export.py", line 135, in test_long_unbroken_quality_flags_fit_actual_png_text_rectangles
+    self.assertLessEqual(footer[2].width(), footer[1].width())
+AssertionError: 850 not less than or equal to 610
+
+----------------------------------------------------------------------
+Ran 1 test in 0.400s
+
+FAILED (failures=1)

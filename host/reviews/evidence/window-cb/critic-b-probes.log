@@ -1,0 +1,14 @@
+test_2048_received_then_abort_is_still_incomplete (__main__.ReviewerProbes.test_2048_received_then_abort_is_still_incomplete) ... ok
+test_48_mode_source_edge_pretrigger_combinations_random_partitions (__main__.ReviewerProbes.test_48_mode_source_edge_pretrigger_combinations_random_partitions) ... ok
+test_actual_singleton_allocation_and_release_are_bounded (__main__.ReviewerProbes.test_actual_singleton_allocation_and_release_are_bounded) ... RESOURCE singleton: accepted=331732, peak=332387, after_release=568
+ok
+test_bad_api_after_terminal_does_not_change_time_base (__main__.ReviewerProbes.test_bad_api_after_terminal_does_not_change_time_base) ... ok
+test_crc_failed_full_window_cannot_later_be_promoted (__main__.ReviewerProbes.test_crc_failed_full_window_cannot_later_be_promoted) ... ok
+test_crc_known_answer (__main__.ReviewerProbes.test_crc_known_answer) ... ok
+test_frame_crc_corruption_never_enters_fragments (__main__.ReviewerProbes.test_frame_crc_corruption_never_enters_fragments) ... ok
+test_seeded_random_payloads_are_bounded_explicit_outcomes (__main__.ReviewerProbes.test_seeded_random_payloads_are_bounded_explicit_outcomes) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 4.792s
+
+OK

@@ -1,0 +1,277 @@
+{
+  "reviewed_sha": "988f2cc094fa82c622f0b20276114e3159ae73d9",
+  "source": "independent integer waveform, bitwise CRC, independent COBS",
+  "origin": "simulator",
+  "fixture_timestamp": "2026-10-10T00:00:00+00:00",
+  "scope": "Linux/offscreen byte -> Capture -> file -> GUI -> PNG; no device, Windows, or production session integration",
+  "windows": [
+    {
+      "window_id": 1,
+      "first_sequence": 1,
+      "chunk_size": 1,
+      "raw_sha256": "8a35147ecc9ceab292a336ffe05888db1c2ea7f9ade58e3abbf6823a45b752ef",
+      "wire_sha256": "735aceee68b0be54ccc3f210fe8ed9ba1c83b52b936c5f3cfc1052dbc2ee6c35",
+      "recording_sha256": "20ba3d28b06dbdddd4a5e40c174cb5773fcddf1eb7b356bc8a8464c81f671cee",
+      "png_sha256": "ace9776acbfc4ec660c1a0ded27d60a981aa357b479de55f28180e8c182c621e",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 2,
+      "first_sequence": 12,
+      "chunk_size": 2,
+      "raw_sha256": "58202b98caa574494aa8a2e47804bf6acf63ec57eaa9089f222fb43b2ad7e8e1",
+      "wire_sha256": "737400e70176eb91b7bcd113814a9def0cd3adf998bc529852549cf3ff8e4f23",
+      "recording_sha256": "5446ebe57b462177cb87aa87f9ff819c88b09d605eb6ef4c3b688464e9421237",
+      "png_sha256": "d79cc580db5dc7f2e276709374eee25f36f61de58182b8d37bfbec988a52eae1",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 3,
+      "first_sequence": 23,
+      "chunk_size": 31,
+      "raw_sha256": "e83b9d8d73414114d80c5bf6282c7397588d031166ef650bf391b740b2056571",
+      "wire_sha256": "135cb0e220bdf4b91ebcf22e173c2b1a7a95b2780490d646c37abb9d3f934044",
+      "recording_sha256": "eade07dd962194bd48fccf11b0ab385887f8f7f05ec6fb8f81c279f04daf10a2",
+      "png_sha256": "b8ed95e18158e8ac64942c472e4caede681b671da9f4bed45b2a20377075b2a2",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 4,
+      "first_sequence": 34,
+      "chunk_size": 97,
+      "raw_sha256": "51b53fe8fc6a139aa633386be46a1acd84c3e5a100966556e88eb06a837b960c",
+      "wire_sha256": "ea8de45d115f84e2ae4553b21296ecfe867c0245e62404f69aaf832c0a4d8218",
+      "recording_sha256": "145652139292a20774f69095f58c93642bf489478825d0670d52f95bf97b0f9b",
+      "png_sha256": "0628d8ab31fc1793acc792d295c7ab6340a999c0dc0e0a18b027b13f9b8fce61",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 5,
+      "first_sequence": 45,
+      "chunk_size": 255,
+      "raw_sha256": "13efcdf5824928bcdf2d75a688df884d211a639a7515f30f10864efb66b60e93",
+      "wire_sha256": "b65e5ec04849ec317e7adca5c3d039f03660421ad3fc8cd4ba11bd5fa6144fe8",
+      "recording_sha256": "b41e545436fb296e5ece2094d7b48a3e37dc86b6af120a143c731bec1df6cfc2",
+      "png_sha256": "fb0fd3f44adec225da1745f7f0bfe63f8522584f0dab885b9004ce8a811de243",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 6,
+      "first_sequence": 56,
+      "chunk_size": 543,
+      "raw_sha256": "f80bb54ae62ad4e835140366206e83438e60e932d616261dff22fe8a10a2ea63",
+      "wire_sha256": "3a1f8743e783d98c0c1a6cdeb56c2825d5d746d85de3db9f0beabd35511c2b8c",
+      "recording_sha256": "cbf38975ab98950d56c70a41a142f1d8ce7660efe2851125cd44dacc10e5f233",
+      "png_sha256": "e6151d1eda7171779c0df631e86bdae0efdf90fb506b52354664d61a57654a18",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 7,
+      "first_sequence": 67,
+      "chunk_size": 4096,
+      "raw_sha256": "050860f40df530eea3cf3d6a00e6dad5be2f13f9464e4e29ce17af26408692f8",
+      "wire_sha256": "8b32cce771c20942ddf341aa67ee2ef2e793dfd024cfcbfce34f3e6c6b212a78",
+      "recording_sha256": "6fe6cba1e77e0ee091dfc0a48d96d99a8962ab08e8442401ff4e45097e76c0a6",
+      "png_sha256": "749c2d50e8c1a27b666df9d34f97a49c92ec7ef2095cde48fd8250bcbbe67975",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 8,
+      "first_sequence": 78,
+      "chunk_size": 1,
+      "raw_sha256": "2669cc43c580ac3bdd85e5713bec90dfe13d8b6a9d53c600b7521a0af9cdd9f0",
+      "wire_sha256": "81a8f9c40996519bd7ec3f82f811edb49aaa184698690056d3baac265cc2a2d5",
+      "recording_sha256": "97934742b3f0bf9d9223e4ce47a9687bbe630f43dcdbfb80a4d3bab184260f74",
+      "png_sha256": "3fd6df7d828cee53bc94555edbd1099b0e174c899096c7a85044c93673c15556",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 9,
+      "first_sequence": 89,
+      "chunk_size": 2,
+      "raw_sha256": "74472fe96143f15a7870bd9f135819c90f7494d9943e9f25898b1489e498a457",
+      "wire_sha256": "5e04c7c23376f3cd52a5611f9906eabf6d85abe8c71de8fe3cc962914bb031dc",
+      "recording_sha256": "b6ec5a97c9d2ae1d153ded311aac2c3da5896ae141166015a4c4a759b4e7d9f8",
+      "png_sha256": "3f1381e555d9d9ac0ecac36fa0ea3ae2409081545a168472529f1c782c8720e7",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 10,
+      "first_sequence": 100,
+      "chunk_size": 31,
+      "raw_sha256": "bea3db0bcbba40e552afa8738c367e5f6f3b5e790f34e32f202aa8d4bc4be18e",
+      "wire_sha256": "bbd408ad1c8a5ebe3bf3841276fc4bcdbf5abef28af35765f1b71a6bb80df4b4",
+      "recording_sha256": "88336d57d9d29527a77633202aaf44552c214a6c617aca6b5142ba6bf2d6a695",
+      "png_sha256": "77ebae50ac35906e03dc7faf6a00b2d8aabe500c1aed3a7e051b24b7a9e952d2",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 11,
+      "first_sequence": 111,
+      "chunk_size": 97,
+      "raw_sha256": "d532abd6a045068feb628ae3577bb977f41f9cf2a82a42875308bacf85dcb3bc",
+      "wire_sha256": "b4477edec0e726db64aa9fb5d4d92d5ebb3b0fdec0d4b6a0ed049faf9fdaef5d",
+      "recording_sha256": "5edec4d3f8bf238d1c05d5189ceb03d4b7ba95c4690ff777616a69c52e0d06d9",
+      "png_sha256": "98b187140c4884ec0100977e5529822bb5896b7e54417fded7f5a91e903a50b4",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 12,
+      "first_sequence": 122,
+      "chunk_size": 255,
+      "raw_sha256": "b853a99fe1d350f8fc7b5fe851db228ed6c80a5f9121484959c078595ef0baa9",
+      "wire_sha256": "b0d0ce4a3ac9becd541a46d98a6829e60cf59bfd88df84fa1322531030b50fcd",
+      "recording_sha256": "29e926a5a742e30b443055174b3f922d5d3891d7ca091a96b340b2b66f32f043",
+      "png_sha256": "bb360a43151a730d9a1a9dae112e46063ec76752336831e40c7be09a0ad1aabd",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 13,
+      "first_sequence": 133,
+      "chunk_size": 543,
+      "raw_sha256": "bbb78cbf29b5d99d0106ecf4b93a709bdea0e282ef192b028f4ce62f25ce09cf",
+      "wire_sha256": "d862dae0f44258e198aa57b9704d003cdb1a30fdf47bfbb23c87580a6352bd50",
+      "recording_sha256": "23de716fd96c7105fa6aaf645d246ef650efe0f14d3c1006556218b84d748a7a",
+      "png_sha256": "aa403eef26859cf284d20ba977456e933dbcd7fbd60551ef8f2ce7ab4728ffc3",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 14,
+      "first_sequence": 144,
+      "chunk_size": 4096,
+      "raw_sha256": "2934144585f9a8b1401e29d12817cb2167d32dc55ae21e18da905f391f2fdb46",
+      "wire_sha256": "c5552f9d8c446a908fa760948f53c6d60147b88a42ef6a938ba4eff6dad14aef",
+      "recording_sha256": "67e43e51e61c481b7ae2dd55f943a8bb737443ffc743929f8e7145b3db76f577",
+      "png_sha256": "28e5173aa1d6b62684895cf64e68533035aedab0e6aa83cbe0448f3287ed8e2a",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 15,
+      "first_sequence": 155,
+      "chunk_size": 1,
+      "raw_sha256": "d4f856f993db8f3d4e9737be28232bc3a3ec469df33b3af0c936a83e4ce8e335",
+      "wire_sha256": "f2518f44960673288da5ca65532b9570eb25d687d3725230aa30dd5640b1c3c6",
+      "recording_sha256": "c7123de5c4fa1b09995a76f8d50f435d2095e3d5d0aeae7f6c6270fa2eb98a52",
+      "png_sha256": "eddad79f20b7bd7fee0ec0d0478b31661d082e5d7f552dff9b2f04e57fefc781",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 16,
+      "first_sequence": 166,
+      "chunk_size": 2,
+      "raw_sha256": "713c554bf0da3fae784e6d305b667798f150af6fa216f19c044a49b6de37c977",
+      "wire_sha256": "3eab5d66a66fe9eea9038543718bfa421b0b42322ffa81e9ba3fb3b246052e59",
+      "recording_sha256": "1a9a859b31bc31e215e38d630c3fd7d590b86dc797a5d6570ff4e59c6bd57233",
+      "png_sha256": "3f11fa6c6d1ad0718a6d6a8725dae85059fcdacace080fc3525f2af056ebbe95",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 17,
+      "first_sequence": 177,
+      "chunk_size": 31,
+      "raw_sha256": "8d9c471086498ac40fc90a4eedc72b6f7de906167e6745d2a4b6d4c844f90d59",
+      "wire_sha256": "e4465df8fd20d6731aa5906a9774ba24e41a7c856cfdf5e738bf6d4003635bf4",
+      "recording_sha256": "b550cfe7e2f10125b45606410d7870722cf7589d7310135a8908dca1369a8728",
+      "png_sha256": "907dc7b28a7fd2961902aada38d553077e3332713441c2cc3ca2dd8d515c103e",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 18,
+      "first_sequence": 188,
+      "chunk_size": 97,
+      "raw_sha256": "14a107a4f4464a68df9b65b7b744c54c235867b4a39a4759e62f80d91c8b92ef",
+      "wire_sha256": "af80f7659822ae152a3f754688d9af2123390dd56db1f5f65c446aa4a68be514",
+      "recording_sha256": "8554e662e23dc956e25ebfd52bd67b097273ecf8b64f9a53252193677bfa30f9",
+      "png_sha256": "6985c9099061e08e0b0683d3c9ad57921c5e634825d48d4be69782773df32d12",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 19,
+      "first_sequence": 199,
+      "chunk_size": 255,
+      "raw_sha256": "115ece0980272e12f4afbff82156c40657785715219703c435b63155f7b1ce8f",
+      "wire_sha256": "526191e76723583f7b815eb881617389fd4329b19599429e71cfb479da766f2f",
+      "recording_sha256": "9b3109c490c6af3d86b68f3ff028a0e6c1298841f3dc6099b25d03cd6ee664eb",
+      "png_sha256": "d900e4594ab0b0c359b2716445bd3bd8ae048400df91a5a96250b2fd9fdc6acd",
+      "png_size": [
+        882,
+        438
+      ]
+    },
+    {
+      "window_id": 20,
+      "first_sequence": 210,
+      "chunk_size": 543,
+      "raw_sha256": "83e46cecae74e69febe54b2a80f6c066c84847d4dcf4a2d1d46ed370def08cd2",
+      "wire_sha256": "3389331ca3ba513cdf07bbfdad89aed5281cc4aa7252df58e77e77d5cad9a2a7",
+      "recording_sha256": "0a28340a158cc096871c8559ddff059ea90857f2190ce3e49a7ad92b90a6410e",
+      "png_sha256": "f13d2ae030001b3939ed7135543fa91b61ea3c38d891d825e35d76792a5b74d3",
+      "png_size": [
+        882,
+        438
+      ]
+    }
+  ],
+  "rejected_streams": [
+    "truncated_delimiter",
+    "missing_data",
+    "extra_frame",
+    "wrong_sample_crc",
+    "garbage_tail"
+  ],
+  "damaged_gui_open_preserved_capture": true
+}

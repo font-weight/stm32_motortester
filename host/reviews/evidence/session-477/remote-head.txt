@@ -1,0 +1,13 @@
+Sat Oct 10 13:20:37 UTC 2026
+477057aadc9bc8e757bc8ef817125377e816d212	refs/heads/dot-b/host-session-draft
+477057aadc9bc8e757bc8ef817125377e816d212	refs/pull/31/head
+commit 477057aadc9bc8e757bc8ef817125377e816d212
+Author:     font-weight <62782801+font-weight@users.noreply.github.com>
+AuthorDate: Sat Oct 10 18:16:14 2026 +0500
+Commit:     font-weight <62782801+font-weight@users.noreply.github.com>
+CommitDate: Sat Oct 10 18:16:14 2026 +0500
+
+    feat(host): add bounded draft control-session lifecycle
+Sat Oct 10 13:24:57 UTC 2026
+477057aadc9bc8e757bc8ef817125377e816d212	refs/heads/dot-b/host-session-draft
+477057aadc9bc8e757bc8ef817125377e816d212	refs/pull/31/head

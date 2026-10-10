@@ -1,0 +1,1 @@
+PASS: 20 independent synthetic byte windows, 40960 raw samples, disk/GUI/PNG/CSV identity; 5 rejected streams and corrupt GUI reopen.

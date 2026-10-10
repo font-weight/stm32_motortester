@@ -1,0 +1,24 @@
+{
+  "old_source": "2376d325d573b1aa3da6feaf8fddf05d2e1cb601",
+  "result": "EXPECTED OLD OVERLAP REPRODUCED",
+  "cases": [
+    {
+      "font_px": 13,
+      "plot_bottom": 188,
+      "trigger_top": 198,
+      "overlap": false
+    },
+    {
+      "font_px": 18,
+      "plot_bottom": 163,
+      "trigger_top": 112,
+      "overlap": true
+    },
+    {
+      "font_px": 22,
+      "plot_bottom": 147,
+      "trigger_top": 80,
+      "overlap": true
+    }
+  ]
+}

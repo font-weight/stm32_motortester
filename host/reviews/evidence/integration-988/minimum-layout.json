@@ -1,0 +1,47 @@
+[
+  {
+    "font_px": 13,
+    "size": [
+      1000,
+      710
+    ],
+    "plot_height": 127,
+    "scroll_max": 0,
+    "plot_bottom": 188,
+    "trigger_top": 198,
+    "trigger_bottom": 213,
+    "cursor_top": 248,
+    "help_bottom": 512,
+    "sidebar_height": 534
+  },
+  {
+    "font_px": 18,
+    "size": [
+      1000,
+      710
+    ],
+    "plot_height": 100,
+    "scroll_max": 91,
+    "plot_bottom": 166,
+    "trigger_top": 176,
+    "trigger_bottom": 217,
+    "cursor_top": 257,
+    "help_bottom": 492,
+    "sidebar_height": 514
+  },
+  {
+    "font_px": 22,
+    "size": [
+      1000,
+      710
+    ],
+    "plot_height": 100,
+    "scroll_max": 187,
+    "plot_bottom": 171,
+    "trigger_top": 181,
+    "trigger_bottom": 232,
+    "cursor_top": 303,
+    "help_bottom": 472,
+    "sidebar_height": 494
+  }
+]

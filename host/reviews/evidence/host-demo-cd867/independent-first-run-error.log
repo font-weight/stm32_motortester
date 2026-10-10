@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/critic-b-host-demo-cd867/check_demo.py", line 107, in <module>
+    xy=[tuple(map(float,s.split(','))) for s in poly.attrib['points'].split()];assert len(xy)==2048
+                                                ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'

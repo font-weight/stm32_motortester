@@ -1,0 +1,74 @@
+diff --git a/protocol/vectors-v0.1.json b/protocol/vectors-v0.1.json
+index 269437c..8c4572d 100644
+--- a/protocol/vectors-v0.1.json
++++ b/protocol/vectors-v0.1.json
+@@ -1,5 +1,5 @@
+ {
+-  "status": "DRAFT, generated with separate JS reference arithmetic; C codec not executed; independent conformance review pending",
++  "status": "DRAFT; original JS-generated codec vector unchanged. Native C conformance evidence: PR21 commit 8dfc32b2c7558624e8d02dde49404501e3fc2622. Shared exact-SHA acceptance and hardware/USB verification remain open.",
+   "crc_check": {
+     "ascii": "123456789",
+     "hex": "cbf43926"
+diff --git a/protocol/wire-v0.1.md b/protocol/wire-v0.1.md
+index c62e6fa..707b171 100644
+--- a/protocol/wire-v0.1.md
++++ b/protocol/wire-v0.1.md
+@@ -1,11 +1,19 @@
+ # Wire v0.1 — DRAFT, не принят
+ 
+ Автор: Dot A. База: `3fe1a2d8c53f77e0510a3da9ddd125f68cb872fa`. Задача #3, координация #2.
+-Требуются независимые Critic-A и Critic-B с доказательствами на точный SHA. Это предложение framing и исходник codec, а не утверждённый общий контракт.
++Требуются независимые Critic-A и Critic-B с доказательствами на точный SHA. Это черновой контракт framing, payloads и жизненного цикла сеанса. Наличие реализации и тестов не означает принятие общего контракта.
+ 
+-## Область первой итерации
++## Реализация и проверенные границы — 10.10.2026
+ 
+-Реализовано преобразование одного сообщения в байты и обратно без динамического выделения памяти. В этой ветке добавлен черновой накопитель потока (см. [stream-parser.md](../docs/stream-parser.md)); USB, управление сеансом, захват и команды пока **не реализованы**. Новый накопитель не компилировался и не запускался. C codec не компилировался: запуск выбранного executor завершился timeout. Аппаратных проверок нет.
++В базе этой документационной правки, PR14 `c54bd955aaf3cb863ef3df043ea237ea62e74ad4`, есть byte codec, накопитель потока, разбор команд и защита сеанса. Они компилировались и выполнялись в native-проверках. Исторический timeout первого executor больше не описывает текущее состояние проверок.
++
++Опубликованные свидетельства и последующие черновые модули:
++
++- [PR21, conformance evidence](https://github.com/font-weight/stm32_motortester/tree/8dfc32b2c7558624e8d02dde49404501e3fc2622): воспроизводимые строгие/sanitized проверки только codec, stream и command на закреплённых исходниках PR4/PR8; независимый прогон 3 294 024 assertions. Сеанс, dispatch и оконные payloads не входят в эту серию. Это программные проверки, не физический USB.
++- [PR30, мост захвата](https://github.com/font-weight/stm32_motortester/tree/a451e5a491439fcfed31f298a589643cf7050ec9): сборка окна, исходные коды, CRC и упорядоченный TX. Модуль находится в отдельной draft-ветке, не в базе PR14.
++- [PR35, контроллер команд](https://github.com/font-weight/stm32_motortester/tree/0ddea1e5992caa6231203838c3956e19675867a8): обработка HELLO/CONFIG/ARM/STOP/release с аппаратными hooks; независимые 39 сценариев и oracle 20 полных окон/40 960 кодов. [Вердикт Critic-A на этот SHA](https://github.com/font-weight/stm32_motortester/pull/35#issuecomment-6098054287) — BLOCKED_EVIDENCE, score null. Hooks и регистровая модель не заменяют реальную плату.
++
++Самостоятельный USB backend, startup и полный аппаратный путь ещё не подтверждены. Native-тесты, ARM object-сборки, точный SHA ревью и реальные измерения имеют разную область доказательства. Общая независимая приёмка Critic-A и Critic-B остаётся открытой; main не содержит принятый прибор.
+ 
+ Транспорт-кандидат: CDC ACM поверх native USB FS, отдельно от ST-Link. Библиотека и VID/PID ещё не выбраны окончательно. Нельзя копировать чужой VID/PID, startup или linker script без проверки условий. Windows-приложение и файловый формат принадлежат Dot B.
+ 
+@@ -41,7 +49,7 @@ Encode требует выходной буфер 544 байта независ
+ 
+ ## Поток
+ 
+-Черновой parser: firmware/protocol/mt_stream.c; авторские тесты подготовлены, но не выполнены. Межбайтовый timeout 1000 ms, общий 3000 ms с первого ненулевого байта; monotonic elapsed >= threshold. После timeout/overflow — discard-until-zero. Пустые разделители игнорируются. Единственные правила сеанса/Stop приведены ниже.
++Черновой parser: firmware/protocol/mt_stream.c; native-проверки выполнены, опубликованные свидетельства и их границы перечислены выше. Межбайтовый timeout 1000 ms, общий 3000 ms с первого ненулевого байта; monotonic elapsed >= threshold. После timeout/overflow — discard-until-zero. Пустые разделители игнорируются. Единственные правила сеанса/Stop приведены ниже.
+ 
+ ## Ресурсы и следующая фиксация
+ 
+@@ -51,7 +59,7 @@ RAM включает окно, DMA staging, packet buffers, globals и стек.
+ 
+ Предварительно резервируются PA0 для ADC1_IN0, PA11/PA12 для USB, PA13/PA14 для SWD. Вывод внешнего запуска — TBD: PB12 EXTI не равнозначен аппаратному input capture. Распиновка конкретной платы не проверена.
+ 
+-Дальнейшие обязательные результаты: тактирование/ADC, карта выводов, допустимые Fs/window/pretrigger, реализация payloads и состояний, независимые векторы и реальные compile/tests, два проходных заключения критиков. Неполнота этого draft не уменьшает требования MVP.
++До общей приёмки необходимо свести точные версии реализации payloads/состояний, независимых векторов и выполненных compile/tests в единый проверенный результат; отдельно подтвердить тактирование/ADC, карту выводов и допустимые Fs/window/pretrigger. Нужны два проходных заключения критиков на соответствующий результат. Уже выполненные ограниченные проверки перечислены выше; они не уменьшают требования MVP.
+ 
+ ## Полный кандидат сообщений для обсуждения A/B
+ 
+@@ -103,7 +111,7 @@ STATUS с request_id=0 является событием, с request_id GET_STAT
+ 
+ CONFIG mode: 0 Auto, 1 Normal, 2 Single; source: 0 аналоговый канал, 1 внешний; edge: 0 rising, 1 falling. level_code 1..4094; поле сохраняется и при внешнем источнике, но не применяется к нему. Для Auto timeout допускается 100..60000 ms; для остальных режимов требуется 0. Pretrigger принимает только значения из CAPS. Фактический timeout начинает отсчёт после подготовки предыстории. CONFIG только в STOPPED без удерживаемого окна и без TX drain; при ошибке старые настройки неизменны.
+ 
+-config_id увеличивается устройством при успешном CONFIG с 1. ARM без принятого CONFIG или с чужим config_id отвергается. ARM только в STOPPED без удерживаемого окна/TX drain, иначе BUSY. Generation равна request_id успешного ARM и не меняется при автоматическом повторении окон. Window_id возрастает с 1 на каждое начало окна в сеансе. Числовые capabilities: bit0 analog trigger, bit1 external trigger, bit2 Auto, bit3 Normal, bit4 Single, bit5 pretrigger. Не реализованная возможность имеет 0; ACK не должен обещать будущую функцию. CAPS имеет фиксированную длину 30 байт. Mode bits 0/1/2 = Auto/Normal/Single, source bits 0/1 = analog/external, edge bits 0/1 = rising/falling; остальные биты0. Capability bits 2/3/4 повторяют mode bits, bits 0/1 повторяют source bits. При bit5=0: pre_count=1, pre0/pre1/pre2=0, только нулевая предыстория. При bit5=1: pre_count=3, pre0=0, pre1=512, pre2=1024. Поддерживается полное декартово произведение объявленных mode/source/edge/pre для profile1; иначе такая маска запрещена. Противоречие HELLO_ACK/CAPS — protocol error, ARM запрещён. Это требования к будущей реализации, текущий codec не объявляет capabilities.
++config_id увеличивается устройством при успешном CONFIG с 1. ARM без принятого CONFIG или с чужим config_id отвергается. ARM только в STOPPED без удерживаемого окна/TX drain, иначе BUSY. Generation равна request_id успешного ARM и не меняется при автоматическом повторении окон. Window_id возрастает с 1 на каждое начало окна в сеансе. Числовые capabilities: bit0 analog trigger, bit1 external trigger, bit2 Auto, bit3 Normal, bit4 Single, bit5 pretrigger. Не реализованная возможность имеет 0; ACK не должен обещать будущую функцию. CAPS имеет фиксированную длину 30 байт. Mode bits 0/1/2 = Auto/Normal/Single, source bits 0/1 = analog/external, edge bits 0/1 = rising/falling; остальные биты0. Capability bits 2/3/4 повторяют mode bits, bits 0/1 повторяют source bits. При bit5=0: pre_count=1, pre0/pre1/pre2=0, только нулевая предыстория. При bit5=1: pre_count=3, pre0=0, pre1=512, pre2=1024. Поддерживается полное декартово произведение объявленных mode/source/edge/pre для profile1; иначе такая маска запрещена. Противоречие HELLO_ACK/CAPS — protocol error, ARM запрещён. Сам byte codec не объявляет capabilities; черновой контроллер PR35 реализует объявление поддерживаемого аналогового подмножества. Поддержка external trigger в этом контроллере не заявлена.
+ 
+ ### Окно
+ 
+@@ -147,7 +155,7 @@ STATUS.reason: 0 NONE, 1 DMA_ERROR, 2 ACQ_DEADLINE, 3 TRANSFER_TIMEOUT, 4 PROTOC
+ Ответ на обычную команду ожидается до 1000 ms с завершения её записи в транспорт; Stop также1000 ms, независимо от ожидания запуска. Истечение означает неизвестный результат и процедуру восстановления, не автоматический повтор ARM.
+ Профиль50kS/s/2048 — кандидат для первого пути. Поддержка этого профиля должна подтверждаться сборкой/ресурсами, а реальная частота — отдельным измерением.
+ 
+-Для принятия требуются независимые положительные/отрицательные векторы каждого payload, fragmented/coalesced/oversize/CRC tests, сценарии handshake/reconnect/Stop/rearm и двадцать синтетических окон с побитным round-trip у B. Этот PR пока содержит только byte codec и один вектор; эти критерии открыты.
++Для принятия требуются независимые положительные/отрицательные векторы каждого payload, fragmented/coalesced/oversize/CRC tests, сценарии handshake/reconnect/Stop/rearm и двадцать синтетических окон с побитным round-trip у B. В файле vectors-v0.1.json сохранён один исходный codec-вектор; более широкие исполняемые проверки опубликованы отдельно по ссылкам выше. Полноту общих payload-векторов и совместных сценариев проверяют оба критика на конкретных SHA. Эти критерии нельзя считать закрытыми только по количеству тестов.
+ 
+ ## Совместимость версии и источники
+ 

@@ -1,0 +1,74 @@
+ host/docs/session-controller.md                    | 143 +++-
+ host/motortester/session.py                        | 171 ++++-
+ host/tests/fixtures/session_release/README.md      | 113 +++
+ .../evidence/corrected-final-existing-session.log  |  78 ++
+ .../evidence/corrected-final-focused.log           |  44 ++
+ .../evidence/corrected-final-full-host.log         | 467 ++++++++++++
+ .../evidence/corrected-final-imports.log           |   9 +
+ .../evidence/corrected-final-new-normal.log        |  62 ++
+ .../evidence/corrected-final-new-optimized.log     |  62 ++
+ .../evidence/corrected-manifest.json               | 505 +++++++++++++
+ .../evidence/dependency-before.json                | 139 ++++
+ .../fixtures/session_release/evidence/diagnoses.md |  21 +
+ .../evidence/factory-assertion-correction.md       |  21 +
+ .../evidence/final-existing-session.log            |  78 ++
+ .../session_release/evidence/final-focused.log     |  44 ++
+ .../session_release/evidence/final-full-host.log   | 478 ++++++++++++
+ .../session_release/evidence/final-imports.log     |   9 +
+ .../session_release/evidence/final-new-normal.log  |  62 ++
+ .../evidence/final-new-optimized.log               |  62 ++
+ .../evidence/initial-conformance.log               |  52 ++
+ .../session_release/evidence/manifest.json         | 472 ++++++++++++
+ .../evidence/provenance-correction.md              |  23 +
+ .../evidence/verified-final-existing-session.log   |  78 ++
+ .../evidence/verified-final-focused.log            |  44 ++
+ .../evidence/verified-final-full-host.log          | 467 ++++++++++++
+ .../evidence/verified-final-imports.log            |   9 +
+ .../evidence/verified-final-new-normal.log         |  62 ++
+ .../evidence/verified-final-new-optimized.log      |  62 ++
+ .../evidence/verified-manifest.json                | 527 +++++++++++++
+ .../fixtures/session_release/golden-vectors.json   | 185 +++++
+ host/tests/fixtures/session_release/reference.py   |  94 +++
+ .../tests/fixtures/session_release/run_evidence.py | 142 ++++
+ host/tests/fixtures/session_release/run_suite.py   |  27 +
+ host/tests/test_device_emulator_conformance.py     |  13 +-
+ host/tests/test_session_release.py                 | 462 ++++++++++++
+ host/tests/test_session_release_conformance.py     | 839 +++++++++++++++++++++
+ 36 files changed, 6094 insertions(+), 32 deletions(-)
+
+119	24	host/docs/session-controller.md
+166	5	host/motortester/session.py
+113	0	host/tests/fixtures/session_release/README.md
+78	0	host/tests/fixtures/session_release/evidence/corrected-final-existing-session.log
+44	0	host/tests/fixtures/session_release/evidence/corrected-final-focused.log
+467	0	host/tests/fixtures/session_release/evidence/corrected-final-full-host.log
+9	0	host/tests/fixtures/session_release/evidence/corrected-final-imports.log
+62	0	host/tests/fixtures/session_release/evidence/corrected-final-new-normal.log
+62	0	host/tests/fixtures/session_release/evidence/corrected-final-new-optimized.log
+505	0	host/tests/fixtures/session_release/evidence/corrected-manifest.json
+139	0	host/tests/fixtures/session_release/evidence/dependency-before.json
+21	0	host/tests/fixtures/session_release/evidence/diagnoses.md
+21	0	host/tests/fixtures/session_release/evidence/factory-assertion-correction.md
+78	0	host/tests/fixtures/session_release/evidence/final-existing-session.log
+44	0	host/tests/fixtures/session_release/evidence/final-focused.log
+478	0	host/tests/fixtures/session_release/evidence/final-full-host.log
+9	0	host/tests/fixtures/session_release/evidence/final-imports.log
+62	0	host/tests/fixtures/session_release/evidence/final-new-normal.log
+62	0	host/tests/fixtures/session_release/evidence/final-new-optimized.log
+52	0	host/tests/fixtures/session_release/evidence/initial-conformance.log
+472	0	host/tests/fixtures/session_release/evidence/manifest.json
+23	0	host/tests/fixtures/session_release/evidence/provenance-correction.md
+78	0	host/tests/fixtures/session_release/evidence/verified-final-existing-session.log
+44	0	host/tests/fixtures/session_release/evidence/verified-final-focused.log
+467	0	host/tests/fixtures/session_release/evidence/verified-final-full-host.log
+9	0	host/tests/fixtures/session_release/evidence/verified-final-imports.log
+62	0	host/tests/fixtures/session_release/evidence/verified-final-new-normal.log
+62	0	host/tests/fixtures/session_release/evidence/verified-final-new-optimized.log
+527	0	host/tests/fixtures/session_release/evidence/verified-manifest.json
+185	0	host/tests/fixtures/session_release/golden-vectors.json
+94	0	host/tests/fixtures/session_release/reference.py
+142	0	host/tests/fixtures/session_release/run_evidence.py
+27	0	host/tests/fixtures/session_release/run_suite.py
+10	3	host/tests/test_device_emulator_conformance.py
+462	0	host/tests/test_session_release.py
+839	0	host/tests/test_session_release_conformance.py

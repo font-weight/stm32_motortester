@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "counts": {
+    "published_vector": 1,
+    "encode_decode_oracle": 2052,
+    "capacity_rejection": 544,
+    "oversized_encode": 1,
+    "structured_rejection": 8,
+    "single_bit_rejection": 736,
+    "truncation_rejection": 93,
+    "framing_length_rejection": 7,
+    "random_rejection": 100000
+  },
+  "seed": 20261010,
+  "compiler": "GCC 14.2.0",
+  "host": "Linux x86_64",
+  "scope": "byte codec only; no USB, stream state, handshake, Windows or hardware"
+}

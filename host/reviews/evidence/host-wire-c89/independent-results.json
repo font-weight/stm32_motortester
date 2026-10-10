@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "host_source": "/tmp/critic-b-host-wire-c89/source",
+  "host_wire_sha256": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+  "c_source_sha": "8d5f68c7b8b56ed3d0bd32b0468c10bed1e0e0b7",
+  "c_sha256": {
+    "mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "mt_stream.c": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+    "mt_stream.h": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+  },
+  "seed": 20261010,
+  "counts": {
+    "positive_decode": 2052,
+    "three_way_encode": 2052,
+    "negative_decode": 50736,
+    "stream_calls": 6242,
+    "stream_bytes": 6461517,
+    "stream_frames": 3445,
+    "stream_TIMEOUT": 556,
+    "stream_FRAMING": 1339930,
+    "stream_OVERFLOW": 833,
+    "resets": 636,
+    "stream_LENGTH": 249,
+    "stream_CRC": 1
+  },
+  "scope": "opaque byte codec and stream only; no session, Windows, USB or hardware"
+}

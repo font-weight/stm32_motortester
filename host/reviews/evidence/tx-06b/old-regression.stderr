@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 336, in <module>
+    if __name__=="__main__": main()
+                             ^^^^^^
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 331, in main
+    hello_boundaries()
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 198, in hello_boundaries
+    check(not(e.flags&4) and r.tx.stopping,"old Stop ACK released new session barrier")
+  File "/tmp/critic-b-tx-06b/evidence/independent_tx.py", line 52, in check
+    raise RuntimeError(note)
+RuntimeError: old Stop ACK released new session barrier

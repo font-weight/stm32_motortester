@@ -1,0 +1,1 @@
+PASS: old988 reproduces clipping at 13/18/22px; bd582 has no clipped labels or undersized buttons, all widgets reachable, restored 1240x900 has no scrollbars.

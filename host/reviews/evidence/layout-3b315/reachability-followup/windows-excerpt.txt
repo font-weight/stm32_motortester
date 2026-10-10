@@ -1,0 +1,19 @@
+Source: GitHub Actions run 38061091297/job 114239338404, read independently 2026-10-10.
+2026-10-10T14:48:46.2827925Z Microsoft Windows Server 2022
+2026-10-10T14:48:54.6333758Z source=3b315ac4e1184c4c7e9216ce5594cff0f9beff33 workflow=3e586f4b646893c75dc2f20d6e391fc0aa62cf48 image=win22/20261004.326.1
+2026-10-10T14:49:23.0743788Z test_minimum_window_scrolls_annotations_with_larger_font_metrics (test_gui.ViewerTests.test_minimum_window_scrolls_annotations_with_larger_font_metrics) ... 
+2026-10-10T14:49:23.0744908Z   test_minimum_window_scrolls_annotations_with_larger_font_metrics (test_gui.ViewerTests.test_minimum_window_scrolls_annotations_with_larger_font_metrics) (font_pixels=22) ... FAIL
+2026-10-10T14:49:23.0746029Z test_minimum_window_with_cursors_has_no_overlapping_plot_labels (test_gui.ViewerTests.test_minimum_window_with_cursors_has_no_overlapping_plot_labels) ... ok
+2026-10-10T14:49:23.0827243Z FAIL: test_minimum_window_scrolls_annotations_with_larger_font_metrics (test_gui.ViewerTests.test_minimum_window_scrolls_annotations_with_larger_font_metrics) (font_pixels=22)
+2026-10-10T14:49:23.0833823Z   File "D:\a\stm32_motortester\stm32_motortester\host\tests\test_gui.py", line 295, in test_minimum_window_scrolls_annotations_with_larger_font_metrics
+2026-10-10T14:49:23.0835275Z AssertionError: 100 not less than 100
+2026-10-10T14:49:23.0835975Z Ran 78 tests in 6.092s
+2026-10-10T14:49:23.0836184Z FAILED (failures=1)
+2026-10-10T14:49:23.7099747Z test_minimum_window_scrolls_annotations_with_larger_font_metrics (test_gui.ViewerTests.test_minimum_window_scrolls_annotations_with_larger_font_metrics) ... 
+2026-10-10T14:49:23.7101573Z   test_minimum_window_scrolls_annotations_with_larger_font_metrics (test_gui.ViewerTests.test_minimum_window_scrolls_annotations_with_larger_font_metrics) (font_pixels=22) ... FAIL
+2026-10-10T14:49:23.7103210Z test_minimum_window_with_cursors_has_no_overlapping_plot_labels (test_gui.ViewerTests.test_minimum_window_with_cursors_has_no_overlapping_plot_labels) ... ok
+2026-10-10T14:49:23.7181306Z FAIL: test_minimum_window_scrolls_annotations_with_larger_font_metrics (test_gui.ViewerTests.test_minimum_window_scrolls_annotations_with_larger_font_metrics) (font_pixels=22)
+2026-10-10T14:49:23.7185518Z   File "D:\a\stm32_motortester\stm32_motortester\host\tests\test_gui.py", line 295, in test_minimum_window_scrolls_annotations_with_larger_font_metrics
+2026-10-10T14:49:23.7189636Z AssertionError: 100 not less than 100
+2026-10-10T14:49:23.7194408Z Ran 78 tests in 6.092s
+2026-10-10T14:49:23.7197301Z FAILED (failures=1)

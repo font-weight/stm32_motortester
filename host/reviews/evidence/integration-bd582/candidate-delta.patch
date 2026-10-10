@@ -1,0 +1,87 @@
+diff --git a/host/docs/integration-sources.md b/host/docs/integration-sources.md
+index 3f07e03..aa275de 100644
+--- a/host/docs/integration-sources.md
++++ b/host/docs/integration-sources.md
+@@ -12,11 +12,13 @@
+ - Чистый контроллер Normal/analog: `477057aadc9bc8e757bc8ef817125377e816d212`; все 21 новые файлы перенесены без изменения.
+ - Исправление ограниченной высоты графика: `3b315ac4e1184c4c7e9216ce5594cff0f9beff33`; перенесены класс графика, scroll-область и дополнительный тест. Отдельная проверка этого исправления ожидается.
+ 
++При независимом ревью исходного объединения `988f2cc094fa82c622f0b20276114e3159ae73d9` выявлено обрезание описаний в боковой панели при минимальном окне 1000×710 (I988-01, REWORK 9,40/10). В следующей дельте панель помещена в прокручиваемую область без сжатия текста/кнопок; добавлена проверка шрифтов 13/18/22 px, доступности действий и возврата к большому окну. Исходный отчёт сохраняется; новое ревью должно привязываться к новому SHA.
++
+ Исходные компонентные отчёты независимых критиков доступны в [PR20](https://github.com/font-weight/stm32_motortester/pull/20). Их оценки не переносятся автоматически на это объединение: нужен отдельный отчёт на точный SHA кандидата.
+ 
+ ## Фактическая проверка
+ 
+-Объединённое рабочее дерево: 287 тестов прошли на Linux/offscreen, CPython 3.12.14. Это авторская предварительная проверка, не независимая приёмка. Рецепт Windows и закреплённые зависимости не менялись.
++После исправления боковой панели: 288 тестов прошли на Linux/offscreen, CPython 3.12.14. Это авторская предварительная проверка, не независимая приёмка. Рецепт Windows и закреплённые зависимости не менялись.
+ 
+ Windows Server 2022 проверял только прежний HOST-001 `2376d325`: 76/77 тестов, перекрытие графика/подписи при включённых курсорах. [Журнал](https://github.com/font-weight/stm32_motortester/actions/runs/38055733142). PyInstaller, frozen EXE, лицензии и ZIP до выполнения не дошли. Нужен новый запуск A после проверки исправления.
+ 
+diff --git a/host/motortester/gui.py b/host/motortester/gui.py
+index 5c507e9..7d80ec1 100644
+--- a/host/motortester/gui.py
++++ b/host/motortester/gui.py
+@@ -156,7 +156,6 @@ class MainWindow(QtWidgets.QMainWindow):
+         body = QtWidgets.QHBoxLayout()
+         body.setSpacing(18)
+         sidebar = QtWidgets.QFrame(objectName="sidebar")
+-        sidebar.setFixedWidth(262)
+         side = QtWidgets.QVBoxLayout(sidebar)
+         side.setContentsMargins(18, 20, 18, 20)
+         side.setSpacing(12)
+@@ -182,7 +181,15 @@ class MainWindow(QtWidgets.QMainWindow):
+         side.addWidget(_label("Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.", "muted", wrap=True))
+         self.help_button = self._button("Справка", "help", self.show_help, "F1")
+         side.addWidget(self.help_button)
+-        body.addWidget(sidebar)
++        # Keep every action and warning reachable on small windows and with
++        # larger platform fonts. The content keeps its minimum layout size;
++        # the viewport, rather than its child labels/buttons, absorbs pressure.
++        side.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinimumSize)
++        self.sidebar_scroll = QtWidgets.QScrollArea()
++        self.sidebar_scroll.setFixedWidth(262)
++        self.sidebar_scroll.setWidgetResizable(True)
++        self.sidebar_scroll.setWidget(sidebar)
++        body.addWidget(self.sidebar_scroll)
+ 
+         content = QtWidgets.QVBoxLayout()
+         content.setSpacing(14)
+diff --git a/host/tests/test_gui.py b/host/tests/test_gui.py
+index 9c208fb..22743b0 100644
+--- a/host/tests/test_gui.py
++++ b/host/tests/test_gui.py
+@@ -298,6 +298,34 @@ class ViewerTests(unittest.TestCase):
+         QtTest.QTest.qWait(100)
+         self.assertEqual(self.window.plot_scroll.verticalScrollBar().maximum(), 0)
+ 
++    def test_sidebar_keeps_actions_and_wrapped_warnings_reachable(self):
++        self.generate()
++        original_style = self.window.styleSheet()
++        for pixels in (13, 18, 22):
++            with self.subTest(font_pixels=pixels):
++                self.window.setStyleSheet(original_style.replace("font-size: 13px", f"font-size: {pixels}px"))
++                self.window.resize(1000, 710)
++                QtTest.QTest.qWait(100)
++                sidebar = self.window.findChild(QtWidgets.QFrame, "sidebar")
++                for label in sidebar.findChildren(QtWidgets.QLabel):
++                    self.assertGreaterEqual(label.height(), label.heightForWidth(label.width()), label.text())
++                for button in sidebar.findChildren(QtWidgets.QPushButton):
++                    self.assertGreaterEqual(button.height(), button.minimumSizeHint().height(), button.text())
++                    self.assertGreaterEqual(button.width(), button.minimumSizeHint().width(), button.text())
++                scroll = self.window.sidebar_scroll
++                self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
++                for button in (self.window.generate_button, self.window.png_button, self.window.help_button):
++                    scroll.ensureWidgetVisible(button)
++                    self.app.processEvents()
++                    center = button.mapTo(scroll.viewport(), button.rect().center())
++                    self.assertTrue(scroll.viewport().rect().contains(center), button.text())
++                self.assertEqual(self.window.size(), QtCore.QSize(1000, 710))
++        self.window.setStyleSheet(original_style)
++        self.window.resize(1240, 900)
++        QtTest.QTest.qWait(100)
++        self.assertEqual(self.window.sidebar_scroll.verticalScrollBar().maximum(), 0)
++        self.assertEqual(self.window.sidebar_scroll.horizontalScrollBar().maximum(), 0)
++
+     def test_long_quality_flags_are_scrollable_and_do_not_resize_window(self):
+         capture = replace(self.generate(), quality_flags=tuple(f"флаг_{i}_" + "я" * 55 for i in range(16)))
+         original_height = self.window.height()

@@ -1,0 +1,73 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "utc": "2026-10-10T14:40:40.593117+00:00",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "host:/tmp/motortester-deps",
+    "QT_QPA_PLATFORM": "offscreen"
+  },
+  "commands": [
+    {
+      "name": "imports",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-c",
+        "import sys,PySide6,pyqtgraph,numpy; print(sys.version); print(PySide6.__version__,pyqtgraph.__version__,numpy.__version__)"
+      ],
+      "exit_code": 0,
+      "sha256": "3818bda03f4c2883161c2c2da64b6ce41764d28c5147ace1d8301953067ff531"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "host/tests/fixtures/device_emulator/suite.py",
+        "focused"
+      ],
+      "exit_code": 0,
+      "sha256": "2086eccb449c7df7439ef8253cf5f1602f31a462f6340a357f73b1516b82c3a6"
+    },
+    {
+      "name": "provisional",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "host/tests/fixtures/device_emulator/suite.py",
+        "provisional"
+      ],
+      "exit_code": 0,
+      "sha256": "2a77fb9826027e20d4db92872413b72760ced602ca2ba21952fe3500fe438fa5"
+    },
+    {
+      "name": "new-normal",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "host/tests/fixtures/device_emulator/suite.py",
+        "new"
+      ],
+      "exit_code": 0,
+      "sha256": "7f39ee0995cd0fdb01aeaba01f456a722074e624d7ebb5d0a274a82fc1c7d94b"
+    },
+    {
+      "name": "new-optimized",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "host/tests/fixtures/device_emulator/suite.py",
+        "new"
+      ],
+      "exit_code": 0,
+      "sha256": "cd81d432f141d98a58cd1f253481adcd567c7047aa942f3e4189273b6d865fa2"
+    },
+    {
+      "name": "full",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "host/tests/fixtures/device_emulator/suite.py",
+        "full"
+      ],
+      "exit_code": 0,
+      "sha256": "44d3e84c9894c0d7d96ef3761db9dd7761d846e487c081204f3bf47498b3bb58"
+    }
+  ]
+}

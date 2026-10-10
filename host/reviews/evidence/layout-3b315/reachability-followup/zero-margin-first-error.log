@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/critic-b-layout-reachability/probe.py", line 21, in <module>
+    if action=='bottom_by_ensure_point':assert 0<=d['bottom']<d['viewport_height'],d
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'requested_viewport': 78, 'action': 'bottom_by_ensure_point', 'viewport_height': 78, 'label_height': 78, 'top': 1, 'bottom': 78, 'scroll_value': 302, 'scroll_max': 316}

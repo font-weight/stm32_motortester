@@ -1,0 +1,57 @@
+{
+  "head": "45ef38792b8e824e2109e7bacc1c9dc605917d06",
+  "runner_sha256": "32f0b70740ab3007fe2de9e7cf6eef307f90cb8015e401999041ac7c9f3c1efa",
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "host/reviews/evidence/release-host008/run_suites.py",
+        "host/reviews/evidence/release-host008",
+        "critic_probes.py"
+      ],
+      "cwd": "/workspace/scratch/d2a4dc03255e/motortester",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/tmp/motortester-host-session-release/host"
+      },
+      "log": "critic-normal.log",
+      "sha256": "46ef23f562e3953ed97f661685d6ad5914d47a522820533ba3d885c7ac7b620d",
+      "summary": {
+        "errors": 0,
+        "expected_failures": 0,
+        "failures": 0,
+        "optimized": false,
+        "skipped": 0,
+        "tests": 14,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "host/reviews/evidence/release-host008/run_suites.py",
+        "host/reviews/evidence/release-host008",
+        "critic_probes.py"
+      ],
+      "cwd": "/workspace/scratch/d2a4dc03255e/motortester",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/tmp/motortester-host-session-release/host"
+      },
+      "log": "critic-optimized.log",
+      "sha256": "a194aae0494b620cac0f4e66e521e9dd0713ddf4edc294d9e273aa5ebd3519d5",
+      "summary": {
+        "errors": 0,
+        "expected_failures": 0,
+        "failures": 0,
+        "optimized": true,
+        "skipped": 0,
+        "tests": 14,
+        "unexpected_successes": 0
+      }
+    }
+  ],
+  "source_sha256": "4e846fddc10ea7b9282d96af79f99d027b91e2cd21bc637c170ba5af0e8e3359",
+  "success": true
+}

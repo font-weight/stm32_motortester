@@ -1,0 +1,31 @@
+{
+  "head_sha": "6745fb0fa9802a510b49980e597e5f3679e025b8",
+  "base_sha": "c54bd955aaf3cb863ef3df043ea237ea62e74ad4",
+  "scope": "DOC-006 status-only documentation delta; D-01",
+  "reviewer": "independent Critic-B",
+  "rubric_version": "1.0",
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "scores": {
+    "C1": 10,
+    "C2": 10,
+    "C3": 10,
+    "C4": 10,
+    "C5": 10
+  },
+  "unrounded_score": 10.0,
+  "threshold": 9.5,
+  "verdict": "PASS",
+  "closed_documentation_finding": "D-01",
+  "open_p0_p1_in_documentation_delta": [],
+  "missing_mandatory_documentation_evidence": [],
+  "shared_contract_verdict": "BLOCKED_EVIDENCE",
+  "shared_contract_score": null,
+  "CA_CTRL_4": "open shared scheduling policy; not changed or accepted",
+  "hardware_windows_or_integration_accepted": false
+}
