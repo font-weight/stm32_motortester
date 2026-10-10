@@ -1,0 +1,25 @@
+$ gcc --version
+gcc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wshadow -O1 -g -fno-omit-frame-pointer -fno-lto -no-pie -DMODEL_ENDPOINTS=3 -DEXPECT_FIXED=0 -I /workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original -I /workspace/shared/fsdev-reset-cleanup-tests/src /workspace/shared/fsdev-reset-cleanup-tests/src/translation.c -o /workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-strict
+$ /workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-strict
+PASS mode=original-negative logical_endpoints=3 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=2114
+$ gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wshadow -O1 -g -fno-omit-frame-pointer -fno-lto -no-pie -DMODEL_ENDPOINTS=3 -DEXPECT_FIXED=0 -fsanitize=address,undefined -fno-sanitize-recover=all -I /workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original -I /workspace/shared/fsdev-reset-cleanup-tests/src /workspace/shared/fsdev-reset-cleanup-tests/src/translation.c -o /workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-asan-ubsan
+$ /workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-asan-ubsan
+==19==LeakSanitizer has encountered a fatal error.
+==19==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==19==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+Traceback (most recent call last):
+  File "/workspace/shared/fsdev-reset-cleanup-tests/tools/run.py", line 90, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/shared/fsdev-reset-cleanup-tests/tools/run.py", line 82, in main
+    run=command([binary],70 if mutated else 0,env)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/fsdev-reset-cleanup-tests/tools/run.py", line 41, in command
+    if expected is not None and run.returncode!=expected: raise RuntimeError(f'expected exit {expected}, got {run.returncode}')
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: expected exit 0, got 1

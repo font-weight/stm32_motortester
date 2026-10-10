@@ -1,0 +1,910 @@
+{
+  "scope": "USB004 additive text-only package; manifest excludes itself",
+  "base_commit": "f31d011d7727279c7356ff9700949bc7a116ab90",
+  "base_tree": "339597e0208fe33e65c2232f2159a8635bf167d0",
+  "files": [
+    {
+      "path": "firmware/third_party/usb/patches/0002-f103-reset-completion-cleanup.patch",
+      "bytes": 996,
+      "sha256": "c80786e18ca1777be639fccb34573f10fbe73168c4749ff3e289e1103103332e",
+      "git_blob_sha": "b8c041c9bbc1da43dd3099f58fb0ed77e32f59df",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/apply_f103_reset_patch.py",
+      "bytes": 2006,
+      "sha256": "e56442bfcefa0883759f62a1815a45641e51ee7fa84178d9759583150b6e265b",
+      "git_blob_sha": "60ab9e4c3d1a28d39e2e2144512d16faacb4e5b6",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/f103-reset-cleanup.json",
+      "bytes": 394,
+      "sha256": "640e86511f1e868b956fdde7a3b7c8523e2afe433b1f42d11606a09d841664a2",
+      "git_blob_sha": "8c08583bf107a585951da31d6b9a996aac3efed8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/PACKAGE_RU.md",
+      "bytes": 10961,
+      "sha256": "7f9dd9b4e337a5f559de5dca06211c6c128ef24df25cc86e999ed3876da53abc",
+      "git_blob_sha": "be5e90870107df12d407560ba47effecff7df98d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/README.md",
+      "bytes": 9429,
+      "sha256": "37f957983c41dbfb6b882da896055c530b737cceae93c51f3bc59fe4889c8457",
+      "git_blob_sha": "2097d99f2bc163359f81704ed635cae6beb4f70d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/arm_check.py",
+      "bytes": 4305,
+      "sha256": "90057ae2b12a35e9128345b1ce188dca18203ab67e58b306d8d9dec4f3f0a5de",
+      "git_blob_sha": "dbbee2478026007a478450a2724f4a82b86510a8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/CRITIC_A_FSDEV_RESET_REVIEW.md",
+      "bytes": 11416,
+      "sha256": "c34b6028f9c755844cc7cf7b20365f563ec1e00d0b028372d984de0f0d7846a2",
+      "git_blob_sha": "3897f883c05ed8c4cee7a5a0761e9edf9f535253",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/EP0_BUFFER_TRACE_ADDENDUM.md",
+      "bytes": 2400,
+      "sha256": "7578c4c8bc57840ffa221dfa81082941c5775e36cbb2620a758192ffa35265a0",
+      "git_blob_sha": "f27cee9ace9d37c638359aa166f91f0d1fd75648",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/README_BINDING_ADDENDUM.md",
+      "bytes": 1050,
+      "sha256": "f5ee1f024e09f1888bde4315307d8bf75d1475821ad69e174606216ec05fb7f2",
+      "git_blob_sha": "af16011c515245559d0ad83567f4ced33eb659c2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns/commands.json",
+      "bytes": 4445,
+      "sha256": "bf6dbe1a86bf3ee7717200e7fd532b9a6034a75423fac3b1337091953b1c13d5",
+      "git_blob_sha": "b113b4728fb913620f0674486957422d1de08a2c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns/extraction-manifest.json",
+      "bytes": 9779,
+      "sha256": "0e2d38bc761aab6589ff691d74789d035af3e1ac04bef3a776df5a2840617d85",
+      "git_blob_sha": "c785e4ec61cdf1e55041b21f820858cf71453450",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns/receipt.json",
+      "bytes": 1281,
+      "sha256": "9407e6cad48dc13ddf747e040e8b0deac642bbedcf44e50a0bb8a97540ecd70b",
+      "git_blob_sha": "0e9c10b92947ec2048caa4273c1d355a1c2c2a66",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns.log",
+      "bytes": 576,
+      "sha256": "22916ef10c34fd0fda75d277ff8f5638dc0674b6498a87910dede00d1d3066d4",
+      "git_blob_sha": "181bc99b627832c43b46aea53fd75cf5a7eea865",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/commands.json",
+      "bytes": 112183,
+      "sha256": "51c4dba845045593b681109e5f07b85f451d9cd377069b6bdfa5886da5985e5a",
+      "git_blob_sha": "93fb9f2279f1dd863cd2c0dfa19c928d87f919ed",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/input-manifest.json",
+      "bytes": 5344,
+      "sha256": "b51f4ef6ccb883c5df963c316fdf6f6e58aafdf87ae78ef946be28dd2af6a240",
+      "git_blob_sha": "5967527d1792afbcee3f996d38c46890fc48cddb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched-nm.txt",
+      "bytes": 336,
+      "sha256": "60a71c576f03e02e48af42fabfb95a215bc179a04dbdf5b6748b3761a951d5db",
+      "git_blob_sha": "75d3f42e0c6cb1d4517d605abcab0c599d747f6f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched-objdump.txt",
+      "bytes": 43117,
+      "sha256": "1e8b2e5c049aa74ecbc2fcda3be7e1ee8e006807a11bfb07cedd4a48ee8e7d61",
+      "git_blob_sha": "feeb25c31476930d702cb1d90d35b8f9d80863bb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched-size.txt",
+      "bytes": 1681,
+      "sha256": "2e47553d03aa7bf03e53f02c152e7683ea865ebdcf7ce794f92f4a0a828dcea9",
+      "git_blob_sha": "f15ea51f0189ecc28daffb69e35b89b3feffc4d0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched.su",
+      "bytes": 2746,
+      "sha256": "386cd2d3150a53f3a63e358c5473d18c4b0fd53e22a8aefa809cdc4d23f46448",
+      "git_blob_sha": "2726183b0b54ff43890faac75b359865d0138e54",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/summary.json",
+      "bytes": 798,
+      "sha256": "468a43ef1d44f514edfb955d2000697f4946fd93e834dd78e27bfce02fc6697d",
+      "git_blob_sha": "012d4dd5fe871fcf4d23048cea68eac2e3cca173",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream-nm.txt",
+      "bytes": 318,
+      "sha256": "7a616b7d1393e9bfa916f5e429830cad6b8c6a6abb4252d18b03af1070d9da23",
+      "git_blob_sha": "0015aecf04c170225ea8f70305939d45d6c3539b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream-objdump.txt",
+      "bytes": 42930,
+      "sha256": "484a80071f1250b2010fb94a6d129269fa20fb0dfb788633a7265f9eca31c633",
+      "git_blob_sha": "4020dce66f993c14488506f3ede01dd1b421c889",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream-size.txt",
+      "bytes": 1682,
+      "sha256": "b8b16ed2c50452fb6b2b57f1e18fd3ab846c148e415251152c7600874d955d8b",
+      "git_blob_sha": "a45f5438be7570c4102ae7f0866cfcfe536f2c19",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream.su",
+      "bytes": 3076,
+      "sha256": "af5b923e45350ea599c8d597ca6ed6e891fe628e6c4a60c408eba5c4da4db5c8",
+      "git_blob_sha": "08caed8865c2f2ba992b8e409804692c57f3adf6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/arm-reproduction.log",
+      "bytes": 798,
+      "sha256": "468a43ef1d44f514edfb955d2000697f4946fd93e834dd78e27bfce02fc6697d",
+      "git_blob_sha": "012d4dd5fe871fcf4d23048cea68eac2e3cca173",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/legal-ep0-portable/commands.json",
+      "bytes": 4177,
+      "sha256": "e050a0d87f3c53577943dd3fdf9b86b49c3925b9c041cc692ecddd0e33f89160",
+      "git_blob_sha": "dc08dfbe4aff20dbf5ea70ff84c004b5831093a0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/legal-ep0-portable/receipt.json",
+      "bytes": 2934,
+      "sha256": "9f6e71b25c2ca73d38614223e2dc680db3656c8044aa7b24973a79b2a8c003f6",
+      "git_blob_sha": "b6693bdb108412f948ec8a126aa4aa4ce66497fc",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/legal-ep0-portable.log",
+      "bytes": 560,
+      "sha256": "d4d4f564486e17e6a545c0673acf53252c7a717b754993814f9fa39f52900be4",
+      "git_blob_sha": "ec4d974d44df95c31f461a2613e3df8c9cb07471",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/patch-tool/patch-tool-results.json",
+      "bytes": 10357,
+      "sha256": "a740fb27e2d27f0e1457ad8e2cbffa19deb783122b4eb614ef0b386e9ab968da",
+      "git_blob_sha": "b54988742e5a27b95a5fcec475788a1c40c950da",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/patch-tool/run.log",
+      "bytes": 107,
+      "sha256": "557df83fb5fe1ca54d4b25f0ee3d76e6414955f05c31659d80495ffa201fcc27",
+      "git_blob_sha": "5597407d510476bb4b5890996325188bfbfa5ce2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/patch-tool/test_patch_tool.py",
+      "bytes": 4305,
+      "sha256": "93d4f573d4bd7f8171763a1598690286d87ea2fde8c70be0d4c3680ca9246d80",
+      "git_blob_sha": "f72b415c20628bcd1ae2fef723c36128900f522b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/preprocessor-results.json",
+      "bytes": 3263,
+      "sha256": "1605e4ca65caccb857711a543c081d72ab2b44ac1c65369cc59f27df372f1fe9",
+      "git_blob_sha": "ff0eb1b9f6d7b00045b76ce24900be8b9f1109a1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/review-manifest.json",
+      "bytes": 2249,
+      "sha256": "17f2c2681bad5a3374e0ba4645f1a6398a658665a52db95879454e953a76f4a2",
+      "git_blob_sha": "3737c0d839bc9f9704320170b36fecef5a81c3ed",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/run_all_ctr_patterns.py",
+      "bytes": 3941,
+      "sha256": "dcc2d79ce0563713971372e1dd3057030abd6e46b99dd63bbb43d070b0c54840",
+      "git_blob_sha": "9b44c8414334d5d54bbe431c12952a9d7993a4e8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/run_legal_ep0_buffers.py",
+      "bytes": 2762,
+      "sha256": "fef18fe883462b2a8f4a9e709a0a864fe505801940fd1b6db02167ac157612d0",
+      "git_blob_sha": "f561884ab7240bb999436b3c081a9adc05237ee9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-original-hashes.log",
+      "bytes": 19570,
+      "sha256": "ad01794b9193098cb0580d5193498215a8a8b2d58279a545b99a80eda41219b2",
+      "git_blob_sha": "60275cc6731f3c09b8c71abced9f7e8926facb98",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/commands.json",
+      "bytes": 29805,
+      "sha256": "7ea4bcbf3e3acf58546396a7ff290edfd0ab5a02e83a83b9429916280ecfe424",
+      "git_blob_sha": "0df25ea65f2e27cf6627cb64a992fef05b247dcf",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/inputs-after.json",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250",
+      "git_blob_sha": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/inputs-before.json",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250",
+      "git_blob_sha": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/matrix.json",
+      "bytes": 11137,
+      "sha256": "7678c288cb2cd8964dffcf0a4133c7d406627b69e02ec49c5bf166dccb1feeb9",
+      "git_blob_sha": "c28c8df60718b482dc91c9d12099ed24d13106aa",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/summary.json",
+      "bytes": 1703,
+      "sha256": "db66a19f49a6ab8bea4a9ea14e1ff0dee943bf780d83118adb886a0b7c660c81",
+      "git_blob_sha": "8b234ec421092a87ddc5636ce1eb71949c0a11c4",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction.log",
+      "bytes": 19254,
+      "sha256": "3a2bfc385dbf98b880dd9736e186425915a62728a8f16239963d2326b2bc9d6b",
+      "git_blob_sha": "099abee23406e8b5eec9bc1320bd72c860f69ccf",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/supporting-tooling-regressions.json",
+      "bytes": 179,
+      "sha256": "428ed1e93ccb32db4511f90401fef475552d3fc320294c280bff7d869b854d0c",
+      "git_blob_sha": "54d80054973cbbf1c6f1980bb04c36a50f2d41ec",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/test_all_ctr_patterns.c",
+      "bytes": 1471,
+      "sha256": "4e7139d074b0e4582886345a975bfeee5327de2ddfa73ccff737100b96e5c367",
+      "git_blob_sha": "d544d3e42bee09fd605ad1567f8d51043099a975",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/test_legal_ep0_buffers.c",
+      "bytes": 2002,
+      "sha256": "adbe1fe0568b743428938c869fe21f0df28f215fafedd612c673f8c31f4c53ff",
+      "git_blob_sha": "b78ab9330f97d2c5a92a8953990f178c939bcc27",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/test_scope_preprocessor.py",
+      "bytes": 2189,
+      "sha256": "ee41ec49dbff40517e0eb9a3a58796a96b3b7dcd5ab70ca0c5253fb575f8e40c",
+      "git_blob_sha": "285cefd7bb12094c3fd537cee495c0de0e9c46de",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/critic-a-local/upstream-binding.json",
+      "bytes": 326,
+      "sha256": "31ab90105abc1fa49d1d0a174d3f61600aa10f723d3a5c3778e30e9bd400d2ef",
+      "git_blob_sha": "4772baecea7a2963aefeb59fad67826abd6cb742",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/commands.json",
+      "bytes": 111925,
+      "sha256": "51db8e81b444b40e1e0e19f2bd85ff17c54effda80879dbe80f6b465c01f0f99",
+      "git_blob_sha": "273cba794dc148b62a659e15809c572dee51fa44",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/input-manifest.json",
+      "bytes": 5344,
+      "sha256": "b51f4ef6ccb883c5df963c316fdf6f6e58aafdf87ae78ef946be28dd2af6a240",
+      "git_blob_sha": "5967527d1792afbcee3f996d38c46890fc48cddb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/patched-nm.txt",
+      "bytes": 336,
+      "sha256": "60a71c576f03e02e48af42fabfb95a215bc179a04dbdf5b6748b3761a951d5db",
+      "git_blob_sha": "75d3f42e0c6cb1d4517d605abcab0c599d747f6f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/patched-objdump.txt",
+      "bytes": 43107,
+      "sha256": "92ecdbb558b0c0baea858abb4bb9f30ad1ca51c1f5cb5bbdd1a7c2ed2080abcf",
+      "git_blob_sha": "920b7bede88eb5ce82b108bc6f17a359289c4e6f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/patched-size.txt",
+      "bytes": 1671,
+      "sha256": "6656b6d85dd24684a25a51de06a80acd97d618c9dafa1ced2546b3d82f7f00c8",
+      "git_blob_sha": "d94fe18e30d95003a03d5136fba200af92eceeca",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/patched.su",
+      "bytes": 2526,
+      "sha256": "6ffee1889aaa350ff7b7704008c7179bddaeaca6190a0de94a6f19f0667bf5e0",
+      "git_blob_sha": "d16559d3af3217e1dad9abb9ee7120ac4afcb6ac",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/summary.json",
+      "bytes": 798,
+      "sha256": "468a43ef1d44f514edfb955d2000697f4946fd93e834dd78e27bfce02fc6697d",
+      "git_blob_sha": "012d4dd5fe871fcf4d23048cea68eac2e3cca173",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/upstream-nm.txt",
+      "bytes": 318,
+      "sha256": "7a616b7d1393e9bfa916f5e429830cad6b8c6a6abb4252d18b03af1070d9da23",
+      "git_blob_sha": "0015aecf04c170225ea8f70305939d45d6c3539b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/upstream-objdump.txt",
+      "bytes": 42920,
+      "sha256": "95d47310807290b048e75461b0da651114372e858fa571c8c4b79aba1ecfd6ca",
+      "git_blob_sha": "175f837674789dada9f114a0426d5f8043048b7f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/upstream-size.txt",
+      "bytes": 1672,
+      "sha256": "c27859e0434ad4f69ef1da7de47f0e22692f9632d4743ce9a34ed28b13516b9f",
+      "git_blob_sha": "2a44aafa6e40f7c1109ad8426612b43fc027a013",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-arm/upstream.su",
+      "bytes": 3076,
+      "sha256": "af5b923e45350ea599c8d597ca6ed6e891fe628e6c4a60c408eba5c4da4db5c8",
+      "git_blob_sha": "08caed8865c2f2ba992b8e409804692c57f3adf6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model/commands.json",
+      "bytes": 24631,
+      "sha256": "07ef92d9a9734219d309c5264a37bb4fd4af18710f6372f3cbb24bbfdaaebd04",
+      "git_blob_sha": "60165e261b443b6e25733d0ace89897dbede0036",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model/matrix.json",
+      "bytes": 10747,
+      "sha256": "3d87bd89feb7f6a09120228660b5c90155ef25e9cd95aaffdcbc109641ed368b",
+      "git_blob_sha": "237c628c78c81eeb3e68b9795d37a5baae36f7e7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model/summary.json",
+      "bytes": 1568,
+      "sha256": "219bd1b3edd26a20d9a1b35c84037ed9d0a9263c5262fa1661b051aebd451bb5",
+      "git_blob_sha": "6226cb4edfe3fb5e17c53ce43b3bb4e2e9eac021",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/candidate/extraction-manifest.json",
+      "bytes": 9779,
+      "sha256": "0e2d38bc761aab6589ff691d74789d035af3e1ac04bef3a776df5a2840617d85",
+      "git_blob_sha": "c785e4ec61cdf1e55041b21f820858cf71453450",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/commands.json",
+      "bytes": 28788,
+      "sha256": "af110e788616b6a340545ea426d17df49008f24d9bb254e16d4eb8967da5c1e2",
+      "git_blob_sha": "37b41a59bf199335c8ab032a6e02325e0506ebf3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/guard_disabled/extraction-manifest.json",
+      "bytes": 9779,
+      "sha256": "0e2d38bc761aab6589ff691d74789d035af3e1ac04bef3a776df5a2840617d85",
+      "git_blob_sha": "c785e4ec61cdf1e55041b21f820858cf71453450",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/inputs-after.json",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250",
+      "git_blob_sha": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/inputs-before.json",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250",
+      "git_blob_sha": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/matrix.json",
+      "bytes": 10994,
+      "sha256": "38da4788bfd811fbe5151b7235fd468508bd31b679269ce7dc7c4971354261c0",
+      "git_blob_sha": "7e53b407ddf7a0b620015834461cb844b986db8f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/original/extraction-manifest.json",
+      "bytes": 9779,
+      "sha256": "126effeb75628f728a4c018e47c32851bdc77ca387e92ece3586e9cdadf3f317",
+      "git_blob_sha": "7c1becf41feb1dd87678a2de7767b3896381127d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/evidence-root-model-final/summary.json",
+      "bytes": 1692,
+      "sha256": "12eb92ef3c08d8216ea5106c3c80a7270732f41277f3d278f60afafe9af1691e",
+      "git_blob_sha": "23462fde24e6a37a748d6c9a6e4853c6a7ec8650",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/publication/README-memset-clarification.diff",
+      "bytes": 1426,
+      "sha256": "ac311db8345f4f7c63b27a25475b0b50271e7381318a71688d8f99a97f7367c6",
+      "git_blob_sha": "7ed9d84a1292a2b9562981cf795d91bb1ac48ae1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/publication/base-binding.json",
+      "bytes": 578,
+      "sha256": "c0edaa27b43e139ab64436609dfbb9cbeafeaa1913d4a0a109b1d9dcd10e1300",
+      "git_blob_sha": "83772ef0acd445c3eb8ab7dca74b44b63366c3ce",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/reproduce.py",
+      "bytes": 6830,
+      "sha256": "1858b263720fc482ab8dde49a1e58f8e4b5db34131d6505cd07f1e540988e7e6",
+      "git_blob_sha": "0832638cec8d4d86356815de6990443aa96aa566",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/research/REPORT_RU.md",
+      "bytes": 32620,
+      "sha256": "f49b353c81d56d73f284ceea38d91775a83ad42f9324b44f108af1e467558d10",
+      "git_blob_sha": "f4dbcf1e7da09cca325eb5d0ea464ea9413ee791",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/research/evidence/final-input-check.json",
+      "bytes": 1643,
+      "sha256": "01e8f8cdda36ec3ad4ee3748e52a44a186f97bd5097e16a5fa64954b26335b4c",
+      "git_blob_sha": "111e332ac0d2ddaad00490e3b850ec73e3af53e3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/research/evidence/provenance.json",
+      "bytes": 3260,
+      "sha256": "5934a158223e25a3383b096426b929f5da8dea820264a0cf53e0a5ff47696c39",
+      "git_blob_sha": "e399ab35f4354f1f389218862d4e24d105edce51",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/root-model-final.log",
+      "bytes": 18226,
+      "sha256": "346b43de9d9c2a355b512b775c847009a09dea09bf8850746ae19ced67848c51",
+      "git_blob_sha": "6bacfa8cb304efafa0cf60c9d949712d126fdff7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/root-model.log",
+      "bytes": 17441,
+      "sha256": "505cd23e099535d6527a41db6ca77c487b60c7d10f2f2d03e72bfc5f626b511c",
+      "git_blob_sha": "8027d8e5b874ba7a2704a5528881edc99cf4d375",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/source-selection.json",
+      "bytes": 297427,
+      "sha256": "60ad452dd4e93ae25b2bfac8c15b2af2d29a063da30a6739124677e4766885b7",
+      "git_blob_sha": "0acb7830c4f0c476f999bd1776b2aff02b884c52",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/LICENSE.tinyusb",
+      "bytes": 1330,
+      "sha256": "6d533dc9659ea02c9f2751f9d7f0c025edba58584f37cf7dd00c9bd181bfd08f",
+      "git_blob_sha": "6cea08ff46de2c68cd7a11852cf2213854b4c132",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/README_RU.md",
+      "bytes": 1206,
+      "sha256": "09dc24d2bcbc1929de0174691ae282ab8252d50ec107b83eb74253052cf6dc6d",
+      "git_blob_sha": "b2774301476f473218f673722fa73fbef03be8a2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/REPORT_RU.md",
+      "bytes": 19412,
+      "sha256": "2cf810bcf0ddea5257c137f6b87678090556bf0f3889480d34cb9a4058d17f0f",
+      "git_blob_sha": "2ad2072b6342cf279cba092c12347fd1b95fa598",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final/commands.json",
+      "bytes": 28305,
+      "sha256": "8754cb68c79029e41e9e41cbffcf506298c650e7bcdc88f6df0cdb3cf3bd6b55",
+      "git_blob_sha": "a2df11d9c7e70107fc6519748fdc5a48851e0530",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final/matrix.json",
+      "bytes": 10994,
+      "sha256": "a24fc5c73664e4b568d9c4db3424afa7707bc4817ef18351cf75aa127b3ba7a1",
+      "git_blob_sha": "41cab533b8bf6df6c2e445d1bafb5c550ce7e1ce",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final/summary.json",
+      "bytes": 1568,
+      "sha256": "597ee563ca01d79c287e7bfe0d2f362f8d4ec903ec25d6bb391958ec735a7d8f",
+      "git_blob_sha": "df3f141f7398838214f0114e8c69fd35e36beccc",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/candidate-input.c",
+      "bytes": 30678,
+      "sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97",
+      "git_blob_sha": "7315f39526e61a1bcea7fc88c08dbd775980361c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/commands.json",
+      "bytes": 28926,
+      "sha256": "d39a381f4119aff47ea79ef01cc7a4ac7412cf3bca6329aee551a44ad35fe2e0",
+      "git_blob_sha": "2c685b35cd33721e08b9b78329334a91fa91ab5a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/inputs-after.json",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250",
+      "git_blob_sha": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/inputs-before.json",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250",
+      "git_blob_sha": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/matrix.json",
+      "bytes": 10994,
+      "sha256": "7947acc142733846666ef866a54b7a0350dc1dcf66d251a296b05cb5d249d8ff",
+      "git_blob_sha": "4fc4f10b864b27c6dc8eee74568e56faad1e8d6a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened/summary.json",
+      "bytes": 1692,
+      "sha256": "6f67d23481c6f57921a258205d9a6cf4dcbf8c4bf07949cd5912862443274209",
+      "git_blob_sha": "6d91726b1d62fcbe15b61f760c98c3985314af6e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final-hardened.log",
+      "bytes": 18364,
+      "sha256": "ec3c3bf234fbb9b20bac60a108b6701677714b22a533d0f00354c37671d03c06",
+      "git_blob_sha": "2590235f2abcfcf67fa5ae8dcdf20dbd3237bab0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/final.log",
+      "bytes": 17619,
+      "sha256": "72c74485c7f9f951e4b9bf49c3e110fb98edd7e55fbafaf8a6024a28575ab4ba",
+      "git_blob_sha": "bd1b3d844f64f6f1f399c65438771eb1c8c7ca3e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration1/commands.json",
+      "bytes": 357,
+      "sha256": "ac9f3e95bb8dd9f73d7d7385aa9d5d72db20dc96bec2b8575fe4228a650360dd",
+      "git_blob_sha": "2bf69a8ee8a31692deaf3b09fad64a003893ec02",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration1/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration1.log",
+      "bytes": 1462,
+      "sha256": "836237c1d5bd0442551eea2c6cd8c3f20a568e26e434cc9edf1ae63faa7cc2e8",
+      "git_blob_sha": "2d52fa2accd34b1fb7742c7ea4f4f3b22f77578c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration2/commands.json",
+      "bytes": 357,
+      "sha256": "ac9f3e95bb8dd9f73d7d7385aa9d5d72db20dc96bec2b8575fe4228a650360dd",
+      "git_blob_sha": "2bf69a8ee8a31692deaf3b09fad64a003893ec02",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration2/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration2.log",
+      "bytes": 1356,
+      "sha256": "c121e15888fd35d7625d935692bb0cf8ee330cbd6edecc9355f8385e32c64622",
+      "git_blob_sha": "62443c21d1bd7114972e8d0c414f770b84c40977",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration3/commands.json",
+      "bytes": 2550,
+      "sha256": "43c4c4b1a8a6b7d7b2153b95bc96478ad942563ad648716652a882625f7e9c56",
+      "git_blob_sha": "c6133ad9bf6391764339bb61f27b01eed5858568",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration3/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration3/matrix.json",
+      "bytes": 466,
+      "sha256": "42d5d4ef808b9ce699a2b2b2865f427454d41b219dcffae8765e502e80098114",
+      "git_blob_sha": "112b7ba01430b320733d13316ca2f917a761c400",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration3.log",
+      "bytes": 2452,
+      "sha256": "b6b4578683d303ee620d7965b8cc7fd76f6101e903cbd5091bb3f57ca2a0e711",
+      "git_blob_sha": "195512662aa572ae85c1918329a7e05872dc17ef",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration4/commands.json",
+      "bytes": 24907,
+      "sha256": "c989756dec900c90b901e419efbdc1213443e7120b09db43c72ab97448b77f55",
+      "git_blob_sha": "290afccf5ea5213c51864d731a5bd66d19859440",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration4/extraction-self-tests.json",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d",
+      "git_blob_sha": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration4/matrix.json",
+      "bytes": 10747,
+      "sha256": "ca3ced1cb6835395d0722a2d6e293ab8c37d70362bc3f916f2f910e34c1017ea",
+      "git_blob_sha": "a2d0ba9cf85c3d0dc0a4e642dc778de86aaad658",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration4/summary.json",
+      "bytes": 1568,
+      "sha256": "0ce62f08f254b7b322d801212e1548f90af5043565fb12e75fe8f036e5ce0a71",
+      "git_blob_sha": "bf88819e1124ceef69ccb23579d8b6c1bcfb1c3e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/iteration4.log",
+      "bytes": 17717,
+      "sha256": "e764b0a5fdb65c015e684e19e9bcce56fa559caea8ce9d7a0f1e7768a064498d",
+      "git_blob_sha": "a16c5f3b2398fbb7537cd7e8a033594ea2341dbd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/src/preamble.h",
+      "bytes": 7193,
+      "sha256": "e2df1faf918068c769d819c0cac17f6a9292fdaed931c74dfc290d9c4dbc2f07",
+      "git_blob_sha": "fba78e668996c6c476baf2a60d7af3b4667acce7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/src/tests.c",
+      "bytes": 11241,
+      "sha256": "e296d2a1378096e27d88feeef4616caa027102d4d45b07abff178483bac8b953",
+      "git_blob_sha": "73b049f1d66d23bf78c136749165eb5dec6005b3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/src/translation.c",
+      "bytes": 330,
+      "sha256": "0d105e7838429f0fa58e7a7ea819acaf556712c3d9969695c977e5857a7e277c",
+      "git_blob_sha": "4195911418d651e3f2b451e89bdcf09962eb97c5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/tools/extract.py",
+      "bytes": 6084,
+      "sha256": "a6e5a7dd8f1ca5e3b7564be2988f0a3ac992f0813deb8bfa67b0c4254402b321",
+      "git_blob_sha": "d4193a66dca8639f08b8b11f66860b2b6bebcb4c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/tools/run.py",
+      "bytes": 6656,
+      "sha256": "c068b7004bf5fa20266e9d0cc0bd59edc464f05400aca07d0f17b8795c06091b",
+      "git_blob_sha": "b04103a6ee2f24cf7b5ce64eae1075313dd2fd3d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/evidence/tooling-regressions.json",
+      "bytes": 179,
+      "sha256": "428ed1e93ccb32db4511f90401fef475552d3fc320294c280bff7d869b854d0c",
+      "git_blob_sha": "54d80054973cbbf1c6f1980bb04c36a50f2d41ec",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/historical-full-package-SHA256SUMS.txt",
+      "bytes": 43378,
+      "sha256": "6dd19c83979114a160b16f64a6aa464013a19f3c7fbdfeb3b98d3226fe5d4ada",
+      "git_blob_sha": "551188f27f70481937f9a747b76d5b664f51cbb9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/inputs/dcd_stm32_fsdev.c",
+      "bytes": 30229,
+      "sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f",
+      "git_blob_sha": "f5a8beb65dbdcef6304748553284cea5c063c0d8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/inputs/fsdev_common.c",
+      "bytes": 3894,
+      "sha256": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f",
+      "git_blob_sha": "7c4572a1e524a305ea5cc0deb58c8fce83b52282",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/inputs/fsdev_common.h",
+      "bytes": 16549,
+      "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb",
+      "git_blob_sha": "af84b8b97c2adab841165bf234e131a6f283ad18",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/inputs/tusb_config.h",
+      "bytes": 1345,
+      "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a",
+      "git_blob_sha": "b78f1974211531a8f841c25e326486cb56ab870d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/src/preamble.h",
+      "bytes": 7193,
+      "sha256": "e2df1faf918068c769d819c0cac17f6a9292fdaed931c74dfc290d9c4dbc2f07",
+      "git_blob_sha": "fba78e668996c6c476baf2a60d7af3b4667acce7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/src/tests.c",
+      "bytes": 11241,
+      "sha256": "e296d2a1378096e27d88feeef4616caa027102d4d45b07abff178483bac8b953",
+      "git_blob_sha": "73b049f1d66d23bf78c136749165eb5dec6005b3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/src/translation.c",
+      "bytes": 330,
+      "sha256": "0d105e7838429f0fa58e7a7ea819acaf556712c3d9969695c977e5857a7e277c",
+      "git_blob_sha": "4195911418d651e3f2b451e89bdcf09962eb97c5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/tools/extract.py",
+      "bytes": 6084,
+      "sha256": "a6e5a7dd8f1ca5e3b7564be2988f0a3ac992f0813deb8bfa67b0c4254402b321",
+      "git_blob_sha": "d4193a66dca8639f08b8b11f66860b2b6bebcb4c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/tools/run.py",
+      "bytes": 7948,
+      "sha256": "f7f01c7d86bf26b3c29dcc385de0717a0dfc657096497ec41a1ef6123c436f6e",
+      "git_blob_sha": "28b43faace2329a3178f96d0ee0a2c0a229761e0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/usb-fsdev-reset/supporting/tools/test_runner.py",
+      "bytes": 1901,
+      "sha256": "242519e147a5dc719c6f8ea403bf0fac42610e9cea7ca8779ac72f27de8691a4",
+      "git_blob_sha": "4ac5d6b9115c4d8d164562274269f32106393136",
+      "mode": "100644"
+    }
+  ]
+}

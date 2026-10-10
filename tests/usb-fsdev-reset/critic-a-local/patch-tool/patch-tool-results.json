@@ -1,0 +1,132 @@
+{
+  "result": "PASS",
+  "invocations": 11,
+  "source_sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f",
+  "result_sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97",
+  "scope": "Patch applicator filesystem/hash behavior only; no TinyUSB lifecycle or hardware claim",
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/new output.c"
+      ],
+      "returncode": 0,
+      "stdout": "patching file /tmp/usb-fsdev-reset-patch-c68itxhp/dcd_stm32_fsdev.c (read from /workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c)\n{\"patch_sha256\": \"c80786e18ca1777be639fccb34573f10fbe73168c4749ff3e289e1103103332e\", \"result_sha256\": \"1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97\", \"source_sha256\": \"62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/new output.c"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/output-symlink"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/dangling-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/existing-directory"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/bad-source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/rejected-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: source hash differs from the pinned upstream file\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/rejected-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: patch hash differs from the manifest\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/rejected-output"
+      ],
+      "returncode": 2,
+      "stdout": "patching file /tmp/usb-fsdev-reset-patch-duakankx/dcd_stm32_fsdev.c (read from /workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c)\n",
+      "stderr": "usage: apply_f103_reset_patch.py [-h] source output\napply_f103_reset_patch.py: error: patched output differs from the pinned result\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-c",
+        "import subprocess,sys,runpy\nfrom pathlib import Path\nscript,source,out=sys.argv[1:]\nreal=subprocess.run\ndef during(*a,**kw):\n r=real(*a,**kw)\n Path(out).write_text(\"concurrent sentinel\")\n return r\nsubprocess.run=during\nsys.argv=[script,source,out]\nrunpy.run_path(script,run_name=\"__main__\")\n",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/raced-output"
+      ],
+      "returncode": 1,
+      "stdout": "patching file /tmp/usb-fsdev-reset-patch-mrt0f1c6/dcd_stm32_fsdev.c (read from /workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c)\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 11, in <module>\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py\", line 47, in <module>\n    main()\n  File \"/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py\", line 39, in main\n    with args.output.open(\"xb\") as output:\n         ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileExistsError: [Errno 17] File exists: '/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/raced-output'\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c",
+        "/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/uncreated/result.c"
+      ],
+      "returncode": 1,
+      "stdout": "patching file /tmp/usb-fsdev-reset-patch-tfe4u9eo/dcd_stm32_fsdev.c (read from /workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/upstream source.c)\n",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py\", line 47, in <module>\n    main()\n  File \"/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/apply_f103_reset_patch.py\", line 39, in main\n    with args.output.open(\"xb\") as output:\n         ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/workspace/shared/critic-a-fsdev-reset-review/patch-tool/critic-usb-setup-qradxer9/uncreated/result.c'\n"
+    }
+  ]
+}
