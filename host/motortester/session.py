@@ -15,7 +15,7 @@ from .window import (
 )
 
 SOURCE_SHA = "b6ae8025baf1a47e8173997029d2d8b858ada74c"
-VALIDATION_SCOPE = "draft_normal_analog_control"
+VALIDATION_SCOPE = "draft_analog_control"
 MAX_TIME_MS = (1 << 64) - 1
 MAX_ID = (1 << 32) - 2
 RESPONSE_TIMEOUT_MS = 1000
@@ -100,6 +100,15 @@ def _uint(value, maximum, minimum=0):
         raise SessionError(ErrorCode.RANGE)
 
 
+def _analog_trigger(mode, pre, index, kind, quality):
+    # Без события Auto не имеет индекса запуска. Bit2 пока допускается старым
+    # pinned wire и не означает, что внешний путь реализован этим контроллером.
+    if quality & ~7 or bool(quality & 1) != (kind == 2):
+        return False
+    return ((kind == 0 and index == pre)
+            or (mode == 0 and kind == 2 and index == 0xFFFF))
+
+
 @dataclass(frozen=True, slots=True)
 class Config:
     profile: int = 1
@@ -173,7 +182,7 @@ class WindowReceipt:
         context.__post_init__()
         _uint(context.generation, MAX_ID, 2)
         _uint(context.config_id, MAX_ID, 1)
-        if context.acquisition_mode != 1 or context.source != 0:
+        if context.source != 0:
             raise SessionError(ErrorCode.UNSUPPORTED)
         if (type(result.complete) is not bool or type(result.reason) is not WindowCode
                 or type(result.rail_observed) is not bool
@@ -204,14 +213,15 @@ class WindowReceipt:
             _uint(getattr(b, name), 0xFFFFFFFF)
         _uint(b.window_id, MAX_ID, 1)
         if ((b.generation, b.config_id, b.profile, b.sample_count,
-             b.pretrigger_samples, b.trigger_index, b.trigger_kind,
-             b.source, b.edge, b.channel, b.level_code, b.timer_clock_hz,
-             b.timer_psc, b.timer_arr, b.external_edge_id) !=
+             b.pretrigger_samples, b.source, b.edge, b.channel, b.level_code,
+             b.timer_clock_hz, b.timer_psc, b.timer_arr, b.external_edge_id) !=
                 (context.generation, context.config_id, context.profile,
                  MAX_WINDOW_SAMPLES, context.pretrigger_samples,
-                 context.pretrigger_samples, 0, context.source, context.edge,
-                 0, context.level_code, 72000000, 71, 19, 0)
-                or b.quality_flags & ~6):
+                 context.source, context.edge, 0, context.level_code,
+                 72000000, 71, 19, 0)
+                or not _analog_trigger(context.acquisition_mode,
+                                       context.pretrigger_samples, b.trigger_index,
+                                       b.trigger_kind, b.quality_flags)):
             raise SessionError(ErrorCode.STATE)
         offset = 0
         for block in result.fragments:
@@ -414,7 +424,7 @@ class SessionController:
         if type(settings) is not Config:
             raise SessionError(ErrorCode.ARGUMENT)
         settings.__post_init__()
-        if settings.mode != 1 or settings.source != 0:
+        if settings.source != 0:
             raise SessionError(ErrorCode.UNSUPPORTED)
         if self._caps is not None and (
                 settings.profile != self._caps.profile
@@ -663,7 +673,11 @@ class SessionController:
             self._ordinary = None
             self._released_window = window
             self._window_barrier = False
-            # ACK снимает только прежний барьер; READY после Stop остаётся READY.
+            # Single останавливается лишь после полного подтверждения RELEASE.
+            # Ожидающий STOP сохраняет собственный барьер даже при READY.
+            if self._config.mode == 2:
+                self._phase = Phase.READY
+            # READY после Stop остаётся READY, поздний ACK не вооружает сеанс.
             return (Event(EventKind.WINDOW_RELEASED, pending.request_id,
                           generation, window, frame=frame),)
         return self._recover(RecoveryReason.REPLY)
@@ -715,11 +729,11 @@ class SessionController:
             (_, _, config_id, profile, samples, pre, index, trigger, source, edge,
              channel, level, quality, clock, psc, arr, external) = values
             c = self._config
-            if ((config_id, profile, samples, pre, index, trigger, source, edge,
+            if ((config_id, profile, samples, pre, source, edge,
                  channel, level, clock, psc, arr, external) !=
                     (self._config_id, c.profile, 2048, c.pretrigger_samples,
-                     c.pretrigger_samples, 0, c.source, c.edge, 0, c.level_code,
-                     72000000, 71, 19, 0) or quality & ~6):
+                     c.source, c.edge, 0, c.level_code, 72000000, 71, 19, 0)
+                    or not _analog_trigger(c.mode, pre, index, trigger, quality)):
                 return self._recover(RecoveryReason.WINDOW)
             self._window_id = self._active_window = window
             self._window_barrier = True

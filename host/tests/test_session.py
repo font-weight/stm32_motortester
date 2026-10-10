@@ -341,7 +341,7 @@ class SessionTests(unittest.TestCase):
         h = Harness().ready()
         for call, args in ((h.c.tick, (True,)), (h.c.tick, (-1,)),
                            (h.c.tick, (MAX_TIME_MS + 1,)),
-                           (h.c.configure, (Config(mode=2), 100)),
+                           (h.c.configure, (Config(source=1), 100)),
                            (h.c.configure, (Config(profile=2), 100)),
                            (h.c.configure, (Config(pretrigger_samples=1), 100)),
                            (h.c.receive, (b"frame", 100)),

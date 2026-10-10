@@ -1,0 +1,11 @@
+{
+  "status": "dependency-only; root-reported remote verification; local worktree not rebased",
+  "source_of_mapping": "parent coordination message on 2026-10-10 at approximately 19:04 UTC",
+  "published_pr": "https://github.com/font-weight/stm32_motortester/pull/69",
+  "published_commit": "45ef38792b8e824e2109e7bacc1c9dc605917d06",
+  "published_tree": "e39dfe24663d089e8ff9888101305a0e2af8a626",
+  "published_parent": "ef2880c0655d155284c176424a12378b3b66adf4",
+  "local_base": "ef2880c0655d155284c176424a12378b3b66adf4",
+  "frozen_overlay_manifest_sha256": "a4596d0f5eea1318841390600bcc763d9aa02ad66649ec4a06fece3de37a0042",
+  "qualification": "Parent reports exact frozen HOST008 bytes unchanged. No claim that the original local overlay itself was an immutable commit; this records its later publication mapping. Independent acceptance remains separate."
+}

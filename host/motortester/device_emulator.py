@@ -21,6 +21,7 @@ MAX_TIME_MS = (1 << 64) - 1
 HOLD_TIMEOUT_MS = 5000  # PROVISIONAL: см. Provenance.
 FIRMWARE_BUILD = 0
 CAPABILITY_BITS = 9
+ALL_ANALOG_CAPABILITY_BITS = 0x1D
 STOPPED, PREPARING, WAITING, CAPTURING, TRANSFERRING, ERROR, WAIT_RELEASE = range(7)
 _DEVICE_TYPES = frozenset((129, 130, 131, 132, 133, 134, 135, 144, 145, 146, 147, 255))
 
@@ -150,9 +151,13 @@ class DeviceEmulator:
         "_generation", "_window_id", "_dropped", "_active", "_held",
         "_terminal", "_tombstone", "_stage", "_offset", "_crc",
         "_continuation", "_release_pending", "_abort_pending", "_stop_acks",
-        "_hold_started", "_diagnostics")
+        "_hold_started", "_diagnostics", "_all_analog_modes",
+        "_wait_started", "_trigger_kind")
 
-    def __init__(self):
+    def __init__(self, *, all_analog_modes=False):
+        if type(all_analog_modes) is not bool:
+            raise DeviceError(ErrorCode.ARGUMENT)
+        self._all_analog_modes = all_analog_modes
         self._decoder = StreamDecoder()
         self._samples = bytearray(SAMPLE_BUFFER_BYTES)
         self._queue = []
@@ -177,7 +182,8 @@ class DeviceEmulator:
         self._terminal = self._tombstone = None
         self._stage = ""
         self._offset = self._crc = 0
-        self._hold_started = None
+        self._hold_started = self._wait_started = None
+        self._trigger_kind = 0
 
     def snapshot(self):
         return Snapshot(
@@ -215,6 +221,12 @@ class DeviceEmulator:
             self._continuation = False
             self._hold_started = None
             self._set_state(ERROR, 3)
+        if (self._wait_started is not None and self._state == WAITING
+                and self._continuation
+                and now_ms - self._wait_started >= struct.unpack_from("<I", self._config, 12)[0]):
+            # Политика симулятора: срок проверяется до ввода этого вызова.
+            # Одно удерживаемое окно, без накопления пропущенных периодов.
+            self._capture(2)
         return counts
 
     def tick(self, now_ms):
@@ -252,7 +264,7 @@ class DeviceEmulator:
         self._active = self._held = self._continuation = False
         self._release_pending = self._abort_pending = False
         self._stop_acks = 0
-        self._hold_started = None
+        self._hold_started = self._wait_started = None
         self._state, self._reason = ERROR, reason
         if reason == 6 and self._session and self._next_tx <= MAX_ID:
             self._enqueue(134, self._status_payload())
@@ -309,7 +321,9 @@ class DeviceEmulator:
             self._next_rx, self._last_request = 2, 1
             self._last_rx = frame
             self._enqueue(129, struct.pack("<BBBBHHII", 0, 1, 1, 12, 512,
-                                          SAMPLE_COUNT, FIRMWARE_BUILD, CAPABILITY_BITS), 1)
+                                          SAMPLE_COUNT, FIRMWARE_BUILD,
+                                          ALL_ANALOG_CAPABILITY_BITS if self._all_analog_modes
+                                          else CAPABILITY_BITS), 1)
             return
         if not self._negotiated:
             self._add(counts, "NEED_HELLO")
@@ -349,14 +363,16 @@ class DeviceEmulator:
         if kind == 2:
             self._enqueue(130, struct.pack("<BBHIHHIHHBBBBHHH", 1, 0, 1, 72000000,
                                           71, 19, 12000000, 143, 2048,
-                                          1, 2, 1, 3, 0, 0, 0), request)
+                                          1, 7 if self._all_analog_modes else 2, 1, 3, 0, 0, 0), request)
         elif kind == 3:
             profile, mode, source, edge, reserved, level, pre, reserved2, timeout = (
                 struct.unpack("<HBBBBHHHI", payload))
             if reserved or reserved2:
                 self._error(frame, 6)
-            elif (profile != 1 or mode != 1 or source != 0 or edge not in (0, 1)
-                  or not 1 <= level <= 4094 or pre != 0 or timeout != 0):
+            elif (profile != 1 or mode not in ((0, 1, 2) if self._all_analog_modes else (1,))
+                  or source != 0 or edge not in (0, 1)
+                  or not 1 <= level <= 4094 or pre != 0
+                  or (not 100 <= timeout <= 60000 if mode == 0 else timeout != 0)):
                 self._error(frame, 1)
             elif self._state != STOPPED or self._held or self._stop_acks:
                 self._error(frame, 2)
@@ -376,7 +392,7 @@ class DeviceEmulator:
                 self._generation = request
                 self._continuation = True
                 self._enqueue(132, struct.pack("<II", request, config_id), request)
-                self._set_state(WAITING)
+                self._wait()
         elif kind == 5:
             if struct.unpack("<I", payload)[0] != self._generation:
                 self._error(frame, 4)
@@ -392,9 +408,19 @@ class DeviceEmulator:
         self._remember(self._advance(now_ms))
         if not self._negotiated or self._state != WAITING or not self._continuation:
             return False
+        return self._capture(0)
+
+    def _wait(self):
+        # Pre=0 готова немедленно; ARM_ACK не является началом ожидания.
+        self._wait_started = self._now if self._config[2] == 0 else None
+        self._set_state(WAITING)
+
+    def _capture(self, trigger_kind):
         if self._window_id >= MAX_COUNTER:
             self._recover(6)
             return False
+        self._wait_started = None
+        self._trigger_kind = trigger_kind
         self._window_id += 1
         self._active = self._held = True
         self._offset = 0
@@ -403,7 +429,7 @@ class DeviceEmulator:
         level = struct.unpack_from("<H", self._config, 6)[0]
         for i in range(SAMPLE_COUNT):
             code = (73 * i + 19 * self._window_id + 7 * self._generation) & 4095
-            if i == 0:
+            if i == 0 and trigger_kind == 0:
                 code = level if edge == 0 else level - 1
             elif i == 511:
                 code = 0
@@ -416,7 +442,7 @@ class DeviceEmulator:
 
     def _stop(self, request):
         self._continuation = False
-        self._hold_started = None
+        self._hold_started = self._wait_started = None
         self._stage = ""
         self._remove_status()
         if self._active and not self._abort_pending:
@@ -457,8 +483,9 @@ class DeviceEmulator:
             level = struct.unpack_from("<H", self._config, 6)[0]
             return self._descriptor(144, struct.pack(
                 "<IIIHHHHBBBBHHIHHI", self._generation, self._window_id,
-                self._config_id, 1, SAMPLE_COUNT, 0, 0, 0, 0, edge, 0,
-                level, 2, 72000000, 71, 19, 0), completion="begin")
+                self._config_id, 1, SAMPLE_COUNT, 0,
+                0xFFFF if self._trigger_kind == 2 else 0, self._trigger_kind, 0, edge, 0,
+                level, 3 if self._trigger_kind == 2 else 2, 72000000, 71, 19, 0), completion="begin")
         if self._stage == "data":
             count = min(250, SAMPLE_COUNT - self._offset)
             payload = struct.pack("<IIHH", self._generation, self._window_id,
@@ -515,7 +542,11 @@ class DeviceEmulator:
         elif action == "release":
             self._release_pending = False
             if self._continuation and not self._stop_acks:
-                self._set_state(WAITING)
+                if self._config[2] == 2:
+                    self._continuation = False
+                    self._set_state(STOPPED)
+                else:
+                    self._wait()
 
     def read(self, max_bytes, now_ms):
         _uint(max_bytes, MAX_CHUNK_SIZE)

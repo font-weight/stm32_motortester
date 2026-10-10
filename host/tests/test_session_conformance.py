@@ -152,7 +152,7 @@ class IndependentTranscript(SessionChecks):
                 setattr(obj, fields(obj)[0].name, None)
         for obj in (snapshot, events[0]):
             self.assertEqual(obj.source_sha, ref.PIN)
-            self.assertEqual(obj.validation_scope, "draft_normal_analog_control")
+            self.assertEqual(obj.validation_scope, "draft_analog_control")
 
 
 class HandshakeAndConfiguration(SessionChecks):
