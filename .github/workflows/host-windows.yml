@@ -23,7 +23,7 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: '3b315ac4e1184c4c7e9216ce5594cff0f9beff33'
+      SOURCE_SHA: 'f0822f7b336b0cab0e01632eee33f0f9a24473cc'
       PYTHONNOUSERSITE: '1'
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: '3b315ac4e1184c4c7e9216ce5594cff0f9beff33'
+          ref: 'f0822f7b336b0cab0e01632eee33f0f9a24473cc'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
