@@ -1,0 +1,48 @@
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+utf-16 controlled rejection: PASS
+utf-32 controlled rejection: PASS
+[
+  {
+    "action": "enter",
+    "labels": [
+      "Заменить",
+      "Отмена"
+    ],
+    "default": "Отмена",
+    "escape": "Отмена",
+    "raw_file_preserved_or_correctly_replaced": true
+  },
+  {
+    "action": "escape",
+    "labels": [
+      "Заменить",
+      "Отмена"
+    ],
+    "default": "Отмена",
+    "escape": "Отмена",
+    "raw_file_preserved_or_correctly_replaced": true
+  },
+  {
+    "action": "close",
+    "labels": [
+      "Заменить",
+      "Отмена"
+    ],
+    "default": "Отмена",
+    "escape": "Отмена",
+    "raw_file_preserved_or_correctly_replaced": true
+  },
+  {
+    "action": "replace",
+    "labels": [
+      "Заменить",
+      "Отмена"
+    ],
+    "default": "Отмена",
+    "escape": "Отмена",
+    "raw_file_preserved_or_correctly_replaced": true
+  }
+]

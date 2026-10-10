@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "event_checks": 6630701,
+  "event_histogram": {
+    "0": 6602958,
+    "1": 13661,
+    "2": 9956,
+    "4": 755,
+    "3": 3371
+  },
+  "random_streams": 2000,
+  "seed": 20261010,
+  "sizeof_stream_host": 568,
+  "scope": "byte stream only; no session/USB/ARM/Windows"
+}
