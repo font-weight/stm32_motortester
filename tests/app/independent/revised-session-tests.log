@@ -1,0 +1,37 @@
+test_twenty_four_full_windows (__main__.Nominal.test_twenty_four_full_windows) ... ok
+test_full_bulk_retries_immutable (__main__.Recovery.test_full_bulk_retries_immutable) ... ok
+test_io_error_fails_closed (__main__.Recovery.test_io_error_fails_closed) ... ok
+test_sample_fault_fails_closed (__main__.Recovery.test_sample_fault_fails_closed) ... ok
+test_sequence_saturation (__main__.Recovery.test_sequence_saturation) ... ok
+test_stall_fails_closed (__main__.Recovery.test_stall_fails_closed) ... ok
+test_window_counter_saturation (__main__.Recovery.test_window_counter_saturation) ... ok
+test_bad_release_no_mutation_and_rearm (__main__.Release.test_bad_release_no_mutation_and_rearm) ... ok
+test_release_full_reply_fails_closed (__main__.Release.test_release_full_reply_fails_closed) ... ok
+test_release_timeout_boundary (__main__.Release.test_release_timeout_boundary) ... ok
+test_new_hello_invalidates_old_link_state (__main__.Sessions.test_new_hello_invalidates_old_link_state) ... ok
+test_old_stop_ack_does_not_finish_new_stop (__main__.Sessions.test_old_stop_ack_does_not_finish_new_stop) ... FAIL
+test_cancelled_window_status_counter (__main__.Stops.test_cancelled_window_status_counter) ... FAIL
+test_stop_boundaries (__main__.Stops.test_stop_boundaries) ... ok
+test_tombstone_release_after_committed_stop (__main__.Stops.test_tombstone_release_after_committed_stop) ... ok
+test_wrong_generation_stop_no_mutation (__main__.Stops.test_wrong_generation_stop_no_mutation) ... ok
+
+======================================================================
+FAIL: test_old_stop_ack_does_not_finish_new_stop (__main__.Sessions.test_old_stop_ack_does_not_finish_new_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/capture-link-independent-tests/test_link.py", line 272, in test_old_stop_ack_does_not_finish_new_stop
+    self.assertEqual(lib.get(STOPPING_TX),1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_cancelled_window_status_counter (__main__.Stops.test_cancelled_window_status_counter)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/capture-link-independent-tests/test_link.py", line 187, in test_cancelled_window_status_counter
+    self.assertEqual(u32(status,20),1,'cancelled allocated window must increment dropped_windows')
+AssertionError: 0 != 1 : cancelled allocated window must increment dropped_windows
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.418s
+
+FAILED (failures=2)
