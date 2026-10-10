@@ -438,13 +438,25 @@ class MainWindow(QtWidgets.QMainWindow):
             selected = selected.with_suffix(suffix)
         overwrite = selected.exists()
         if overwrite:
-            answer = QtWidgets.QMessageBox.question(self, "Заменить файл?", f"Файл «{selected.name}» уже существует. Заменить его?",
-                QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No,
-                QtWidgets.QMessageBox.StandardButton.No)
-            if answer != QtWidgets.QMessageBox.StandardButton.Yes:
+            if not self._confirm_overwrite(selected):
                 self._status("Замена файла отменена. Текущая запись и файл не изменены.")
                 return None
         return selected, overwrite
+
+    def _confirm_overwrite(self, path: Path) -> bool:
+        dialog = QtWidgets.QMessageBox(self)
+        dialog.setWindowTitle("Заменить файл?")
+        dialog.setIcon(QtWidgets.QMessageBox.Icon.Question)
+        dialog.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        dialog.setText(f"Файл «{path.name}» уже существует. Заменить его?")
+        replace_button = dialog.addButton("Заменить", QtWidgets.QMessageBox.ButtonRole.AcceptRole)
+        cancel_button = dialog.addButton("Отмена", QtWidgets.QMessageBox.ButtonRole.RejectRole)
+        dialog.setDefaultButton(cancel_button)
+        dialog.setEscapeButton(cancel_button)
+        dialog.exec()
+        confirmed = dialog.clickedButton() is replace_button
+        dialog.deleteLater()
+        return confirmed
 
     def save_dialog(self):
         if self.capture is None or self.busy:

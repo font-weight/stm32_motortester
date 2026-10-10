@@ -152,18 +152,60 @@ class ViewerTests(unittest.TestCase):
         target = self.folder / "существующая.mtcap"
         target.write_bytes(b"keep this existing file")
         with patch.object(QtWidgets.QFileDialog, "getSaveFileName", return_value=(str(target.with_suffix("")), "")), \
-             patch.object(QtWidgets.QMessageBox, "question", return_value=QtWidgets.QMessageBox.StandardButton.No) as question:
+             patch.object(self.window, "_confirm_overwrite", return_value=False) as question:
             self.click(self.window.save_button)
         question.assert_called_once()
-        self.assertIn(target.name, question.call_args.args[2])
+        self.assertEqual(question.call_args.args[0], target)
         self.assertEqual(target.read_bytes(), b"keep this existing file")
         self.assertIs(self.window.capture, original)
         self.assertIn("Замена файла отменена", self.window.status_label.text())
         with patch.object(QtWidgets.QFileDialog, "getSaveFileName", return_value=(str(target.with_suffix("")), "")), \
-             patch.object(QtWidgets.QMessageBox, "question", return_value=QtWidgets.QMessageBox.StandardButton.Yes):
+             patch.object(self.window, "_confirm_overwrite", return_value=True):
             self.click(self.window.save_button)
             self.settle()
         self.assertEqual(recording.load(target), original)
+
+    def test_real_overwrite_dialog_has_russian_buttons_and_safe_default(self):
+        target = self.folder / "существующая.mtcap"
+        for action in ("enter", "escape", "close", "replace"):
+            with self.subTest(action=action):
+                observed = {}
+
+                def inspect_and_dismiss():
+                    dialog = self.app.activeModalWidget()
+                    observed["is_message_box"] = isinstance(dialog, QtWidgets.QMessageBox)
+                    if not observed["is_message_box"]:
+                        self.app.closeAllWindows()
+                        return
+                    observed["labels"] = {button.text() for button in dialog.buttons()}
+                    default = dialog.defaultButton()
+                    escape = dialog.escapeButton()
+                    observed["default"] = default.text() if default is not None else None
+                    observed["escape"] = escape.text() if escape is not None else None
+                    observed["message"] = dialog.text()
+                    observed["format"] = dialog.textFormat()
+                    if action == "enter":
+                        QtTest.QTest.keyClick(dialog, QtCore.Qt.Key.Key_Return)
+                    elif action == "escape":
+                        QtTest.QTest.keyClick(dialog, QtCore.Qt.Key.Key_Escape)
+                    elif action == "close":
+                        dialog.close()
+                    else:
+                        button = next((button for button in dialog.buttons() if button.text() == "Заменить"), None)
+                        if button is None:
+                            dialog.close()
+                        else:
+                            QtTest.QTest.mouseClick(button, QtCore.Qt.MouseButton.LeftButton)
+
+                QtCore.QTimer.singleShot(0, inspect_and_dismiss)
+                confirmed = self.window._confirm_overwrite(target)
+                self.assertTrue(observed["is_message_box"])
+                self.assertEqual(observed["labels"], {"Заменить", "Отмена"})
+                self.assertEqual(observed["default"], "Отмена")
+                self.assertEqual(observed["escape"], "Отмена")
+                self.assertIn(target.name, observed["message"])
+                self.assertEqual(observed["format"], QtCore.Qt.TextFormat.PlainText)
+                self.assertEqual(confirmed, action == "replace")
 
     def test_write_failure_is_not_success_and_does_not_change_display(self):
         original = self.generate()
