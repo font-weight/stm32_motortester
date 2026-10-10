@@ -52,7 +52,9 @@ def snapshot(receiver):
 
 def fill(receiver, samples=SAMPLES, start_ms=1):
     for index, offset in enumerate(range(0, 2048, 250)):
-        assert receiver.feed(data(offset, samples[offset:offset + 250]), start_ms + index) is None
+        result = receiver.feed(data(offset, samples[offset:offset + 250]), start_ms + index)
+        if result is not None:
+            raise AssertionError(f"Unexpected terminal result while filling: {result.reason}")
 
 
 class WindowTests(unittest.TestCase):
