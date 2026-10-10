@@ -1,0 +1,22 @@
+{
+  "image_size": [
+    642,
+    351
+  ],
+  "minimum_window_size": [
+    1000,
+    710
+  ],
+  "long_flags_image_size": [
+    642,
+    719
+  ],
+  "png_render_seconds": 0.05363775300065754,
+  "image_text": {
+    "Provenance": "ДЕМОНСТРАЦИЯ · синтетические данные",
+    "Purpose": "Illustration only; preserve original .mtcap",
+    "RawSampleCount": "2048",
+    "Scale": "adc_code; time from nominal Fs; uncalibrated"
+  },
+  "raw_unchanged": true
+}

@@ -8,3 +8,9 @@
 - [Историческое wire-ревью](WIRE-draft-review.md).
 
 Временные пути в неизменённых отчётах описывают реальное место запуска. Соответствующие сохраняемые логи/изображения доступны в каталогах выше. Команды могут требовать замены временного пути на свой checkout. Ни один результат не подтверждает Windows 10, USB-прибор или аппаратные измерения.
+
+## Добавленные проверки
+
+- [HOST-002 PASS](HOST-002-review.md), код c89c12df: только opaque byte/stream компонент; [доказательства](evidence/host-wire-c89/).
+- [HOST-003 PASS](HOST-003-review.md), код2cf1fb83: PNG на Linux; [доказательства](evidence/png-2cf1/), включая red-регрессию прежнего clipping. [Исторический REWORK](HOST-003-review-ae7e3ffd.md).
+- [Shared session BLOCKED_EVIDENCE](WIRE-session-b6ae-review.md), кодb6ae8025; [доказательства](evidence/session-b6ae/). Новые версии общего контракта требуют отдельной проверки.

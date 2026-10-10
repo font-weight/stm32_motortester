@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "source": "/tmp/critic-b-session-b6ae/source",
+  "seed": 20261010,
+  "comparisons": 108814,
+  "events": {
+    "ACCEPT": 6956,
+    "NEW_HELLO": 10719,
+    "DUPLICATE": 12925,
+    "WRONG_SESSION": 1532,
+    "NEED_HELLO": 53451,
+    "INVALID_HELLO": 8381,
+    "RECOVERY": 13317,
+    "EXHAUSTED": 1532,
+    "ARGUMENT": 1
+  },
+  "sizeof_session_x64": 568,
+  "sizeof_message_x64": 544,
+  "direction_before_session": true
+}
