@@ -1,0 +1,44 @@
+cdcd_control_xfer_cb T 0 a8
+cdcd_deinit T 0 4
+cdcd_init T 0 58
+cdcd_open T 0 118
+cdcd_reset T 0 28
+cdcd_xfer_cb T 0 100
+memset U         
+tu_edpt_stream_init U         
+tu_edpt_stream_read U         
+tu_edpt_stream_read_xfer U         
+tu_edpt_stream_write U         
+tu_edpt_stream_write_available U         
+tu_edpt_stream_write_xfer U         
+tu_edpt_stream_write_zlp_if_needed U         
+tu_fifo_clear U         
+tu_fifo_get_read_info U         
+tu_fifo_peek U         
+tu_fifo_set_overwritable U         
+tu_fifo_write_n_access_mode U         
+tud_cdc_line_coding_cb W 0 2
+tud_cdc_line_state_cb W 0 2
+tud_cdc_n_available T 0 2c
+tud_cdc_n_connected T 0 28
+tud_cdc_n_get_line_coding T 0 18
+tud_cdc_n_get_line_state T 0 10
+tud_cdc_n_peek T 0 10
+tud_cdc_n_read T 0 10
+tud_cdc_n_read_flush T 0 20
+tud_cdc_n_ready T 0 34
+tud_cdc_n_set_wanted_char T 0 c
+tud_cdc_n_write T 0 10
+tud_cdc_n_write_available T 0 10
+tud_cdc_n_write_clear T 0 18
+tud_cdc_n_write_flush T 0 10
+tud_cdc_notify_complete_cb W 0 2
+tud_cdc_rx_cb W 0 2
+tud_cdc_rx_wanted_cb W 0 2
+tud_cdc_send_break_cb W 0 2
+tud_cdc_tx_complete_cb W 0 2
+tud_control_status U         
+tud_control_xfer U         
+tud_mounted U         
+tud_suspended U         
+usbd_edpt_open U         

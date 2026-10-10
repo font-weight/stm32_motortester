@@ -1,0 +1,9 @@
++ cc --version
++ head -n 1
+cc (Debian 14.2.0-19) 14.2.0
++ cc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -O2 -Istubs -Isnapshot/firmware/transport snapshot/firmware/transport/mt_usb_cdc.c test_call_order.c -o build/strict
++ build/strict
+Critic-A stub boundary tests: 147 cases / 2057 checks passed (not real TinyUSB integration)
++ cc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -Istubs -Isnapshot/firmware/transport snapshot/firmware/transport/mt_usb_cdc.c test_call_order.c -o build/sanitized
++ ASAN_OPTIONS=detect_leaks=0 UBSAN_OPTIONS=halt_on_error=1 build/sanitized
+Critic-A stub boundary tests: 147 cases / 2057 checks passed (not real TinyUSB integration)

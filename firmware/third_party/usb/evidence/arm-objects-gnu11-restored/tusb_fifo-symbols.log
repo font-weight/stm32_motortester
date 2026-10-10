@@ -1,0 +1,47 @@
+00000000 n .ARM.attributes
+00000000 b .bss
+00000000 n .comment
+00000000 d .data
+00000000 t .text
+00000000 t .text.advance_index
+00000000 t .text.ff_peek_local
+00000000 t .text.tu_fifo_advance_read_pointer
+00000000 t .text.tu_fifo_advance_write_pointer
+00000000 t .text.tu_fifo_clear
+00000000 t .text.tu_fifo_config
+00000000 t .text.tu_fifo_correct_read_pointer
+00000000 t .text.tu_fifo_discard_n
+00000000 t .text.tu_fifo_get_read_info
+00000000 t .text.tu_fifo_get_write_info
+00000000 t .text.tu_fifo_peek
+00000000 t .text.tu_fifo_peek_n
+00000000 t .text.tu_fifo_peek_n_access_mode
+00000000 t .text.tu_fifo_read
+00000000 t .text.tu_fifo_read_n_access_mode
+00000000 t .text.tu_fifo_set_overwritable
+00000000 t .text.tu_fifo_write
+00000000 t .text.tu_fifo_write_n_access_mode
+00000000 t .text.tu_hwfifo_read
+00000000 t .text.tu_hwfifo_write
+00000000 00000018 t advance_index
+00000000 00000044 t ff_peek_local
+         U memcpy
+00000000 00000014 T tu_fifo_advance_read_pointer
+00000000 00000014 T tu_fifo_advance_write_pointer
+00000000 00000008 T tu_fifo_clear
+00000000 0000001c T tu_fifo_config
+00000000 00000014 T tu_fifo_correct_read_pointer
+00000000 0000003a T tu_fifo_discard_n
+00000000 00000074 T tu_fifo_get_read_info
+00000000 0000005e T tu_fifo_get_write_info
+00000000 0000000c T tu_fifo_peek
+00000000 00000018 T tu_fifo_peek_n
+00000000 0000013c T tu_fifo_peek_n_access_mode
+00000000 00000026 T tu_fifo_read
+00000000 0000002a T tu_fifo_read_n_access_mode
+00000000 0000000a T tu_fifo_set_overwritable
+00000000 00000050 T tu_fifo_write
+00000000 00000192 T tu_fifo_write_n_access_mode
+00000000 00000032 T tu_hwfifo_read
+00000000 00000034 T tu_hwfifo_write
+00000000 a tusb_fifo.c

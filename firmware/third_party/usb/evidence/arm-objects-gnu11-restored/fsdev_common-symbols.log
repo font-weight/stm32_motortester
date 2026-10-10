@@ -1,0 +1,14 @@
+00000000 n .ARM.attributes
+00000000 b .bss
+00000000 n .comment
+00000000 d .data
+00000000 t .text
+00000000 t .text.btable_set_rx_bufsize
+00000000 t .text.fsdev_core_reset
+00000000 t .text.fsdev_deinit
+00000000 t .text.pma_align_buffer_size
+00000000 00000042 T btable_set_rx_bufsize
+00000000 a fsdev_common.c
+00000000 00000050 T fsdev_core_reset
+00000000 00000030 T fsdev_deinit
+00000000 00000024 T pma_align_buffer_size

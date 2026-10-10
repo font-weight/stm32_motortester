@@ -1,0 +1,19 @@
+In file included from /workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c:101:
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h: In function 'btable_set_count':
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]
+  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);
+      |                  ^
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c:219:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]
+  219 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;
+      |                        ^
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c: In function 'dcd_int_handler':
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c:410:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]
+  410 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;
+      |                        ^
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c:411:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]
+  411 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;
+      |                        ^
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c:432:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]
+  432 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;
+      |                          ^
