@@ -1,0 +1,546 @@
+{
+  "parent": "bd58245ecf64f08dcfe6d6fec3981e26fd7ff0ed",
+  "parent_tree": "c7829a53e7151ed1ec27fe0150966344e8fa7b33",
+  "candidate_tree": "89ee762ea583e587924ceb15bf7507b9d9afe29b",
+  "commit": null,
+  "remote_binding": "pending",
+  "tracked_files": 105,
+  "unchanged_files": 104,
+  "changed_file": "host/tests/test_gui.py",
+  "git_blob": "95d65a75752cae84b2625de238ca66a2258db308",
+  "sha256": "d44e46031d56bbd1be1edae28b063a97c0628aba9a198fa581af0b39e0ed3b03",
+  "changed_methods": [
+    "test_minimum_window_scrolls_annotations_with_larger_font_metrics"
+  ],
+  "added_methods": [
+    "test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling"
+  ],
+  "production_unchanged": true,
+  "files": {
+    "AGENTS.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "1aa58bedd837e00501b611fd63d55dd1c4d5c627"
+    },
+    "DOT_PEER_START.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "5c521f51caa7140c46ce66496d44bc4d103b7311"
+    },
+    "DOT_START.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d935006ddd436db7e27aa24c5416ac424ec29ea9"
+    },
+    "README.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "589a4524cbb79508069ce605f9b0cd41372826b6"
+    },
+    "docs/architecture.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "cbc25180a1e8d54dd818a50832720d9fb87f30ad"
+    },
+    "docs/bench.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2338e781eba17aab8d97be64e549df2107bcf76d"
+    },
+    "docs/budget.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "5746724c2a635b324818915bb1ff403f4b8e151b"
+    },
+    "docs/coordination.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "a173628f3365af6b2be8db51102986176574cc86"
+    },
+    "docs/data-plan.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "1ed1ae08ce2edf838469456934f34ad3a1b4ebca"
+    },
+    "docs/decisions.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "550bc557e9ff618c46dc4c7eaeb5bd5d02d6580a"
+    },
+    "docs/glossary.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2f96e7e8a13b1edb54da2545450c84becc3d2848"
+    },
+    "docs/hardware.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "708b1082083dca3c8bdfbfcb1ee26a9117800710"
+    },
+    "docs/mvp-spec.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d6530867fea8d55e808d67b072d177995255dd5a"
+    },
+    "docs/progress.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "7b8db14b2b3daa9b63d083fdadf277a1b2bbf777"
+    },
+    "docs/quality-gate.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "755f6fc48057fb41cead074b019f64757d10a752"
+    },
+    "docs/risks.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "9d4e82c17b8659c3a24bde0e9b910e8df6682017"
+    },
+    "docs/sources.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0c38f9a71408698f515debd3781f13142e30e381"
+    },
+    "docs/validation.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "6d0d421a52d870c150baeff56dc2e1fb03f1efe5"
+    },
+    "host/.gitignore": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "309336f51bea7953365188e7a0aa2916131cf9e4"
+    },
+    "host/CHECKPOINT.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "43731fddcb23d1a545bd08f2bf5f3b7dd84c51ec"
+    },
+    "host/README.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "a988dcca988e35b0af81994e559e0bc067ef3bd7"
+    },
+    "host/docs/format-v1.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "a88127892d09799d3ce537a8567a70efc014c35d"
+    },
+    "host/docs/help.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "260f3175e436e96dec5b60de7db3f73498ca6001"
+    },
+    "host/docs/integration-sources.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "aa275dedd5e34984393e054acd9b3186f61a2ab5"
+    },
+    "host/docs/session-controller.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "20da1ea5b205c26c0b38a9e857ab6e2c6b595ad8"
+    },
+    "host/docs/stack.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2239af5f2d4ce9d8553fac6a2cfbe76e58dc9db3"
+    },
+    "host/docs/window-receive.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "61b91c88e0aadc4ae6688e212f064c3a5824a8d1"
+    },
+    "host/docs/wire-adapter.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "725da1d0d7437335782409e3af07237183e88382"
+    },
+    "host/docs/wire-demo.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "582579e5a0224afe6eaeb856a590a4ea63f901dc"
+    },
+    "host/evidence/README.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2644eaad0954e36da4a768833294691c04e46ab5"
+    },
+    "host/evidence/control-synthetic.mtcap": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "187bd38d559d139726517be6e86e8d9465355500"
+    },
+    "host/evidence/host-001-linux-offscreen.png": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2a9f6d13d217f5bccb542bf329ed38fced1e3b6f"
+    },
+    "host/evidence/host-001-tests-linux.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "dee3360daaf9f4a7beed016cfe6177cbde1c1415"
+    },
+    "host/evidence/window-synthetic.mtcap": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "50c3b27fddd9a6cf9ae6492d7be523137ef99dbd"
+    },
+    "host/evidence/windows-wheel-resolution.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "7f16a38e81ebe9e0013fecd94b4739568088dca1"
+    },
+    "host/motortester/__init__.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d28c127dfa54012834ff6d15c3e13e11b3a35ada"
+    },
+    "host/motortester/__main__.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "7c1c4b886a432e93b67d1776a403d92de0b6da75"
+    },
+    "host/motortester/emulator.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "957c6a855fb7e89790e322fb0d5b48e5091faafe"
+    },
+    "host/motortester/gui.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "7d80ec1d6d958c7910bad8c4381ae0170dc7219c"
+    },
+    "host/motortester/model.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "b5b586cfcf239e188753496515fb868777372c9f"
+    },
+    "host/motortester/plotting.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "ae04f1e63be4ad93dfcd76edce559351f00d8b7c"
+    },
+    "host/motortester/recording.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "9b25d626a94e561aed98524a95745b70f3e1fa48"
+    },
+    "host/motortester/session.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d98b5b80ad727e701da8ceb24872bf18d5cd49f5"
+    },
+    "host/motortester/window.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "af262e1a605408cfd79c958fade4657f82f3366e"
+    },
+    "host/motortester/wire.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "15f45c3902826f9025d3ffdcdb28b706d7e4836d"
+    },
+    "host/motortester/wire_demo.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "9404edb6f8c1368a0990b44a5fbfd7a655102a39"
+    },
+    "host/packaging/LICENSE-REVIEW.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "3907bd271c0e71182cb3b5340df09c6d466e5e13"
+    },
+    "host/packaging/build_windows.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "4a1b5d7184253a11d342ba1db909879a2515a184"
+    },
+    "host/packaging/collect_licenses.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "6e06568815404f6f79de326118d2e5e43a6534fc"
+    },
+    "host/packaging/launch_gui.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "b5d1b94f3c5ffb87339ab8a21752e44114b13782"
+    },
+    "host/packaging/motortester.spec": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "77481f13a209baf87e877e5730327c311eb833ed"
+    },
+    "host/packaging/requirements-win-x64.lock": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0d9c90c5975130694f128e1816f0105cf9f7f833"
+    },
+    "host/requirements-gui.txt": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "54edfb4ef45e319b619e48997baa7850903b258f"
+    },
+    "host/reviews/HOST-001-acceptance-checklist.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "bb2c4ee9474352d3fcb2ca7702bf080c6de457a8"
+    },
+    "host/scripts/check_first_path.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "14c095817e95677ff8a4f40b7d8099c94eecd21d"
+    },
+    "host/tests/fixtures/session/README.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "ee10dddd88cba27c5f5e96858acc082870085b22"
+    },
+    "host/tests/fixtures/session/RESULTS.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "5cee70ebb004169a069d95e17dc20a0ea663ba37"
+    },
+    "host/tests/fixtures/session/SHA256SUMS": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "cd51bf16b98bcc8bfc372a6986e4bb127afecdf5"
+    },
+    "host/tests/fixtures/session/coordinator-delta-run.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "c6442510637df61cb3061eb3e062093c06ab0937"
+    },
+    "host/tests/fixtures/session/corrected-run.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "3cc40adf5df39d0df95764324321488fa17edc2e"
+    },
+    "host/tests/fixtures/session/dependencies.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "5ae21c895531392b8e94b8702f9ac27e23363cab"
+    },
+    "host/tests/fixtures/session/first-run.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "c3ff0c6316492cd64451f805f45820b013cc7aac"
+    },
+    "host/tests/fixtures/session/focused-final.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0d51883d5def8988f91f865bcf0536fb8f565491"
+    },
+    "host/tests/fixtures/session/focused.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "90120fdf46b8e615f4183d2ac239619f1f919649"
+    },
+    "host/tests/fixtures/session/host-full.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2070e2bf934437a6b1ed0c20f42ab469b99207a6"
+    },
+    "host/tests/fixtures/session/manifest.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "dcb4552eae290f6280995373ca7862cef6ef3efa"
+    },
+    "host/tests/fixtures/session/pre-freeze.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "10cce8e3481d097ad4b25fdd123d1d339fc53268"
+    },
+    "host/tests/fixtures/session/reference.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "5167b933b61692004989c23ac9a3c27f57dac7be"
+    },
+    "host/tests/fixtures/session/run_checks.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "ccec914e8d8ccd5c8a8cf5cfde93527b6225c891"
+    },
+    "host/tests/fixtures/session/session-all.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "cca183103ed22a8d7f3418336cb0940b174f763e"
+    },
+    "host/tests/fixtures/session/session-optimized.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "8aa9af3776f2aa7dae2eeade3e2365f8271e42e0"
+    },
+    "host/tests/fixtures/session/transcript.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "86f28fc6c7916e998b269a2cec5e5d5b04302d80"
+    },
+    "host/tests/fixtures/window/README.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "e9572e998c016b55fb636d24d241c62d56e80ff3"
+    },
+    "host/tests/fixtures/window/conformance-initial.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "fab72eb141292d0ee504527fd6173995f7e915ef"
+    },
+    "host/tests/fixtures/window/conformance-linux.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "57bcd6e2aa44e4c54f0ff09aa3331c3b585a9e5b"
+    },
+    "host/tests/fixtures/window/conformance-optimized.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "8c62cb9cac5d7835f64707556403577a6fac7b2a"
+    },
+    "host/tests/fixtures/window/full-linux.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "aed47cec6a9605d83f7082f2addd2d465d476faa"
+    },
+    "host/tests/fixtures/window/reference.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0ce232c0514be04f7993d261a6bca9ad782ab576"
+    },
+    "host/tests/fixtures/window/run-manifest.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "f0bb6780898ce077040eb9a64171ae59de38e48e"
+    },
+    "host/tests/fixtures/window/samples.bin": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d7f0e3ed9782b860d57e84d0ec316b6d6d132226"
+    },
+    "host/tests/fixtures/window/vectors.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "03a56a6d15f188a8e996cdde7468d7e8f21b5876"
+    },
+    "host/tests/fixtures/window/window-focused.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d1cf2e0a5b0e593744e8de92ced8f4b7c1c45199"
+    },
+    "host/tests/fixtures/window/windows.bin": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "00da8971fd64743f57356c58a825826f1c9c99f0"
+    },
+    "host/tests/fixtures/wire/README.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d8875d6f927a243b5b60b35348637d09205e3748"
+    },
+    "host/tests/fixtures/wire/c-crosscheck.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "e05b72f447beae7e82bdd6cd97370e063a3a2389"
+    },
+    "host/tests/fixtures/wire/compare_c.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2fafa90562358dca3f087f30b3ceb05c08e08f82"
+    },
+    "host/tests/fixtures/wire/conformance-linux.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "6dfbeec4a0a31a5c045275bc61e3af859c3403ad"
+    },
+    "host/tests/fixtures/wire/full-linux.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "b9c773af3773f817ff840150093dc2bc07f014bf"
+    },
+    "host/tests/fixtures/wire/optimized-rejected.log": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "c60b230802936a69f53256b4ce47d5485d44d3ab"
+    },
+    "host/tests/fixtures/wire/reference.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "1e3d6db95a5cd3c8385691d0f443798122c35f99"
+    },
+    "host/tests/fixtures/wire/run-manifest.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "46550e6615f67dc2a45893d13886f4fccd99baa8"
+    },
+    "host/tests/fixtures/wire/vectors.json": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d05e4067329bc8c9961eb0706a54568eba35cff5"
+    },
+    "host/tests/test_first_path.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "40b443339a85d736cc8069ea582817bb14651d51"
+    },
+    "host/tests/test_gui.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "95d65a75752cae84b2625de238ca66a2258db308"
+    },
+    "host/tests/test_png_export.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "e829db30839fbc014c730b1c598b43da8a3a363e"
+    },
+    "host/tests/test_recording.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "781ca78a33da545399d3680959f29b73b6d08b2f"
+    },
+    "host/tests/test_session.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2c058a5aab8cac31d046d90c993075fc9b06308a"
+    },
+    "host/tests/test_session_conformance.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "c659ad8d066f6aafaf904020181f0afbe5bc3ca4"
+    },
+    "host/tests/test_window.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d0702cc6916634b24e4eabf93dff86a86325e6a0"
+    },
+    "host/tests/test_window_conformance.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "daa9d8c2be4681c0773c84a511cd5367ab4ef5e9"
+    },
+    "host/tests/test_wire.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "43c2800b414f2448da1ee07c0fde5e33377e8f81"
+    },
+    "host/tests/test_wire_conformance.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "51e273531a28f33a1bb50885700a08c7567681e4"
+    },
+    "host/tests/test_wire_demo.py": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0da62c4dd45f43f0ff01169493f952e5d6a5f4e2"
+    },
+    "requirements.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "cb6e6334951e31c53c3622be32ac190048b0ffd1"
+    },
+    "task.md": {
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "9344eae0c450087158931102e3e81009d6295c58"
+    }
+  }
+}

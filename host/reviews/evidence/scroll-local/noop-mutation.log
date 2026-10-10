@@ -1,0 +1,15 @@
+test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling (test_gui.ViewerTests.test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling) ... FAIL
+
+======================================================================
+FAIL: test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling (test_gui.ViewerTests.test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-scroll-local/source/host/tests/test_gui.py", line 320, in test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling
+    self.assertTrue(scroll.viewport().rect().contains(label.mapTo(scroll.viewport(), point)))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.518s
+
+FAILED (failures=1)
+EXPECTED_NEGATIVE_CONTROL: the new regression rejects a no-op scroll helper.
