@@ -292,6 +292,14 @@ class RecordingFormatTests(unittest.TestCase):
         with self.assertRaises(CaptureError):
             decode(make_file(metadata[:-1] + b',"\\u0073equence":19}'))
 
+    def test_metadata_requires_utf8_without_encoding_autodetection(self):
+        text = json.dumps(example_metadata(), ensure_ascii=False)
+        self.assertEqual(decode(make_file(text.encode("utf-8"))), example_capture())
+        for encoding in ("utf-16", "utf-16-le", "utf-16-be",
+                         "utf-32", "utf-32-le", "utf-32-be", "utf-8-sig"):
+            with self.subTest(encoding=encoding), self.assertRaises(CaptureError):
+                decode(make_file(text.encode(encoding)))
+
     def test_invalid_json_encoding_and_non_object_metadata_are_rejected(self):
         for metadata in (b"", b"{", b"\xff", b"[]", b"null", b"1", b"true", b'"text"',
                          b"[" * 1100 + b"0" + b"]" * 1100):

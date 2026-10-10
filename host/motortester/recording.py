@@ -59,7 +59,8 @@ def decode(data: bytes) -> Capture:
     if not hmac.compare_digest(hashlib.sha256(data[:-32]).digest(), data[-32:]):
         raise CaptureError("Нарушена целостность записи (SHA-256)")
     try:
-        meta = json.loads(data[HEADER.size:HEADER.size + meta_len], object_pairs_hook=_object,
+        metadata_text = data[HEADER.size:HEADER.size + meta_len].decode("utf-8")
+        meta = json.loads(metadata_text, object_pairs_hook=_object,
                           parse_constant=_invalid_number)
     except (UnicodeError, ValueError, RecursionError) as exc:
         raise CaptureError("Некорректные метаданные JSON") from exc
