@@ -274,6 +274,30 @@ class ViewerTests(unittest.TestCase):
         self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
         self.assertLess(self.window.trigger_label.geometry().bottom(), self.window.cursor_label.geometry().top())
 
+    def test_minimum_window_scrolls_annotations_with_larger_font_metrics(self):
+        self.generate()
+        self.window.cursor_toggle.setChecked(True)
+        original_style = self.window.styleSheet()
+        for pixels in (18, 22):
+            with self.subTest(font_pixels=pixels):
+                self.window.setStyleSheet(original_style.replace("font-size: 13px", f"font-size: {pixels}px"))
+                self.window.resize(1000, 710)
+                QtTest.QTest.qWait(100)
+                self.assertEqual(self.window.size(), QtCore.QSize(1000, 710))
+                self.assertGreaterEqual(self.window.plot.height(), 100)
+                self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
+                self.assertLess(self.window.trigger_label.geometry().bottom(), self.window.cursor_label.geometry().top())
+                scroll = self.window.plot_scroll
+                self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
+                scroll.ensureWidgetVisible(self.window.cursor_label)
+                self.app.processEvents()
+                cursor_bottom = self.window.cursor_label.mapTo(scroll.viewport(), self.window.cursor_label.rect().bottomLeft())
+                self.assertLess(cursor_bottom.y(), scroll.viewport().height())
+        self.window.setStyleSheet(original_style)
+        self.window.resize(1240, 900)
+        QtTest.QTest.qWait(100)
+        self.assertEqual(self.window.plot_scroll.verticalScrollBar().maximum(), 0)
+
     def test_long_quality_flags_are_scrollable_and_do_not_resize_window(self):
         capture = replace(self.generate(), quality_flags=tuple(f"флаг_{i}_" + "я" * 55 for i in range(16)))
         original_height = self.window.height()

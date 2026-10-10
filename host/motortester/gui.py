@@ -103,6 +103,14 @@ class _FileJob(QtCore.QRunnable):
             self.signals.finished.emit(result, None)
 
 
+class _WaveformPlot(pg.PlotWidget):
+    def sizeHint(self):
+        return QtCore.QSize(640, 100)
+
+    def minimumSizeHint(self):
+        return QtCore.QSize(100, 100)
+
+
 class MainWindow(QtWidgets.QMainWindow):
     """One immutable current capture; failed/cancelled opens cannot replace it."""
 
@@ -199,9 +207,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.reset_button.setToolTip("Вернуть весь диапазон времени и коды 0…4095 (Home)")
         chart_top.addWidget(self.reset_button)
         card_layout.addLayout(chart_top)
-        self.plot = pg.PlotWidget(background="#111923")
+        self.plot = _WaveformPlot(background="#111923")
         self.plot.setObjectName("waveformPlot")
         self.plot.setMinimumHeight(100)
+        self.plot.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                QtWidgets.QSizePolicy.Policy.Expanding)
         self.plot.setMenuEnabled(False)
         self.plot.hideButtons()
         self.plot.showGrid(x=True, y=True, alpha=0.2)
@@ -235,7 +245,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.cursor_label = _label("Курсоры привязаны к исходным отсчётам; время номинальное.", "muted", wrap=True)
         self.cursor_label.hide()
         card_layout.addWidget(self.cursor_label)
-        content.addWidget(card, 1)
+        # Keep the plot and its annotations at their layout minimums even
+        # when platform font metrics cannot fit the minimum window height.
+        # A scroll viewport absorbs the shortage instead of letting Qt place
+        # the following labels underneath the plot's hard minimum height.
+        card_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinimumSize)
+        self.plot_scroll = QtWidgets.QScrollArea()
+        self.plot_scroll.setWidgetResizable(True)
+        self.plot_scroll.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.plot_scroll.setWidget(card)
+        content.addWidget(self.plot_scroll, 1)
         self.quality_label = _label("Качество записи: данные ещё не загружены.", "quality", wrap=True)
         self.quality_scroll = QtWidgets.QScrollArea()
         self.quality_scroll.setWidgetResizable(True)
