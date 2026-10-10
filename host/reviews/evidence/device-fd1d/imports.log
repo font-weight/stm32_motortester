@@ -1,0 +1,3 @@
+COMMAND ['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python', '-c', 'import sys,PySide6,pyqtgraph,numpy; print(sys.version); print(PySide6.__version__,pyqtgraph.__version__,numpy.__version__)']
+3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
+6.12.0 0.14.0 2.5.3

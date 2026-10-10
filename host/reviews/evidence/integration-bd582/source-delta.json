@@ -1,0 +1,439 @@
+{
+  "reviewed_sha": "bd58245ecf64f08dcfe6d6fec3981e26fd7ff0ed",
+  "tree": "c7829a53e7151ed1ec27fe0150966344e8fa7b33",
+  "parent": "988f2cc094fa82c622f0b20276114e3159ae73d9",
+  "changed_files": [
+    "host/docs/integration-sources.md",
+    "host/motortester/gui.py",
+    "host/tests/test_gui.py"
+  ],
+  "unchanged_files": 82,
+  "host_file_count": 85,
+  "files": [
+    {
+      "path": "host/.gitignore",
+      "sha256": "c876de662f1d7a05dd8f15757b5f72218909efb5e3bfb205eb2d775208400df9",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/CHECKPOINT.md",
+      "sha256": "685f7225044ce557f78bfe217922fbaf623d416a58a5d47a571f5a303fd3d011",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/README.md",
+      "sha256": "dd9d081a3c0f11c626b608536e09e419d1883981b780cbe2ed97e93ce300e039",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/format-v1.md",
+      "sha256": "648a7826ef294602dfa8015a286ac88c4add436b2476c786b17e66aac2acef88",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/help.md",
+      "sha256": "873fbb5c240d218c5b45cec15c82f2be833f1df2d861b5152ee1ce7ed45c9cbf",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/integration-sources.md",
+      "sha256": "cb870133217f90fd98aa9c3c160f848eb15db26795a0e2e3dc9419e16acf8791",
+      "unchanged_from_988": false
+    },
+    {
+      "path": "host/docs/session-controller.md",
+      "sha256": "392eb74caa56937aa4afb7d280df6b34690d004713ec5edb94d481376e999a9e",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/stack.md",
+      "sha256": "db28d4817ced4cc56d0178c1a4bd9a342cc2bd36b467f3b9db1c8ade418c661d",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/window-receive.md",
+      "sha256": "e14376dc127f06b9389439c099b84f680440388dd8485bbaa47c1d507fd8350a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/wire-adapter.md",
+      "sha256": "8719b8227e59ad0be6fab125e65ec5ad1e25333f024cb2d8640eb4d89ecb2838",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/docs/wire-demo.md",
+      "sha256": "0edb69080d5bf2de5daba5afab2bf2db46697cb20dc184a0217eb8cf432351ee",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/evidence/README.md",
+      "sha256": "9f2491d12dc211cc80769afe310c54adb64a33b3dbf63f6f9187221d6fd3f695",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/evidence/control-synthetic.mtcap",
+      "sha256": "69be281108d55ce71237b6185a84740fa7d17f1e9ea9856cf9a3204ace951327",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/evidence/host-001-linux-offscreen.png",
+      "sha256": "77200e946f441863283f42f0086427e43c064a03203a7aa6801cc7189e7a2215",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/evidence/host-001-tests-linux.log",
+      "sha256": "f049b9c8d865e55bd774f873b7f2b9c4a05a0cda062a62fd5a22cdac6f5e7008",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/evidence/window-synthetic.mtcap",
+      "sha256": "d1cb1403b3b9cb322b1d23d00f2496642346bd8398edcff6dcbb78800c60f3f7",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/evidence/windows-wheel-resolution.log",
+      "sha256": "d692f048395b9cf73e547d7f076ef4f2788da333c60a6227e818a872e070d048",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/__init__.py",
+      "sha256": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/__main__.py",
+      "sha256": "e4872c82c89809b28285bd0ce5444eeae73e4b1600d897d61f9f237e4f67a86f",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/emulator.py",
+      "sha256": "d44aa6e164a28efcdef1c49719af6b0344f202a8be2626e893b876a07d729b43",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/gui.py",
+      "sha256": "7de73bc509225663546d8aadf03999766d631f9e4bf9b6fff8a60adc0975bb60",
+      "unchanged_from_988": false
+    },
+    {
+      "path": "host/motortester/model.py",
+      "sha256": "c4f86b6b59b7230823d45c55bca3714250a1c60ce0974e00f0ead65b9a7a834b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/plotting.py",
+      "sha256": "66503e6c6d0e7b5e2e953a057c28dd50d3f96b85b7acfc56385ecd6a8e10115c",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/recording.py",
+      "sha256": "4383bec4ecba4899f5ec814553bad1d9fc099ed711fd66c7ea1352d69aed6cb4",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/session.py",
+      "sha256": "4049e5fda8499010bcdcad781af5a5ebfefde5de2b583e04b606b59bf1f61f61",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/window.py",
+      "sha256": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/wire.py",
+      "sha256": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/motortester/wire_demo.py",
+      "sha256": "c79f83b68703477c46dc5c6881091b373b6280a4204d5f26ac2c4f0adb0f48ce",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/packaging/LICENSE-REVIEW.md",
+      "sha256": "388533f3a52b96126c3c348fd11fff135d67e6db2d840abac9eee9c605c56d6b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/packaging/build_windows.py",
+      "sha256": "a56b1aaabc5df114e174208500db8195377dbeeeccf32179e14434f790e4af81",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/packaging/collect_licenses.py",
+      "sha256": "78ee596eab8d10f47f7184290cef322a94c9595a1cf5543aada2bed90dc98b58",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/packaging/launch_gui.py",
+      "sha256": "f3168139387b038f960c69737d1298e95190d2bcefc8f61d24fb40e44db8df26",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/packaging/motortester.spec",
+      "sha256": "7c29791cd9da951bb3ec5b9854744208eacd642d63d678b08cb0f03b67c8ea6b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/packaging/requirements-win-x64.lock",
+      "sha256": "b6a9484976eb430420f0635c76d99afbf3c08bd58114dcbc9aa06d3c315b1331",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/requirements-gui.txt",
+      "sha256": "a9aa6fe0b7cb40e359fca0aed48db0afcd719dd30f5b8f3ab62172f59bf11d2a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/reviews/HOST-001-acceptance-checklist.md",
+      "sha256": "f37c15dfcb0ab8b84890a43d958f28e066c57b3fcd2395338b8b085a87301ffd",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/scripts/check_first_path.py",
+      "sha256": "578523b6089a976581fd015ba211417c1193b0375cdcfd542532702862eace3e",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/README.md",
+      "sha256": "a65f7cb01e2c29c14967e24b75da1841271bf84c74f75cd69102d28c9df75c6e",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/RESULTS.md",
+      "sha256": "72456a62605648e20860bacf8c755315fa3f08e0e946335071523153033ab691",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/SHA256SUMS",
+      "sha256": "0b85ce3cb57d77fe5997bda1531df55ea9bfba1e876516745a3d661b63d8a02f",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/coordinator-delta-run.log",
+      "sha256": "9305a986959d01f676dd4ec4c6f401673d5c1dcca2dccf82eb6e234c0c35b622",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/corrected-run.log",
+      "sha256": "fdf546a9077c3c077f63b6408121e991b9123e8a9145f954f278dee8ed36d4ba",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/dependencies.log",
+      "sha256": "5bb78ac53e753e9cf0f30452087186d1a982341d0fcdab5c9d3db027aca9901a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/first-run.log",
+      "sha256": "a86805e840a78b166b17e2a9207d0934d42b228fe5d830d1e05c46a9e29ed884",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/focused-final.log",
+      "sha256": "ccbeb3070c0fc7bef454fa146629699f113e9304b31e39b94d048c945c76c2ed",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/focused.log",
+      "sha256": "258b04f471f55a83efeb9a6049fbbfd22b0718eb254fbf33da1cdcf8a76498f1",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/host-full.log",
+      "sha256": "b08b69b7baf46174cdf5c822313340bfc537ccd1e58a60baa9ffc3763b1377c0",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/manifest.json",
+      "sha256": "6d6095c9f91900260ec9c7b9733f614f4215df6be5909d45c873ab5d3f0276ef",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/pre-freeze.log",
+      "sha256": "293e6eb8e6783b0461962ebf541430ae6416dfe6eeb3fd6064e780cea16466b3",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/reference.py",
+      "sha256": "bc521fcbe2798d016b1b4776d5f7293c3e84c2ad60b8edef72163c4e80f0ba66",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/run_checks.py",
+      "sha256": "d2597150cd2b05a5d327777b5dfa28ae19220a4496c83922f7f760a7e130d0b5",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/session-all.log",
+      "sha256": "dbc5829812b440c1175f441d491116bf55060833f803911063d24a266b6faaaf",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/session-optimized.log",
+      "sha256": "6dd58b03fa28056548df2d4acf9c5a82c6ef8b41a52abf969b399c56a31371f6",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/session/transcript.json",
+      "sha256": "306803a369df6684e9708e4f1217d7b2b5bb8fdd230cf709690515ba31bd831b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/README.md",
+      "sha256": "9b0b83289e81c9a429146befa699d7815350019b927a36c29cc31a9de2966af6",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/conformance-initial.log",
+      "sha256": "5967f97c06a1b98b8d838e56e7f32522f8a6554e5c95e3603c2035c3eebf1708",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/conformance-linux.log",
+      "sha256": "b9e730812ac2c350b3e36cb3e4d09e033d2d37fbe65a5fa49f38714a6a49b16a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/conformance-optimized.log",
+      "sha256": "2ec173c5bc4b677ebb0b71148b7b4424bffdc11871c23b4c75bdae96905bcb84",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/full-linux.log",
+      "sha256": "30a71e6b5bc5010f4522e4dbff11a2c60761be024fccfea7465759c6d204674c",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/reference.py",
+      "sha256": "cb140e60c554b8061147bd6e5a10df5064c6d777d101a8a9a790244cebeab3d4",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/run-manifest.json",
+      "sha256": "63425d1569bcaa2c37476d564b54cd1a4d37130b6195b8c2bd237c63ebee326b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/samples.bin",
+      "sha256": "375fe329c937bfa3dca1d1216bbbab43c2ad05a3b9500a10eb098261a9fe718b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/vectors.json",
+      "sha256": "f0871ba8113f099bb7bdc354f248de842e84a6bad5f8a7e9aee8efb96fbf7c05",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/window-focused.log",
+      "sha256": "0cc08e33c0505c5450d1a58343465235f5b2838e595d19f0b5fc1a23f424603f",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/window/windows.bin",
+      "sha256": "8bc5462d326ae6576102577ae63df07fc6bc9e4fc558eb318f62be1d1b51084a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/README.md",
+      "sha256": "7d7041a2c15cf18ec7471173f791ac91d318ee0d718586d0c6b92d943bf59be6",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/c-crosscheck.json",
+      "sha256": "d15b7e3cee892c870350a9ef2eaf6be0338076b9889ef60a88d8ce050d3e1e42",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/compare_c.py",
+      "sha256": "c4d47b9b633f4b8636f2df7b6de1f07b56addc4171dc5af722c28988d5867f54",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/conformance-linux.log",
+      "sha256": "374d577827f57637e940aff6d0f366d4984565468fd19c2ade09edd10c26c6b4",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/full-linux.log",
+      "sha256": "d713c4e999c342463df152172632cfbc09248eb782992af0f79768f337071b7a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/optimized-rejected.log",
+      "sha256": "15bc4645a7efb14c68000decefcd3c712384614014399fce5e8dc318cb8eca40",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/reference.py",
+      "sha256": "5e0709606c45c191192928cf88b094ab8feb4c6a9969c5bacc8a6e14df1ad329",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/run-manifest.json",
+      "sha256": "88c2fb7dd1f342f89299101b2b07d9d3e999e77e2caa6087f703c255518fb84a",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/vectors.json",
+      "sha256": "e183f2fe67e0af1882d01f0dbb151b74c1e69a76d405692edb990f87cae09f9e",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_first_path.py",
+      "sha256": "4b3fe3bf558aa1ac728e3f917dd5490cb4e0ed9e265bc509008a1fefd8d3b8d5",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_gui.py",
+      "sha256": "e3c9d5e0ac3b8d4aef56a6d9c760ddf68d9c85a276fdb99f62645593ef1d3c71",
+      "unchanged_from_988": false
+    },
+    {
+      "path": "host/tests/test_png_export.py",
+      "sha256": "7334c6979398e0127a72fa456db2a48fd21327e36108d757aab1696e657bbc24",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_recording.py",
+      "sha256": "9775b3fa70baa411d44c7681d7b23670db3e148b29aaea2d19cb5733ecb97d52",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_session.py",
+      "sha256": "9848192158c9486befaaca46941e35ba9781dc9578e89098273c6f46160c2c6b",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_session_conformance.py",
+      "sha256": "3418393713072e8c14c583f1592e66f98e16bd139f0166bfad6fc2ba2453a582",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_window.py",
+      "sha256": "70a7d437e14bbb6f8af8df6d95001c21e65590be210da822fce119f8d00a46e6",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_window_conformance.py",
+      "sha256": "3b003a84df02e336d5fba43b7dac714ecddc6a5409c8c47560da3f78d154e2b6",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_wire.py",
+      "sha256": "c43983bce4fc067040cec352caa3c4cc5cfb5a58fb29006fb810e25bd73962e5",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_wire_conformance.py",
+      "sha256": "dbb6cc0157023e725576c327311bd52c46caed8c39fe93c87da85a6e9f878cba",
+      "unchanged_from_988": true
+    },
+    {
+      "path": "host/tests/test_wire_demo.py",
+      "sha256": "7b9c06d959297d7d06237573e9d535b3b87865f9514edee57352c45a73682902",
+      "unchanged_from_988": true
+    }
+  ]
+}

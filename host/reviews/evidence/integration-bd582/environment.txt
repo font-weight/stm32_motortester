@@ -1,0 +1,6 @@
+2026-10-10T14:42:36+00:00
+bd58245ecf64f08dcfe6d6fec3981e26fd7ff0ed
+c7829a53e7151ed1ec27fe0150966344e8fa7b33
+Python 3.12.14
+Linux 8714d2c6650e 6.18.44 #1 SMP Sat Sep 26 20:02:31 UTC 2026 x86_64 GNU/Linux
+PySide6 6.12.0 pyqtgraph 0.14.0 numpy 2.5.3

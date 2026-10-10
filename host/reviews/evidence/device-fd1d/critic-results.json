@@ -1,0 +1,74 @@
+{
+  "head": "fd1d0ad6f131e1f08be64893da9c1d667dc15eed",
+  "verdict": "PASS",
+  "score": 10.0,
+  "scope": "HOST-007 predeclared bounded synthetic component only",
+  "common_contract_accepted": false,
+  "hold_interpretation": "PROVISIONAL, unaccepted",
+  "results": {
+    "focused.log": {
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": false,
+      "contains_provisional": false
+    },
+    "provisional.log": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": true,
+      "contains_provisional": true
+    },
+    "new-normal.log": {
+      "tests": 80,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": false,
+      "contains_provisional": true
+    },
+    "new-optimized.log": {
+      "tests": 80,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": false,
+      "contains_provisional": true
+    },
+    "full.log": {
+      "tests": 291,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": false,
+      "contains_provisional": true
+    },
+    "critic-focused.log": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": false,
+      "contains_provisional": false
+    },
+    "critic-optimized.log": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": false,
+      "contains_provisional": false
+    },
+    "critic-provisional.log": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "provisional_only": true,
+      "contains_provisional": true
+    }
+  }
+}
