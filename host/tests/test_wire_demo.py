@@ -69,6 +69,19 @@ class WireDemoTests(unittest.TestCase):
             with self.subTest(prefix=wire[:15]), self.assertRaises(CaptureError):
                 capture_from_synthetic_stream(wire)
 
+    def test_nine_valid_data_blocks_may_have_different_sizes(self):
+        parts = [self.parts[0]]
+        offset = 0
+        for index, count in enumerate([249] * 8 + [56], 2):
+            payload = struct.pack("<IIHH", CONTEXT.generation, 1, offset, count)
+            payload += struct.pack(f"<{count}H", *self.samples[offset:offset + count])
+            template = decode_frame(self.parts[1][:-1])
+            parts.append(encode_frame(replace(template, sequence=index, payload=payload)))
+            offset += count
+        parts.append(self.parts[-1])
+        capture = capture_from_synthetic_stream(b"".join(parts))
+        self.assertEqual(capture.samples, self.samples)
+
     def test_bad_api_inputs_are_bounded_and_not_coerced(self):
         for data in (None, bytearray(self.data), "data", b"", b"x" * 16385):
             with self.subTest(data_type=type(data)), self.assertRaises(CaptureError):
