@@ -1,0 +1,26 @@
+{
+  "status": "PASS functional probes; one documentation mismatch",
+  "host_sha": "cd86784b434662c7aa542713fa61a5bbd6b97938",
+  "counts": {
+    "positive_chunk_window_metadata": 260,
+    "invalid_stream_no_file": 341,
+    "no_clobber": 1,
+    "atomic_publish_failure": 1,
+    "invalid_options_no_directory": 5,
+    "partial_batch_honesty": 1,
+    "file_csv_svg_identity": 20
+  },
+  "huge_input_peak_bytes": 2316,
+  "accepted_alternate_layout": [
+    249,
+    249,
+    249,
+    249,
+    249,
+    249,
+    249,
+    249,
+    56
+  ],
+  "scope": "synthetic normal/analog/profile1; no USB/handshake/Windows/device"
+}

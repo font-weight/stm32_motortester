@@ -1,0 +1,24 @@
+   text	   data	    bss	    dec	    hex	filename
+   2950	      0	      0	   2950	    b86	./mt_tx.o
+   1054	      0	      0	   1054	    41e	./mt_wire.o
+
+./mt_tx.o:
+                 U memmove
+                 U mt_wire_encode
+
+./mt_wire.o:
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:4:17:read32	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:40:13:append	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:12:12:shape	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:54:6:mt_tx_init	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:57:14:mt_tx_hello	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:76:14:mt_tx_enqueue	16	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:88:9:mt_tx_terminal_committed	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:93:20:mt_tx_window_status	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:110:14:mt_tx_stop	600	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:165:14:mt_tx_poll	160	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:10:13:put32	8	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:13:17:get32	8	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:26:10:mt_wire_crc32	8	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:36:16:mt_wire_encode	568	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:64:16:mt_wire_decode	568	static

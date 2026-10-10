@@ -1,0 +1,38 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12 -m unittest discover -s host/tests -p test_session.py -v
+cwd=/tmp/critic-b-session-477
+test_arm_failure_then_stop_error_recovers_immediately (test_session.SessionTests.test_arm_failure_then_stop_error_recovers_immediately) ... ok
+test_bad_window_metadata_and_codes_fail_closed (test_session.SessionTests.test_bad_window_metadata_and_codes_fail_closed) ... ok
+test_begin_end_is_terminal_admission_not_measurement_success (test_session.SessionTests.test_begin_end_is_terminal_admission_not_measurement_success) ... ok
+test_bounded_stress_keeps_one_rx_one_terminal_no_history (test_session.SessionTests.test_bounded_stress_keeps_one_rx_one_terminal_no_history) ... ok
+test_clock_near_uint64_limit_does_not_overflow_deadline (test_session.SessionTests.test_clock_near_uint64_limit_does_not_overflow_deadline) ... ok
+test_complete_caps_fields_and_missing_supported_path (test_session.SessionTests.test_complete_caps_fields_and_missing_supported_path) ... ok
+test_config_ack_requires_exact_echo_and_next_id (test_session.SessionTests.test_config_ack_requires_exact_echo_and_next_id) ... ok
+test_data_is_forwarded_bounded_and_downstream_owns_progress_deadline (test_session.SessionTests.test_data_is_forwarded_bounded_and_downstream_owns_progress_deadline) ... ok
+test_delayed_stopped_status_does_not_cancel_pending_rearm (test_session.SessionTests.test_delayed_stopped_status_does_not_cancel_pending_rearm) ... ok
+test_duplicate_terminal_never_produces_second_event (test_session.SessionTests.test_duplicate_terminal_never_produces_second_event) ... ok
+test_early_abort_has_ids_reason_and_no_begin_or_samples (test_session.SessionTests.test_early_abort_has_ids_reason_and_no_begin_or_samples) ... ok
+test_every_caps_fixed_field_mask_and_pretrigger_mismatch (test_session.SessionTests.test_every_caps_fixed_field_mask_and_pretrigger_mismatch) ... ok
+test_full_control_success_and_repeated_stop_without_phantom_abort (test_session.SessionTests.test_full_control_success_and_repeated_stop_without_phantom_abort) ... ok
+test_hello_cannot_be_preceded_by_status (test_session.SessionTests.test_hello_cannot_be_preceded_by_status) ... ok
+test_hello_exact_header_and_bounded_public_objects (test_session.SessionTests.test_hello_exact_header_and_bounded_public_objects) ... ok
+test_hello_values_and_reply_match_fail_closed (test_session.SessionTests.test_hello_values_and_reply_match_fail_closed) ... ok
+test_invalid_api_arguments_are_nonmutating (test_session.SessionTests.test_invalid_api_arguments_are_nonmutating) ... ok
+test_invalid_written_does_not_expire_or_mutate (test_session.SessionTests.test_invalid_written_does_not_expire_or_mutate) ... ok
+test_max_rx_exact_replay_allowed_before_exhaustion (test_session.SessionTests.test_max_rx_exact_replay_allowed_before_exhaustion) ... ok
+test_max_tx_request_never_emit_reserved_uint32_max (test_session.SessionTests.test_max_tx_request_never_emit_reserved_uint32_max) ... ok
+test_old_session_ignored_without_even_clock_mutation (test_session.SessionTests.test_old_session_ignored_without_even_clock_mutation) ... ok
+test_partial_zero_writes_and_final_byte_deadline (test_session.SessionTests.test_partial_zero_writes_and_final_byte_deadline) ... ok
+test_protocol_fault_is_finite_and_triggers_recovery (test_session.SessionTests.test_protocol_fault_is_finite_and_triggers_recovery) ... ok
+test_rejected_config_preserves_previous_configuration_and_generation (test_session.SessionTests.test_rejected_config_preserves_previous_configuration_and_generation) ... ok
+test_sequence_gap_conflict_stale_and_unknown_type (test_session.SessionTests.test_sequence_gap_conflict_stale_and_unknown_type) ... ok
+test_stop_ack_cannot_precede_earlier_command_reply (test_session.SessionTests.test_stop_ack_cannot_precede_earlier_command_reply) ... ok
+test_stop_ack_needs_terminal_for_begun_window (test_session.SessionTests.test_stop_ack_needs_terminal_for_begun_window) ... ok
+test_stop_never_overtakes_partial_arm (test_session.SessionTests.test_stop_never_overtakes_partial_arm) ... ok
+test_terminal_positive_ids_and_stopped_generation_data (test_session.SessionTests.test_terminal_positive_ids_and_stopped_generation_data) ... ok
+test_transport_recovery_preserves_fragments_action_and_fresh_nonce (test_session.SessionTests.test_transport_recovery_preserves_fragments_action_and_fresh_nonce) ... ok
+test_waiting_never_transfer_times_out (test_session.SessionTests.test_waiting_never_transfer_times_out) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.285s
+
+OK

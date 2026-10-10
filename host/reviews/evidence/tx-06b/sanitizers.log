@@ -1,0 +1,4 @@
++ SANITIZE=1
++ ASAN_OPTIONS=detect_leaks=0
++ sh tests/transport/run.sh
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552

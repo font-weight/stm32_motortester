@@ -1,0 +1,16 @@
+test_all_64_capability_masks_and_4_edge_masks (__main__.IndependentCriticProbes.test_all_64_capability_masks_and_4_edge_masks) ... ok
+test_data_limits_and_terminal_barrier (__main__.IndependentCriticProbes.test_data_limits_and_terminal_barrier) ... ok
+test_downstream_fault_after_end_never_leaves_reusable_measurement (__main__.IndependentCriticProbes.test_downstream_fault_after_end_never_leaves_reusable_measurement) ... ok
+test_every_command_every_write_split_and_deadline (__main__.IndependentCriticProbes.test_every_command_every_write_split_and_deadline) ... Exhaustive command split cases: {'HELLO': 37, 'CAPS': 29, 'CONFIG': 45, 'ARM': 33, 'STOP': 33}
+ok
+test_foreign_every_type_and_matching_malformed_type_recover_boundedly (__main__.IndependentCriticProbes.test_foreign_every_type_and_matching_malformed_type_recover_boundedly) ... ok
+test_invalid_calls_cannot_hide_or_trigger_expired_deadline (__main__.IndependentCriticProbes.test_invalid_calls_cannot_hide_or_trigger_expired_deadline) ... ok
+test_max_tx_reservation_accounts_for_unstarted_ordinary (__main__.IndependentCriticProbes.test_max_tx_reservation_accounts_for_unstarted_ordinary) ... ok
+test_pending_arm_rejection_keeps_previous_generation_until_stop_error (__main__.IndependentCriticProbes.test_pending_arm_rejection_keeps_previous_generation_until_stop_error) ... ok
+test_repeated_rearm_window_number_and_stale_generation (__main__.IndependentCriticProbes.test_repeated_rearm_window_number_and_stale_generation) ... ok
+test_stop_serializes_behind_caps_and_config (__main__.IndependentCriticProbes.test_stop_serializes_behind_caps_and_config) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.384s
+
+OK

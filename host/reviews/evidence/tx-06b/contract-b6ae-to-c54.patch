@@ -1,0 +1,13 @@
+diff --git a/protocol/wire-v0.1.md b/protocol/wire-v0.1.md
+index 8bb5e61..c62e6fa 100644
+--- a/protocol/wire-v0.1.md
++++ b/protocol/wire-v0.1.md
+@@ -138,7 +138,7 @@ ERROR codes: 1 INVALID_CONFIG, 2 BUSY, 3 STALE_CONFIG, 4 STALE_GENERATION, 5 UNK
+ Abort reasons: 1 STOP, 2 DMA_ERROR, 3 ACQ_DEADLINE, 4 TRANSFER_TIMEOUT, 5 DISCONNECT, 6 INTERNAL.
+ STATUS.reason: 0 NONE, 1 DMA_ERROR, 2 ACQ_DEADLINE, 3 TRANSFER_TIMEOUT, 4 PROTOCOL_RECOVERY, 5 INTERNAL, 6 COUNTER_SATURATED. Пространство независимо от ERROR/ABORT. Штатные состояния имеют reason0; ERROR указывает причину.
+ 
+-Счётчики сбрасывает HELLO, wrap запрещён. Observed_external_edges увеличивается на каждый обнаруженный выбранный фронт, включая busy/STOPPED. External_edge_id принятого внешнего запуска равен новому значению счётчика; analog/Auto имеют0. Busy_external_edges увеличивается, если фронт не принят из-за состояния или аналогового source. Dropped_windows увеличивается при отмене выделенного окна; отсутствие аналогового события его не меняет. При насыщении любого счётчика — ERROR/COUNTER_SATURATED и новый HELLO; неоднозначный id не выдаётся. Число всех физических команд без измеренной границы частоты не гарантируется.
++Счётчики сбрасывает HELLO, wrap запрещён. Observed_external_edges увеличивается на каждый обнаруженный выбранный фронт, включая busy/STOPPED. External_edge_id принятого внешнего запуска равен новому значению счётчика; при trigger_kind=external он ненулевой в любом режиме, включая Auto; при trigger_kind=analog или auto_timeout он равен0. Busy_external_edges увеличивается, если фронт не принят из-за состояния или аналогового source. Dropped_windows увеличивается при отмене выделенного окна; отсутствие аналогового события его не меняет. При насыщении любого счётчика — ERROR/COUNTER_SATURATED и новый HELLO; неоднозначный id не выдаётся. Число всех физических команд без измеренной границы частоты не гарантируется.
+ 
+ Отсоединённый прибор не обязан передать сообщение об отсоединении по уже разорванному USB; ПК фиксирует причину сам. Счётчики внешних фронтов считают обнаруженные аппаратурой события, а не гарантированное количество команд стенда. Их предел частоты и точность требуют измерения; пропуск/занятость не обозначает отсутствие искры.
+ 

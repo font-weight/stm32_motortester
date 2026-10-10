@@ -1,0 +1,37 @@
+{
+  "reviewer_role": "Critic-B",
+  "independent_of_production_and_conformance": true,
+  "head_sha": "477057aadc9bc8e757bc8ef817125377e816d212",
+  "base_sha": "c89c12df984390b34785eba81665abd6418658e2",
+  "provisional_contract_sha": "b6ae8025baf1a47e8173997029d2d8b858ada74c",
+  "rubric_version": "1.0",
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "scores": {
+    "C1": 10,
+    "C2": 10,
+    "C3": 10,
+    "C4": 10,
+    "C5": 10
+  },
+  "unrounded_score": 10.0,
+  "threshold": 9.5,
+  "verdict": "PASS",
+  "open_p0_p1": [],
+  "missing_mandatory_evidence": [],
+  "scope": "HOST-006 pure draft Normal/analog control-session; synthetic Linux only",
+  "full_host_test_count": 211,
+  "focused_test_count": 70,
+  "focused_optimized_test_count": 70,
+  "critic_probe_groups": 10,
+  "critic_probe_optimized_groups": 10,
+  "skips": 0,
+  "global_contract_acceptance": false,
+  "windows_or_hardware_acceptance": false,
+  "integration_acceptance": false
+}

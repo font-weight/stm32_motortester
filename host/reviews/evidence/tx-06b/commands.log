@@ -1,0 +1,96 @@
++ uname -a
+Linux 8714d2c6650e 6.18.44 #1 SMP Sat Sep 26 20:02:31 UTC 2026 x86_64 GNU/Linux
++ cc --version
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ python3 --version
+Python 3.12.14
++ cd /tmp/critic-b-tx-06b/source
++ sha256sum -c /tmp/critic-b-tx-06b/evidence/source-sha256.txt
+firmware/transport/README.md: OK
+firmware/transport/mt_tx.c: OK
+firmware/transport/mt_tx.h: OK
+tests/transport/evidence-native.txt: OK
+tests/transport/run.sh: OK
+tests/transport/test_mt_tx.c: OK
+firmware/protocol/mt_wire.c: OK
+firmware/protocol/mt_wire.h: OK
++ sh tests/transport/run.sh
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552
++ SANITIZE=1 ASAN_OPTIONS=detect_leaks=0 UBSAN_OPTIONS=halt_on_error=1 sh tests/transport/run.sh
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552
++ cc -std=c11 -O2 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Werror -shared -fPIC firmware/protocol/mt_wire.c firmware/transport/mt_tx.c -o /tmp/critic-b-tx-06b/rerun/libtx.so
++ python3 /tmp/critic-b-tx-06b/evidence/independent_tx.py /tmp/critic-b-tx-06b/rerun/libtx.so
++ cc -std=c11 -O1 -g -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Werror -shared -fPIC -fsanitize=address,undefined -fno-omit-frame-pointer firmware/protocol/mt_wire.c firmware/transport/mt_tx.c -o /tmp/critic-b-tx-06b/rerun/libtx-san.so
++ LD_PRELOAD=/usr/lib/gcc/x86_64-linux-gnu/14/libasan.so ASAN_OPTIONS=detect_leaks=0 UBSAN_OPTIONS=halt_on_error=1 python3 /tmp/critic-b-tx-06b/evidence/independent_tx.py /tmp/critic-b-tx-06b/rerun/libtx-san.so
++ cmp /tmp/critic-b-tx-06b/rerun/independent.json /tmp/critic-b-tx-06b/rerun/independent-sanitized.json
++ cat /tmp/critic-b-tx-06b/rerun/independent.json
+{
+  "status": "PASS",
+  "seed": 20261010,
+  "counts": {
+    "stop_byte_boundaries": 988,
+    "hello_byte_boundaries": 988,
+    "resource_limit": 1,
+    "io_recovery": 24,
+    "stall_timeout": 4,
+    "frame_timeout": 2,
+    "stop_timeout": 2,
+    "sequence_boundary": 1,
+    "physical_reset": 1,
+    "random_fragmentation_copy": 2000,
+    "initial_stop_no_window": 1,
+    "early_abort_no_begin": 1,
+    "repeat_stop_status_boundaries": 55,
+    "invalid_stop_atomicity": 28,
+    "argument_shape": 11264,
+    "zero_window_identity": 8,
+    "caller_header_rejected": 2,
+    "null_guards": 1
+  },
+  "checks": 2369244,
+  "scope": "host native TX queue; independent COBS/header/CRC byte oracle; no dispatcher/USB/Windows/hardware proof"
+}
++ cc -std=c11 -O2 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Werror -shared -fPIC /tmp/critic-b-tx-06b/source-06b/firmware/protocol/mt_wire.c /tmp/critic-b-tx-06b/source-06b/firmware/transport/mt_tx.c -o /tmp/critic-b-tx-06b/rerun/libtx-old.so
++ set +e
++ python3 /tmp/critic-b-tx-06b/evidence/independent_tx.py /tmp/critic-b-tx-06b/rerun/libtx-old.so regression
++ old_status=1
++ set -e
++ test 1 -eq 1
++ grep -F RuntimeError: old Stop ACK released new session barrier /tmp/critic-b-tx-06b/rerun/old-regression.stderr
+RuntimeError: old Stop ACK released new session barrier
++ cd /tmp/critic-b-tx-06b/rerun
++ cc -std=c11 -Os -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Werror -fstack-usage -c /tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c /tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c
++ size ./mt_tx.o ./mt_wire.o
++ nm -u ./mt_tx.o ./mt_wire.o
++ cat ./mt_tx.su ./mt_wire.su
++ cat host-resource.log
+   text	   data	    bss	    dec	    hex	filename
+   2950	      0	      0	   2950	    b86	./mt_tx.o
+   1054	      0	      0	   1054	    41e	./mt_wire.o
+
+./mt_tx.o:
+                 U memmove
+                 U mt_wire_encode
+
+./mt_wire.o:
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:4:17:read32	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:40:13:append	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:12:12:shape	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:54:6:mt_tx_init	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:57:14:mt_tx_hello	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:76:14:mt_tx_enqueue	16	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:88:9:mt_tx_terminal_committed	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:93:20:mt_tx_window_status	8	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:110:14:mt_tx_stop	600	static
+/tmp/critic-b-tx-06b/source/firmware/transport/mt_tx.c:165:14:mt_tx_poll	160	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:10:13:put32	8	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:13:17:get32	8	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:26:10:mt_wire_crc32	8	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:36:16:mt_wire_encode	568	static
+/tmp/critic-b-tx-06b/source/firmware/protocol/mt_wire.c:64:16:mt_wire_decode	568	static
++ echo REVIEW COMMANDS COMPLETE: current candidate PASS; old candidate known regression reproduced
+REVIEW COMMANDS COMPLETE: current candidate PASS; old candidate known regression reproduced

@@ -1,0 +1,13 @@
+test_bad_api_inputs_are_bounded_and_not_coerced (test_wire_demo.WireDemoTests.test_bad_api_inputs_are_bounded_and_not_coerced) ... ok
+test_cli_outputs_manifest_files_and_graphs_without_clobber (test_wire_demo.WireDemoTests.test_cli_outputs_manifest_files_and_graphs_without_clobber) ... ok
+test_crc_valid_wrong_session_sequence_end_crc_and_metadata_reject (test_wire_demo.WireDemoTests.test_crc_valid_wrong_session_sequence_end_crc_and_metadata_reject) ... ok
+test_failed_decode_never_publishes_and_existing_record_is_preserved (test_wire_demo.WireDemoTests.test_failed_decode_never_publishes_and_existing_record_is_preserved) ... ok
+test_largest_supported_sequence_stops_before_reserved_maximum (test_wire_demo.WireDemoTests.test_largest_supported_sequence_stops_before_reserved_maximum) ... ok
+test_missing_corrupt_reordered_repeated_and_trailing_frames_reject (test_wire_demo.WireDemoTests.test_missing_corrupt_reordered_repeated_and_trailing_frames_reject) ... ok
+test_nine_valid_data_blocks_may_have_different_sizes (test_wire_demo.WireDemoTests.test_nine_valid_data_blocks_may_have_different_sizes) ... ok
+test_twenty_windows_and_fragment_sizes_preserve_every_code (test_wire_demo.WireDemoTests.test_twenty_windows_and_fragment_sizes_preserve_every_code) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.393s
+
+OK

@@ -1,0 +1,30 @@
+{
+  "issue": {
+    "url": "https://github.com/font-weight/stm32_motortester/issues/24",
+    "title": "HOST-006: bounded draft control-session lifecycle",
+    "issue_number": 24,
+    "body": "Dot B host-only task, pinned to shared PR14 b6ae8025baf1a47e8173997029d2d8b858ada74c; shared contract unaccepted. Pure controller HELLO -> CAPS -> CONFIG -> ARM -> STOP -> recovery, injected time/transport progress. No serial/USB, GUI, files, sample assembly or continuous RELEASE loop. Normal-analog synthetic control path; unresolved Auto+external semantic acceptance remains deferred.\n\nPredeclared acceptance: validate matching HELLO_ACK and complete CAPS consistency before arm; strict direction/session/sequence/request/type and exact-last replay; bounded immutable ticket/events/state (one ordinary request plus Stop, one serialized frame, one replay/terminal record). TX sequence provisional until first positive write; zero bytes don't consume it; finish partial frame before another; last byte starts1000ms reply deadline. Unknown write outcome enters recovery, never blind replay. Invalid API/time/input bounds preserve state.\n\nValidate accepted CONFIG_ACK; rejected config retains prior settings. ARM generation=requestID, no arm across config/Stop/window barriers. Normal waiting alone has no transfer timeout. Stop may coexist with pending ARM; earlier reply cannot rearm; STOP_ACK removes Stop barrier; matching STOP ERROR enters immediate recovery; no automatic retries. EarlyABORT is one bounded cancellation event with IDs/reason, never invented BEGIN/samples. Terminal ordering/replay/old generation guarded; admitted END is not independently accepted measurement without downstream full sample/CRC validation. Recovery asks outer owner to preserve incomplete fragments/reset transport; new nonce required to resume.\n\nIndependent transcripts cover success, inconsistent CAPS/config, partial/zero writes, Stop before/after ARM_ACK, ARM failure->STOP ERROR, earlyABORT, END->STOP_ACK, replay/gaps/reconnect, exact timeout/MAXID boundaries and bounded stress. Host write-stall policy must be explicit caller policy, not invented wire rule. These requirements remain subject to fixed exact-SHA Critic-B gate; no Windows/device claim.\n\nNew files only: host/motortester/session.py, host/tests/test_session.py, host/docs/session-controller.md; independent host/tests/test_session_conformance.py and host/tests/fixtures/session/**. Root publishes, A retains shared protocol/firmware/CI/merge ownership.",
+    "state": "open",
+    "user": {
+      "login": "font-weight",
+      "name": "font-weight",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/62782801?v=4",
+      "id": 62782801
+    },
+    "assignees": null,
+    "labels": null,
+    "milestone": null,
+    "state_reason": null,
+    "comments": 0,
+    "created_at": "2026-10-10T12:59:11Z",
+    "updated_at": "2026-10-10T12:59:38Z",
+    "closed_at": null,
+    "display_url": "https://github.com/font-weight/stm32_motortester/issues/24",
+    "display_title": "HOST-006: bounded draft control-session lifecycle"
+  },
+  "url": "https://github.com/font-weight/stm32_motortester/issues/24",
+  "title": "HOST-006: bounded draft control-session lifecycle",
+  "display_url": "https://github.com/font-weight/stm32_motortester/issues/24",
+  "display_title": "HOST-006: bounded draft control-session lifecycle"
+}
