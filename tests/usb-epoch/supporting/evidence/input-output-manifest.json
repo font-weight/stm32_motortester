@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c",
+    "sha256": "c3f70c9937359d263cc78c668bd2a9cd91f8d384d82d958d6587a777b6947159"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.h",
+    "sha256": "0846781e5688642fc7ffb59910d3acc2492b3dd9afbef406a4b4671dc2d8be0b"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/tests/epoch_independent.c",
+    "sha256": "4064fe5801df86fb762ba0b80eaf4622f0e33bca2cc820a23e7a02af30698a93"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/tests/abi_probe.c",
+    "sha256": "9d8c5b2ce4624e4ffdc3c06adfe3fdcf0c91155928e66bd6a260839e4feef5a4"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/tests/run.py",
+    "sha256": "e79b31ed4d29a021d1f8ca36f81af829fc2f260a3767fbe09749725e261cec37"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/evidence/mt_usb_epoch.arm.o",
+    "sha256": "e92ba76dbfc3fe56a5ec152275c6188ad8b112b7cced8d5f5d840001e220d4a7"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/evidence/test-strict",
+    "sha256": "1f14279901101e6d57113f637cedcb26eb937907fc779d94328d828330657ac0"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/evidence/test-sanitize",
+    "sha256": "549420c6f5b3584e6bab178f023a0db3450d7e5b44d88c90993e9356019b612b"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/inputs/issue54.json",
+    "sha256": "acc1700b4a7f80a04600b08354871df38aa92d9f6bab74c27aec720776a133a6"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/inputs/reset-barrier-REPORT_RU.md",
+    "sha256": "509312fadf462dfb7f6c49bc4296f7f437ac2317787316ec0edb7541a7c9b4ed"
+  },
+  {
+    "path": "/workspace/shared/usb-epoch-independent/inputs/reference-provenance.json",
+    "sha256": "5e61bf6d97ed8d2986f5c7b69278c146ad28439d822f7341fb1f02eaf097b824"
+  },
+  {
+    "path": "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+    "sha256": "9b369e040fa0889790fc1aaf673ed3099436f360cd022265f8e7c97d61ed00ec"
+  }
+]

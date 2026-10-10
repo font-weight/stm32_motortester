@@ -1,0 +1,4 @@
+$ /workspace/shared/usb-epoch-independent/evidence/mutants/dispatch_during_pause --directed
+FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:27 (soft serial prevents stale acknowledgment): !mt_usb_epoch_core_io(s, e)
+
+exit=1
