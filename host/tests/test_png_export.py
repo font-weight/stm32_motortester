@@ -111,6 +111,31 @@ class PngExportTests(unittest.TestCase):
         self.assertIn("Не удалось", self.window.status_label.text())
         self.assertIs(self.window.capture, original)
 
+    def test_long_unbroken_quality_flags_fit_actual_png_text_rectangles(self):
+        self.window.generate_demo()
+        capture = replace(self.window.capture,
+                          quality_flags=tuple(f"flag{i}_" + "Ж" * 57 for i in range(16)))
+        self.window.show_capture(capture)
+        self.window.resize(self.window.minimumSize())
+        self.app.processEvents()
+        text_bounds = []
+        draw_text = QtGui.QPainter.drawText
+
+        def record_text(painter, *args):
+            if len(args) == 3 and isinstance(args[0], QtCore.QRect) and isinstance(args[2], str):
+                rect, flags, text = args
+                bounds = painter.fontMetrics().boundingRect(rect, flags, text)
+                text_bounds.append((text, rect, bounds))
+            return draw_text(painter, *args)
+
+        with patch.object(QtGui.QPainter, "drawText", new=record_text):
+            image = self.window.png_image()
+        self.assertFalse(image.isNull())
+        footer = next(item for item in text_bounds if "flag15_" in item[0])
+        self.assertLessEqual(footer[2].width(), footer[1].width())
+        self.assertLessEqual(footer[2].height(), footer[1].height())
+        self.assertIs(self.window.capture, capture)
+
     def test_repeated_export_device_provenance_and_quality(self):
         self.window.generate_demo()
         c = replace(self.window.capture, origin="device", samples=(0, 4095),

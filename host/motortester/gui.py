@@ -516,7 +516,7 @@ class MainWindow(QtWidgets.QMainWindow):
         footer += "Изображение не заменяет исходную запись .mtcap. Сохранён текущий масштаб графика."
         font = QtGui.QFont("DejaVu Sans", 10)
         metrics = QtGui.QFontMetrics(font)
-        flags = QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.TextFlag.TextWordWrap
+        flags = QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.TextFlag.TextWrapAnywhere
         inner_width = max(1, width - 32)
         header_h = metrics.boundingRect(QtCore.QRect(0, 0, inner_width, 10000), int(flags), header).height() + 24
         footer_h = metrics.boundingRect(QtCore.QRect(0, 0, inner_width, 10000), int(flags), footer).height() + 24
