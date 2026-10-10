@@ -298,6 +298,34 @@ class ViewerTests(unittest.TestCase):
         QtTest.QTest.qWait(100)
         self.assertEqual(self.window.plot_scroll.verticalScrollBar().maximum(), 0)
 
+    def test_sidebar_keeps_actions_and_wrapped_warnings_reachable(self):
+        self.generate()
+        original_style = self.window.styleSheet()
+        for pixels in (13, 18, 22):
+            with self.subTest(font_pixels=pixels):
+                self.window.setStyleSheet(original_style.replace("font-size: 13px", f"font-size: {pixels}px"))
+                self.window.resize(1000, 710)
+                QtTest.QTest.qWait(100)
+                sidebar = self.window.findChild(QtWidgets.QFrame, "sidebar")
+                for label in sidebar.findChildren(QtWidgets.QLabel):
+                    self.assertGreaterEqual(label.height(), label.heightForWidth(label.width()), label.text())
+                for button in sidebar.findChildren(QtWidgets.QPushButton):
+                    self.assertGreaterEqual(button.height(), button.minimumSizeHint().height(), button.text())
+                    self.assertGreaterEqual(button.width(), button.minimumSizeHint().width(), button.text())
+                scroll = self.window.sidebar_scroll
+                self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
+                for button in (self.window.generate_button, self.window.png_button, self.window.help_button):
+                    scroll.ensureWidgetVisible(button)
+                    self.app.processEvents()
+                    center = button.mapTo(scroll.viewport(), button.rect().center())
+                    self.assertTrue(scroll.viewport().rect().contains(center), button.text())
+                self.assertEqual(self.window.size(), QtCore.QSize(1000, 710))
+        self.window.setStyleSheet(original_style)
+        self.window.resize(1240, 900)
+        QtTest.QTest.qWait(100)
+        self.assertEqual(self.window.sidebar_scroll.verticalScrollBar().maximum(), 0)
+        self.assertEqual(self.window.sidebar_scroll.horizontalScrollBar().maximum(), 0)
+
     def test_long_quality_flags_are_scrollable_and_do_not_resize_window(self):
         capture = replace(self.generate(), quality_flags=tuple(f"флаг_{i}_" + "я" * 55 for i in range(16)))
         original_height = self.window.height()

@@ -156,7 +156,6 @@ class MainWindow(QtWidgets.QMainWindow):
         body = QtWidgets.QHBoxLayout()
         body.setSpacing(18)
         sidebar = QtWidgets.QFrame(objectName="sidebar")
-        sidebar.setFixedWidth(262)
         side = QtWidgets.QVBoxLayout(sidebar)
         side.setContentsMargins(18, 20, 18, 20)
         side.setSpacing(12)
@@ -182,7 +181,15 @@ class MainWindow(QtWidgets.QMainWindow):
         side.addWidget(_label("Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.", "muted", wrap=True))
         self.help_button = self._button("Справка", "help", self.show_help, "F1")
         side.addWidget(self.help_button)
-        body.addWidget(sidebar)
+        # Keep every action and warning reachable on small windows and with
+        # larger platform fonts. The content keeps its minimum layout size;
+        # the viewport, rather than its child labels/buttons, absorbs pressure.
+        side.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinimumSize)
+        self.sidebar_scroll = QtWidgets.QScrollArea()
+        self.sidebar_scroll.setFixedWidth(262)
+        self.sidebar_scroll.setWidgetResizable(True)
+        self.sidebar_scroll.setWidget(sidebar)
+        body.addWidget(self.sidebar_scroll)
 
         content = QtWidgets.QVBoxLayout()
         content.setSpacing(14)
