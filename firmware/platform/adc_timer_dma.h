@@ -58,6 +58,7 @@ typedef struct {
     uint32_t pclk2_hz;
     uint32_t timer_hz;
     uint32_t adc_hz;
+    uint32_t timer_psc;
     uint32_t timer_arr;
 } mt_adc_dma_clock_t;
 
@@ -114,7 +115,7 @@ void mt_adc_dma_mmio_write32(void *user, uint32_t address, uint32_t value);
 mt_adc_dma_result_t mt_adc_dma_init(mt_adc_dma_t *driver,
                                   const mt_adc_dma_io_t *io, uint32_t hse_hz);
 /* Existing RCC must already provide 12 MHz ADC, legal APB clocks and an integer
- * 50 kS/s timer divisor. Does not alter RCC CFGR/CR, startup or oscillator choice.
+ * 1 MHz timer prescaler divisor (ARR=19 gives 50 kS/s). Does not alter RCC CFGR/CR, startup or oscillator choice.
  * Owns ADC1, PA0, TIM3, DMA1 channel 1; they must be exclusively reserved.
  * A successful stop is required before restart after a fault.
  */

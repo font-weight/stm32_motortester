@@ -147,10 +147,11 @@ static bool clock_plan(mt_adc_dma_t *d, bool initial)
     p.adc_hz = p.pclk2_hz / adcdiv;
     if (p.pclk1_hz > 36000000u || p.pclk2_hz > 72000000u ||
         p.pclk2_hz % adcdiv != 0u || p.adc_hz != 12000000u ||
-        p.timer_hz % MT_ADC_DMA_RATE_HZ != 0u ||
-        p.timer_hz < MT_ADC_DMA_RATE_HZ ||
-        p.timer_hz / MT_ADC_DMA_RATE_HZ > 65536u) { return false; }
-    p.timer_arr = p.timer_hz / MT_ADC_DMA_RATE_HZ - 1u;
+        p.timer_hz % UINT32_C(1000000) != 0u ||
+        p.timer_hz < UINT32_C(1000000) ||
+        p.timer_hz / UINT32_C(1000000) > 65536u) { return false; }
+    p.timer_psc = p.timer_hz / UINT32_C(1000000) - 1u;
+    p.timer_arr = 19u;
     if (initial) {
         d->clock = p;
         d->clock_cfgr = cfgr & CLOCK_MASK;
@@ -266,7 +267,7 @@ mt_adc_dma_result_t mt_adc_dma_start(mt_adc_dma_t *d)
     wr(d, TIM_SMCR, 0u);
     wr(d, TIM_DIER, 0u);
     wr(d, TIM_CCER, 0u); /* No output pins; TRGO is an internal route. */
-    wr(d, TIM_PSC, 0u);
+    wr(d, TIM_PSC, d->clock.timer_psc);
     wr(d, TIM_ARR, d->clock.timer_arr);
     wr(d, TIM_CNT, 0u);
     /* ADC clock is already enabled (ES096 2.6.2). UG loads PSC while ADC

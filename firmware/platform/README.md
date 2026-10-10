@@ -18,8 +18,12 @@
 - ADC clock 12 MHz; sample time 71.5 cycles. Расчёт преобразования:
   (71.5 + 12.5) / 12 MHz = 7 µs, без выдачи этого расчёта за измерение.
 - TIM3 update → TRGO; `ADC_CR2.EXTSEL=100`, `EXTTRIG=1`, `CONT=0`.
-- TIM3 `PSC=0`, `ARR=timer_clock / 50000 - 1`; нецелый делитель запрещён.
-  При timer clock 72 MHz это ARR=1439. Данный пример не утверждает, что
+- TIM3 `PSC=timer_clock / 1000000 - 1`, `ARR=19`; нецелый делитель
+  до 1 MHz запрещён. При timer clock 72 MHz это PSC=71, ARR=19, как
+  в проектном profile1. Фактические значения доступны в clock.timer_psc/timer_arr.
+  Варианты 24/48 MHz проверяются только как низкоуровневые конфигурации:
+  текущий bridge/profile1 должен отклонить их, поскольку его метаданные
+  фиксируют 72 MHz. Данный пример не утверждает, что
   конкретная плата действительно работает на 72 MHz или имеет HSE 8 MHz.
 - DMA1 channel 1, peripheral→memory, halfword/halfword, MINC, circular,
   high priority; нет DMA/TIM/ADC IRQ. Нужен регулярный foreground polling.

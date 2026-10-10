@@ -164,8 +164,9 @@ static void test_configuration_and_sequence(void)
     assert(driver.clock.pclk2_hz==72000000u);
     assert(driver.clock.timer_hz==72000000u);
     assert(driver.clock.adc_hz==12000000u);
-    assert(driver.clock.timer_arr==1439u);
-    assert(*slot(&hw,T_PSC)==0u && *slot(&hw,T_ARR)==1439u);
+    assert(driver.clock.timer_arr==19u);
+    assert(driver.clock.timer_psc==71u);
+    assert(*slot(&hw,T_PSC)==driver.clock.timer_psc && *slot(&hw,T_ARR)==19u);
     assert(*slot(&hw,T_CR2)==32u && *slot(&hw,T_SMCR)==0u);
     assert(*slot(&hw,T_DIER)==0u && *slot(&hw,T_CCER)==0u);
     assert(*slot(&hw,A_CR1)==0u && *slot(&hw,A_SMPR2)==6u);
@@ -212,13 +213,15 @@ static void test_clock_validation(void)
     *slot(&hw,R_CR)=3u|(3u<<24);
     *slot(&hw,R_CFGR)=2u|8u|(4u<<8)|(1u<<14)|(10u<<18);
     assert(mt_adc_dma_start(&driver)==MT_ADC_DMA_OK);
-    assert(driver.clock.timer_hz==48000000u && driver.clock.timer_arr==959u);
+    assert(driver.clock.timer_hz==48000000u && driver.clock.timer_arr==19u);
+    assert(driver.clock.timer_psc==47u && *slot(&hw,T_PSC)==47u);
     /* AHB /2: SYSCLK 48, HCLK24, APB1=24 (no doubling), ADC /2=12. */
     setup(); driver.hse_hz=0;
     *slot(&hw,R_CR)=3u|(3u<<24);
     *slot(&hw,R_CFGR)=2u|8u|(8u<<4)|(10u<<18);
     assert(mt_adc_dma_start(&driver)==MT_ADC_DMA_OK);
-    assert(driver.clock.hclk_hz==24000000u && driver.clock.timer_arr==479u);
+    assert(driver.clock.hclk_hz==24000000u && driver.clock.timer_arr==19u);
+    assert(driver.clock.timer_psc==23u && *slot(&hw,T_PSC)==23u);
 }
 
 static void test_busy_owner(void)

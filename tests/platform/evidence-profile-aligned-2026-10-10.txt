@@ -1,0 +1,114 @@
+ADC-001: повторная публикационная проверка коррекции timer profile
+Дата: 2026-10-10 UTC; репозиторий font-weight/stm32_motortester, issue #25, draft PR #27.
+Предыдущий опубликованный baseline: 53f3c55e33c91225ba7befbefc6a11db4277e49f.
+База PR #16 остаётся 11f63ebb12fb9fb45cfcc1735782dd5405bf331b.
+
+Этот текст относится к обновлённым исходникам, перечисленным ниже.
+Автор коррекции — Dot A. Публикатор не редактировал исходники: четыре файла
+скопированы побайтно из проверенного коррекционного кандидата (C, H, README,
+register-model test). Остальные четыре исходных файла остались прежними.
+
+BASELINE / ИСТОРИЯ:
+Файл evidence-publication-2026-10-10.txt сохранён БЕЗ ИЗМЕНЕНИЙ как свидетельство
+исключительно baseline 53f3c55e33c91225ba7befbefc6a11db4277e49f. Его старые
+хеши, PSC0/ARR1439, 2324-byte text и 856-byte context не описывают новую версию.
+Текущая проверка и размеры находятся в этом файле; старые данные не скрыты.
+
+Коррекция:
+clock plan теперь требует целый prescaler к 1 MHz, экспортирует timer_psc,
+программирует PSC=timer_hz/1000000-1, ARR=19. При канонических 72 MHz
+это PSC71/ARR19 и номинальные 50 kS/s, как в current wire profile1.
+Тесты отдельно проверяют 72/48/24 MHz и PSC71/47/23, ARR19.
+Низкоуровневые 24/48 MHz варианты ЗАПРЕЩЕНЫ для текущего application profile1:
+его CAPS/window metadata фиксируют 72 MHz. Будущий dispatcher должен проверять
+фактический clock plan и отказать иным вариантам. Эта коррекция не реализует
+и не доказывает такой dispatcher; соответствующий integration gate открыт.
+
+Лично повторено публикатором в Linux x86_64:
+cc (Debian 14.2.0-19) 14.2.0; arm-none-eabi-gcc (15:14.2.rel1-1) 14.2.1.
+Из нового чистого snapshot, с новым BUILD_DIR, без CI:
+  ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 \
+    BUILD_DIR="$OUT" ARM_CC=/path/to/arm-none-eabi-gcc \
+    ARM_NEWLIB_INCLUDE=/path/to/newlib/include sh tests/platform/run_tests.sh
+  arm-none-eabi-size "$OUT/adc_timer_dma.o"
+  arm-none-eabi-nm -S --size-sort "$OUT/adc_timer_dma_abi.o"
+  arm-none-eabi-nm -u "$OUT/adc_timer_dma.o"
+  cat "$OUT/adc_timer_dma.su"
+Здесь OUT — новый временный каталог; команды выполняются из корня checkout.
+Runner и verified toolchain прежние. C11 strict -Wall/-Wextra/-Werror/-Wpedantic,
+-Wconversion/-Wshadow, -fno-short-enums; native -O2, sanitizer -O1,
+ARM -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -Os -ffreestanding.
+Все команды завершились с exit code 0. LeakSanitizer отключён из-за ptrace;
+его успешная проверка не заявляется. Бинарники в репозиторий не включены.
+
+Вывод runner:
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+Cortex-M3 object compiled; no startup/linker/USB or hardware test implied
+
+Ресурсные результаты (абсолютные пути нормализованы):
+   text	   data	    bss	    dec	    hex	filename
+   2336	      0	      0	   2336	    920	$OUT/adc_timer_dma.o
+00000000 00000010 R mt_adc_dma_io_bytes
+00000010 0000001c R mt_adc_dma_block_bytes
+0000002c 0000035c R mt_adc_dma_context_bytes
+         U memset
+firmware/platform/adc_timer_dma.c:76:17:rd	0	static
+firmware/platform/adc_timer_dma.c:81:13:wr	0	static
+firmware/platform/adc_timer_dma.c:86:17:now	0	static
+firmware/platform/adc_timer_dma.c:164:13:wait_clear	24	static
+firmware/platform/adc_timer_dma.c:187:13:gates_enabled	8	static
+firmware/platform/adc_timer_dma.c:194:13:quiesce	16	static
+firmware/platform/adc_timer_dma.c:213:28:fail.isra	8	static
+firmware/platform/adc_timer_dma.c:101:13:clock_plan	32	static
+firmware/platform/adc_timer_dma.c:64:10:mt_adc_dma_mmio_read32	0	static
+firmware/platform/adc_timer_dma.c:70:6:mt_adc_dma_mmio_write32	0	static
+firmware/platform/adc_timer_dma.c:221:21:mt_adc_dma_init	24	static
+firmware/platform/adc_timer_dma.c:233:21:mt_adc_dma_start	16	static
+firmware/platform/adc_timer_dma.c:323:21:mt_adc_dma_read_block	40	static
+firmware/platform/adc_timer_dma.c:393:21:mt_adc_dma_stop	8	static
+
+Текущие размеры: object text 2336 B, context 860 B, block 28 B, I/O 16 B.
+Неразрешён memset; вызывающая сторона выделяет контекст, поэтому bss=0 не равно
+нулевой RAM. Собственный frame 40 B не является полным stack/callback/IRQ budget.
+
+Независимый Critic-A отдельно проверил эту коррекцию и независимую динамическую
+модель. Это свидетельство публикатора не заменяет его exact-SHA verdict.
+Предпубликационный статус Critic-A: BLOCKED_EVIDENCE, score null. Окончательная
+привязка к опубликованному head и интеграционный профиль остаются отдельным gate.
+Полный firmware link/map/stack/USB, startup/timebase, физические ADC/DMA/частота,
+плата, Windows/native USB и LV-001 не подтверждены. Без merge и уровня готовности.
+
+Точные восемь исходных входов этой версии:
+firmware/platform/adc_timer_dma.h
+  bytes=5156 mode=100644
+  sha256=a2924261864922b9267f0c0ddba6f24fed9574940159b8d9f1b135a19fa4c629
+  git_blob_sha=881b49e587f2b580661a7661d6a434967c34e91e
+firmware/platform/adc_timer_dma.c
+  bytes=15359 mode=100644
+  sha256=867770446f527637dd20668e3d94d4513bfa72d248643a30cf68d64f53d69552
+  git_blob_sha=2d4dbc873cf8e0bdb590254643fa22f117fbe4c3
+firmware/platform/README.md
+  bytes=14858 mode=100644
+  sha256=a640c8ea2e17de2455bc205d0311b14b8abbdb586c968a4c3d8e03b678cd1080
+  git_blob_sha=0f7dcc3b51e9b640b9fcfb469f0fe8373df412c4
+tests/platform/test_adc_timer_dma.c
+  bytes=16335 mode=100644
+  sha256=38a0d038f85bc659f2663322b00e91c71c568bb3cc9952e3c57691b983c173b9
+  git_blob_sha=95679f3b1e3db920a071540fc2a6708ad2afc9a3
+tests/platform/run_tests.sh
+  bytes=1753 mode=100755
+  sha256=4c4e42874e518d2a54b65de5b58156557a6fbe99880634141eb28fbfad3752a6
+  git_blob_sha=6656dc484ef05bfd3d5135656a28250df2d423d7
+tests/platform/abi_probe.c
+  bytes=576 mode=100644
+  sha256=254e950b7fc90649743ac3a3560355fd72506a2afbd1b6747a05e4019fc85b57
+  git_blob_sha=70e7f677e4c08e194dc9b1613397ec0d476093b1
+tests/platform/README.md
+  bytes=4554 mode=100644
+  sha256=41542058e385e3306076c7d32fdc9cb6afccb5d3887a29ef8130a4f2c7e335e9
+  git_blob_sha=cd4e06810b1085f1cf678309742632970471694c
+tests/platform/.gitignore
+  bytes=8 mode=100644
+  sha256=020c2606e8ed484089c2083e0be438b9d0736bee1558a6b76af0d58bd23f69cf
+  git_blob_sha=84c048a73cc2e5dd24f807669eb99b0ce3123195
