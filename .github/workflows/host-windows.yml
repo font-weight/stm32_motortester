@@ -1,0 +1,83 @@
+name: Windows packaging verification
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/host-windows.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: windows-packaging-verification
+  cancel-in-progress: false
+jobs:
+  verify:
+    # Standard public-repository runner only. No artifact/cache upload or purchase.
+    if: >-
+      github.repository == 'font-weight/stm32_motortester' &&
+      github.event.repository.private == false &&
+      (github.event_name == 'workflow_dispatch' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: windows-2022
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      SOURCE_SHA: '2376d325d573b1aa3da6feaf8fddf05d2e1cb601'
+      BUILD_DIR: ${{ runner.temp }}/motortester-${{ github.run_id }}-${{ github.run_attempt }}
+      PYTHONNOUSERSITE: '1'
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_NO_CACHE_DIR: '1'
+    steps:
+      - name: Checkout immutable host candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: '2376d325d573b1aa3da6feaf8fddf05d2e1cb601'
+          fetch-depth: 1
+          persist-credentials: false
+          submodules: false
+          lfs: false
+      - name: Verify clean source and record provenance
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $head = (git rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $head -cne $env:SOURCE_SHA) { throw 'Unexpected source SHA' }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Dirty source' }
+          $recipe = (git rev-parse HEAD:host/packaging/build_windows.py).Trim()
+          if ($LASTEXITCODE -ne 0 -or $recipe -cne '4a1b5d7184253a11d342ba1db909879a2515a184') { throw 'Unexpected recipe' }
+          Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
+          Write-Output 'Windows Server build/synthetic smoke only; Windows 10 and USB acceptance remain open.'
+      - name: Set up regular CPython 3.13.16 x64
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13.16'
+          architecture: x64
+          freethreaded: false
+          allow-prereleases: false
+          check-latest: false
+      - name: Build and exercise unchanged host recipe
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python host/packaging/build_windows.py --output "$env:BUILD_DIR"
+          if ($LASTEXITCODE -ne 0) { throw "Build failed: $LASTEXITCODE" }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Source mutated during build' }
+      - name: Preserve evidence in job logs only
+        if: ${{ always() }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($relative in @('build.log', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json')) {
+            $path = Join-Path $env:BUILD_DIR $relative
+            if (Test-Path -LiteralPath $path) {
+              Write-Output "--- $relative ---"
+              Get-Content -LiteralPath $path
+            }
+          }
+          @"
+          Source SHA: $env:SOURCE_SHA
+          No ZIP/screenshot artifact was retained; this job validates the build only.
+          Logs and job summary retain diagnostics without Actions artifact storage.
+          Windows 10 manual, license, USB and independent acceptance remain open.
+          "@ | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
