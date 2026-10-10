@@ -1,0 +1,117 @@
+ADC-001: происхождение черновой публикации и повторная проверка
+Дата: 2026-10-10 UTC
+Репозиторий: https://github.com/font-weight/stm32_motortester
+Задача: https://github.com/font-weight/stm32_motortester/issues/25
+База: PR #16, 11f63ebb12fb9fb45cfcc1735782dd5405bf331b
+
+Область: восемь неизменённых файлов замороженного авторского кандидата.
+Исходники/README/tests скопированы побайтно; публикатор не исправлял их.
+Проверены окончательные SHA-256 автора, включая уточнение README о квантовании
+stabilization delay. Изменение касается лишь firmware/platform и tests/platform.
+Дополнительный файл публикации — этот текст. Бинарные файлы не публикуются.
+
+Это личное повторение публикатором авторского набора, не независимый вердикт.
+Critic-A отдельно связывает свой отчёт с точным опубликованным commit SHA.
+До такого заключения: BLOCKED_EVIDENCE, score: null; draft, без merge/приёмки.
+Базовые acquisition/protocol drafts также не принимаются этой публикацией.
+
+Среда личного повторения:
+Linux x86_64; cc (Debian 14.2.0-19) 14.2.0.
+arm-none-eabi-gcc (15:14.2.rel1-1) 14.2.1 20241119.
+Использован ранее проверенный официальный Debian toolchain, без новой установки.
+GCC: https://packages.debian.org/trixie/amd64/gcc-arm-none-eabi/download
+binutils: https://packages.debian.org/trixie/amd64/binutils-arm-none-eabi/download
+newlib headers: https://packages.debian.org/trixie/all/libnewlib-dev/download
+
+Повторение из корня checkout; OUT — новый каталог вне исходников:
+  OUT=$(mktemp -d)
+  ASAN_OPTIONS=detect_leaks=0 BUILD_DIR="$OUT" \
+    ARM_CC=/path/to/arm-none-eabi-gcc \
+    ARM_NEWLIB_INCLUDE=/path/to/newlib/include \
+    sh tests/platform/run_tests.sh
+  arm-none-eabi-size "$OUT/adc_timer_dma.o"
+  arm-none-eabi-nm -S --size-sort "$OUT/adc_timer_dma_abi.o"
+  arm-none-eabi-nm -u "$OUT/adc_timer_dma.o"
+  cat "$OUT/adc_timer_dma.su"
+
+Для только host-прогона опустить ARM_CC и ARM_NEWLIB_INCLUDE.
+Strict C11: -std=c11 -Wall -Wextra -Werror -Wpedantic -Wconversion -Wshadow
+-fno-short-enums -O2. Второй host-прогон: -O1 -g, ASan+UBSan.
+ARM: -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -Os -ffreestanding,
+-fno-short-enums, strict warnings, function/data sections и stack-usage.
+Все приведённые команды завершились с exit code 0.
+LeakSanitizer отключён из-за ограничения ptrace среды; его успех не заявляется.
+
+Вывод test runner:
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+Cortex-M3 object compiled; no startup/linker/USB or hardware test implied
+
+Вывод ресурсных команд (абсолютные пути заменены на snapshot/ и $OUT/):
+cc (Debian 14.2.0-19) 14.2.0
+arm-none-eabi-gcc (15:14.2.rel1-1) 14.2.1 20241119
+   text	   data	    bss	    dec	    hex	filename
+   2324	      0	      0	   2324	    914	$OUT/adc_timer_dma.o
+00000000 00000010 R mt_adc_dma_io_bytes
+00000010 0000001c R mt_adc_dma_block_bytes
+0000002c 00000358 R mt_adc_dma_context_bytes
+         U memset
+firmware/platform/adc_timer_dma.c:76:17:rd	0	static
+firmware/platform/adc_timer_dma.c:81:13:wr	0	static
+firmware/platform/adc_timer_dma.c:86:17:now	0	static
+firmware/platform/adc_timer_dma.c:163:13:wait_clear	24	static
+firmware/platform/adc_timer_dma.c:186:13:gates_enabled	8	static
+firmware/platform/adc_timer_dma.c:193:13:quiesce	16	static
+firmware/platform/adc_timer_dma.c:212:28:fail.isra	8	static
+firmware/platform/adc_timer_dma.c:101:13:clock_plan	32	static
+firmware/platform/adc_timer_dma.c:64:10:mt_adc_dma_mmio_read32	0	static
+firmware/platform/adc_timer_dma.c:70:6:mt_adc_dma_mmio_write32	0	static
+firmware/platform/adc_timer_dma.c:220:21:mt_adc_dma_init	24	static
+firmware/platform/adc_timer_dma.c:232:21:mt_adc_dma_start	16	static
+firmware/platform/adc_timer_dma.c:322:21:mt_adc_dma_read_block	40	static
+firmware/platform/adc_timer_dma.c:392:21:mt_adc_dma_stop	8	static
+
+Интерпретация и незакрытые границы:
+- text = 2324 B; data = 0; bss = 0 относятся лишь к одному relocatable object.
+- ARM ABI: context 856 B, block 28 B, I/O callbacks 16 B. Контекст выделяет
+  вызывающий код: bss=0 не означает отсутствие потребления RAM.
+- Неразрешён memset; runtime/линкер должен предоставить реализацию.
+- Наибольший собственный compiler frame 40 B не равен полному stack budget:
+  callback chain, вызывающий код, runtime, IRQ и USB здесь не учтены.
+- Не доказаны полный firmware link/map/stack, startup, USB/Windows, реальная Fs,
+  DMA arbitration, аналоговая точность, плата, LV-001, зажигание или автомобиль.
+- Никакой уровень готовности MVP не присваивается. CI не запускался.
+
+Точная идентичность восьми исходных файлов:
+firmware/platform/adc_timer_dma.h
+  bytes=5101 mode=100644
+  sha256=1a609bf9903a83b96d715c1d4877ca89deaea988e3522f07d0b2a70adf1e45bc
+  git_blob_sha=513ee15d9f8502bc7a8cffcf717c81631cad1607
+firmware/platform/adc_timer_dma.c
+  bytes=15324 mode=100644
+  sha256=925f91fcc4ab63024d845971fb5762306c7e7785234dacbe6cabb70eb3d3e0f3
+  git_blob_sha=d037bbecc6b8f76ee2e4f83c54b20e92c3c41ca9
+firmware/platform/README.md
+  bytes=14436 mode=100644
+  sha256=27be46c26870e32ae8af0f6f07244f7488c4458900450a716bfbd5fc4b53f546
+  git_blob_sha=07d3ffc9ac1720fa9f27c0c2781b53617227949a
+tests/platform/test_adc_timer_dma.c
+  bytes=16148 mode=100644
+  sha256=dea209ebd0592843d73ff2f766def90afb0d088403bff7b6eb9618bdaa59fd87
+  git_blob_sha=b2393a5af56d3658d8c32269776fd906e5ee8329
+tests/platform/run_tests.sh
+  bytes=1753 mode=100755
+  sha256=4c4e42874e518d2a54b65de5b58156557a6fbe99880634141eb28fbfad3752a6
+  git_blob_sha=6656dc484ef05bfd3d5135656a28250df2d423d7
+tests/platform/abi_probe.c
+  bytes=576 mode=100644
+  sha256=254e950b7fc90649743ac3a3560355fd72506a2afbd1b6747a05e4019fc85b57
+  git_blob_sha=70e7f677e4c08e194dc9b1613397ec0d476093b1
+tests/platform/README.md
+  bytes=4554 mode=100644
+  sha256=41542058e385e3306076c7d32fdc9cb6afccb5d3887a29ef8130a4f2c7e335e9
+  git_blob_sha=cd4e06810b1085f1cf678309742632970471694c
+tests/platform/.gitignore
+  bytes=8 mode=100644
+  sha256=020c2606e8ed484089c2083e0be438b9d0736bee1558a6b76af0d58bd23f69cf
+  git_blob_sha=84c048a73cc2e5dd24f807669eb99b0ce3123195
