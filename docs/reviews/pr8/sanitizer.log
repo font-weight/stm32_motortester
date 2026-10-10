@@ -1,0 +1,6 @@
++ export ASAN_OPTIONS=detect_leaks=0
++ ASAN_OPTIONS=detect_leaks=0
++ ./review-artifacts/test_mt_stream_san
++ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined firmware/protocol/mt_command.c tests/protocol/test_mt_command.c -o review-artifacts/test_mt_command_san
++ ./review-artifacts/test_mt_command_san
++ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -shared -fPIC -O2 firmware/protocol/mt_wire.c firmware/protocol/mt_stream.c firmware/protocol/mt_command.c -o review-artifacts/libmt.so

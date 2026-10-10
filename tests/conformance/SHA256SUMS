@@ -1,0 +1,10 @@
+1c06980914f09305665c2fb49350f62287ab0caf65f65fc94cc74da34f0e457a  ./README.md
+7e2b245c8288b71e9ea50cd4a59e2ec7b81bef8f40aca3a546954dc1978c4fea  ./evidence/native-20261010/report.json
+008bba9c1d899e7f7a624e9bfdebf4703b6ab686a5a403db2fe31fb755bf2038  ./evidence/native-20261010/run.log
+cdc62626deb4b5786e8ce64715eaf087134356a9d6f8aa4edb4d42cab489e837  ./evidence/preflight-20261010/report.json
+cfd7cfd6771f683dd2528e699a1f3ef41aa95bfa0dc216a08e38170c579bfda9  ./evidence/preflight-20261010/run.log
+2ef39b4addc42a87abf7837547ceb0fcd20ed3026161164f56c6d7ef7dfc149b  ./generate_vectors.py
+29bddffa3c3b0f286f6bc68655ca4ec5e14b0b47020b6cdf193d1b8e084b5eab  ./run.py
+5f9dad95bc629c2a23d1a6b767ca5f288f114c631c3978d179a886f53d2551e1  ./test_conformance.c
+385e3dbfc5cac7696cc7f22ece96a790a450a44f6950e3924a674bd4c9ed295c  ./vectors.h
+7003a5f8eb84ab94daacdd8b6fc9736376fb87a8a4991f105865cfab3e495f27  ./vectors.json

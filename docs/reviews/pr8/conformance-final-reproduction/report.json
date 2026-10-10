@@ -1,0 +1,152 @@
+{
+  "started_utc": "2026-10-10T12:36:35.520821+00:00",
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "source_root": "/workspace/shared/critic-a-pr8-0f28551",
+  "output_dir": "/workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-final-reproduction",
+  "stages": [
+    {
+      "name": "fixture-reproducibility",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/protocol-conformance-context/tests/conformance/generate_vectors.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "Reference fixtures verified\n"
+    },
+    {
+      "name": "compiler-version",
+      "command": [
+        "cc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "cc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+    },
+    {
+      "name": "strict-build",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-I",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_wire.c",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_stream.c",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_command.c",
+        "/workspace/shared/protocol-conformance-context/tests/conformance/test_conformance.c",
+        "-O2",
+        "-o",
+        "/workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-final-reproduction/conformance-strict"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "strict-run",
+      "command": [
+        "/workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-final-reproduction/conformance-strict"
+      ],
+      "exit_code": 0,
+      "output": "Independent conformance, deterministic xorshift seed 0x6d747031\nPASS: independent CRC/COBS and fixed wire vectors\nPASS: wire rejection, precedence and failure atomicity\nPASS: 4096 differential wire messages\nPASS: stream fragmentation/coalescing/recovery\nPASS: stream deadlines/wrap/overflow/reset\nPASS: command payload syntax and parsing\nPASS: CONFIG capabilities and semantic domains\nPASS: all independent conformance checks (3294024 assertions)\n"
+    },
+    {
+      "name": "sanitizer-build",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-I",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_wire.c",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_stream.c",
+        "/workspace/shared/critic-a-pr8-0f28551/firmware/protocol/mt_command.c",
+        "/workspace/shared/protocol-conformance-context/tests/conformance/test_conformance.c",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-fno-omit-frame-pointer",
+        "-o",
+        "/workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-final-reproduction/conformance-sanitized"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "sanitizer-run",
+      "command": [
+        "/workspace/shared/critic-a-pr8-0f28551/review-artifacts/conformance-final-reproduction/conformance-sanitized"
+      ],
+      "exit_code": 0,
+      "output": "Independent conformance, deterministic xorshift seed 0x6d747031\nPASS: independent CRC/COBS and fixed wire vectors\nPASS: wire rejection, precedence and failure atomicity\nPASS: 4096 differential wire messages\nPASS: stream fragmentation/coalescing/recovery\nPASS: stream deadlines/wrap/overflow/reset\nPASS: command payload syntax and parsing\nPASS: CONFIG capabilities and semantic domains\nPASS: all independent conformance checks (3294024 assertions)\n"
+    }
+  ],
+  "source_files": {
+    "firmware/protocol/mt_wire.c": {
+      "git_blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "expected_blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+      "size": 4102
+    },
+    "firmware/protocol/mt_wire.h": {
+      "git_blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "expected_blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+      "size": 1679
+    },
+    "firmware/protocol/mt_stream.c": {
+      "git_blob_sha": "419e78a74548387db990296357c4fd16d03556a4",
+      "expected_blob_sha": "419e78a74548387db990296357c4fd16d03556a4",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+      "size": 1470
+    },
+    "firmware/protocol/mt_stream.h": {
+      "git_blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "expected_blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+      "size": 1921
+    },
+    "firmware/protocol/mt_command.c": {
+      "git_blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "expected_blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+      "size": 3566
+    },
+    "firmware/protocol/mt_command.h": {
+      "git_blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "expected_blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+      "size": 2397
+    }
+  },
+  "implementation_commits": {
+    "wire": "124b3f32e1e7f7282bce283baa4c9406d4d72950",
+    "stream_command": "0f285510c1b9b6bd21bb7b60ae6098f7584ae71a"
+  },
+  "leak_detection": "disabled: address/UB checks only; LSan not claimed",
+  "scope": "native software conformance only; no hardware, dispatcher, or review gate",
+  "exact_pinned_sources": true,
+  "test_files": {
+    "generate_vectors.py": "2ef39b4addc42a87abf7837547ceb0fcd20ed3026161164f56c6d7ef7dfc149b",
+    "run.py": "29bddffa3c3b0f286f6bc68655ca4ec5e14b0b47020b6cdf193d1b8e084b5eab",
+    "test_conformance.c": "5f9dad95bc629c2a23d1a6b767ca5f288f114c631c3978d179a886f53d2551e1",
+    "vectors.h": "385e3dbfc5cac7696cc7f22ece96a790a450a44f6950e3924a674bd4c9ed295c",
+    "vectors.json": "7003a5f8eb84ab94daacdd8b6fc9736376fb87a8a4991f105865cfab3e495f27"
+  },
+  "sanitizers": {
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1:abort_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "status": "PASS_NATIVE_CONFORMANCE",
+  "finished_utc": "2026-10-10T12:36:39.809261+00:00"
+}

@@ -1,0 +1,75 @@
+{
+  "commit": "0f285510c1b9b6bd21bb7b60ae6098f7584ae71a",
+  "files": [
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "remote_blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "local_blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "bytes": 4102,
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "remote_blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "local_blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "bytes": 1679,
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.c",
+      "remote_blob_sha": "419e78a74548387db990296357c4fd16d03556a4",
+      "local_blob_sha": "419e78a74548387db990296357c4fd16d03556a4",
+      "bytes": 1470,
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.h",
+      "remote_blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "local_blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "bytes": 1921,
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "remote_blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "local_blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "bytes": 3566,
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "remote_blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "local_blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "bytes": 2397,
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    {
+      "path": "tests/protocol/test_mt_stream.c",
+      "remote_blob_sha": "fdeb8ee0d77595bcc141e0618d5d59867a4fc65f",
+      "local_blob_sha": "fdeb8ee0d77595bcc141e0618d5d59867a4fc65f",
+      "bytes": 5918,
+      "sha256": "7bf0073f5ee8c2089208e7b0a8a73f515da7935653247fb2d788ec6ec9daf7f8"
+    },
+    {
+      "path": "tests/protocol/test_mt_command.c",
+      "remote_blob_sha": "1ca30cf2d456c5292e422a31629568b91069872b",
+      "local_blob_sha": "1ca30cf2d456c5292e422a31629568b91069872b",
+      "bytes": 7139,
+      "sha256": "c797500b4bf041546b51f44806f37afc4d1a2906b0e97998cd0f121d32cf6744"
+    },
+    {
+      "path": "protocol/wire-v0.1.md",
+      "remote_blob_sha": "635b37da28430a2c093dc54eaf557434bf88f8ed",
+      "local_blob_sha": "635b37da28430a2c093dc54eaf557434bf88f8ed",
+      "bytes": 29582,
+      "sha256": "ea5e6e87687a991c6f13cfb151ac746f5291217d95f6d5ca358ff201f4272d95"
+    },
+    {
+      "path": "protocol/vectors-v0.1.json",
+      "remote_blob_sha": "269437c5d541be28958bf2be03b43e8316ee3587",
+      "local_blob_sha": "269437c5d541be28958bf2be03b43e8316ee3587",
+      "bytes": 786,
+      "sha256": "aab674d82d9c769bb890ac7a5d3b3891370ef28d2b1a724a4a5f2b39d7439c44"
+    }
+  ]
+}

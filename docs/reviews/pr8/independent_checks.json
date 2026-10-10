@@ -1,0 +1,18 @@
+{
+  "exact_sha": "0f285510c1b9b6bd21bb7b60ae6098f7584ae71a",
+  "status": "PASS for listed checks only",
+  "independent_crc_and_vector": true,
+  "codec_roundtrips": 2565,
+  "capacity_refusals": 544,
+  "random_decode_inputs": 20000,
+  "host_layout_vectors": 7,
+  "wrong_command_lengths": 3584,
+  "config_support_cases": 9216,
+  "host_sizes": {
+    "Msg": 544,
+    "Config": 16,
+    "Command": 24,
+    "Support": 4,
+    "Stream": 568
+  }
+}
