@@ -1,0 +1,6 @@
+{
+  "firmware/app/mt_adc_control.c": "overrides/firmware/app/mt_adc_control.c",
+  "firmware/app/mt_adc_control.h": "overrides/firmware/app/mt_adc_control.h",
+  "tests/adc-control/test_adc_control.c": "overrides/tests/adc-control/test_adc_control.c",
+  "firmware/platform/README.md": "overrides/firmware/platform/README.md"
+}

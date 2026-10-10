@@ -1,0 +1,400 @@
+{
+  "scope": "IO-001: ten Cortex-M3 module objects including controller, ADC binding/backend and RX stream; not full firmware",
+  "status": "ARM_OBJECT_COMPILE_REPRODUCED",
+  "complete_firmware_budget_proven": false,
+  "independent_review_score": null,
+  "source_manifest_sha256": "8c31be6c73e199a94ea9e6c99ab03492d48dc3a5260402d0e998d75545c5f3dc",
+  "combined_object_sha256": "ae149ec3c091cf67d7ba3a94b5b3f16d2905b8b772f721ff106cf1957a9a9e2b",
+  "text_rodata_bytes": 11281,
+  "module_data_bytes": 0,
+  "module_bss_bytes": 0,
+  "owner_model_bytes": 10880,
+  "owner_fields": [
+    {
+      "field": "control",
+      "type": "mt_control",
+      "size": 8888,
+      "offset": 0
+    },
+    {
+      "field": "driver",
+      "type": "mt_adc_dma_t",
+      "size": 860,
+      "offset": 8888
+    },
+    {
+      "field": "binding",
+      "type": "mt_adc_control",
+      "size": 24,
+      "offset": 9748
+    },
+    {
+      "field": "rx_stream",
+      "type": "mt_stream",
+      "size": 564,
+      "offset": 9772
+    },
+    {
+      "field": "rx_message",
+      "type": "mt_wire_message",
+      "size": 544,
+      "offset": 10336
+    }
+  ],
+  "duplicates_avoided": [
+    "session/TX/link/acquisition already embedded in control",
+    "DMA ring/snapshot embedded in ADC driver",
+    "service block local on stack, not persistent owner"
+  ],
+  "known_frame_conservative_max_bytes": 2944,
+  "sram_model_plus_known_frame_bytes": 13824,
+  "documented_limits_bytes": {
+    "flash": 65536,
+    "sram": 20480
+  },
+  "arithmetic_headroom_before_missing_costs_bytes": {
+    "flash": 54255,
+    "sram_before_stack": 9600,
+    "sram_after_known_frames": 6656,
+    "sram_with_hypothetical_4096_stack": 5504
+  },
+  "hypothetical_4096_stack_proven_sufficient": false,
+  "two_builds_byte_identical": true,
+  "remaining_undefined_symbols": [
+    "memcmp",
+    "memcpy",
+    "memmove",
+    "memset"
+  ],
+  "unverified": [
+    "full ELF/BIN/HEX with linker memory ranges",
+    "startup/vector table/clock/timebase glue",
+    "USB code/buffers/PMA ownership",
+    "standard runtime code/stack",
+    "external callbacks and foreground callers",
+    "IRQ nesting/stack hardware high-water",
+    "WCET and <2560 us service deadline",
+    "hardware operation and measurement",
+    "independent quality-gate verdict"
+  ]
+}
+[
+  {
+    "root": "mt_control_receive",
+    "conservative_known_frame_sum_bytes": 2944,
+    "chain": [
+      {
+        "unit": "mt_control",
+        "function": "mt_control_receive",
+        "self_frame_bytes": 640,
+        "excluded": false
+      },
+      {
+        "unit": "mt_capture_link",
+        "function": "mt_capture_link_stop",
+        "self_frame_bytes": 1696,
+        "excluded": false
+      },
+      {
+        "unit": "mt_tx",
+        "function": "mt_tx_stop",
+        "self_frame_bytes": 592,
+        "excluded": false
+      },
+      {
+        "unit": "mt_tx",
+        "function": "shape",
+        "self_frame_bytes": 16,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_control_poll",
+    "conservative_known_frame_sum_bytes": 1340,
+    "chain": [
+      {
+        "unit": "mt_control",
+        "function": "mt_control_poll",
+        "self_frame_bytes": 576,
+        "excluded": false
+      },
+      {
+        "unit": "mt_capture_link",
+        "function": "mt_capture_link_poll",
+        "self_frame_bytes": 80,
+        "excluded": false
+      },
+      {
+        "unit": "mt_tx",
+        "function": "mt_tx_poll",
+        "self_frame_bytes": 96,
+        "excluded": false
+      },
+      {
+        "unit": "mt_wire",
+        "function": "mt_wire_encode",
+        "self_frame_bytes": 576,
+        "excluded": false
+      },
+      {
+        "unit": "mt_wire",
+        "function": "mt_wire_crc32",
+        "self_frame_bytes": 12,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_control_sample",
+    "conservative_known_frame_sum_bytes": 112,
+    "chain": [
+      {
+        "unit": "mt_control",
+        "function": "mt_control_sample",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "mt_control",
+        "function": "remember_state",
+        "self_frame_bytes": 24,
+        "excluded": false
+      },
+      {
+        "unit": "mt_control",
+        "function": "mt_control_recover",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "mt_adc_control",
+        "function": "stop",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "mt_adc_dma_stop",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "quiesce",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "wait_clear",
+        "self_frame_bytes": 24,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_control_recover",
+    "conservative_known_frame_sum_bytes": 72,
+    "chain": [
+      {
+        "unit": "mt_control",
+        "function": "mt_control_recover",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "mt_adc_control",
+        "function": "stop",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "mt_adc_dma_stop",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "quiesce",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "wait_clear",
+        "self_frame_bytes": 24,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_adc_control_init",
+    "conservative_known_frame_sum_bytes": 72,
+    "chain": [
+      {
+        "unit": "mt_adc_control",
+        "function": "mt_adc_control_init",
+        "self_frame_bytes": 32,
+        "excluded": false
+      },
+      {
+        "unit": "mt_control",
+        "function": "mt_control_init",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "mt_capture_link",
+        "function": "mt_capture_link_init",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "acquisition",
+        "function": "mt_acq_init",
+        "self_frame_bytes": 8,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_adc_control_service",
+    "conservative_known_frame_sum_bytes": 168,
+    "chain": [
+      {
+        "unit": "mt_adc_control",
+        "function": "mt_adc_control_service",
+        "self_frame_bytes": 56,
+        "excluded": false
+      },
+      {
+        "unit": "mt_control",
+        "function": "mt_control_sample",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "mt_control",
+        "function": "remember_state",
+        "self_frame_bytes": 24,
+        "excluded": false
+      },
+      {
+        "unit": "mt_control",
+        "function": "mt_control_recover",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "mt_adc_control",
+        "function": "stop",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "mt_adc_dma_stop",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "quiesce",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "wait_clear",
+        "self_frame_bytes": 24,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_adc_dma_start",
+    "conservative_known_frame_sum_bytes": 64,
+    "chain": [
+      {
+        "unit": "adc_timer_dma",
+        "function": "mt_adc_dma_start",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "fail.isra.0",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "quiesce",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "wait_clear",
+        "self_frame_bytes": 24,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_adc_dma_read_block",
+    "conservative_known_frame_sum_bytes": 88,
+    "chain": [
+      {
+        "unit": "adc_timer_dma",
+        "function": "mt_adc_dma_read_block",
+        "self_frame_bytes": 40,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "fail.isra.0",
+        "self_frame_bytes": 8,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "quiesce",
+        "self_frame_bytes": 16,
+        "excluded": false
+      },
+      {
+        "unit": "adc_timer_dma",
+        "function": "wait_clear",
+        "self_frame_bytes": 24,
+        "excluded": false
+      }
+    ]
+  },
+  {
+    "root": "mt_stream_feed",
+    "conservative_known_frame_sum_bytes": 604,
+    "chain": [
+      {
+        "unit": "mt_stream",
+        "function": "mt_stream_feed",
+        "self_frame_bytes": 24,
+        "excluded": false
+      },
+      {
+        "unit": "mt_wire",
+        "function": "mt_wire_decode",
+        "self_frame_bytes": 568,
+        "excluded": false
+      },
+      {
+        "unit": "mt_wire",
+        "function": "mt_wire_crc32",
+        "self_frame_bytes": 12,
+        "excluded": false
+      }
+    ]
+  }
+]

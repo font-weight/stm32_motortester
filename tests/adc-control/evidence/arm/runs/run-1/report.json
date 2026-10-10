@@ -1,0 +1,722 @@
+{
+  "scope": "Cortex-M3 relocatable object code, ABI and compiler frames; NOT complete firmware",
+  "flags": [
+    "-std=c11",
+    "-Os",
+    "-mcpu=cortex-m3",
+    "-mthumb",
+    "-mfloat-abi=soft",
+    "-ffreestanding",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-fno-common",
+    "-fno-short-enums",
+    "-fstack-usage",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wsign-conversion",
+    "-isystem",
+    "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib"
+  ],
+  "compiler": "arm-none-eabi-gcc (15:14.2.rel1-1) 14.2.1 20241119\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "linker": "GNU ld (2.44-3+23+b1) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty.\n",
+  "source_manifest_sha256": "8c31be6c73e199a94ea9e6c99ab03492d48dc3a5260402d0e998d75545c5f3dc",
+  "object_sizes": [
+    {
+      "unit": "firmware/acquisition/acquisition.c",
+      "text_rodata": 784,
+      "data": 0,
+      "bss": 0,
+      "bytes": 3172,
+      "sha256": "1dd089894fb8b8d0dc5e3da0eefdbb0999f35a6f183a9830cc8965fab0b6ddce",
+      "git_blob_sha": "7a32496b4df9c203d963cc6c0ce6eea7fe6c3cd9",
+      "undefined_symbols": "         U memset\n"
+    },
+    {
+      "unit": "firmware/app/mt_adc_control.c",
+      "text_rodata": 438,
+      "data": 0,
+      "bss": 0,
+      "bytes": 2316,
+      "sha256": "41c5474a01da75c4c5d62313c0bc3b9f76f97cdeb2324c861f4411defa59aa40",
+      "git_blob_sha": "67995cd7afa0224739b6b166f7e1ddc4cf377d7a",
+      "undefined_symbols": "         U mt_adc_dma_profile1_ready\n         U mt_adc_dma_read_block\n         U mt_adc_dma_start\n         U mt_adc_dma_stop\n         U mt_control_init\n         U mt_control_recover\n         U mt_control_sample\n"
+    },
+    {
+      "unit": "firmware/app/mt_capture_link.c",
+      "text_rodata": 1988,
+      "data": 0,
+      "bss": 0,
+      "bytes": 5164,
+      "sha256": "7b65eef1eea707b1880dece89559e1de955e750389b3946d429928cb60eab8e2",
+      "git_blob_sha": "b4ed43b82364cd4fc9eef73216fe5d4962ca818e",
+      "undefined_symbols": "         U memset\n         U mt_acq_arm\n         U mt_acq_configure\n         U mt_acq_init\n         U mt_acq_push\n         U mt_acq_read\n         U mt_acq_release\n         U mt_acq_stop\n         U mt_acq_window\n         U mt_tx_enqueue\n         U mt_tx_poll\n         U mt_tx_stop\n         U mt_tx_terminal_committed\n"
+    },
+    {
+      "unit": "firmware/app/mt_control.c",
+      "text_rodata": 2084,
+      "data": 0,
+      "bss": 0,
+      "bytes": 5856,
+      "sha256": "260a765960a1515cfa8e2242b35cc43c00cb44fd8bf116d542a89ba35fe83953",
+      "git_blob_sha": "f6ecee1e4a40a2770da403859efec6ae9a6b10e6",
+      "undefined_symbols": "         U memcpy\n         U memmove\n         U memset\n         U mt_acq_stop\n         U mt_capture_link_arm\n         U mt_capture_link_configure\n         U mt_capture_link_init\n         U mt_capture_link_poll\n         U mt_capture_link_release\n         U mt_capture_link_sample\n         U mt_capture_link_stop\n         U mt_command_config_valid\n         U mt_command_parse\n         U mt_session_init\n         U mt_session_receive\n         U mt_session_require_hello\n         U mt_tx_enqueue\n         U mt_tx_hello\n         U mt_tx_init\n"
+    },
+    {
+      "unit": "firmware/platform/adc_timer_dma.c",
+      "text_rodata": 2476,
+      "data": 0,
+      "bss": 0,
+      "bytes": 6488,
+      "sha256": "0d198c531aa24d6a4aa2227e7875b3ea54cdef6b257f67cdff78d04cf8d72cc4",
+      "git_blob_sha": "e48012fead859002495810aa65ece2de40d3283f",
+      "undefined_symbols": "         U memset\n"
+    },
+    {
+      "unit": "firmware/protocol/mt_command.c",
+      "text_rodata": 491,
+      "data": 0,
+      "bss": 0,
+      "bytes": 1852,
+      "sha256": "2be2c45e5d305f6c4bf2d35caf97429a6e848c3376c001f0fb4566815451c6d1",
+      "git_blob_sha": "cef63aa80f04c32fedb4c3bbc326188a88a8c1f6",
+      "undefined_symbols": "         U memset\n"
+    },
+    {
+      "unit": "firmware/protocol/mt_session.c",
+      "text_rodata": 344,
+      "data": 0,
+      "bss": 0,
+      "bytes": 1604,
+      "sha256": "63fbed947a74e5b5ff3a7d939752388fc738ef0bb331e7e3501706969844e4ce",
+      "git_blob_sha": "1c210db3d7d5dfcd52b971727e2ebcdea0b735cd",
+      "undefined_symbols": "         U memcmp\n         U memcpy\n         U mt_command_parse\n"
+    },
+    {
+      "unit": "firmware/protocol/mt_stream.c",
+      "text_rodata": 216,
+      "data": 0,
+      "bss": 0,
+      "bytes": 1372,
+      "sha256": "592b09ea7fd6263e7caaeb64b049b1fd61bfb9c8799d10728f7dece4384b3038",
+      "git_blob_sha": "48e06afe3555fdd13ecac8bc5fb74ffa2e62fa9c",
+      "undefined_symbols": "         U mt_wire_decode\n"
+    },
+    {
+      "unit": "firmware/protocol/mt_wire.c",
+      "text_rodata": 648,
+      "data": 0,
+      "bss": 0,
+      "bytes": 2132,
+      "sha256": "d1e5d631d6c3274fdffce8f4f2577e16fe6194ce273928b3095be3ac667a30c3",
+      "git_blob_sha": "e84db4ad5c45a9c0ab3de04508d923d6bd7cdd49",
+      "undefined_symbols": "         U memcpy\n"
+    },
+    {
+      "unit": "firmware/transport/mt_tx.c",
+      "text_rodata": 1812,
+      "data": 0,
+      "bss": 0,
+      "bytes": 4544,
+      "sha256": "c70c28f4384aeffdd8ddc56114a4ecdf151aaa3b4fdf1f893527843db3cc9399",
+      "git_blob_sha": "b7f70a057c2fb03a90cc483e2d1ecbd01b15a483",
+      "undefined_symbols": "         U memcpy\n         U memmove\n         U memset\n         U mt_wire_encode\n"
+    }
+  ],
+  "stack_usage": [
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:177:16:mt_capture_link_stop",
+      "function": "mt_capture_link_stop",
+      "unit": "mt_capture_link",
+      "bytes": 1696,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:159:19:mt_control_receive",
+      "function": "mt_control_receive",
+      "unit": "mt_control",
+      "bytes": 640,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:83:23:queue_bulk",
+      "function": "queue_bulk",
+      "unit": "mt_capture_link",
+      "bytes": 600,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:110:14:mt_tx_stop",
+      "function": "mt_tx_stop",
+      "unit": "mt_tx",
+      "bytes": 592,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:210:16:mt_capture_link_release",
+      "function": "mt_capture_link_release",
+      "unit": "mt_capture_link",
+      "bytes": 576,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:247:19:mt_control_poll",
+      "function": "mt_control_poll",
+      "unit": "mt_control",
+      "bytes": 576,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:36:16:mt_wire_encode",
+      "function": "mt_wire_encode",
+      "unit": "mt_wire",
+      "bytes": 576,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:69:12:flush_states",
+      "function": "flush_states",
+      "unit": "mt_control",
+      "bytes": 568,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:85:26:error",
+      "function": "error",
+      "unit": "mt_control",
+      "bytes": 568,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:64:16:mt_wire_decode",
+      "function": "mt_wire_decode",
+      "unit": "mt_wire",
+      "bytes": 568,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:165:14:mt_tx_poll",
+      "function": "mt_tx_poll",
+      "unit": "mt_tx",
+      "bytes": 96,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:137:16:mt_capture_link_poll",
+      "function": "mt_capture_link_poll",
+      "unit": "mt_capture_link",
+      "bytes": 80,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_adc_control.c:49:19:mt_adc_control_service",
+      "function": "mt_adc_control_service",
+      "unit": "mt_adc_control",
+      "bytes": 56,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_command.c:28:19:mt_command_parse",
+      "function": "mt_command_parse",
+      "unit": "mt_command",
+      "bytes": 48,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_session.c:37:18:mt_session_receive",
+      "function": "mt_session_receive",
+      "unit": "mt_session",
+      "bytes": 48,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:334:21:mt_adc_dma_read_block",
+      "function": "mt_adc_dma_read_block",
+      "unit": "adc_timer_dma",
+      "bytes": 40,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:101:13:clock_plan",
+      "function": "clock_plan",
+      "unit": "adc_timer_dma",
+      "bytes": 32,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_adc_control.c:36:19:mt_adc_control_init",
+      "function": "mt_adc_control_init",
+      "unit": "mt_adc_control",
+      "bytes": 32,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:57:14:mt_tx_hello",
+      "function": "mt_tx_hello",
+      "unit": "mt_tx",
+      "bytes": 32,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:93:20:mt_tx_window_status",
+      "function": "mt_tx_window_status",
+      "unit": "mt_tx",
+      "bytes": 32,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:143:17:mt_acq_push",
+      "function": "mt_acq_push",
+      "unit": "acquisition",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:164:13:wait_clear",
+      "function": "wait_clear",
+      "unit": "adc_timer_dma",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:221:21:mt_adc_dma_init",
+      "function": "mt_adc_dma_init",
+      "unit": "adc_timer_dma",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_adc_control.c:15:12:start",
+      "function": "start",
+      "unit": "mt_adc_control",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:34:16:mt_capture_link_configure",
+      "function": "mt_capture_link_configure",
+      "unit": "mt_capture_link",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:48:16:mt_capture_link_arm",
+      "function": "mt_capture_link_arm",
+      "unit": "mt_capture_link",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:61:16:mt_capture_link_sample",
+      "function": "mt_capture_link_sample",
+      "unit": "mt_capture_link",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:49:26:remember_state",
+      "function": "remember_state",
+      "unit": "mt_control",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_stream.c:24:17:mt_stream_feed",
+      "function": "mt_stream_feed",
+      "unit": "mt_stream",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:76:14:mt_tx_enqueue",
+      "function": "mt_tx_enqueue",
+      "unit": "mt_tx",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_command.c:78:5:mt_command_config_valid",
+      "function": "mt_command_config_valid",
+      "unit": "mt_command",
+      "bytes": 20,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:128:17:mt_acq_arm",
+      "function": "mt_acq_arm",
+      "unit": "acquisition",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:194:13:quiesce",
+      "function": "quiesce",
+      "unit": "adc_timer_dma",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:244:21:mt_adc_dma_start",
+      "function": "mt_adc_dma_start",
+      "unit": "adc_timer_dma",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:28:6:mt_capture_link_init",
+      "function": "mt_capture_link_init",
+      "unit": "mt_capture_link",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:23:13:fill_status",
+      "function": "fill_status",
+      "unit": "mt_control",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:38:19:mt_control_recover",
+      "function": "mt_control_recover",
+      "unit": "mt_control",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:58:12:enqueue",
+      "function": "enqueue",
+      "unit": "mt_control",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:93:19:mt_control_init",
+      "function": "mt_control_init",
+      "unit": "mt_control",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:235:19:mt_control_sample",
+      "function": "mt_control_sample",
+      "unit": "mt_control",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:40:13:append",
+      "function": "append",
+      "unit": "mt_tx",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:12:12:shape",
+      "function": "shape",
+      "unit": "mt_tx",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:70:13:append_sample",
+      "function": "append_sample",
+      "unit": "acquisition",
+      "bytes": 12,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:26:10:mt_wire_crc32",
+      "function": "mt_wire_crc32",
+      "unit": "mt_wire",
+      "bytes": 12,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:101:17:mt_acq_init",
+      "function": "mt_acq_init",
+      "unit": "acquisition",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:112:17:mt_acq_configure",
+      "function": "mt_acq_configure",
+      "unit": "acquisition",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:222:17:mt_acq_read",
+      "function": "mt_acq_read",
+      "unit": "acquisition",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:249:17:mt_acq_stop",
+      "function": "mt_acq_stop",
+      "unit": "acquisition",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:234:17:mt_acq_release",
+      "function": "mt_acq_release",
+      "unit": "acquisition",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:259:17:mt_acq_fail",
+      "function": "mt_acq_fail",
+      "unit": "acquisition",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:187:13:gates_enabled",
+      "function": "gates_enabled",
+      "unit": "adc_timer_dma",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:213:28:fail.isra",
+      "function": "fail.isra",
+      "unit": "adc_timer_dma",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:233:5:mt_adc_dma_profile1_ready",
+      "function": "mt_adc_dma_profile1_ready",
+      "unit": "adc_timer_dma",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:404:21:mt_adc_dma_stop",
+      "function": "mt_adc_dma_stop",
+      "unit": "adc_timer_dma",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_adc_control.c:11:12:stop",
+      "function": "stop",
+      "unit": "mt_adc_control",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_stream.c:12:17:mt_stream_poll",
+      "function": "mt_stream_poll",
+      "unit": "mt_stream",
+      "bytes": 8,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:39:13:reset_capture",
+      "function": "reset_capture",
+      "unit": "acquisition",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/acquisition/acquisition.c:210:17:mt_acq_window",
+      "function": "mt_acq_window",
+      "unit": "acquisition",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:76:17:rd",
+      "function": "rd",
+      "unit": "adc_timer_dma",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:81:13:wr",
+      "function": "wr",
+      "unit": "adc_timer_dma",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:86:17:now",
+      "function": "now",
+      "unit": "adc_timer_dma",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:64:10:mt_adc_dma_mmio_read32",
+      "function": "mt_adc_dma_mmio_read32",
+      "unit": "adc_timer_dma",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/platform/adc_timer_dma.c:70:6:mt_adc_dma_mmio_write32",
+      "function": "mt_adc_dma_mmio_write32",
+      "unit": "adc_timer_dma",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_adc_control.c:7:12:profile",
+      "function": "profile",
+      "unit": "mt_adc_control",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:7:13:put32",
+      "function": "put32",
+      "unit": "mt_capture_link",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_capture_link.c:22:12:valid",
+      "function": "valid",
+      "unit": "mt_capture_link",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_command.c:6:17:read32",
+      "function": "read32",
+      "unit": "mt_command",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:7:13:put32",
+      "function": "put32",
+      "unit": "mt_control",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/app/mt_control.c:16:16:state",
+      "function": "state",
+      "unit": "mt_control",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_session.c:4:6:mt_session_init",
+      "function": "mt_session_init",
+      "unit": "mt_session",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_session.c:13:6:mt_session_require_hello",
+      "function": "mt_session_require_hello",
+      "unit": "mt_session",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_stream.c:3:6:mt_stream_init",
+      "function": "mt_stream_init",
+      "unit": "mt_stream",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:4:17:read32",
+      "function": "read32",
+      "unit": "mt_tx",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:54:6:mt_tx_init",
+      "function": "mt_tx_init",
+      "unit": "mt_tx",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/transport/mt_tx.c:88:9:mt_tx_terminal_committed",
+      "function": "mt_tx_terminal_committed",
+      "unit": "mt_tx",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:10:13:put32",
+      "function": "put32",
+      "unit": "mt_wire",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "location": "/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:13:17:get32",
+      "function": "get32",
+      "unit": "mt_wire",
+      "bytes": 0,
+      "kind": "static"
+    }
+  ],
+  "abi_sizes": {
+    "mt_command_support": 4,
+    "mt_control_status": 16,
+    "mt_control_io": 20,
+    "mt_adc_control": 24,
+    "mt_command": 24,
+    "mt_adc_dma_block_t": 28,
+    "mt_tx_event": 40,
+    "mt_wire_message": 544,
+    "mt_stream": 564,
+    "mt_session": 568,
+    "mt_adc_dma_t": 860,
+    "mt_tx": 3920,
+    "mt_acq_t": 4156,
+    "mt_capture_link": 4232,
+    "mt_control": 8888,
+    "resource_owner_model": 10880
+  },
+  "abi_alignments": {
+    "mt_command_support": 1,
+    "mt_acq_t": 4,
+    "mt_adc_control": 4,
+    "mt_adc_dma_block_t": 4,
+    "mt_adc_dma_t": 4,
+    "mt_control_io": 4,
+    "mt_control_status": 4,
+    "mt_stream": 4,
+    "mt_capture_link": 8,
+    "mt_command": 8,
+    "mt_control": 8,
+    "mt_session": 8,
+    "mt_tx": 8,
+    "mt_tx_event": 8,
+    "mt_wire_message": 8,
+    "resource_owner_model": 8
+  },
+  "owner_field_offsets": {
+    "control": 0,
+    "driver": 8888,
+    "binding": 9748,
+    "rx_stream": 9772,
+    "rx_message": 10336
+  },
+  "combined_hash": {
+    "bytes": 27144,
+    "sha256": "ae149ec3c091cf67d7ba3a94b5b3f16d2905b8b772f721ff106cf1957a9a9e2b",
+    "git_blob_sha": "4777018c0e86c0c0b7b29c88f7338dfc4850aed0"
+  },
+  "aggregate_size": "   text\t   data\t    bss\t    dec\t    hex\tfilename\n  11281\t      0\t      0\t  11281\t   2c11\t/workspace/shared/adc-control-arm-budget/runs/run-1/modules-relocatable.o\n",
+  "aggregate_sections": "/workspace/shared/adc-control-arm-budget/runs/run-1/modules-relocatable.o  :\nsection                            size   addr\n.text                                 0      0\n.text.reset_capture                  36      0\n.text.append_sample                  80      0\n.text.mt_acq_init                    38      0\n.text.mt_acq_configure              116      0\n.text.mt_acq_arm                     60      0\n.text.mt_acq_window                  40      0\n.text.mt_acq_read                    52      0\n.text.mt_acq_stop                    26      0\n.text.mt_acq_release                 64      0\n.text.mt_acq_fail                    36      0\n.text.mt_acq_push                   236      0\n.text.stop                           16      0\n.text.start                         128      0\n.text.profile                         6      0\n.text.mt_adc_control_init            84      0\n.text.mt_adc_control_service        204      0\n.text.put32                          40      0\n.text.valid                          16      0\n.text.queue_bulk                    544      0\n.text.mt_capture_link_init           60      0\n.text.mt_capture_link_configure     122      0\n.text.mt_capture_link_arm           146      0\n.text.mt_capture_link_sample        152      0\n.text.mt_capture_link_poll          260      0\n.text.mt_capture_link_stop          384      0\n.text.mt_capture_link_release       292      0\n.text.state                          48      0\n.text.fill_status                    70      0\n.text.mt_control_recover             58      0\n.text.flush_states                   98      0\n.text.enqueue                        64      0\n.text.error                          92      0\n.text.remember_state                102      0\n.text.mt_control_init                82      0\n.text.mt_control_receive           1176      0\n.text.mt_control_sample              88      0\n.text.mt_control_poll               194      0\n.text.rd                             10      0\n.text.wr                             10      0\n.text.now                             6      0\n.text.wait_clear                     62      0\n.text.gates_enabled                  64      0\n.text.quiesce                       180      0\n.text.fail.isra.0                    24      0\n.text.clock_plan                    396      0\n.text.mt_adc_dma_mmio_read32          4      0\n.text.mt_adc_dma_mmio_write32         4      0\n.text.mt_adc_dma_init                66      0\n.text.mt_adc_dma_profile1_ready     140      0\n.text.mt_adc_dma_start              920      0\n.text.mt_adc_dma_read_block         512      0\n.text.mt_adc_dma_stop                46      0\n.text.read32                         28      0\n.text.mt_command_parse              304      0\n.text.mt_command_config_valid       156      0\n.text.mt_session_init                22      0\n.text.mt_session_require_hello       14      0\n.text.mt_session_receive            308      0\n.text.mt_stream_init                 18      0\n.text.mt_stream_poll                 72      0\n.text.mt_stream_feed                126      0\n.text.get32                          24      0\n.text.mt_wire_crc32                  48      0\n.text.mt_wire_encode                254      0\n.text.mt_wire_decode                306      0\n.text.append                         62      0\n.text.shape                          60      0\n.text.mt_tx_init                     14      0\n.text.mt_tx_hello                   148      0\n.text.mt_tx_enqueue                 340      0\n.text.mt_tx_terminal_committed       30      0\n.text.mt_tx_window_status           140      0\n.text.mt_tx_stop                    532      0\n.text.mt_tx_poll                    482      0\n.rodata.ahb_divs.0                   32      0\n.rodata.CSWTCH.7                      7      0\n.data                                 0      0\n.bss                                  0      0\n.comment                            390      0\n.ARM.attributes                      45      0\nTotal                             11716\n\n\n",
+  "undefined_symbols": "         U memcmp\n         U memcpy\n         U memmove\n         U memset\n",
+  "complete_firmware_budget_proven": false
+}
