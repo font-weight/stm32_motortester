@@ -1,0 +1,330 @@
+{
+  "base_commit": "8855cb0ed0c10b58d0c9544d3e85fb54bc93b6c5",
+  "base_tree": "ba3a90a4c2eda1735d7fb6bd70b21cfe8def119b",
+  "inherited_base_blobs": 301,
+  "note": "Every new file except this manifest is listed. Base entries must remain exactly unchanged by SHA and mode on remote readback. Historical manifests retain original scope; lost raw logs are not recreated.",
+  "files": [
+    {
+      "path": "firmware/platform/TIMEBASE_README.md",
+      "bytes": 12041,
+      "sha256": "ee9339a69044cfa609ded6f081ebec17e1705d24663a1fc2b4614d4d3492ee4d",
+      "git_blob_sha": "fc5ab00b1910d20495f11f770dd64f09b0f1030f",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.c",
+      "bytes": 5149,
+      "sha256": "b403cc8f5e60cc2568b59d9fc5de6cf2cf1f116c03291876e7a05a5dc19f2740",
+      "git_blob_sha": "bbe5f5389eb5cc3b30aab39665ce9895ed157f2e",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.h",
+      "bytes": 2490,
+      "sha256": "613135965695f6e1eb4e24edea9e2873a33b60ee4b44865a5db1ef1730b5b3d2",
+      "git_blob_sha": "dc72b5f9757337ce35269b4f99ac4d0c0e47237c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/README.md",
+      "bytes": 9348,
+      "sha256": "0b0017d43e417cd9cf084ea64a548db41085b63e639ce12d81f2537ba246047d",
+      "git_blob_sha": "64d5a4359ab2ccbeb04b24111627fb4a6ee724c1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/arm-check.sh",
+      "bytes": 896,
+      "sha256": "c3f5ad1ba78365245b9ac87dbb1f32776acc6263cd1fddb3aee33b84d1e9898f",
+      "git_blob_sha": "40f86901e26b576be758a85c181ead182cfa0a41",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/arm_probe.c",
+      "bytes": 163,
+      "sha256": "1fc1e0118cf029fde2ecf813efe0ba5c8beb0ccd0894d12a9f0aac762d95e5ba",
+      "git_blob_sha": "dc7b0d2bb662479aaedbb051af853a974c554f66",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/CRITIC_A_TIMEBASE_REVIEW.md",
+      "bytes": 12977,
+      "sha256": "2893bdd753d1dabc67c9a4400fa5c03e9ea0ef90c6dbf2603c46a39fb993f426",
+      "git_blob_sha": "aa78991f66e06979c88ea92217f5e73cff16577f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/CRITIC_A_TIMEBASE_REVIEW.original.md",
+      "bytes": 9081,
+      "sha256": "7f360ded40eb35943adbc8627fdc8909b3c4735ac48102b50b7774af71ead471",
+      "git_blob_sha": "bf6cc356034099d13df692ff60117f53c8875ffa",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/RECOVERY_ADDENDUM.md",
+      "bytes": 3890,
+      "sha256": "7f192c789328186ba64b9ed5603585742d5fba19acd1c1035be00915a85fe6e9",
+      "git_blob_sha": "703878f9c3296c51cce61fa26a5504326e6dd299",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/RECOVERY_SHA256SUMS",
+      "bytes": 992,
+      "sha256": "326b0f36f7c3529edc55a5b787a88570c541ddc7ec782afaf32ea79ab8b7b455",
+      "git_blob_sha": "c2cc376034c8962f33abd1ccd70b976dcd08ec0b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/arm-recovery.log",
+      "bytes": 1487,
+      "sha256": "c07544ccea0f7a02dc3c2fec8c85c20575fcbc47607c3305e0d244f5db9554a0",
+      "git_blob_sha": "6e4b48973b14b937342db5ebdec61e579c8d3c77",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/author-recovery.log",
+      "bytes": 251,
+      "sha256": "4ae1f04d752bd9e303aef032c4912ebca14f049a122c998935b3ca4191204841",
+      "git_blob_sha": "76a0c5ecd2511b8b20136ab82e40882eb7585473",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/independent-recovery.log",
+      "bytes": 692,
+      "sha256": "ce1f9c61f561b9d4bc36fde9c6c7afa59a74a12c5fd1373f23dcf55fdb628d45",
+      "git_blob_sha": "1dcf8a38af7cf3b2fb736bb71e87b60498af0b7f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/independent_timebase.c",
+      "bytes": 5497,
+      "sha256": "b7de9f435411a01bdace225d732ba2359f3715ada69a1b94e350f3d13f6f2c14",
+      "git_blob_sha": "ed8767a29931d8c99b1a5809e3f161658bd4c77a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/run_independent.sh",
+      "bytes": 552,
+      "sha256": "c1108d93e8396f4f52d18c5c9c8eb7ca51894329579f82e59be757fdca04d066",
+      "git_blob_sha": "a4a638e80ac625ec32a157a8e9715ed626bb5b76",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/source-manifest-recovered.json",
+      "bytes": 1696,
+      "sha256": "f27835577e6dcd6f0540537a5b09849a8194f3367c6e1ab1e61fbd7493502a6e",
+      "git_blob_sha": "0d00cdbc584069a56a9abae74f2e264bb120ad05",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/source-manifest.json",
+      "bytes": 1675,
+      "sha256": "0904544264cf0e5a60dc0d3e37bb08ef18f712a915e4745e81e99b17b0684200",
+      "git_blob_sha": "59912bb0cd5b48d16c959a62cb700b91a37d532e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/critic-a/supporting-recovery.log",
+      "bytes": 3689,
+      "sha256": "d1cb1e5a9b913cf505cc49a2f6e728cda8e5897c77168d93aafb889d6e4434ed",
+      "git_blob_sha": "8391e84ebebf10184803de9b04baaa2d6696a852",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/history/ENVIRONMENT-RESET.md",
+      "bytes": 1557,
+      "sha256": "10dbd4eec7925babeaf404c5fe482a2566e4bd1aa5d6476dc94ba1a93df69bee",
+      "git_blob_sha": "e6f8bd02e14f3b794ab5850849a5c3442ff5eb3c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/history/TIMEBASE_README.original.md",
+      "bytes": 11824,
+      "sha256": "9882be7c3de2a3f9c48ee3804f5d0919fda6977ad9dc35ef4afc5379a73b0786",
+      "git_blob_sha": "4f1d76c09b13accaa2c31d29585813f04aea2ff5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/arm-recovery.log",
+      "bytes": 1454,
+      "sha256": "7ac8bf56cb6f05be0a4c0bfedb4aea7a4cf37ef710cca97b7824227612226257",
+      "git_blob_sha": "61aa14fef4fbc4e089a605b4209906178231f62e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/author.log",
+      "bytes": 251,
+      "sha256": "4ae1f04d752bd9e303aef032c4912ebca14f049a122c998935b3ca4191204841",
+      "git_blob_sha": "76a0c5ecd2511b8b20136ab82e40882eb7585473",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/critic-sanitized.log",
+      "bytes": 67,
+      "sha256": "0e453fcc266c789d745049cd0b450ffce83650bfda54560c4e413e33b18907b7",
+      "git_blob_sha": "e5bff5a139cb24f71112f10cce69f1a767c08e4f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/critic-strict.log",
+      "bytes": 67,
+      "sha256": "0e453fcc266c789d745049cd0b450ffce83650bfda54560c4e413e33b18907b7",
+      "git_blob_sha": "e5bff5a139cb24f71112f10cce69f1a767c08e4f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/mt_timebase.su",
+      "bytes": 740,
+      "sha256": "a01aa8dff8e52b24aa80a9f4a5b8f701791d5d0e9eb7303cacb415cf05304939",
+      "git_blob_sha": "a2979fe758884ffe3a651a1efe01dff881f5eef8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/probe.su",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/reproduction-recovery.log",
+      "bytes": 5898,
+      "sha256": "1d4bf96488feb86b8f95dd1edb402e4acb8bb92b421d3669404cb86e4ef1a971",
+      "git_blob_sha": "1cfd6be00d07d97fb02f123a024040b1b921c041",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/source-sha256.txt",
+      "bytes": 447,
+      "sha256": "f3010ab5090171ffe59afa0bb5163c9244193525fa6ca396acd225d4a4d05618",
+      "git_blob_sha": "4a5b2f7992597c1be1fc5ecb44c5f24fe6cab45f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/summary.txt",
+      "bytes": 171,
+      "sha256": "c366c70bb84c63af1102d0bb836988ef3d2a901d91f7b3d203adfd1ff942a438",
+      "git_blob_sha": "d228797181e9133c271dd8dce600516843217d5b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/supporting-sanitized.log",
+      "bytes": 936,
+      "sha256": "e40b82ff29f778d6e1183437be03a101acf511f15e6338990de438379abe9c66",
+      "git_blob_sha": "e1cc61bb4ff22de2a56f6096175aa79eb1d829be",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/supporting-strict.log",
+      "bytes": 936,
+      "sha256": "e40b82ff29f778d6e1183437be03a101acf511f15e6338990de438379abe9c66",
+      "git_blob_sha": "e1cc61bb4ff22de2a56f6096175aa79eb1d829be",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/toolchain.txt",
+      "bytes": 42,
+      "sha256": "89c3a5a31b33892b9216685785ba6a91e09f328f93518e4a37b8a688052af2af",
+      "git_blob_sha": "3dc58aeaa5ca91d01133e0ae31d8d1109662eeef",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/publication/verified-manifest.txt",
+      "bytes": 42,
+      "sha256": "d884cf60b35ac0248598b4c99cd74bdce533bffc7ae6f2405495870c32e22e0c",
+      "git_blob_sha": "7efb3cb7cb7bbd62544a14605f1fe6ebd495f3fd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/RECOVERED-ORIGINAL-SHA256SUMS",
+      "bytes": 258,
+      "sha256": "eb724ec36f50b293af29becc6151ca6ff391122ccd9ceb91ddf83e5e017d32c5",
+      "git_blob_sha": "84276e12b0d338ef6dfa2f93c26db337bd731be2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/RECOVERED-SUBJECT-SHA256SUMS",
+      "bytes": 176,
+      "sha256": "d88a516b81be8c245fea77cd0f79bf5236fe37d8d769d9b67adf7baa2e91bad6",
+      "git_blob_sha": "8525a1ec1de7b932eec3c6b41209d71f94407290",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/RECOVERY-ADDENDUM-ru.md",
+      "bytes": 3961,
+      "sha256": "806bdb19d021e9999d8dbba9f76613822666dfc8064c7195e3ddf5531e122ede",
+      "git_blob_sha": "6045013bec8eb449b73a8155e4045e58aab4482c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/RECOVERY-SHA256SUMS",
+      "bytes": 1147,
+      "sha256": "42894dd7ab41f4e74aca0b2650842cfae12598f5ab576a048f6532c02a48e90c",
+      "git_blob_sha": "0e1a1578d2a24139510e675e465fef133dfc1f63",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/REPORT-ru.md",
+      "bytes": 12791,
+      "sha256": "12ccf88f588987e9dce088462890e131e78400b36c1965cdb923c964a929baa0",
+      "git_blob_sha": "034e3ba75cd5f96bf7ea52032bd9029168e55e5b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/logs/independent-host-recovery-run.txt",
+      "bytes": 3689,
+      "sha256": "27748d18aca17c7f22468346d467ad81620d1a8b85a9d4ae988a4218d7631a8e",
+      "git_blob_sha": "fbd5edce75848491ec687a9b5c6798c2048a1974",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/run-independent.sh",
+      "bytes": 1632,
+      "sha256": "b9b8161d6d9298f992f0005fa0341dc6317e5ff7a9fc1208c94044b0af128fcf",
+      "git_blob_sha": "47dbea7f29c3705ed24561605fe59eebd0e5070d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/run-recovery.sh",
+      "bytes": 1776,
+      "sha256": "a3cd097bc74abd51742a6aa1a95aa6b51d0568234a24343b0bbff8dd1a69c2f0",
+      "git_blob_sha": "8bab294bee68e048f00f2352e2843eb6ccde948d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/evidence/supporting/test_timebase_independent.c",
+      "bytes": 19455,
+      "sha256": "630b3e6b002b22fd8bfcf616d08421a5224b911dd8f745143f3076e53db230af",
+      "git_blob_sha": "2230227201e4d4275d421fe23ff42673184155d9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/reproduce.sh",
+      "bytes": 1912,
+      "sha256": "2aa5b8f564a3e35a8b69eadf9dac0c02b450800f4266b1766bd97aaebe527066",
+      "git_blob_sha": "2403f6b2fd4fdbc6bfe309ba867c8915f958a3ba",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/run.sh",
+      "bytes": 480,
+      "sha256": "9264704e4bbf8c9843bff04ec2e78f43257594740f7b3c9c8ca4c2fbc1123038",
+      "git_blob_sha": "b488a4108d479cc9c70f8ad739327b26c23ee9e0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/test_timebase.c",
+      "bytes": 5122,
+      "sha256": "264ccbb8aa85ddd2cd1d798e9c8e33f7e1d5e4317ebce363f4d908307f382f52",
+      "git_blob_sha": "a0e115949b818bd491dcb23b71ec45204e4d9dc1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/timebase/verify.py",
+      "bytes": 667,
+      "sha256": "9fe3b12ea6ad6d3aed2830e012173960e014b9128da2bbfa9ee501477abcf974",
+      "git_blob_sha": "6c74abf1fb5ed6628082d5c4523dac6100bfbcff",
+      "mode": "100644"
+    }
+  ]
+}
