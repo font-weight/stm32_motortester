@@ -1,0 +1,3 @@
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_command.c:6:17:read32	0	static
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_command.c:28:19:mt_command_parse	48	static
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_command.c:78:5:mt_command_config_valid	20	static

@@ -1,0 +1,3 @@
+{
+  "tests/adc-control/test_adc_control.c": "overrides/tests/adc-control/test_adc_control.c"
+}

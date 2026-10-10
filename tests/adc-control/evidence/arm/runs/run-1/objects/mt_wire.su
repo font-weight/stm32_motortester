@@ -1,0 +1,5 @@
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:10:13:put32	0	static
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:13:17:get32	0	static
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:26:10:mt_wire_crc32	12	static
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:36:16:mt_wire_encode	576	static
+/workspace/shared/adc-control-arm-budget/sources/firmware/protocol/mt_wire.c:64:16:mt_wire_decode	568	static

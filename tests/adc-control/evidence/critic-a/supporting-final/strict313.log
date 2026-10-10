@@ -1,0 +1,13 @@
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+PASS matrix: 180 windows; Auto/Normal/Single, pretrigger 0/512/1024, exact samples, wire CRC, wrap, release/rearm
+PASS partial freeze: all 128 final sample positions; snapshots poisoned after stop without affecting retained window
+PASS timestamp: 64-bit oracle over 8 index boundaries, including multiplication overflow and sequence limit approach
+PASS stop failure: command and freeze paths retain ownership, suppress success/output, and recover with fresh HELLO
+PASS clocks/faults: 48 MHz preflight reject, mid-start noncanonical clock fail-closed, runtime RCC change and DMA transfer error
+PASS start itself spans microsecond rollover, with millisecond rollover during capture
+PASS clock-reference guard: exact widths 0/20 us accepted and 21/5000 us rejected before hardware writes, both ordinary and wrapping clocks
+PASS release rejects noncanonical clock without MMIO writes; repeated failed Stop/HELLO keeps ownership until confirmed retry
+PASS true shared-clock epochs: microsecond wrap at 71 min and joint millisecond/microsecond wrap near 49.7 days
+OBSERVATION init: live-driver rebind accepted and controller running flag cleared; violates documented caller precondition, not counted as in-contract defect
+PASS init null/uninitialized rejects without mutation or hardware access
+ALL INDEPENDENT TESTS PASSED (313 exact complete windows)

@@ -1,0 +1,137 @@
++ bash run.sh
++ cc --version
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ sha256sum -c snapshot.sha256
+snapshot/firmware/acquisition/acquisition.c: OK
+snapshot/firmware/acquisition/acquisition.h: OK
+snapshot/firmware/app/ADC_CONTROL_README.md: OK
+snapshot/firmware/app/CONTROL_README.md: OK
+snapshot/firmware/app/mt_adc_control.c: OK
+snapshot/firmware/app/mt_adc_control.h: OK
+snapshot/firmware/app/mt_capture_link.c: OK
+snapshot/firmware/app/mt_capture_link.h: OK
+snapshot/firmware/app/mt_control.c: OK
+snapshot/firmware/app/mt_control.h: OK
+snapshot/firmware/platform/README.md: OK
+snapshot/firmware/platform/adc_timer_dma.c: OK
+snapshot/firmware/platform/adc_timer_dma.h: OK
+snapshot/firmware/protocol/mt_command.c: OK
+snapshot/firmware/protocol/mt_command.h: OK
+snapshot/firmware/protocol/mt_session.c: OK
+snapshot/firmware/protocol/mt_session.h: OK
+snapshot/firmware/protocol/mt_wire.c: OK
+snapshot/firmware/protocol/mt_wire.h: OK
+snapshot/firmware/transport/mt_tx.c: OK
+snapshot/firmware/transport/mt_tx.h: OK
+snapshot/tests/adc-control/evidence/native.log: OK
+snapshot/tests/adc-control/run.sh: OK
+snapshot/tests/adc-control/test_adc_control.c: OK
+snapshot/tests/control/run.sh: OK
+snapshot/tests/control/test_control.c: OK
+snapshot/tests/platform/test_adc_timer_dma.c: OK
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -O2 -I snapshot/firmware/platform -I snapshot/firmware/acquisition -I snapshot/firmware/app -I snapshot/firmware/protocol -I snapshot/firmware/transport test_independent.c snapshot/firmware/acquisition/acquisition.c snapshot/firmware/app/mt_capture_link.c snapshot/firmware/app/mt_control.c snapshot/firmware/app/mt_adc_control.c snapshot/firmware/platform/adc_timer_dma.c snapshot/firmware/protocol/mt_command.c snapshot/firmware/protocol/mt_session.c snapshot/firmware/protocol/mt_wire.c snapshot/firmware/transport/mt_tx.c -o independent
++ ./independent
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+PASS matrix: 180 windows; Auto/Normal/Single, pretrigger 0/512/1024, exact samples, wire CRC, wrap, release/rearm
+PASS partial freeze: all 128 final sample positions; snapshots poisoned after stop without affecting retained window
+PASS timestamp: 64-bit oracle over 8 index boundaries, including multiplication overflow and sequence limit approach
+PASS stop failure: command and freeze paths retain ownership, suppress success/output, and recover with fresh HELLO
+PASS clocks/faults: 48 MHz preflight reject, mid-start noncanonical clock fail-closed, runtime RCC change and DMA transfer error
+PASS start itself spans microsecond rollover, with millisecond rollover during capture
+PASS clock-reference guard: exact widths 0/20 us accepted and 21/5000 us rejected before hardware writes, both ordinary and wrapping clocks
+PASS release rejects noncanonical clock without MMIO writes; repeated failed Stop/HELLO keeps ownership until confirmed retry
+PASS true shared-clock epochs: microsecond wrap at 71 min and joint millisecond/microsecond wrap near 49.7 days
+OBSERVATION init: live-driver rebind accepted and controller running flag cleared; violates documented caller precondition, not counted as in-contract defect
+PASS init null/uninitialized rejects without mutation or hardware access
+ALL INDEPENDENT TESTS PASSED (313 exact complete windows)
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -g -O1 -fsanitize=address,undefined -fno-omit-frame-pointer -I snapshot/firmware/platform -I snapshot/firmware/acquisition -I snapshot/firmware/app -I snapshot/firmware/protocol -I snapshot/firmware/transport test_independent.c snapshot/firmware/acquisition/acquisition.c snapshot/firmware/app/mt_capture_link.c snapshot/firmware/app/mt_control.c snapshot/firmware/app/mt_adc_control.c snapshot/firmware/platform/adc_timer_dma.c snapshot/firmware/protocol/mt_command.c snapshot/firmware/protocol/mt_session.c snapshot/firmware/protocol/mt_wire.c snapshot/firmware/transport/mt_tx.c -o independent_sanitized
++ ASAN_OPTIONS=detect_leaks=0
++ ./independent_sanitized
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+PASS matrix: 180 windows; Auto/Normal/Single, pretrigger 0/512/1024, exact samples, wire CRC, wrap, release/rearm
+PASS partial freeze: all 128 final sample positions; snapshots poisoned after stop without affecting retained window
+PASS timestamp: 64-bit oracle over 8 index boundaries, including multiplication overflow and sequence limit approach
+PASS stop failure: command and freeze paths retain ownership, suppress success/output, and recover with fresh HELLO
+PASS clocks/faults: 48 MHz preflight reject, mid-start noncanonical clock fail-closed, runtime RCC change and DMA transfer error
+PASS start itself spans microsecond rollover, with millisecond rollover during capture
+PASS clock-reference guard: exact widths 0/20 us accepted and 21/5000 us rejected before hardware writes, both ordinary and wrapping clocks
+PASS release rejects noncanonical clock without MMIO writes; repeated failed Stop/HELLO keeps ownership until confirmed retry
+PASS true shared-clock epochs: microsecond wrap at 71 min and joint millisecond/microsecond wrap near 49.7 days
+OBSERVATION init: live-driver rebind accepted and controller running flag cleared; violates documented caller precondition, not counted as in-contract defect
+PASS init null/uninitialized rejects without mutation or hardware access
+ALL INDEPENDENT TESTS PASSED (313 exact complete windows)
++ bash run.sh
++ cc --version
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ sha256sum -c snapshot.sha256
+snapshot/firmware/acquisition/acquisition.c: OK
+snapshot/firmware/acquisition/acquisition.h: OK
+snapshot/firmware/app/CONTROL_README.md: OK
+snapshot/firmware/app/mt_adc_control.c: OK
+snapshot/firmware/app/mt_adc_control.h: OK
+snapshot/firmware/app/mt_capture_link.c: OK
+snapshot/firmware/app/mt_capture_link.h: OK
+snapshot/firmware/app/mt_control.c: OK
+snapshot/firmware/app/mt_control.h: OK
+snapshot/firmware/platform/README.md: OK
+snapshot/firmware/platform/adc_timer_dma.c: OK
+snapshot/firmware/platform/adc_timer_dma.h: OK
+snapshot/firmware/protocol/mt_command.c: OK
+snapshot/firmware/protocol/mt_command.h: OK
+snapshot/firmware/protocol/mt_session.c: OK
+snapshot/firmware/protocol/mt_session.h: OK
+snapshot/firmware/protocol/mt_wire.c: OK
+snapshot/firmware/protocol/mt_wire.h: OK
+snapshot/firmware/transport/mt_tx.c: OK
+snapshot/firmware/transport/mt_tx.h: OK
+snapshot/tests/adc-control/test_adc_control.c: OK
+snapshot/tests/platform/test_adc_timer_dma.c: OK
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -O2 -I snapshot/firmware/platform -I snapshot/firmware/acquisition -I snapshot/firmware/app -I snapshot/firmware/protocol -I snapshot/firmware/transport test_independent.c snapshot/firmware/acquisition/acquisition.c snapshot/firmware/app/mt_capture_link.c snapshot/firmware/app/mt_control.c snapshot/firmware/app/mt_adc_control.c snapshot/firmware/platform/adc_timer_dma.c snapshot/firmware/protocol/mt_command.c snapshot/firmware/protocol/mt_session.c snapshot/firmware/protocol/mt_wire.c snapshot/firmware/transport/mt_tx.c -o independent
++ ./independent
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+PASS matrix: 180 windows; Auto/Normal/Single, pretrigger 0/512/1024, exact samples, wire CRC, wrap, release/rearm
+PASS partial freeze: all 128 final sample positions; snapshots poisoned after stop without affecting retained window
+PASS timestamp: 64-bit oracle over 8 index boundaries, including multiplication overflow and sequence limit approach
+PASS stop failure: command and freeze paths retain ownership, suppress success/output, and recover with fresh HELLO
+PASS clocks/faults: 48 MHz preflight reject, mid-start noncanonical clock fail-closed, runtime RCC change and DMA transfer error
+PASS start itself spans microsecond rollover, with millisecond rollover during capture
+OBSERVATION reference-read gap: injected 5000 us between clock reads yields first sample actual_ms=6 reported_ms=1 skew_ms=5
+OBSERVATION init: live-driver rebind accepted and controller running flag cleared; violates documented caller precondition, not counted as in-contract defect
+PASS init null/uninitialized rejects without mutation or hardware access
+ALL INDEPENDENT TESTS PASSED (310 exact complete windows)
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -g -O1 -fsanitize=address,undefined -fno-omit-frame-pointer -I snapshot/firmware/platform -I snapshot/firmware/acquisition -I snapshot/firmware/app -I snapshot/firmware/protocol -I snapshot/firmware/transport test_independent.c snapshot/firmware/acquisition/acquisition.c snapshot/firmware/app/mt_capture_link.c snapshot/firmware/app/mt_control.c snapshot/firmware/app/mt_adc_control.c snapshot/firmware/platform/adc_timer_dma.c snapshot/firmware/protocol/mt_command.c snapshot/firmware/protocol/mt_session.c snapshot/firmware/protocol/mt_wire.c snapshot/firmware/transport/mt_tx.c -o independent_sanitized
++ ASAN_OPTIONS=detect_leaks=0
++ ./independent_sanitized
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+PASS matrix: 180 windows; Auto/Normal/Single, pretrigger 0/512/1024, exact samples, wire CRC, wrap, release/rearm
+PASS partial freeze: all 128 final sample positions; snapshots poisoned after stop without affecting retained window
+PASS timestamp: 64-bit oracle over 8 index boundaries, including multiplication overflow and sequence limit approach
+PASS stop failure: command and freeze paths retain ownership, suppress success/output, and recover with fresh HELLO
+PASS clocks/faults: 48 MHz preflight reject, mid-start noncanonical clock fail-closed, runtime RCC change and DMA transfer error
+PASS start itself spans microsecond rollover, with millisecond rollover during capture
+OBSERVATION reference-read gap: injected 5000 us between clock reads yields first sample actual_ms=6 reported_ms=1 skew_ms=5
+OBSERVATION init: live-driver rebind accepted and controller running flag cleared; violates documented caller precondition, not counted as in-contract defect
+PASS init null/uninitialized rejects without mutation or hardware access
+ALL INDEPENDENT TESTS PASSED (310 exact complete windows)
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -I /workspace/shared/adc-control-publication/candidate -O2 /workspace/shared/adc-control-publication/candidate/tests/adc-control/evidence/critic-a/independent_adapter.c /workspace/shared/adc-control-publication/candidate/firmware/app/mt_adc_control.c -o /workspace/shared/adc-control-publication/evidence-run/critic-strict
++ /workspace/shared/adc-control-publication/evidence-run/critic-strict
+independent adapter: 10139 scenarios; 1,280,000 full-block sample timestamps plus every 128 partial-stop boundary passed
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -I /workspace/shared/adc-control-publication/candidate -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer /workspace/shared/adc-control-publication/candidate/tests/adc-control/evidence/critic-a/independent_adapter.c /workspace/shared/adc-control-publication/candidate/firmware/app/mt_adc_control.c -o /workspace/shared/adc-control-publication/evidence-run/critic-sanitized
++ /workspace/shared/adc-control-publication/evidence-run/critic-sanitized
+independent adapter: 10139 scenarios; 1,280,000 full-block sample timestamps plus every 128 partial-stop boundary passed
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -I /workspace/shared/adc-control-publication/candidate -O2 /workspace/shared/adc-control-publication/candidate/tests/adc-control/evidence/critic-a/correlation_gap_repro.c /workspace/shared/adc-control-publication/evidence-run/evidence-v1/snapshot/firmware/app/mt_adc_control.c -o /workspace/shared/adc-control-publication/evidence-run/correlation-gap-baseline
++ /workspace/shared/adc-control-publication/evidence-run/correlation-gap-baseline
+accepted=1, driver starts=1, first nominal ms=1, actual model first ms=6
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -pedantic -I /workspace/shared/adc-control-publication/candidate -O2 /workspace/shared/adc-control-publication/candidate/tests/adc-control/evidence/critic-a/correlation_gap_repro.c /workspace/shared/adc-control-publication/candidate/firmware/app/mt_adc_control.c -o /workspace/shared/adc-control-publication/evidence-run/correlation-gap-final
++ /workspace/shared/adc-control-publication/evidence-run/correlation-gap-final
+accepted=0, driver starts=0, first nominal ms=1, actual model first ms=0
+IO-001 supporting, critic and preserved defect reproductions passed.
+Generated outputs: /workspace/shared/adc-control-publication/evidence-run
