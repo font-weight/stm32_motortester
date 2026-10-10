@@ -1,0 +1,25 @@
+arm-none-eabi-gcc (15:14.2.rel1-1) 14.2.1 20241119
+   text	   data	    bss	    dec	    hex	filename
+      0	      0	   8924	   8924	   22dc	/workspace/shared/critic-a-control-review/arm-final/abi.o
+    784	      0	      0	    784	    310	/workspace/shared/critic-a-control-review/arm-final/acquisition.o
+   1988	      0	      0	   1988	    7c4	/workspace/shared/critic-a-control-review/arm-final/mt_capture_link.o
+    491	      0	      0	    491	    1eb	/workspace/shared/critic-a-control-review/arm-final/mt_command.o
+   2084	      0	      0	   2084	    824	/workspace/shared/critic-a-control-review/arm-final/mt_control.o
+    344	      0	      0	    344	    158	/workspace/shared/critic-a-control-review/arm-final/mt_session.o
+   1812	      0	      0	   1812	    714	/workspace/shared/critic-a-control-review/arm-final/mt_tx.o
+    648	      0	      0	    648	    288	/workspace/shared/critic-a-control-review/arm-final/mt_wire.o
+00000000 00000010 B sizeof_status
+00000000 00000014 B sizeof_control_io
+00000000 000022b8 B sizeof_mt_control
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:7:13:put32	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:16:16:state	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:23:13:fill_status	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:38:19:mt_control_recover	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:69:12:flush_states	568	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:58:12:enqueue	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:85:26:error	568	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:49:26:remember_state	24	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:93:19:mt_control_init	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:159:19:mt_control_receive	640	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:235:19:mt_control_sample	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_control.c:247:19:mt_control_poll	576	static
