@@ -1,0 +1,12 @@
+--- adapter-base.i
++++ adapter-off.i
+@@ -1903,8 +1903,7 @@
+ }
+ mt_control_result mt_usb_cdc_hard_loss(mt_usb_cdc *a, uint32_t epoch) {
+     mt_control_result result;
+-    if (!valid(a) || !epoch ||
+-        (epoch == a->epoch && a->state != MT_USB_QUARANTINED))
++    if (!valid(a) || !epoch)
+         return MT_CONTROL_ARGUMENT;
+     a->state = MT_USB_QUARANTINED; a->epoch = epoch;
+     a->offset = a->length = 0;

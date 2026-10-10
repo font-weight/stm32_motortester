@@ -1,5 +1,11 @@
 #include "mt_usb_cdc.h"
 #include "tusb.h"
+#if CFG_MT_USB_BRIDGE
+#include "mt_usb_bridge.h"
+#define mt_usb_cdc_open_epoch mt_usb_cdc_open_epoch_impl
+#define mt_usb_cdc_write mt_usb_cdc_write_impl
+#define mt_usb_cdc_step mt_usb_cdc_step_impl
+#endif
 #if CFG_TUD_CDC != 1 || CFG_TUD_CDC_TX_OVERWRITABLE_IF_NOT_CONNECTED != 0 || \
     CFG_TUD_CDC_RX_PERSISTENT != 0 || CFG_TUD_CDC_TX_PERSISTENT != 0
 #error "USB adapter requires one non-overwritable, nonpersistent CDC interface"
@@ -84,8 +90,9 @@ mt_control_result mt_usb_cdc_soft_pause(mt_usb_cdc *a) {
 }
 mt_control_result mt_usb_cdc_hard_loss(mt_usb_cdc *a, uint32_t epoch) {
     mt_control_result result;
-    if (!valid(a) || !epoch ||
-        (epoch == a->epoch && a->state != MT_USB_QUARANTINED))
+    /* A queue/submission fault can require hard quarantine without advancing
+     * the physical-reset epoch. The owner, never ISR, supplies this receipt. */
+    if (!valid(a) || !epoch)
         return MT_CONTROL_ARGUMENT;
     a->state = MT_USB_QUARANTINED; a->epoch = epoch;
     a->offset = a->length = 0;
@@ -97,3 +104,37 @@ mt_control_result mt_usb_cdc_hard_loss(mt_usb_cdc *a, uint32_t epoch) {
      * The bridge must cross reset/reopen (nonpersistent RX) before open_epoch. */
     return result;
 }
+
+#if CFG_MT_USB_BRIDGE
+#undef mt_usb_cdc_open_epoch
+#undef mt_usb_cdc_write
+#undef mt_usb_cdc_step
+mt_control_result mt_usb_cdc_open_epoch(mt_usb_cdc *a, uint32_t epoch) {
+    if (!valid(a) || !epoch) return MT_CONTROL_ARGUMENT;
+    mt_usb_scope scope;
+    if (!mt_usb_bridge_app_enter(&scope)) return MT_CONTROL_IGNORED;
+    uint32_t key = mt_usb_bridge_lock();
+    uint32_t token = mt_usb_bridge_actor();
+    mt_usb_bridge_unlock(key);
+    mt_control_result result = epoch == token ?
+        mt_usb_cdc_open_epoch_impl(a, epoch) : MT_CONTROL_ARGUMENT;
+    mt_usb_bridge_leave(&scope);
+    return result;
+}
+int mt_usb_cdc_write(void *context, const uint8_t *bytes, size_t length) {
+    if (!valid(context) || (!bytes && length) || length > MT_TX_CHUNK_MAX) return -1;
+    mt_usb_scope scope;
+    if (!mt_usb_bridge_app_enter(&scope)) return 0;
+    int accepted = mt_usb_cdc_write_impl(context, bytes, length);
+    mt_usb_bridge_leave(&scope);
+    return accepted;
+}
+mt_control_result mt_usb_cdc_step(mt_usb_cdc *a, uint32_t now_ms) {
+    if (!valid(a)) return MT_CONTROL_ARGUMENT;
+    mt_usb_scope scope;
+    if (!mt_usb_bridge_app_enter(&scope)) return MT_CONTROL_IGNORED;
+    mt_control_result result = mt_usb_cdc_step_impl(a, now_ms);
+    mt_usb_bridge_leave(&scope);
+    return result;
+}
+#endif

@@ -1,0 +1,30 @@
+--- verify_arm.pre-packaging.py
++++ verify_arm.py
+@@ -49,14 +49,14 @@
+                 p.error('required input directory is missing: '+str(source))
+             protected.append(resolved)
+         required_files=[args.dependencies/'SHA256SUMS.sources',
+-            args.bridge/'tools/build_core_patch.py',args.bridge/'tests/usb-bridge/README.md',
++            args.bridge/'tests/usb-bridge/README.md',
+             args.setup/'build/usbd.c',args.reset/'build/dcd_stm32_fsdev.c',
+             args.epoch/'firmware/transport/mt_usb_epoch.h',
+             args.adapter/'firmware/transport/mt_usb_cdc.c',
+             args.adapter/'firmware/transport/mt_usb_cdc.h',
+             args.dependencies/'evidence/config/tusb_config.h']
+         required_files += [args.bridge/'build'/name for name in
+-                           ('usbd.c','dcd_stm32_fsdev.c','core.patch','dcd.patch')]
++                           ('usbd.c','dcd_stm32_fsdev.c')]
+         required_files += [args.bridge/'firmware/transport'/name for name in
+                            ('mt_usb_bridge.c','mt_usb_bridge.h','mt_usb_cdc.c','mt_usb_cdc.h')]
+         required_files += [args.toolchain/'bin'/('arm-none-eabi-'+name) for name in
+@@ -108,9 +108,8 @@
+     tree(a.adapter/'firmware',out/'snapshot/adapter/firmware')
+     tree(a.epoch/'firmware',out/'snapshot/epoch/firmware')
+     tree(a.bridge/'firmware',out/'snapshot/bridge/firmware')
+-    for filename in ('usbd.c','dcd_stm32_fsdev.c','core.patch','dcd.patch'):
++    for filename in ('usbd.c','dcd_stm32_fsdev.c'):
+         cp(a.bridge/'build'/filename,out/'snapshot/bridge/build'/filename)
+-    cp(a.bridge/'tools/build_core_patch.py',out/'snapshot/bridge/tools/build_core_patch.py')
+     cp(a.bridge/'tests/usb-bridge/README.md',out/'snapshot/bridge/tests/usb-bridge/README.md')
+     cp(a.setup/'build/usbd.c',out/'snapshot/setup/build/usbd.c')
+     cp(a.reset/'build/dcd_stm32_fsdev.c',out/'snapshot/reset/build/dcd_stm32_fsdev.c')

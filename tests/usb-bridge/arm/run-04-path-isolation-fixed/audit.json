@@ -1,0 +1,554 @@
+{
+  "coverage": {
+    "mt_usb_bridge_xfer": {
+      "raw_target": "dcd_edpt_xfer",
+      "core_call_relocations": [
+        {
+          "section": ".text.usbd_edpt_xfer",
+          "offset": "42",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_xfer"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_xfer",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_xfer",
+          "offset": "12",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_xfer",
+          "offset": "1c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_unlock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_xfer",
+          "offset": "36",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt_xfer"
+        },
+        {
+          "section": ".text.mt_usb_bridge_xfer",
+          "offset": "40",
+          "kind": "R_ARM_THM_CALL",
+          "target": "result.part.0"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_fifo": {
+      "raw_target": "dcd_edpt_xfer_fifo",
+      "core_call_relocations": [
+        {
+          "section": ".text.usbd_edpt_xfer_fifo",
+          "offset": "42",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_fifo"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_fifo",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_fifo",
+          "offset": "12",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_fifo",
+          "offset": "1c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_unlock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_fifo",
+          "offset": "36",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt_xfer_fifo"
+        },
+        {
+          "section": ".text.mt_usb_bridge_fifo",
+          "offset": "40",
+          "kind": "R_ARM_THM_CALL",
+          "target": "result.part.0"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_open": {
+      "raw_target": "dcd_edpt_open",
+      "core_call_relocations": [
+        {
+          "section": ".text.usbd_edpt_open",
+          "offset": "2a",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_open"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_open",
+          "offset": "6",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_open",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_open",
+          "offset": "16",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_unlock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_open",
+          "offset": "22",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt_open"
+        },
+        {
+          "section": ".text.mt_usb_bridge_open",
+          "offset": "2c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "result.part.0"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_stall": {
+      "raw_target": "dcd_edpt_stall",
+      "core_call_relocations": [
+        {
+          "section": ".text.usbd_edpt_stall",
+          "offset": "8",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_stall"
+        },
+        {
+          "section": ".text.tud_task_ext",
+          "offset": "196",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_stall"
+        },
+        {
+          "section": ".text.tud_task_ext",
+          "offset": "19e",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_stall"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_stall",
+          "offset": "6",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_stall",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_stall",
+          "offset": "16",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt_stall"
+        },
+        {
+          "section": ".text.mt_usb_bridge_stall",
+          "offset": "20",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_unlock"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_clear_stall": {
+      "raw_target": "dcd_edpt_clear_stall",
+      "core_call_relocations": [
+        {
+          "section": ".text.usbd_edpt_clear_stall",
+          "offset": "8",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_clear_stall"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_clear_stall",
+          "offset": "6",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_clear_stall",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_clear_stall",
+          "offset": "16",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt_clear_stall"
+        },
+        {
+          "section": ".text.mt_usb_bridge_clear_stall",
+          "offset": "20",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_unlock"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_address": {
+      "raw_target": "dcd_set_address",
+      "core_call_relocations": [
+        {
+          "section": ".text.tud_task_ext",
+          "offset": "1f0",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_address"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_address",
+          "offset": "8",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_address",
+          "offset": "e",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_address",
+          "offset": "30",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_set_address"
+        },
+        {
+          "section": ".text.mt_usb_bridge_address",
+          "offset": "42",
+          "kind": "R_ARM_THM_CALL",
+          "target": "result.part.0"
+        },
+        {
+          "section": ".text.mt_usb_bridge_address",
+          "offset": "4a",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_unlock"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_status": {
+      "raw_target": "dcd_edpt0_status_complete",
+      "core_call_relocations": [
+        {
+          "section": ".text.tud_task_ext",
+          "offset": "586",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_status"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_status",
+          "offset": "6",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_status",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_status",
+          "offset": "16",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt0_status_complete"
+        },
+        {
+          "section": ".text.mt_usb_bridge_status",
+          "offset": "20",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_unlock"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_sof": {
+      "raw_target": "dcd_sof_enable",
+      "core_call_relocations": [
+        {
+          "section": ".text.tud_task_ext",
+          "offset": "246",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_sof"
+        },
+        {
+          "section": ".text.usbd_sof_enable",
+          "offset": "38",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_sof"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_sof",
+          "offset": "6",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_sof",
+          "offset": "c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_sof",
+          "offset": "16",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_sof_enable"
+        },
+        {
+          "section": ".text.mt_usb_bridge_sof",
+          "offset": "20",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_unlock"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    },
+    "mt_usb_bridge_close_all": {
+      "raw_target": "dcd_edpt_close_all",
+      "core_call_relocations": [
+        {
+          "section": ".text.tud_task_ext",
+          "offset": "24c",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_close_all"
+        }
+      ],
+      "bridge_call_relocations": [
+        {
+          "section": ".text.mt_usb_bridge_close_all",
+          "offset": "4",
+          "kind": "R_ARM_THM_CALL",
+          "target": "mt_usb_bridge_lock"
+        },
+        {
+          "section": ".text.mt_usb_bridge_close_all",
+          "offset": "a",
+          "kind": "R_ARM_THM_CALL",
+          "target": "permitted"
+        },
+        {
+          "section": ".text.mt_usb_bridge_close_all",
+          "offset": "12",
+          "kind": "R_ARM_THM_CALL",
+          "target": "dcd_edpt_close_all"
+        },
+        {
+          "section": ".text.mt_usb_bridge_close_all",
+          "offset": "1c",
+          "kind": "R_ARM_THM_JUMP24",
+          "target": "mt_usb_bridge_unlock"
+        }
+      ],
+      "expected_guard_and_raw_targets_present": true
+    }
+  },
+  "guarded_raw_core_call_relocations": [],
+  "other_raw_core_dcd_call_relocations": [
+    {
+      "section": ".text.usbd_int_set",
+      "offset": "8",
+      "kind": "R_ARM_THM_JUMP24",
+      "target": "dcd_int_enable"
+    },
+    {
+      "section": ".text.usbd_int_set",
+      "offset": "c",
+      "kind": "R_ARM_THM_JUMP24",
+      "target": "dcd_int_disable"
+    },
+    {
+      "section": ".text.tud_remote_wakeup",
+      "offset": "18",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_remote_wakeup"
+    },
+    {
+      "section": ".text.tud_disconnect",
+      "offset": "6",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_disconnect"
+    },
+    {
+      "section": ".text.tud_connect",
+      "offset": "6",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_connect"
+    },
+    {
+      "section": ".text.tud_configure",
+      "offset": "2",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_configure"
+    },
+    {
+      "section": ".text.tud_rhport_init",
+      "offset": "98",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_init"
+    },
+    {
+      "section": ".text.tud_rhport_init",
+      "offset": "a2",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_int_enable"
+    },
+    {
+      "section": ".text.tud_deinit",
+      "offset": "12",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_int_disable"
+    },
+    {
+      "section": ".text.tud_deinit",
+      "offset": "18",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_disconnect"
+    },
+    {
+      "section": ".text.tud_deinit",
+      "offset": "1e",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_deinit"
+    },
+    {
+      "section": ".text.usbd_edpt_iso_alloc",
+      "offset": "1e",
+      "kind": "R_ARM_THM_JUMP24",
+      "target": "dcd_edpt_iso_alloc"
+    },
+    {
+      "section": ".text.usbd_edpt_iso_activate",
+      "offset": "3a",
+      "kind": "R_ARM_THM_JUMP24",
+      "target": "dcd_edpt_iso_activate"
+    }
+  ],
+  "address_call_relocations": [
+    {
+      "section": ".text.dcd_set_address",
+      "offset": "a",
+      "kind": "R_ARM_THM_CALL",
+      "target": "dcd_edpt_xfer"
+    },
+    {
+      "section": ".text.dcd_set_address",
+      "offset": "16",
+      "kind": "R_ARM_THM_JUMP24",
+      "target": "mt_usb_bridge_address_result"
+    }
+  ],
+  "address_result_constant_true": "Pinned FSDEV edpt_xfer always returns true; dcd_set_address disassembly contains movs r0,#1 before jumping to mt_usb_bridge_address_result. Hook wiring does not prove failed target submissions or physical ACK.",
+  "adapter_scope_relocations": {
+    "mt_usb_cdc_open_epoch": {
+      "targets": [
+        "mt_usb_bridge_actor",
+        "mt_usb_bridge_app_enter",
+        "mt_usb_bridge_leave",
+        "mt_usb_bridge_lock",
+        "mt_usb_bridge_unlock",
+        "mt_usb_cdc_open_epoch_impl",
+        "valid"
+      ],
+      "entry_and_leave_present": true
+    },
+    "mt_usb_cdc_write": {
+      "targets": [
+        "mt_usb_bridge_app_enter",
+        "mt_usb_bridge_leave",
+        "mt_usb_cdc_write_impl",
+        "valid"
+      ],
+      "entry_and_leave_present": true
+    },
+    "mt_usb_cdc_step": {
+      "targets": [
+        "mt_usb_bridge_app_enter",
+        "mt_usb_bridge_leave",
+        "mt_usb_cdc_step_impl",
+        "valid"
+      ],
+      "entry_and_leave_present": true
+    }
+  },
+  "dcd_warning_messages_identical_to_baseline": true,
+  "dcd_warning_messages": [
+    "conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]",
+    "conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]",
+    "conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]",
+    "conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]",
+    "conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]"
+  ],
+  "selected_object_totals_bytes": {
+    "enabled": {
+      "text": 9096,
+      "data": 29,
+      "bss": 594
+    },
+    "optout": {
+      "text": 7478,
+      "data": 29,
+      "bss": 441
+    },
+    "prior_baseline": {
+      "text": 7494,
+      "data": 29,
+      "bss": 441
+    }
+  },
+  "all_object_hashes_equal_to_compare_run": {
+    "bridge-on": true,
+    "core-on": true,
+    "dcd-on": true,
+    "adapter-on": true,
+    "core-off": true,
+    "dcd-off": true,
+    "adapter-off": true,
+    "core-base": true,
+    "dcd-base": true,
+    "adapter-base": true
+  },
+  "scope": "Static preprocessing, relocation/disassembly, sizes and compiler local stack frames. Symbol-presence assertions alone do not prove control flow, interrupt exclusion or target behavior. No firmware link."
+}

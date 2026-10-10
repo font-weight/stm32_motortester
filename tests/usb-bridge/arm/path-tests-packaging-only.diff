@@ -1,0 +1,16 @@
+--- test_path_isolation.pre-packaging.py
++++ test_path_isolation.py
+@@ -11,11 +11,11 @@
+ out.mkdir(parents=True,exist_ok=False)
+ root_names=('bridge','epoch','adapter','setup','reset','dependencies','toolchain')
+ trees=('dependencies/vendor','dependencies/evidence/config','adapter/firmware','epoch/firmware','bridge/firmware')
+-files=('dependencies/SHA256SUMS.sources','bridge/tools/build_core_patch.py','bridge/tests/usb-bridge/README.md',
++files=('dependencies/SHA256SUMS.sources','bridge/tests/usb-bridge/README.md',
+        'setup/build/usbd.c','reset/build/dcd_stm32_fsdev.c','epoch/firmware/transport/mt_usb_epoch.h',
+        'adapter/firmware/transport/mt_usb_cdc.c','adapter/firmware/transport/mt_usb_cdc.h',
+        'dependencies/evidence/config/tusb_config.h',
+-       *('bridge/build/'+n for n in ('usbd.c','dcd_stm32_fsdev.c','core.patch','dcd.patch')),
++       *('bridge/build/'+n for n in ('usbd.c','dcd_stm32_fsdev.c')),
+        *('bridge/firmware/transport/'+n for n in ('mt_usb_bridge.c','mt_usb_bridge.h','mt_usb_cdc.c','mt_usb_cdc.h')),
+        *('toolchain/bin/arm-none-eabi-'+n for n in ('gcc','as','size','nm','objdump','readelf')))
+ def fixture(base):

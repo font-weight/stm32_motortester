@@ -1,0 +1,29 @@
+{
+  "core_opt_out_preprocessed_exact": true,
+  "sha256": "a52e352ba8c94ad6adf46efe5ffafbc448b30fdb4962966f78442ae21db90561",
+  "patched_source_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+  "commands": [
+    [
+      "cc",
+      "-std=gnu11",
+      "-DSTM32F103xB",
+      "-DCFG_MT_USB_BRIDGE=0",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-E",
+      "-P",
+      "/workspace/shared/usb-setup-draft/build/usbd.c"
+    ],
+    [
+      "cc",
+      "-std=gnu11",
+      "-DSTM32F103xB",
+      "-DCFG_MT_USB_BRIDGE=0",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-E",
+      "-P",
+      "/workspace/shared/usb-bridge-draft/build/usbd.c"
+    ]
+  ]
+}

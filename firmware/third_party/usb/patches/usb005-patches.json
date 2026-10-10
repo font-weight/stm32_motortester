@@ -1,0 +1,19 @@
+{
+  "base_commit": "7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5",
+  "inputs": {
+    "core": {
+      "filename": "usbd.c",
+      "patch": "0003-usb005-core.patch",
+      "source_sha256": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0",
+      "patch_sha256": "4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf",
+      "result_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    "fsdev": {
+      "filename": "dcd_stm32_fsdev.c",
+      "patch": "0003-usb005-fsdev.patch",
+      "source_sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97",
+      "patch_sha256": "336e23e852d3998aa49ce374ff77bf92270cc38d01b2ee56df33a59364c4ff3d",
+      "result_sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8"
+    }
+  }
+}
