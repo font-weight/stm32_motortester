@@ -289,14 +289,35 @@ class ViewerTests(unittest.TestCase):
                 self.assertLess(self.window.trigger_label.geometry().bottom(), self.window.cursor_label.geometry().top())
                 scroll = self.window.plot_scroll
                 self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
-                scroll.ensureWidgetVisible(self.window.cursor_label)
-                self.app.processEvents()
-                cursor_bottom = self.window.cursor_label.mapTo(scroll.viewport(), self.window.cursor_label.rect().bottomLeft())
-                self.assertLess(cursor_bottom.y(), scroll.viewport().height())
+                # An annotation can exceed the viewport on some platform fonts.
+                # Verify both ends are reachable, not simultaneously visible.
+                label = self.window.cursor_label
+                for point in (label.rect().topLeft(), label.rect().bottomLeft()):
+                    target = label.mapTo(scroll.widget(), point)
+                    scroll.ensureVisible(target.x(), target.y(), 1, 1)
+                    self.app.processEvents()
+                    self.assertTrue(scroll.viewport().rect().contains(label.mapTo(scroll.viewport(), point)))
         self.window.setStyleSheet(original_style)
         self.window.resize(1240, 900)
         QtTest.QTest.qWait(100)
         self.assertEqual(self.window.plot_scroll.verticalScrollBar().maximum(), 0)
+
+    def test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling(self):
+        self.generate()
+        self.window.cursor_toggle.setChecked(True)
+        scroll = self.window.plot_scroll
+        scroll.setFixedHeight(100)
+        label = self.window.cursor_label
+        label.setMinimumHeight(180)
+        QtTest.QTest.qWait(100)
+        self.assertGreater(label.height(), scroll.viewport().height())
+        self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
+        self.assertLess(self.window.trigger_label.geometry().bottom(), label.geometry().top())
+        for point in (label.rect().topLeft(), label.rect().bottomLeft()):
+            target = label.mapTo(scroll.widget(), point)
+            scroll.ensureVisible(target.x(), target.y(), 1, 1)
+            self.app.processEvents()
+            self.assertTrue(scroll.viewport().rect().contains(label.mapTo(scroll.viewport(), point)))
 
     def test_sidebar_keeps_actions_and_wrapped_warnings_reachable(self):
         self.generate()
