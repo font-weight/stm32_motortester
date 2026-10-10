@@ -1,0 +1,10 @@
+test_barrier_while_only_stop_is_queued_partial_or_sent (__main__.StopBarrierProbes.test_barrier_while_only_stop_is_queued_partial_or_sent) ... ok
+test_fresh_hello_recovery_after_pending_stop (__main__.StopBarrierProbes.test_fresh_hello_recovery_after_pending_stop) ... ok
+test_older_replies_consumed_barrier_until_ack (__main__.StopBarrierProbes.test_older_replies_consumed_barrier_until_ack) ... ok
+test_public_scheduling_surface_and_get_caps_origin (__main__.StopBarrierProbes.test_public_scheduling_surface_and_get_caps_origin) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.393s
+
+OK
+Public API: ['arm', 'configure', 'prepare_tx', 'protocol_fault', 'receive', 'snapshot', 'start', 'stop', 'tick', 'transport_lost', 'unknown_write', 'written'] ; _queue origins: [('configure', 3), ('arm', 4), ('stop', 5), ('_reply', 2)]
