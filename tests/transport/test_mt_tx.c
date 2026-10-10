@@ -427,7 +427,39 @@ static void test_phase_and_atomic_invalid_stop(void) {
     assert(mt_tx_window_status(&t, 7, 3) == MT_TX_WINDOW_END_COMMITTED);
     assert(mt_tx_window_status(&t, 8, 3) == MT_TX_WINDOW_NO_TX);
 }
+/* An old session's partially accepted Stop ACK must not release the new Stop. */
+static void test_old_stop_ack_after_hello(void) {
+    size_t prefix;
+    for (prefix = 1; prefix < 41u; ++prefix) {
+        mt_tx t;
+        fake_usb f;
+        mt_tx_event e;
+        mt_wire_message hello = message(129, 1);
+        unsigned completions = 0;
+        connected(&t, &f, 0);
+        assert(stop(&t, 0, 0) == MT_TX_OK);
+        f.step = prefix;
+        assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
+        if ((e.flags & MT_TX_FINISHED) != 0u) continue;
+        assert(mt_tx_hello(&t, 99, &hello, 0) == MT_TX_OK);
+        assert(stop(&t, 0, 0) == MT_TX_OK);
+        f.step = 64;
+        while (t.count != 0u) {
+            assert(mt_tx_poll(&t, 0, write_fake, &f, &e) == MT_TX_PROGRESS);
+            if (e.type == 133u && e.session != 99u) {
+                assert((e.flags & MT_TX_STOP_FINISHED) == 0u);
+                assert(t.stopping);
+            }
+            if ((e.flags & MT_TX_STOP_FINISHED) != 0u) {
+                assert(e.session == 99u);
+                ++completions;
+            }
+        }
+        assert(completions == 1u && !t.stopping);
+    }
+}
 int main(void) {
+    test_old_stop_ack_after_hello();
     test_fragmentation();
     test_reservation_and_stop_order();
     test_stop_before_end_commit();
@@ -441,6 +473,6 @@ int main(void) {
     test_phase_and_atomic_invalid_stop();
     test_queued_abort_reason_preserved();
     test_ack_boundary_new_command_and_repeat();
-    printf("mt_tx: 13 suites passed; sizeof(mt_tx)=%zu, slot=%zu\n", sizeof(mt_tx), sizeof(mt_tx_slot));
+    printf("mt_tx: 14 suites passed; sizeof(mt_tx)=%zu, slot=%zu\n", sizeof(mt_tx), sizeof(mt_tx_slot));
     return 0;
 }

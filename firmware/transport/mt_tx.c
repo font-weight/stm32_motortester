@@ -216,7 +216,7 @@ mt_tx_result mt_tx_poll(mt_tx *t, uint32_t now, mt_tx_write_fn write,
         t->offset = 0;
         t->length = 0;
         head_timer(t, now);
-        if (t->stopping && e.type == 133u) {
+        if (t->stopping && e.type == 133u && e.session == t->session) {
             t->stopping = 0;
             e.flags |= MT_TX_STOP_FINISHED;
         }
