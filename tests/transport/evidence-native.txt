@@ -1,0 +1,49 @@
+TX-001 frozen transport candidate: native reproduction
+Date: 2026-10-10
+Base: font-weight/stm32_motortester @ b6ae8025baf1a47e8173997029d2d8b858ada74c
+Stack: dot-a/tx001-transport-draft -> dot-a/a004-session-draft (PR #14)
+Requirements: MVP-F04, MVP-F06, MVP-F07 (partial software coverage only).
+Review: independent Critic-A review of the published SHA is still required.
+Shared contract acceptance/integration still requires both critics under docs/quality-gate.md.
+No score, acceptance, merge, or readiness level is granted by this log.
+
+Publication scope:
+- Five author-provided frozen files, byte-for-byte unchanged.
+- This bounded provenance log.
+- No firmware/protocol, protocol, docs/progress, host, USB adapter, or hardware changes.
+
+SHA-256 of frozen inputs:
+6f8bef11297116388a2f3cf91a0717d9f42e0762eae9615beddb37168ed907ac  firmware/transport/mt_tx.c
+68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9  firmware/transport/mt_tx.h
+4ff12db3688ccae7564f48c61451ebd6ea89105bdaaffdd91f7e69c5375f7319  firmware/transport/README.md
+ca6046c75414b131a85fef502b38a8c5790961ea144756b1a33cd1974ead5c2e  tests/transport/test_mt_tx.c
+bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7  tests/transport/run.sh
+
+Git blob hashes for the unchanged codec dependencies at the base above:
+3d76b7f6725615f3fad4305575312997e72152f9  firmware/protocol/mt_wire.c
+dcd14d8507f2812d488e4ad9264c3875b4f368d6  firmware/protocol/mt_wire.h
+Local codec bytes were verified against these exact remote blobs before running.
+
+Environment: Linux x86_64
+Compiler: cc (Debian 14.2.0-19) 14.2.0
+Strict flags: -std=c11 -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -O2
+Sanitized flags: same strict flags, -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer
+Execution began: 2026-10-10T12:43:09Z
+
+$ sh tests/transport/run.sh
+mt_tx: 13 suites passed; sizeof(mt_tx)=3928, slot=552
+Exit: 0
+
+$ SANITIZE=1 ASAN_OPTIONS=detect_leaks=0 sh tests/transport/run.sh
+mt_tx: 13 suites passed; sizeof(mt_tx)=3928, slot=552
+Exit: 0
+
+The publication worker reran the supplied tests; this is reproduction of author tests,
+not a substitute for independent final acceptance. Leak detection was disabled to match
+the documented author environment; ASan and UBSan were enabled. No leak result is claimed.
+
+Not tested here: ARM code generation/link/map/stack, actual USB adapter or descriptors,
+VID/PID authorization, enumeration, PMA/clocks/IRQ/DTR, physical disconnect/backpressure,
+Windows 10, ADC/DMA, sampling timing, analog/electrical behavior, or full dispatcher integration.
+The reported sizes are host ABI sizes. Fake FIFO tests are not USB hardware evidence.
+The Russian guide is preserved unchanged and records its source research and limitations.
