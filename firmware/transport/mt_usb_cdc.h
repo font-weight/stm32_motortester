@@ -27,7 +27,8 @@ mt_control_result mt_usb_cdc_init(mt_usb_cdc *a, mt_control_rx *rx,
                                  unsigned require_dtr);
 /* Explicit assertion by the bridge/test: endpoints configured and all stale
  * events crossed, buffers isolated. ready/mounted/DTR alone cannot prove it.
- * epoch is nonzero, unique for each hard loss, preserved across soft pause. */
+ * epoch is nonzero and identifies the physical-reset generation; sticky faults
+ * may require quarantine again within that generation. Soft pause preserves it. */
 mt_control_result mt_usb_cdc_open_epoch(mt_usb_cdc *a, uint32_t epoch);
 int mt_usb_cdc_write(void *context, const uint8_t *bytes, size_t length);
 /* At most64 RX bytes, one controller poll and one tail flush at most.

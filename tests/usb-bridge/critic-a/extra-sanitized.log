@@ -1,0 +1,16 @@
+gcc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+{"case":"critic_held_setup_superseded_after_resume","mode":"f1","pass":true,"host_bytes":0,"records":1,"io_failures":0,"queue_losses":0}
+{"case":"critic_1_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":1}
+{"case":"critic_255_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":255}
+{"case":"critic_256_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":256}
+{"case":"critic_257_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":257}
+{"case":"critic_511_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":511}
+{"case":"critic_512_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":512}
+{"case":"critic_513_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":513}
+{"case":"critic_1025_rejected_setup_no_counter_wrap","mode":"f1","pass":true,"host_bytes":0,"records":2,"io_failures":0,"queue_losses":1025}
+{"case":"critic_failed_old_submit_plus_pending_reset","mode":"f1","pass":true,"host_bytes":0,"records":3,"io_failures":1,"queue_losses":0}
+PASS: 10 supplemental scenarios; supporting fixture reused; inputs unchanged

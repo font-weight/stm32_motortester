@@ -1,0 +1,28 @@
+{
+  "repository": "font-weight/stm32_motortester",
+  "parent_pr": 61,
+  "parent_commit": "7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5",
+  "parent_tree": "0d3f1acec1750cc0c3c9102d56fa211ce7729ead",
+  "parent_blob_count": 871,
+  "exact_existing_paths_changed": [
+    "firmware/transport/mt_usb_cdc.c",
+    "firmware/transport/mt_usb_cdc.h"
+  ],
+  "baseline_adapter_binding": [
+    {
+      "path": "firmware/transport/mt_usb_cdc.c",
+      "parent_git_blob_sha": "e5dc83985257603ecd2c932fbe4a1a1395fa9071",
+      "baseline_copy": "tests/usb-bridge/inputs/pr61-adapter/mt_usb_cdc.c",
+      "sha256": "4127541694a00521f0eddce314bbce8383da892b2a5adbb0e5bace6576d0193f"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.h",
+      "parent_git_blob_sha": "622717697aa3a68a9d3e9f066adae78b047737cd",
+      "baseline_copy": "tests/usb-bridge/inputs/pr61-adapter/mt_usb_cdc.h",
+      "sha256": "9ab7a12dcfb1d0d3282d151f0c07884d8b30fcee3cd4e4ef893b6bc13a78f7b4"
+    }
+  ],
+  "host_paths_modified": 0,
+  "source_author": "Dot A",
+  "acceptance_status": "Final Critic-A source/package/base review required; this file is provenance, not a verdict."
+}

@@ -1,0 +1,15 @@
+--- a/dcd_stm32_fsdev.c
++++ b/dcd_stm32_fsdev.c
+@@ -225,7 +225,12 @@
+   (void)dev_addr;
+ 
+   // Respond with status
++#if CFG_MT_USB_BRIDGE
++  extern void mt_usb_bridge_address_result(bool accepted);
++  mt_usb_bridge_address_result(dcd_edpt_xfer(rhport, TUSB_DIR_IN_MASK | 0x00, NULL, 0, false));
++#else
+   dcd_edpt_xfer(rhport, TUSB_DIR_IN_MASK | 0x00, NULL, 0, false);
++#endif
+ 
+   // DCD can only set address after status for this request is complete.
+   // do it at dcd_edpt0_status_complete()
