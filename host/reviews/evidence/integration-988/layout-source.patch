@@ -1,0 +1,85 @@
+diff --git a/host/motortester/gui.py b/host/motortester/gui.py
+index 412ddcb..e1ae115 100644
+--- a/host/motortester/gui.py
++++ b/host/motortester/gui.py
+@@ -103,6 +103,14 @@ class _FileJob(QtCore.QRunnable):
+             self.signals.finished.emit(result, None)
+ 
+ 
++class _WaveformPlot(pg.PlotWidget):
++    def sizeHint(self):
++        return QtCore.QSize(640, 100)
++
++    def minimumSizeHint(self):
++        return QtCore.QSize(100, 100)
++
++
+ class MainWindow(QtWidgets.QMainWindow):
+     """One immutable current capture; failed/cancelled opens cannot replace it."""
+ 
+@@ -199,9 +207,11 @@ class MainWindow(QtWidgets.QMainWindow):
+         self.reset_button.setToolTip("Вернуть весь диапазон времени и коды 0…4095 (Home)")
+         chart_top.addWidget(self.reset_button)
+         card_layout.addLayout(chart_top)
+-        self.plot = pg.PlotWidget(background="#111923")
++        self.plot = _WaveformPlot(background="#111923")
+         self.plot.setObjectName("waveformPlot")
+         self.plot.setMinimumHeight(100)
++        self.plot.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
++                                QtWidgets.QSizePolicy.Policy.Expanding)
+         self.plot.setMenuEnabled(False)
+         self.plot.hideButtons()
+         self.plot.showGrid(x=True, y=True, alpha=0.2)
+@@ -235,7 +245,16 @@ class MainWindow(QtWidgets.QMainWindow):
+         self.cursor_label = _label("Курсоры привязаны к исходным отсчётам; время номинальное.", "muted", wrap=True)
+         self.cursor_label.hide()
+         card_layout.addWidget(self.cursor_label)
+-        content.addWidget(card, 1)
++        # Keep the plot and its annotations at their layout minimums even
++        # when platform font metrics cannot fit the minimum window height.
++        # A scroll viewport absorbs the shortage instead of letting Qt place
++        # the following labels underneath the plot's hard minimum height.
++        card_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinimumSize)
++        self.plot_scroll = QtWidgets.QScrollArea()
++        self.plot_scroll.setWidgetResizable(True)
++        self.plot_scroll.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
++        self.plot_scroll.setWidget(card)
++        content.addWidget(self.plot_scroll, 1)
+         self.quality_label = _label("Качество записи: данные ещё не загружены.", "quality", wrap=True)
+         self.quality_scroll = QtWidgets.QScrollArea()
+         self.quality_scroll.setWidgetResizable(True)
+diff --git a/host/tests/test_gui.py b/host/tests/test_gui.py
+index d466eec..9c208fb 100644
+--- a/host/tests/test_gui.py
++++ b/host/tests/test_gui.py
+@@ -274,6 +274,30 @@ class ViewerTests(unittest.TestCase):
+         self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
+         self.assertLess(self.window.trigger_label.geometry().bottom(), self.window.cursor_label.geometry().top())
+ 
++    def test_minimum_window_scrolls_annotations_with_larger_font_metrics(self):
++        self.generate()
++        self.window.cursor_toggle.setChecked(True)
++        original_style = self.window.styleSheet()
++        for pixels in (18, 22):
++            with self.subTest(font_pixels=pixels):
++                self.window.setStyleSheet(original_style.replace("font-size: 13px", f"font-size: {pixels}px"))
++                self.window.resize(1000, 710)
++                QtTest.QTest.qWait(100)
++                self.assertEqual(self.window.size(), QtCore.QSize(1000, 710))
++                self.assertGreaterEqual(self.window.plot.height(), 100)
++                self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
++                self.assertLess(self.window.trigger_label.geometry().bottom(), self.window.cursor_label.geometry().top())
++                scroll = self.window.plot_scroll
++                self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
++                scroll.ensureWidgetVisible(self.window.cursor_label)
++                self.app.processEvents()
++                cursor_bottom = self.window.cursor_label.mapTo(scroll.viewport(), self.window.cursor_label.rect().bottomLeft())
++                self.assertLess(cursor_bottom.y(), scroll.viewport().height())
++        self.window.setStyleSheet(original_style)
++        self.window.resize(1240, 900)
++        QtTest.QTest.qWait(100)
++        self.assertEqual(self.window.plot_scroll.verticalScrollBar().maximum(), 0)
++
+     def test_long_quality_flags_are_scrollable_and_do_not_resize_window(self):
+         capture = replace(self.generate(), quality_flags=tuple(f"флаг_{i}_" + "я" * 55 for i in range(16)))
+         original_height = self.window.height()

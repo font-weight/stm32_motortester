@@ -1,0 +1,4 @@
+patching file host/motortester/gui.py
+Hunk #2 succeeded at 208 (offset 1 line).
+Hunk #3 succeeded at 246 (offset 1 line).
+patching file host/tests/test_gui.py

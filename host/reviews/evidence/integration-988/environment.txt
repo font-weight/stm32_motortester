@@ -1,0 +1,7 @@
+2026-10-10T14:32:23+00:00
+988f2cc094fa82c622f0b20276114e3159ae73d9
+cfabd68784ae1305f10703673b36ca67c67d783d
+Python 3.12.14
+Linux 8714d2c6650e 6.18.44 #1 SMP Sat Sep 26 20:02:31 UTC 2026 x86_64 GNU/Linux
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python
+PySide6 6.12.0 pyqtgraph 0.14.0 numpy 2.5.3

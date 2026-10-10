@@ -1,0 +1,1190 @@
+[
+  {
+    "source": "core2376",
+    "sha": "2376d325d573b1aa3da6feaf8fddf05d2e1cb601",
+    "font_px": 13,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 45,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 48,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 45,
+        "width": 224,
+        "size_hint_height": 48,
+        "height_for_width": 64,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Справка",
+        "height": 38,
+        "size_hint_height": 38
+      }
+    ],
+    "plot_bottom": 188,
+    "trigger_top": 198
+  },
+  {
+    "source": "core2376",
+    "sha": "2376d325d573b1aa3da6feaf8fddf05d2e1cb601",
+    "font_px": 18,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 21,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 21,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 84,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 42,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 84,
+        "height_for_width": 126,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 33,
+        "size_hint_height": 45
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 34,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 33,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 34,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Справка",
+        "height": 34,
+        "size_hint_height": 43
+      }
+    ],
+    "plot_bottom": 163,
+    "trigger_top": 112
+  },
+  {
+    "source": "core2376",
+    "sha": "2376d325d573b1aa3da6feaf8fddf05d2e1cb601",
+    "font_px": 22,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 30,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 30,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 104,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 31,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 30,
+        "width": 224,
+        "size_hint_height": 104,
+        "height_for_width": 182,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 30,
+        "size_hint_height": 50
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 30,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 30,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 30,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Справка",
+        "height": 30,
+        "size_hint_height": 48
+      }
+    ],
+    "plot_bottom": 147,
+    "trigger_top": 80
+  },
+  {
+    "source": "png2cf",
+    "sha": "2cf1fb83cf7d0dae98656cd6a63a5eea47c7e5c4",
+    "font_px": 13,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 48,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 48,
+        "height_for_width": 64,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 34,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Экспортировать PNG…",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Справка",
+        "height": 33,
+        "size_hint_height": 38
+      }
+    ],
+    "plot_bottom": 188,
+    "trigger_top": 198
+  },
+  {
+    "source": "png2cf",
+    "sha": "2cf1fb83cf7d0dae98656cd6a63a5eea47c7e5c4",
+    "font_px": 18,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 21,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 21,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 28,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 84,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 29,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 42,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 29,
+        "width": 224,
+        "size_hint_height": 84,
+        "height_for_width": 126,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 29,
+        "size_hint_height": 45
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 29,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 29,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 28,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Экспортировать PNG…",
+        "height": 29,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Справка",
+        "height": 28,
+        "size_hint_height": 43
+      }
+    ],
+    "plot_bottom": 163,
+    "trigger_top": 112
+  },
+  {
+    "source": "png2cf",
+    "sha": "2cf1fb83cf7d0dae98656cd6a63a5eea47c7e5c4",
+    "font_px": 22,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 104,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 104,
+        "height_for_width": 182,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 26,
+        "size_hint_height": 50
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 26,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 26,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 26,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Экспортировать PNG…",
+        "height": 25,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Справка",
+        "height": 26,
+        "size_hint_height": 48
+      }
+    ],
+    "plot_bottom": 147,
+    "trigger_top": 80
+  },
+  {
+    "source": "layout3b315",
+    "sha": "3b315ac4e1184c4c7e9216ce5594cff0f9beff33",
+    "font_px": 13,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 45,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 48,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 45,
+        "width": 224,
+        "size_hint_height": 48,
+        "height_for_width": 64,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 38,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Справка",
+        "height": 38,
+        "size_hint_height": 38
+      }
+    ],
+    "plot_bottom": 188,
+    "trigger_top": 198,
+    "plot_scroll_max": 0
+  },
+  {
+    "source": "layout3b315",
+    "sha": "3b315ac4e1184c4c7e9216ce5594cff0f9beff33",
+    "font_px": 18,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 21,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 21,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 84,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 42,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 84,
+        "height_for_width": 126,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 33,
+        "size_hint_height": 45
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 34,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 33,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 34,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Справка",
+        "height": 34,
+        "size_hint_height": 43
+      }
+    ],
+    "plot_bottom": 166,
+    "trigger_top": 176,
+    "plot_scroll_max": 91
+  },
+  {
+    "source": "layout3b315",
+    "sha": "3b315ac4e1184c4c7e9216ce5594cff0f9beff33",
+    "font_px": 22,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 30,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 30,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 104,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 31,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 30,
+        "width": 224,
+        "size_hint_height": 104,
+        "height_for_width": 182,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 30,
+        "size_hint_height": 50
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 30,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 30,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 30,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Справка",
+        "height": 30,
+        "size_hint_height": 48
+      }
+    ],
+    "plot_bottom": 171,
+    "trigger_top": 181,
+    "plot_scroll_max": 213
+  },
+  {
+    "source": "candidate988",
+    "sha": "988f2cc094fa82c622f0b20276114e3159ae73d9",
+    "font_px": 13,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 48,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 16,
+        "width": 224,
+        "size_hint_height": 32,
+        "height_for_width": 16,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 34,
+        "width": 224,
+        "size_hint_height": 48,
+        "height_for_width": 64,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 34,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Экспортировать PNG…",
+        "height": 33,
+        "size_hint_height": 38
+      },
+      {
+        "text": "Справка",
+        "height": 33,
+        "size_hint_height": 38
+      }
+    ],
+    "plot_bottom": 188,
+    "trigger_top": 198,
+    "plot_scroll_max": 0
+  },
+  {
+    "source": "candidate988",
+    "sha": "988f2cc094fa82c622f0b20276114e3159ae73d9",
+    "font_px": 18,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 21,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 21,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 28,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 84,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 29,
+        "width": 224,
+        "size_hint_height": 42,
+        "height_for_width": 42,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 29,
+        "width": 224,
+        "size_hint_height": 84,
+        "height_for_width": 126,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 29,
+        "size_hint_height": 45
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 29,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 29,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 28,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Экспортировать PNG…",
+        "height": 29,
+        "size_hint_height": 43
+      },
+      {
+        "text": "Справка",
+        "height": 28,
+        "size_hint_height": 43
+      }
+    ],
+    "plot_bottom": 166,
+    "trigger_top": 176,
+    "plot_scroll_max": 91
+  },
+  {
+    "source": "candidate988",
+    "sha": "988f2cc094fa82c622f0b20276114e3159ae73d9",
+    "font_px": 22,
+    "window_size": [
+      1000,
+      710
+    ],
+    "sidebar_labels": [
+      {
+        "text": "ДЕМО БЕЗ ПРИБОРА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Внутренний эмулятор",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "Синтетическая синусоида.\nПрибор и датчик не используются.",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 104,
+        "word_wrap": true
+      },
+      {
+        "text": "ЗАПИСЬ И ФАЙЛЫ",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "В памяти · не сохранено",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 52,
+        "height_for_width": 52,
+        "word_wrap": true
+      },
+      {
+        "text": "ГРАНИЦЫ ПРОТОТИПА",
+        "height": 13,
+        "width": 224,
+        "size_hint_height": 13,
+        "height_for_width": 13,
+        "word_wrap": false
+      },
+      {
+        "text": "Только просмотр и файлы.\nUSB, Auto / Normal / Single и аппаратные измерения ещё не реализованы.",
+        "height": 26,
+        "width": 224,
+        "size_hint_height": 104,
+        "height_for_width": 182,
+        "word_wrap": true
+      }
+    ],
+    "sidebar_buttons": [
+      {
+        "text": "Создать демо",
+        "height": 26,
+        "size_hint_height": 50
+      },
+      {
+        "text": "Открыть запись…",
+        "height": 26,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Сохранить .mtcap…",
+        "height": 26,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Экспортировать CSV…",
+        "height": 26,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Экспортировать PNG…",
+        "height": 25,
+        "size_hint_height": 48
+      },
+      {
+        "text": "Справка",
+        "height": 26,
+        "size_hint_height": 48
+      }
+    ],
+    "plot_bottom": 171,
+    "trigger_top": 181,
+    "plot_scroll_max": 213
+  }
+]

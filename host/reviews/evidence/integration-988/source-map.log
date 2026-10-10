@@ -1,0 +1,1 @@
+PASS: all 85 tracked host files accounted for; session 21 files exact; GUI/test reconstructed exactly from PNG plus zero-fuzz layout patch.
