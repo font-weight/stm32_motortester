@@ -1,0 +1,13 @@
+$ /workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size -A /workspace/shared/usb-epoch-independent/evidence/mt_usb_epoch.arm.o
+/workspace/shared/usb-epoch-independent/evidence/mt_usb_epoch.arm.o  :
+section           size   addr
+.text              708      0
+.data                0      0
+.bss                 0      0
+.comment            39      0
+.ARM.attributes     45      0
+Total              792
+
+
+
+exit=0

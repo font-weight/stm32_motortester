@@ -1,0 +1,13 @@
++ gcc --version
+gcc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ gcc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -I/workspace/shared/critic-a-usb-epoch-review/snapshot -O2 test_api_boundaries.c /workspace/shared/critic-a-usb-epoch-review/snapshot/firmware/transport/mt_usb_epoch.c -o /workspace/shared/critic-a-usb-epoch-review/build/native
++ /workspace/shared/critic-a-usb-epoch-review/build/native
+PASS: four supplemental API groups, 1839 checks.
++ gcc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -I/workspace/shared/critic-a-usb-epoch-review/snapshot -g -O1 -fsanitize=address,undefined -fno-omit-frame-pointer test_api_boundaries.c /workspace/shared/critic-a-usb-epoch-review/snapshot/firmware/transport/mt_usb_epoch.c -o /workspace/shared/critic-a-usb-epoch-review/build/sanitized
++ ASAN_OPTIONS=detect_leaks=0
++ /workspace/shared/critic-a-usb-epoch-review/build/sanitized
+PASS: four supplemental API groups, 1839 checks.
