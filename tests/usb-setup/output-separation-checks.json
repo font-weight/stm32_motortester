@@ -1,0 +1,146 @@
+[
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-dependencies"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-dependencies/nested-output-must-not-exist"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-cdc-tests"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-cdc-tests/nested-output-must-not-exist"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-adapter-draft"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-adapter-draft/nested-output-must-not-exist"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-setup-draft/firmware/third_party/usb/patches"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  },
+  {
+    "argv": [
+      "python3",
+      "/workspace/shared/usb-setup-draft/tests/usb-setup/check_patch.py",
+      "--dependencies",
+      "/workspace/shared/usb-dependencies",
+      "--supporting",
+      "/workspace/shared/usb-cdc-tests",
+      "--firmware",
+      "/workspace/shared/usb-adapter-draft",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--output",
+      "/workspace/shared/usb-setup-draft/firmware/third_party/usb/patches/nested-output-must-not-exist"
+    ],
+    "exit_code": 2,
+    "stderr": "usage: check_patch.py [-h] --dependencies DEPENDENCIES --supporting SUPPORTING\n                      --firmware FIRMWARE --toolchain TOOLCHAIN --output\n                      OUTPUT\ncheck_patch.py: error: output must be outside every input tree\n"
+  }
+]

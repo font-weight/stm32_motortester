@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "original_tests": {
+    "test_patch_tool.py": "55f379b38bf3490c98eebbe1dd27c3afee95e96ce5ca6c6a51f190af19aa3704",
+    "test_output_separation.py": "cfe46a9aa7797cbc0d6bcabcefbe777bd28f8f3eb2487959796f88a838947f08"
+  },
+  "checkout_inputs": {
+    "firmware/third_party/usb/patches/0001-setup-rejection-accounting.patch": "51492cd96f4f9f8dd0699fe915f8c157c866f04cdc129e4c7c734e21f49b0f37",
+    "firmware/third_party/usb/patches/apply_setup_patch.py": "28b1672b247a71d149b47d631659df9e09c9d761ea413bbedbf1c571658bb189",
+    "firmware/third_party/usb/patches/setup-accounting.json": "7fc3ac47a74ef0e85e1aadccf4207ea11fad238a690f43790fc66aaf44767a19",
+    "firmware/third_party/usb/vendor/tinyusb/src/device/usbd.c": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
+    "tests/usb-setup/check_patch.py": "06b9b9237295786ddbdc152e2040a42e57e9fc6632685dbdfe00698e2483d57b"
+  },
+  "relocated_separation_test_sha256": "6a93700016df53084b8991506683a9287a3d7fc3d499f4aa9f4bedd9954dbdc7",
+  "replacements": {
+    "'/workspace/shared/usb-dependencies'": "'/workspace/shared/critic-a-usb-setup-review/package-assembly/firmware/third_party/usb'",
+    "'/workspace/shared/usb-cdc-tests'": "'/workspace/shared/critic-a-usb-setup-review/package-assembly/tests/usb-cdc/supporting'",
+    "'/workspace/shared/usb-adapter-draft'": "'/workspace/shared/critic-a-usb-setup-review/package-assembly'",
+    "'/workspace/shared/arm-resource-evidence/toolchain/root/usr'": "'/workspace/shared/usb-setup-critic-relocated-1/unused-toolchain'"
+  },
+  "patch_invocations": 11,
+  "output_separation_cases": 12,
+  "input_bytes_unchanged": true,
+  "scope": "patch tooling only; no target execution or IRQ proof"
+}

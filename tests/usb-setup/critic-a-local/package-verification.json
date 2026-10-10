@@ -1,0 +1,15 @@
+{
+  "files": 49,
+  "bytes": 628193,
+  "manifest_sha256": "6dddb986a145755dc16daffe67bafc615449df96eee7ed9639d9f7bfcbc8a799",
+  "all_paths_and_bytes_match": true,
+  "root_readme_sha256": "c15c94cf1d52d566411f07dd37a2f6dfee9c87eda27f1dab1b94a39cb3d910d5",
+  "package_executions": {
+    "existing_regressions": 8,
+    "baseline_native_expected_profile": 30,
+    "baseline_sanitized_expected_profile": 30,
+    "fixed_native": 30,
+    "fixed_sanitized": 30
+  },
+  "assembly_scope": "202 USB001 additions plus 32 required base firmware inputs, composed with 49 USB003 additions; no immutable full-checkout claim"
+}

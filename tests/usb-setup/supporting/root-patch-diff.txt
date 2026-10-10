@@ -1,0 +1,15 @@
+--- /workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.c	2026-10-10 19:19:34.124692479 +0500
++++ /workspace/shared/usb-setup-draft/build/usbd.c	2026-10-10 20:37:46.655127389 +0500
+@@ -1479,7 +1479,11 @@
+   }
+ 
+   if (send) {
+-    queue_event(event, in_isr);
++    if (!queue_event(event, in_isr) && event->event_id == DCD_EVENT_SETUP_RECEIVED) {
++      // A rejected SETUP has no queued event to consume this increment.
++      // Preserve successful enqueue/hook ordering and newer queued SETUPs.
++      _usbd_queued_setup--;
++    }
+   }
+ }
+ 
