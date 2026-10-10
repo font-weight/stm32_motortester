@@ -1,0 +1,3 @@
+cc (Debian 14.2.0-19) 14.2.0
+strict: acquisition: 153 scenarios passed; sizeof(mt_acq_t)=4156 bytes
+ubsan: acquisition: 153 scenarios passed; sizeof(mt_acq_t)=4156 bytes
