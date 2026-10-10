@@ -1,0 +1,76 @@
+test_abort_reasons_and_reserved (test_window.WindowTests.test_abort_reasons_and_reserved) ... ok
+test_all_samples_without_end_are_not_complete (test_window.WindowTests.test_all_samples_without_end_are_not_complete) ... FAIL
+test_auto_external_id_remains_raw_and_deferred (test_window.WindowTests.test_auto_external_id_remains_raw_and_deferred) ... FAIL
+test_complete_terminal_is_not_repeated (test_window.WindowTests.test_complete_terminal_is_not_repeated) ... FAIL
+test_complete_through_fragmented_host002_frames (test_window.WindowTests.test_complete_through_fragmented_host002_frames) ... ok
+test_context_strict_types_and_supported_ranges (test_window.WindowTests.test_context_strict_types_and_supported_ranges) ... ok
+test_data_bounds_adc_and_ids_leave_verified_prefix (test_window.WindowTests.test_data_bounds_adc_and_ids_leave_verified_prefix) ... ok
+test_deadline_boundary_and_current_valid_event_precedence (test_window.WindowTests.test_deadline_boundary_and_current_valid_event_precedence) ... ok
+test_end_count_crc_and_reserved_preserve_even_full_fragments (test_window.WindowTests.test_end_count_crc_and_reserved_preserve_even_full_fragments) ... FAIL
+test_envelope_and_event_order (test_window.WindowTests.test_envelope_and_event_order) ... ok
+test_exact_earlier_duplicate_never_refreshes_progress (test_window.WindowTests.test_exact_earlier_duplicate_never_refreshes_progress) ... ok
+test_exact_payload_lengths (test_window.WindowTests.test_exact_payload_lengths) ... ok
+test_gap_conflict_and_matching_subslice_are_not_duplicates (test_window.WindowTests.test_gap_conflict_and_matching_subslice_are_not_duplicates) ... ok
+test_idle_time_reset_clock_rollback_and_uint64_boundary (test_window.WindowTests.test_idle_time_reset_clock_rollback_and_uint64_boundary) ... ok
+test_invalid_api_never_expires_or_mutates (test_window.WindowTests.test_invalid_api_never_expires_or_mutates) ... ok
+test_invalid_begin_fields_are_terminal_without_sample_allocation (test_window.WindowTests.test_invalid_begin_fields_are_terminal_without_sample_allocation) ... ok
+test_rail_flag_consistency_preserves_data_and_is_not_contract_deferral (test_window.WindowTests.test_rail_flag_consistency_preserves_data_and_is_not_contract_deferral) ... FAIL
+test_terminal_once_and_explicit_reset (test_window.WindowTests.test_terminal_once_and_explicit_reset) ... ok
+test_valid_auto_timeout_and_external_modes (test_window.WindowTests.test_valid_auto_timeout_and_external_modes) ... FAIL
+
+======================================================================
+FAIL: test_all_samples_without_end_are_not_complete (test_window.WindowTests.test_all_samples_without_end_are_not_complete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 104, in test_all_samples_without_end_are_not_complete
+    self.assert_incomplete(receiver.tick(3009), Code.TIMEOUT, 2048)
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 70, in assert_incomplete
+    self.assertEqual(sum(len(x.samples) for x in result.fragments), count)
+AssertionError: 0 != 2048
+
+======================================================================
+FAIL: test_auto_external_id_remains_raw_and_deferred (test_window.WindowTests.test_auto_external_id_remains_raw_and_deferred)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 297, in test_auto_external_id_remains_raw_and_deferred
+    self.assertTrue(result.complete)
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_complete_terminal_is_not_repeated (test_window.WindowTests.test_complete_terminal_is_not_repeated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 254, in test_complete_terminal_is_not_repeated
+    self.assertEqual(result.samples, SAMPLES)
+AssertionError: None != (1, 18, 35, 52, 69, 86, 103, 120, 137, 15[11653 chars]2048)
+
+======================================================================
+FAIL: test_end_count_crc_and_reserved_preserve_even_full_fragments (test_window.WindowTests.test_end_count_crc_and_reserved_preserve_even_full_fragments)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 262, in test_end_count_crc_and_reserved_preserve_even_full_fragments
+    self.assert_incomplete(result, code, 2048)
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 70, in assert_incomplete
+    self.assertEqual(sum(len(x.samples) for x in result.fragments), count)
+AssertionError: 0 != 2048
+
+======================================================================
+FAIL: test_rail_flag_consistency_preserves_data_and_is_not_contract_deferral (test_window.WindowTests.test_rail_flag_consistency_preserves_data_and_is_not_contract_deferral)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 283, in test_rail_flag_consistency_preserves_data_and_is_not_contract_deferral
+    self.assertTrue(result.complete)
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_valid_auto_timeout_and_external_modes (test_window.WindowTests.test_valid_auto_timeout_and_external_modes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/critic-b-window-cb/host/tests/test_window.py", line 311, in test_valid_auto_timeout_and_external_modes
+    self.assertTrue(receiver.feed(end(), 20).semantic_checks_complete)
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.028s
+
+FAILED (failures=6)

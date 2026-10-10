@@ -1,0 +1,590 @@
+{
+  "reviewer": "Independent Critic-B HOST-004; same reviewer as cb271a13",
+  "date": "2026-10-10",
+  "verdict": "PASS",
+  "score": 10.0,
+  "criteria": {
+    "C1": 10,
+    "C2": 10,
+    "C3": 10,
+    "C4": 10,
+    "C5": 10
+  },
+  "head_sha": "21a2dd8fc53295e7228828d00e886bd28923494c",
+  "parent_sha": "cb271a13b73db3ad480afe654e9efe3f97c7eb41",
+  "base_sha": "c89c12df984390b34785eba81665abd6418658e2",
+  "protocol_source_sha": "124b3f32e1e7f7282bce283baa4c9406d4d72950",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "archive_command": "git archive 21a2dd8fc53295e7228828d00e886bd28923494c | tar -x -C /tmp/critic-b-window-21a2",
+  "archive_checks": [
+    {
+      "path": "AGENTS.md",
+      "git_blob_sha1": "1aa58bedd837e00501b611fd63d55dd1c4d5c627",
+      "archive_blob_sha1": "1aa58bedd837e00501b611fd63d55dd1c4d5c627",
+      "match": true
+    },
+    {
+      "path": "DOT_PEER_START.md",
+      "git_blob_sha1": "5c521f51caa7140c46ce66496d44bc4d103b7311",
+      "archive_blob_sha1": "5c521f51caa7140c46ce66496d44bc4d103b7311",
+      "match": true
+    },
+    {
+      "path": "DOT_START.md",
+      "git_blob_sha1": "d935006ddd436db7e27aa24c5416ac424ec29ea9",
+      "archive_blob_sha1": "d935006ddd436db7e27aa24c5416ac424ec29ea9",
+      "match": true
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha1": "589a4524cbb79508069ce605f9b0cd41372826b6",
+      "archive_blob_sha1": "589a4524cbb79508069ce605f9b0cd41372826b6",
+      "match": true
+    },
+    {
+      "path": "docs/architecture.md",
+      "git_blob_sha1": "cbc25180a1e8d54dd818a50832720d9fb87f30ad",
+      "archive_blob_sha1": "cbc25180a1e8d54dd818a50832720d9fb87f30ad",
+      "match": true
+    },
+    {
+      "path": "docs/bench.md",
+      "git_blob_sha1": "2338e781eba17aab8d97be64e549df2107bcf76d",
+      "archive_blob_sha1": "2338e781eba17aab8d97be64e549df2107bcf76d",
+      "match": true
+    },
+    {
+      "path": "docs/budget.md",
+      "git_blob_sha1": "5746724c2a635b324818915bb1ff403f4b8e151b",
+      "archive_blob_sha1": "5746724c2a635b324818915bb1ff403f4b8e151b",
+      "match": true
+    },
+    {
+      "path": "docs/coordination.md",
+      "git_blob_sha1": "a173628f3365af6b2be8db51102986176574cc86",
+      "archive_blob_sha1": "a173628f3365af6b2be8db51102986176574cc86",
+      "match": true
+    },
+    {
+      "path": "docs/data-plan.md",
+      "git_blob_sha1": "1ed1ae08ce2edf838469456934f34ad3a1b4ebca",
+      "archive_blob_sha1": "1ed1ae08ce2edf838469456934f34ad3a1b4ebca",
+      "match": true
+    },
+    {
+      "path": "docs/decisions.md",
+      "git_blob_sha1": "550bc557e9ff618c46dc4c7eaeb5bd5d02d6580a",
+      "archive_blob_sha1": "550bc557e9ff618c46dc4c7eaeb5bd5d02d6580a",
+      "match": true
+    },
+    {
+      "path": "docs/glossary.md",
+      "git_blob_sha1": "2f96e7e8a13b1edb54da2545450c84becc3d2848",
+      "archive_blob_sha1": "2f96e7e8a13b1edb54da2545450c84becc3d2848",
+      "match": true
+    },
+    {
+      "path": "docs/hardware.md",
+      "git_blob_sha1": "708b1082083dca3c8bdfbfcb1ee26a9117800710",
+      "archive_blob_sha1": "708b1082083dca3c8bdfbfcb1ee26a9117800710",
+      "match": true
+    },
+    {
+      "path": "docs/mvp-spec.md",
+      "git_blob_sha1": "d6530867fea8d55e808d67b072d177995255dd5a",
+      "archive_blob_sha1": "d6530867fea8d55e808d67b072d177995255dd5a",
+      "match": true
+    },
+    {
+      "path": "docs/progress.md",
+      "git_blob_sha1": "7b8db14b2b3daa9b63d083fdadf277a1b2bbf777",
+      "archive_blob_sha1": "7b8db14b2b3daa9b63d083fdadf277a1b2bbf777",
+      "match": true
+    },
+    {
+      "path": "docs/quality-gate.md",
+      "git_blob_sha1": "755f6fc48057fb41cead074b019f64757d10a752",
+      "archive_blob_sha1": "755f6fc48057fb41cead074b019f64757d10a752",
+      "match": true
+    },
+    {
+      "path": "docs/risks.md",
+      "git_blob_sha1": "9d4e82c17b8659c3a24bde0e9b910e8df6682017",
+      "archive_blob_sha1": "9d4e82c17b8659c3a24bde0e9b910e8df6682017",
+      "match": true
+    },
+    {
+      "path": "docs/sources.md",
+      "git_blob_sha1": "0c38f9a71408698f515debd3781f13142e30e381",
+      "archive_blob_sha1": "0c38f9a71408698f515debd3781f13142e30e381",
+      "match": true
+    },
+    {
+      "path": "docs/validation.md",
+      "git_blob_sha1": "6d0d421a52d870c150baeff56dc2e1fb03f1efe5",
+      "archive_blob_sha1": "6d0d421a52d870c150baeff56dc2e1fb03f1efe5",
+      "match": true
+    },
+    {
+      "path": "host/.gitignore",
+      "git_blob_sha1": "309336f51bea7953365188e7a0aa2916131cf9e4",
+      "archive_blob_sha1": "309336f51bea7953365188e7a0aa2916131cf9e4",
+      "match": true
+    },
+    {
+      "path": "host/CHECKPOINT.md",
+      "git_blob_sha1": "43731fddcb23d1a545bd08f2bf5f3b7dd84c51ec",
+      "archive_blob_sha1": "43731fddcb23d1a545bd08f2bf5f3b7dd84c51ec",
+      "match": true
+    },
+    {
+      "path": "host/README.md",
+      "git_blob_sha1": "0cf0e6a4167313a9e654ff52482689f70b413873",
+      "archive_blob_sha1": "0cf0e6a4167313a9e654ff52482689f70b413873",
+      "match": true
+    },
+    {
+      "path": "host/docs/format-v1.md",
+      "git_blob_sha1": "addafdd19b47fdbc9d166d144d0d4406503d5a2a",
+      "archive_blob_sha1": "addafdd19b47fdbc9d166d144d0d4406503d5a2a",
+      "match": true
+    },
+    {
+      "path": "host/docs/help.md",
+      "git_blob_sha1": "744d41122fc00060bb61700429c315ea0b1c1412",
+      "archive_blob_sha1": "744d41122fc00060bb61700429c315ea0b1c1412",
+      "match": true
+    },
+    {
+      "path": "host/docs/stack.md",
+      "git_blob_sha1": "2239af5f2d4ce9d8553fac6a2cfbe76e58dc9db3",
+      "archive_blob_sha1": "2239af5f2d4ce9d8553fac6a2cfbe76e58dc9db3",
+      "match": true
+    },
+    {
+      "path": "host/docs/window-receive.md",
+      "git_blob_sha1": "61b91c88e0aadc4ae6688e212f064c3a5824a8d1",
+      "archive_blob_sha1": "61b91c88e0aadc4ae6688e212f064c3a5824a8d1",
+      "match": true
+    },
+    {
+      "path": "host/docs/wire-adapter.md",
+      "git_blob_sha1": "725da1d0d7437335782409e3af07237183e88382",
+      "archive_blob_sha1": "725da1d0d7437335782409e3af07237183e88382",
+      "match": true
+    },
+    {
+      "path": "host/evidence/README.md",
+      "git_blob_sha1": "2644eaad0954e36da4a768833294691c04e46ab5",
+      "archive_blob_sha1": "2644eaad0954e36da4a768833294691c04e46ab5",
+      "match": true
+    },
+    {
+      "path": "host/evidence/control-synthetic.mtcap",
+      "git_blob_sha1": "187bd38d559d139726517be6e86e8d9465355500",
+      "archive_blob_sha1": "187bd38d559d139726517be6e86e8d9465355500",
+      "match": true
+    },
+    {
+      "path": "host/evidence/host-001-linux-offscreen.png",
+      "git_blob_sha1": "2a9f6d13d217f5bccb542bf329ed38fced1e3b6f",
+      "archive_blob_sha1": "2a9f6d13d217f5bccb542bf329ed38fced1e3b6f",
+      "match": true
+    },
+    {
+      "path": "host/evidence/host-001-tests-linux.log",
+      "git_blob_sha1": "dee3360daaf9f4a7beed016cfe6177cbde1c1415",
+      "archive_blob_sha1": "dee3360daaf9f4a7beed016cfe6177cbde1c1415",
+      "match": true
+    },
+    {
+      "path": "host/evidence/window-synthetic.mtcap",
+      "git_blob_sha1": "50c3b27fddd9a6cf9ae6492d7be523137ef99dbd",
+      "archive_blob_sha1": "50c3b27fddd9a6cf9ae6492d7be523137ef99dbd",
+      "match": true
+    },
+    {
+      "path": "host/evidence/windows-wheel-resolution.log",
+      "git_blob_sha1": "7f16a38e81ebe9e0013fecd94b4739568088dca1",
+      "archive_blob_sha1": "7f16a38e81ebe9e0013fecd94b4739568088dca1",
+      "match": true
+    },
+    {
+      "path": "host/motortester/__init__.py",
+      "git_blob_sha1": "d28c127dfa54012834ff6d15c3e13e11b3a35ada",
+      "archive_blob_sha1": "d28c127dfa54012834ff6d15c3e13e11b3a35ada",
+      "match": true
+    },
+    {
+      "path": "host/motortester/__main__.py",
+      "git_blob_sha1": "7c1c4b886a432e93b67d1776a403d92de0b6da75",
+      "archive_blob_sha1": "7c1c4b886a432e93b67d1776a403d92de0b6da75",
+      "match": true
+    },
+    {
+      "path": "host/motortester/emulator.py",
+      "git_blob_sha1": "957c6a855fb7e89790e322fb0d5b48e5091faafe",
+      "archive_blob_sha1": "957c6a855fb7e89790e322fb0d5b48e5091faafe",
+      "match": true
+    },
+    {
+      "path": "host/motortester/gui.py",
+      "git_blob_sha1": "946cb10c33455e7bb599ac2975c40a5e766e1feb",
+      "archive_blob_sha1": "946cb10c33455e7bb599ac2975c40a5e766e1feb",
+      "match": true
+    },
+    {
+      "path": "host/motortester/model.py",
+      "git_blob_sha1": "b5b586cfcf239e188753496515fb868777372c9f",
+      "archive_blob_sha1": "b5b586cfcf239e188753496515fb868777372c9f",
+      "match": true
+    },
+    {
+      "path": "host/motortester/plotting.py",
+      "git_blob_sha1": "ae04f1e63be4ad93dfcd76edce559351f00d8b7c",
+      "archive_blob_sha1": "ae04f1e63be4ad93dfcd76edce559351f00d8b7c",
+      "match": true
+    },
+    {
+      "path": "host/motortester/recording.py",
+      "git_blob_sha1": "78a12927daa9af55c987767e2b77ed6f7ec6ec91",
+      "archive_blob_sha1": "78a12927daa9af55c987767e2b77ed6f7ec6ec91",
+      "match": true
+    },
+    {
+      "path": "host/motortester/window.py",
+      "git_blob_sha1": "af262e1a605408cfd79c958fade4657f82f3366e",
+      "archive_blob_sha1": "af262e1a605408cfd79c958fade4657f82f3366e",
+      "match": true
+    },
+    {
+      "path": "host/motortester/wire.py",
+      "git_blob_sha1": "15f45c3902826f9025d3ffdcdb28b706d7e4836d",
+      "archive_blob_sha1": "15f45c3902826f9025d3ffdcdb28b706d7e4836d",
+      "match": true
+    },
+    {
+      "path": "host/packaging/LICENSE-REVIEW.md",
+      "git_blob_sha1": "3907bd271c0e71182cb3b5340df09c6d466e5e13",
+      "archive_blob_sha1": "3907bd271c0e71182cb3b5340df09c6d466e5e13",
+      "match": true
+    },
+    {
+      "path": "host/packaging/build_windows.py",
+      "git_blob_sha1": "4a1b5d7184253a11d342ba1db909879a2515a184",
+      "archive_blob_sha1": "4a1b5d7184253a11d342ba1db909879a2515a184",
+      "match": true
+    },
+    {
+      "path": "host/packaging/collect_licenses.py",
+      "git_blob_sha1": "6e06568815404f6f79de326118d2e5e43a6534fc",
+      "archive_blob_sha1": "6e06568815404f6f79de326118d2e5e43a6534fc",
+      "match": true
+    },
+    {
+      "path": "host/packaging/launch_gui.py",
+      "git_blob_sha1": "b5d1b94f3c5ffb87339ab8a21752e44114b13782",
+      "archive_blob_sha1": "b5d1b94f3c5ffb87339ab8a21752e44114b13782",
+      "match": true
+    },
+    {
+      "path": "host/packaging/motortester.spec",
+      "git_blob_sha1": "77481f13a209baf87e877e5730327c311eb833ed",
+      "archive_blob_sha1": "77481f13a209baf87e877e5730327c311eb833ed",
+      "match": true
+    },
+    {
+      "path": "host/packaging/requirements-win-x64.lock",
+      "git_blob_sha1": "0d9c90c5975130694f128e1816f0105cf9f7f833",
+      "archive_blob_sha1": "0d9c90c5975130694f128e1816f0105cf9f7f833",
+      "match": true
+    },
+    {
+      "path": "host/requirements-gui.txt",
+      "git_blob_sha1": "54edfb4ef45e319b619e48997baa7850903b258f",
+      "archive_blob_sha1": "54edfb4ef45e319b619e48997baa7850903b258f",
+      "match": true
+    },
+    {
+      "path": "host/reviews/HOST-001-acceptance-checklist.md",
+      "git_blob_sha1": "bb2c4ee9474352d3fcb2ca7702bf080c6de457a8",
+      "archive_blob_sha1": "bb2c4ee9474352d3fcb2ca7702bf080c6de457a8",
+      "match": true
+    },
+    {
+      "path": "host/scripts/check_first_path.py",
+      "git_blob_sha1": "14c095817e95677ff8a4f40b7d8099c94eecd21d",
+      "archive_blob_sha1": "14c095817e95677ff8a4f40b7d8099c94eecd21d",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/README.md",
+      "git_blob_sha1": "e9572e998c016b55fb636d24d241c62d56e80ff3",
+      "archive_blob_sha1": "e9572e998c016b55fb636d24d241c62d56e80ff3",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/conformance-initial.log",
+      "git_blob_sha1": "fab72eb141292d0ee504527fd6173995f7e915ef",
+      "archive_blob_sha1": "fab72eb141292d0ee504527fd6173995f7e915ef",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/conformance-linux.log",
+      "git_blob_sha1": "57bcd6e2aa44e4c54f0ff09aa3331c3b585a9e5b",
+      "archive_blob_sha1": "57bcd6e2aa44e4c54f0ff09aa3331c3b585a9e5b",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/conformance-optimized.log",
+      "git_blob_sha1": "8c62cb9cac5d7835f64707556403577a6fac7b2a",
+      "archive_blob_sha1": "8c62cb9cac5d7835f64707556403577a6fac7b2a",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/full-linux.log",
+      "git_blob_sha1": "aed47cec6a9605d83f7082f2addd2d465d476faa",
+      "archive_blob_sha1": "aed47cec6a9605d83f7082f2addd2d465d476faa",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/reference.py",
+      "git_blob_sha1": "0ce232c0514be04f7993d261a6bca9ad782ab576",
+      "archive_blob_sha1": "0ce232c0514be04f7993d261a6bca9ad782ab576",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/run-manifest.json",
+      "git_blob_sha1": "f0bb6780898ce077040eb9a64171ae59de38e48e",
+      "archive_blob_sha1": "f0bb6780898ce077040eb9a64171ae59de38e48e",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/samples.bin",
+      "git_blob_sha1": "d7f0e3ed9782b860d57e84d0ec316b6d6d132226",
+      "archive_blob_sha1": "d7f0e3ed9782b860d57e84d0ec316b6d6d132226",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/vectors.json",
+      "git_blob_sha1": "03a56a6d15f188a8e996cdde7468d7e8f21b5876",
+      "archive_blob_sha1": "03a56a6d15f188a8e996cdde7468d7e8f21b5876",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/window-focused.log",
+      "git_blob_sha1": "d1cf2e0a5b0e593744e8de92ced8f4b7c1c45199",
+      "archive_blob_sha1": "d1cf2e0a5b0e593744e8de92ced8f4b7c1c45199",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/window/windows.bin",
+      "git_blob_sha1": "00da8971fd64743f57356c58a825826f1c9c99f0",
+      "archive_blob_sha1": "00da8971fd64743f57356c58a825826f1c9c99f0",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/README.md",
+      "git_blob_sha1": "d8875d6f927a243b5b60b35348637d09205e3748",
+      "archive_blob_sha1": "d8875d6f927a243b5b60b35348637d09205e3748",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/c-crosscheck.json",
+      "git_blob_sha1": "e05b72f447beae7e82bdd6cd97370e063a3a2389",
+      "archive_blob_sha1": "e05b72f447beae7e82bdd6cd97370e063a3a2389",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/compare_c.py",
+      "git_blob_sha1": "2fafa90562358dca3f087f30b3ceb05c08e08f82",
+      "archive_blob_sha1": "2fafa90562358dca3f087f30b3ceb05c08e08f82",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/conformance-linux.log",
+      "git_blob_sha1": "6dfbeec4a0a31a5c045275bc61e3af859c3403ad",
+      "archive_blob_sha1": "6dfbeec4a0a31a5c045275bc61e3af859c3403ad",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/full-linux.log",
+      "git_blob_sha1": "b9c773af3773f817ff840150093dc2bc07f014bf",
+      "archive_blob_sha1": "b9c773af3773f817ff840150093dc2bc07f014bf",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/optimized-rejected.log",
+      "git_blob_sha1": "c60b230802936a69f53256b4ce47d5485d44d3ab",
+      "archive_blob_sha1": "c60b230802936a69f53256b4ce47d5485d44d3ab",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/reference.py",
+      "git_blob_sha1": "1e3d6db95a5cd3c8385691d0f443798122c35f99",
+      "archive_blob_sha1": "1e3d6db95a5cd3c8385691d0f443798122c35f99",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/run-manifest.json",
+      "git_blob_sha1": "46550e6615f67dc2a45893d13886f4fccd99baa8",
+      "archive_blob_sha1": "46550e6615f67dc2a45893d13886f4fccd99baa8",
+      "match": true
+    },
+    {
+      "path": "host/tests/fixtures/wire/vectors.json",
+      "git_blob_sha1": "d05e4067329bc8c9961eb0706a54568eba35cff5",
+      "archive_blob_sha1": "d05e4067329bc8c9961eb0706a54568eba35cff5",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_first_path.py",
+      "git_blob_sha1": "40b443339a85d736cc8069ea582817bb14651d51",
+      "archive_blob_sha1": "40b443339a85d736cc8069ea582817bb14651d51",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_gui.py",
+      "git_blob_sha1": "e1172cbe7dcef82f70f9094da31192c18a24e4ca",
+      "archive_blob_sha1": "e1172cbe7dcef82f70f9094da31192c18a24e4ca",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_recording.py",
+      "git_blob_sha1": "1ed71c8801c058eee098d5255906dd20bca6db62",
+      "archive_blob_sha1": "1ed71c8801c058eee098d5255906dd20bca6db62",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_window.py",
+      "git_blob_sha1": "d0702cc6916634b24e4eabf93dff86a86325e6a0",
+      "archive_blob_sha1": "d0702cc6916634b24e4eabf93dff86a86325e6a0",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_window_conformance.py",
+      "git_blob_sha1": "daa9d8c2be4681c0773c84a511cd5367ab4ef5e9",
+      "archive_blob_sha1": "daa9d8c2be4681c0773c84a511cd5367ab4ef5e9",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_wire.py",
+      "git_blob_sha1": "43c2800b414f2448da1ee07c0fde5e33377e8f81",
+      "archive_blob_sha1": "43c2800b414f2448da1ee07c0fde5e33377e8f81",
+      "match": true
+    },
+    {
+      "path": "host/tests/test_wire_conformance.py",
+      "git_blob_sha1": "51e273531a28f33a1bb50885700a08c7567681e4",
+      "archive_blob_sha1": "51e273531a28f33a1bb50885700a08c7567681e4",
+      "match": true
+    },
+    {
+      "path": "requirements.md",
+      "git_blob_sha1": "cb6e6334951e31c53c3622be32ac190048b0ffd1",
+      "archive_blob_sha1": "cb6e6334951e31c53c3622be32ac190048b0ffd1",
+      "match": true
+    },
+    {
+      "path": "task.md",
+      "git_blob_sha1": "9344eae0c450087158931102e3e81009d6295c58",
+      "archive_blob_sha1": "9344eae0c450087158931102e3e81009d6295c58",
+      "match": true
+    }
+  ],
+  "changed_paths": [
+    "host/tests/fixtures/window/run-manifest.json",
+    "host/tests/test_window.py"
+  ],
+  "historical_hashes_match_source_commit": {
+    "host/motortester/window.py": true,
+    "host/motortester/wire.py": true,
+    "host/tests/test_window.py": true,
+    "host/tests/test_window_conformance.py": true,
+    "host/docs/window-receive.md": true,
+    "host/tests/fixtures/window/README.md": true,
+    "host/tests/fixtures/window/conformance-initial.log": true,
+    "host/tests/fixtures/window/conformance-linux.log": true,
+    "host/tests/fixtures/window/conformance-optimized.log": true,
+    "host/tests/fixtures/window/full-linux.log": true,
+    "host/tests/fixtures/window/reference.py": true,
+    "host/tests/fixtures/window/samples.bin": true,
+    "host/tests/fixtures/window/vectors.json": true,
+    "host/tests/fixtures/window/window-focused.log": true,
+    "host/tests/fixtures/window/windows.bin": true
+  },
+  "historical_manifest_fields_preserved": true,
+  "production_unchanged": true,
+  "production_window_sha256": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273",
+  "old_frozen_report_sha256": "c9da62d402b5bf37fb2ea71bb2b9aacc9a40371ac5fdd8281f03096369eed078",
+  "commands": [
+    {
+      "name": "full",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/motortester-deps:host QT_QPA_PLATFORM=offscreen python -m unittest discover -s host/tests -v",
+      "tests": 199,
+      "elapsed_seconds": 17.811,
+      "status": "PASS",
+      "skipped": 0,
+      "log": "delta-21a2-full-linux.log"
+    },
+    {
+      "name": "normal",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=host python -m unittest discover -s host/tests -p 'test_window*.py' -v",
+      "tests": 58,
+      "elapsed_seconds": 4.681,
+      "status": "PASS",
+      "skipped": 0,
+      "log": "delta-21a2-normal.log"
+    },
+    {
+      "name": "optimized",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=host python -O -m unittest discover -s host/tests -p 'test_window*.py' -v",
+      "tests": 58,
+      "elapsed_seconds": 3.853,
+      "status": "PASS",
+      "skipped": 0,
+      "log": "delta-21a2-optimized.log"
+    },
+    {
+      "name": "reviewer_probes",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/critic-b-window-21a2/host python /tmp/critic-b-window-evidence/critic_b_probes.py",
+      "tests": 8,
+      "elapsed_seconds": 4.357,
+      "status": "PASS",
+      "skipped": 0,
+      "log": "delta-21a2-probes.log"
+    },
+    {
+      "name": "helper_normal",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/critic-b-window-21a2/host python helper_delta_probe.py /tmp/critic-b-window-21a2",
+      "tests": 1,
+      "elapsed_seconds": 0.0,
+      "status": "PASS",
+      "skipped": 0,
+      "log": "delta-21a2-helper-normal.log"
+    },
+    {
+      "name": "helper_optimized",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/critic-b-window-21a2/host python -O helper_delta_probe.py /tmp/critic-b-window-21a2",
+      "tests": 1,
+      "elapsed_seconds": 0.001,
+      "status": "PASS",
+      "skipped": 0,
+      "log": "delta-21a2-helper-optimized.log"
+    }
+  ],
+  "evidence_sha256": {
+    "delta-21a2-full-linux.log": "9c0c55edc19c422f67b7db4b4b77c6d76520002845fcd63050743300b889bd1e",
+    "delta-21a2-helper-normal.log": "218904a9fb573e540a8fc4ed9d44049af76b6d3798976064b8b2d2d1e04a6c04",
+    "delta-21a2-helper-optimized.log": "79fe8ae8093257a628511e909a372d45955e64d5818cc19a90b8767a9d02de68",
+    "delta-21a2-normal.log": "5971e92249eab22192e3e65e5368d1d9d4c52fe94c94e871773b612bb3e82196",
+    "delta-21a2-optimized.log": "11745842a88ed1fb8e053d5df37aeaa6b97d96cf401964203fdf2ccef8403c57",
+    "delta-21a2-probes.log": "689dae55b06733f93215e3c5d551b171d83a757b2fa39dc519ac609459b7f20a",
+    "delta.patch": "694136173871fdf60e500f7c0d28791ea8f54af39bf6791d13cd6723d40f0db7",
+    "github-snapshot.json": "89d26bca51fdfa15cd8b789f18e532fcd3a50b3f0a9fe4767728cccff35d2719",
+    "helper_delta_probe.py": "398530b5cde97626e58522edcc4e5cdffb49246807f6f697c33d098ec6dca356"
+  },
+  "previous_reviewer_probe_source_sha256": "369dcc9ec06ad5246340f079ddaf38b790adc35e145296c0aaab101b073f75db",
+  "scope": "same bounded receiver only; N1 resolved; no shared wire/session or Windows/USB/hardware acceptance"
+}

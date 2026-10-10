@@ -14,3 +14,6 @@
 - [HOST-002 PASS](HOST-002-review.md), код c89c12df: только opaque byte/stream компонент; [доказательства](evidence/host-wire-c89/).
 - [HOST-003 PASS](HOST-003-review.md), код2cf1fb83: PNG на Linux; [доказательства](evidence/png-2cf1/), включая red-регрессию прежнего clipping. [Исторический REWORK](HOST-003-review-ae7e3ffd.md).
 - [Shared session BLOCKED_EVIDENCE](WIRE-session-b6ae-review.md), кодb6ae8025; [доказательства](evidence/session-b6ae/). Новые версии общего контракта требуют отдельной проверки.
+
+- [HOST-004 PASS](HOST-004-review.md), исправленный код21a2dd8f; [полные и исторические доказательства](evidence/window-cb/), [повторная проверка](evidence/window-cb/delta-21a2dd8f/). Исходныйcb271a13 получил9,85 с замечанием к assert в helper; исправленный10,0, production не менялся.
+- [Shared c54bd955 addendum](WIRE-session-c54bd-review.md): неоднозначность external_edge_id исправлена в документе; общий контракт по-прежнему BLOCKED_EVIDENCE из-за отсутствующего TX/Stop integration proof.

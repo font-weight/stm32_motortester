@@ -1,0 +1,62 @@
+{
+  "issue17": {
+    "url": "https://github.com/font-weight/stm32_motortester/issues/17",
+    "title": "HOST-004: draft bounded window receiver and incomplete-transfer evidence",
+    "issue_number": 17,
+    "body": "Dot B-owned follow-on to #10/PR15. Scope is receive-only host window assembly, not a full session or command engine. Pin unaccepted shared candidate124b3f32 until A clarifies; no independent protocol fork.\n\nPredeclared acceptance: exact WINDOW_BEGIN40/DATA12+2N (1..250)/END16/ABORT12 lengths; enums/reserved/ADC0..4095 and stable expected session/generation/config/profile validation before bounded allocation; profile1 exactly2048 samples. Sequential offsets; exact previous block duplicates harmless, conflict/overlap/gap/changed IDs produces explicit incomplete outcome preserving verified fragments. Emit immutable success once only after2048 samples plus valid END count/CRC32 of4096 LE bytes. Abort/disconnect/reset/progress timeout yields incomplete fragments/missing ranges, never fabricated zero-fill or successful .mtcap.20 synthetic windows and negative cases through HOST002 framing with independently calculated expected samples/CRC.\n\nNew files only: host/motortester/window.py, host/tests/test_window.py, host/tests/test_window_conformance.py, host/tests/fixtures/window/**, host/docs/window-receive.md. No model/recording/GUI/firmware/shared protocol/CI edits. Preserve ambiguous external_edge_id raw and explicitly defer Auto+external semantic acceptance; TX sequence allocation belongs outside this seam. No USB/Windows/hardware claim. Independent Critic-B fixed-rubric exact-SHA gate required before acceptance; owner A retains merge authority.",
+    "state": "open",
+    "user": {
+      "login": "font-weight",
+      "name": "font-weight",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/62782801?v=4",
+      "id": 62782801
+    },
+    "assignees": null,
+    "labels": null,
+    "milestone": null,
+    "state_reason": null,
+    "comments": 0,
+    "created_at": "2026-10-10T12:40:52Z",
+    "updated_at": "2026-10-10T12:40:52Z",
+    "closed_at": null,
+    "display_url": "https://github.com/font-weight/stm32_motortester/issues/17",
+    "display_title": "HOST-004: draft bounded window receiver and incomplete-transfer evidence"
+  },
+  "pr23": {
+    "url": "https://github.com/font-weight/stm32_motortester/pull/23",
+    "number": 23,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "Related #17. Exact cb271a13b73db3ad480afe654e9efe3f97c7eb41, basec89c12df.15 new host files. One bounded profile1 window receiver, explicit incomplete fragments/missing ranges, no zero-fill, raw CRC/count/identity checks, one terminal event, progress timeout and duplicate handling. No transport/full session/device control or .mtcap format change.\n\n199 full tests PASS/no skips;58 window tests and39 independent conformance pass (also Python-O);20 exact independent binary/sample fixtures. Logs and hash manifest committed, including initial test-author failures. Pin124b3 shared draft; newer early-ABORT handling belongs to outer dispatcher and is explicitly documented. Auto+external edge semantics deferred; metadata inconsistencies distinguished from complete byte integrity. Independent Critic-B acceptance pending; Windows/USB/hardware unverified; A retains merge authority.",
+    "title": "DRAFT HOST-004: bounded window assembly and incomplete-transfer results",
+    "base": "dot-b/host-wire-draft",
+    "base_sha": "c89c12df984390b34785eba81665abd6418658e2",
+    "head": "dot-b/host-window-draft",
+    "head_sha": "cb271a13b73db3ad480afe654e9efe3f97c7eb41",
+    "head_repo_id": 1413091681,
+    "head_repo_full_name": "font-weight/stm32_motortester",
+    "merge_commit_sha": "40e0167519ac6f6424486a0e263afc030a296b64",
+    "user": {
+      "login": "font-weight",
+      "name": "font-weight",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/62782801?v=4",
+      "id": 62782801
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "created_at": "2026-10-10T12:54:20Z",
+    "updated_at": "2026-10-10T12:54:20Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 1,
+    "changed_files": 15,
+    "additions": 3390,
+    "deletions": 0,
+    "display_url": "https://github.com/font-weight/stm32_motortester/pull/23",
+    "display_title": "DRAFT HOST-004: bounded window assembly and incomplete-transfer results"
+  }
+}
