@@ -1,0 +1,247 @@
+[
+  {
+    "path": "firmware/third_party/usb/patches/0001-setup-rejection-accounting.patch",
+    "bytes": 410,
+    "sha256": "51492cd96f4f9f8dd0699fe915f8c157c866f04cdc129e4c7c734e21f49b0f37"
+  },
+  {
+    "path": "firmware/third_party/usb/patches/apply_setup_patch.py",
+    "bytes": 1962,
+    "sha256": "28b1672b247a71d149b47d631659df9e09c9d761ea413bbedbf1c571658bb189"
+  },
+  {
+    "path": "firmware/third_party/usb/patches/setup-accounting.json",
+    "bytes": 366,
+    "sha256": "7fc3ac47a74ef0e85e1aadccf4207ea11fad238a690f43790fc66aaf44767a19"
+  },
+  {
+    "path": "tests/usb-setup/PACKAGE_RU.md",
+    "bytes": 3891,
+    "sha256": "2e72e996c8a461450528add299521ffb288f699497dc6b446b7cebab114f083d"
+  },
+  {
+    "path": "tests/usb-setup/README.md",
+    "bytes": 8312,
+    "sha256": "c15c94cf1d52d566411f07dd37a2f6dfee9c87eda27f1dab1b94a39cb3d910d5"
+  },
+  {
+    "path": "tests/usb-setup/check_patch.py",
+    "bytes": 5426,
+    "sha256": "06b9b9237295786ddbdc152e2040a42e57e9fc6632685dbdfe00698e2483d57b"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/commands.json",
+    "bytes": 160844,
+    "sha256": "9edaf9a6b3dc22bdd847d8f72cfea8bfdc79082b00947e780df45c57e649dfa6"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/nm.txt",
+    "bytes": 840,
+    "sha256": "e430eded515f0b533d851f6a2adda8d29192dc5e434c071c4b0efde5ddcf9deb"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/objdump.txt",
+    "bytes": 70506,
+    "sha256": "d8ea446ed643d1b33c7ff96a5607bdc138653f30914a29ea635e87180682db69"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/size.txt",
+    "bytes": 4989,
+    "sha256": "1491a819fe097db7db3d72f865ac7ca67ffbd1def7f6e3e10e426c7f5f6c87cc"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/summary.json",
+    "bytes": 617,
+    "sha256": "9b177c3151eb7ee2575f956b0926a24c4f2d917b6401c3b14a46af033c77cc3e"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build/adapter-receipt.json",
+    "bytes": 19358,
+    "sha256": "1b38146735ff7e3d777e857af1f5d81e593bba3aa404887062fcae8b7824f197"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build/core-receipt.json",
+    "bytes": 7718,
+    "sha256": "0e89e887bf0b4cc196b6e16b367b6dd4af34d259b862c93268b0d64dafe88dc6"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build-f1/adapter-receipt.json",
+    "bytes": 19725,
+    "sha256": "7e19b59e0a08f5c61f1e4c0e3d90f790b4232911e952815432e448b7a01a389e"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build-f1/core-receipt.json",
+    "bytes": 7855,
+    "sha256": "376b8f80856e401baca91c44bf2f19209fa386fd04253a5426f3fde344edae08"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize/adapter-receipt.json",
+    "bytes": 20369,
+    "sha256": "21ac499b4aa579b2de4d631c2772b89a5b2d1673e6208cb3b7f3d3ea437e6103"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize/core-receipt.json",
+    "bytes": 8169,
+    "sha256": "a7c039d38c42a92de6cbfaa4259d1b69369f52eb03d54a6ec5c441d5cb8f54a4"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize-f1/adapter-receipt.json",
+    "bytes": 20736,
+    "sha256": "e658f3570135292e184d02d404723e70b6fe3ef707ccb30473ccac0b5f662e65"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize-f1/core-receipt.json",
+    "bytes": 8306,
+    "sha256": "0a0bef8db757171d0baaa8dba072f41f887d61aacc31f997ac63f2fec34577e8"
+  },
+  {
+    "path": "tests/usb-setup/evidence-author-final/usbd.su",
+    "bytes": 5704,
+    "sha256": "7108bb570ad56575f3d68cdd538aa7228e519323fd98d0eb17419184a94186f7"
+  },
+  {
+    "path": "tests/usb-setup/evidence-root-targeted/commands.json",
+    "bytes": 23640,
+    "sha256": "c105346bca5d0b761794c5ac49c58aef0edb8088f9733ab074da3d504a41beea"
+  },
+  {
+    "path": "tests/usb-setup/evidence-root-targeted/input-manifest.json",
+    "bytes": 6435,
+    "sha256": "b7507a79e3be2aa4fab97328cec51c38570b2a8c079fd7a126475a1eea05c7cc"
+  },
+  {
+    "path": "tests/usb-setup/evidence-root-targeted/matrix.json",
+    "bytes": 6823,
+    "sha256": "bdc2c59d57b90f0109ad11c6df80ed2bdbcf8ee38cde001f8e786706e515a8e5"
+  },
+  {
+    "path": "tests/usb-setup/evidence-root-targeted/receipt.json",
+    "bytes": 554,
+    "sha256": "219a52340dc186f827916fec46555b63525473be3decb8dbcf4d0be61812e2a0"
+  },
+  {
+    "path": "tests/usb-setup/output-separation-checks.json",
+    "bytes": 6195,
+    "sha256": "2b92da96184e470fb9e516f0a675f12c9b835c47b4bff75f6d2bee59c63ab143"
+  },
+  {
+    "path": "tests/usb-setup/root-targeted.log",
+    "bytes": 15803,
+    "sha256": "74f624cda9810bcee08da61fd539e8338546b482bdb531065b726fb101e1055f"
+  },
+  {
+    "path": "tests/usb-setup/supporting/REPORT_RU.md",
+    "bytes": 12167,
+    "sha256": "e5b9aa5defd052acce6e898fb6c4460f39da0aca7cce7b84db7a9e17c52c2a97"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-native/commands.json",
+    "bytes": 22492,
+    "sha256": "9777bddbd514850c6c869a7a0841946b5cc72bf7a1ae40e37c61e67a0a1469cb"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-native/input-manifest.json",
+    "bytes": 6435,
+    "sha256": "b7507a79e3be2aa4fab97328cec51c38570b2a8c079fd7a126475a1eea05c7cc"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-native/matrix.json",
+    "bytes": 6823,
+    "sha256": "1466434c30dc15d21d668445b6631487f014388b301b39121aeda19816600275"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-native/receipt.json",
+    "bytes": 467,
+    "sha256": "36b6bf5f8c9fecbd740911f6528be65d930b84cc777b116bca2662ade980f4e2"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/commands.json",
+    "bytes": 23784,
+    "sha256": "03882fe08a6244e374df6b0a8026eed3470efae2581184ee7649de62104a8a4e"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/input-manifest.json",
+    "bytes": 6435,
+    "sha256": "b7507a79e3be2aa4fab97328cec51c38570b2a8c079fd7a126475a1eea05c7cc"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/matrix.json",
+    "bytes": 6823,
+    "sha256": "bdc2c59d57b90f0109ad11c6df80ed2bdbcf8ee38cde001f8e786706e515a8e5"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/receipt.json",
+    "bytes": 554,
+    "sha256": "219a52340dc186f827916fec46555b63525473be3decb8dbcf4d0be61812e2a0"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-native/commands.json",
+    "bytes": 23632,
+    "sha256": "caefaccee9870440984b15a150a34d8feb604931bdfeb1f77403b5b99812adb6"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-native/input-manifest.json",
+    "bytes": 6315,
+    "sha256": "d1fe49cb78c39df1b621d6bec4141f32ce926702188e5963dc31d20058f3ca34"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-native/matrix.json",
+    "bytes": 7175,
+    "sha256": "10721a7580cc8532d3aca21761cb011aebc7ecbacc89a9667eee4c152738315d"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-native/receipt.json",
+    "bytes": 491,
+    "sha256": "1c73db4e5d61bd7c209a426d9116044fc82e6045efb58f4628d98ff4936f041d"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/commands.json",
+    "bytes": 24924,
+    "sha256": "ca386c20c0875346875ede841919f1a37be41b141b8580a4e6bd2b1c3800594e"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/input-manifest.json",
+    "bytes": 6315,
+    "sha256": "d1fe49cb78c39df1b621d6bec4141f32ce926702188e5963dc31d20058f3ca34"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/matrix.json",
+    "bytes": 7175,
+    "sha256": "3fb4fcc98984dfa212ef90dd717b1342524179f29004638b6bbc38fe3872cd22"
+  },
+  {
+    "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/receipt.json",
+    "bytes": 578,
+    "sha256": "966981b78b94eba966f807f00ff81ba2e4d9929f6c028389cfe401e74861de5f"
+  },
+  {
+    "path": "tests/usb-setup/supporting/historical-full-package-SHA256SUMS.txt",
+    "bytes": 11163,
+    "sha256": "b124ba6e669d178d03e60a8c5015be4ccdf97eaa2cdb52361f803c544c2b86c6"
+  },
+  {
+    "path": "tests/usb-setup/supporting/old-negative-verification.log",
+    "bytes": 940,
+    "sha256": "93ada6701d9d2e86cb98587f078650adf3c936bcc183e70e57c6dc4713d2b1da"
+  },
+  {
+    "path": "tests/usb-setup/supporting/original-harness-verification.log",
+    "bytes": 1761,
+    "sha256": "c248c82ac68db7fcab9fb8a5c3553dbf0700bc08ac61ef145a9fc57abf6d9d60"
+  },
+  {
+    "path": "tests/usb-setup/supporting/root-patch-diff.txt",
+    "bytes": 557,
+    "sha256": "c6a28c3a141af1092a80aa8bc49bd0609f50a90baa5e4d28173bda74345e3866"
+  },
+  {
+    "path": "tests/usb-setup/supporting/run.py",
+    "bytes": 6929,
+    "sha256": "1565549e4d00124efea8105ba376bc50295195b8da1bff4b31252d8f68e8addc"
+  },
+  {
+    "path": "tests/usb-setup/supporting/test_setup_queue.c",
+    "bytes": 8705,
+    "sha256": "069d5996c665934db088c5a9cf0d70040efe7cf04b7beb6c5bea2e431cccc5dc"
+  }
+]

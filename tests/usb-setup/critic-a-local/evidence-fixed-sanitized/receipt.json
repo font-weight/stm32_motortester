@@ -1,0 +1,17 @@
+{
+  "expectation_profile": "fixed",
+  "sanitizers": [
+    "ASan",
+    "UBSan"
+  ],
+  "lsan_claimed": false,
+  "asan_options": "detect_leaks=0:halt_on_error=1",
+  "ubsan_options": "halt_on_error=1:print_stacktrace=1",
+  "usbd_path": "/workspace/shared/critic-a-usb-setup-review/patched-usbd.c",
+  "usbd_sha256": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0",
+  "input_files_changed": [],
+  "scenarios_executed": 30,
+  "expectations_met": 30,
+  "runner_exit_code": 0,
+  "scope": "serialized OS_NONE native fake DCD; no hardware/IRQ/epoch proof"
+}

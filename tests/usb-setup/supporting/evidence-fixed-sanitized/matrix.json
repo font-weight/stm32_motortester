@@ -1,0 +1,242 @@
+[
+  {
+    "mode": "buffered",
+    "scenario": "rejected_1",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_255",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_256",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_257",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_511",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_512",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_513",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "rejected_1025",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "supersession",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "capacity_supersession",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "mixed_1",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "mixed_256",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "mixed_257",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "reset_queued_setups",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "a8dc6d4d6fb646bab1d2399763aeceda2daff69f59e0110cbe340037618719be"
+  },
+  {
+    "mode": "buffered",
+    "scenario": "existing_core",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "436ce5db4ba9a90e376ccce91fd2955636919e2ef72e8772ba071c4cd1ca270c"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_1",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_255",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_256",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_257",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_511",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_512",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_513",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "rejected_1025",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "supersession",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "capacity_supersession",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "mixed_1",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "mixed_256",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "mixed_257",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "reset_queued_setups",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "ea5890f15e6e1c79f72505fecf030983b74c16de121e99169921fc540544ca47"
+  },
+  {
+    "mode": "f1",
+    "scenario": "existing_core",
+    "exit_code": 0,
+    "expected": "pass",
+    "expectation_met": true,
+    "executable_sha256": "031094c9f488d0cb874ab896bebe863faeb54bdfb62c72f6920d6b30ce9aad20"
+  }
+]
