@@ -1,10 +1,11 @@
 # Черновой static-link recipe
 
-Выполняемый локальный черновик. Export-ревизия проверена независимо
-от предыдущего static-link recipe, включая новые BIN/HEX шаги. Формальная
+Новая WAIT_RELEASE-редакция — выполняемый локальный черновик с открытым
+exact review. Историческая export-ревизия проверена отдельно; новый reference
+и recipe требуют повторной проверки, включая BIN/HEX шаги. Формальная
 приёмка проекта остаётся BLOCKED_EVIDENCE, score:null.
 После всех проверок результат — `CONDITIONAL_STATIC_LINK_CHECKS_PASS`:
-условная оценка 3016 B связывается с конкретным ELF. Это локальный draft
+условная оценка 3024 B связывается с конкретным ELF. Это локальный draft
 с независимым вердиктом только для данного условного статического scope. BIN/HEX создаются только после всех gate; разрешение
 прошивки не выдаётся. Старый provisional run без map binding сохранён.
 
@@ -24,8 +25,8 @@ python3 -I -B firmware/build/build_image.py \
 board fixture не подставляются. Receipt прежнего build не является
 источником доверия вместо фактических object bytes.
 
-N кратно 8, 3016 ≤ N ≤ 8104. M задан явно, 0 ≤ M ≤ 5088;
-N = align8(3016 + M). Отдельно сохраняется alignment slack. M=0 в тесте
+N кратно 8, 3024 ≤ N ≤ 8104. M задан явно, 0 ≤ M ≤ 5080;
+N = align8(3024 + M). Отдельно сохраняется alignment slack. M=0 в тесте
 не является выбранным инженерным запасом для платы. Реальные N/M должен
 обосновать интегратор до аппаратного допуска; recipe их не назначает.
 
@@ -45,7 +46,7 @@ board.o с явным Cortex-M3/Thumb/full-enum ABI; зависимости из
 3. Прямая static link: no GC, fatal warnings, orphan errors, исходный linker
    script и явный stack symbol.
 4. Исходный BOOT final ELF audit и узкий byte/layout equivalence checker.
-5. Связка всех 363 непустых text input ranges с фактическими секциями
+5. Связка всех 364 непустых text input ranges с фактическими секциями
    исходных объектов, точными path/ordinal, VMA/size frozen reference,
    file bytes и PT_LOAD конечного ELF; точный LOAD order, без пропусков
    пустых executable inputs и без discarded code.

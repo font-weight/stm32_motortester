@@ -8,7 +8,7 @@ from pathlib import Path
 import struct
 import sys
 
-REFERENCE_SHA = 'c447746787bceb3c603e3847b6e6308937d4773a14673ad0d040ac7f2e88730d'
+REFERENCE_SHA = '0facf8258f391eec1b166bd464dc8ce709d04eaf0ecc7044ea6181a7257b77c3'
 GENERATOR_SHA = '0b5d6ba56603e908d7f0b079e3319863f1f7733c97324644377a3e46244f9f27'
 ATTRIBUTES = bytes.fromhex('412a000000616561626900012000000005372d4d00060a074d0902120414011501170318011a021e042201')
 NAMES = ['', '.isr_vector', '.text', '.data', '.bss', '.unsupported_stubs',
@@ -39,7 +39,7 @@ def dependencies():
 def validate(raw, input_raw, stack_bytes):
     config, ref = dependencies()
     data = config.parse_board(input_raw)
-    require(type(stack_bytes) is int and 3016 <= stack_bytes <= 8104 and stack_bytes % 8 == 0,
+    require(type(stack_bytes) is int and 3024 <= stack_bytes <= 8104 and stack_bytes % 8 == 0,
             'explicit stack reservation must be aligned and within conditional geometry')
     require(type(raw) is bytes and 452 <= len(raw) <= 1048576, 'ELF size out of bounds')
     def unpack(fmt, off):
@@ -48,7 +48,7 @@ def validate(raw, input_raw, stack_bytes):
     h = unpack('<16sHHIIIIIHHHHHH', 0)
     require(h[0] == b'\x7fELF\x01\x01\x01' + bytes(9), 'ELF identification mismatch')
     require((h[1],h[2],h[3],h[4],h[5],h[7],h[8],h[9],h[10],h[11],h[12],h[13]) ==
-            (2,40,1,0x08007d91,52,0x05000200,52,32,5,40,10,9), 'ELF header/profile mismatch')
+            (2,40,1,0x08007e61,52,0x05000200,52,32,5,40,10,9), 'ELF header/profile mismatch')
     sht = h[6]
     require(sht >= 212 and sht % 4 == 0 and sht+400 == len(raw), 'section table geometry mismatch')
     ss = [unpack('<10I', sht+40*i) for i in range(10)]
@@ -66,7 +66,7 @@ def validate(raw, input_raw, stack_bytes):
     require(shstrings[:1] == b'\0' and shstrings[-1:] == b'\0', 'invalid section strings')
     require([string(shstrings,s[0]) for s in ss] == NAMES, 'section names/order mismatch')
     usb, board = data['board']['usb'], data['board']
-    address = 0x08007e98
+    address = 0x08007f68
     starts = {}
     tail = b''
     for name in ('serial','product','manufacturer'):
@@ -115,12 +115,12 @@ def validate(raw, input_raw, stack_bytes):
         i = matches[0]; return payload(i)[addr-ss[i][3]:addr-ss[i][3]+n]
     for region in ref['immutable_loaded_regions']:
         require(sha(at(region['vma'],region['length'])) == region['sha256'], 'immutable region mismatch: '+region['label'])
-    require(at(0x08007de8,4) == struct.pack('<I',data_lma), 'reset data-load literal mismatch')
+    require(at(0x08007eb8,4) == struct.pack('<I',data_lma), 'reset data-load literal mismatch')
     values = [board[k] for k in ('verified_hse_hz','clock_poll_budget','usb_irq_priority','firmware_build')]
     values += [0 if board['hse_mode'] == 'crystal' else 1, board['require_dtr'], 1]
     values += [usb[k] for k in ('vid','pid','bcd_device','bus_power_ma')]
     values += [starts[k] for k in ('manufacturer','product','serial')]
-    require(at(0x08007e68,data_lma-0x08007e68) == struct.pack('<7I4H3I',*values)+tail, 'board bytes/pointers/padding mismatch')
+    require(at(0x08007f38,data_lma-0x08007f38) == struct.pack('<7I4H3I',*values)+tail, 'board bytes/pointers/padding mismatch')
     names = payload(8)
     require(names[:1] == b'\0' and names[-1:] == b'\0', 'invalid symbol names')
     symbols = []
