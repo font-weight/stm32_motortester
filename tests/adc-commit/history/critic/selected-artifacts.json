@@ -1,0 +1,173 @@
+{
+  "scope": "Frozen local review selection only; no external publication authorization",
+  "files": [
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/CRITIC_A_ADC003_REVIEW.md",
+      "destination": "CRITIC_A_ADC003_REVIEW.md",
+      "sha256": "ee517ef13bdfec1edc39d8a65773137bfe40977d2465e4c77edbe79bd04b10bc",
+      "bytes": 10922
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/review-manifest.json",
+      "destination": "review-manifest.json",
+      "sha256": "43948a3413919f6629dfbeb1d5fabbdb8995785b3cc98bbf73ae96002c96b0fe",
+      "bytes": 1943
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/test_extra.c",
+      "destination": "test_extra.c",
+      "sha256": "6c3c5236d085676a639251327f84161c27913a530a7f6bb0a56efc94c79c8564",
+      "bytes": 1659
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/run_extra.py",
+      "destination": "run_extra.py",
+      "sha256": "3aafdb3bbb19c86043a0917a1d7805a4db4e9e091122ec1a811db07f48f26b92",
+      "bytes": 2188
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/abi_probe.c",
+      "destination": "abi_probe.c",
+      "sha256": "fd215463e2ae58ff1326562d30505663963868ece666fe13060545e0c0a6c014",
+      "bytes": 235
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/run_abi.py",
+      "destination": "run_abi.py",
+      "sha256": "a92bc6cc8a60c61315ed93e8b1e52529bc678090b666b01f5a2b826227689a2a",
+      "bytes": 2369
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/extra-strict.log",
+      "destination": "extra-strict.log",
+      "sha256": "a5f3d89b6c493ae68bad81802e8703e7d2f38e6f0f0852aedbab1ff53aa71ee6",
+      "bytes": 66
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/extra-sanitized.log",
+      "destination": "extra-sanitized.log",
+      "sha256": "a5f3d89b6c493ae68bad81802e8703e7d2f38e6f0f0852aedbab1ff53aa71ee6",
+      "bytes": 66
+    },
+    {
+      "source": "/workspace/shared/critic-a-adc-commit-review/abi.log",
+      "destination": "abi.log",
+      "sha256": "07c7ab96b50d69b467f79de1fa76961a5186924a40ffa48f4a943490d085d68a",
+      "bytes": 371
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-candidate-strict/receipt.json",
+      "destination": "evidence/candidate-strict-receipt.json",
+      "sha256": "27c8313533a0a6b59004d14cf7742435ad4d0a3fac6cb39c7099dc718e7b9b71",
+      "bytes": 14620
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-candidate-sanitized/receipt.json",
+      "destination": "evidence/candidate-sanitized-receipt.json",
+      "sha256": "4036752f757950b60829fff50fe96060a42440fef643edb00920d7f21a6553b6",
+      "bytes": 15141
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-baseline-strict/receipt.json",
+      "destination": "evidence/baseline-strict-receipt.json",
+      "sha256": "fa48830d9e7f00145326795435deb2dfa791b51e0dc268953f67603f46b57894",
+      "bytes": 12623
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-baseline-sanitized/receipt.json",
+      "destination": "evidence/baseline-sanitized-receipt.json",
+      "sha256": "0aed75ef7ff0c59448a8c67701bebc0b654c1d023335ce8e3d8f1384b2c7c407",
+      "bytes": 12989
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-extra-strict/receipt.json",
+      "destination": "evidence/extra-strict-receipt.json",
+      "sha256": "b6e63ef783358175d98e0b994cb0b6908c5f0d8ec22a1e868be16172efa15408",
+      "bytes": 8836
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-extra-sanitized/receipt.json",
+      "destination": "evidence/extra-sanitized-receipt.json",
+      "sha256": "1378756c1b20854bea8b28a9282fd1bc0cb7351e4bf34b30a0dcfda7a787e191",
+      "bytes": 9117
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-abi/receipt.json",
+      "destination": "evidence/abi-receipt.json",
+      "sha256": "bceed9f40d04e08669eca00b065a9d38ec5bf22f75c7ad24715d962a4bef2dcc",
+      "bytes": 3663
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/commands.json",
+      "destination": "evidence/arm/commands.json",
+      "sha256": "80ca4c6ecacf84854493a608d497f26cf94e644736efcc43bc4d8bf52596ede8",
+      "bytes": 118445
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/inputs.json",
+      "destination": "evidence/arm/inputs.json",
+      "sha256": "24870afb80256b078787b61b6f8633bb0ddfbc59b468be5346d224e60b49da58",
+      "bytes": 13990
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/candidate-driver-disassembly.txt",
+      "destination": "evidence/arm/candidate-driver-disassembly.txt",
+      "sha256": "a29ea575156a28d2e4e704a6e47de0a56925f4c4dab13682458425d3b0ba7614",
+      "bytes": 39844
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/candidate-binding-disassembly.txt",
+      "destination": "evidence/arm/candidate-binding-disassembly.txt",
+      "sha256": "03e431a6aef23db605aa3ac332669db3d463ddecc31e047d0ac96e443764466a",
+      "bytes": 9455
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/candidate-driver-size.txt",
+      "destination": "evidence/arm/candidate-driver-size.txt",
+      "sha256": "7a170444a60d98dea05fcc9c3f3f36201f791e846973cee63375df3a52a19a08",
+      "bytes": 1203
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/candidate-binding-size.txt",
+      "destination": "evidence/arm/candidate-binding-size.txt",
+      "sha256": "b5e1d423219df4aa9b442a316c4f3e253968b8303ccd54a3291dd7f488923eba",
+      "bytes": 726
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/candidate-driver.su",
+      "destination": "evidence/arm/candidate-driver.su",
+      "sha256": "ddadbdf70feff07ea551617939233d7255817a2743fefd56434dfa58e1a86299",
+      "bytes": 2125
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-arm/candidate-binding.su",
+      "destination": "evidence/arm/candidate-binding.su",
+      "sha256": "b1562e1dbb8a26367380dde0cc017606f9e67e57dd50d522e8de4550a445e89b",
+      "bytes": 841
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-negative/summary.json",
+      "destination": "evidence/negative-summary.json",
+      "sha256": "50a6599ae14178b7b3b698fd8044d0a358098d4d0864e18b6d7abdfdc707d87a",
+      "bytes": 3450
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-negative/missing-initial-admission/run/receipt.json",
+      "destination": "evidence/negative/missing-initial-admission-receipt.json",
+      "sha256": "07cbaab409a8b36202ce6512c085f35c859fcfa5315dc4032017273d642acfde",
+      "bytes": 15174
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-negative/missing-post-clock-admission/run/receipt.json",
+      "destination": "evidence/negative/missing-post-clock-admission-receipt.json",
+      "sha256": "cd9e63995a37af36ed7a2771a45f4a472fd30b62f746aa273006f68c54769566",
+      "bytes": 15300
+    },
+    {
+      "source": "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/receipt.json",
+      "destination": "evidence/negative/cleanup-before-leave-receipt.json",
+      "sha256": "55d74c885a533f8d959acac83cb3043a7f5960839d722eb5f8e88cf83cce6ef4",
+      "bytes": 14964
+    }
+  ]
+}

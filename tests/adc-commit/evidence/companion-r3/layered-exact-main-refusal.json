@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/workspace/shared/adc-commit-publication/layered-exact-fixed-r3/invocation-alias/reproduce.py",
+    "--toolchain",
+    "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+    "--out",
+    "/workspace/shared/adc-commit-publication/layered-exact-fixed-r3/real-invocation/must-not-be-created"
+  ],
+  "exit": 2,
+  "stdout": "",
+  "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: wrapper script\n",
+  "output_created": false,
+  "files_created": 0,
+  "source_unchanged": true,
+  "script_sha256": "5fb967b0d94bad1e522dd0f0951736d839921375e97040aa1a80e2d32392b362",
+  "fixture": "Same directory-alias/file-symlink geometry as completed independent r2 reproduction; fresh isolated fixture"
+}

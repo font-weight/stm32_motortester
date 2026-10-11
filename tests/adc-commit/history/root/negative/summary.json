@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "production_before": {
+    "firmware/platform/adc_timer_dma.c": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+    "firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+    "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200"
+  },
+  "production_after": {
+    "firmware/platform/adc_timer_dma.c": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+    "firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+    "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200"
+  },
+  "negative_controls": [
+    {
+      "name": "missing-initial-admission",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/adc-commit-test-runs/negative-controls-r1/missing-initial-admission/input",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/negative-controls-r1/missing-initial-admission/run"
+      ],
+      "exit": 1,
+      "expected_rejection_detected": true,
+      "receipt": "/workspace/shared/adc-commit-test-runs/negative-controls-r1/missing-initial-admission/run/receipt.json",
+      "original": "if (!guard->allowed(guard->context)) {",
+      "replacement": "if (0) {"
+    },
+    {
+      "name": "missing-post-clock-admission",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/adc-commit-test-runs/negative-controls-r1/missing-post-clock-admission/input",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/negative-controls-r1/missing-post-clock-admission/run"
+      ],
+      "exit": 1,
+      "expected_rejection_detected": true,
+      "receipt": "/workspace/shared/adc-commit-test-runs/negative-controls-r1/missing-post-clock-admission/run/receipt.json",
+      "original": "if (guard && !guard->allowed(guard->context)) {",
+      "replacement": "if (0) {"
+    },
+    {
+      "name": "cleanup-before-leave",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/adc-commit-test-runs/negative-controls-r1/cleanup-before-leave/input",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/negative-controls-r1/cleanup-before-leave/run"
+      ],
+      "exit": 1,
+      "expected_rejection_detected": true,
+      "receipt": "/workspace/shared/adc-commit-test-runs/negative-controls-r1/cleanup-before-leave/run/receipt.json",
+      "original": "    if (guard) guard->leave(guard->context, key);",
+      "replacement": "    if (guard && commit_fault == MT_ADC_DMA_FAULT_NONE) guard->leave(guard->context, key);"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "scope": "ARM object ABI only; no runtime/link",
+  "inputs": {
+    "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/critic/abi_probe.c": "fd215463e2ae58ff1326562d30505663963868ece666fe13060545e0c0a6c014",
+    "/workspace/shared/adc-commit-publication/reproduction 01/candidate/firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+    "/workspace/shared/adc-commit-publication/reproduction 01/candidate/firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+    "/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/platform/adc_timer_dma.h": "3c1c175c5372a3a1a6ce3c00b97f674802a61b04a716097e105b947e7494a008",
+    "/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app/mt_adc_control.h": "85110d0698c322919ef2b8006a81e166b00cd11eea3a9b4cd972f550d244fbc7"
+  },
+  "inputs_unchanged": true,
+  "commands": [
+    {
+      "argv": [
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+        "-std=c11",
+        "-Os",
+        "-mcpu=cortex-m3",
+        "-mthumb",
+        "-fno-short-enums",
+        "-ffreestanding",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I/workspace/shared/adc-commit-publication/reproduction 01/candidate/firmware/app",
+        "-I/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app",
+        "-isystem",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+        "-c",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/critic/abi_probe.c",
+        "-o",
+        "/workspace/shared/adc-commit-publication/reproduction 01/abi/candidate.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+        "-S",
+        "--size-sort",
+        "/workspace/shared/adc-commit-publication/reproduction 01/abi/candidate.o"
+      ],
+      "exit_status": 0,
+      "output": "00000000 00000010 B critic_guard_size\n00000010 0000002c B critic_binding_size\n0000003c 0000035c B critic_driver_size\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+        "-std=c11",
+        "-Os",
+        "-mcpu=cortex-m3",
+        "-mthumb",
+        "-fno-short-enums",
+        "-ffreestanding",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app",
+        "-I/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app",
+        "-isystem",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+        "-DCRITIC_BASE",
+        "-c",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/critic/abi_probe.c",
+        "-o",
+        "/workspace/shared/adc-commit-publication/reproduction 01/abi/base.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+        "-S",
+        "--size-sort",
+        "/workspace/shared/adc-commit-publication/reproduction 01/abi/base.o"
+      ],
+      "exit_status": 0,
+      "output": "00000000 00000018 B critic_binding_size\n00000018 0000035c B critic_driver_size\n"
+    }
+  ],
+  "sizes": {
+    "candidate": {
+      "critic_guard_size": 16,
+      "critic_binding_size": 44,
+      "critic_driver_size": 860,
+      "object_sha256": "07a99fc27a16aa28549e93ae371969f474af3b850b1479ef480279bbd326cd49"
+    },
+    "base": {
+      "critic_binding_size": 24,
+      "critic_driver_size": 860,
+      "object_sha256": "dc69b8471e2a9b614b9bc66fea8d0c07e382892803ec6ef361fdc46dff9df406"
+    }
+  }
+}

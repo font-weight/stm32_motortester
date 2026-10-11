@@ -1,0 +1,7 @@
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:12:12:stop	8	static
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:16:12:start	24	static
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:8:12:profile	0	static
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:39:26:init	40	static
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:54:19:mt_adc_control_init	24	static
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:59:19:mt_adc_control_init_guarded	16	static
+/workspace/shared/critic-a-adc-commit-review/source-snapshot/firmware/app/mt_adc_control.c:66:19:mt_adc_control_service	56	static

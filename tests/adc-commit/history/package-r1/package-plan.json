@@ -1,0 +1,25 @@
+{
+  "status": "LOCAL_ONLY_PENDING_ROOT_AND_CRITIC_A",
+  "repository": "font-weight/stm32_motortester",
+  "parent_commit": "adabc2044a3a376056d6756e67bede05c0726440",
+  "parent_tree": "f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca",
+  "candidate_tree": "f4bfba2ed4a7f7365108d674258bc0179b2fb0bb",
+  "local_snapshot_commit": "e33d52886c8b71c50571a0936fe189b2f4bdf8e1",
+  "local_commit_not_published": true,
+  "github_writes": 0,
+  "file_count": 107,
+  "added": 103,
+  "replaced": 4,
+  "deleted": 0,
+  "unchanged_parent_blobs": 1023,
+  "full_tree_blob_count": 1130,
+  "content_bytes": 1271408,
+  "all_file_sha256": "1720dbc6a64794b68b0d16cf09717bc4ddb5dc43b30c5119e8561cd40e359e58",
+  "package_manifest_sha256": "941b250833b55ffb8429ed3f7a768ed9278a4cf36e8321e3a089ab34217b137e",
+  "production_sha256": {
+    "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+    "firmware/platform/adc_timer_dma.c": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+    "firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d"
+  }
+}

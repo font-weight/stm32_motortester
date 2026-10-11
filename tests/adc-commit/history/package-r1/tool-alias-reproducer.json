@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python3",
+    "/workspace/shared/critic-a-adc003-package-review/checkout/tests/adc-commit/reproduce.py",
+    "--toolchain",
+    "/workspace/shared/critic-a-adc003-package-review/tool-alias-fixture/proxy",
+    "--out",
+    "/workspace/shared/critic-a-adc003-package-review/tool-alias-fixture/real-tools/must-not-be-created"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "CC": "/usr/bin/false",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "LANG": "C",
+    "LC_ALL": "C"
+  },
+  "exit": 1,
+  "output_created_under_resolved_tool_parent": true,
+  "files_created": 55,
+  "tool_hashes_unchanged": true,
+  "scope": "Disposable copies of official tools; deliberate /usr/bin/false compiler stops early after output acceptance. Existing production/toolchain untouched."
+}

@@ -1,0 +1,13 @@
+{
+  "candidate": {
+    "critic_guard_size": 16,
+    "critic_binding_size": 44,
+    "critic_driver_size": 860,
+    "object_sha256": "07a99fc27a16aa28549e93ae371969f474af3b850b1479ef480279bbd326cd49"
+  },
+  "base": {
+    "critic_binding_size": 24,
+    "critic_driver_size": 860,
+    "object_sha256": "dc69b8471e2a9b614b9bc66fea8d0c07e382892803ec6ef361fdc46dff9df406"
+  }
+}

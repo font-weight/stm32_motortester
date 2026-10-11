@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/shared/critic-a-adc003-package-review/checkout-r2/tests/adc-commit/test_reproduce_paths.py", line 103, in <module>
+    link = internal / cc1.relative_to(tc)
+                      ~~~~~~~~~~~~~~~^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 385, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/workspace/shared/arm-resource-evidence/toolchain/root/usr/lib/gcc/arm-none-eabi/14.2.1/cc1' is not in the subpath of '/workspace/shared/adc003-critic-fixed-alias-r2/proxy'

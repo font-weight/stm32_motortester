@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/workspace/shared/critic-a-adc003-package-review/checkout-r2/tests/adc-commit/test_reproduce_paths.py",
+    "--checkout",
+    "/workspace/shared/critic-a-adc003-package-review/checkout-r2",
+    "--toolchain",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/proxy",
+    "--out",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/real-tools/companion-must-not-be-created"
+  ],
+  "exit": 1,
+  "output_created": true,
+  "files_created": 352,
+  "inputs_unchanged": true,
+  "before": {
+    "/workspace/shared/critic-a-adc003-package-review/checkout-r2/tests/adc-commit/test_reproduce_paths.py": "4c3810a39fdf1ed5cac6ef58ffd5c3ff44a266ba5d7436d91842d8e5d257d2be",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/real-tools/arm-none-eabi-size": "9559c6524702b69f6f6d41bb8754d17668651d92f9910e11a44168424f0f32cf",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/real-tools/arm-none-eabi-gcc": "9b369e040fa0889790fc1aaf673ed3099436f360cd022265f8e7c97d61ed00ec",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/real-tools/arm-none-eabi-nm": "785d3df0631067afa338a4a73bd2cf421e284d6a75e53f50e8b8269917c38c8b",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/real-tools/arm-none-eabi-objdump": "bcf47eb777c4ac452c765af3e61b4e7b19ad62060a226b74eb189fd9547910e0"
+  },
+  "stderr": "Traceback (most recent call last):\n  File \"/workspace/shared/critic-a-adc003-package-review/checkout-r2/tests/adc-commit/test_reproduce_paths.py\", line 103, in <module>\n    link = internal / cc1.relative_to(tc)\n                      ~~~~~~~~~~~~~~~^^^^\n  File \"/usr/lib/python3.13/pathlib/_local.py\", line 385, in relative_to\n    raise ValueError(f\"{str(self)!r} is not in the subpath of {str(other)!r}\")\nValueError: '/workspace/shared/arm-resource-evidence/toolchain/root/usr/lib/gcc/arm-none-eabi/14.2.1/cc1' is not in the subpath of '/workspace/shared/adc003-critic-fixed-alias-r2/proxy'\n"
+}

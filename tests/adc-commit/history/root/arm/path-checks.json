@@ -1,0 +1,116 @@
+[
+  {
+    "case": "existing",
+    "argv": [
+      "python3",
+      "/workspace/shared/adc-commit-draft/tests/adc-commit/arm_check.py",
+      "--candidate",
+      "/workspace/shared/adc-commit-draft",
+      "--base",
+      "/workspace/shared/usb-bridge-publication/base-checkout",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--out",
+      "/workspace/shared/adc-commit-arm-r2"
+    ],
+    "exit_status": 2,
+    "stdout": "",
+    "stderr": "usage: arm_check.py [-h] --candidate CANDIDATE --base BASE --toolchain\n                    TOOLCHAIN --out OUT\narm_check.py: error: choose a fresh output outside all input roots\n",
+    "expected_rejection": true
+  },
+  {
+    "case": "nested-candidate",
+    "argv": [
+      "python3",
+      "/workspace/shared/adc-commit-draft/tests/adc-commit/arm_check.py",
+      "--candidate",
+      "/workspace/shared/adc-commit-draft",
+      "--base",
+      "/workspace/shared/usb-bridge-publication/base-checkout",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--out",
+      "/workspace/shared/adc-commit-draft/firmware/not-created-arm"
+    ],
+    "exit_status": 2,
+    "stdout": "",
+    "stderr": "usage: arm_check.py [-h] --candidate CANDIDATE --base BASE --toolchain\n                    TOOLCHAIN --out OUT\narm_check.py: error: choose a fresh output outside all input roots\n",
+    "expected_rejection": true
+  },
+  {
+    "case": "nested-base",
+    "argv": [
+      "python3",
+      "/workspace/shared/adc-commit-draft/tests/adc-commit/arm_check.py",
+      "--candidate",
+      "/workspace/shared/adc-commit-draft",
+      "--base",
+      "/workspace/shared/usb-bridge-publication/base-checkout",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--out",
+      "/workspace/shared/usb-bridge-publication/base-checkout/firmware/not-created-arm"
+    ],
+    "exit_status": 2,
+    "stdout": "",
+    "stderr": "usage: arm_check.py [-h] --candidate CANDIDATE --base BASE --toolchain\n                    TOOLCHAIN --out OUT\narm_check.py: error: choose a fresh output outside all input roots\n",
+    "expected_rejection": true
+  },
+  {
+    "case": "nested-toolchain",
+    "argv": [
+      "python3",
+      "/workspace/shared/adc-commit-draft/tests/adc-commit/arm_check.py",
+      "--candidate",
+      "/workspace/shared/adc-commit-draft",
+      "--base",
+      "/workspace/shared/usb-bridge-publication/base-checkout",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--out",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/not-created-arm"
+    ],
+    "exit_status": 2,
+    "stdout": "",
+    "stderr": "usage: arm_check.py [-h] --candidate CANDIDATE --base BASE --toolchain\n                    TOOLCHAIN --out OUT\narm_check.py: error: choose a fresh output outside all input roots\n",
+    "expected_rejection": true
+  },
+  {
+    "case": "missing-base",
+    "argv": [
+      "python3",
+      "/workspace/shared/adc-commit-draft/tests/adc-commit/arm_check.py",
+      "--candidate",
+      "/workspace/shared/adc-commit-draft",
+      "--base",
+      "/workspace/shared/absent-usb005-base",
+      "--toolchain",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+      "--out",
+      "/workspace/shared/adc-no-output-missing-base"
+    ],
+    "exit_status": 2,
+    "stdout": "",
+    "stderr": "usage: arm_check.py [-h] --candidate CANDIDATE --base BASE --toolchain\n                    TOOLCHAIN --out OUT\narm_check.py: error: required source/tool input missing; no output created\n",
+    "expected_rejection": true
+  },
+  {
+    "case": "missing-toolchain",
+    "argv": [
+      "python3",
+      "/workspace/shared/adc-commit-draft/tests/adc-commit/arm_check.py",
+      "--candidate",
+      "/workspace/shared/adc-commit-draft",
+      "--base",
+      "/workspace/shared/usb-bridge-publication/base-checkout",
+      "--toolchain",
+      "/workspace/shared/absent-arm-toolchain",
+      "--out",
+      "/workspace/shared/adc-no-output-missing-toolchain"
+    ],
+    "exit_status": 2,
+    "stdout": "",
+    "stderr": "usage: arm_check.py [-h] --candidate CANDIDATE --base BASE --toolchain\n                    TOOLCHAIN --out OUT\narm_check.py: error: required source/tool input missing; no output created\n",
+    "expected_rejection": true
+  }
+]

@@ -1,0 +1,17 @@
+/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-binding.o  :
+section                             size   addr
+.text                                  0      0
+.data                                  0      0
+.bss                                   0      0
+.text.stop                            16      0
+.text.start                          144      0
+.text.profile                          6      0
+.text.init                           116      0
+.text.mt_adc_control_init             22      0
+.text.mt_adc_control_init_guarded     40      0
+.text.mt_adc_control_service         204      0
+.comment                              39      0
+.ARM.attributes                       45      0
+Total                                632
+
+

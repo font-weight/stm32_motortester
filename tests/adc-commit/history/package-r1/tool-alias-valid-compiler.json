@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "/workspace/shared/critic-a-adc003-package-review/checkout/tests/adc-commit/reproduce.py",
+    "--toolchain",
+    "/workspace/shared/critic-a-adc003-package-review/tool-alias-fixture/proxy",
+    "--out",
+    "/workspace/shared/critic-a-adc003-package-review/tool-alias-fixture/real-tools/valid-compiler-output"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "CC": "/usr/bin/cc",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "LANG": "C",
+    "LC_ALL": "C"
+  },
+  "exit": 0,
+  "output_created_under_resolved_tool_parent": true,
+  "files_created": 305,
+  "scope": "Valid native compiler and full relative ARM library/header layout; disposable copies/aliases only."
+}

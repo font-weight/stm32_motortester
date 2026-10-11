@@ -1,0 +1,208 @@
+
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-binding.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.stop:
+
+00000000 <stop>:
+   0:	b508      	push	{r3, lr}
+   2:	6840      	ldr	r0, [r0, #4]
+   4:	f7ff fffe 	bl	0 <mt_adc_dma_stop>
+			4: R_ARM_THM_CALL	mt_adc_dma_stop
+   8:	fab0 f080 	clz	r0, r0
+   c:	0940      	lsrs	r0, r0, #5
+   e:	bd08      	pop	{r3, pc}
+
+Disassembly of section .text.start:
+
+00000000 <start>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	6844      	ldr	r4, [r0, #4]
+   4:	4605      	mov	r5, r0
+   6:	e9d4 30c2 	ldrd	r3, r0, [r4, #776]	@ 0x308
+   a:	460f      	mov	r7, r1
+   c:	4798      	blx	r3
+   e:	4606      	mov	r6, r0
+  10:	e9d5 3002 	ldrd	r3, r0, [r5, #8]
+  14:	4798      	blx	r3
+  16:	6128      	str	r0, [r5, #16]
+  18:	e9d4 30c2 	ldrd	r3, r0, [r4, #776]	@ 0x308
+  1c:	4798      	blx	r3
+  1e:	1b80      	subs	r0, r0, r6
+  20:	2814      	cmp	r0, #20
+  22:	d901      	bls.n	28 <start+0x28>
+  24:	2000      	movs	r0, #0
+  26:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+  28:	692b      	ldr	r3, [r5, #16]
+  2a:	1bdb      	subs	r3, r3, r7
+  2c:	2b00      	cmp	r3, #0
+  2e:	dbf9      	blt.n	24 <start+0x24>
+  30:	4620      	mov	r0, r4
+  32:	f7ff fffe 	bl	0 <mt_adc_dma_start>
+			32: R_ARM_THM_CALL	mt_adc_dma_start
+  36:	2800      	cmp	r0, #0
+  38:	d1f4      	bne.n	24 <start+0x24>
+  3a:	f8d4 3338 	ldr.w	r3, [r4, #824]	@ 0x338
+  3e:	f8d4 2320 	ldr.w	r2, [r4, #800]	@ 0x320
+  42:	1b98      	subs	r0, r3, r6
+  44:	4b0c      	ldr	r3, [pc, #48]	@ (78 <start+0x78>)
+  46:	429a      	cmp	r2, r3
+  48:	d10e      	bne.n	68 <start+0x68>
+  4a:	f8d4 3328 	ldr.w	r3, [r4, #808]	@ 0x328
+  4e:	2b47      	cmp	r3, #71	@ 0x47
+  50:	d10a      	bne.n	68 <start+0x68>
+  52:	f8d4 332c 	ldr.w	r3, [r4, #812]	@ 0x32c
+  56:	2b13      	cmp	r3, #19
+  58:	d106      	bne.n	68 <start+0x68>
+  5a:	f8d4 2324 	ldr.w	r2, [r4, #804]	@ 0x324
+  5e:	4b07      	ldr	r3, [pc, #28]	@ (7c <start+0x7c>)
+  60:	429a      	cmp	r2, r3
+  62:	d101      	bne.n	68 <start+0x68>
+  64:	2800      	cmp	r0, #0
+  66:	da03      	bge.n	70 <start+0x70>
+  68:	4620      	mov	r0, r4
+  6a:	f7ff fffe 	bl	0 <mt_adc_dma_stop>
+			6a: R_ARM_THM_CALL	mt_adc_dma_stop
+  6e:	e7d9      	b.n	24 <start+0x24>
+  70:	3014      	adds	r0, #20
+  72:	6168      	str	r0, [r5, #20]
+  74:	2001      	movs	r0, #1
+  76:	e7d6      	b.n	26 <start+0x26>
+  78:	044aa200 	.word	0x044aa200
+  7c:	00b71b00 	.word	0x00b71b00
+
+Disassembly of section .text.profile:
+
+00000000 <profile>:
+   0:	6840      	ldr	r0, [r0, #4]
+   2:	f7ff bffe 	b.w	0 <mt_adc_dma_profile1_ready>
+			2: R_ARM_THM_JUMP24	mt_adc_dma_profile1_ready
+
+Disassembly of section .text.mt_adc_control_init:
+
+00000000 <mt_adc_control_init>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	b086      	sub	sp, #24
+   6:	4608      	mov	r0, r1
+   8:	b1dc      	cbz	r4, 42 <mt_adc_control_init+0x42>
+   a:	b1d1      	cbz	r1, 42 <mt_adc_control_init+0x42>
+   c:	b1ca      	cbz	r2, 42 <mt_adc_control_init+0x42>
+   e:	b1c3      	cbz	r3, 42 <mt_adc_control_init+0x42>
+  10:	f892 1359 	ldrb.w	r1, [r2, #857]	@ 0x359
+  14:	b1a9      	cbz	r1, 42 <mt_adc_control_init+0x42>
+  16:	60a3      	str	r3, [r4, #8]
+  18:	9b08      	ldr	r3, [sp, #32]
+  1a:	e9c4 0200 	strd	r0, r2, [r4]
+  1e:	60e3      	str	r3, [r4, #12]
+  20:	2300      	movs	r3, #0
+  22:	e9c4 3304 	strd	r3, r3, [r4, #16]
+  26:	4b08      	ldr	r3, [pc, #32]	@ (48 <mt_adc_control_init+0x48>)
+  28:	a901      	add	r1, sp, #4
+  2a:	9301      	str	r3, [sp, #4]
+  2c:	4b07      	ldr	r3, [pc, #28]	@ (4c <mt_adc_control_init+0x4c>)
+  2e:	9302      	str	r3, [sp, #8]
+  30:	4b07      	ldr	r3, [pc, #28]	@ (50 <mt_adc_control_init+0x50>)
+  32:	e9cd 3403 	strd	r3, r4, [sp, #12]
+  36:	9b09      	ldr	r3, [sp, #36]	@ 0x24
+  38:	9305      	str	r3, [sp, #20]
+  3a:	f7ff fffe 	bl	0 <mt_control_init>
+			3a: R_ARM_THM_CALL	mt_control_init
+  3e:	b006      	add	sp, #24
+  40:	bd10      	pop	{r4, pc}
+  42:	2003      	movs	r0, #3
+  44:	e7fb      	b.n	3e <mt_adc_control_init+0x3e>
+  46:	bf00      	nop
+	...
+			48: R_ARM_ABS32	profile
+			4c: R_ARM_ABS32	start
+			50: R_ARM_ABS32	stop
+
+Disassembly of section .text.mt_adc_control_service:
+
+00000000 <mt_adc_control_service>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	b088      	sub	sp, #32
+   8:	2800      	cmp	r0, #0
+   a:	d05b      	beq.n	c4 <mt_adc_control_service+0xc4>
+   c:	6803      	ldr	r3, [r0, #0]
+   e:	2b00      	cmp	r3, #0
+  10:	d058      	beq.n	c4 <mt_adc_control_service+0xc4>
+  12:	6840      	ldr	r0, [r0, #4]
+  14:	2800      	cmp	r0, #0
+  16:	d055      	beq.n	c4 <mt_adc_control_service+0xc4>
+  18:	68a2      	ldr	r2, [r4, #8]
+  1a:	2a00      	cmp	r2, #0
+  1c:	d052      	beq.n	c4 <mt_adc_control_service+0xc4>
+  1e:	f503 5300 	add.w	r3, r3, #8192	@ 0x2000
+  22:	f8d3 22ac 	ldr.w	r2, [r3, #684]	@ 0x2ac
+  26:	2a00      	cmp	r2, #0
+  28:	d04e      	beq.n	c8 <mt_adc_control_service+0xc8>
+  2a:	f8d3 32b0 	ldr.w	r3, [r3, #688]	@ 0x2b0
+  2e:	2b00      	cmp	r3, #0
+  30:	d04a      	beq.n	c8 <mt_adc_control_service+0xc8>
+  32:	a901      	add	r1, sp, #4
+  34:	f7ff fffe 	bl	0 <mt_adc_dma_read_block>
+			34: R_ARM_THM_CALL	mt_adc_dma_read_block
+  38:	2802      	cmp	r0, #2
+  3a:	d103      	bne.n	44 <mt_adc_control_service+0x44>
+  3c:	2000      	movs	r0, #0
+  3e:	b008      	add	sp, #32
+  40:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  44:	2801      	cmp	r0, #1
+  46:	d10c      	bne.n	62 <mt_adc_control_service+0x62>
+  48:	9b01      	ldr	r3, [sp, #4]
+  4a:	b153      	cbz	r3, 62 <mt_adc_control_service+0x62>
+  4c:	9b03      	ldr	r3, [sp, #12]
+  4e:	2b80      	cmp	r3, #128	@ 0x80
+  50:	d107      	bne.n	62 <mt_adc_control_service+0x62>
+  52:	f24c 3350 	movw	r3, #50000	@ 0xc350
+  56:	9a04      	ldr	r2, [sp, #16]
+  58:	429a      	cmp	r2, r3
+  5a:	d102      	bne.n	62 <mt_adc_control_service+0x62>
+  5c:	9f07      	ldr	r7, [sp, #28]
+  5e:	2f14      	cmp	r7, #20
+  60:	d02a      	beq.n	b8 <mt_adc_control_service+0xb8>
+  62:	6820      	ldr	r0, [r4, #0]
+  64:	f7ff fffe 	bl	0 <mt_control_recover>
+			64: R_ARM_THM_CALL	mt_control_recover
+  68:	e7e9      	b.n	3e <mt_adc_control_service+0x3e>
+  6a:	9902      	ldr	r1, [sp, #8]
+  6c:	6963      	ldr	r3, [r4, #20]
+  6e:	4429      	add	r1, r5
+  70:	fbb3 f0f6 	udiv	r0, r3, r6
+  74:	fbb1 fcf8 	udiv	ip, r1, r8
+  78:	fb06 3310 	mls	r3, r6, r0, r3
+  7c:	fb08 111c 	mls	r1, r8, ip, r1
+  80:	fb07 3301 	mla	r3, r7, r1, r3
+  84:	fbb3 f3f6 	udiv	r3, r3, r6
+  88:	6922      	ldr	r2, [r4, #16]
+  8a:	4402      	add	r2, r0
+  8c:	4462      	add	r2, ip
+  8e:	441a      	add	r2, r3
+  90:	9b01      	ldr	r3, [sp, #4]
+  92:	6820      	ldr	r0, [r4, #0]
+  94:	f833 1015 	ldrh.w	r1, [r3, r5, lsl #1]
+  98:	f7ff fffe 	bl	0 <mt_control_sample>
+			98: R_ARM_THM_CALL	mt_control_sample
+  9c:	2800      	cmp	r0, #0
+  9e:	d1ce      	bne.n	3e <mt_adc_control_service+0x3e>
+  a0:	6823      	ldr	r3, [r4, #0]
+  a2:	f503 5300 	add.w	r3, r3, #8192	@ 0x2000
+  a6:	f8d3 32b0 	ldr.w	r3, [r3, #688]	@ 0x2b0
+  aa:	2b00      	cmp	r3, #0
+  ac:	d0c6      	beq.n	3c <mt_adc_control_service+0x3c>
+  ae:	3501      	adds	r5, #1
+  b0:	9b03      	ldr	r3, [sp, #12]
+  b2:	42ab      	cmp	r3, r5
+  b4:	d8d9      	bhi.n	6a <mt_adc_control_service+0x6a>
+  b6:	e7c1      	b.n	3c <mt_adc_control_service+0x3c>
+  b8:	2500      	movs	r5, #0
+  ba:	f44f 767a 	mov.w	r6, #1000	@ 0x3e8
+  be:	f04f 0832 	mov.w	r8, #50	@ 0x32
+  c2:	e7f5      	b.n	b0 <mt_adc_control_service+0xb0>
+  c4:	2003      	movs	r0, #3
+  c6:	e7ba      	b.n	3e <mt_adc_control_service+0x3e>
+  c8:	2001      	movs	r0, #1
+  ca:	e7b8      	b.n	3e <mt_adc_control_service+0x3e>

@@ -1,0 +1,61 @@
+{
+  "base": "7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5",
+  "verified_remote_dependencies": 32,
+  "files": [
+    {
+      "path": "source-snapshot/firmware/app/mt_adc_control.c",
+      "sha256": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+      "bytes": 4216
+    },
+    {
+      "path": "source-snapshot/firmware/app/mt_adc_control.h",
+      "sha256": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+      "bytes": 2135
+    },
+    {
+      "path": "source-snapshot/firmware/platform/adc_timer_dma.c",
+      "sha256": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+      "bytes": 16975
+    },
+    {
+      "path": "source-snapshot/firmware/platform/adc_timer_dma.h",
+      "sha256": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+      "bytes": 6518
+    },
+    {
+      "path": "source-snapshot/tests/adc-commit/README.md",
+      "sha256": "692a275d8e33c5ba5d72bdff4031b80bac0b7bf338fb24aec85b31072b374b4f",
+      "bytes": 3832
+    },
+    {
+      "path": "source-snapshot/tests/adc-commit/arm_check.py",
+      "sha256": "03a0778839f6ffdf83a3f409759c0e3cacfd348ee458d595e4ab7f9b17d508b7",
+      "bytes": 2928
+    },
+    {
+      "path": "CRITIC_A_ADC003_REVIEW.md",
+      "sha256": "ee517ef13bdfec1edc39d8a65773137bfe40977d2465e4c77edbe79bd04b10bc",
+      "bytes": 10922
+    },
+    {
+      "path": "test_extra.c",
+      "sha256": "6c3c5236d085676a639251327f84161c27913a530a7f6bb0a56efc94c79c8564",
+      "bytes": 1659
+    },
+    {
+      "path": "run_extra.py",
+      "sha256": "3aafdb3bbb19c86043a0917a1d7805a4db4e9e091122ec1a811db07f48f26b92",
+      "bytes": 2188
+    },
+    {
+      "path": "abi_probe.c",
+      "sha256": "fd215463e2ae58ff1326562d30505663963868ece666fe13060545e0c0a6c014",
+      "bytes": 235
+    },
+    {
+      "path": "run_abi.py",
+      "sha256": "a92bc6cc8a60c61315ed93e8b1e52529bc678090b666b01f5a2b826227689a2a",
+      "bytes": 2369
+    }
+  ]
+}

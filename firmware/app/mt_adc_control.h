@@ -11,6 +11,8 @@ typedef struct {
     uint32_t (*now_ms)(void *context);
     void *clock_context;
     uint32_t epoch_ms, first_sample_delay_us;
+    mt_adc_dma_start_guard guard;
+    unsigned guarded;
 } mt_adc_control;
 /* driver was initialized with MMIO/time callbacks and verified nominal HSE.
  * now_ms and driver's now_us describe the SAME monotonic clock; each read has
@@ -24,6 +26,13 @@ mt_control_result mt_adc_control_init(mt_adc_control *binding,
     mt_control *control, mt_adc_dma_t *driver,
     uint32_t (*now_ms)(void *context), void *clock_context,
     uint32_t firmware_build);
+/* Same initialization with a copied optional-integration guard definition.
+ * Its context stays alive; callbacks obey adc_timer_dma.h and never reenter.
+ * The original init intentionally retains unguarded standalone behavior. */
+mt_control_result mt_adc_control_init_guarded(mt_adc_control *binding,
+    mt_control *control, mt_adc_dma_t *driver,
+    uint32_t (*now_ms)(void *context), void *clock_context,
+    uint32_t firmware_build, const mt_adc_dma_start_guard *guard);
 /* Call frequently enough to meet driver <2560us service budget, even with USB
  * backpressure. Reads at most one128-code block, no output write or busy wait.
  * Stop consuming the snapshot immediately when the controller freezes/stops it.

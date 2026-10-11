@@ -1,0 +1,156 @@
+{
+  "repository": "font-weight/stm32_motortester",
+  "parent_commit": "adabc2044a3a376056d6756e67bede05c0726440",
+  "parent_tree": "f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca",
+  "original_review_base": "7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5",
+  "original_review_tree": "0d3f1acec1750cc0c3c9102d56fa211ce7729ead",
+  "all_required_parent_inputs_equal_original_review_base": true,
+  "inputs": [
+    {
+      "path": "firmware/acquisition/acquisition.c",
+      "bytes": 8272,
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+      "git_blob": "99dbb52a932735c45e35af840545cf788362eba4",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/acquisition/acquisition.h",
+      "bytes": 4481,
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+      "git_blob": "3e10c7cd58d9e335e6e49db18123ca4278d7bdfa",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/app/mt_adc_control.c",
+      "bytes": 3312,
+      "sha256": "f316523483171195d8f60bee38a3f716f3d887e506074f1038aafc14a99e64ce",
+      "git_blob": "e7b68968af1426f16bbd3ddd6183af63c8e16df3",
+      "comparative_copy": "baseline/firmware/app/mt_adc_control.c"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.h",
+      "bytes": 1603,
+      "sha256": "85110d0698c322919ef2b8006a81e166b00cd11eea3a9b4cd972f550d244fbc7",
+      "git_blob": "a7459bc71c27664c6d0c04d712201461c403ee77",
+      "comparative_copy": "baseline/firmware/app/mt_adc_control.h"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.c",
+      "bytes": 10807,
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+      "git_blob": "5e78945f514d7c12f3fa4996144ac104bd940c00",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/app/mt_capture_link.h",
+      "bytes": 4030,
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+      "git_blob": "15fb2b6726fb0c6c72c2df54b3930e66c12e21e5",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/app/mt_control.c",
+      "bytes": 12173,
+      "sha256": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+      "git_blob": "d268cf74d72d157c6e65b59e3a9471929ac4f9d2",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/app/mt_control.h",
+      "bytes": 2284,
+      "sha256": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+      "git_blob": "da26b83d3f038189f95a39f405c07d7ae21060fa",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.c",
+      "bytes": 15805,
+      "sha256": "91906d403ffc787d1b7e6541302226347bf299f58b2949be47742d9768240d43",
+      "git_blob": "cd0d9b7d78409bc271a181e23aafb991c460bdee",
+      "comparative_copy": "baseline/firmware/platform/adc_timer_dma.c"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.h",
+      "bytes": 5508,
+      "sha256": "3c1c175c5372a3a1a6ce3c00b97f674802a61b04a716097e105b947e7494a008",
+      "git_blob": "fccedad863fb43b883d180759aa92c10f8350e64",
+      "comparative_copy": "baseline/firmware/platform/adc_timer_dma.h"
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "bytes": 3566,
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+      "git_blob": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "bytes": 2397,
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+      "git_blob": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/protocol/mt_session.c",
+      "bytes": 2855,
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+      "git_blob": "f44099ebba52f99c5146ed719be2db5be6b0f71d",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/protocol/mt_session.h",
+      "bytes": 2253,
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+      "git_blob": "646c6fd11f151d3d8a02fc49264f17b76d4204e4",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "bytes": 4102,
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+      "git_blob": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "bytes": 1679,
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+      "git_blob": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/transport/mt_tx.c",
+      "bytes": 8984,
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+      "git_blob": "617dafd44ecb03c34620201f8d2dc1a378326fc8",
+      "comparative_copy": null
+    },
+    {
+      "path": "firmware/transport/mt_tx.h",
+      "bytes": 6194,
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+      "git_blob": "c86ba738a76d86f9b97740a3e67ff1b55a12cd88",
+      "comparative_copy": null
+    },
+    {
+      "path": "tests/adc-control/test_adc_control.c",
+      "bytes": 7863,
+      "sha256": "dbf9dacf5287c3ef7a587602a3e46038a74da297a4da7f370c418ca659dae458",
+      "git_blob": "5931a83155a2f729fe9d1e7be0149e3ba8bbba2b",
+      "comparative_copy": null
+    },
+    {
+      "path": "tests/platform/test_adc_timer_dma.c",
+      "bytes": 16335,
+      "sha256": "38a0d038f85bc659f2663322b00e91c71c568bb3cc9952e3c57691b983c173b9",
+      "git_blob": "95679f3b1e3db920a071540fc2a6708ad2afc9a3",
+      "comparative_copy": null
+    }
+  ],
+  "production_sha256": {
+    "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+    "firmware/platform/adc_timer_dma.c": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+    "firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d"
+  }
+}

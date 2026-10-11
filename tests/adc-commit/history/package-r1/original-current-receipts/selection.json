@@ -1,0 +1,155 @@
+{
+  "scope": "First portable rerun; logs retain actual paths. This is supporting evidence, not independent final binding.",
+  "files": [
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/abi/receipt.json",
+      "destination": "evidence/current/abi/receipt.json",
+      "sha256": "74f7a74775e800a168b3dbd61bad40629fc229b33875a1c3666956ec426d59b7"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-binding-disassembly.txt",
+      "destination": "evidence/current/arm/base-binding-disassembly.txt",
+      "sha256": "a5c794c474e188a48dcbebde9ad63693f839c6d4a5dae9bd511a69a90a498c40"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-binding-nm.txt",
+      "destination": "evidence/current/arm/base-binding-nm.txt",
+      "sha256": "23a3331bd723890376f2f974a5de785d90bcb2e1581613aa6df699be528ed462"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-binding-size.txt",
+      "destination": "evidence/current/arm/base-binding-size.txt",
+      "sha256": "d9072df1862d4e83e2b278f7f256355afe9b94fd1f867f560642e6e33bdbe5f8"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-binding.su",
+      "destination": "evidence/current/arm/base-binding.su",
+      "sha256": "83111f23cee379bf16640457c6786acb4f29142edddd7eb223a72a6624589300"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-driver-disassembly.txt",
+      "destination": "evidence/current/arm/base-driver-disassembly.txt",
+      "sha256": "bf861ceca20d60fc11188ad1276a4732bf5e14293b118b0885b8e6807386990b"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-driver-nm.txt",
+      "destination": "evidence/current/arm/base-driver-nm.txt",
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-driver-size.txt",
+      "destination": "evidence/current/arm/base-driver-size.txt",
+      "sha256": "cf614812213e9c080e2b465368c688e2fbe71836ee2695ff5a28491a6f321f97"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/base-driver.su",
+      "destination": "evidence/current/arm/base-driver.su",
+      "sha256": "f96c1bc3cd4c0ebd6870b2c212e2e83beec4705720bc0cfdd9ddd8ccffcc0396"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-binding-disassembly.txt",
+      "destination": "evidence/current/arm/candidate-binding-disassembly.txt",
+      "sha256": "e3220a482de3f9fc440810250c00a0475e72e5ed37c62a0afb756e76e2e155d6"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-binding-nm.txt",
+      "destination": "evidence/current/arm/candidate-binding-nm.txt",
+      "sha256": "50fcfb41f34416e57c07e6d5c24818cba62ee12915b6e0a416c98bf6ccf6c63d"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-binding-size.txt",
+      "destination": "evidence/current/arm/candidate-binding-size.txt",
+      "sha256": "672803aa02575ee9189c17f320a410d422349150350bae74dbed86bbe27c6f5a"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-binding.su",
+      "destination": "evidence/current/arm/candidate-binding.su",
+      "sha256": "2aae4099e716d15a6ad74fc5c68556553e63bb2d0123426e472020d702ab3359"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-driver-disassembly.txt",
+      "destination": "evidence/current/arm/candidate-driver-disassembly.txt",
+      "sha256": "1cbdee8f936f7752ce12f9d2e49d6c607cc893689b3dbf4873fb0d1b9e61c986"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-driver-nm.txt",
+      "destination": "evidence/current/arm/candidate-driver-nm.txt",
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-driver-size.txt",
+      "destination": "evidence/current/arm/candidate-driver-size.txt",
+      "sha256": "48f5be73f9b67129115d09ccd2da1dac93268df4d13320a1f633a4de24186730"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/candidate-driver.su",
+      "destination": "evidence/current/arm/candidate-driver.su",
+      "sha256": "adce8291aee8b78cc07fc1bb6259fe86c28d7b4dd651a565ff34321bb753f177"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/commands.json",
+      "destination": "evidence/current/arm/commands.json",
+      "sha256": "636dbce79f39e6723e47b0bf3c96238b834e1f019f33433f1a00190d18c4a70c"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/arm/inputs.json",
+      "destination": "evidence/current/arm/inputs.json",
+      "sha256": "bcdfea63f97780032e0f8a6dc6a26d115ab08b5dc99993ddfb717edae8997124"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/baseline-sanitized/receipt.json",
+      "destination": "evidence/current/baseline-sanitized/receipt.json",
+      "sha256": "53b0abd7083eb816d941a49d65d99f6c54344b7d0a41f804b8156c9a8f93a5b6"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/baseline-strict/receipt.json",
+      "destination": "evidence/current/baseline-strict/receipt.json",
+      "sha256": "05ac846c30b015cee07d6f7e51a53f851f5f01d2c88b11b630271ff653ed3482"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/candidate-sanitized/receipt.json",
+      "destination": "evidence/current/candidate-sanitized/receipt.json",
+      "sha256": "a841af9a05226e50345125d9b0af9103e39c1d4a2bc6741dfade551ffeadebee"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/candidate-strict/receipt.json",
+      "destination": "evidence/current/candidate-strict/receipt.json",
+      "sha256": "f5eb88d4df6254a93c3bb815df98421a6731b0dd7485dcc642fe98badf25c5ee"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/extra-sanitized/receipt.json",
+      "destination": "evidence/current/extra-sanitized/receipt.json",
+      "sha256": "e3a5d07284646648442c748514d84a1c1f433dce50ec9c7d610dfce4ad174c67"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/extra-strict/receipt.json",
+      "destination": "evidence/current/extra-strict/receipt.json",
+      "sha256": "1631136f9bb79807e49821f1eea9a7e17061f1163700b14d9c5f990f00fdba34"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/negative/cleanup-before-leave/run/receipt.json",
+      "destination": "evidence/current/negative/cleanup-before-leave/run/receipt.json",
+      "sha256": "ca875a8ea7e55c3b86ebc3fe11ab38f3295b27a4ec8c9297d20ce884dc9fbaf4"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/negative/missing-initial-admission/run/receipt.json",
+      "destination": "evidence/current/negative/missing-initial-admission/run/receipt.json",
+      "sha256": "c125fef506882af3dd0b6f7df1e786ce489efeaf3e5972953c6fe33481a189c6"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/negative/missing-post-clock-admission/run/receipt.json",
+      "destination": "evidence/current/negative/missing-post-clock-admission/run/receipt.json",
+      "sha256": "525846eb6fb75e4f7e08d43faa52661b14d1c03fd182ca57d5639d9dbfcc9e53"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/negative/summary.json",
+      "destination": "evidence/current/negative/summary.json",
+      "sha256": "6a1c3198fb58d149438c21c5ec18ed1bd40f814611c616059218197e0ecfd649"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/reproduction 01/receipt.json",
+      "destination": "evidence/current/receipt.json",
+      "sha256": "19d29111edc093c3889d05af2a57413af74761f9029d8a7290b82f2c56c249ed"
+    }
+  ]
+}

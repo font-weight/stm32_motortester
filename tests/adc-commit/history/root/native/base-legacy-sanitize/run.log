@@ -1,0 +1,13 @@
++ cc --version
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ cc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wconversion -Wshadow -g -O1 -fno-omit-frame-pointer -I/workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/platform -fsanitize=address,undefined -fno-sanitize-recover=all -fno-pie -no-pie /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/tests/platform/test_adc_timer_dma.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/platform/adc_timer_dma.c -o /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/legacy-driver
++ /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/legacy-driver
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
++ cc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wconversion -Wshadow -g -O1 -fno-omit-frame-pointer -I/workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/platform -fsanitize=address,undefined -fno-sanitize-recover=all -fno-pie -no-pie /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/tests/adc-control/test_adc_control.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/platform/adc_timer_dma.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/app/mt_adc_control.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/app/mt_control.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/app/mt_capture_link.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/protocol/mt_command.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/protocol/mt_session.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/protocol/mt_wire.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/transport/mt_tx.c /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/snapshot/firmware/acquisition/acquisition.c -o /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/legacy-controller
++ /workspace/shared/adc-commit-test-runs/base-legacy-sanitize/legacy-controller
+ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
+ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed

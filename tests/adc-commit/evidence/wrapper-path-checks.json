@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "existing",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-path-checks"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be a fresh nonexistent path\n",
+      "output_created": false
+    },
+    {
+      "case": "inside-checkout",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be disjoint from checkout and toolchain\n",
+      "output_created": false
+    },
+    {
+      "case": "checkout-ancestor",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/adc-commit-publication"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be disjoint from checkout and toolchain\n",
+      "output_created": false
+    },
+    {
+      "case": "inside-toolchain",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be disjoint from checkout and toolchain\n",
+      "output_created": false
+    },
+    {
+      "case": "alias-inside-checkout",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-path-checks/checkout-alias/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be disjoint from checkout and toolchain\n",
+      "output_created": false
+    },
+    {
+      "case": "missing-toolchain",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-path-checks/absent-toolchain",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-path-checks/missing-toolchain-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: ARM tool input missing; no output created: gcc\n",
+      "output_created": false
+    },
+    {
+      "case": "missing-required-input",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/wrapper-path-checks/missing-input-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-path-checks/missing-input-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: missing or escaping checkout input: /workspace/shared/adc-commit-publication/wrapper-path-checks/missing-input-checkout/tests/platform/test_adc_timer_dma.c\n",
+      "output_created": false
+    }
+  ],
+  "original_checkout_unchanged": true
+}

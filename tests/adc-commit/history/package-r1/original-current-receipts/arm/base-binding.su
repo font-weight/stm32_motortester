@@ -1,0 +1,5 @@
+/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app/mt_adc_control.c:11:12:stop	8	static
+/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app/mt_adc_control.c:15:12:start	24	static
+/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app/mt_adc_control.c:7:12:profile	0	static
+/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app/mt_adc_control.c:36:19:mt_adc_control_init	32	static
+/workspace/shared/adc-commit-publication/reproduction 01/base/firmware/app/mt_adc_control.c:49:19:mt_adc_control_service	56	static

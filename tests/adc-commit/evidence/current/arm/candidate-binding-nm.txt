@@ -1,0 +1,9 @@
+         U memset
+         U mt_adc_dma_profile1_ready
+         U mt_adc_dma_read_block
+         U mt_adc_dma_start
+         U mt_adc_dma_start_guarded
+         U mt_adc_dma_stop
+         U mt_control_init
+         U mt_control_recover
+         U mt_control_sample
