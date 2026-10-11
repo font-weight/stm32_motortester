@@ -4,9 +4,9 @@
     "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
     "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
     "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
-    "firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
-    "firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
-    "firmware/app/mt_control.c": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+    "firmware/app/mt_capture_link.c": "14386756c044aa509cd2e0b5f4fbcf1d29f1b022214f327c8f91ad26e82222b4",
+    "firmware/app/mt_capture_link.h": "1b9fbf145117333692b75324ee7d9c6dc53a771a76b1b3c31f409f34df7e6d11",
+    "firmware/app/mt_control.c": "e255e8425d5ac30ad9b4c083e5b80c43ba00f2c68eff020f9a6a7d6f19e304a6",
     "firmware/app/mt_control.h": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
     "firmware/app/mt_control_rx.c": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322",
     "firmware/app/mt_control_rx.h": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943",
@@ -216,7 +216,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "79dfe0181f70dfa77e303007212ad1fb462ce2d3a117252ad2c8b03854972712"
+      "expected_object_sha256": "efbcb064d67cb40ee6520517ecb99f4c0c5637df7c4ca6092c85100a9d4cc5cc"
     },
     {
       "source": "firmware/app/mt_adc_control.c",
@@ -270,7 +270,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "d5f9d50c21c9b46df34a48225bd0c718080faa6083d01cec65e67946457ed456"
+      "expected_object_sha256": "485b3b957e4447ed3afcd02f7477b0e256d80453a306d3a1ff381e836af8a03b"
     },
     {
       "source": "firmware/app/mt_control_rx.c",

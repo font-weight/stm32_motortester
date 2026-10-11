@@ -10,7 +10,7 @@ import stat
 import subprocess
 import sys
 
-INPUT_SHA = '898deea0d20bbeefd2a7131b14ac21e8b3205bd9d7325f6c992f9d034c3c60da'
+INPUT_SHA = '797a004bfb4084220460d9d36c185aeaad395a8d9ae78d982762d0c0f4028eff'
 TOOL_SHA = '22f0c2204b8b381a26af3b910851b43b04f34549b6677cdb5b76f304c4e37b43'
 
 def require(ok, message):

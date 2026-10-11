@@ -347,3 +347,34 @@ URL https://github.com/font-weight/stm32_motortester внесён в оба за
 **HW-001** из [task.md](../task.md): паспорт Blue Pill/ЛБП/доступных приборов и сравнение совместимых концепций стенда. Установить маркировки и параметры до выбора деталей и проектирования схемы.
 
 Код двигателя Almera остаётся TBD; это не блокирует планирование отдельного стенда. Для пользователя не назначаются новые покупки до проверки совместимости и реальных предложений.
+# 11.10.2026: object-rebinding для проекта WAIT_RELEASE
+
+После source-only PR79 (`66fce97ba86de459e6d597deb32130e030f34594`,
+tree `c3479382770fe37f6d90ba2d66ef8eb7e3c5bdde`) выполнена отдельная
+узкая черновая итерация рецепта relocatable-сборки. До правок scope и критерии
+записаны в PR79, comment6106499848. Изменены только три source SHA в
+`firmware/build/inputs.json`, два object SHA и binding manifest в
+`build_objects.py`; алгоритмы, flags, список translation units, toolchain,
+BOOT и image/stack reference не изменялись.
+
+Dot A дважды собрал все 33 объекта во внешней observation-only проверке.
+Critic-A отдельно восстановил 41 команду действующего профиля, собрал все 33
+объекта и проверил зависимости, конфигурацию, BOOT и семь unresolved symbols.
+31 объект совпал с R8; изменились только capture-link и control, в точности
+как в ранее проверенных отдельных ARM-сборках. Обнаруженный неполный набор
+tool probes первого observation-runner сохранён; второй runner исправлен,
+11 probes и сохранение отказов перепроверены независимо.
+
+После этой проверки root закрепил новые hashes **до** запуска штатного builder.
+Команда: `python3 -I -B firmware/build/build_objects.py --toolchain
+/workspace/shared/arm-resource-evidence/toolchain/root/usr --out
+/workspace/shared/wait-release-full33-rebound-r1` из этого checkout.
+Получен `PASS_RELOCATABLE_ONLY`: 33 объекта, зависимости и входы неизменны;
+combined.o SHA256 `52a4822cd77f1aca9301c43c3a6e83a8d66cf957787375e0c2fb241cfe3a65d2`.
+Точный diff и новый штатный replay ещё требуют отдельного независимого вердикта.
+
+Исторический proof R8 и его условные 3016 байт не переносятся. Старые pins
+`build_image.py` намеренно остаются прежними и отвергают новый manifest/builder.
+Новая полная машинная проверка стека и обновление image-reference выполняются
+отдельно. Программное предложение WAIT_RELEASE ещё ожидает совместной проверки
+A/B; аппаратные измерения и прошивка платы не выполнялись.
