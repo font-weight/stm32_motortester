@@ -378,3 +378,35 @@ combined.o SHA256 `52a4822cd77f1aca9301c43c3a6e83a8d66cf957787375e0c2fb241cfe3a6
 Новая полная машинная проверка стека и обновление image-reference выполняются
 отдельно. Программное предложение WAIT_RELEASE ещё ожидает совместной проверки
 A/B; аппаратные измерения и прошивка платы не выполнялись.
+
+# 11.10.2026: новый conditional image/reference draft после WAIT_RELEASE
+
+Scope до правок: PR80 comment6106636794. Родитель — PR80
+`965c98ef9526b95e8497392d03660a403329e48c`; firmware и toolchain не меняются.
+Новый supporting machine proof и отдельный Critic-A заново проверили текущий
+ELF, все CFG/SP/вызовы, callback/event и exception-предпосылки. Условные числа:
+foreground 2648, USB 264, exception entry 36, ещё две terminal entries 72;
+3020 округляется до 3024 байт. Это не production reserve и не измерение.
+Старые 3016 не использовались как основание новой оценки.
+
+В новом reference закреплены 364 executable ranges, 411 function symbols,
+1055 immutable symbols и четыре новых region SHA. Единственное переменное
+неисполняемое reset-слово — offset 0x58 в reset.o, VMA 0x08007eb8;
+entry 0x08007e61, board 0x08007f38, начало строк 0x08007f68.
+Исходный invalid-zero-board ELF SHA256
+`699892d36adbfa06cdf5e2ef5bb2e9757e41c5df522d2dd8f944f313f9bca446`
+не исполнялся и не прошивался. Полная новая proof-цепочка хранится отдельно;
+JSON содержит её точные относительные пути/hashes, не утверждает поставку этих
+файлов внутри checkout. Исторические свидетельства R8 сохранены неизменными.
+
+Root обновил только reference, явные geometry/limit bindings в узком checker
+и pins/арифметику полного recipe, без ослабления проверок. SRAM static end
+остался 0x20003058; максимум N=8104. Теперь N=align8(3024+M), 0≤M≤5080;
+M выбирается явно. Первый штатный прогон на прежнем synthetic.json, N=3024,
+M=0 в `/workspace/shared/wait-release-image-root-r1` прошёл
+`CONDITIONAL_STATIC_LINK_CHECKS_PASS`: BOOT, exact map/ELF и BIN/HEX equality.
+Нулевой тестовый margin не является решением для реальной платы.
+
+Текущий image/reference diff и adversarial матрица ещё требуют независимого
+вердикта. Source-only публикация не подразумевает разрешения новых binary
+артефактов. Совместная приёмка протокола PR79 и аппаратные проверки открыты.
