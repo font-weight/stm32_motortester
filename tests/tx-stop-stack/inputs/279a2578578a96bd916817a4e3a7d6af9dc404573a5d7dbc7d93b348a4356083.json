@@ -1,0 +1,10 @@
+{
+  "REPORT.ru.md": "5bebacf79864279d7b837d4fbf5a296fc2bc7bbb914e21435333111752b776ad",
+  "FINAL_RECHECK.json": "17b53295cc7a123ef9d9e8f64d9ec83c7e57b5977f41bef9e868e1f6f3920e2c",
+  "evidence-r3/receipt.json": "1e876ecacff0de43f7bb2ad0e3b6a06b91252fac25176d00f897df5f75dbde80",
+  "evidence-r3/selected_chain_direct_calls.json": "291f1c98a05b6be6075c4f3494383f5fba158a0659d9d9bd65a94a0d57e0d5d1",
+  "runner/abi_probe.c": "ce1f42a52d87f32bfc2952268edee2762d11705b8dddf1373c8cffb2b76c0d49",
+  "runner/compare_arm.py": "39482cee3b4960da13ee099d4bd744e37e11efc387d28f84d3662c647c832e08",
+  "runner/input_contract.json": "a9396df5410e1ac7ed38102d5d682e39b14990915ad840aa9e51c15f3f366d74",
+  "runner/run.sh": "661743ff81411f17e57f73f4aa9e52f5a47bdf5cc1647e81293d97bbb845f3e1"
+}

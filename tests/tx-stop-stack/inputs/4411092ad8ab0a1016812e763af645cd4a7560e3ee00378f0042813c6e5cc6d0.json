@@ -1,0 +1,254 @@
+[
+  {
+    "case": "startup_reset_configuration_and_wire_arm",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 47,
+    "usb_calls": 19
+  },
+  {
+    "case": "argument_and_mmio_descriptor_alias",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 3,
+    "usb_calls": 0
+  },
+  {
+    "case": "one_synthetic_dma_half_through_real_acquisition",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 66,
+    "usb_calls": 21
+  },
+  {
+    "case": "soft_loss_requires_fresh_hello",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 2,
+    "time_reads": 104,
+    "usb_calls": 35
+  },
+  {
+    "case": "hard_loss_discards_tx_and_reopens_fresh_epoch",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 2,
+    "time_reads": 99,
+    "usb_calls": 40
+  },
+  {
+    "case": "hard_loss_retries_stop_before_reset_dispatch",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 2062,
+    "usb_calls": 21
+  },
+  {
+    "case": "soft_loss_retries_stop",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 4072,
+    "usb_calls": 21
+  },
+  {
+    "case": "failed_initial_start_ownership_blocks_cleanup",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 5055,
+    "usb_calls": 17
+  },
+  {
+    "case": "reset_during_calibration_retains_old_actor",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 87,
+    "usb_calls": 36
+  },
+  {
+    "case": "suspend_during_calibration_denies_commit",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 52,
+    "usb_calls": 17
+  },
+  {
+    "case": "reset_pending_at_cen_processed_after_guard",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 48,
+    "usb_calls": 17
+  },
+  {
+    "case": "clock_fault_is_terminal_and_retries_stop",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 55,
+    "usb_calls": 21
+  },
+  {
+    "case": "clock_fault_during_calibration_denies_commit",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 38,
+    "usb_calls": 17
+  },
+  {
+    "case": "clock_fault_at_cen_cleans_after_guard",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 42,
+    "usb_calls": 17
+  },
+  {
+    "case": "recursive_step_rejected_preserves_actor",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 45,
+    "usb_calls": 19
+  },
+  {
+    "case": "same_epoch_deconfiguration_is_quarantined",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 70,
+    "usb_calls": 28
+  },
+  {
+    "case": "actual_usb_submission_failure_is_quarantined",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 18,
+    "usb_calls": 11
+  },
+  {
+    "case": "dtr_gates_protocol_consumption",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 28,
+    "usb_calls": 13
+  },
+  {
+    "case": "dtr_low_retains_active_capture_and_epoch",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 102,
+    "usb_calls": 33
+  },
+  {
+    "case": "direct_api_start_without_actor_is_denied",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 40,
+    "usb_calls": 15
+  },
+  {
+    "case": "reset_during_cleanup_cannot_publish_stale_receipt",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 68,
+    "usb_calls": 28
+  },
+  {
+    "case": "queue_loss_requires_fresh_reset",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 100,
+    "usb_calls": 28
+  },
+  {
+    "case": "suspend_resume_between_steps_still_recovers",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 2,
+    "time_reads": 102,
+    "usb_calls": 35
+  },
+  {
+    "case": "positive_prefix_backpressure_keeps_adc_service",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 97,
+    "usb_calls": 25
+  },
+  {
+    "case": "complete_capture_crc_release_replay_and_stop_on_wire",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 2,
+    "time_reads": 698,
+    "usb_calls": 201
+  },
+  {
+    "case": "step_dispatches_at_most_one_usb_event",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 20,
+    "usb_calls": 7
+  },
+  {
+    "case": "adc_service_deadline_enters_recovery",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 1,
+    "time_reads": 63,
+    "usb_calls": 21
+  },
+  {
+    "case": "idle_clock_service_fault_is_terminal",
+    "pass": true,
+    "exit_status": 0,
+    "layer": "native_real_modules_fake_mmio_dcd_irq",
+    "adc_cen_writes": 0,
+    "time_reads": 3,
+    "usb_calls": 0
+  }
+]

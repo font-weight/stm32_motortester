@@ -1,0 +1,61 @@
+{
+  "status": "LOCAL_PACKAGE_REPRODUCED_PENDING_INDEPENDENT_FINAL_REVIEW",
+  "verified_utc": "2026-10-10T20:06:13.181046+00:00",
+  "parent_commit": "adabc2044a3a376056d6756e67bede05c0726440",
+  "parent_tree": "f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca",
+  "candidate_tree": "2a697a3eaf7558a46c82f413eed664f3b5564a1e",
+  "local_snapshot_commit": "9c7dcdaccb18c982aaac4edf82d3830c8b27da2d",
+  "package_manifest_sha256": "1cd8dd0bcb3787c7408678905cc7aa80450f411fbf868e5d538d73755cd31c91",
+  "file_count": 246,
+  "added": 245,
+  "replaced": 1,
+  "unchanged_parent_blobs": 1026,
+  "content_bytes": 4655471,
+  "git_status_clean": true,
+  "all_parent_modes_preserved": true,
+  "host_unchanged": true,
+  "github_writes": 0,
+  "branches_created": 0,
+  "source_author": "Dot A (root); packaging worker made no production changes",
+  "production_sha256": {
+    "firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+  },
+  "full_reproduction": {
+    "path": "/workspace/shared/tx-stack-publication/final clean reproduction r2/receipt.json",
+    "sha256": "7406d4aa4ff1b658c6a19ba1dadf9384950df613f3681edc954e73c3ed825749",
+    "status": "PASS_LOCAL_TX002_ONLY",
+    "successful_command_groups": 13,
+    "inputs_tools_headers_unchanged": true
+  },
+  "wrapper_controls": {
+    "path": "/workspace/shared/tx-stack-publication/final-wrapper-controls-r2/receipt.json",
+    "sha256": "0d395680bb5c5aa6242d81240840fa4609ce3c8f300a097fbc910dc957aa7cec",
+    "passed": 18
+  },
+  "archive": {
+    "path": "/workspace/shared/tx-stack-publication/tx002-candidate.tar.gz",
+    "sha256": "f8bb480b62e292eee5ad57c282ffa3ff90f87df57dc59b69ec9fb0eb5dc67f21",
+    "bytes": 878269
+  },
+  "size_breakdown": {
+    "production_change": {
+      "files": 1,
+      "bytes": 9723
+    },
+    "wrapper_docs_and_manifests": {
+      "files": 10,
+      "bytes": 469911
+    },
+    "reproduction_sources_and_fixtures": {
+      "files": 36,
+      "bytes": 340854
+    },
+    "historical_evidence_and_comparison_objects": {
+      "files": 199,
+      "bytes": 3834983
+    }
+  },
+  "full_current_device_test_claimed": false,
+  "hardware_claimed": false,
+  "independent_acceptance_claimed": false
+}

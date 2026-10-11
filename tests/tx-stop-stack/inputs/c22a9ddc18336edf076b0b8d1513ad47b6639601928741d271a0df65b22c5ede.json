@@ -1,0 +1,558 @@
+{
+  "status": "FAIL",
+  "start_utc": "2026-10-10T19:13:00.262012+00:00",
+  "invocation": [
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+    "--base",
+    "/workspace/shared/usb-bridge-publication/base-checkout",
+    "--candidate",
+    "/workspace/shared/tx-stop-stack-draft",
+    "--original",
+    "/workspace/shared/tx-stop-stack-tests/original",
+    "--out",
+    "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason",
+    "--mutant",
+    "drop_reason"
+  ],
+  "input_before": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/differential.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/differential.c",
+      "sha256": "94acc3cd968be37dc09f867b02376c330be387a218d238047515138a3f979a81"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+      "sha256": "dca6f13abdeef04c58fc688eabb81d2c52edcd5445541e318ba43ee140eb65bc"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/provenance.json": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/provenance.json",
+      "sha256": "77bbc18ba882ca381943cbe446a6eb824abbcb9fdb11adfcafe4ac1cac85098b"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/run.sh": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/run.sh",
+      "sha256": "bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c",
+      "sha256": "47dc026666f882c305148d6498dae537483a71c43320e143c8f66ea3cbdbb5bf"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "expected_production_sha256": {
+    "old/firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+    "new/firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "--version"
+      ],
+      "exit": 0,
+      "output": "x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/old/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/old/firmware/transport/mt_tx.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/old/tests/transport/test_mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/original-old"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/original-old"
+      ],
+      "exit": 0,
+      "output": "mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/firmware/transport/mt_tx.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/tests/transport/test_mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/original-new"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/original-new"
+      ],
+      "exit": -6,
+      "output": "original-new: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/tests/transport/test_mt_tx.c:347: test_queued_abort_reason_preserved: Assertion `out[1].payload[8] == 2u && out[2].type == 133u' failed.\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "-Dmt_tx_init=old_tx_init",
+        "-Dmt_tx_hello=old_tx_hello",
+        "-Dmt_tx_enqueue=old_tx_enqueue",
+        "-Dmt_tx_stop=old_tx_stop",
+        "-Dmt_tx_poll=old_tx_poll",
+        "-Dmt_tx_terminal_committed=old_tx_terminal_committed",
+        "-Dmt_tx_window_status=old_tx_window_status",
+        "-c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/old/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/old.o"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "-Dmt_tx_init=new_tx_init",
+        "-Dmt_tx_hello=new_tx_hello",
+        "-Dmt_tx_enqueue=new_tx_enqueue",
+        "-Dmt_tx_stop=new_tx_stop",
+        "-Dmt_tx_poll=new_tx_poll",
+        "-Dmt_tx_terminal_committed=new_tx_terminal_committed",
+        "-Dmt_tx_window_status=new_tx_window_status",
+        "-c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/new.o"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/firmware/transport",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/old.o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/new.o",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "--list"
+      ],
+      "exit": 0,
+      "output": "retained_abort_reason_and_reply_order\nprotocol_defined_abort_reasons\npartial_head_compaction\nzero_acceptance_then_stop\ncommitted_terminal_no_duplicate\nargument_rejections_atomic\nadmission_full_and_reserved_capacity\nwrap_timeout_fault_and_recovery\npublic_queue_randomized\nprivate_state_defensive_controls\nold_partial_session_then_stop\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "retained_abort_reason_and_reply_order"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "protocol_defined_abort_reasons"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "partial_head_compaction"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "zero_acceptance_then_stop"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "committed_terminal_no_duplicate"
+      ],
+      "exit": 0,
+      "output": "{\"case\":\"committed_terminal_no_duplicate\",\"scenarios\":128,\"operations\":1110,\"pass\":true}\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "argument_rejections_atomic"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "admission_full_and_reserved_capacity"
+      ],
+      "exit": 0,
+      "output": "{\"case\":\"admission_full_and_reserved_capacity\",\"scenarios\":1,\"operations\":25,\"pass\":true}\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "wrap_timeout_fault_and_recovery"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "public_queue_randomized"
+      ],
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "private_state_defensive_controls"
+      ],
+      "exit": 0,
+      "output": "{\"case\":\"private_state_defensive_controls\",\"scenarios\":3,\"operations\":12,\"pass\":true}\n"
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/differential",
+        "old_partial_session_then_stop"
+      ],
+      "exit": 0,
+      "output": "{\"case\":\"old_partial_session_then_stop\",\"scenarios\":93,\"operations\":1269,\"pass\":true}\n"
+    }
+  ],
+  "results": [
+    {
+      "case": "original_14_old",
+      "pass": true,
+      "output": "mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552\n"
+    },
+    {
+      "case": "original_14_new",
+      "pass": false,
+      "output": "original-new: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/new/tests/transport/test_mt_tx.c:347: test_queued_abort_reason_preserved: Assertion `out[1].payload[8] == 2u && out[2].type == 133u' failed.\n"
+    },
+    {
+      "case": "retained_abort_reason_and_reply_order",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "protocol_defined_abort_reasons",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "partial_head_compaction",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "zero_acceptance_then_stop",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "committed_terminal_no_duplicate",
+      "pass": true,
+      "exit": 0,
+      "output": "{\"case\":\"committed_terminal_no_duplicate\",\"scenarios\":128,\"operations\":1110,\"pass\":true}\n",
+      "scenarios": 128,
+      "operations": 1110
+    },
+    {
+      "case": "argument_rejections_atomic",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "admission_full_and_reserved_capacity",
+      "pass": true,
+      "exit": 0,
+      "output": "{\"case\":\"admission_full_and_reserved_capacity\",\"scenarios\":1,\"operations\":25,\"pass\":true}\n",
+      "scenarios": 1,
+      "operations": 25
+    },
+    {
+      "case": "wrap_timeout_fault_and_recovery",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "public_queue_randomized",
+      "pass": false,
+      "exit": -6,
+      "output": "differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/snapshot/harness/differential.c:57: compare_message: Assertion `memcmp(a->payload,b->payload,a->payload_length)==0' failed.\n"
+    },
+    {
+      "case": "private_state_defensive_controls",
+      "pass": true,
+      "exit": 0,
+      "output": "{\"case\":\"private_state_defensive_controls\",\"scenarios\":3,\"operations\":12,\"pass\":true}\n",
+      "scenarios": 3,
+      "operations": 12
+    },
+    {
+      "case": "old_partial_session_then_stop",
+      "pass": true,
+      "exit": 0,
+      "output": "{\"case\":\"old_partial_session_then_stop\",\"scenarios\":93,\"operations\":1269,\"pass\":true}\n",
+      "scenarios": 93,
+      "operations": 1269
+    }
+  ],
+  "sanitize": false,
+  "mutant": "drop_reason",
+  "toolchain_before": {
+    "driver": {
+      "lexical": "/usr/bin/cc",
+      "resolved": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+    },
+    "cc1": {
+      "lexical": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "sha256": "02675980109a4a5496cddf67d5286de57942759edc830deaa525e36f9a2a0291"
+    },
+    "as": {
+      "lexical": "/usr/bin/as",
+      "resolved": "/usr/bin/x86_64-linux-gnu-as",
+      "sha256": "07dd8551ea0aa065975e4dddb8e1bb7dc308d12d54eca22c3858db79467c7cb9"
+    },
+    "ld": {
+      "lexical": "/usr/bin/ld",
+      "resolved": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "d2766988b6a1b1d1518cdc09242e726d1f24e151e16410ada3092b11ffd9081b"
+    },
+    "collect2": {
+      "lexical": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2",
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2",
+      "sha256": "ea31a4cebd9df1b6428c463428d461ccecfe66c897936409d5b2cde0b3af9e27"
+    }
+  },
+  "toolchain_queries": [
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=cc1"
+      ],
+      "exit": 0,
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=as"
+      ],
+      "exit": 0,
+      "stdout": "as\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=ld"
+      ],
+      "exit": 0,
+      "stdout": "ld\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=collect2"
+      ],
+      "exit": 0,
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Native synthetic tests. No MCU, IRQ, timing, hardware USB, Windows or stack-proof claim.",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "HOME": "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason",
+    "TMPDIR": "/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/drop_reason/temp",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "mutated_source_sha256": "93076a4a9a2cd14e03ec90e058d1e0a15a88a82311909361af92eac8207e6386",
+  "executable_sha256": "362a3954e9d5ec13481df3eb4d0c6bcd56c92c6a32a03ef61871bc3541411291",
+  "input_after": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/differential.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/differential.c",
+      "sha256": "94acc3cd968be37dc09f867b02376c330be387a218d238047515138a3f979a81"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+      "sha256": "dca6f13abdeef04c58fc688eabb81d2c52edcd5445541e318ba43ee140eb65bc"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/provenance.json": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/provenance.json",
+      "sha256": "77bbc18ba882ca381943cbe446a6eb824abbcb9fdb11adfcafe4ac1cac85098b"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/run.sh": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/run.sh",
+      "sha256": "bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c",
+      "sha256": "47dc026666f882c305148d6498dae537483a71c43320e143c8f66ea3cbdbb5bf"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "inputs_unchanged": true,
+  "toolchain_after": {
+    "driver": {
+      "lexical": "/usr/bin/cc",
+      "resolved": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+    },
+    "cc1": {
+      "lexical": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "sha256": "02675980109a4a5496cddf67d5286de57942759edc830deaa525e36f9a2a0291"
+    },
+    "as": {
+      "lexical": "/usr/bin/as",
+      "resolved": "/usr/bin/x86_64-linux-gnu-as",
+      "sha256": "07dd8551ea0aa065975e4dddb8e1bb7dc308d12d54eca22c3858db79467c7cb9"
+    },
+    "ld": {
+      "lexical": "/usr/bin/ld",
+      "resolved": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "d2766988b6a1b1d1518cdc09242e726d1f24e151e16410ada3092b11ffd9081b"
+    },
+    "collect2": {
+      "lexical": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2",
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2",
+      "sha256": "ea31a4cebd9df1b6428c463428d461ccecfe66c897936409d5b2cde0b3af9e27"
+    }
+  },
+  "toolchain_unchanged": true,
+  "finish_utc": "2026-10-10T19:13:02.023769+00:00"
+}

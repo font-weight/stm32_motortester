@@ -1,0 +1,28 @@
+{
+  "status": "DRAFT_BLOCKED_EVIDENCE",
+  "issue": "https://github.com/font-weight/stm32_motortester/issues/70",
+  "files": {
+    "firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+    "firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+    "tests/transport-stack/README.md": "7a092e16000c372a706f8ce604fe97c886923cfdabcb4c36491304e48c08c976"
+  },
+  "independent_review": {
+    "path": "/workspace/shared/critic-a-tx-stack-review/CRITIC_A_TX002_REVIEW.md",
+    "sha256": "36f9c56f4290230972a52e0559bb97ae79d7ad1b5e44ef6e35708fe8e2388cdc",
+    "verdict": "BLOCKED_EVIDENCE",
+    "score": null
+  },
+  "root_receipts": [
+    "/workspace/shared/tx-stop-stack-root-sanitize-r1/receipt.json",
+    "/workspace/shared/arm-closure-tx-stack-root-r1/receipt.json"
+  ],
+  "tradeoff": {
+    "individual_stop_frame_saved_bytes": 528,
+    "relocatable_text_added_bytes": 120
+  },
+  "limits": [
+    "No full stack bound; selected nested Stop chain still2552B",
+    "No target hardware/timing/full firmware proof",
+    "Final package/immutable binding pending"
+  ]
+}

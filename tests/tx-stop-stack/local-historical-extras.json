@@ -1,0 +1,32 @@
+[
+  {
+    "original_path": "/workspace/shared/tx-stop-stack-arm/evidence-r1/receipt.json",
+    "sha256": "f95602b97cb0074c3ed49f14ce9cc2ad2396d04f6b1e741724844796e61be635",
+    "bytes": 191221,
+    "reason": "Preserved local historical detail. Not shipped, not required by offline reproduction, and not claimed accessible from repository checkout."
+  },
+  {
+    "original_path": "/workspace/shared/tx-stop-stack-arm/evidence-r2/receipt.json",
+    "sha256": "d3e3162b8b7331eb99dff9b886403cf3a6a4bd5fb9e0f5574e4e0c5606e02143",
+    "bytes": 210765,
+    "reason": "Preserved local historical detail. Not shipped, not required by offline reproduction, and not claimed accessible from repository checkout."
+  },
+  {
+    "original_path": "/workspace/shared/tx-stop-stack-arm/evidence-r3/commands.log",
+    "sha256": "6ebc629067085e80e8571c8e83186f27b4a3c16cd6f99367fc864a7744194672",
+    "bytes": 1182668,
+    "reason": "Preserved local historical detail. Not shipped, not required by offline reproduction, and not claimed accessible from repository checkout."
+  },
+  {
+    "original_path": "/workspace/shared/tx002-critic-runtime-strict/receipt.json",
+    "sha256": "35ea8abec2f994811ad96a60844493189a09249f7204607e887157f0e57aebf8",
+    "bytes": 544178,
+    "reason": "Preserved local historical detail. Not shipped, not required by offline reproduction, and not claimed accessible from repository checkout."
+  },
+  {
+    "original_path": "/workspace/shared/tx002-critic-runtime-sanitize/receipt.json",
+    "sha256": "573580f646e1c59cfeaf98ddda1a8b6fa4ff9e4251ecd50667af868e6b5be100",
+    "bytes": 544223,
+    "reason": "Preserved local historical detail. Not shipped, not required by offline reproduction, and not claimed accessible from repository checkout."
+  }
+]

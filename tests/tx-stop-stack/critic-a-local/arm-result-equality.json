@@ -1,0 +1,167 @@
+{
+  "status": "PASS",
+  "personal_receipt_sha256": "37e25e0211ad98f06ad6d4b839137f0f7fcc5a88d82243a45eda1f76849c96e8",
+  "supporting_receipt_sha256": "1e876ecacff0de43f7bb2ad0e3b6a06b91252fac25176d00f897df5f75dbde80",
+  "objects_identical": {
+    "new/13-mt_tx.o": "e014288dc2d8ecdca6d17f9c14de74814c144ce4af7513c97befe53b4741dfb1",
+    "new/abi_probe.o": "cc5a6ad36fe80e79cc611c08ee482873d29302275c0606ad78ccad4802678a89",
+    "new/components.o": "39b9b0a725eee442ca543c39b5b700ec13dc41d0f260db02485093312dbbe3fe",
+    "old/13-mt_tx.o": "c70c28f4384aeffdd8ddc56114a4ecdf151aaa3b4fdf1f893527843db3cc9399",
+    "old/abi_probe.o": "cc5a6ad36fe80e79cc611c08ee482873d29302275c0606ad78ccad4802678a89",
+    "old/components.o": "56b035f703463151649612432b493ec150fc003e15508592917263197fe5a7a0",
+    "recipe-baseline/0-acquisition.o": "1dd089894fb8b8d0dc5e3da0eefdbb0999f35a6f183a9830cc8965fab0b6ddce",
+    "recipe-baseline/1-mt_capture_link.o": "7b65eef1eea707b1880dece89559e1de955e750389b3946d429928cb60eab8e2",
+    "recipe-baseline/10-mt_stream.o": "592b09ea7fd6263e7caaeb64b049b1fd61bfb9c8799d10728f7dece4384b3038",
+    "recipe-baseline/11-mt_session.o": "63fbed947a74e5b5ff3a7d939752388fc738ef0bb331e7e3501706969844e4ce",
+    "recipe-baseline/12-mt_command.o": "2be2c45e5d305f6c4bf2d35caf97429a6e848c3376c001f0fb4566815451c6d1",
+    "recipe-baseline/13-mt_tx.o": "c70c28f4384aeffdd8ddc56114a4ecdf151aaa3b4fdf1f893527843db3cc9399",
+    "recipe-baseline/14-mt_usb_epoch.o": "0cfb8f27427d9c91c45f4d9e8ad467347fb073b471a25d6cd3f233c64a34f8b3",
+    "recipe-baseline/15-mt_usb_cdc.o": "ff73d60b3a272f133341ab9f814554593863af5c2054ee7d0157d839dd172d49",
+    "recipe-baseline/16-mt_usb_bridge.o": "898746106678d1a020d9b443fb63b9562ee11f0be15e254a6ab24de002ce67f4",
+    "recipe-baseline/17-mt_usb_descriptors.o": "ce3616e677e89f4ba8c47f8d33547bbe14788d98362af82f790e6aea6afa694b",
+    "recipe-baseline/18-mt_memory.o": "653278744a2909c8ea5a4959d0981f4281341b99f820a07d4246e9d3adcca3db",
+    "recipe-baseline/19-tusb.o": "07966d22fbc8d1f6a294bcfd4d4a49c69c91142c3eb7ee7df96f76083d68972e",
+    "recipe-baseline/2-mt_adc_control.o": "919df4e8001b1b37eda1d0b5e0270859ffd4b0b841ef620b4049d57969da6f16",
+    "recipe-baseline/20-tusb_fifo.o": "7fcdc904f3f9aaf91dabbf4d960f105e2a22cbb7c813d5e8532533ef4ce6f9f3",
+    "recipe-baseline/21-cdc_device.o": "a34a7fac6e3f1761c915420d5c04ee231685abc60b103be4337455caa1a36e12",
+    "recipe-baseline/22-usbd.o": "d95561051ae31a69fef406c3286186663a5d8ae6da7ba0ac514d3a6263f9c8f7",
+    "recipe-baseline/23-dcd_stm32_fsdev.o": "e17309dc7228f94f02a2f9a934dc76f4c71015abb9715d0cee5d45be3a333bf0",
+    "recipe-baseline/24-fsdev_common.o": "d3add1add468633da38deca66c8f47ac4612d68370acd03d3ba51a78c5307bba",
+    "recipe-baseline/3-mt_control.o": "260a765960a1515cfa8e2242b35cc43c00cb44fd8bf116d542a89ba35fe83953",
+    "recipe-baseline/4-mt_control_rx.o": "4f68e8f5fb446119a64524a5cb4d86191e836251d20cc905bfb8abe97cc2970e",
+    "recipe-baseline/5-mt_runtime.o": "65f1b7d4ff42f17a35a2cfd080067943941c592fc88784c05ddb83ab5895f969",
+    "recipe-baseline/6-adc_timer_dma.o": "f408e437bbd58f533d29261fd70382ccd2e3f41a24f36dd31666315461cf570b",
+    "recipe-baseline/7-mt_timebase.o": "3478ec5b66e5e0f9881c3aa28e4d1e86bb294a531d21583f0ef47a22d81686c2",
+    "recipe-baseline/8-mt_irq_guard.o": "8b17eca96f5a648b3e95ec1cb01cb0d45dcc4e8059f7a72e4830477825591870",
+    "recipe-baseline/9-mt_wire.o": "d1e5d631d6c3274fdffce8f4f2577e16fe6194ce273928b3095be3ac667a30c3",
+    "recipe-baseline/components.o": "56b035f703463151649612432b493ec150fc003e15508592917263197fe5a7a0",
+    "recipe-overlay/0-acquisition.o": "1dd089894fb8b8d0dc5e3da0eefdbb0999f35a6f183a9830cc8965fab0b6ddce",
+    "recipe-overlay/1-mt_capture_link.o": "7b65eef1eea707b1880dece89559e1de955e750389b3946d429928cb60eab8e2",
+    "recipe-overlay/10-mt_stream.o": "592b09ea7fd6263e7caaeb64b049b1fd61bfb9c8799d10728f7dece4384b3038",
+    "recipe-overlay/11-mt_session.o": "63fbed947a74e5b5ff3a7d939752388fc738ef0bb331e7e3501706969844e4ce",
+    "recipe-overlay/12-mt_command.o": "2be2c45e5d305f6c4bf2d35caf97429a6e848c3376c001f0fb4566815451c6d1",
+    "recipe-overlay/13-mt_tx.o": "e014288dc2d8ecdca6d17f9c14de74814c144ce4af7513c97befe53b4741dfb1",
+    "recipe-overlay/14-mt_usb_epoch.o": "0cfb8f27427d9c91c45f4d9e8ad467347fb073b471a25d6cd3f233c64a34f8b3",
+    "recipe-overlay/15-mt_usb_cdc.o": "ff73d60b3a272f133341ab9f814554593863af5c2054ee7d0157d839dd172d49",
+    "recipe-overlay/16-mt_usb_bridge.o": "898746106678d1a020d9b443fb63b9562ee11f0be15e254a6ab24de002ce67f4",
+    "recipe-overlay/17-mt_usb_descriptors.o": "ce3616e677e89f4ba8c47f8d33547bbe14788d98362af82f790e6aea6afa694b",
+    "recipe-overlay/18-mt_memory.o": "653278744a2909c8ea5a4959d0981f4281341b99f820a07d4246e9d3adcca3db",
+    "recipe-overlay/19-tusb.o": "07966d22fbc8d1f6a294bcfd4d4a49c69c91142c3eb7ee7df96f76083d68972e",
+    "recipe-overlay/2-mt_adc_control.o": "919df4e8001b1b37eda1d0b5e0270859ffd4b0b841ef620b4049d57969da6f16",
+    "recipe-overlay/20-tusb_fifo.o": "7fcdc904f3f9aaf91dabbf4d960f105e2a22cbb7c813d5e8532533ef4ce6f9f3",
+    "recipe-overlay/21-cdc_device.o": "a34a7fac6e3f1761c915420d5c04ee231685abc60b103be4337455caa1a36e12",
+    "recipe-overlay/22-usbd.o": "d95561051ae31a69fef406c3286186663a5d8ae6da7ba0ac514d3a6263f9c8f7",
+    "recipe-overlay/23-dcd_stm32_fsdev.o": "e17309dc7228f94f02a2f9a934dc76f4c71015abb9715d0cee5d45be3a333bf0",
+    "recipe-overlay/24-fsdev_common.o": "d3add1add468633da38deca66c8f47ac4612d68370acd03d3ba51a78c5307bba",
+    "recipe-overlay/3-mt_control.o": "260a765960a1515cfa8e2242b35cc43c00cb44fd8bf116d542a89ba35fe83953",
+    "recipe-overlay/4-mt_control_rx.o": "4f68e8f5fb446119a64524a5cb4d86191e836251d20cc905bfb8abe97cc2970e",
+    "recipe-overlay/5-mt_runtime.o": "65f1b7d4ff42f17a35a2cfd080067943941c592fc88784c05ddb83ab5895f969",
+    "recipe-overlay/6-adc_timer_dma.o": "f408e437bbd58f533d29261fd70382ccd2e3f41a24f36dd31666315461cf570b",
+    "recipe-overlay/7-mt_timebase.o": "3478ec5b66e5e0f9881c3aa28e4d1e86bb294a531d21583f0ef47a22d81686c2",
+    "recipe-overlay/8-mt_irq_guard.o": "8b17eca96f5a648b3e95ec1cb01cb0d45dcc4e8059f7a72e4830477825591870",
+    "recipe-overlay/9-mt_wire.o": "d1e5d631d6c3274fdffce8f4f2577e16fe6194ce273928b3095be3ac667a30c3",
+    "recipe-overlay/components.o": "39b9b0a725eee442ca543c39b5b700ec13dc41d0f260db02485093312dbbe3fe"
+  },
+  "selected_chain": {
+    "old": {
+      "frames": [
+        {
+          "function": "mt_runtime_step",
+          "bytes": 16,
+          "kind": "static"
+        },
+        {
+          "function": "mt_usb_cdc_step",
+          "bytes": 24,
+          "kind": "static"
+        },
+        {
+          "function": "mt_usb_cdc_step_impl",
+          "bytes": 40,
+          "kind": "static"
+        },
+        {
+          "function": "mt_control_rx_feed",
+          "bytes": 48,
+          "kind": "static"
+        },
+        {
+          "function": "mt_control_receive",
+          "bytes": 640,
+          "kind": "static"
+        },
+        {
+          "function": "mt_capture_link_stop",
+          "bytes": 1696,
+          "kind": "static"
+        },
+        {
+          "function": "mt_tx_stop",
+          "bytes": 592,
+          "kind": "static"
+        },
+        {
+          "function": "append",
+          "bytes": 16,
+          "kind": "static"
+        },
+        {
+          "function": "memcpy",
+          "bytes": 8,
+          "kind": "static"
+        }
+      ],
+      "sum_bytes": 3080
+    },
+    "new": {
+      "frames": [
+        {
+          "function": "mt_runtime_step",
+          "bytes": 16,
+          "kind": "static"
+        },
+        {
+          "function": "mt_usb_cdc_step",
+          "bytes": 24,
+          "kind": "static"
+        },
+        {
+          "function": "mt_usb_cdc_step_impl",
+          "bytes": 40,
+          "kind": "static"
+        },
+        {
+          "function": "mt_control_rx_feed",
+          "bytes": 48,
+          "kind": "static"
+        },
+        {
+          "function": "mt_control_receive",
+          "bytes": 640,
+          "kind": "static"
+        },
+        {
+          "function": "mt_capture_link_stop",
+          "bytes": 1696,
+          "kind": "static"
+        },
+        {
+          "function": "mt_tx_stop",
+          "bytes": 64,
+          "kind": "static"
+        },
+        {
+          "function": "append",
+          "bytes": 16,
+          "kind": "static"
+        },
+        {
+          "function": "memcpy",
+          "bytes": 8,
+          "kind": "static"
+        }
+      ],
+      "sum_bytes": 2552
+    }
+  }
+}

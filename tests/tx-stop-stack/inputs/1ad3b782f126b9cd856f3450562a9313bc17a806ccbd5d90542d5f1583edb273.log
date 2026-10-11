@@ -1,0 +1,4 @@
+usage: run.py [-h] --base BASE --candidate CANDIDATE [--original ORIGINAL]
+              --out OUT [--sanitize] [--cc CC]
+              [--mutant {drop_reason,drop_tail,wrong_session,wrong_type,skip_zero_init,wrong_length,retain_as_reply,ignore_prior_replies,weaken_capacity,early_mutation}]
+run.py: error: output overlaps protected input: /workspace/shared/usb-bridge-publication/base-checkout/firmware/transport

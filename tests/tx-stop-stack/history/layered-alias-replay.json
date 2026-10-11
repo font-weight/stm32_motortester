@@ -1,0 +1,48 @@
+{
+  "task": "TX002 packaging-only layered output separation correction",
+  "old_local_commit": "c1a5b76dfff44c4b276feeee68ddfe5858700b05",
+  "old_tree": "13763a7a64fcde1c1cccd40e6b686659cf3f87a1",
+  "old_manifest_sha256": "7306613004afc022b321b2527e4cfa3ff4dfd4a55ef63ab20f841a520b1258b4",
+  "fixture": {
+    "roots": [
+      "/workspace/shared/tx-stack-publication/layered-old-replay/interface/bin",
+      "/workspace/shared/tx-stack-publication/layered-old-replay/intermediate-driver",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin"
+    ],
+    "compiler_sha256": "9b369e040fa0889790fc1aaf673ed3099436f360cd022265f8e7c97d61ed00ec",
+    "old_wrapper_sha256": "9136d4d7df0f6ddb9d5e3aba07e51a7a4b1a68c1e21240cf5ad925e12166488e",
+    "scope": "Valid layered directory-plus-file tool proxy. Old complete frozen package is replayed without edits; output is inside the previously missed intermediate backing directory."
+  },
+  "executed_old_runs": [
+    {
+      "entrypoint": "main",
+      "old_script_sha256": "9136d4d7df0f6ddb9d5e3aba07e51a7a4b1a68c1e21240cf5ad925e12166488e",
+      "receipt_path": "/workspace/shared/tx-stack-publication/layered-old-replay/intermediate-driver/accepted-output/receipt.json",
+      "receipt_sha256": "1bb8c524e0f4c1e70eb3a511704a1af3342172266512dfe70fe50fde4729b3be",
+      "log_path": "/workspace/shared/tx-stack-publication/layered-old-replay/full-old-run.log",
+      "log_sha256": "6977986cc5f70157aa67ccc8585e4d784037077d9f052e04f0cc3a3acba33057",
+      "old_run_status": "PASS_LOCAL_TX002_ONLY",
+      "inputs_unchanged": true,
+      "files_created": 4853,
+      "output_path": "/workspace/shared/tx-stack-publication/layered-old-replay/intermediate-driver/accepted-output",
+      "observation": "The pre-fix script accepted and populated output in its unprotected intermediate backing directory. Source damage is not claimed."
+    },
+    {
+      "entrypoint": "companion",
+      "old_script_sha256": "699138d5f8a38f8317f1770a902b79962fc17eba1474ca49122c8fc483349eac",
+      "receipt_path": "/workspace/shared/tx-stack-publication/layered-companion-old-replay/intermediate/accepted-output/receipt.json",
+      "receipt_sha256": "88f63165de74932c59f81a225ee2b66de00339fd438ec787541d518f6deb250c",
+      "log_path": "/workspace/shared/tx-stack-publication/layered-companion-old-replay/full-old-run.log",
+      "log_sha256": "9bb150aedb8baed2f852d0b0c7968632d6c5f214495089fa319bdfec36b0567e",
+      "old_run_status": "PASS",
+      "inputs_unchanged": true,
+      "files_created": 5102,
+      "output_path": "/workspace/shared/tx-stack-publication/layered-companion-old-replay/intermediate/accepted-output",
+      "observation": "The pre-fix script accepted and populated output in its unprotected intermediate backing directory. Source damage is not claimed."
+    }
+  ],
+  "fix": "Check lexical.parent, lexical.parent.resolve(), and path.resolve().parent before output creation in the primary and companion entrypoints.",
+  "regression": "18 controls, including a valid layered tool proxy, exact intermediate-parent rejection, old-wrapper acceptance replay, and companion own-entrypoint rejection.",
+  "guarantee": "Stable input files and filesystem during execution; no adversarial TOCTOU or sandbox guarantee.",
+  "raw_historical_files": "Exact large raw receipts/logs remain at the listed local paths and are not claimed to be repository-accessible. Unchanged old entrypoint sources are shipped in history; old preflight can be replayed in a disposable rehashed fixture by check_preflight.py."
+}

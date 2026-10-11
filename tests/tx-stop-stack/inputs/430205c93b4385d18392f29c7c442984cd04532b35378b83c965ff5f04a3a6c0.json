@@ -1,0 +1,193 @@
+{
+  "status": "FAIL",
+  "start_utc": "2026-10-10T19:13:08.186649+00:00",
+  "invocation": [
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+    "--base",
+    "/workspace/shared/usb-bridge-publication/base-checkout",
+    "--candidate",
+    "/workspace/shared/tx-stop-stack-draft",
+    "--original",
+    "/workspace/shared/tx-stop-stack-tests/original",
+    "--out",
+    "/workspace/shared/tx-stop-stack-tests/evidence/runner-r3/compiler-failure",
+    "--cc",
+    "/usr/bin/false"
+  ],
+  "input_before": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/differential.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/differential.c",
+      "sha256": "94acc3cd968be37dc09f867b02376c330be387a218d238047515138a3f979a81"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+      "sha256": "dca6f13abdeef04c58fc688eabb81d2c52edcd5445541e318ba43ee140eb65bc"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/provenance.json": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/provenance.json",
+      "sha256": "77bbc18ba882ca381943cbe446a6eb824abbcb9fdb11adfcafe4ac1cac85098b"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/run.sh": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/run.sh",
+      "sha256": "bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c",
+      "sha256": "47dc026666f882c305148d6498dae537483a71c43320e143c8f66ea3cbdbb5bf"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "expected_production_sha256": {
+    "old/firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+    "new/firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/false",
+        "--version"
+      ],
+      "exit": 1,
+      "output": "false (GNU coreutils) 9.7\nPackaged by Debian (9.7-3)\nCopyright (C) 2025 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Jim Meyering.\n"
+    }
+  ],
+  "results": [],
+  "sanitize": false,
+  "mutant": null,
+  "toolchain_before": {
+    "driver": {
+      "lexical": "/usr/bin/false",
+      "resolved": "/usr/bin/false",
+      "sha256": "d22a87e4d3bac34db5025ba813f9275244336880b297a5ae0bcbc19206454ddf"
+    }
+  },
+  "toolchain_queries": [
+    {
+      "argv": [
+        "/usr/bin/false",
+        "-print-prog-name=cc1"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/false",
+        "-print-prog-name=as"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/false",
+        "-print-prog-name=ld"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/false",
+        "-print-prog-name=collect2"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "scope": "Native synthetic tests. No MCU, IRQ, timing, hardware USB, Windows or stack-proof claim.",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "HOME": "/workspace/shared/tx-stop-stack-tests/evidence/runner-r3/compiler-failure",
+    "TMPDIR": "/workspace/shared/tx-stop-stack-tests/evidence/runner-r3/compiler-failure/temp",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "error": "RuntimeError('command failed (1): /usr/bin/false')",
+  "input_after": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/differential.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/differential.c",
+      "sha256": "94acc3cd968be37dc09f867b02376c330be387a218d238047515138a3f979a81"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+      "sha256": "dca6f13abdeef04c58fc688eabb81d2c52edcd5445541e318ba43ee140eb65bc"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/provenance.json": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/provenance.json",
+      "sha256": "77bbc18ba882ca381943cbe446a6eb824abbcb9fdb11adfcafe4ac1cac85098b"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/run.sh": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/run.sh",
+      "sha256": "bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c",
+      "sha256": "47dc026666f882c305148d6498dae537483a71c43320e143c8f66ea3cbdbb5bf"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "inputs_unchanged": true,
+  "toolchain_after": {
+    "driver": {
+      "lexical": "/usr/bin/false",
+      "resolved": "/usr/bin/false",
+      "sha256": "d22a87e4d3bac34db5025ba813f9275244336880b297a5ae0bcbc19206454ddf"
+    }
+  },
+  "toolchain_unchanged": true,
+  "finish_utc": "2026-10-10T19:13:08.189894+00:00"
+}

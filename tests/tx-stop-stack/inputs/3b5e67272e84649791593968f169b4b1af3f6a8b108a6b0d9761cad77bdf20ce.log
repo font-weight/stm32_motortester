@@ -1,0 +1,17 @@
++ set -eu
+++ dirname /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/tests/app/run.sh
++ cd /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/tests/app/../..
++ OUT=/workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/runs/pr30-candidate-author
++ mkdir -p /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/runs/pr30-candidate-author
++ SOURCES='firmware/app/mt_capture_link.c firmware/transport/mt_tx.c firmware/acquisition/acquisition.c firmware/protocol/mt_wire.c tests/app/test_capture_link.c'
++ FLAGS='-std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror'
++ cc --version
++ head -1
+cc (Debian 14.2.0-19) 14.2.0
++ cc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -O2 firmware/app/mt_capture_link.c firmware/transport/mt_tx.c firmware/acquisition/acquisition.c firmware/protocol/mt_wire.c tests/app/test_capture_link.c -o /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/runs/pr30-candidate-author/strict
++ /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/runs/pr30-candidate-author/strict
+capture link: 20 full-array windows, Stop commitment, tombstone release, Single/Auto and timeout suites passed
++ cc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer firmware/app/mt_capture_link.c firmware/transport/mt_tx.c firmware/acquisition/acquisition.c firmware/protocol/mt_wire.c tests/app/test_capture_link.c -o /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/runs/pr30-candidate-author/sanitized
++ ASAN_OPTIONS=detect_leaks=0
++ /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/runs/pr30-candidate-author/sanitized
+capture link: 20 full-array windows, Stop commitment, tombstone release, Single/Auto and timeout suites passed

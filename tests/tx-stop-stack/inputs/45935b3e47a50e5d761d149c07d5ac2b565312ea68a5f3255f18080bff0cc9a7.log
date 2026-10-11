@@ -1,0 +1,2 @@
+ERROR: ld.so: object '/does-not-exist.so' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+PASS: /workspace/shared/tx-stop-stack-tests/evidence/runner-r3/clean-environment/receipt.json

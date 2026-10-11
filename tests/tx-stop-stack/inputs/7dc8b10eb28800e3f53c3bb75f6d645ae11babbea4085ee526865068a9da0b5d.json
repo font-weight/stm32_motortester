@@ -1,0 +1,82 @@
+{
+  "argv": [
+    "/workspace/shared/critic-a-tx-stack-review/run_oracle.py",
+    "--source-root",
+    "/workspace/shared/tx-stop-stack-draft",
+    "--wire-root",
+    "/workspace/shared/usb-bridge-publication/base-checkout",
+    "--out",
+    "/workspace/shared/tx002-critic-oracle-strict-final"
+  ],
+  "inputs_before": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "/workspace/shared/critic-a-tx-stack-review/test_retained_abort.c": "925663c690ca5a06d80816df74654c801e04fe72e05fcf0b2c76ade41eb151fa",
+    "/workspace/shared/critic-a-tx-stack-review/run_oracle.py": "57bc2470060ae2d669fa2dcfb031235b3bafd407afa3cf339a270b7247192be2",
+    "/usr/bin/x86_64-linux-gnu-gcc-14": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+  },
+  "selected_programs": {
+    "cc1": {
+      "path": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "sha256": "02675980109a4a5496cddf67d5286de57942759edc830deaa525e36f9a2a0291"
+    },
+    "as": {
+      "path": "/usr/bin/x86_64-linux-gnu-as",
+      "sha256": "07dd8551ea0aa065975e4dddb8e1bb7dc308d12d54eca22c3858db79467c7cb9"
+    }
+  },
+  "commands": [
+    {
+      "label": "version",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "--version"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "compile",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O2",
+        "-I",
+        "/workspace/shared/tx002-critic-oracle-strict-final/snapshot/firmware/transport",
+        "/workspace/shared/tx002-critic-oracle-strict-final/snapshot/firmware/transport/mt_tx.c",
+        "/workspace/shared/tx002-critic-oracle-strict-final/snapshot/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-oracle-strict-final/snapshot/test_retained_abort.c",
+        "-o",
+        "/workspace/shared/tx002-critic-oracle-strict-final/oracle"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "test",
+      "argv": [
+        "/workspace/shared/tx002-critic-oracle-strict-final/oracle"
+      ],
+      "exit": 0
+    }
+  ],
+  "status": "PASS",
+  "scope": "native transport representation; no controller/hardware execution",
+  "compiler_version": "x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "result": "PASS 12288 API-reachable compaction cases, 4359168 checks",
+  "inputs_after": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "/workspace/shared/critic-a-tx-stack-review/test_retained_abort.c": "925663c690ca5a06d80816df74654c801e04fe72e05fcf0b2c76ade41eb151fa",
+    "/workspace/shared/critic-a-tx-stack-review/run_oracle.py": "57bc2470060ae2d669fa2dcfb031235b3bafd407afa3cf339a270b7247192be2",
+    "/usr/bin/x86_64-linux-gnu-gcc-14": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+  }
+}

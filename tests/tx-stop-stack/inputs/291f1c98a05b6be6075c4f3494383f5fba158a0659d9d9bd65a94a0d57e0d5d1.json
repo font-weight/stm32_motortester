@@ -1,0 +1,370 @@
+[
+  {
+    "variant": "old",
+    "caller": "mt_runtime_step",
+    "callee": "mt_usb_cdc_step",
+    "calls": [
+      {
+        "instruction": "d0:\tf7ff fffe \tbl\t0 <mt_runtime_step>",
+        "relocation": "d0: R_ARM_THM_CALL\tmt_usb_cdc_step"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_runtime_step>:",
+      "   0:\tb570      \tpush\t{r4, r5, r6, lr}",
+      "   2:\t4605      \tmov\tr5, r0",
+      "   4:\tb908      \tcbnz\tr0, a <mt_runtime_step+0xa>",
+      "   6:\t2004      \tmovs\tr0, #4",
+      "   8:\tbd70      \tpop\t{r4, r5, r6, pc}",
+      "   a:\tf500 5400 \tadd.w\tr4, r0, #8192\t@ 0x2000",
+      "   e:\tf8d4 3b38 \tldr.w\tr3, [r4, #2872]\t@ 0xb38",
+      "  12:\t2b00      \tcmp\tr3, #0"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "mt_usb_cdc_step",
+    "callee": "mt_usb_cdc_step_impl",
+    "calls": [
+      {
+        "instruction": "18:\tf7ff fffe \tbl\t0 <mt_usb_cdc_step>",
+        "relocation": "18: R_ARM_THM_CALL\tmt_usb_cdc_step_impl"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_usb_cdc_step>:",
+      "   0:\tb537      \tpush\t{r0, r1, r2, r4, r5, lr}",
+      "   2:\t4604      \tmov\tr4, r0",
+      "   4:\t460d      \tmov\tr5, r1",
+      "   6:\tf7ff fffe \tbl\t28 <mt_usb_cdc_step+0x28>",
+      "\t\t\t6: R_ARM_THM_CALL\tvalid",
+      "   a:\tb170      \tcbz\tr0, 2a <mt_usb_cdc_step+0x2a>",
+      "   c:\t4668      \tmov\tr0, sp",
+      "   e:\tf7ff fffe \tbl\t0 <mt_usb_cdc_step>"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "mt_usb_cdc_step_impl",
+    "callee": "mt_control_rx_feed",
+    "calls": [
+      {
+        "instruction": "9c:\tf7ff fffe \tbl\t0 <mt_usb_cdc_step_impl>",
+        "relocation": "9c: R_ARM_THM_CALL\tmt_control_rx_feed"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_usb_cdc_step_impl>:",
+      "   0:\te92d 41ff \tstmdb\tsp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, lr}",
+      "   4:\t2700      \tmovs\tr7, #0",
+      "   6:\t4604      \tmov\tr4, r0",
+      "   8:\t460e      \tmov\tr6, r1",
+      "   a:\t9703      \tstr\tr7, [sp, #12]",
+      "   c:\tf7ff fffe \tbl\t28 <mt_usb_cdc_step_impl+0x28>",
+      "\t\t\tc: R_ARM_THM_CALL\tvalid",
+      "  10:\t2800      \tcmp\tr0, #0"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "mt_control_rx_feed",
+    "callee": "mt_control_receive",
+    "calls": [
+      {
+        "instruction": "7c:\tf7ff fffe \tbl\t0 <mt_control_rx_feed>",
+        "relocation": "7c: R_ARM_THM_CALL\tmt_control_receive"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_control_rx_feed>:",
+      "   0:\te92d 4ff7 \tstmdb\tsp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\tf8dd 9030 \tldr.w\tr9, [sp, #48]\t@ 0x30",
+      "   8:\t4604      \tmov\tr4, r0",
+      "   a:\t4688      \tmov\tr8, r1",
+      "   c:\t4616      \tmov\tr6, r2",
+      "   e:\t461f      \tmov\tr7, r3",
+      "  10:\tf1b9 0f00 \tcmp.w\tr9, #0",
+      "  14:\td007      \tbeq.n\t26 <mt_control_rx_feed+0x26>"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "mt_control_receive",
+    "callee": "mt_capture_link_stop",
+    "calls": [
+      {
+        "instruction": "3a0:\tf7ff fffe \tbl\t0 <mt_control_receive>",
+        "relocation": "3a0: R_ARM_THM_CALL\tmt_capture_link_stop"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_control_receive>:",
+      "   0:\te92d 4ff0 \tstmdb\tsp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\t460c      \tmov\tr4, r1",
+      "   6:\t4617      \tmov\tr7, r2",
+      "   8:\t4605      \tmov\tr5, r0",
+      "   a:\tf5ad 7d17 \tsub.w\tsp, sp, #604\t@ 0x25c",
+      "   e:\t2800      \tcmp\tr0, #0",
+      "  10:\tf000 823d \tbeq.w\t48e <mt_control_receive+0x48e>",
+      "  14:\t2900      \tcmp\tr1, #0"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "mt_capture_link_stop",
+    "callee": "mt_tx_stop",
+    "calls": [
+      {
+        "instruction": "156:\tf7ff fffe \tbl\t0 <mt_capture_link_stop>",
+        "relocation": "156: R_ARM_THM_CALL\tmt_tx_stop"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_capture_link_stop>:",
+      "   0:\te92d 4ff0 \tstmdb\tsp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\tf2ad 6d7c \tsubw\tsp, sp, #1660\t@ 0x67c",
+      "   8:\t4606      \tmov\tr6, r0",
+      "   a:\t460d      \tmov\tr5, r1",
+      "   c:\t4690      \tmov\tr8, r2",
+      "   e:\t9305      \tstr\tr3, [sp, #20]",
+      "  10:\tf7ff fffe \tbl\t0 <mt_capture_link_stop>",
+      "\t\t\t10: R_ARM_THM_CALL\tvalid"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "mt_tx_stop",
+    "callee": "append",
+    "calls": [
+      {
+        "instruction": "192:\tf7ff fffe \tbl\t0 <mt_tx_stop>",
+        "relocation": "192: R_ARM_THM_CALL\tappend"
+      },
+      {
+        "instruction": "19a:\tf7ff fffe \tbl\t0 <mt_tx_stop>",
+        "relocation": "19a: R_ARM_THM_CALL\tappend"
+      },
+      {
+        "instruction": "1a2:\tf7ff fffe \tbl\t0 <mt_tx_stop>",
+        "relocation": "1a2: R_ARM_THM_CALL\tappend"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_tx_stop>:",
+      "   0:\te92d 4ff0 \tstmdb\tsp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\t4688      \tmov\tr8, r1",
+      "   6:\t4617      \tmov\tr7, r2",
+      "   8:\t461d      \tmov\tr5, r3",
+      "   a:\t4604      \tmov\tr4, r0",
+      "   c:\tf5ad 7d0b \tsub.w\tsp, sp, #556\t@ 0x22c",
+      "  10:\tb928      \tcbnz\tr0, 1e <mt_tx_stop+0x1e>",
+      "  12:\t2601      \tmovs\tr6, #1"
+    ]
+  },
+  {
+    "variant": "old",
+    "caller": "append",
+    "callee": "memcpy",
+    "calls": [
+      {
+        "instruction": "1e:\tf7ff fffe \tbl\t0 <append>",
+        "relocation": "1e: R_ARM_THM_CALL\tmemcpy"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <append>:",
+      "   0:\tb538      \tpush\t{r3, r4, r5, lr}",
+      "   2:\tf8d0 3f10 \tldr.w\tr3, [r0, #3856]\t@ 0xf10",
+      "   6:\t460d      \tmov\tr5, r1",
+      "   8:\t1c5a      \tadds\tr2, r3, #1",
+      "   a:\tf8c0 2f10 \tstr.w\tr2, [r0, #3856]\t@ 0xf10",
+      "   e:\tf44f 720a \tmov.w\tr2, #552\t@ 0x228",
+      "  12:\tfb02 0303 \tmla\tr3, r2, r3, r0",
+      "  16:\t4604      \tmov\tr4, r0"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_runtime_step",
+    "callee": "mt_usb_cdc_step",
+    "calls": [
+      {
+        "instruction": "d0:\tf7ff fffe \tbl\t0 <mt_runtime_step>",
+        "relocation": "d0: R_ARM_THM_CALL\tmt_usb_cdc_step"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_runtime_step>:",
+      "   0:\tb570      \tpush\t{r4, r5, r6, lr}",
+      "   2:\t4605      \tmov\tr5, r0",
+      "   4:\tb908      \tcbnz\tr0, a <mt_runtime_step+0xa>",
+      "   6:\t2004      \tmovs\tr0, #4",
+      "   8:\tbd70      \tpop\t{r4, r5, r6, pc}",
+      "   a:\tf500 5400 \tadd.w\tr4, r0, #8192\t@ 0x2000",
+      "   e:\tf8d4 3b38 \tldr.w\tr3, [r4, #2872]\t@ 0xb38",
+      "  12:\t2b00      \tcmp\tr3, #0"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_usb_cdc_step",
+    "callee": "mt_usb_cdc_step_impl",
+    "calls": [
+      {
+        "instruction": "18:\tf7ff fffe \tbl\t0 <mt_usb_cdc_step>",
+        "relocation": "18: R_ARM_THM_CALL\tmt_usb_cdc_step_impl"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_usb_cdc_step>:",
+      "   0:\tb537      \tpush\t{r0, r1, r2, r4, r5, lr}",
+      "   2:\t4604      \tmov\tr4, r0",
+      "   4:\t460d      \tmov\tr5, r1",
+      "   6:\tf7ff fffe \tbl\t28 <mt_usb_cdc_step+0x28>",
+      "\t\t\t6: R_ARM_THM_CALL\tvalid",
+      "   a:\tb170      \tcbz\tr0, 2a <mt_usb_cdc_step+0x2a>",
+      "   c:\t4668      \tmov\tr0, sp",
+      "   e:\tf7ff fffe \tbl\t0 <mt_usb_cdc_step>"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_usb_cdc_step_impl",
+    "callee": "mt_control_rx_feed",
+    "calls": [
+      {
+        "instruction": "9c:\tf7ff fffe \tbl\t0 <mt_usb_cdc_step_impl>",
+        "relocation": "9c: R_ARM_THM_CALL\tmt_control_rx_feed"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_usb_cdc_step_impl>:",
+      "   0:\te92d 41ff \tstmdb\tsp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, lr}",
+      "   4:\t2700      \tmovs\tr7, #0",
+      "   6:\t4604      \tmov\tr4, r0",
+      "   8:\t460e      \tmov\tr6, r1",
+      "   a:\t9703      \tstr\tr7, [sp, #12]",
+      "   c:\tf7ff fffe \tbl\t28 <mt_usb_cdc_step_impl+0x28>",
+      "\t\t\tc: R_ARM_THM_CALL\tvalid",
+      "  10:\t2800      \tcmp\tr0, #0"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_control_rx_feed",
+    "callee": "mt_control_receive",
+    "calls": [
+      {
+        "instruction": "7c:\tf7ff fffe \tbl\t0 <mt_control_rx_feed>",
+        "relocation": "7c: R_ARM_THM_CALL\tmt_control_receive"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_control_rx_feed>:",
+      "   0:\te92d 4ff7 \tstmdb\tsp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\tf8dd 9030 \tldr.w\tr9, [sp, #48]\t@ 0x30",
+      "   8:\t4604      \tmov\tr4, r0",
+      "   a:\t4688      \tmov\tr8, r1",
+      "   c:\t4616      \tmov\tr6, r2",
+      "   e:\t461f      \tmov\tr7, r3",
+      "  10:\tf1b9 0f00 \tcmp.w\tr9, #0",
+      "  14:\td007      \tbeq.n\t26 <mt_control_rx_feed+0x26>"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_control_receive",
+    "callee": "mt_capture_link_stop",
+    "calls": [
+      {
+        "instruction": "3a0:\tf7ff fffe \tbl\t0 <mt_control_receive>",
+        "relocation": "3a0: R_ARM_THM_CALL\tmt_capture_link_stop"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_control_receive>:",
+      "   0:\te92d 4ff0 \tstmdb\tsp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\t460c      \tmov\tr4, r1",
+      "   6:\t4617      \tmov\tr7, r2",
+      "   8:\t4605      \tmov\tr5, r0",
+      "   a:\tf5ad 7d17 \tsub.w\tsp, sp, #604\t@ 0x25c",
+      "   e:\t2800      \tcmp\tr0, #0",
+      "  10:\tf000 823d \tbeq.w\t48e <mt_control_receive+0x48e>",
+      "  14:\t2900      \tcmp\tr1, #0"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_capture_link_stop",
+    "callee": "mt_tx_stop",
+    "calls": [
+      {
+        "instruction": "156:\tf7ff fffe \tbl\t0 <mt_capture_link_stop>",
+        "relocation": "156: R_ARM_THM_CALL\tmt_tx_stop"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_capture_link_stop>:",
+      "   0:\te92d 4ff0 \tstmdb\tsp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\tf2ad 6d7c \tsubw\tsp, sp, #1660\t@ 0x67c",
+      "   8:\t4606      \tmov\tr6, r0",
+      "   a:\t460d      \tmov\tr5, r1",
+      "   c:\t4690      \tmov\tr8, r2",
+      "   e:\t9305      \tstr\tr3, [sp, #20]",
+      "  10:\tf7ff fffe \tbl\t0 <mt_capture_link_stop>",
+      "\t\t\t10: R_ARM_THM_CALL\tvalid"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "mt_tx_stop",
+    "callee": "append",
+    "calls": [
+      {
+        "instruction": "1f0:\tf7ff fffe \tbl\t0 <mt_tx_stop>",
+        "relocation": "1f0: R_ARM_THM_CALL\tappend"
+      },
+      {
+        "instruction": "1f8:\tf7ff fffe \tbl\t0 <mt_tx_stop>",
+        "relocation": "1f8: R_ARM_THM_CALL\tappend"
+      },
+      {
+        "instruction": "272:\tf7ff fffe \tbl\t0 <mt_tx_stop>",
+        "relocation": "272: R_ARM_THM_CALL\tappend"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <mt_tx_stop>:",
+      "   0:\te92d 4ff0 \tstmdb\tsp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}",
+      "   4:\t4689      \tmov\tr9, r1",
+      "   6:\t4690      \tmov\tr8, r2",
+      "   8:\t469b      \tmov\tfp, r3",
+      "   a:\t4604      \tmov\tr4, r0",
+      "   c:\tb087      \tsub\tsp, #28",
+      "   e:\t2800      \tcmp\tr0, #0",
+      "  10:\tf000 8138 \tbeq.w\t284 <mt_tx_stop+0x284>"
+    ]
+  },
+  {
+    "variant": "new",
+    "caller": "append",
+    "callee": "memcpy",
+    "calls": [
+      {
+        "instruction": "1e:\tf7ff fffe \tbl\t0 <append>",
+        "relocation": "1e: R_ARM_THM_CALL\tmemcpy"
+      }
+    ],
+    "entry_excerpt": [
+      "00000000 <append>:",
+      "   0:\tb538      \tpush\t{r3, r4, r5, lr}",
+      "   2:\tf8d0 3f10 \tldr.w\tr3, [r0, #3856]\t@ 0xf10",
+      "   6:\t460d      \tmov\tr5, r1",
+      "   8:\t1c5a      \tadds\tr2, r3, #1",
+      "   a:\tf8c0 2f10 \tstr.w\tr2, [r0, #3856]\t@ 0xf10",
+      "   e:\tf44f 720a \tmov.w\tr2, #552\t@ 0x228",
+      "  12:\tfb02 0303 \tmla\tr3, r2, r3, r0",
+      "  16:\t4604      \tmov\tr4, r0"
+    ]
+  }
+]
