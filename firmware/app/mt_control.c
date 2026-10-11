@@ -14,7 +14,8 @@ static void message(mt_wire_message *m, uint8_t type, uint16_t length,
     m->type = type; m->payload_length = length; m->request = request;
 }
 static uint8_t state(const mt_control *c) {
-    if (!c->ready || c->link.phase == MT_LINK_FAILED) return 5;
+    if (!c->ready || c->link.phase == MT_LINK_FAILED ||
+        c->link.phase == MT_LINK_RELEASE_EXPIRED) return 5;
     if (c->link.phase == MT_LINK_WAIT_RELEASE) return 6;
     if (c->link.phase != MT_LINK_IDLE) return 4;
     if (!c->link.armed) return 0;
@@ -30,7 +31,9 @@ static void fill_status(mt_wire_message *m, const mt_control_status *s,
 }
 static mt_control_status status(const mt_control *c) {
     mt_control_status s;
-    s.state = state(c); s.reason = s.state == 5u ? 5u : 0u;
+    s.state = state(c);
+    s.reason = c->link.phase == MT_LINK_RELEASE_EXPIRED ? 3u :
+               (s.state == 5u ? 5u : 0u);
     s.generation = c->link.generation; s.window = c->link.last_window;
     s.dropped = c->link.dropped_windows;
     return s;
@@ -172,6 +175,14 @@ mt_control_result mt_control_receive(mt_control *c,
         return MT_CONTROL_IGNORED;
     if (event != MT_SESSION_ACCEPT || !c->ready) return mt_control_recover(c);
     parsed = mt_command_parse(input, &command);
+    if (mt_capture_link_expire_release(&c->link, now) &&
+        remember_state(c) != MT_CONTROL_OK) return mt_control_recover(c);
+    /* Stop replaces queued observational states itself. Other replies must
+     * not overtake a newly observed timeout, including a late RELEASE_ACK. */
+    if (c->link.phase == MT_LINK_RELEASE_EXPIRED &&
+        (parsed != MT_COMMAND_OK || command.type != MT_CMD_STOP ||
+         command.value.generation != c->link.generation) &&
+        !flush_states(c, now)) return mt_control_recover(c);
     if (parsed != MT_COMMAND_OK)
         return error(c, input->type, parsed == MT_COMMAND_UNKNOWN_TYPE ? 5 : 6,
                      input->request, now);
