@@ -15,21 +15,52 @@ p.add_argument('--toolchain', type=Path, required=True)
 p.add_argument('--out', type=Path, required=True)
 p.add_argument('--preflight-only', action='store_true')
 a = p.parse_args()
-repo, tc, out = a.checkout.resolve(), a.toolchain.resolve(), a.out.resolve()
+try:
+    repo, tc, out = a.checkout.resolve(), a.toolchain.resolve(), a.out.resolve()
+except (OSError, RuntimeError) as exc:
+    p.error('cannot resolve input or output: ' + str(exc))
 protected, queries = {}, []
 
+def path_forms(value):
+    value = Path(value).absolute()
+    forms = {value}
+    current, pending, links = Path(value.anchor), list(value.parts[1:]), 0
+    while pending:
+        part = pending.pop(0)
+        if part == '..':
+            current = current.parent
+            continue
+        if part == '.':
+            continue
+        next_path = current / part
+        if next_path.is_symlink():
+            links += 1
+            if links > 80:
+                raise OSError('symlink loop or excessive alias chain: ' + str(value))
+            target = Path(os.readlink(next_path))
+            target = target if target.is_absolute() else next_path.parent / target
+            full = target.joinpath(*pending)
+            forms.add(full)
+            current, pending = Path(full.anchor), list(full.parts[1:])
+        else:
+            current = next_path
+    forms.add(current)
+    return forms
+
 def protect(path, label, file=False):
-    lexical = path.absolute()
+    """Trace stable input/output aliases before mkdir; not a TOCTOU sandbox."""
     try:
-        actual = path.resolve()
+        roots = set()
+        for spelling in path_forms(path):
+            root = spelling.parent if file else spelling
+            roots.update((root, root.resolve()))
+        for root in roots:
+            for output in path_forms(a.out):
+                if output == root or output.is_relative_to(root) or root.is_relative_to(output):
+                    p.error('output overlaps protected input backing directory: ' + label)
+            protected[str(root)] = label
     except (OSError, RuntimeError) as exc:
-        p.error('cannot resolve input: ' + str(exc))
-    for root in (lexical.parent if file else lexical,
-                 lexical.parent.resolve() if file else lexical.resolve(),
-                 actual.parent if file else actual):
-        if out == root or out.is_relative_to(root) or root.is_relative_to(out):
-            p.error('fixture output overlaps protected backing directory: ' + label)
-        protected[str(root)] = label
+        p.error('cannot resolve protected input: ' + str(exc))
 
 
 def required(path, label, directory=False):
@@ -294,6 +325,25 @@ cases.extend([
      nested_script_real / 'must-not-exist/new'),
     ('layered-tool-link-parent', wrapper, nested_tools, nested_bin / 'must-not-exist/new'),
 ])
+# Current file-to-file chain regression: three distinct file parents.
+file_script_entry, file_script_mid = out / 'file-script-entry', out / 'file-script-mid'
+file_script_entry.mkdir(); file_script_mid.mkdir()
+(file_script_mid / 'reproduce.py').symlink_to(wrapper)
+(file_script_entry / 'reproduce.py').symlink_to(file_script_mid / 'reproduce.py')
+file_tool_proxy, file_tool_mid = out / 'file-tool-proxy', out / 'file-tool-mid'
+(file_tool_proxy / 'bin').mkdir(parents=True); file_tool_mid.mkdir()
+for name in ('gcc', 'size', 'nm', 'objdump'):
+    tool = 'arm-none-eabi-' + name
+    (file_tool_mid / tool).symlink_to(real / tool)
+    (file_tool_proxy / 'bin' / tool).symlink_to(file_tool_mid / tool)
+for name in ('lib', 'include'):
+    (file_tool_proxy / name).symlink_to(tc / name, target_is_directory=True)
+cases.extend([
+    ('file-file-script-intermediate-parent', file_script_entry / 'reproduce.py', proxy,
+     file_script_mid / 'must-not-exist/new'),
+    ('file-file-tool-intermediate-parent', wrapper, file_tool_proxy,
+     file_tool_mid / 'must-not-exist/new'),
+])
 records = []
 for name, script, toolchain, destination in cases:
     existed = destination.exists()
@@ -352,6 +402,16 @@ companion_cases.extend([
     ('layered-tool-link-parent', self_script, repo, nested_tools,
      nested_bin / 'must-not-exist/new'),
 ])
+file_self_entry, file_self_mid = out / 'file-companion-entry', out / 'file-companion-mid'
+file_self_entry.mkdir(); file_self_mid.mkdir()
+(file_self_mid / 'test_reproduce_paths.py').symlink_to(self_script.resolve())
+(file_self_entry / 'test_reproduce_paths.py').symlink_to(file_self_mid / 'test_reproduce_paths.py')
+companion_cases.extend([
+    ('file-file-script-intermediate-parent', file_self_entry / 'test_reproduce_paths.py',
+     repo, proxy, file_self_mid / 'must-not-exist/new'),
+    ('file-file-tool-intermediate-parent', self_script, repo, file_tool_proxy,
+     file_tool_mid / 'must-not-exist/new'),
+])
 companion_records = []
 for name, script, source, toolchain, destination in companion_cases:
     existed, parent_existed = destination.exists(), destination.parent.exists()
@@ -366,7 +426,7 @@ for name, script, source, toolchain, destination in companion_cases:
         raise RuntimeError('companion refusal regression failed: ' + json.dumps(record))
 valid_preflight_out = out / 'positive-companion-preflight'
 argv = [sys.executable, '-I', '-B', str(self_script), '--preflight-only',
-        '--checkout', str(repo), '--toolchain', str(proxy), '--out', str(valid_preflight_out)]
+        '--checkout', str(repo), '--toolchain', str(file_tool_proxy), '--out', str(valid_preflight_out)]
 preflight = subprocess.run(argv, env=clean, text=True, capture_output=True)
 if preflight.returncode or valid_preflight_out.exists():
     raise RuntimeError('valid aliased-tool companion preflight failed: ' + preflight.stderr)
@@ -383,7 +443,7 @@ dirty = dict(clean, CPATH=str(poison), C_INCLUDE_PATH=str(poison),
              PYTHONOPTIMIZE='2', PYTHONPATH=str(poison), TMPDIR=str(poison))
 positive = out / 'positive relocated run'
 argv = [sys.executable, str(relocated / 'tests/adc-commit/reproduce.py'),
-        '--toolchain', str(proxy), '--out', str(positive)]
+        '--toolchain', str(file_tool_proxy), '--out', str(positive)]
 result = subprocess.run(argv, env=dirty, text=True, capture_output=True)
 (out / 'positive.log').write_text(result.stdout + result.stderr)
 receipt = json.loads((positive / 'receipt.json').read_text()) if (positive / 'receipt.json').is_file() else {}
@@ -400,4 +460,4 @@ summary = dict(status='PASS', invocation=sys.argv, input_toolchain=str(tc), pref
     dirty_environment=dirty, actual_child_environment=receipt['child_environment']),
     original_checkout_unchanged=True, scope='Disposable fixture copies; no production edits')
 (out / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
-print('PASS: main 15 refusals; companion 16 refusals and aliased-tool preflight; full relocated run.')
+print('PASS: main 17 refusals; companion 18 refusals and chained-tool preflight; full relocated run.')

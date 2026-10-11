@@ -1,5 +1,9 @@
 # ADC003: аудит точек запуска после двух tooling P2
 
+Текущая правка packaging: [PATH_CHAIN_REVIEW.md](PATH_CHAIN_REVIEW.md).
+Прежние acceptance/clearance и r2/r3 receipts ниже являются историей;
+новая версия требует отдельного независимого ревью точного дерева.
+
 Production и frozen inner runners не изменены. Проверены две поддерживаемые
 точки запуска пакета; нельзя переносить их boundary guarantees на произвольный
 прямой запуск сохранённого исторического скрипта.
@@ -8,7 +12,7 @@ Production и frozen inner runners не изменены. Проверены д�
 
 1. `reproduce.py`: полное воспроизведение. В r3 к guard добавлена только отдельная
    проверка `lexical.parent.resolve()` для layered directory/file aliases.
-   Текущий SHA-256 `5fb967b0d94bad1e522dd0f0951736d839921375e97040aa1a80e2d32392b362`.
+   Исторический r3 SHA-256 `5fb967b0d94bad1e522dd0f0951736d839921375e97040aa1a80e2d32392b362`; текущие bytes связаны package-manifest.json.
    R2 сохранён побайтно в history/package-r2/reproduce.py; Critic-A лично
    закрыл исходный P2 и повторил его полный набор. Исторический checkpoint
    сохранён в `history/package-r2/PACKAGE_R2_CHECKPOINT.md`.
@@ -54,8 +58,9 @@ scripts/manifests сохранены в `history/package-r1/` и `history/packag
 Дополнительно выявлено различие между lexical script parent, его resolved
    directory и конечным file-symlink target parent. Ранний supporting timeout
    сохранил 81 созданный файл; Critic-A затем лично довёл тот же вариант r2 до
-   exit 0 и 305 файлов. Оба свидетельства сохранены. Исправленный guard проверяет
-   все три места, включая layered tool-link parents.
+   exit 0 и 305 файлов. Оба свидетельства сохранены. Тот r3 guard проверял
+   три места, включая layered tool-link parents. Новая правка прослеживает все
+   промежуточные подстановки; см. PATH_CHAIN_REVIEW.md.
 
 Успешные обычные проверки этих версий не считаются опровержением дефектов.
 

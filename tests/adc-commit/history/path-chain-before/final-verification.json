@@ -1,0 +1,97 @@
+{
+  "result": "PASS_SUPPORTING_LOCAL_PACKAGE_NOT_ACCEPTANCE",
+  "candidate_tree": "1a4900ceed7f29b83f2c2b09693183f7be3bad42",
+  "local_snapshot_commit": "d2c858e74a61beb787b0e9ab64e795f1e7f757f8",
+  "parent_commit": "adabc2044a3a376056d6756e67bede05c0726440",
+  "checkout": "/workspace/shared/adc-commit-publication/final-clean-checkout-r3",
+  "actual_git_checkout_clean": true,
+  "complete_checkout_files": 1191,
+  "changed_or_added_files": 168,
+  "all_copy_sources_unchanged": true,
+  "all_frozen_production_sha256_match": true,
+  "parent_pr72_head_unchanged": true,
+  "portable_receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/receipt.json",
+  "portable_receipt_sha256": "c9d9f2514eb5b72306576b3bc79a742e6a851beb0b9795da05c935f5bbe0edc3",
+  "checks": {
+    "candidate-strict": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/candidate-strict/receipt.json",
+      "sha256": "b313f8ee374f13ea04f9e18e9ef063f6cacb2055b55e55783c545d458c4543fa"
+    },
+    "candidate-sanitized": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/candidate-sanitized/receipt.json",
+      "sha256": "6b47bc45564c863be47b57c89c010235eae0b49741bcc485db195e3ad1157866"
+    },
+    "baseline-strict": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/baseline-strict/receipt.json",
+      "sha256": "f7ceb254a50ee4e4637980f52b222df85e639bf53e81bfb418909988e3f2308f"
+    },
+    "baseline-sanitized": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/baseline-sanitized/receipt.json",
+      "sha256": "df20d1c0829e8ad7f8048f093defcadcbcc21ad985cdb27f60756013200adac5"
+    },
+    "extra-strict": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/extra-strict/receipt.json",
+      "sha256": "e394e5152f48fa7dc9dc121d6d49666fa4be9762f88eb393be1c8e1a1af6963f"
+    },
+    "extra-sanitized": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/extra-sanitized/receipt.json",
+      "sha256": "b71221a6da8c5c7b7053f246e68f42c654e1cedb6126e41baad07654a1148db1"
+    },
+    "abi": {
+      "status": "PASS",
+      "receipt": "/workspace/shared/adc-commit-publication/final clean reproduction r3/abi/receipt.json",
+      "sha256": "8769c8825c47819d62664cad26d4b74385637e19ef47867a4f17f6503d098222"
+    },
+    "negative": {
+      "status": "PASS",
+      "expected_failures": 3,
+      "summary": "/workspace/shared/adc-commit-publication/final clean reproduction r3/negative/summary.json",
+      "sha256": "c09464f8bb32b9841825f2c2e2e1dab9ad520937f193bc7988734f74685b6070"
+    },
+    "arm": {
+      "status": "PASS",
+      "objects": {
+        "candidate-driver": "f408e437bbd58f533d29261fd70382ccd2e3f41a24f36dd31666315461cf570b",
+        "base-driver": "0d198c531aa24d6a4aa2227e7875b3ea54cdef6b257f67cdff78d04cf8d72cc4",
+        "candidate-binding": "919df4e8001b1b37eda1d0b5e0270859ffd4b0b841ef620b4049d57969da6f16",
+        "base-binding": "41c5474a01da75c4c5d62313c0bc3b9f76f97cdeb2324c861f4411defa59aa40"
+      },
+      "warnings": 0,
+      "inputs_unchanged": true
+    },
+    "entrypoints-r3": {
+      "status": "PASS",
+      "wrapper_sha256": "5fb967b0d94bad1e522dd0f0951736d839921375e97040aa1a80e2d32392b362",
+      "companion_sha256": "445b8bf2207c87978478c213569a50e5a0a095fc27d36ab003c30abeb547b738",
+      "main_refusals": 15,
+      "companion_refusals": 16,
+      "exact_critic_companion_fixture_refused_before_mkdir": true,
+      "layered_directory_file_alias_refused_before_mkdir": true,
+      "positive_relocated_polluted_environment_passed": true,
+      "final_frozen_companion_aliased_toolchain_passed": true,
+      "isolated_python": true,
+      "child_environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/workspace/shared/adc-commit-publication/final clean reproduction r3/tmp"
+      },
+      "summary_sha256": "300cc2f0237ab96041c691c7ab974f5eb41c48c04009ffb27f607405a130c6ed",
+      "final_summary_sha256": "d427fbc7246ec2c6d35ffe6648b15a5d68b04aac349280cbb84d182fbbdad176",
+      "exact_refusal_sha256": "ec2e23fdc6df6a86adf803cd161e7446c6fcb898cfa41021c6c5597f33eee11c",
+      "layered_refusal_sha256": "ea5b1773ded3e51f1f1da0f98ad2df5031565baf9077ea4321ff327f91e1382c"
+    }
+  },
+  "github_writes": 0,
+  "independent_final_review_pending": true,
+  "hardware_claimed": false,
+  "full_elf_claimed": false
+}

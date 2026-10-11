@@ -1,5 +1,9 @@
 # ADC003: переносимое воспроизведение локального пакета
 
+Текущая правка packaging: [PATH_CHAIN_REVIEW.md](PATH_CHAIN_REVIEW.md).
+Прежние acceptance/clearance и r2/r3 receipts ниже являются историей;
+новая версия требует отдельного независимого ревью точного дерева.
+
 Production-автор и интегратор: Dot A. Упаковка не изменяет четыре production-файла.
 Это локальный черновой пакет для root и Critic-A; публикация и приёмка не выполнены.
 
@@ -122,6 +126,9 @@ compiler/Python variables. Это отдельная команда tooling regr
 повторно проверяется основным wrapper отдельно.
 
 Layered directory-alias + file-symlink отдельно проверяется для script invocation
-и tool-link parents обеих точек запуска. Guard защищает lexical parent,
-lexical.parent.resolve() и parent конечного файла. Независимый завершённый
+и tool-link parents обеих точек запуска. Прежний guard защищал только lexical parent,
+lexical.parent.resolve() и parent конечного файла; текущий guard дополнительно
+прослеживает каждую промежуточную symlink-подстановку (PATH_CHAIN_REVIEW.md). Независимый завершённый
 reproducer прежнего r2 (305 файлов) сохранён вместе с ранним timed наблюдением.
+
+Текущий переносимый companion дополнительно содержит FILE→FILE fixtures: 17 отказов main, 18 отказов companion, chained-tool preflight и полный relocated run через chained proxy. Прежние числа выше относятся к сохранённым r3 receipts.

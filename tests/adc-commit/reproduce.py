@@ -17,22 +17,52 @@ P.add_argument('--out', required=True, type=Path)
 P.add_argument('--toolchain', required=True, type=Path,
                help='ARM GCC root with bin/arm-none-eabi-* and include/newlib')
 A = P.parse_args()
-OUT, TOOL = A.out.resolve(), A.toolchain.resolve()
+try:
+    OUT, TOOL = A.out.resolve(), A.toolchain.resolve()
+except (OSError, RuntimeError) as exc:
+    P.error('cannot resolve input or output: ' + str(exc))
 PROTECTED = {}
 
+def path_forms(value):
+    value = Path(value).absolute()
+    forms = {value}
+    current, pending, links = Path(value.anchor), list(value.parts[1:]), 0
+    while pending:
+        part = pending.pop(0)
+        if part == '..':
+            current = current.parent
+            continue
+        if part == '.':
+            continue
+        next_path = current / part
+        if next_path.is_symlink():
+            links += 1
+            if links > 80:
+                raise OSError('symlink loop or excessive alias chain: ' + str(value))
+            target = Path(os.readlink(next_path))
+            target = target if target.is_absolute() else next_path.parent / target
+            full = target.joinpath(*pending)
+            forms.add(full)
+            current, pending = Path(full.anchor), list(full.parts[1:])
+        else:
+            current = next_path
+    forms.add(current)
+    return forms
+
 def protect(path, label, file=False):
-    """Protect lexical and actual backing directories, not just advertised roots."""
-    lexical = path.absolute()
+    """Trace stable input/output aliases before mkdir; not a TOCTOU sandbox."""
     try:
-        resolved = path.resolve()
+        roots = set()
+        for spelling in path_forms(path):
+            root = spelling.parent if file else spelling
+            roots.update((root, root.resolve()))
+        for root in roots:
+            for output in path_forms(A.out):
+                if output == root or output.is_relative_to(root) or root.is_relative_to(output):
+                    P.error('output overlaps protected input backing directory: ' + label)
+            PROTECTED[str(root)] = label
     except (OSError, RuntimeError) as exc:
         P.error('cannot resolve protected input: ' + str(exc))
-    for root in (lexical.parent if file else lexical,
-                 lexical.parent.resolve() if file else lexical.resolve(),
-                 resolved.parent if file else resolved):
-        if OUT == root or OUT.is_relative_to(root) or root.is_relative_to(OUT):
-            P.error('output overlaps protected input backing directory: ' + label)
-        PROTECTED[str(root)] = label
 
 protect(REPO, 'checkout')
 protect(A.toolchain, 'advertised toolchain')
