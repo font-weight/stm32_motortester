@@ -113,7 +113,8 @@ mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
                        const mt_wire_message *status, uint32_t now) {
     size_t i, kept = 0;
     int terminal_needed;
-    mt_wire_message retained_abort;
+    uint8_t retained_abort[12];
+    int has_retained_abort = 0;
     const mt_wire_message *terminal = abort_message;
     if (!t || (win != 0u && gen == 0u) || !shape(ack, 133, 12, 1) || !shape(status, 134, 24, 0) ||
         read32(ack->payload) != gen || status->payload[0] != 0u ||
@@ -131,15 +132,16 @@ mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
             const mt_wire_message *m = &t->slots[i].message;
             if (m->session == t->session && m->type == 147u &&
                 read32(m->payload) == gen && read32(m->payload + 4) == win) {
-                retained_abort = *m;
-                retained_abort.session = 0;
-                retained_abort.sequence = 0;
-                terminal = &retained_abort;
+                if (m->payload_length != sizeof retained_abort || m->request != 0u)
+                    return MT_TX_ARGUMENT;
+                memcpy(retained_abort, m->payload, sizeof retained_abort);
+                has_retained_abort = 1;
                 break;
             }
         }
-        if (!shape(terminal, 147, 12, 0) || read32(terminal->payload) != gen ||
-            read32(terminal->payload + 4) != win) return MT_TX_ARGUMENT;
+        if (!has_retained_abort && (!shape(terminal, 147, 12, 0) ||
+            read32(terminal->payload) != gen ||
+            read32(terminal->payload + 4) != win)) return MT_TX_ARGUMENT;
     }
     /* Preflight preserves atomicity even if queue layout changes in future. */
     for (i = 0; i < t->count; ++i)
@@ -155,7 +157,19 @@ mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
         t->length = 0;
         head_timer(t, now);
     }
-    if (terminal_needed) append(t, terminal);
+    if (terminal_needed) {
+        if (has_retained_abort) {
+            /* Only the 12 meaningful bytes survive compaction. Rebuild the
+             * normalized message in its final slot, after atomic preflight. */
+            mt_tx_slot *slot = &t->slots[t->count++];
+            memset(&slot->message, 0, sizeof slot->message);
+            slot->message.type = 147u;
+            slot->message.session = t->session;
+            slot->message.payload_length = (uint16_t)sizeof retained_abort;
+            memcpy(slot->message.payload, retained_abort, sizeof retained_abort);
+            slot->reply = 0;
+        } else append(t, terminal);
+    }
     append(t, ack);
     append(t, status);
     t->stopping = 1;

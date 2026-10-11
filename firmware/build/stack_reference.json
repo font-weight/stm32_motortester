@@ -1,0 +1,287 @@
+{
+  "status": "DRAFT_REFERENCE_DATA_REQUIRES_INDEPENDENT_REVIEW",
+  "not_production_gate": true,
+  "baseline_elf_sha256": "0450e7ee104e19d6a1c018c2f6d1bdcb6f4b74544063044e14c41c01b586c2ae",
+  "baseline_source": "Reviewed run-r2 invalid-zero-board static-placement ELF; no board-value pruning used",
+  "canonical_json": "ASCII json.dumps(sort_keys=True,separators=(comma,colon),ensure_ascii=True); no trailing newline for hashes",
+  "original_objects_in_order": [
+    {
+      "ordinal": 0,
+      "name": "Os-mt_device_main.o",
+      "sha256": "0136f3fdc5f8e51fd36e26cc0366ff2fa51a54089453b82174d3914767cf033a"
+    },
+    {
+      "ordinal": 1,
+      "name": "Os-mt_boot_cpu.o",
+      "sha256": "fca6eb470b9d515f80cfa5d050be4974f8890160358ba3e1c0adf6a126d80f4e"
+    },
+    {
+      "ordinal": 2,
+      "name": "0-acquisition.o",
+      "sha256": "67062f96ea7871a2163aea23fce7e4dfd91dc8d8f918f7a984481e26a2bf7a01"
+    },
+    {
+      "ordinal": 3,
+      "name": "1-mt_capture_link.o",
+      "sha256": "79dfe0181f70dfa77e303007212ad1fb462ce2d3a117252ad2c8b03854972712"
+    },
+    {
+      "ordinal": 4,
+      "name": "2-mt_adc_control.o",
+      "sha256": "30728756c3f01be97b87670db187204b3f6f54613244a24cb93ca79b1d7f78d7"
+    },
+    {
+      "ordinal": 5,
+      "name": "3-mt_control.o",
+      "sha256": "d5f9d50c21c9b46df34a48225bd0c718080faa6083d01cec65e67946457ed456"
+    },
+    {
+      "ordinal": 6,
+      "name": "4-mt_control_rx.o",
+      "sha256": "75a29c82113efb8e791fbd5380e64a11192cb13b763f55aa0b02e9554fe61e8d"
+    },
+    {
+      "ordinal": 7,
+      "name": "5-mt_runtime.o",
+      "sha256": "2d414184f46eaf31112ca741855b941e9dbf288e358c65305062df2ab3c49aaf"
+    },
+    {
+      "ordinal": 8,
+      "name": "6-adc_timer_dma.o",
+      "sha256": "dcd5ad5abf478c5e22ce516ec76bed86456aaf952d340a37c63e9321dad4ac84"
+    },
+    {
+      "ordinal": 9,
+      "name": "7-mt_timebase.o",
+      "sha256": "0621764e9786a2b1698b01e25b92e38d953d7f8f9cad74eabe748b1d43048933"
+    },
+    {
+      "ordinal": 10,
+      "name": "8-mt_irq_guard.o",
+      "sha256": "26dc5875058aa1e4b39bcf9d80da173a65ceefbdd44725c50bb203d2d945a2fc"
+    },
+    {
+      "ordinal": 11,
+      "name": "9-mt_wire.o",
+      "sha256": "cd2496146684a1a2f0f96f04e24beb4d694f3fbd961c5ee853784a96ed647c1c"
+    },
+    {
+      "ordinal": 12,
+      "name": "10-mt_stream.o",
+      "sha256": "42d6707975c330526653da948dd7d534e9bce9da135798906dae72d7cd1a6c02"
+    },
+    {
+      "ordinal": 13,
+      "name": "11-mt_session.o",
+      "sha256": "5b18e0ef8645c49fe7011727a9e98ba8c2834e127164e5ea18447559804ebf98"
+    },
+    {
+      "ordinal": 14,
+      "name": "12-mt_command.o",
+      "sha256": "c26e329ac6a4802ffa97c6af51cf12ecf45d604b94c331ede2479eb6ecc412a4"
+    },
+    {
+      "ordinal": 15,
+      "name": "13-mt_tx.o",
+      "sha256": "deac4c0b2fc0a1502ca2e1cbd1c37b89738f8a5365a870aed09e1dd34537c5ed"
+    },
+    {
+      "ordinal": 16,
+      "name": "14-mt_usb_epoch.o",
+      "sha256": "c337ad6b3ea44185ddf1d7fed818ae62a3411d0927b39c4e13ad29ba5e0ea277"
+    },
+    {
+      "ordinal": 17,
+      "name": "15-mt_usb_cdc.o",
+      "sha256": "5e6c7b61f27248d4d56fa32598774498c1fcff57112cd18c24c8b7a0753abe09"
+    },
+    {
+      "ordinal": 18,
+      "name": "16-mt_usb_bridge.o",
+      "sha256": "ae702d288ccdd20e5f277385673db2a6e16d0052d1124e02b51baba94839d8e1"
+    },
+    {
+      "ordinal": 19,
+      "name": "17-mt_usb_descriptors.o",
+      "sha256": "c663536cde08979db44f22d1aa035a64298d8c82312c9b590bc4d2698eeebd06"
+    },
+    {
+      "ordinal": 20,
+      "name": "18-mt_memory.o",
+      "sha256": "0876c6757b36e7c0302cfaa76f78b4c8350079827475774bce86a3509514579e"
+    },
+    {
+      "ordinal": 21,
+      "name": "19-tusb.o",
+      "sha256": "376920daa77efcec384a2ba3ce59f7ddfda9b68354d58b81d5adecdf07c2b55e"
+    },
+    {
+      "ordinal": 22,
+      "name": "20-tusb_fifo.o",
+      "sha256": "5b60a3bc11e109f82fbfbb0ea7e1473d82986840a696bc48196cea016223c72b"
+    },
+    {
+      "ordinal": 23,
+      "name": "21-cdc_device.o",
+      "sha256": "494f4ac490b89cbb546e210a468e079950d430414807f8c4a9e77f0c8cdc83cc"
+    },
+    {
+      "ordinal": 24,
+      "name": "22-usbd.o",
+      "sha256": "40678d4e87f1b6bbe3bc51a6da49194d141e2b7c5f201cfde393909f828d6c02"
+    },
+    {
+      "ordinal": 25,
+      "name": "23-dcd_stm32_fsdev.o",
+      "sha256": "d145d093d134952cb2401ee8de02c466ff7dcac8f349157604251f0e1a1d0819"
+    },
+    {
+      "ordinal": 26,
+      "name": "24-fsdev_common.o",
+      "sha256": "5f7cfd87ed8368ca47d405d4f15a58ea383ea2c61342d97f08ced4dab42edef8"
+    },
+    {
+      "ordinal": 27,
+      "name": "mt_clock_startup.o",
+      "sha256": "d36efeb8ea4559ad7c5069d28ed6cd836aabf7c210205b68952abef083aa4b04"
+    },
+    {
+      "ordinal": 28,
+      "name": "mt_boot_time.o",
+      "sha256": "301eaeea1686b549411eea15ec60ffb24e1ae2948812d9bc7f3e1f2b248b074f"
+    },
+    {
+      "ordinal": 29,
+      "name": "mt_boot_usb.o",
+      "sha256": "128444b73d575363dcb132b38f7221557c3c7c33827e754a7eab61927645dc30"
+    },
+    {
+      "ordinal": 30,
+      "name": "mt_usb_time.o",
+      "sha256": "7eae9f369f37c51fe3eaaf5c39e30db281cf0a15cf9da534ee6cb6ff5537088a"
+    },
+    {
+      "ordinal": 31,
+      "name": "mt_usb_irq.o",
+      "sha256": "d87ca22b29e1bd40a639273caa8ce6a9dc3481a61785c7d8b39a8542cccf405f"
+    },
+    {
+      "ordinal": 32,
+      "name": "reset.o",
+      "sha256": "ab8db984960fae4c1456bd9add1842615ee58355c9eff06b9a16c0ae0dcd7850"
+    }
+  ],
+  "immutable_loaded_regions": [
+    {
+      "label": "vectors",
+      "vma": 134217728,
+      "length": 236,
+      "sha256": "4a995fc39c638eaed2cb64977213c8690c71c70d73fbe867d020a8a34ce4a644"
+    },
+    {
+      "label": "immutable_text_prefix",
+      "vma": 134217964,
+      "length": 31996,
+      "sha256": "d8376eabdbe0870f6315ee53440209e70025d5da51f21da9b8c2b7601420bec0"
+    },
+    {
+      "label": "immutable_text_suffix",
+      "vma": 134249964,
+      "length": 124,
+      "sha256": "485bc11e97aa9cd44748e5d3f755485c00d2645482597f58c7302a3f7b6d0288"
+    },
+    {
+      "label": "initial_data",
+      "vma": 536870912,
+      "length": 128,
+      "sha256": "3adbe279e1c2ea1813a5dc6b103897e3313c29b72b634b9281b4dbc8414c278f"
+    }
+  ],
+  "single_variable_noninstruction_literal": {
+    "vma": 134249960,
+    "length": 4,
+    "input_object": "reset.o",
+    "input_section": ".text.Reset_Handler",
+    "section_offset": 88,
+    "relocation": "R_ARM_ABS32",
+    "symbol": "__data_load",
+    "baseline_value": 134250136,
+    "rule": "little-endian uint32 equal to validated new .data LMA; input literal is nonexecuted data, not instruction bytes"
+  },
+  "fixed_layout": {
+    "entry": 134249873,
+    "vector_base": 134217728,
+    "text_base": 134217964,
+    "mt_board_vma": 134250088,
+    "mt_board_size": 48,
+    "new_strings_start": 134250136,
+    "data_vma": 536870912,
+    "data_size": 128,
+    "bss_vma": 536871040,
+    "bss_size": 12248,
+    "static_end": 536883288,
+    "stack_top": 536891392,
+    "flash_end_under_original_linker_model": 134283264
+  },
+  "text_input_ranges": {
+    "count": 363,
+    "canonical_record": [
+      "object_basename",
+      "input_section_name",
+      "vma_integer",
+      "size_integer"
+    ],
+    "sorted_records_sha256": "7e3551c52217911dded147b2fced46bdd72cd18440ffaf5636035292c5cd2be1"
+  },
+  "function_symbol_multiset": {
+    "record": [
+      "name",
+      "value",
+      "size",
+      "type",
+      "bind",
+      "other",
+      "section_name_or_reserved_index_label"
+    ],
+    "count": 410,
+    "unique_addresses": 360,
+    "sorted_records_sha256": "4e055ed61d43402ff27560de6bcefbd50e66621fbaa39212f1963925f4a2f329"
+  },
+  "immutable_symbol_multiset": {
+    "count": 1053,
+    "sorted_records_sha256": "8b5455aa80bcba09c5265351f1c1f55eb65025405f701baddba42445e8365c79",
+    "reference_exclusions": [
+      "all STT_FILE records",
+      "symbols __boot_stack_bytes, __StackLimit, __data_load",
+      "STT_SECTION for empty .unsupported_stubs"
+    ],
+    "candidate_extra_exclusions": "Only separately validated three board_* local OBJECT records and three local $d mapping records at their exact starts; no other new symbol. Exclusions for FILE and empty stubs metadata do not authorize loaded bytes."
+  },
+  "reviewed_stack_bounds": {
+    "startup": 288,
+    "foreground_including_main": 2640,
+    "usb_irq_software": 264,
+    "exception_allowance": 36,
+    "normal": 2940,
+    "including_terminal_hardfault_nmi": 3012,
+    "rounded_to_8": 3016
+  },
+  "proof_artifacts": {
+    "REPORT_RU.md": "33a27d1ce2b9d9361d1bf95eeaea14764f63c99a07743cb7161aa8eee58a954c",
+    "INPUTS_SHA256.json": "a5086666280e0ea07468190a35e835733e1b07a68b49edff1d9014a11475e521",
+    "ARTIFACTS_SHA256.json": "c85b25382a2e79a2c588d1fc10cf1092f364e902d9f298165a9fd667fed85aaf",
+    "graph-resolved.json": "3c2618eb9e74def0c1f22233fea4874e5e28b96524db61f958b14616bfaaf034",
+    "machine-stack-check.json": "32be017dbc742506eb0305e84552c6944251504a7cad3e165111bcb4a20cca56",
+    "computed-jumps.json": "e232036fe5f47b54281f09b5221162b1f2035110df97e6a3321b7d1ee1f570eb",
+    "code-pointer-relocations.json": "61694e841c8d5d949489afc988522b52ba83254f0ba0c33ceaa4c5b115869876",
+    "indirect-resolutions.json": "d49837c10d64bdf6db9d0bbd2afdf36c156e7580f56cbd353da87bebc8d90244",
+    "bounds.json": "480990440b931821adf2aa792bd16ceec69387320dc6b2a34d3752a0433b88e0"
+  },
+  "independent_review_sha256": "035d31817eeccf077280fd36ae9c06e0240dbe61977e89bd80703d7c7f68afa4",
+  "original_boot_files": {
+    "stm32f103c8.ld": "54a13bae7a9edc25ca38dadaa3c31a957108099fbb193c66d3e32dcc26b7d60c",
+    "vector_map.json": "c081969e7a2d7243f5cffde1a1937e5fd799b4c798d2ad627ffd1af20dafac2c",
+    "tools/check_boot_image.py": "dec58c65c6907ce592018519813fbf2e95332167505c3246d059673c0810c6d2",
+    "tools/run_boot_link_tests.py": "358a082b3058c2cb6656aa6609f34ddd5309e1afb52ddeb8191834bce917777e"
+  }
+}

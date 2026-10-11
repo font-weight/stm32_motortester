@@ -241,8 +241,10 @@ int mt_adc_dma_profile1_ready(mt_adc_dma_t *d)
         (rd(d, ADC_CR2) & ADC_ADON) == 0u;
 }
 
-mt_adc_dma_result_t mt_adc_dma_start(mt_adc_dma_t *d)
+static mt_adc_dma_result_t start(mt_adc_dma_t *d, const mt_adc_dma_start_guard *guard)
 {
+    uint32_t key = 0;
+    mt_adc_dma_fault_t commit_fault = MT_ADC_DMA_FAULT_NONE;
     if (!valid(d)) { return MT_ADC_DMA_BAD_ARGUMENT; }
     if (d->state != MT_ADC_DMA_STOPPED || d->owns_peripherals) { return MT_ADC_DMA_BUSY; }
 #if defined(__arm__) || defined(__thumb__)
@@ -304,23 +306,44 @@ mt_adc_dma_result_t mt_adc_dma_start(mt_adc_dma_t *d)
     d->last_remaining = MT_ADC_DMA_SAMPLES;
     d->fault = MT_ADC_DMA_FAULT_NONE;
     barrier();
+    if (guard) {
+        key = guard->enter(guard->context);
+        d->start_before_us = now(d);
+        if (!guard->allowed(guard->context)) {
+            commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+            goto committed;
+        }
+    }
     wr(d, DMA_CCR, DMA_CONFIG | DMA_EN);
     wr(d, ADC_CR2, ADC_TIM3 | ADC_ADON | ADC_DMA | ADC_EXTTRIG);
-    if (!clock_plan(d, false) || !gates_enabled(d)) { return fail(d, MT_ADC_DMA_FAULT_CLOCK); }
-    d->start_before_us = now(d);
+    if (!clock_plan(d, false) || !gates_enabled(d)) {
+        commit_fault = MT_ADC_DMA_FAULT_CLOCK;
+        goto committed;
+    }
+    if (!guard) d->start_before_us = now(d);
     wr(d, TIM_CR1, 1u);
     d->start_after_us = now(d);
+    if (guard && !guard->allowed(guard->context)) {
+        commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+        goto committed;
+    }
     if ((uint32_t)(d->start_after_us - d->start_before_us) > MT_ADC_DMA_SAMPLE_US) {
-        return fail(d, MT_ADC_DMA_FAULT_TIMEBASE);
+        commit_fault = MT_ADC_DMA_FAULT_TIMEBASE;
+        goto committed;
     }
     if ((rd(d, TIM_CR1) & 1u) == 0u ||
         rd(d, DMA_CCR) != (DMA_CONFIG | DMA_EN) ||
         rd(d, ADC_CR2) != (ADC_TIM3 | ADC_ADON | ADC_DMA | ADC_EXTTRIG)) {
-        return fail(d, MT_ADC_DMA_FAULT_TRANSFER);
+        commit_fault = MT_ADC_DMA_FAULT_TRANSFER;
+        goto committed;
     }
     d->last_poll_us = d->start_before_us;
     d->last_progress_us = d->start_before_us;
     d->state = MT_ADC_DMA_RUNNING;
+committed:
+    if (guard) guard->leave(guard->context, key);
+    /* quiesce can poll: never invoke it while holding the commit guard. */
+    if (commit_fault != MT_ADC_DMA_FAULT_NONE) return fail(d, commit_fault);
     return MT_ADC_DMA_OK;
 }
 
@@ -329,6 +352,16 @@ static bool safe_half(bool second, uint32_t remaining)
     /* At CNDTR=0/reload boundary ownership is ambiguous: reject conservatively. */
     return second ? (remaining > MT_ADC_DMA_BLOCK_SAMPLES && remaining <= MT_ADC_DMA_SAMPLES)
                   : (remaining > 0u && remaining <= MT_ADC_DMA_BLOCK_SAMPLES);
+}
+
+mt_adc_dma_result_t mt_adc_dma_start(mt_adc_dma_t *d) {
+    return start(d, NULL);
+}
+mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *d,
+                                            const mt_adc_dma_start_guard *guard) {
+    if (!guard || !guard->enter || !guard->allowed || !guard->leave)
+        return MT_ADC_DMA_BAD_ARGUMENT;
+    return start(d, guard);
 }
 
 mt_adc_dma_result_t mt_adc_dma_read_block(mt_adc_dma_t *d, mt_adc_dma_block_t *block)
