@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "python3",
+    "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/reproduce.py",
+    "--toolchain",
+    "/workspace/shared/critic-a-adc003-package-review/tool-alias-fixture/proxy",
+    "--out",
+    "/workspace/shared/critic-a-adc003-package-review/tool-alias-fixture/real-tools/fixed-wrapper-must-not-exist"
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "CC": "/usr/bin/cc",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit": 2,
+  "stdout": "",
+  "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: ARM gcc\n",
+  "output_created": false,
+  "tool_hashes_unchanged": true,
+  "fixture": "Exact previously successful Critic-A valid-compiler fixture; fresh destination"
+}

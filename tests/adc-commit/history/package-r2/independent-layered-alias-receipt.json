@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "/workspace/shared/adc003-critic-layered-alias-r2/invocation-alias/reproduce.py",
+    "--toolchain",
+    "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+    "--out",
+    "/workspace/shared/adc003-critic-layered-alias-r2/real-invocation/must-not-be-created"
+  ],
+  "exit": 0,
+  "output_created": true,
+  "files_created": 305,
+  "source_unchanged": true,
+  "source_sha256": "3806ed4ca2cee854f99fee0145f2a232cb0645977a99330a3192a247d6f3b4c5",
+  "scope": "Existing official tools, disposable layered directory/file symlinks; complete command, no intentional timeout"
+}

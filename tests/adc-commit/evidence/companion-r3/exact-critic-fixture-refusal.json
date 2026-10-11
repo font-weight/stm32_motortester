@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+    "--checkout",
+    "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+    "--toolchain",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/proxy",
+    "--out",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/real-tools/companion-r3-final-must-not-exist"
+  ],
+  "exit": 2,
+  "stdout": "",
+  "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: ARM gcc\n",
+  "output_created": false,
+  "new_files": 0,
+  "inputs_unchanged": true,
+  "script_sha256": "445b8bf2207c87978478c213569a50e5a0a095fc27d36ab003c30abeb547b738",
+  "fixture": "Exact Critic-A valid aliased tool layout which previously created 352 files; fresh destination"
+}

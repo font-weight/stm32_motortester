@@ -1,0 +1,17 @@
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:76:17:rd	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:81:13:wr	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:86:17:now	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:164:13:wait_clear	24	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:187:13:gates_enabled	8	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:194:13:quiesce	16	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:213:28:fail.isra	8	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:101:13:clock_plan	32	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:244:28:start	24	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:64:10:mt_adc_dma_mmio_read32	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:70:6:mt_adc_dma_mmio_write32	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:221:21:mt_adc_dma_init	24	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:233:5:mt_adc_dma_profile1_ready	8	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:357:21:mt_adc_dma_start	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:360:21:mt_adc_dma_start_guarded	0	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:367:21:mt_adc_dma_read_block	40	static
+/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate/firmware/platform/adc_timer_dma.c:437:21:mt_adc_dma_stop	8	static

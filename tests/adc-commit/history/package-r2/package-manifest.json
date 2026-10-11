@@ -1,0 +1,1050 @@
+{
+  "scope": "ADC003 bounded local package; excludes this manifest itself",
+  "parent_commit": "adabc2044a3a376056d6756e67bede05c0726440",
+  "parent_tree": "f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca",
+  "files": [
+    {
+      "path": "firmware/app/mt_adc_control.c",
+      "bytes": 4216,
+      "sha256": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+      "git_blob": "5f0769ab8453599479ef67cc55dd4d4140e819d2",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.h",
+      "bytes": 2135,
+      "sha256": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+      "git_blob": "70ea7016febb05a9f5dcd640cb920fa26dd65370",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.c",
+      "bytes": 16975,
+      "sha256": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+      "git_blob": "e5eba02267f9bd6c8ffbb572e1af95d3aff3764a",
+      "mode": "100644"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.h",
+      "bytes": 6518,
+      "sha256": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+      "git_blob": "d3b5abe48c6bb59ecf6f09955fefef1a6ad0f5d1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/README.md",
+      "bytes": 3832,
+      "sha256": "692a275d8e33c5ba5d72bdff4031b80bac0b7bf338fb24aec85b31072b374b4f",
+      "git_blob": "f7a14ad4955a0422f2d4820a9430049300988f0e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/REPRODUCE.md",
+      "bytes": 9391,
+      "sha256": "6637d24765a5d783fcdb06d2a4ca44998d6a5a5911edde6e26bf985a64ce5d3e",
+      "git_blob": "c4efb209ef0112a0cd35f66b5e2544b0245c68fa",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/arm_check.py",
+      "bytes": 2928,
+      "sha256": "03a0778839f6ffdf83a3f409759c0e3cacfd348ee458d595e4ab7f9b17d508b7",
+      "git_blob": "5fc51653c8957424956223318ca9d77874f9a59b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/baseline/firmware/app/mt_adc_control.c",
+      "bytes": 3312,
+      "sha256": "f316523483171195d8f60bee38a3f716f3d887e506074f1038aafc14a99e64ce",
+      "git_blob": "e7b68968af1426f16bbd3ddd6183af63c8e16df3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/baseline/firmware/app/mt_adc_control.h",
+      "bytes": 1603,
+      "sha256": "85110d0698c322919ef2b8006a81e166b00cd11eea3a9b4cd972f550d244fbc7",
+      "git_blob": "a7459bc71c27664c6d0c04d712201461c403ee77",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/baseline/firmware/platform/adc_timer_dma.c",
+      "bytes": 15805,
+      "sha256": "91906d403ffc787d1b7e6541302226347bf299f58b2949be47742d9768240d43",
+      "git_blob": "cd0d9b7d78409bc271a181e23aafb991c460bdee",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/baseline/firmware/platform/adc_timer_dma.h",
+      "bytes": 5508,
+      "sha256": "3c1c175c5372a3a1a6ce3c00b97f674802a61b04a716097e105b947e7494a008",
+      "git_blob": "fccedad863fb43b883d180759aa92c10f8350e64",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/copy-provenance.json",
+      "bytes": 28479,
+      "sha256": "434f327d5f85a9a76e08d71c4e39036c37fd56501dd8f3116630b24ded056cfa",
+      "git_blob": "6712e319b617078ac70805f8b7aa7e8cb11ca157",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/critic/abi_probe.c",
+      "bytes": 235,
+      "sha256": "fd215463e2ae58ff1326562d30505663963868ece666fe13060545e0c0a6c014",
+      "git_blob": "ddde93ea15cc395a4561943a7444663e97534c6c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/critic/run_abi.py",
+      "bytes": 2369,
+      "sha256": "a92bc6cc8a60c61315ed93e8b1e52529bc678090b666b01f5a2b826227689a2a",
+      "git_blob": "21f3e3d795c77704df0743e5882ea28f964dd925",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/critic/run_extra.py",
+      "bytes": 2188,
+      "sha256": "3aafdb3bbb19c86043a0917a1d7805a4db4e9e091122ec1a811db07f48f26b92",
+      "git_blob": "807160cdaf55c568ecde6fbe2a8fb6cc93016384",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/critic/test_extra.c",
+      "bytes": 1659,
+      "sha256": "6c3c5236d085676a639251327f84161c27913a530a7f6bb0a56efc94c79c8564",
+      "git_blob": "43d493d4e567bddf2b074618b8f7177d9b25cd02",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/abi/receipt.json",
+      "bytes": 4611,
+      "sha256": "432a92449eea1957619c2bed9f81b24ef002b8ff674c455ecd975d6b5b280a22",
+      "git_blob": "8ed7826c73a649d3bf7c1b8955ec3563cd3791d3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-binding-disassembly.txt",
+      "bytes": 7570,
+      "sha256": "815bb4298a6bcb1ccc415247bdd2181f806c7f06a47948bbbc3a37f4cb83f1f0",
+      "git_blob": "4b8d0ea3f2b748dfbd0abeeeebabf27863b1f9fa",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-binding-nm.txt",
+      "bytes": 211,
+      "sha256": "23a3331bd723890376f2f974a5de785d90bcb2e1581613aa6df699be528ed462",
+      "git_blob": "f9a8859167fd5fffe0cc47e2e6244193e841802a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-binding-size.txt",
+      "bytes": 625,
+      "sha256": "81d35cbfdd6f72a08113a32205707c2fff77cc1e432dbf280d4cb385428483d0",
+      "git_blob": "9f9660d2f04907ba102b1736e19054325b657321",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-binding.su",
+      "bytes": 774,
+      "sha256": "cffa9f7709c0f09dd71fab75cce846043ddd318132bdb0754726d3ddcec78cd3",
+      "git_blob": "306cdc5e7e32eedbdcb3a8b14f089acb5fd15059",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-driver-disassembly.txt",
+      "bytes": 39264,
+      "sha256": "bc58de1158a8d8d00557c582842d09be62455eb1c9c78dd1e6c49c428058bc8e",
+      "git_blob": "b837e5b669aecf7685f0437007e8ea0d4588c969",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-driver-nm.txt",
+      "bytes": 18,
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358",
+      "git_blob": "4ce02143e27c366aff9725ec8655781c867b3cdd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-driver-size.txt",
+      "bytes": 1166,
+      "sha256": "8cb5b47f2311d1b071aa6c556508ec45d02c4415eb58a032a78d5774997e9c52",
+      "git_blob": "621785eeb0589a149fe3608e490e0566e16864f5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/base-driver.su",
+      "bytes": 2412,
+      "sha256": "5a39425c2398e0301024286aadda62f13670da131e6342cf6d81c773341ab3b5",
+      "git_blob": "a433955ea788df8d7441407aa8408572f0463965",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-binding-disassembly.txt",
+      "bytes": 9515,
+      "sha256": "55936752cee674beaf79370ea46945c37674b7ca5c57ba71f9eddfc69d244314",
+      "git_blob": "ca30795de1841bf0fc9eaeb1ebd21b72007b0933",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-binding-nm.txt",
+      "bytes": 265,
+      "sha256": "50fcfb41f34416e57c07e6d5c24818cba62ee12915b6e0a416c98bf6ccf6c63d",
+      "git_blob": "bcef66a93bb08cb60f60fba1f29418d309f526f6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-binding-size.txt",
+      "bytes": 786,
+      "sha256": "733ab1d3d8a60c5aa2cb0b65676c5ea758da9f8fd1aa848ac4c0a2d915b2c794",
+      "git_blob": "bdca8f47434b2771dade852b38b740a767d11d6e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-binding.su",
+      "bytes": 1128,
+      "sha256": "44ff17271bdd5c6bea754801d3628ced5ad6edb689d17df8603cec5173c7966f",
+      "git_blob": "7fb94555f14960a0d60ec239cf6049b6752d5869",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-driver-disassembly.txt",
+      "bytes": 39904,
+      "sha256": "0d2506644c9f922aad6c711eae676a9946e96c326342113e340a1b98caa918ea",
+      "git_blob": "a0b8a77c185315576a95d5ecdaf71f2ed3028ecd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-driver-nm.txt",
+      "bytes": 18,
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358",
+      "git_blob": "4ce02143e27c366aff9725ec8655781c867b3cdd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-driver-size.txt",
+      "bytes": 1263,
+      "sha256": "b2f99fe83dbf0b8545f644c666d93081dd00a1568602be24144fa8694e400c14",
+      "git_blob": "df84bdec53a81dead2556bfc0ee2b66171e190ee",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/candidate-driver.su",
+      "bytes": 2822,
+      "sha256": "e2a111e97e3d10f379f740140272df5741fe851c92dd4124be7eceda1c5bbcb9",
+      "git_blob": "c682925da7887944bbbeeb2506f7a9e408bf5121",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/commands.json",
+      "bytes": 121234,
+      "sha256": "e00fe1ec0f248938c116763c925eebd3aa0946725c0016dd788a92cc69a39cd3",
+      "git_blob": "ed2876128ef3d431cb43d762e786f2a2a48be653",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/arm/inputs.json",
+      "bytes": 9408,
+      "sha256": "4ba08369d7ea12e9c319fa30bb9a2b15c4e39ceede781670f590783a4f995f7f",
+      "git_blob": "0bd9d3367d2b0c3840f3f39f54b80f32ef978ae7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/baseline-sanitized/receipt.json",
+      "bytes": 16200,
+      "sha256": "32874352d0ee53a910d7db84aadc24576d2806e70503cf63aa43f9e511014190",
+      "git_blob": "dbab9374fbbc35c519e6fdf01fc6d467dc984ab0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/baseline-strict/receipt.json",
+      "bytes": 15834,
+      "sha256": "33fccd322fc8a2f45878cc8e5e8ec61fee55f6f8c74deaa4bb7a30602eb87a7a",
+      "git_blob": "43df7cab81a35ab2031fc760efd920460f53ed61",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/candidate-sanitized/receipt.json",
+      "bytes": 18917,
+      "sha256": "755d5f13be21a1073e297b76d8d452ead80beed18f393a7f5bab600eb0e1758b",
+      "git_blob": "75f6a54912e70cc10865fd7edb90c1c4f0374097",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/candidate-strict/receipt.json",
+      "bytes": 18396,
+      "sha256": "517877e9a0188595a778696dc5775aaaa4618a04ae5dbfb8c54dd4603fa1dca2",
+      "git_blob": "81c6047fe0a87ec7ab82829ebe5828f3098c0ef7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/extra-sanitized/receipt.json",
+      "bytes": 12447,
+      "sha256": "36311090da6f61da4be3134873023d7d228ab973464691e6780dc3b846a41023",
+      "git_blob": "0f562cf0705a9255bae3f03092a9ecab18de1700",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/extra-strict/receipt.json",
+      "bytes": 12166,
+      "sha256": "fbe0f57afd56ab0798ea55aa95fcb21f4fcab3ffa594ad411c2a06ecaafea685",
+      "git_blob": "81d15555efdc028d0394f747809fd6039d690c71",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/negative/cleanup-before-leave/run/receipt.json",
+      "bytes": 19281,
+      "sha256": "61ac25f2f564f98a8c372ffa4897f9a3dd487a91147490c9917665c650a4c8de",
+      "git_blob": "b2723b7279c3a7295db10bf067cc5d67cca5fcbd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/negative/missing-initial-admission/run/receipt.json",
+      "bytes": 19491,
+      "sha256": "85fb0221a6b24de12ded7734318bfd69487dbfa58b22ea0c20b670cfd8066c12",
+      "git_blob": "0e57aca03e7d42c04cadab239977dacc83a7e6a7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/negative/missing-post-clock-admission/run/receipt.json",
+      "bytes": 19617,
+      "sha256": "4c6c204a04b883678546f55100e8518b751bde232883aea520a6a81ddcef75eb",
+      "git_blob": "c45ff4ee5b3adeac4b951dc81a24766b56a934cb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/negative/summary.json",
+      "bytes": 4230,
+      "sha256": "e6ded9c3bd591153dbde1afdc2ba34cb31587d4dd39099e4b936b6a15d1ff54d",
+      "git_blob": "9f0c4cb673c99daa76413e265a6e5b391ef6a4ae",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/receipt.json",
+      "bytes": 106535,
+      "sha256": "b09c6cf6efb9b4e8dca519a090a1d9862dc59eed47f1f4e3c39a971af36fa766",
+      "git_blob": "e29bbcecb092b3dbc8a8590738707bb5727c8a5a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/current/selection.json",
+      "bytes": 9395,
+      "sha256": "5302b021c2183fea863a1a9e0bf9ffbbb05b4b63e1b30d9d5858dd3259f30bde",
+      "git_blob": "a8119a38b4fb3dc0cdfb14f1a1d9fd600e686741",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/wrapper-path-checks.json",
+      "bytes": 4935,
+      "sha256": "c6bfbefcc020575783a91003238c4c8fbbcf5e150d83455c578458cb5779f5cf",
+      "git_blob": "0f4d79fc679129eaf716b6eba74591d27d566968",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/wrapper-r2/critic-exact-fixture-refusal.json",
+      "bytes": 838,
+      "sha256": "a583eb642e1ee8b96d5ff4d8d014994991f4db828f35e2b0c6b4b97384dc8138",
+      "git_blob": "8cda8034116a69cc1562ddc32f90320c120d4ac5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/wrapper-r2/positive.log",
+      "bytes": 19820,
+      "sha256": "0acca8e7a9294704d5970017b6a2c77f9e7795034b2f7204086d14599038fc2c",
+      "git_blob": "d422d8fac40c7c5d3b5c0f1912703ba6308032f7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/evidence/wrapper-r2/summary.json",
+      "bytes": 14775,
+      "sha256": "883c76e6dd7ddb06427d642ebabdaf353fbc64ce950b48b2f541060d7ad100f5",
+      "git_blob": "db54dc4cef87ae9da4404e046dbe5de88ef0dee4",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/CRITIC_A_ADC003_REVIEW.md",
+      "bytes": 10922,
+      "sha256": "ee517ef13bdfec1edc39d8a65773137bfe40977d2465e4c77edbe79bd04b10bc",
+      "git_blob": "3b5f39ee74b9768307b04bce044411a020d28ccf",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/abi.log",
+      "bytes": 371,
+      "sha256": "07c7ab96b50d69b467f79de1fa76961a5186924a40ffa48f4a943490d085d68a",
+      "git_blob": "21a8a772c93dec926ac98b3fed4b7c75848b6ca7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/abi-receipt.json",
+      "bytes": 3663,
+      "sha256": "bceed9f40d04e08669eca00b065a9d38ec5bf22f75c7ad24715d962a4bef2dcc",
+      "git_blob": "04ba76ff4476737113d7a8c9850b05cd539fff30",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/candidate-binding-disassembly.txt",
+      "bytes": 9455,
+      "sha256": "03e431a6aef23db605aa3ac332669db3d463ddecc31e047d0ac96e443764466a",
+      "git_blob": "612625bfc17ab850e7aca35b05d90bd2dd6629b7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/candidate-binding-size.txt",
+      "bytes": 726,
+      "sha256": "b5e1d423219df4aa9b442a316c4f3e253968b8303ccd54a3291dd7f488923eba",
+      "git_blob": "833df0daa60cdaf8d793266555df51dccc90298d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/candidate-binding.su",
+      "bytes": 841,
+      "sha256": "b1562e1dbb8a26367380dde0cc017606f9e67e57dd50d522e8de4550a445e89b",
+      "git_blob": "4db63d0c573951f25fecb6e866c5873b473d8925",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/candidate-driver-disassembly.txt",
+      "bytes": 39844,
+      "sha256": "a29ea575156a28d2e4e704a6e47de0a56925f4c4dab13682458425d3b0ba7614",
+      "git_blob": "0674d8b466d929a3f4f11a16e720693bdf73412b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/candidate-driver-size.txt",
+      "bytes": 1203,
+      "sha256": "7a170444a60d98dea05fcc9c3f3f36201f791e846973cee63375df3a52a19a08",
+      "git_blob": "e8d31de11332526847137f36e21ea134badf64c4",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/candidate-driver.su",
+      "bytes": 2125,
+      "sha256": "ddadbdf70feff07ea551617939233d7255817a2743fefd56434dfa58e1a86299",
+      "git_blob": "0e6abb58d22d79f6fc30d39ad40f22feb9662733",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/commands.json",
+      "bytes": 118445,
+      "sha256": "80ca4c6ecacf84854493a608d497f26cf94e644736efcc43bc4d8bf52596ede8",
+      "git_blob": "50ccfb90f6f34c36f0a733d4b2148bf7cb707019",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/arm/inputs.json",
+      "bytes": 13990,
+      "sha256": "24870afb80256b078787b61b6f8633bb0ddfbc59b468be5346d224e60b49da58",
+      "git_blob": "34b5eb5e3dfe46aeaf27973765558baa4a76da69",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/baseline-sanitized-receipt.json",
+      "bytes": 12989,
+      "sha256": "0aed75ef7ff0c59448a8c67701bebc0b654c1d023335ce8e3d8f1384b2c7c407",
+      "git_blob": "67f74183f4c50be3511dc9a912da494dc3b9626f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/baseline-strict-receipt.json",
+      "bytes": 12623,
+      "sha256": "fa48830d9e7f00145326795435deb2dfa791b51e0dc268953f67603f46b57894",
+      "git_blob": "3a021262936b37f8620dae39394df966499b65f1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/candidate-sanitized-receipt.json",
+      "bytes": 15141,
+      "sha256": "4036752f757950b60829fff50fe96060a42440fef643edb00920d7f21a6553b6",
+      "git_blob": "a255065364305a5cec31f88758d44ae8d1ee683d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/candidate-strict-receipt.json",
+      "bytes": 14620,
+      "sha256": "27c8313533a0a6b59004d14cf7742435ad4d0a3fac6cb39c7099dc718e7b9b71",
+      "git_blob": "eaa856d4e235984b08d0fd32c5331062798530b1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/extra-sanitized-receipt.json",
+      "bytes": 9117,
+      "sha256": "1378756c1b20854bea8b28a9282fd1bc0cb7351e4bf34b30a0dcfda7a787e191",
+      "git_blob": "9886b9202cdb795c5e52c677038ffd193baa35b2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/extra-strict-receipt.json",
+      "bytes": 8836,
+      "sha256": "b6e63ef783358175d98e0b994cb0b6908c5f0d8ec22a1e868be16172efa15408",
+      "git_blob": "6223c8f6abf5b9fbc9b03201d01bcb0e744de189",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/negative/cleanup-before-leave-receipt.json",
+      "bytes": 14964,
+      "sha256": "55d74c885a533f8d959acac83cb3043a7f5960839d722eb5f8e88cf83cce6ef4",
+      "git_blob": "1d89af201665be2e6f03c93e4cc73e93c1587449",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/negative/missing-initial-admission-receipt.json",
+      "bytes": 15174,
+      "sha256": "07cbaab409a8b36202ce6512c085f35c859fcfa5315dc4032017273d642acfde",
+      "git_blob": "5224a34fff74734163afff320b28b128c080e80b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/negative/missing-post-clock-admission-receipt.json",
+      "bytes": 15300,
+      "sha256": "cd9e63995a37af36ed7a2771a45f4a472fd30b62f746aa273006f68c54769566",
+      "git_blob": "9b0c711af84a93796834eff97d28199162caa161",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/evidence/negative-summary.json",
+      "bytes": 3450,
+      "sha256": "50a6599ae14178b7b3b698fd8044d0a358098d4d0864e18b6d7abdfdc707d87a",
+      "git_blob": "31c226390e9215af769c2d8cbbce7b829fd20ed6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/extra-sanitized.log",
+      "bytes": 66,
+      "sha256": "a5f3d89b6c493ae68bad81802e8703e7d2f38e6f0f0852aedbab1ff53aa71ee6",
+      "git_blob": "c25b74c1c95c888989fe2b005a84397b580ffcab",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/extra-strict.log",
+      "bytes": 66,
+      "sha256": "a5f3d89b6c493ae68bad81802e8703e7d2f38e6f0f0852aedbab1ff53aa71ee6",
+      "git_blob": "c25b74c1c95c888989fe2b005a84397b580ffcab",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/review-manifest.json",
+      "bytes": 1943,
+      "sha256": "43948a3413919f6629dfbeb1d5fabbdb8995785b3cc98bbf73ae96002c96b0fe",
+      "git_blob": "bca474cdecea75380ee28846307dd100e285471b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/critic/selected-artifacts.json",
+      "bytes": 7228,
+      "sha256": "e4e0cd5eee38d6fd8b9746363c1006440a892c2e72e200e48f05fae8092c04a3",
+      "git_blob": "e50f757849b63b77fe78bcf1f76dbc5a4648b7f5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/REPRODUCE.md",
+      "bytes": 6399,
+      "sha256": "f06caab06f569cf8bc29cfc9717c2448cb538c92e5cd5b57da7e9fd5f4e01155",
+      "git_blob": "c26bf12e9eb9e52145313db536d4cc1506a486fb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/abi/receipt.json",
+      "bytes": 3942,
+      "sha256": "74f7a74775e800a168b3dbd61bad40629fc229b33875a1c3666956ec426d59b7",
+      "git_blob": "9cbd9b9e6d69cc17c2816f2ae2ff2223feb21f1b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-binding-disassembly.txt",
+      "bytes": 7535,
+      "sha256": "a5c794c474e188a48dcbebde9ad63693f839c6d4a5dae9bd511a69a90a498c40",
+      "git_blob": "8ac64b6c2369c10453935801239fbf442c317228",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-binding-nm.txt",
+      "bytes": 211,
+      "sha256": "23a3331bd723890376f2f974a5de785d90bcb2e1581613aa6df699be528ed462",
+      "git_blob": "f9a8859167fd5fffe0cc47e2e6244193e841802a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-binding-size.txt",
+      "bytes": 590,
+      "sha256": "d9072df1862d4e83e2b278f7f256355afe9b94fd1f867f560642e6e33bdbe5f8",
+      "git_blob": "f53fffda6d83733272f40c76e1263c8288d21424",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-binding.su",
+      "bytes": 599,
+      "sha256": "83111f23cee379bf16640457c6786acb4f29142edddd7eb223a72a6624589300",
+      "git_blob": "e7257cf9bb5ca68e9ae41052355bc59d18e1e8e7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-driver-disassembly.txt",
+      "bytes": 39229,
+      "sha256": "bf861ceca20d60fc11188ad1276a4732bf5e14293b118b0885b8e6807386990b",
+      "git_blob": "63bec00c1637ac801f67c80518691f3215792f23",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-driver-nm.txt",
+      "bytes": 18,
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358",
+      "git_blob": "4ce02143e27c366aff9725ec8655781c867b3cdd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-driver-size.txt",
+      "bytes": 1131,
+      "sha256": "cf614812213e9c080e2b465368c688e2fbe71836ee2695ff5a28491a6f321f97",
+      "git_blob": "6c5c7f0a55629ea39f2fa6634f713beb15ea8cfd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/base-driver.su",
+      "bytes": 1887,
+      "sha256": "f96c1bc3cd4c0ebd6870b2c212e2e83beec4705720bc0cfdd9ddd8ccffcc0396",
+      "git_blob": "4e260e8c1f5b26f35e8dbde4bb1ed35bf30ea1c6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-binding-disassembly.txt",
+      "bytes": 9480,
+      "sha256": "e3220a482de3f9fc440810250c00a0475e72e5ed37c62a0afb756e76e2e155d6",
+      "git_blob": "4930eb2d2cb705c8555f005607ae1642748deb5a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-binding-nm.txt",
+      "bytes": 265,
+      "sha256": "50fcfb41f34416e57c07e6d5c24818cba62ee12915b6e0a416c98bf6ccf6c63d",
+      "git_blob": "bcef66a93bb08cb60f60fba1f29418d309f526f6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-binding-size.txt",
+      "bytes": 751,
+      "sha256": "672803aa02575ee9189c17f320a410d422349150350bae74dbed86bbe27c6f5a",
+      "git_blob": "247b714bc61df5357036cd010892a5d333b870b0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-binding.su",
+      "bytes": 883,
+      "sha256": "2aae4099e716d15a6ad74fc5c68556553e63bb2d0123426e472020d702ab3359",
+      "git_blob": "1f7d14afe54a120865b59df08643c79307e28559",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-driver-disassembly.txt",
+      "bytes": 39869,
+      "sha256": "1cbdee8f936f7752ce12f9d2e49d6c607cc893689b3dbf4873fb0d1b9e61c986",
+      "git_blob": "7b48c3a91b9410d03280c40c54c59feae205cc35",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-driver-nm.txt",
+      "bytes": 18,
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358",
+      "git_blob": "4ce02143e27c366aff9725ec8655781c867b3cdd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-driver-size.txt",
+      "bytes": 1228,
+      "sha256": "48f5be73f9b67129115d09ccd2da1dac93268df4d13320a1f633a4de24186730",
+      "git_blob": "902a330ac2a483245fbb01038a8753db7eee17ed",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/candidate-driver.su",
+      "bytes": 2227,
+      "sha256": "adce8291aee8b78cc07fc1bb6259fe86c28d7b4dd651a565ff34321bb753f177",
+      "git_blob": "908accef624b5ea87bc96504a48fbe868a50c403",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/commands.json",
+      "bytes": 119225,
+      "sha256": "636dbce79f39e6723e47b0bf3c96238b834e1f019f33433f1a00190d18c4a70c",
+      "git_blob": "4d3165ef1a9c619ff93f901d997e4a43a8f6167f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/arm/inputs.json",
+      "bytes": 7818,
+      "sha256": "bcdfea63f97780032e0f8a6dc6a26d115ab08b5dc99993ddfb717edae8997124",
+      "git_blob": "3ca0c8c74725e860bb78adb7e73056a4ea5faf4c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/baseline-sanitized/receipt.json",
+      "bytes": 13730,
+      "sha256": "53b0abd7083eb816d941a49d65d99f6c54344b7d0a41f804b8156c9a8f93a5b6",
+      "git_blob": "efd23efd26827e5714e4021365652a44bef138e9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/baseline-strict/receipt.json",
+      "bytes": 13364,
+      "sha256": "05ac846c30b015cee07d6f7e51a53f851f5f01d2c88b11b630271ff653ed3482",
+      "git_blob": "1ba868a785ad4f4b7899590b44b0634fcf610f98",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/candidate-sanitized/receipt.json",
+      "bytes": 15892,
+      "sha256": "a841af9a05226e50345125d9b0af9103e39c1d4a2bc6741dfade551ffeadebee",
+      "git_blob": "617baf0943e192482fb2e74c3849da735b4a712c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/candidate-strict/receipt.json",
+      "bytes": 15371,
+      "sha256": "f5eb88d4df6254a93c3bb815df98421a6731b0dd7485dcc642fe98badf25c5ee",
+      "git_blob": "d4dab88ba1060e69f38970167989043c0f6013dc",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/extra-sanitized/receipt.json",
+      "bytes": 10492,
+      "sha256": "e3a5d07284646648442c748514d84a1c1f433dce50ec9c7d610dfce4ad174c67",
+      "git_blob": "238cb0622a54df7571e5d6f8e24dcf0b0f16fc2b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/extra-strict/receipt.json",
+      "bytes": 10211,
+      "sha256": "1631136f9bb79807e49821f1eea9a7e17061f1163700b14d9c5f990f00fdba34",
+      "git_blob": "b2ba6207d8218d054c4ad9ce335db4e2f9318683",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/negative/cleanup-before-leave/run/receipt.json",
+      "bytes": 16221,
+      "sha256": "ca875a8ea7e55c3b86ebc3fe11ab38f3295b27a4ec8c9297d20ce884dc9fbaf4",
+      "git_blob": "2576e9cb561ecd68f39f30679c490dad5f5a9038",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/negative/missing-initial-admission/run/receipt.json",
+      "bytes": 16431,
+      "sha256": "c125fef506882af3dd0b6f7df1e786ce489efeaf3e5972953c6fe33481a189c6",
+      "git_blob": "fbb544037a32ada4f60af21c395608c71ca1eb41",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/negative/missing-post-clock-admission/run/receipt.json",
+      "bytes": 16557,
+      "sha256": "525846eb6fb75e4f7e08d43faa52661b14d1c03fd182ca57d5639d9dbfcc9e53",
+      "git_blob": "f3fab0cdb1a0d746a7aba6e8df9aaca5aae852c8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/negative/summary.json",
+      "bytes": 3696,
+      "sha256": "6a1c3198fb58d149438c21c5ec18ed1bd40f814611c616059218197e0ecfd649",
+      "git_blob": "acb182bc0f5af7fbf6dbc04df11428ddcb878c75",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/receipt.json",
+      "bytes": 44625,
+      "sha256": "19d29111edc093c3889d05af2a57413af74761f9029d8a7290b82f2c56c249ed",
+      "git_blob": "4b63ed6dbe4b7a1fd6b42e33c00b047b154dcbaf",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/original-current-receipts/selection.json",
+      "bytes": 8258,
+      "sha256": "b8a5206eda838f297e43cd2f5705fb11e46d633538190cec30a49fb4e15de492",
+      "git_blob": "9795cfc89729b1ed2bb7c2e1528bef06bfc5767c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/package-manifest.json",
+      "bytes": 29784,
+      "sha256": "941b250833b55ffb8429ed3f7a768ed9278a4cf36e8321e3a089ab34217b137e",
+      "git_blob": "87d0fe42387b68430da58ff6070015e65d5ad346",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/package-plan.json",
+      "bytes": 1230,
+      "sha256": "16d12255b049ab981577779017313a9399bdc3045f348dd7589324c93ecd9174",
+      "git_blob": "e8c09c9808bfa4276695179779ced94a9961d410",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/reproduce.py",
+      "bytes": 6782,
+      "sha256": "ae9715b6d9c262bbbaf3d901b202e6c6e4be4f1efa2ac8387177b99b922cf3a6",
+      "git_blob": "b512332a23f3fff1c26c49e34614c4763ef6963f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/tool-alias-reproducer.json",
+      "bytes": 789,
+      "sha256": "ab97071120a9cf1eaae95170a699abbbdc4c57a197b7073dd1308bb942e2f349",
+      "git_blob": "f449f6ad9eb2ce2e1b9a43edb8ece2490a6b5f8d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/tool-alias-reproducer.log",
+      "bytes": 1286,
+      "sha256": "60a9b5f4c6a45a7372c01417104831f11b4f355e9707855b22271b90bf1d5b7e",
+      "git_blob": "aed65ccc71b76b17d935aa6eee8709a2378e0174",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/tool-alias-valid-compiler.json",
+      "bytes": 705,
+      "sha256": "fe99a96150ab9c4b8cc0f38d61a0bdc25ce25b57ba4367b345f9a3cae1766b31",
+      "git_blob": "4109f1f3f5e8b9cecfcb2ba8775355a603f565b1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/package-r1/tool-alias-valid-compiler.log",
+      "bytes": 20164,
+      "sha256": "8e2601605c8719ca46495f45ea40589261a3b7b5bff71acd7995791bdbf7126c",
+      "git_blob": "a0c23eb17ba85316f35da567d0d90747903834d2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/arm/commands.json",
+      "bytes": 118341,
+      "sha256": "bac502520b6d81111f95d4e8641c776ad6d69471b1e519e117b93bd4fbd0fd27",
+      "git_blob": "b08e3bd6c389993bf314b519e745440d339b05f8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/arm/inputs.json",
+      "bytes": 13730,
+      "sha256": "1e0015c769af1441416f5d7cb9f0038496a9ad9ec7a8f78c74c6c538048594d1",
+      "git_blob": "0da6344e1f416450ec494b9af0a47595c448582e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/arm/path-checks.json",
+      "bytes": 4391,
+      "sha256": "9df6e1167d6dbef56215e91014c8d6c03c19343701e9d44202e8424d1f8d36ec",
+      "git_blob": "d70647465b243ac93a22223241c161f0a64cd6c5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/arm_check-r1.py",
+      "bytes": 2514,
+      "sha256": "4113eadd3b19574a6d3d7940c815b7949bc90e96555b9f4e164c0a7fe705936d",
+      "git_blob": "2913ca2ad9fae9bb65b9ed55f87a04d978427569",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/base-legacy-sanitize/receipt.json",
+      "bytes": 12830,
+      "sha256": "ae1a9a3021899ca03537586be78f8c00ca211bdbe6b836c66bcef5af92309ba0",
+      "git_blob": "2a5c73c9f638a28821a1ce31ad90fe67a161bc26",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/base-legacy-sanitize/run.log",
+      "bytes": 2553,
+      "sha256": "0a0fa4d787ebc5077fffea4da800965a8b70bd54b57ca434202fd662aaf1855b",
+      "git_blob": "237de3f2d4710d16a2f3b92b86e111e6804a3b5d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/base-legacy-strict/receipt.json",
+      "bytes": 12483,
+      "sha256": "3db04bd0b2fc245b683dc7b5ac4877ecf05f9da168267b846813ea1cb35c4270",
+      "git_blob": "53f7a3b1bfdc37fbd4bfde898dad1827f4d44634",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/base-legacy-strict/run.log",
+      "bytes": 2373,
+      "sha256": "800ccc323ccfe35fda17cc084109156f73f50667f2efd99a651727917ebee5b1",
+      "git_blob": "870836ae41824329bf5b9cbd3d464f649770bef7",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/r2-sanitize/receipt.json",
+      "bytes": 14433,
+      "sha256": "4ea93b2235d95ec70b0e1fc27a5c9ec9fef58dcd551f6b0229bda3b1a3df8d4d",
+      "git_blob": "07b9e2e972343d1377aa001af97a7bd8035610a2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/r2-sanitize/run.log",
+      "bytes": 3770,
+      "sha256": "e651801eae70296c63e0f041e47afdab349a5b29ab6c5f4436b171f86679d155",
+      "git_blob": "70749516e7b3a8ac42b1b93c10a11b7df07bec2f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/r2-strict/receipt.json",
+      "bytes": 13944,
+      "sha256": "2ef3e2fab9ba161e575a09129e461ff083afef7b29a9de9128946eefea67cc68",
+      "git_blob": "985e31e865d90dcb7116053b0dacf1f8c35436fb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/native/r2-strict/run.log",
+      "bytes": 3492,
+      "sha256": "1b93873c0d579bf9e6262093dd39bfaeaf96d03304f5b9a260595f30bcc60d69",
+      "git_blob": "b3fadb03be616b0a2609c8a76cce7a1aad1623b5",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/cleanup-before-leave/run/receipt.json",
+      "bytes": 15372,
+      "sha256": "94409ab384676b9a1a3ef2186d905b8175701fa6c69f930603c62a640d2e187e",
+      "git_blob": "f75aaf6fc6a40250a1855a677dc2ff1a19387df0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/cleanup-before-leave/run/run.log",
+      "bytes": 4840,
+      "sha256": "ca0f4007285414cebfe33cdb601474a7c71774aa1693f47ea922ec4e42ff9cef",
+      "git_blob": "65ffd0aebf08beb4f1c0d608eafa1b33885f8721",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/cleanup-before-leave/wrapper.log",
+      "bytes": 4947,
+      "sha256": "9812ecb3504d5b36a29399b7154c08bf0b148e9cd1fa3b0e1ed3e2dd4bbc1496",
+      "git_blob": "3f7eea146de3d20b51c80dbd2b463e4e4095c0d9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/missing-initial-admission/run/receipt.json",
+      "bytes": 15582,
+      "sha256": "5c9dfb215e0dba8a5462e117831ac7c863eba793ef2d32cda00e02dc80f9853b",
+      "git_blob": "d882c3c0021b0c3d1ab49c5d6762db4ce7790b0d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/missing-initial-admission/run/run.log",
+      "bytes": 5013,
+      "sha256": "49772959f0681a9f516b2f57373d21597170519f9bd3dbbadab6868d694e7069",
+      "git_blob": "1be7337974a8e4d22f2d46ad1adca5925708f7de",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/missing-initial-admission/wrapper.log",
+      "bytes": 5125,
+      "sha256": "8b110d3f96b4734566c2063cec6c645908c0d5aeaf51bdf0619aa9a7e4984947",
+      "git_blob": "ea991034c4b194069e4f45c5160511d492492155",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/missing-post-clock-admission/run/receipt.json",
+      "bytes": 15708,
+      "sha256": "123912ecc27a1f9aa871130bc19857c9e34cc8aea52070a97bebbf5d55fb57e2",
+      "git_blob": "3962bf4c993a9c83cc2cc0e523ed4c9009c6e675",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/missing-post-clock-admission/run/run.log",
+      "bytes": 5118,
+      "sha256": "99b12729129e871c4272730f092ddc43d05cc081a8cac9e105674041a9476d09",
+      "git_blob": "c0608695976f21ca3f5348da06d49bd5899bec35",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/missing-post-clock-admission/wrapper.log",
+      "bytes": 5233,
+      "sha256": "1711d511225eab61f0cc205282723748698f24393dec236c93d300abb9410ebc",
+      "git_blob": "337c0205498be6b728250c82483a70b8ea50d246",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/negative/summary.json",
+      "bytes": 3528,
+      "sha256": "829ea54111a734a12df501228311641988125939e9e5b9beacba86879443af0f",
+      "git_blob": "f13e15de4a9513a75d3fd187b7d4c9efb697b744",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/root/output-refusal.json",
+      "bytes": 27716,
+      "sha256": "5a56856839508e54dfc723055c71bb6a9ca695794906b782251032ba51d474b6",
+      "git_blob": "b17232bdec903b49e52574a2f18c50fced168610",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/supporting/README.md",
+      "bytes": 12604,
+      "sha256": "c0baf27fed9ee00b4e30df01f35150872b6715f56dabb841e932b3e9cfd4993d",
+      "git_blob": "48ddd7e68a156ae754f8fd30d761f5ae21d14af1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/supporting/RESULTS.json",
+      "bytes": 3631,
+      "sha256": "210ccea7e7b9fe899372ff25b83d2468986004cf6d2c48867f361fb8f2b3e857",
+      "git_blob": "d1e663f760b4bcc89040e71d83a169dec579f54d",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/history/supporting/SHA256SUMS.harness",
+      "bytes": 905,
+      "sha256": "6cea221c1b3d9efc499886a6d5ce59bfbecb2735696a6ce3efe28fa97ad3eda7",
+      "git_blob": "6bbc218e08fe0e69262099a4bff680ef56a189d8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/parent-inputs.json",
+      "bytes": 6191,
+      "sha256": "dd557af03b4814e0d25a528a6572fee4e2c06363f8ce06d9df6bb614b62a278e",
+      "git_blob": "bfcbdd29b352c54978d617fec473051c122fae0f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/reproduce.py",
+      "bytes": 11179,
+      "sha256": "3806ed4ca2cee854f99fee0145f2a232cb0645977a99330a3192a247d6f3b4c5",
+      "git_blob": "18ada4bbae0c30a6bd3132e89a6ace1a0845283c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/supporting/REMOTE_BASE.json",
+      "bytes": 10138,
+      "sha256": "8e9ed5529fb8c95e44092ba3955c86a31682203cdefbecbf1a0e0cbdbb9723bf",
+      "git_blob": "9f7b424e2ffe7c7684869a9181c4350d67d1d2dc",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/supporting/legacy/REMOTE_INPUTS.json",
+      "bytes": 1095,
+      "sha256": "9137aafb11cd753b1abe74658336c64520813a74664356f416c04dc012906851",
+      "git_blob": "b5ea71e93be5c2618f25a6316ed3c6ef5576522e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/supporting/negative_controls.py",
+      "bytes": 3269,
+      "sha256": "1e11d7dff4db54d165972c6bbe8cf7b15f09a0568cb077508f7a281b1c9f5a3d",
+      "git_blob": "b0c8f9e1a3fddd64001b323674a111a9381fff30",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/supporting/run.py",
+      "bytes": 6256,
+      "sha256": "d24ebf7a24e46e37c55c00ba1d9c97f7acd0293d00543f085a32929f106d8474",
+      "git_blob": "f776ab6eb571217762089f094b37edd680f6fc1c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/supporting/test_admission.c",
+      "bytes": 16711,
+      "sha256": "8eeeb676d26d9c247600db6280f94c538462061d3bbe3b54267918b10b9db90c",
+      "git_blob": "f2efcc50a4aa9fbc6bd0345022d1017aa927c0f6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/adc-commit/test_reproduce_paths.py",
+      "bytes": 8981,
+      "sha256": "4c3810a39fdf1ed5cac6ef58ffd5c3ff44a266ba5d7436d91842d8e5d257d2be",
+      "git_blob": "38167890e25f578020172f6cfd63187a264b133b",
+      "mode": "100644"
+    }
+  ]
+}

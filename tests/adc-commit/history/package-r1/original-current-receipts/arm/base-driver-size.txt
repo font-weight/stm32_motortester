@@ -1,0 +1,26 @@
+/workspace/shared/adc-commit-publication/reproduction 01/arm/base-driver.o  :
+section                           size   addr
+.text                                0      0
+.data                                0      0
+.bss                                 0      0
+.text.rd                            10      0
+.text.wr                            10      0
+.text.now                            6      0
+.text.wait_clear                    62      0
+.text.gates_enabled                 64      0
+.text.quiesce                      180      0
+.text.fail.isra.0                   24      0
+.text.clock_plan                   396      0
+.text.mt_adc_dma_mmio_read32         4      0
+.text.mt_adc_dma_mmio_write32        4      0
+.text.mt_adc_dma_init               66      0
+.text.mt_adc_dma_profile1_ready    140      0
+.text.mt_adc_dma_start             920      0
+.text.mt_adc_dma_read_block        512      0
+.text.mt_adc_dma_stop               46      0
+.rodata.ahb_divs.0                  32      0
+.comment                            39      0
+.ARM.attributes                     45      0
+Total                             2560
+
+

@@ -1,0 +1,347 @@
+{
+  "status": "PASS",
+  "test_script_sha256": "4c3810a39fdf1ed5cac6ef58ffd5c3ff44a266ba5d7436d91842d8e5d257d2be",
+  "negative_cases": [
+    {
+      "case": "existing",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/existing-output"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be a fresh nonexistent path\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "inside-checkout",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "checkout-ancestor",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "checkout-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/checkout-alias/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "advertised-tools",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: advertised toolchain\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "valid-tool-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/real-tools/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: ARM gcc\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "header-directory-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/header-proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/header-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: newlib headers\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "header-file-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/header-file-proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/header-file-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: header backing file\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "script-invocation-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/script-alias/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/script-alias/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: wrapper script\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "source-file-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/aliased-input-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/input-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout input\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "missing-toolchain",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/missing-toolchain",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/never-created"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: ARM tool input missing; no output created: gcc\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "native-compiler-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/native-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/native-alias/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: native C compiler\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "compiler-support-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r2/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/internal-layout",
+        "--out",
+        "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/internal-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: compiler support program cc1\n",
+      "output_created": false,
+      "parent_created": false
+    }
+  ],
+  "positive": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/relocated checkout/tests/adc-commit/reproduce.py",
+      "--toolchain",
+      "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/valid-layout/proxy",
+      "--out",
+      "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run"
+    ],
+    "exit": 0,
+    "receipt": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/receipt.json",
+    "receipt_sha256": "b09c6cf6efb9b4e8dca519a090a1d9862dc59eed47f1f4e3c39a971af36fa766",
+    "dirty_environment": {
+      "PATH": "/usr/bin:/bin",
+      "CC": "/usr/bin/cc",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "CPATH": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison",
+      "C_INCLUDE_PATH": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison",
+      "CPLUS_INCLUDE_PATH": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison",
+      "COMPILER_PATH": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison",
+      "GCC_EXEC_PREFIX": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison/",
+      "LIBRARY_PATH": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison",
+      "CFLAGS": "-DNDEBUG",
+      "CPPFLAGS": "-DNDEBUG",
+      "LDFLAGS": "invalid",
+      "PYTHONOPTIMIZE": "2",
+      "PYTHONPATH": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison",
+      "TMPDIR": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/poison"
+    },
+    "actual_child_environment": {
+      "PATH": "/usr/bin:/bin",
+      "CC": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "TMPDIR": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/tmp"
+    }
+  },
+  "original_checkout_unchanged": true,
+  "scope": "Disposable fixture copies; no production edits"
+}

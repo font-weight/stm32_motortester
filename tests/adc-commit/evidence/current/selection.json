@@ -1,0 +1,155 @@
+{
+  "scope": "Corrected outer wrapper: full positive relocated run using valid aliased tools under intentionally polluted compiler/Python environment; supporting evidence before final clean frozen-tree rerun.",
+  "files": [
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/abi/receipt.json",
+      "destination": "evidence/current/abi/receipt.json",
+      "sha256": "432a92449eea1957619c2bed9f81b24ef002b8ff674c455ecd975d6b5b280a22"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-binding-disassembly.txt",
+      "destination": "evidence/current/arm/base-binding-disassembly.txt",
+      "sha256": "815bb4298a6bcb1ccc415247bdd2181f806c7f06a47948bbbc3a37f4cb83f1f0"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-binding-nm.txt",
+      "destination": "evidence/current/arm/base-binding-nm.txt",
+      "sha256": "23a3331bd723890376f2f974a5de785d90bcb2e1581613aa6df699be528ed462"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-binding-size.txt",
+      "destination": "evidence/current/arm/base-binding-size.txt",
+      "sha256": "81d35cbfdd6f72a08113a32205707c2fff77cc1e432dbf280d4cb385428483d0"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-binding.su",
+      "destination": "evidence/current/arm/base-binding.su",
+      "sha256": "cffa9f7709c0f09dd71fab75cce846043ddd318132bdb0754726d3ddcec78cd3"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-driver-disassembly.txt",
+      "destination": "evidence/current/arm/base-driver-disassembly.txt",
+      "sha256": "bc58de1158a8d8d00557c582842d09be62455eb1c9c78dd1e6c49c428058bc8e"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-driver-nm.txt",
+      "destination": "evidence/current/arm/base-driver-nm.txt",
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-driver-size.txt",
+      "destination": "evidence/current/arm/base-driver-size.txt",
+      "sha256": "8cb5b47f2311d1b071aa6c556508ec45d02c4415eb58a032a78d5774997e9c52"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/base-driver.su",
+      "destination": "evidence/current/arm/base-driver.su",
+      "sha256": "5a39425c2398e0301024286aadda62f13670da131e6342cf6d81c773341ab3b5"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-binding-disassembly.txt",
+      "destination": "evidence/current/arm/candidate-binding-disassembly.txt",
+      "sha256": "55936752cee674beaf79370ea46945c37674b7ca5c57ba71f9eddfc69d244314"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-binding-nm.txt",
+      "destination": "evidence/current/arm/candidate-binding-nm.txt",
+      "sha256": "50fcfb41f34416e57c07e6d5c24818cba62ee12915b6e0a416c98bf6ccf6c63d"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-binding-size.txt",
+      "destination": "evidence/current/arm/candidate-binding-size.txt",
+      "sha256": "733ab1d3d8a60c5aa2cb0b65676c5ea758da9f8fd1aa848ac4c0a2d915b2c794"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-binding.su",
+      "destination": "evidence/current/arm/candidate-binding.su",
+      "sha256": "44ff17271bdd5c6bea754801d3628ced5ad6edb689d17df8603cec5173c7966f"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-driver-disassembly.txt",
+      "destination": "evidence/current/arm/candidate-driver-disassembly.txt",
+      "sha256": "0d2506644c9f922aad6c711eae676a9946e96c326342113e340a1b98caa918ea"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-driver-nm.txt",
+      "destination": "evidence/current/arm/candidate-driver-nm.txt",
+      "sha256": "43ee8cbc6c080db41b86b76167df72452236e0216918d3617af3e70ee6b8c358"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-driver-size.txt",
+      "destination": "evidence/current/arm/candidate-driver-size.txt",
+      "sha256": "b2f99fe83dbf0b8545f644c666d93081dd00a1568602be24144fa8694e400c14"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/candidate-driver.su",
+      "destination": "evidence/current/arm/candidate-driver.su",
+      "sha256": "e2a111e97e3d10f379f740140272df5741fe851c92dd4124be7eceda1c5bbcb9"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/commands.json",
+      "destination": "evidence/current/arm/commands.json",
+      "sha256": "e00fe1ec0f248938c116763c925eebd3aa0946725c0016dd788a92cc69a39cd3"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/arm/inputs.json",
+      "destination": "evidence/current/arm/inputs.json",
+      "sha256": "4ba08369d7ea12e9c319fa30bb9a2b15c4e39ceede781670f590783a4f995f7f"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/baseline-sanitized/receipt.json",
+      "destination": "evidence/current/baseline-sanitized/receipt.json",
+      "sha256": "32874352d0ee53a910d7db84aadc24576d2806e70503cf63aa43f9e511014190"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/baseline-strict/receipt.json",
+      "destination": "evidence/current/baseline-strict/receipt.json",
+      "sha256": "33fccd322fc8a2f45878cc8e5e8ec61fee55f6f8c74deaa4bb7a30602eb87a7a"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate-sanitized/receipt.json",
+      "destination": "evidence/current/candidate-sanitized/receipt.json",
+      "sha256": "755d5f13be21a1073e297b76d8d452ead80beed18f393a7f5bab600eb0e1758b"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/candidate-strict/receipt.json",
+      "destination": "evidence/current/candidate-strict/receipt.json",
+      "sha256": "517877e9a0188595a778696dc5775aaaa4618a04ae5dbfb8c54dd4603fa1dca2"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/extra-sanitized/receipt.json",
+      "destination": "evidence/current/extra-sanitized/receipt.json",
+      "sha256": "36311090da6f61da4be3134873023d7d228ab973464691e6780dc3b846a41023"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/extra-strict/receipt.json",
+      "destination": "evidence/current/extra-strict/receipt.json",
+      "sha256": "fbe0f57afd56ab0798ea55aa95fcb21f4fcab3ffa594ad411c2a06ecaafea685"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/negative/cleanup-before-leave/run/receipt.json",
+      "destination": "evidence/current/negative/cleanup-before-leave/run/receipt.json",
+      "sha256": "61ac25f2f564f98a8c372ffa4897f9a3dd487a91147490c9917665c650a4c8de"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/negative/missing-initial-admission/run/receipt.json",
+      "destination": "evidence/current/negative/missing-initial-admission/run/receipt.json",
+      "sha256": "85fb0221a6b24de12ded7734318bfd69487dbfa58b22ea0c20b670cfd8066c12"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/negative/missing-post-clock-admission/run/receipt.json",
+      "destination": "evidence/current/negative/missing-post-clock-admission/run/receipt.json",
+      "sha256": "4c6c204a04b883678546f55100e8518b751bde232883aea520a6a81ddcef75eb"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/negative/summary.json",
+      "destination": "evidence/current/negative/summary.json",
+      "sha256": "e6ded9c3bd591153dbde1afdc2ba34cb31587d4dd39099e4b936b6a15d1ff54d"
+    },
+    {
+      "source": "/workspace/shared/adc-commit-publication/wrapper-regression-r2-final/positive relocated run/receipt.json",
+      "destination": "evidence/current/receipt.json",
+      "sha256": "b09c6cf6efb9b4e8dca519a090a1d9862dc59eed47f1f4e3c39a971af36fa766"
+    }
+  ]
+}

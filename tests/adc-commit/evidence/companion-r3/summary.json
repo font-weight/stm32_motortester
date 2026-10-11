@@ -1,0 +1,762 @@
+{
+  "status": "PASS",
+  "invocation": [
+    "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+    "--checkout",
+    "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+    "--toolchain",
+    "/workspace/shared/adc003-critic-fixed-alias-r2/proxy",
+    "--out",
+    "/workspace/shared/adc-commit-publication/companion-regression-r3-layered"
+  ],
+  "input_toolchain": "/workspace/shared/adc003-critic-fixed-alias-r2/proxy",
+  "preflight_sha256": "2ac44201d0af9feb917754aa11068475e549757a004bc7fdf58a671b25402b97",
+  "source_file_count": 1187,
+  "test_script_sha256": "445b8bf2207c87978478c213569a50e5a0a095fc27d36ab003c30abeb547b738",
+  "negative_cases": [
+    {
+      "case": "existing",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/existing-output"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output must be a fresh nonexistent path\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "inside-checkout",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "checkout-ancestor",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "checkout-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/checkout-alias/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "advertised-tools",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: advertised toolchain\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "valid-tool-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/real-tools/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: ARM gcc\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "header-directory-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: newlib headers\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "header-file-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-file-proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-file-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: header backing file\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "script-invocation-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/script-alias/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/script-alias/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: wrapper script\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "source-file-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/aliased-input-checkout/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/input-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: checkout input\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "missing-toolchain",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-toolchain",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/never-created"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: ARM tool input missing; no output created: gcc\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "native-compiler-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/native-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/native-alias/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: native C compiler\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "compiler-support-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/internal-layout",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/internal-backing/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: compiler support program cc1\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "layered-script-invocation-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-script-alias/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-script-real/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: wrapper script\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "layered-tool-link-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/tests/adc-commit/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-tools",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-tool-link-parent/must-not-exist/new"
+      ],
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "CC": "/usr/bin/cc",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: reproduce.py [-h] --out OUT --toolchain TOOLCHAIN\nreproduce.py: error: output overlaps protected input backing directory: ARM gcc\n",
+      "output_created": false,
+      "parent_created": false
+    }
+  ],
+  "companion_negative_cases": [
+    {
+      "case": "existing",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/existing-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture root must not exist\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "checkout-root",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "checkout-ancestor",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: checkout\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "tool-root",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: advertised toolchain\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "tool-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/real-tools/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: ARM gcc\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "header-directory-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-backing/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: newlib stdint.h\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "header-file-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-file-proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/header-file-backing/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: newlib stdint.h\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "script-alias",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/companion-script-alias/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/companion-script-alias/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: companion script\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "source-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/aliased-input-checkout",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/input-backing/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: source/evidence file\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "evidence-backing-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/aliased-evidence-checkout",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/evidence-backing/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: source/evidence file\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "missing-source",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-source-checkout",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-source-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: required input missing before mkdir: relocation input\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "missing-script",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-script-checkout",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-script-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: required input missing before mkdir: package input\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "missing-header",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-header-toolchain",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/missing-header-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: required input missing before mkdir: newlib stdint.h\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "compiler-support-backing",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/internal-layout",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/internal-backing/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: compiler support cc1\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "layered-script-invocation-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-companion-alias/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-companion-real/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: companion script\n",
+      "output_created": false,
+      "parent_created": false
+    },
+    {
+      "case": "layered-tool-link-parent",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+        "--preflight-only",
+        "--checkout",
+        "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+        "--toolchain",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-tools",
+        "--out",
+        "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/nested-tool-link-parent/must-not-exist/new"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: test_reproduce_paths.py [-h] --checkout CHECKOUT --toolchain TOOLCHAIN\n                               --out OUT [--preflight-only]\ntest_reproduce_paths.py: error: fixture output overlaps protected backing directory: ARM gcc\n",
+      "output_created": false,
+      "parent_created": false
+    }
+  ],
+  "companion_positive_preflight": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-I",
+      "-B",
+      "/workspace/shared/adc-commit-publication/candidate/tests/adc-commit/test_reproduce_paths.py",
+      "--preflight-only",
+      "--checkout",
+      "/workspace/shared/adc-commit-publication/reproduction-checkout-r3-layered",
+      "--toolchain",
+      "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+      "--out",
+      "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/positive-companion-preflight"
+    ],
+    "exit": 0,
+    "stdout": "PASS: companion preflight only; no output created\n",
+    "stderr": "",
+    "output_created": false
+  },
+  "positive": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/relocated checkout/tests/adc-commit/reproduce.py",
+      "--toolchain",
+      "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/valid-layout/proxy",
+      "--out",
+      "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/positive relocated run"
+    ],
+    "exit": 0,
+    "receipt": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/positive relocated run/receipt.json",
+    "receipt_sha256": "ba03e1c08fbaf7aade32c72d4395d762962cc1a94f8bd4625ad4926a88582ed3",
+    "dirty_environment": {
+      "PATH": "/usr/bin:/bin",
+      "CC": "/usr/bin/cc",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "CPATH": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison",
+      "C_INCLUDE_PATH": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison",
+      "CPLUS_INCLUDE_PATH": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison",
+      "COMPILER_PATH": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison",
+      "GCC_EXEC_PREFIX": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison/",
+      "LIBRARY_PATH": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison",
+      "CFLAGS": "-DNDEBUG",
+      "CPPFLAGS": "-DNDEBUG",
+      "LDFLAGS": "invalid",
+      "PYTHONOPTIMIZE": "2",
+      "PYTHONPATH": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison",
+      "TMPDIR": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/poison"
+    },
+    "actual_child_environment": {
+      "PATH": "/usr/bin:/bin",
+      "CC": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "TMPDIR": "/workspace/shared/adc-commit-publication/companion-regression-r3-layered/positive relocated run/tmp"
+    }
+  },
+  "original_checkout_unchanged": true,
+  "scope": "Disposable fixture copies; no production edits"
+}

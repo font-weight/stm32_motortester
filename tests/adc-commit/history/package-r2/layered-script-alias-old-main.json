@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/workspace/shared/adc-commit-publication/nested-script-alias-audit/invocation-alias/reproduce.py",
+    "--toolchain",
+    "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+    "--out",
+    "/workspace/shared/adc-commit-publication/nested-script-alias-audit/real-invocation/must-not-be-created"
+  ],
+  "timeout_seconds": 5,
+  "exit": 124,
+  "output_created": true,
+  "files_created": 81,
+  "scope": "Disposable directory alias containing a symlink to the unchanged r2 main wrapper; intentional timeout after boundary observation; production unchanged"
+}

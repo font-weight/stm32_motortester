@@ -38,7 +38,8 @@ typedef enum {
     MT_ADC_DMA_FAULT_TRANSFER,
     MT_ADC_DMA_FAULT_DEADLINE,
     MT_ADC_DMA_FAULT_STOP,
-    MT_ADC_DMA_FAULT_SEQUENCE_LIMIT
+    MT_ADC_DMA_FAULT_SEQUENCE_LIMIT,
+    MT_ADC_DMA_FAULT_ADMISSION
 } mt_adc_dma_fault_t;
 
 typedef enum {
@@ -126,6 +127,23 @@ int mt_adc_dma_profile1_ready(mt_adc_dma_t *driver);
  * A successful stop is required before restart after a fault.
  */
 mt_adc_dma_result_t mt_adc_dma_start(mt_adc_dma_t *driver);
+/* Optional integrated commit admission. Preparation/calibration stays outside
+ * the guard. enter/leave save/restore the prior interrupt mask and must nest.
+ * allowed checks the ORIGINAL command actor and fresh clock health, not a new
+ * current token. It is called after clock observations before and after commit.
+ * All callbacks are prompt, nonblocking, nonreentrant and outlive this call.
+ * Denial/failed commit restores the mask before possibly waiting Stop cleanup.
+ * A pending IRQ may run after leave: success is not a promise the epoch stays
+ * live after the atomic commit. The foreground owner must recheck before output.
+ */
+typedef struct {
+    uint32_t (*enter)(void *context);
+    int (*allowed)(void *context);
+    void (*leave)(void *context, uint32_t previous);
+    void *context;
+} mt_adc_dma_start_guard;
+mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *driver,
+                                            const mt_adc_dma_start_guard *guard);
 /* Call at intervals STRICTLY LESS THAN 2560 us while running. Copy and metadata
  * validation also finish inside that budget. Output unchanged unless BLOCK.
  * A BLOCK view lasts only until the next read/start/stop, regardless of result.

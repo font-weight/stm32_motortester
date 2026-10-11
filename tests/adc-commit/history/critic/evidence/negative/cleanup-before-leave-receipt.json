@@ -1,0 +1,206 @@
+{
+  "invocation": [
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/run.py",
+    "--base",
+    "/workspace/shared/usb-bridge-publication/base-checkout",
+    "--candidate",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input",
+    "--out",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run"
+  ],
+  "start_utc": "2026-10-10T16:57:11.394776+00:00",
+  "base_commit": "7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5",
+  "verified_git_blobs": {
+    "firmware/app/mt_control.c": "d268cf74d72d157c6e65b59e3a9471929ac4f9d2",
+    "firmware/app/mt_capture_link.c": "5e78945f514d7c12f3fa4996144ac104bd940c00",
+    "firmware/protocol/mt_command.c": "ab15501f0afe68a01a3b371338619230cbd90d91",
+    "firmware/protocol/mt_session.c": "f44099ebba52f99c5146ed719be2db5be6b0f71d",
+    "firmware/protocol/mt_wire.c": "3d76b7f6725615f3fad4305575312997e72152f9",
+    "firmware/transport/mt_tx.c": "617dafd44ecb03c34620201f8d2dc1a378326fc8",
+    "firmware/acquisition/acquisition.c": "99dbb52a932735c45e35af840545cf788362eba4",
+    "firmware/app/mt_control.h": "da26b83d3f038189f95a39f405c07d7ae21060fa",
+    "firmware/app/mt_capture_link.h": "15fb2b6726fb0c6c72c2df54b3930e66c12e21e5",
+    "firmware/protocol/mt_command.h": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+    "firmware/protocol/mt_session.h": "646c6fd11f151d3d8a02fc49264f17b76d4204e4",
+    "firmware/protocol/mt_wire.h": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+    "firmware/transport/mt_tx.h": "c86ba738a76d86f9b97740a3e67ff1b55a12cd88",
+    "firmware/acquisition/acquisition.h": "3e10c7cd58d9e335e6e49db18123ca4278d7bdfa",
+    "tests/platform/test_adc_timer_dma.c": "95679f3b1e3db920a071540fc2a6708ad2afc9a3",
+    "tests/adc-control/test_adc_control.c": "5931a83155a2f729fe9d1e7be0149e3ba8bbba2b"
+  },
+  "sources_before": {
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/platform/adc_timer_dma.c": "971a43ab9d3a48e033e810c2d476828a9977d8639375d1fbffccb411f7822ba5",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/REMOTE_BASE.json": "8e9ed5529fb8c95e44092ba3955c86a31682203cdefbecbf1a0e0cbdbb9723bf",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/legacy/REMOTE_INPUTS.json": "9137aafb11cd753b1abe74658336c64520813a74664356f416c04dc012906851",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/legacy/tests/adc-control/test_adc_control.c": "dbf9dacf5287c3ef7a587602a3e46038a74da297a4da7f370c418ca659dae458",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/legacy/tests/platform/test_adc_timer_dma.c": "38a0d038f85bc659f2663322b00e91c71c568bb3cc9952e3c57691b983c173b9",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/run.py": "d24ebf7a24e46e37c55c00ba1d9c97f7acd0293d00543f085a32929f106d8474",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/test_admission.c": "8eeeb676d26d9c247600db6280f94c538462061d3bbe3b54267918b10b9db90c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_control.c": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_control.h": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+  },
+  "commands": [
+    {
+      "argv": [
+        "cc",
+        "--version"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c11",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-g",
+        "-O2",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/platform",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/tests/platform/test_adc_timer_dma.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/platform/adc_timer_dma.c",
+        "-o",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/legacy-driver"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/legacy-driver"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c11",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-g",
+        "-O2",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/platform",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/tests/adc-control/test_adc_control.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/platform/adc_timer_dma.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/app/mt_adc_control.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/app/mt_control.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/app/mt_capture_link.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/protocol/mt_command.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/protocol/mt_session.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/protocol/mt_wire.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/transport/mt_tx.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/acquisition/acquisition.c",
+        "-o",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/legacy-controller"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/legacy-controller"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c11",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wconversion",
+        "-Wshadow",
+        "-g",
+        "-O2",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/platform",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/tests/adc-commit/test_admission.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/platform/adc_timer_dma.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/app/mt_adc_control.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/app/mt_control.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/app/mt_capture_link.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/protocol/mt_command.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/protocol/mt_session.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/protocol/mt_wire.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/transport/mt_tx.c",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/snapshot/firmware/acquisition/acquisition.c",
+        "-o",
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/admission"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "/workspace/shared/adc003-critic-negative/cleanup-before-leave/run/admission"
+      ],
+      "exit": -6
+    }
+  ],
+  "sanitize": false,
+  "legacy_only": false,
+  "hardware_claimed": false,
+  "primask_claimed": false,
+  "leak_sanitizer_claimed": false,
+  "status": "FAIL",
+  "runtime_environment": {
+    "ASAN_OPTIONS": null,
+    "UBSAN_OPTIONS": null
+  },
+  "executables": {
+    "legacy-driver": "73a7b5dae1e5d3c8ea41d5966d11fb1fa5456dc1a6110c17bc0ab77d6bd660ab",
+    "legacy-controller": "fc000e569a5c1f665a51d1847f8b73d80d961185c09de1cd7cf11140d680da3b"
+  },
+  "error": "RuntimeError('command failed (-6): /workspace/shared/adc003-critic-negative/cleanup-before-leave/run/admission')",
+  "sources_after": {
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/platform/adc_timer_dma.c": "971a43ab9d3a48e033e810c2d476828a9977d8639375d1fbffccb411f7822ba5",
+    "/workspace/shared/adc003-critic-negative/cleanup-before-leave/input/firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/REMOTE_BASE.json": "8e9ed5529fb8c95e44092ba3955c86a31682203cdefbecbf1a0e0cbdbb9723bf",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/legacy/REMOTE_INPUTS.json": "9137aafb11cd753b1abe74658336c64520813a74664356f416c04dc012906851",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/legacy/tests/adc-control/test_adc_control.c": "dbf9dacf5287c3ef7a587602a3e46038a74da297a4da7f370c418ca659dae458",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/legacy/tests/platform/test_adc_timer_dma.c": "38a0d038f85bc659f2663322b00e91c71c568bb3cc9952e3c57691b983c173b9",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/run.py": "d24ebf7a24e46e37c55c00ba1d9c97f7acd0293d00543f085a32929f106d8474",
+    "/workspace/shared/critic-a-adc-commit-review/supporting-snapshot/test_admission.c": "8eeeb676d26d9c247600db6280f94c538462061d3bbe3b54267918b10b9db90c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_control.c": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/app/mt_control.h": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+  },
+  "inputs_unchanged": true,
+  "finish_utc": "2026-10-10T16:57:14.258269+00:00"
+}

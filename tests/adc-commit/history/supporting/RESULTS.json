@@ -1,0 +1,94 @@
+{
+  "status": "NATIVE_TESTS_PASS_NOT_ACCEPTANCE",
+  "admission_cases": 65,
+  "production_sha256": {
+    "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
+    "firmware/platform/adc_timer_dma.c": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4",
+    "firmware/platform/adc_timer_dma.h": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d"
+  },
+  "runs": [
+    {
+      "name": "r2-strict",
+      "receipt": "/workspace/shared/adc-commit-test-runs/r2-strict/receipt.json",
+      "receipt_sha256": "2ef3e2fab9ba161e575a09129e461ff083afef7b29a9de9128946eefea67cc68",
+      "status": "PASS",
+      "commands": [
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/adc-commit-draft",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/r2-strict"
+      ],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "r2-sanitize",
+      "receipt": "/workspace/shared/adc-commit-test-runs/r2-sanitize/receipt.json",
+      "receipt_sha256": "4ea93b2235d95ec70b0e1fc27a5c9ec9fef58dcd551f6b0229bda3b1a3df8d4d",
+      "status": "PASS",
+      "commands": [
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/adc-commit-draft",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/r2-sanitize",
+        "--sanitize"
+      ],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "base-legacy-strict",
+      "receipt": "/workspace/shared/adc-commit-test-runs/base-legacy-strict/receipt.json",
+      "receipt_sha256": "3db04bd0b2fc245b683dc7b5ac4877ecf05f9da168267b846813ea1cb35c4270",
+      "status": "PASS",
+      "commands": [
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/base-legacy-strict",
+        "--legacy-only"
+      ],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "base-legacy-sanitize",
+      "receipt": "/workspace/shared/adc-commit-test-runs/base-legacy-sanitize/receipt.json",
+      "receipt_sha256": "ae1a9a3021899ca03537586be78f8c00ca211bdbe6b836c66bcef5af92309ba0",
+      "status": "PASS",
+      "commands": [
+        "/workspace/shared/adc-commit-tests/run.py",
+        "--base",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--candidate",
+        "/workspace/shared/usb-bridge-publication/base-checkout",
+        "--out",
+        "/workspace/shared/adc-commit-test-runs/base-legacy-sanitize",
+        "--legacy-only",
+        "--sanitize"
+      ],
+      "inputs_unchanged": true
+    }
+  ],
+  "negative_controls": {
+    "path": "/workspace/shared/adc-commit-test-runs/negative-controls-r1/summary.json",
+    "sha256": "829ea54111a734a12df501228311641988125939e9e5b9beacba86879443af0f",
+    "expected_failures_preserved": 3
+  },
+  "output_refusal": {
+    "path": "/workspace/shared/adc-commit-test-runs/output-refusal.json",
+    "sha256": "5a56856839508e54dfc723055c71bb6a9ca695794906b782251032ba51d474b6",
+    "cases": 4
+  },
+  "hardware_claimed": false,
+  "primask_proof_claimed": false,
+  "independent_review_claimed": false,
+  "lsan_claimed": false
+}
