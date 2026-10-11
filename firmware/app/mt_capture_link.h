@@ -10,7 +10,8 @@ typedef enum {
 } mt_link_result;
 typedef enum {
     MT_LINK_IDLE = 0, MT_LINK_BEGIN, MT_LINK_DATA, MT_LINK_END,
-    MT_LINK_END_QUEUED, MT_LINK_WAIT_RELEASE, MT_LINK_STOPPING, MT_LINK_FAILED
+    MT_LINK_END_QUEUED, MT_LINK_WAIT_RELEASE, MT_LINK_STOPPING, MT_LINK_FAILED,
+    MT_LINK_RELEASE_EXPIRED
 } mt_link_phase;
 
 /* One foreground owner. tx is external, initialized/negotiated by dispatcher.
@@ -49,6 +50,11 @@ mt_link_result mt_capture_link_arm(mt_capture_link *link, uint32_t config_id,
  * may be inferred from a failed/incomplete capture. */
 mt_link_result mt_capture_link_sample(mt_capture_link *link, uint16_t code,
                                       uint32_t sample_ms);
+/* Advance only the completed-END hold deadline. Expiry stops continuation but
+ * retains IDs/tombstone and prevents buffer reuse; TX remains serviceable.
+ * Acquisition-window read API readiness is not retained in the ERROR state.
+ * Return 1 only for the transition. The controller reports ERROR/reason 3. */
+int mt_capture_link_expire_release(mt_capture_link *link, uint32_t now_ms);
 /* At most one bulk enqueue and one <=64-byte backend write per call.
  * now_ms clock/gaps follow mt_tx_poll. Never busy-wait on TX_BLOCKED. */
 mt_link_result mt_capture_link_poll(mt_capture_link *link, uint32_t now_ms,

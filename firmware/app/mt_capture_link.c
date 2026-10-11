@@ -134,6 +134,15 @@ static mt_link_result queue_bulk(mt_capture_link *l, uint32_t now) {
     } else l->phase = MT_LINK_END_QUEUED;
     return MT_LINK_OK;
 }
+int mt_capture_link_expire_release(mt_capture_link *l, uint32_t now) {
+    if (!valid(l) || !l->session || l->session != l->tx->session ||
+        l->phase != MT_LINK_WAIT_RELEASE ||
+        (uint32_t)(now - l->release_since_ms) < UINT32_C(5000)) return 0;
+    (void)mt_acq_stop(&l->acquisition);
+    l->armed = 0;
+    l->phase = MT_LINK_RELEASE_EXPIRED;
+    return 1;
+}
 mt_link_result mt_capture_link_poll(mt_capture_link *l, uint32_t now,
                                     mt_tx_write_fn write, void *context) {
     mt_link_result queued;
@@ -142,9 +151,7 @@ mt_link_result mt_capture_link_poll(mt_capture_link *l, uint32_t now,
     if (!valid(l) || !write) return MT_LINK_ARGUMENT;
     if (l->phase == MT_LINK_FAILED) return MT_LINK_RECOVERY;
     if (!l->session || l->session != l->tx->session) return fail(l);
-    if (l->phase == MT_LINK_WAIT_RELEASE &&
-        (uint32_t)(now - l->release_since_ms) >= UINT32_C(5000))
-        return fail(l);
+    (void)mt_capture_link_expire_release(l, now);
     queued = queue_bulk(l, now);
     if (queued == MT_LINK_RECOVERY) return queued;
     r = mt_tx_poll(l->tx, now, write, context, &e);
@@ -212,19 +219,18 @@ mt_link_result mt_capture_link_release(mt_capture_link *l, uint32_t generation,
                                        uint32_t request, uint32_t now) {
     mt_wire_message ack;
     mt_tx_result r;
-    int current;
+    int current, expired;
     if (!valid(l) || request < 2u || request == UINT32_MAX)
         return MT_LINK_ARGUMENT;
     if (l->phase == MT_LINK_FAILED) return MT_LINK_RECOVERY;
     if (!l->session || l->session != l->tx->session) return fail(l);
     if (l->phase == MT_LINK_STOPPING) return MT_LINK_BUSY;
-    if (l->phase == MT_LINK_WAIT_RELEASE &&
-        (uint32_t)(now - l->release_since_ms) >= UINT32_C(5000))
-        return fail(l);
+    (void)mt_capture_link_expire_release(l, now);
     if (!l->have_tombstone || generation != l->tomb_generation ||
         window != l->tomb_window || crc != l->tomb_crc)
         return MT_LINK_BAD_RELEASE;
-    current = l->phase == MT_LINK_WAIT_RELEASE &&
+    expired = l->phase == MT_LINK_RELEASE_EXPIRED;
+    current = (l->phase == MT_LINK_WAIT_RELEASE || expired) &&
               generation == l->generation && window == l->active_window;
     /* A committed but not fully transmitted END is not releasable yet. */
     if (!current && window == l->active_window &&
@@ -234,6 +240,10 @@ mt_link_result mt_capture_link_release(mt_capture_link *l, uint32_t generation,
     r = mt_tx_enqueue(l->tx, &ack, now);
     if (r != MT_TX_OK) return fail(l);
     if (current) {
+        if (expired) {
+            l->active_window = 0;
+            return MT_LINK_OK;
+        }
         if (mt_acq_release(&l->acquisition, now) != MT_ACQ_OK) return fail(l);
         l->active_window = 0; l->phase = MT_LINK_IDLE;
         if (l->acquisition.config.mode == MT_ACQ_SINGLE) l->armed = 0;
