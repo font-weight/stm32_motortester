@@ -1,0 +1,63 @@
+{
+  "scope": "Bounded writer-admission check only; child deliberately terminated after output creation, no full test result claimed. Stable supported two-file-symlink chain, three distinct parents. Production and frozen package unchanged.",
+  "results": [
+    {
+      "subject": "adc003-r3",
+      "script_sha256": "5fb967b0d94bad1e522dd0f0951736d839921375e97040aa1a80e2d32392b362",
+      "argv": [
+        "/usr/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/critic-a-file-chain-review/adc003-r3/invocation/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/critic-a-file-chain-review/adc003-r3/intermediate/accepted-output"
+      ],
+      "symlink_chain": [
+        "/workspace/shared/critic-a-file-chain-review/adc003-r3/invocation/reproduce.py",
+        "/workspace/shared/critic-a-file-chain-review/adc003-r3/intermediate/reproduce.py",
+        "/workspace/shared/critic-a-adc003-package-review/checkout-r3/tests/adc-commit/reproduce.py"
+      ],
+      "direct_file_symlinks": true,
+      "intermediate_parent": "/workspace/shared/critic-a-file-chain-review/adc003-r3/intermediate",
+      "output_created": true,
+      "exit_code": -15,
+      "stopped_by_reviewer_after_admission": true,
+      "files_created": 0,
+      "script_unchanged": true,
+      "preflight_only": null
+    },
+    {
+      "subject": "tx002-r2",
+      "script_sha256": "035956d07c9231420919ae39d7ab61347742a4aea1ca95caac4a219d4b5e826d",
+      "argv": [
+        "/usr/bin/python3",
+        "-I",
+        "-B",
+        "/workspace/shared/critic-a-file-chain-review/tx002-r2/invocation/reproduce.py",
+        "--toolchain",
+        "/workspace/shared/arm-resource-evidence/toolchain/root/usr",
+        "--out",
+        "/workspace/shared/critic-a-file-chain-review/tx002-r2/intermediate/accepted-output"
+      ],
+      "symlink_chain": [
+        "/workspace/shared/critic-a-file-chain-review/tx002-r2/invocation/reproduce.py",
+        "/workspace/shared/critic-a-file-chain-review/tx002-r2/intermediate/reproduce.py",
+        "/workspace/shared/critic-a-tx002-package-review/checkout/tests/tx-stop-stack/reproduce.py"
+      ],
+      "direct_file_symlinks": true,
+      "intermediate_parent": "/workspace/shared/critic-a-file-chain-review/tx002-r2/intermediate",
+      "output_created": true,
+      "exit_code": -15,
+      "stopped_by_reviewer_after_admission": true,
+      "files_created": 80,
+      "script_unchanged": true,
+      "preflight_only": {
+        "returncode": 0,
+        "stdout": "PASS: read-only complete package/toolchain preflight; no output created\n",
+        "stderr": ""
+      }
+    }
+  ]
+}

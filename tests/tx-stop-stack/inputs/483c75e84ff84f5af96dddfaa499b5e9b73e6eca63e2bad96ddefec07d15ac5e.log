@@ -1,0 +1,39 @@
++ set -eu
++ dirname /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/tests/app/independent/run-sanitized.sh
++ cd /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/tests/app/independent
++ SOURCE=/workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate
++ EXTRA=
++ grep -q dropped_windows /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/firmware/app/mt_capture_link.h
++ EXTRA=-DTEST_HAS_DROPPED
++ cc -std=c11 -Wall -Wextra -Werror -Wconversion -Wshadow -Wpedantic -g -O1 -fno-omit-frame-pointer -fsanitize=address,undefined -DTEST_HAS_DROPPED -fPIC -shared -I/workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate adapter.c /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/firmware/app/mt_capture_link.c /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/firmware/acquisition/acquisition.c /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/firmware/transport/mt_tx.c /workspace/shared/tx-stop-stack-tests/evidence/pinned-app-control-r1/snapshots/pr30-candidate/firmware/protocol/mt_wire.c -o test_link_sanitized.so
++ cc -print-file-name=libasan.so
++ ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 LD_PRELOAD=/usr/lib/gcc/x86_64-linux-gnu/14/libasan.so TEST_LIBRARY=./test_link_sanitized.so python3 test_link.py
+test_twenty_continuous_windows_one_session (__main__.Nominal.test_twenty_continuous_windows_one_session) ... ok
+test_twenty_four_full_windows (__main__.Nominal.test_twenty_four_full_windows) ... ok
+test_clock_wrap_timeout (__main__.Recovery.test_clock_wrap_timeout) ... ok
+test_full_bulk_retries_immutable (__main__.Recovery.test_full_bulk_retries_immutable) ... ok
+test_invalid_backend_return_fails_closed (__main__.Recovery.test_invalid_backend_return_fails_closed) ... ok
+test_io_error_fails_closed (__main__.Recovery.test_io_error_fails_closed) ... ok
+test_sample_fault_fails_closed (__main__.Recovery.test_sample_fault_fails_closed) ... ok
+test_sequence_saturation (__main__.Recovery.test_sequence_saturation) ... ok
+test_stall_fails_closed (__main__.Recovery.test_stall_fails_closed) ... ok
+test_window_counter_saturation (__main__.Recovery.test_window_counter_saturation) ... ok
+test_bad_release_no_mutation_and_rearm (__main__.Release.test_bad_release_no_mutation_and_rearm) ... ok
+test_late_release_cannot_bypass_timeout (__main__.Release.test_late_release_cannot_bypass_timeout) ... ok
+test_release_full_reply_fails_closed (__main__.Release.test_release_full_reply_fails_closed) ... ok
+test_release_timeout_boundary (__main__.Release.test_release_timeout_boundary) ... ok
+test_new_hello_invalidates_old_link_state (__main__.Sessions.test_new_hello_invalidates_old_link_state) ... ok
+test_old_end_with_reused_ids_is_ignored (__main__.Sessions.test_old_end_with_reused_ids_is_ignored) ... ok
+test_old_stop_ack_does_not_finish_new_stop (__main__.Sessions.test_old_stop_ack_does_not_finish_new_stop) ... ok
+test_cancelled_window_status_counter (__main__.Stops.test_cancelled_window_status_counter) ... ok
+test_dropped_counter_accumulates_only_aborted_windows (__main__.Stops.test_dropped_counter_accumulates_only_aborted_windows) ... ok
+test_dropped_counter_saturation_fails_closed (__main__.Stops.test_dropped_counter_saturation_fails_closed) ... ok
+test_stop_boundaries (__main__.Stops.test_stop_boundaries) ... ok
+test_stop_reserve_preserves_all_earlier_replies (__main__.Stops.test_stop_reserve_preserves_all_earlier_replies) ... ok
+test_tombstone_release_after_committed_stop (__main__.Stops.test_tombstone_release_after_committed_stop) ... ok
+test_wrong_generation_stop_no_mutation (__main__.Stops.test_wrong_generation_stop_no_mutation) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.737s
+
+OK

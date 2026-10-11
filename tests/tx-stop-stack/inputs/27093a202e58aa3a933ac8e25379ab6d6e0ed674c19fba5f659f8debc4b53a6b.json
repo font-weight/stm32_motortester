@@ -1,0 +1,98 @@
+{
+  "task": "TX002",
+  "issue": "https://github.com/font-weight/stm32_motortester/issues/70",
+  "production_candidate_sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+  "supporting_status": "PASS",
+  "acceptance_verdict_claimed": false,
+  "hardware_claimed": false,
+  "target_stack_claimed": false,
+  "final_evidence": [
+    {
+      "relative_path": "evidence/strict-r4/receipt.json",
+      "sha256": "1cb9cfa465e82b8f812592c0e9a69ab8460bf72fc12e5541212de27dd4af0f27",
+      "status": "PASS",
+      "tests": {
+        "original_suites_per_variant": 14,
+        "differential_suites": 11,
+        "public_api_scenarios": 11577,
+        "private_state_controls": 3,
+        "total_scenarios": 11580,
+        "operations": 480361
+      }
+    },
+    {
+      "relative_path": "evidence/sanitize-r4/receipt.json",
+      "sha256": "87bdb5e74e4f4f53f1acd11f9f022ff1ad91904d63b285cefaca2d24aaff97d8",
+      "status": "PASS",
+      "tests": {
+        "original_suites_per_variant": 14,
+        "differential_suites": 11,
+        "public_api_scenarios": 11577,
+        "private_state_controls": 3,
+        "total_scenarios": 11580,
+        "operations": 480361
+      }
+    },
+    {
+      "relative_path": "evidence/mutations-r3/receipt.json",
+      "sha256": "8d94390ed46891a885350ab4236d9e54588a8b7d4e07d69fcdc6856093ce3d76",
+      "status": "PASS",
+      "tests": {
+        "controls": 10
+      }
+    },
+    {
+      "relative_path": "evidence/runner-r3/receipt.json",
+      "sha256": "6f7f0118887c6dbf74e3588412afdb925f834e961e270e9115d74809bd6a0b55",
+      "status": "PASS",
+      "tests": {
+        "controls": 19
+      }
+    },
+    {
+      "relative_path": "evidence/runtime-strict-r2/receipt.json",
+      "sha256": "dea4eabc404b65c376b7c45580d5846100fe2dd1132f38930a1f7718563b0a6d",
+      "status": "PASS",
+      "tests": {
+        "runtime_scenarios": 28
+      }
+    },
+    {
+      "relative_path": "evidence/runtime-sanitize-r2/receipt.json",
+      "sha256": "b9f5637bc17b3b58bf30f3a73b72c7d13f2f14c12a8a7b8925ae8c34975a30f4",
+      "status": "PASS",
+      "tests": {
+        "runtime_scenarios": 28
+      }
+    },
+    {
+      "relative_path": "evidence/pinned-app-control-r1/receipt.json",
+      "sha256": "ec5f28af047bcddaa2b7c29b12cdb8b7700df0b5da9dbf2368f22d7e05123a7e",
+      "status": "PASS",
+      "tests": {
+        "script_or_reproducer_groups": 18,
+        "variants": [
+          "original_tx",
+          "candidate_tx002"
+        ],
+        "pr30_author_windows_per_mode": 20,
+        "pr30_independent_groups_per_mode": 24,
+        "pr30_independent_windows_per_mode": 44,
+        "pr35_author_windows_per_mode": 20,
+        "pr35_independent_scenarios_per_mode": 39,
+        "pr35_independent_checks_per_mode": 576994,
+        "pr35_wire_frames": 344,
+        "pr35_wire_windows": 20,
+        "pr35_wire_samples": 40960,
+        "targeted_reproducers_per_mode": 2,
+        "pr35_old_new_wire_equal": true
+      }
+    }
+  ],
+  "utc": "2026-10-10T19:20:10.283109+00:00",
+  "pinned_regression_provenance": {
+    "relative_path": "pinned-regressions/provenance.json",
+    "sha256": "098ff9805ade5cf38560af4303284ffff38cd0e3ac977057fd64b7c36fcd0623",
+    "restored_blobs": 47
+  }
+}

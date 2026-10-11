@@ -1,0 +1,49 @@
++ /usr/bin/x86_64-linux-gnu-gcc-14 --version
+x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ /usr/bin/x86_64-linux-gnu-gcc-14 -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/old/firmware/protocol/mt_wire.c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/old/firmware/transport/mt_tx.c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/old/tests/transport/test_mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/original-old
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/original-old
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552
++ /usr/bin/x86_64-linux-gnu-gcc-14 -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/new/firmware/protocol/mt_wire.c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/new/firmware/transport/mt_tx.c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/new/tests/transport/test_mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/original-new
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/original-new
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552
++ /usr/bin/x86_64-linux-gnu-gcc-14 -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer -Dmt_tx_init=old_tx_init -Dmt_tx_hello=old_tx_hello -Dmt_tx_enqueue=old_tx_enqueue -Dmt_tx_stop=old_tx_stop -Dmt_tx_poll=old_tx_poll -Dmt_tx_terminal_committed=old_tx_terminal_committed -Dmt_tx_window_status=old_tx_window_status -c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/old/firmware/transport/mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/old.o
++ /usr/bin/x86_64-linux-gnu-gcc-14 -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer -Dmt_tx_init=new_tx_init -Dmt_tx_hello=new_tx_hello -Dmt_tx_enqueue=new_tx_enqueue -Dmt_tx_stop=new_tx_stop -Dmt_tx_poll=new_tx_poll -Dmt_tx_terminal_committed=new_tx_terminal_committed -Dmt_tx_window_status=new_tx_window_status -c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/new/firmware/transport/mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/new.o
++ /usr/bin/x86_64-linux-gnu-gcc-14 -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer -I/workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/new/firmware/transport /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/new/firmware/protocol/mt_wire.c /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/old.o /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/new.o -o /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential --list
+retained_abort_reason_and_reply_order
+protocol_defined_abort_reasons
+partial_head_compaction
+zero_acceptance_then_stop
+committed_terminal_no_duplicate
+argument_rejections_atomic
+admission_full_and_reserved_capacity
+wrap_timeout_fault_and_recovery
+public_queue_randomized
+private_state_defensive_controls
+old_partial_session_then_stop
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential retained_abort_reason_and_reply_order
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential protocol_defined_abort_reasons
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential partial_head_compaction
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential zero_acceptance_then_stop
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential committed_terminal_no_duplicate
+{"case":"committed_terminal_no_duplicate","scenarios":128,"operations":1110,"pass":true}
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential argument_rejections_atomic
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential admission_full_and_reserved_capacity
+{"case":"admission_full_and_reserved_capacity","scenarios":1,"operations":25,"pass":true}
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential wrap_timeout_fault_and_recovery
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential public_queue_randomized
+differential: /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/snapshot/harness/differential.c:67: compare: Assertion `a->slots[i].reply==b->slots[i].reply' failed.
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential private_state_defensive_controls
+{"case":"private_state_defensive_controls","scenarios":3,"operations":12,"pass":true}
++ /workspace/shared/tx-stop-stack-tests/evidence/mutations-r3/retain_as_reply/differential old_partial_session_then_stop
+{"case":"old_partial_session_then_stop","scenarios":93,"operations":1269,"pass":true}

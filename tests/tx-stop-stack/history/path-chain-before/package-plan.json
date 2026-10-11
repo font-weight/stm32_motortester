@@ -1,0 +1,22 @@
+{
+  "status": "LOCAL_ONLY_PENDING_ROOT_AND_CRITIC_A",
+  "repository": "font-weight/stm32_motortester",
+  "parent_commit": "adabc2044a3a376056d6756e67bede05c0726440",
+  "parent_tree": "f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca",
+  "candidate_tree": "2a697a3eaf7558a46c82f413eed664f3b5564a1e",
+  "local_snapshot_commit": "9c7dcdaccb18c982aaac4edf82d3830c8b27da2d",
+  "local_commit_not_published": true,
+  "github_writes": 0,
+  "file_count": 246,
+  "added": 245,
+  "replaced": 1,
+  "deleted": 0,
+  "unchanged_parent_blobs": 1026,
+  "full_tree_blob_count": 1272,
+  "content_bytes": 4655471,
+  "all_file_sha256": "a9dd5bc5f6838ebb24e7afc4575b1e6ec8237397290f594aa5ffc8ab6188afac",
+  "package_manifest_sha256": "1cd8dd0bcb3787c7408678905cc7aa80450f411fbf868e5d538d73755cd31c91",
+  "production_sha256": {
+    "firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+  }
+}

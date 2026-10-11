@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "files": 47,
+  "trees": {
+    "pr30": "bd13f4768a93d0f3da0546846868a40ba79ae66d",
+    "pr35": "8b6bc0e66e2c06ef17c632dd9bd28ec21748e17f"
+  },
+  "source_provenance_sha256": "098ff9805ade5cf38560af4303284ffff38cd0e3ac977057fd64b7c36fcd0623",
+  "scope": "Personally fetched immutable full trees and recomputed restored content Git hashes; no full-body download claim"
+}

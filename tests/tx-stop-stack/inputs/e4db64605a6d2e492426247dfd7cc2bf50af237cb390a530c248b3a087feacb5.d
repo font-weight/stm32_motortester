@@ -1,0 +1,20 @@
+/workspace/shared/arm-closure-memory-root-r1/4-mt_control_rx.o: \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/mt_control_rx.c \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/mt_control_rx.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/mt_control.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/mt_capture_link.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../acquisition/acquisition.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdbool.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/stdint.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/machine/_default_types.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/sys/features.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/_newlib_version.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/sys/_intsup.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/sys/_stdint.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../transport/mt_tx.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../transport/../protocol/mt_wire.h \
+ /workspace/shared/arm-resource-evidence/toolchain/root/usr/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../protocol/mt_session.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../protocol/mt_command.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../protocol/mt_wire.h \
+ /workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/app/../protocol/mt_stream.h

@@ -1,0 +1,4 @@
+/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/string.h:31:9:memcpy	8	static
+/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/string.h:32:9:memmove	8	static
+/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/string.h:33:9:memset	0	static
+/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib/string.h:30:7:memcmp	12	static

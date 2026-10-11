@@ -1,0 +1,2 @@
+/workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/platform/mt_irq_guard.c:5:10:mt_irq_guard_enter	0	static
+/workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/platform/mt_irq_guard.c:13:6:mt_irq_guard_leave	0	static

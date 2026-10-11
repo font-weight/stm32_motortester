@@ -1,0 +1,4 @@
+/workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/transport/mt_usb_descriptors.c:38:5:mt_usb_descriptors_init	56	static
+/workspace/shared/arm-closure-memory-root-r1/snapshot/vendor/tinyusb/src/device/usbd.h:158:17:tud_descriptor_device_cb	0	static
+/workspace/shared/arm-closure-memory-root-r1/snapshot/vendor/tinyusb/src/device/usbd.h:162:17:tud_descriptor_configuration_cb	0	static
+/workspace/shared/arm-closure-memory-root-r1/snapshot/vendor/tinyusb/src/device/usbd.h:166:17:tud_descriptor_string_cb	0	static

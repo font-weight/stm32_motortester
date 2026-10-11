@@ -1,0 +1,290 @@
+{
+  "status": "FAIL",
+  "start_utc": "2026-10-10T19:07:58.329944+00:00",
+  "invocation": [
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+    "--base",
+    "/workspace/shared/usb-bridge-publication/base-checkout",
+    "--candidate",
+    "/workspace/shared/tx-stop-stack-draft",
+    "--out",
+    "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1"
+  ],
+  "input_before": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/differential.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/differential.c",
+      "sha256": "d9b6f04bd8ac60366b05f54cd376e03eba34b6e034248b0e165f1327e6f2459f"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+      "sha256": "e82d1164fe298ac976fbbec46eaa6acf3b64e07211d82c683b2c74f53b22c5fb"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/provenance.json": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/provenance.json",
+      "sha256": "77bbc18ba882ca381943cbe446a6eb824abbcb9fdb11adfcafe4ac1cac85098b"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/run.sh": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/run.sh",
+      "sha256": "bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c",
+      "sha256": "47dc026666f882c305148d6498dae537483a71c43320e143c8f66ea3cbdbb5bf"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "expected_production_sha256": {
+    "old/firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+    "new/firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/cc",
+        "--version"
+      ],
+      "exit": 0,
+      "output": "cc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/firmware/transport/mt_tx.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/tests/transport/test_mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-old"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-old"
+      ],
+      "exit": 0,
+      "output": "mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/transport/mt_tx.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/tests/transport/test_mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-new"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-new"
+      ],
+      "exit": 0,
+      "output": "mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "-Dmt_tx_init=old_tx_init",
+        "-Dmt_tx_hello=old_tx_hello",
+        "-Dmt_tx_enqueue=old_tx_enqueue",
+        "-Dmt_tx_stop=old_tx_stop",
+        "-Dmt_tx_poll=old_tx_poll",
+        "-Dmt_tx_terminal_committed=old_tx_terminal_committed",
+        "-Dmt_tx_window_status=old_tx_window_status",
+        "-c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/old.o"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "-Dmt_tx_init=new_tx_init",
+        "-Dmt_tx_hello=new_tx_hello",
+        "-Dmt_tx_enqueue=new_tx_enqueue",
+        "-Dmt_tx_stop=new_tx_stop",
+        "-Dmt_tx_poll=new_tx_poll",
+        "-Dmt_tx_terminal_committed=new_tx_terminal_committed",
+        "-Dmt_tx_window_status=new_tx_window_status",
+        "-c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/new.o"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-fno-lto",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic-errors",
+        "-Wconversion",
+        "-Wshadow",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/transport",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/old.o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/new.o",
+        "-o",
+        "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/differential"
+      ],
+      "exit": 1,
+      "output": "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c: In function 'stop_raw':\n/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:115:5: error: this 'if' clause does not guard... [-Werror=misleading-indentation]\n  115 |     if(a)memcpy(&aa,a,sizeof aa);memcpy(&kk,k,sizeof kk);memcpy(&ss,s,sizeof ss);\n      |     ^~\n/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:115:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'\n  115 |     if(a)memcpy(&aa,a,sizeof aa);memcpy(&kk,k,sizeof kk);memcpy(&ss,s,sizeof ss);\n      |                                  ^~~~~~\n/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:120:5: error: this 'if' clause does not guard... [-Werror=misleading-indentation]\n  120 |     if(a)assert(memcmp(&aa,a,sizeof aa)==0);assert(memcmp(&kk,k,sizeof kk)==0);assert(memcmp(&ss,s,sizeof ss)==0);\n      |     ^~\nIn file included from /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:5:\n/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:120:45: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'\n  120 |     if(a)assert(memcmp(&aa,a,sizeof aa)==0);assert(memcmp(&kk,k,sizeof kk)==0);assert(memcmp(&ss,s,sizeof ss)==0);\n      |                                             ^~~~~~\ncc1: all warnings being treated as errors\n"
+    }
+  ],
+  "results": [
+    {
+      "case": "original_14_old",
+      "pass": true,
+      "output": "mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552\n"
+    },
+    {
+      "case": "original_14_new",
+      "pass": true,
+      "output": "mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552\n"
+    }
+  ],
+  "sanitize": false,
+  "mutant": null,
+  "scope": "Native synthetic tests. No MCU, IRQ, timing, hardware USB, Windows or stack-proof claim.",
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "HOME": "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1",
+    "TMPDIR": "/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/temp",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "error": "RuntimeError('command failed (1): /usr/bin/cc')",
+  "input_after": {
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/differential.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/differential.c",
+      "sha256": "d9b6f04bd8ac60366b05f54cd376e03eba34b6e034248b0e165f1327e6f2459f"
+    },
+    "/workspace/shared/tx-stop-stack-tests/harness/run.py": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/harness/run.py",
+      "sha256": "e82d1164fe298ac976fbbec46eaa6acf3b64e07211d82c683b2c74f53b22c5fb"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/provenance.json": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/provenance.json",
+      "sha256": "77bbc18ba882ca381943cbe446a6eb824abbcb9fdb11adfcafe4ac1cac85098b"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/run.sh": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/run.sh",
+      "sha256": "bb04af02d90f65c4d063aa233f746a383a1bab49a8ae657910afba7bb6bcede7"
+    },
+    "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-tests/original/test_mt_tx.c",
+      "sha256": "47dc026666f882c305148d6498dae537483a71c43320e143c8f66ea3cbdbb5bf"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/usb-bridge-publication/base-checkout/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "inputs_unchanged": true,
+  "finish_utc": "2026-10-10T19:07:59.873057+00:00"
+}

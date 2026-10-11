@@ -1,0 +1,82 @@
++ set -uo pipefail
++++ dirname /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent/run.sh
+++ cd /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent
+++ pwd
++ ROOT=/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent
+++ realpath /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old
++ SOURCE=/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old
+++ realpath -m /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent
++ OUT=/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent
++ mkdir -p /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent
++ cd /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent
++ cp /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent/test_control_independent.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent/verify_transcript.py /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent/
++ cp /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent/run.sh /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent/runner-used.sh
++ SOURCES=("$OUT/test_control_independent.c" "$SOURCE/firmware/app/mt_control.c" "$SOURCE/firmware/app/mt_capture_link.c" "$SOURCE/firmware/acquisition/acquisition.c" "$SOURCE/firmware/protocol/mt_wire.c" "$SOURCE/firmware/protocol/mt_command.c" "$SOURCE/firmware/protocol/mt_session.c" "$SOURCE/firmware/transport/mt_tx.c")
++ COMMON=(-std=c11 -O1 -g -Wall -Wextra -Werror -Wpedantic -I"$SOURCE")
++ cc --version
++ sha256sum /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent/test_control_independent.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c
++ cc -std=c11 -O1 -g -Wall -Wextra -Werror -Wpedantic -I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent/test_control_independent.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c -o native
++ ./native
++ NATIVE=0
++ cc -std=c11 -O1 -g -Wall -Wextra -Werror -Wpedantic -I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old -fsanitize=address,undefined -fno-omit-frame-pointer /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent/test_control_independent.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c /workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c -o sanitized
++ ASAN_OPTIONS=detect_leaks=0:halt_on_error=1
++ UBSAN_OPTIONS=halt_on_error=1
++ ./sanitized
++ SAN=0
++ python3 /workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent/verify_transcript.py twenty-windows.cobs
++ WIRE=0
++ printf 'native_exit=%s\nsanitizer_exit=%s\nindependent_wire_exit=%s\n' 0 0 0
++ tee exit-status.txt
+native_exit=0
+sanitizer_exit=0
+independent_wire_exit=0
++ cat native.log
+old RELEASE during window2 transfer: starts before=2 after=2; phase=1; hardware=0
+blocked old RELEASE phase1: starts before=2 after=2; hardware=0
+blocked old RELEASE phase2: starts before=2 after=2; hardware=0
+blocked old RELEASE phase3: starts before=2 after=2; hardware=0
+blocked old RELEASE phase4: starts before=2 after=2; hardware=0
+TRACE GET_STATUS with two older pending transitions: 129(req1,seq1) 131(req2,seq2) 132(req3,seq3) 134(req0,seq4,state1) 134(req0,seq5,state2) 134(req0,seq6,state3) 134(req4,seq7,state3)
+TRACE RELEASE immediately after END: 129(req1,seq1) 131(req2,seq2) 132(req3,seq3) 134(req0,seq4,state2) 134(req0,seq5,state3) 144(req0,seq6) 134(req0,seq7,state4) 145(req0,seq8) 145(req0,seq9) 145(req0,seq10) 145(req0,seq11) 145(req0,seq12) 145(req0,seq13) 145(req0,seq14) 145(req0,seq15) 145(req0,seq16) 146(req0,seq17) 134(req0,seq18,state6) 135(req4,seq19) 134(req0,seq20,state2)
+PASS caps
+PASS caps_cartesian
+PASS config_echo_and_identity
+PASS auto_timeout_and_rearm
+PASS rejected_config
+PASS invalid_payload
+PASS rejected_arm
+PASS stale_stop
+PASS stale_stop_with_pending_states
+PASS stop_order
+PASS initial_stop
+PASS duplicates
+PASS start_failure
+PASS stop_failure
+PASS profile_fail_hello
+PASS profile_fail_arm
+PASS hello_stop_failure
+PASS release_start_failure
+PASS release_profile_failure
+PASS capture_stop_failure
+PASS old_partial_hello
+PASS release_semantics
+PASS old_release_during_next_transfer
+PASS old_release_transfer_phases_backpressure
+PASS single_release
+PASS status_transitions
+PASS status_query_order
+PASS release_pending_status_order
+PASS status_queue_bound
+PASS status_reply_capacity_recovery
+PASS stop_bypasses_pending_status_capacity
+PASS old_partial_stop_then_new_arm
+PASS reply_admission
+PASS arm_reply_admission
+20-window transcript: 98281 bytes; 344 messages; starts=21 stops=21
+PASS twenty_windows
+PASS wait_release_timeout
+PASS tx_failure
+PASS invalid_hello_no_hardware
+PASS stop_status_no_stale_after_ack
+RESULT 39 passed; 0 failed; 576994 checks
++ exit 0

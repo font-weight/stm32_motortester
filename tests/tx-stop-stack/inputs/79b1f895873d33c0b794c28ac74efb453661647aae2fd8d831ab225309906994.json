@@ -1,0 +1,22 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "content": "{\"sha\":\"adabc2044a3a376056d6756e67bede05c0726440\",\"node_id\":\"C_kwDOVDoRYdoAKGFkYWJjMjA0NGEzYTM3NjA1NmQ2NzU2ZTY3YmVkZTA1YzA3MjY0NDA\",\"url\":\"https://api.github.com/repos/font-weight/stm32_motortester/git/commits/adabc2044a3a376056d6756e67bede05c0726440\",\"html_url\":\"https://github.com/font-weight/stm32_motortester/commit/adabc2044a3a376056d6756e67bede05c0726440\",\"author\":{\"name\":\"font-weight\",\"email\":\"62782801+font-weight@users.noreply.github.com\",\"date\":\"2026-10-10T19:11:16Z\"},\"committer\":{\"name\":\"font-weight\",\"email\":\"62782801+font-weight@users.noreply.github.com\",\"date\":\"2026-10-10T19:11:16Z\"},\"tree\":{\"sha\":\"f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca\",\"url\":\"https://api.github.com/repos/font-weight/stm32_motortester/git/trees/f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca\"},\"message\":\"USB005: guarded epoch bridge with native and ARM object evidence\",\"parents\":[{\"sha\":\"7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5\",\"url\":\"https://api.github.com/repos/font-weight/stm32_motortester/git/commits/7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5\",\"html_url\":\"https://github.com/font-weight/stm32_motortester/commit/7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5\"}],\"verification\":{\"verified\":false,\"reason\":\"unsigned\",\"signature\":null,\"payload\":null,\"verified_at\":null}}",
+    "title": "adabc2044a3a376056d6756e67bede05c0726440",
+    "modified_date": null,
+    "url": "https://api.github.com/repos/font-weight/stm32_motortester/git/commits/adabc2044a3a376056d6756e67bede05c0726440",
+    "display_url": "https://api.github.com/repos/font-weight/stm32_motortester/git/commits/adabc2044a3a376056d6756e67bede05c0726440",
+    "display_title": "adabc2044a3a376056d6756e67bede05c0726440",
+    "structuredContent": {
+      "title": "adabc2044a3a376056d6756e67bede05c0726440",
+      "content": "{\"sha\":\"adabc2044a3a376056d6756e67bede05c0726440\",\"node_id\":\"C_kwDOVDoRYdoAKGFkYWJjMjA0NGEzYTM3NjA1NmQ2NzU2ZTY3YmVkZTA1YzA3MjY0NDA\",\"url\":\"https://api.github.com/repos/font-weight/stm32_motortester/git/commits/adabc2044a3a376056d6756e67bede05c0726440\",\"html_url\":\"https://github.com/font-weight/stm32_motortester/commit/adabc2044a3a376056d6756e67bede05c0726440\",\"author\":{\"name\":\"font-weight\",\"email\":\"62782801+font-weight@users.noreply.github.com\",\"date\":\"2026-10-10T19:11:16Z\"},\"committer\":{\"name\":\"font-weight\",\"email\":\"62782801+font-weight@users.noreply.github.com\",\"date\":\"2026-10-10T19:11:16Z\"},\"tree\":{\"sha\":\"f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca\",\"url\":\"https://api.github.com/repos/font-weight/stm32_motortester/git/trees/f6750c8ccbd6dd8d296187fbc45cc3c72b03b0ca\"},\"message\":\"USB005: guarded epoch bridge with native and ARM object evidence\",\"parents\":[{\"sha\":\"7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5\",\"url\":\"https://api.github.com/repos/font-weight/stm32_motortester/git/commits/7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5\",\"html_url\":\"https://github.com/font-weight/stm32_motortester/commit/7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5\"}],\"verification\":{\"verified\":false,\"reason\":\"unsigned\",\"signature\":null,\"payload\":null,\"verified_at\":null}}",
+      "display_url": "https://api.github.com/repos/font-weight/stm32_motortester/git/commits/adabc2044a3a376056d6756e67bede05c0726440"
+    }
+  },
+  "isError": false
+}

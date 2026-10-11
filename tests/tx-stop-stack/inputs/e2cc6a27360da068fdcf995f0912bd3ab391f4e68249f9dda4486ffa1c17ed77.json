@@ -1,0 +1,1531 @@
+{
+  "status": "PASS",
+  "invocation": [
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/harness/pinned_regressions.py",
+    "--pinned",
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions",
+    "--candidate",
+    "/workspace/shared/tx-stop-stack-draft",
+    "--out",
+    "/workspace/shared/tx002-critic-pinned-regressions"
+  ],
+  "start_utc": "2026-10-10T19:20:03.943513+00:00",
+  "commits": {
+    "pr30": "a451e5a491439fcfed31f298a589643cf7050ec9",
+    "pr35": "0ddea1e5992caa6231203838c3956e19675867a8"
+  },
+  "candidate_tx_sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+  "inputs_before": {
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/harness/pinned_regressions.py": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/harness/pinned_regressions.py",
+      "sha256": "080d8e4d4e2b3118a8600d9e993d78daa9f6842655faa4d1bcb60fea0159d67a"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.c",
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.c",
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.h",
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.c",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.c",
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.c",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.h",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/README.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/README.md",
+      "sha256": "5ebcfa37505308cc60dfc15919f4614f37a6c7b4d91061c9292c37bd99425352"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/REPORT.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/REPORT.md",
+      "sha256": "6da0111c2ab2e843cafaffbaf839d1a86ae5e76f73b5219de88d52e52d18656c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/adapter.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/adapter.c",
+      "sha256": "7c2565180d7dd8d1f1bf67e40306a1bc4717729002be1649107e80cc64df7d0d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run-sanitized.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run-sanitized.sh",
+      "sha256": "4f18df34bf253e2cc4a2f9db1bf9c2fc4e322b0a3f118ff8c4dcb065ab77c53c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run.sh",
+      "sha256": "776c8622295a7aec8267e81c2133da95c7ccf1f03220f3d0fa9f35cbb893c3e5"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/test_link.py": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/test_link.py",
+      "sha256": "4f77fbc7ac324862cacc548de74c5b7a3808dc05f062771402cbdabf57ca3575"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/run.sh",
+      "sha256": "b29419c837d27c71e4a9bec39ad261e36dbf56e8c2cee64dd3c7b3a2486f0c6a"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/test_capture_link.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/test_capture_link.c",
+      "sha256": "3a64b85e07f07881fe5418921fc7e3e9d87da5ddab795b8323f74955630eb169"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.c",
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.c",
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.h",
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.c",
+      "sha256": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.h",
+      "sha256": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.c",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.c",
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.c",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.h",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/REPRODUCTION.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/REPRODUCTION.md",
+      "sha256": "01c4389c47d02b7e9ac67f1229747b388d02fc949b6edf431a762117825ff7da"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/stale_stop_capacity_repro.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/stale_stop_capacity_repro.c",
+      "sha256": "91597c9c5a35270b2a42b008a7462d15a0653e7376fb902d3999f07028468567"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/tombstone_hardware_repro.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/tombstone_hardware_repro.c",
+      "sha256": "9e7a451715ef7e58e1e05ea26fc5c610415d83ca7695214ea636e66c0fd5d178"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/README.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/README.md",
+      "sha256": "64c3ba635fc366898a8115324008d3779d8e4d36bbba8f00312add8d0ba2835b"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/run.sh",
+      "sha256": "5d304a3c80f2e14954ddb56b9ed270b239a8ed00526d27c286a1c7358bd08eab"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/test_control_independent.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/test_control_independent.c",
+      "sha256": "5217ea87a2d5fef6f336420d7ae440ad352b737a708cdb0b3271222e1f0912ea"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/verify_transcript.py": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/verify_transcript.py",
+      "sha256": "3a56b0fce5f4ebb5cf047d2044f998743359fac3ee4286358d594337f5489a3c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/run.sh",
+      "sha256": "4fbfd2340e8a9ca10155b46eaaa931ad49b0294274fa14de9284fd5eb7ad09f9"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/test_control.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/test_control.c",
+      "sha256": "b7b7fc6edf4bc1d0660617da5c0acc152774a9eedf2306a61c4a4335b5070698"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/provenance.json": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/provenance.json",
+      "sha256": "098ff9805ade5cf38560af4303284ffff38cd0e3ac977057fd64b7c36fcd0623"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "toolchain_before": {
+    "driver": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+    },
+    "python3": {
+      "resolved": "/usr/bin/python3.13",
+      "sha256": "889c603f0d17cb54060951bcf4c4f9b8c9ebd9e52b392c70209bbb9755d797d9"
+    },
+    "bash": {
+      "resolved": "/usr/bin/bash",
+      "sha256": "223fe8564b60636bc738b6178d3ba9a50ef7d791266b0efae6363bb716e4c47f"
+    },
+    "sh": {
+      "resolved": "/usr/bin/dash",
+      "sha256": "a6f559e00b69a4aa4d8cb607be18d9386c5aee55c509e2c075549dcf00e00fc7"
+    },
+    "cc1": {
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "sha256": "02675980109a4a5496cddf67d5286de57942759edc830deaa525e36f9a2a0291"
+    },
+    "as": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-as",
+      "sha256": "07dd8551ea0aa065975e4dddb8e1bb7dc308d12d54eca22c3858db79467c7cb9"
+    },
+    "ld": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "d2766988b6a1b1d1518cdc09242e726d1f24e151e16410ada3092b11ffd9081b"
+    },
+    "collect2": {
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2",
+      "sha256": "ea31a4cebd9df1b6428c463428d461ccecfe66c897936409d5b2cde0b3af9e27"
+    },
+    "libasan.so": {
+      "resolved": "/usr/lib/x86_64-linux-gnu/libasan.so.8.0.0",
+      "sha256": "f5c57422d80671ced6cffe350f92c8ab9bec23fda9b155658aac630d2bc2a240"
+    },
+    "libubsan.so": {
+      "resolved": "/usr/lib/x86_64-linux-gnu/libubsan.so.1.0.0",
+      "sha256": "c3912c88d4d1d3772d44c2a77fcda85ebf2790e6efc3602f9489a4e23f4899e2"
+    }
+  },
+  "toolchain_queries": [
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=cc1"
+      ],
+      "exit": 0,
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=as"
+      ],
+      "exit": 0,
+      "stdout": "as\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=ld"
+      ],
+      "exit": 0,
+      "stdout": "ld\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-prog-name=collect2"
+      ],
+      "exit": 0,
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-file-name=libasan.so"
+      ],
+      "exit": 0,
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libasan.so\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-print-file-name=libubsan.so"
+      ],
+      "exit": 0,
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libubsan.so\n",
+      "stderr": ""
+    }
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "HOME": "/workspace/shared/tx002-critic-pinned-regressions",
+    "TMPDIR": "/workspace/shared/tx002-critic-pinned-regressions/temp",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "commands": [
+    {
+      "name": "compiler-version",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "--version"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "compiler-version.log"
+    },
+    {
+      "name": "pr30-old-author",
+      "argv": [
+        "/bin/bash",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old/tests/app/run.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "OUT": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr30-old-author"
+      },
+      "exit": 0,
+      "log": "pr30-old-author.log"
+    },
+    {
+      "name": "pr30-old-independent-strict",
+      "argv": [
+        "/bin/sh",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old/tests/app/independent/run.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "SOURCE": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old"
+      },
+      "exit": 0,
+      "log": "pr30-old-independent-strict.log"
+    },
+    {
+      "name": "pr30-old-independent-sanitize",
+      "argv": [
+        "/bin/sh",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old/tests/app/independent/run-sanitized.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "SOURCE": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old"
+      },
+      "exit": 0,
+      "log": "pr30-old-independent-sanitize.log"
+    },
+    {
+      "name": "pr30-candidate-author",
+      "argv": [
+        "/bin/bash",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate/tests/app/run.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "OUT": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr30-candidate-author"
+      },
+      "exit": 0,
+      "log": "pr30-candidate-author.log"
+    },
+    {
+      "name": "pr30-candidate-independent-strict",
+      "argv": [
+        "/bin/sh",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate/tests/app/independent/run.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "SOURCE": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate"
+      },
+      "exit": 0,
+      "log": "pr30-candidate-independent-strict.log"
+    },
+    {
+      "name": "pr30-candidate-independent-sanitize",
+      "argv": [
+        "/bin/sh",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate/tests/app/independent/run-sanitized.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "SOURCE": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate"
+      },
+      "exit": 0,
+      "log": "pr30-candidate-independent-sanitize.log"
+    },
+    {
+      "name": "pr35-old-author",
+      "argv": [
+        "/bin/bash",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/run.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "OUT": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-author"
+      },
+      "exit": 0,
+      "log": "pr35-old-author.log"
+    },
+    {
+      "name": "pr35-old-independent",
+      "argv": [
+        "/bin/bash",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent/run.sh",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-independent"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-independent.log"
+    },
+    {
+      "name": "pr35-old-tombstone_hardware_repro-strict-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/critic-a/tombstone_hardware_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-tombstone_hardware_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-tombstone_hardware_repro-strict-build.log"
+    },
+    {
+      "name": "pr35-old-tombstone_hardware_repro-strict",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-tombstone_hardware_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-tombstone_hardware_repro-strict",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-tombstone_hardware_repro-strict.log"
+    },
+    {
+      "name": "pr35-old-tombstone_hardware_repro-sanitize-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/critic-a/tombstone_hardware_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-tombstone_hardware_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-tombstone_hardware_repro-sanitize-build.log"
+    },
+    {
+      "name": "pr35-old-tombstone_hardware_repro-sanitize",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-tombstone_hardware_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-tombstone_hardware_repro-sanitize",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-tombstone_hardware_repro-sanitize.log"
+    },
+    {
+      "name": "pr35-old-stale_stop_capacity_repro-strict-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/critic-a/stale_stop_capacity_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-stale_stop_capacity_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-stale_stop_capacity_repro-strict-build.log"
+    },
+    {
+      "name": "pr35-old-stale_stop_capacity_repro-strict",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-stale_stop_capacity_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-stale_stop_capacity_repro-strict",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-stale_stop_capacity_repro-strict.log"
+    },
+    {
+      "name": "pr35-old-stale_stop_capacity_repro-sanitize-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/critic-a/stale_stop_capacity_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-stale_stop_capacity_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-stale_stop_capacity_repro-sanitize-build.log"
+    },
+    {
+      "name": "pr35-old-stale_stop_capacity_repro-sanitize",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-stale_stop_capacity_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-old-stale_stop_capacity_repro-sanitize",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-old-stale_stop_capacity_repro-sanitize.log"
+    },
+    {
+      "name": "pr35-candidate-author",
+      "argv": [
+        "/bin/bash",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/run.sh"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {
+        "OUT": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-author"
+      },
+      "exit": 0,
+      "log": "pr35-candidate-author.log"
+    },
+    {
+      "name": "pr35-candidate-independent",
+      "argv": [
+        "/bin/bash",
+        "-x",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/independent/run.sh",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-independent"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-independent.log"
+    },
+    {
+      "name": "pr35-candidate-tombstone_hardware_repro-strict-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/critic-a/tombstone_hardware_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-tombstone_hardware_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-tombstone_hardware_repro-strict-build.log"
+    },
+    {
+      "name": "pr35-candidate-tombstone_hardware_repro-strict",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-tombstone_hardware_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-tombstone_hardware_repro-strict",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-tombstone_hardware_repro-strict.log"
+    },
+    {
+      "name": "pr35-candidate-tombstone_hardware_repro-sanitize-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/critic-a/tombstone_hardware_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-tombstone_hardware_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-tombstone_hardware_repro-sanitize-build.log"
+    },
+    {
+      "name": "pr35-candidate-tombstone_hardware_repro-sanitize",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-tombstone_hardware_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-tombstone_hardware_repro-sanitize",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-tombstone_hardware_repro-sanitize.log"
+    },
+    {
+      "name": "pr35-candidate-stale_stop_capacity_repro-strict-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/critic-a/stale_stop_capacity_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-stale_stop_capacity_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-stale_stop_capacity_repro-strict-build.log"
+    },
+    {
+      "name": "pr35-candidate-stale_stop_capacity_repro-strict",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-stale_stop_capacity_repro-strict/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-stale_stop_capacity_repro-strict",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-stale_stop_capacity_repro-strict.log"
+    },
+    {
+      "name": "pr35-candidate-stale_stop_capacity_repro-sanitize-build",
+      "argv": [
+        "/usr/bin/x86_64-linux-gnu-gcc-14",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wpedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate",
+        "-I/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/independent",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/critic-a/stale_stop_capacity_repro.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_control.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/app/mt_capture_link.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/acquisition/acquisition.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_wire.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_command.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/protocol/mt_session.c",
+        "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/firmware/transport/mt_tx.c",
+        "-o",
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-stale_stop_capacity_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-stale_stop_capacity_repro-sanitize-build.log"
+    },
+    {
+      "name": "pr35-candidate-stale_stop_capacity_repro-sanitize",
+      "argv": [
+        "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-stale_stop_capacity_repro-sanitize/test"
+      ],
+      "cwd": "/workspace/shared/tx002-critic-pinned-regressions/runs/pr35-candidate-stale_stop_capacity_repro-sanitize",
+      "env_overrides": {},
+      "exit": 0,
+      "log": "pr35-candidate-stale_stop_capacity_repro-sanitize.log"
+    }
+  ],
+  "snapshots": [
+    {
+      "label": "pr30",
+      "variant": "old",
+      "changed_paths": [],
+      "files": {
+        "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+        "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+        "firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+        "firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+        "firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+        "firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+        "firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+        "firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+        "firmware/protocol/mt_stream.c": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+        "firmware/protocol/mt_stream.h": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+        "firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+        "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+        "firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+        "firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+        "tests/app/independent/README.md": "5ebcfa37505308cc60dfc15919f4614f37a6c7b4d91061c9292c37bd99425352",
+        "tests/app/independent/REPORT.md": "6da0111c2ab2e843cafaffbaf839d1a86ae5e76f73b5219de88d52e52d18656c",
+        "tests/app/independent/adapter.c": "7c2565180d7dd8d1f1bf67e40306a1bc4717729002be1649107e80cc64df7d0d",
+        "tests/app/independent/run-sanitized.sh": "4f18df34bf253e2cc4a2f9db1bf9c2fc4e322b0a3f118ff8c4dcb065ab77c53c",
+        "tests/app/independent/run.sh": "776c8622295a7aec8267e81c2133da95c7ccf1f03220f3d0fa9f35cbb893c3e5",
+        "tests/app/independent/test_link.py": "4f77fbc7ac324862cacc548de74c5b7a3808dc05f062771402cbdabf57ca3575",
+        "tests/app/run.sh": "b29419c837d27c71e4a9bec39ad261e36dbf56e8c2cee64dd3c7b3a2486f0c6a",
+        "tests/app/test_capture_link.c": "3a64b85e07f07881fe5418921fc7e3e9d87da5ddab795b8323f74955630eb169"
+      },
+      "source_and_test_inputs_unchanged": true
+    },
+    {
+      "label": "pr30",
+      "variant": "candidate",
+      "changed_paths": [
+        "firmware/transport/mt_tx.c"
+      ],
+      "files": {
+        "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+        "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+        "firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+        "firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+        "firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+        "firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+        "firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+        "firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+        "firmware/protocol/mt_stream.c": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+        "firmware/protocol/mt_stream.h": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+        "firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+        "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+        "firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+        "firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+        "tests/app/independent/README.md": "5ebcfa37505308cc60dfc15919f4614f37a6c7b4d91061c9292c37bd99425352",
+        "tests/app/independent/REPORT.md": "6da0111c2ab2e843cafaffbaf839d1a86ae5e76f73b5219de88d52e52d18656c",
+        "tests/app/independent/adapter.c": "7c2565180d7dd8d1f1bf67e40306a1bc4717729002be1649107e80cc64df7d0d",
+        "tests/app/independent/run-sanitized.sh": "4f18df34bf253e2cc4a2f9db1bf9c2fc4e322b0a3f118ff8c4dcb065ab77c53c",
+        "tests/app/independent/run.sh": "776c8622295a7aec8267e81c2133da95c7ccf1f03220f3d0fa9f35cbb893c3e5",
+        "tests/app/independent/test_link.py": "4f77fbc7ac324862cacc548de74c5b7a3808dc05f062771402cbdabf57ca3575",
+        "tests/app/run.sh": "b29419c837d27c71e4a9bec39ad261e36dbf56e8c2cee64dd3c7b3a2486f0c6a",
+        "tests/app/test_capture_link.c": "3a64b85e07f07881fe5418921fc7e3e9d87da5ddab795b8323f74955630eb169"
+      },
+      "source_and_test_inputs_unchanged": true
+    },
+    {
+      "label": "pr35",
+      "variant": "old",
+      "changed_paths": [],
+      "files": {
+        "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+        "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+        "firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+        "firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+        "firmware/app/mt_control.c": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+        "firmware/app/mt_control.h": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+        "firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+        "firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+        "firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+        "firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+        "firmware/protocol/mt_stream.c": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+        "firmware/protocol/mt_stream.h": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+        "firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+        "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+        "firmware/transport/mt_tx.c": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+        "firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+        "tests/control/REPRODUCTION.md": "01c4389c47d02b7e9ac67f1229747b388d02fc949b6edf431a762117825ff7da",
+        "tests/control/independent/README.md": "64c3ba635fc366898a8115324008d3779d8e4d36bbba8f00312add8d0ba2835b",
+        "tests/control/independent/run.sh": "5d304a3c80f2e14954ddb56b9ed270b239a8ed00526d27c286a1c7358bd08eab",
+        "tests/control/independent/test_control_independent.c": "5217ea87a2d5fef6f336420d7ae440ad352b737a708cdb0b3271222e1f0912ea",
+        "tests/control/independent/verify_transcript.py": "3a56b0fce5f4ebb5cf047d2044f998743359fac3ee4286358d594337f5489a3c",
+        "tests/control/run.sh": "4fbfd2340e8a9ca10155b46eaaa931ad49b0294274fa14de9284fd5eb7ad09f9",
+        "tests/control/test_control.c": "b7b7fc6edf4bc1d0660617da5c0acc152774a9eedf2306a61c4a4335b5070698",
+        "tests/control/critic-a/tombstone_hardware_repro.c": "9e7a451715ef7e58e1e05ea26fc5c610415d83ca7695214ea636e66c0fd5d178",
+        "tests/control/critic-a/stale_stop_capacity_repro.c": "91597c9c5a35270b2a42b008a7462d15a0653e7376fb902d3999f07028468567"
+      },
+      "source_and_test_inputs_unchanged": true
+    },
+    {
+      "label": "pr35",
+      "variant": "candidate",
+      "changed_paths": [
+        "firmware/transport/mt_tx.c"
+      ],
+      "files": {
+        "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+        "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+        "firmware/app/mt_capture_link.c": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+        "firmware/app/mt_capture_link.h": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+        "firmware/app/mt_control.c": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+        "firmware/app/mt_control.h": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+        "firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+        "firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+        "firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+        "firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+        "firmware/protocol/mt_stream.c": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+        "firmware/protocol/mt_stream.h": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+        "firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+        "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+        "firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
+        "firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+        "tests/control/REPRODUCTION.md": "01c4389c47d02b7e9ac67f1229747b388d02fc949b6edf431a762117825ff7da",
+        "tests/control/independent/README.md": "64c3ba635fc366898a8115324008d3779d8e4d36bbba8f00312add8d0ba2835b",
+        "tests/control/independent/run.sh": "5d304a3c80f2e14954ddb56b9ed270b239a8ed00526d27c286a1c7358bd08eab",
+        "tests/control/independent/test_control_independent.c": "5217ea87a2d5fef6f336420d7ae440ad352b737a708cdb0b3271222e1f0912ea",
+        "tests/control/independent/verify_transcript.py": "3a56b0fce5f4ebb5cf047d2044f998743359fac3ee4286358d594337f5489a3c",
+        "tests/control/run.sh": "4fbfd2340e8a9ca10155b46eaaa931ad49b0294274fa14de9284fd5eb7ad09f9",
+        "tests/control/test_control.c": "b7b7fc6edf4bc1d0660617da5c0acc152774a9eedf2306a61c4a4335b5070698",
+        "tests/control/critic-a/tombstone_hardware_repro.c": "9e7a451715ef7e58e1e05ea26fc5c610415d83ca7695214ea636e66c0fd5d178",
+        "tests/control/critic-a/stale_stop_capacity_repro.c": "91597c9c5a35270b2a42b008a7462d15a0653e7376fb902d3999f07028468567"
+      },
+      "source_and_test_inputs_unchanged": true
+    }
+  ],
+  "results": [
+    {
+      "name": "pr30-old-author",
+      "pass": true,
+      "exit": 0,
+      "runs": "strict and ASan+UBSan",
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old/tests/app/run.sh"
+    },
+    {
+      "name": "pr30-old-independent-strict",
+      "pass": true,
+      "exit": 0,
+      "expected_groups": 24,
+      "expected_full_windows": 44,
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old/tests/app/independent/run.sh"
+    },
+    {
+      "name": "pr30-old-independent-sanitize",
+      "pass": true,
+      "exit": 0,
+      "expected_groups": 24,
+      "expected_full_windows": 44,
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-old/tests/app/independent/run-sanitized.sh"
+    },
+    {
+      "name": "pr30-candidate-author",
+      "pass": true,
+      "exit": 0,
+      "runs": "strict and ASan+UBSan",
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate/tests/app/run.sh"
+    },
+    {
+      "name": "pr30-candidate-independent-strict",
+      "pass": true,
+      "exit": 0,
+      "expected_groups": 24,
+      "expected_full_windows": 44,
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate/tests/app/independent/run.sh"
+    },
+    {
+      "name": "pr30-candidate-independent-sanitize",
+      "pass": true,
+      "exit": 0,
+      "expected_groups": 24,
+      "expected_full_windows": 44,
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr30-candidate/tests/app/independent/run-sanitized.sh"
+    },
+    {
+      "name": "pr35-old-author",
+      "pass": true,
+      "exit": 0,
+      "runs": "strict and ASan+UBSan",
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-old/tests/control/run.sh"
+    },
+    {
+      "name": "pr35-old-independent",
+      "pass": true,
+      "exit": 0,
+      "expected_scenarios_per_mode": 39,
+      "runs": "strict and ASan+UBSan plus independent wire/sample oracle",
+      "wire_oracle": {
+        "result": "PASS",
+        "frames": 344,
+        "bytes": 98281,
+        "full_windows": 20,
+        "samples": 40960,
+        "completed": [
+          {
+            "window": 1,
+            "crc": "d7f30cba",
+            "samples": 2048
+          },
+          {
+            "window": 2,
+            "crc": "b0a2eb1f",
+            "samples": 2048
+          },
+          {
+            "window": 3,
+            "crc": "8ffcc8c0",
+            "samples": 2048
+          },
+          {
+            "window": 4,
+            "crc": "1d49da96",
+            "samples": 2048
+          },
+          {
+            "window": 5,
+            "crc": "c190c08a",
+            "samples": 2048
+          },
+          {
+            "window": 6,
+            "crc": "cfdfa392",
+            "samples": 2048
+          },
+          {
+            "window": 7,
+            "crc": "e93c3bdc",
+            "samples": 2048
+          },
+          {
+            "window": 8,
+            "crc": "cb8f21b9",
+            "samples": 2048
+          },
+          {
+            "window": 9,
+            "crc": "5187f71c",
+            "samples": 2048
+          },
+          {
+            "window": 10,
+            "crc": "df7dc98e",
+            "samples": 2048
+          },
+          {
+            "window": 11,
+            "crc": "f7ae44af",
+            "samples": 2048
+          },
+          {
+            "window": 12,
+            "crc": "39c95109",
+            "samples": 2048
+          },
+          {
+            "window": 13,
+            "crc": "1154bec2",
+            "samples": 2048
+          },
+          {
+            "window": 14,
+            "crc": "23ff574e",
+            "samples": 2048
+          },
+          {
+            "window": 15,
+            "crc": "f06dedc5",
+            "samples": 2048
+          },
+          {
+            "window": 16,
+            "crc": "b0eec046",
+            "samples": 2048
+          },
+          {
+            "window": 17,
+            "crc": "233623f2",
+            "samples": 2048
+          },
+          {
+            "window": 18,
+            "crc": "496db3cc",
+            "samples": 2048
+          },
+          {
+            "window": 19,
+            "crc": "14d0e59d",
+            "samples": 2048
+          },
+          {
+            "window": 20,
+            "crc": "376d2e6e",
+            "samples": 2048
+          }
+        ]
+      }
+    },
+    {
+      "name": "pr35-old-tombstone_hardware_repro-strict",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-old-tombstone_hardware_repro-sanitize",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-old-stale_stop_capacity_repro-strict",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-old-stale_stop_capacity_repro-sanitize",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-candidate-author",
+      "pass": true,
+      "exit": 0,
+      "runs": "strict and ASan+UBSan",
+      "immutable_script": "/workspace/shared/tx002-critic-pinned-regressions/snapshots/pr35-candidate/tests/control/run.sh"
+    },
+    {
+      "name": "pr35-candidate-independent",
+      "pass": true,
+      "exit": 0,
+      "expected_scenarios_per_mode": 39,
+      "runs": "strict and ASan+UBSan plus independent wire/sample oracle",
+      "wire_oracle": {
+        "result": "PASS",
+        "frames": 344,
+        "bytes": 98281,
+        "full_windows": 20,
+        "samples": 40960,
+        "completed": [
+          {
+            "window": 1,
+            "crc": "d7f30cba",
+            "samples": 2048
+          },
+          {
+            "window": 2,
+            "crc": "b0a2eb1f",
+            "samples": 2048
+          },
+          {
+            "window": 3,
+            "crc": "8ffcc8c0",
+            "samples": 2048
+          },
+          {
+            "window": 4,
+            "crc": "1d49da96",
+            "samples": 2048
+          },
+          {
+            "window": 5,
+            "crc": "c190c08a",
+            "samples": 2048
+          },
+          {
+            "window": 6,
+            "crc": "cfdfa392",
+            "samples": 2048
+          },
+          {
+            "window": 7,
+            "crc": "e93c3bdc",
+            "samples": 2048
+          },
+          {
+            "window": 8,
+            "crc": "cb8f21b9",
+            "samples": 2048
+          },
+          {
+            "window": 9,
+            "crc": "5187f71c",
+            "samples": 2048
+          },
+          {
+            "window": 10,
+            "crc": "df7dc98e",
+            "samples": 2048
+          },
+          {
+            "window": 11,
+            "crc": "f7ae44af",
+            "samples": 2048
+          },
+          {
+            "window": 12,
+            "crc": "39c95109",
+            "samples": 2048
+          },
+          {
+            "window": 13,
+            "crc": "1154bec2",
+            "samples": 2048
+          },
+          {
+            "window": 14,
+            "crc": "23ff574e",
+            "samples": 2048
+          },
+          {
+            "window": 15,
+            "crc": "f06dedc5",
+            "samples": 2048
+          },
+          {
+            "window": 16,
+            "crc": "b0eec046",
+            "samples": 2048
+          },
+          {
+            "window": 17,
+            "crc": "233623f2",
+            "samples": 2048
+          },
+          {
+            "window": 18,
+            "crc": "496db3cc",
+            "samples": 2048
+          },
+          {
+            "window": 19,
+            "crc": "14d0e59d",
+            "samples": 2048
+          },
+          {
+            "window": 20,
+            "crc": "376d2e6e",
+            "samples": 2048
+          }
+        ]
+      }
+    },
+    {
+      "name": "pr35-candidate-tombstone_hardware_repro-strict",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-candidate-tombstone_hardware_repro-sanitize",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-candidate-stale_stop_capacity_repro-strict",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    },
+    {
+      "name": "pr35-candidate-stale_stop_capacity_repro-sanitize",
+      "pass": true,
+      "build_exit": 0,
+      "exit": 0
+    }
+  ],
+  "scope": "Immutable pinned PR30/PR35 regressions. Only mt_tx.c differs in candidate snapshots. Native synthetic software only.",
+  "inputs_after": {
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/harness/pinned_regressions.py": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/harness/pinned_regressions.py",
+      "sha256": "080d8e4d4e2b3118a8600d9e993d78daa9f6842655faa4d1bcb60fea0159d67a"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.c",
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.c",
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/app/mt_capture_link.h",
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.c",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.c",
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.c",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_stream.h",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/README.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/README.md",
+      "sha256": "5ebcfa37505308cc60dfc15919f4614f37a6c7b4d91061c9292c37bd99425352"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/REPORT.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/REPORT.md",
+      "sha256": "6da0111c2ab2e843cafaffbaf839d1a86ae5e76f73b5219de88d52e52d18656c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/adapter.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/adapter.c",
+      "sha256": "7c2565180d7dd8d1f1bf67e40306a1bc4717729002be1649107e80cc64df7d0d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run-sanitized.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run-sanitized.sh",
+      "sha256": "4f18df34bf253e2cc4a2f9db1bf9c2fc4e322b0a3f118ff8c4dcb065ab77c53c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/run.sh",
+      "sha256": "776c8622295a7aec8267e81c2133da95c7ccf1f03220f3d0fa9f35cbb893c3e5"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/test_link.py": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/independent/test_link.py",
+      "sha256": "4f77fbc7ac324862cacc548de74c5b7a3808dc05f062771402cbdabf57ca3575"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/run.sh",
+      "sha256": "b29419c837d27c71e4a9bec39ad261e36dbf56e8c2cee64dd3c7b3a2486f0c6a"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/test_capture_link.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr30/tests/app/test_capture_link.c",
+      "sha256": "3a64b85e07f07881fe5418921fc7e3e9d87da5ddab795b8323f74955630eb169"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.c",
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.c",
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_capture_link.h",
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.c",
+      "sha256": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/app/mt_control.h",
+      "sha256": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.c",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.c",
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.c",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_stream.h",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.c",
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/REPRODUCTION.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/REPRODUCTION.md",
+      "sha256": "01c4389c47d02b7e9ac67f1229747b388d02fc949b6edf431a762117825ff7da"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/stale_stop_capacity_repro.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/stale_stop_capacity_repro.c",
+      "sha256": "91597c9c5a35270b2a42b008a7462d15a0653e7376fb902d3999f07028468567"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/tombstone_hardware_repro.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/critic-a/tombstone_hardware_repro.c",
+      "sha256": "9e7a451715ef7e58e1e05ea26fc5c610415d83ca7695214ea636e66c0fd5d178"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/README.md": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/README.md",
+      "sha256": "64c3ba635fc366898a8115324008d3779d8e4d36bbba8f00312add8d0ba2835b"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/run.sh",
+      "sha256": "5d304a3c80f2e14954ddb56b9ed270b239a8ed00526d27c286a1c7358bd08eab"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/test_control_independent.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/test_control_independent.c",
+      "sha256": "5217ea87a2d5fef6f336420d7ae440ad352b737a708cdb0b3271222e1f0912ea"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/verify_transcript.py": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/independent/verify_transcript.py",
+      "sha256": "3a56b0fce5f4ebb5cf047d2044f998743359fac3ee4286358d594337f5489a3c"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/run.sh": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/run.sh",
+      "sha256": "4fbfd2340e8a9ca10155b46eaaa931ad49b0294274fa14de9284fd5eb7ad09f9"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/test_control.c": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/pr35/tests/control/test_control.c",
+      "sha256": "b7b7fc6edf4bc1d0660617da5c0acc152774a9eedf2306a61c4a4335b5070698"
+    },
+    "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/provenance.json": {
+      "resolved": "/workspace/shared/critic-a-tx-stack-review/supporting-snapshot/pinned-regressions/provenance.json",
+      "sha256": "098ff9805ade5cf38560af4303284ffff38cd0e3ac977057fd64b7c36fcd0623"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.c",
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h": {
+      "resolved": "/workspace/shared/tx-stop-stack-draft/firmware/transport/mt_tx.h",
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    }
+  },
+  "inputs_unchanged": true,
+  "toolchain_after": {
+    "driver": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+    },
+    "python3": {
+      "resolved": "/usr/bin/python3.13",
+      "sha256": "889c603f0d17cb54060951bcf4c4f9b8c9ebd9e52b392c70209bbb9755d797d9"
+    },
+    "bash": {
+      "resolved": "/usr/bin/bash",
+      "sha256": "223fe8564b60636bc738b6178d3ba9a50ef7d791266b0efae6363bb716e4c47f"
+    },
+    "sh": {
+      "resolved": "/usr/bin/dash",
+      "sha256": "a6f559e00b69a4aa4d8cb607be18d9386c5aee55c509e2c075549dcf00e00fc7"
+    },
+    "cc1": {
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1",
+      "sha256": "02675980109a4a5496cddf67d5286de57942759edc830deaa525e36f9a2a0291"
+    },
+    "as": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-as",
+      "sha256": "07dd8551ea0aa065975e4dddb8e1bb7dc308d12d54eca22c3858db79467c7cb9"
+    },
+    "ld": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "d2766988b6a1b1d1518cdc09242e726d1f24e151e16410ada3092b11ffd9081b"
+    },
+    "collect2": {
+      "resolved": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2",
+      "sha256": "ea31a4cebd9df1b6428c463428d461ccecfe66c897936409d5b2cde0b3af9e27"
+    },
+    "libasan.so": {
+      "resolved": "/usr/lib/x86_64-linux-gnu/libasan.so.8.0.0",
+      "sha256": "f5c57422d80671ced6cffe350f92c8ab9bec23fda9b155658aac630d2bc2a240"
+    },
+    "libubsan.so": {
+      "resolved": "/usr/lib/x86_64-linux-gnu/libubsan.so.1.0.0",
+      "sha256": "c3912c88d4d1d3772d44c2a77fcda85ebf2790e6efc3602f9489a4e23f4899e2"
+    }
+  },
+  "toolchain_unchanged": true,
+  "finish_utc": "2026-10-10T19:20:32.942076+00:00"
+}

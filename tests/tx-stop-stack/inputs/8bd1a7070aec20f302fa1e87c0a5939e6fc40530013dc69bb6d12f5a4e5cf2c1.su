@@ -1,0 +1,3 @@
+/workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/protocol/mt_session.c:4:6:mt_session_init	0	static
+/workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/protocol/mt_session.c:13:6:mt_session_require_hello	0	static
+/workspace/shared/arm-closure-memory-root-r1/snapshot/firmware/protocol/mt_session.c:37:18:mt_session_receive	48	static

@@ -1,0 +1,30 @@
++ /usr/bin/cc --version
+cc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ /usr/bin/cc -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/firmware/protocol/mt_wire.c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/firmware/transport/mt_tx.c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/tests/transport/test_mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-old
++ /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-old
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552
++ /usr/bin/cc -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/protocol/mt_wire.c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/transport/mt_tx.c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/tests/transport/test_mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-new
++ /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/original-new
+mt_tx: 14 suites passed; sizeof(mt_tx)=3928, slot=552
++ /usr/bin/cc -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer -Dmt_tx_init=old_tx_init -Dmt_tx_hello=old_tx_hello -Dmt_tx_enqueue=old_tx_enqueue -Dmt_tx_stop=old_tx_stop -Dmt_tx_poll=old_tx_poll -Dmt_tx_terminal_committed=old_tx_terminal_committed -Dmt_tx_window_status=old_tx_window_status -c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/old/firmware/transport/mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/old.o
++ /usr/bin/cc -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer -Dmt_tx_init=new_tx_init -Dmt_tx_hello=new_tx_hello -Dmt_tx_enqueue=new_tx_enqueue -Dmt_tx_stop=new_tx_stop -Dmt_tx_poll=new_tx_poll -Dmt_tx_terminal_committed=new_tx_terminal_committed -Dmt_tx_window_status=new_tx_window_status -c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/transport/mt_tx.c -o /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/new.o
++ /usr/bin/cc -std=c11 -O2 -g -fno-lto -Wall -Wextra -Werror -pedantic-errors -Wconversion -Wshadow -fno-omit-frame-pointer -I/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/transport /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/new/firmware/protocol/mt_wire.c /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/old.o /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/new.o -o /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/differential
+/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c: In function 'stop_raw':
+/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:115:5: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+  115 |     if(a)memcpy(&aa,a,sizeof aa);memcpy(&kk,k,sizeof kk);memcpy(&ss,s,sizeof ss);
+      |     ^~
+/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:115:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  115 |     if(a)memcpy(&aa,a,sizeof aa);memcpy(&kk,k,sizeof kk);memcpy(&ss,s,sizeof ss);
+      |                                  ^~~~~~
+/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:120:5: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+  120 |     if(a)assert(memcmp(&aa,a,sizeof aa)==0);assert(memcmp(&kk,k,sizeof kk)==0);assert(memcmp(&ss,s,sizeof ss)==0);
+      |     ^~
+In file included from /workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:5:
+/workspace/shared/tx-stop-stack-tests/evidence/strict-r1/snapshot/harness/differential.c:120:45: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  120 |     if(a)assert(memcmp(&aa,a,sizeof aa)==0);assert(memcmp(&kk,k,sizeof kk)==0);assert(memcmp(&ss,s,sizeof ss)==0);
+      |                                             ^~~~~~
+cc1: all warnings being treated as errors
