@@ -1,0 +1,309 @@
+{
+  "main": {
+    "bytes": 2640,
+    "path": [
+      [
+        "main",
+        88
+      ],
+      [
+        "mt_runtime_step",
+        16
+      ],
+      [
+        "mt_usb_cdc_step",
+        24
+      ],
+      [
+        "mt_usb_cdc_step_impl",
+        40
+      ],
+      [
+        "mt_control_rx_feed",
+        48
+      ],
+      [
+        "mt_control_receive",
+        640
+      ],
+      [
+        "mt_capture_link_stop",
+        1696
+      ],
+      [
+        "mt_tx_stop",
+        64
+      ],
+      [
+        "append",
+        16
+      ],
+      [
+        "memcpy",
+        8
+      ]
+    ]
+  },
+  "mt_runtime_step": {
+    "bytes": 2552,
+    "path": [
+      [
+        "mt_runtime_step",
+        16
+      ],
+      [
+        "mt_usb_cdc_step",
+        24
+      ],
+      [
+        "mt_usb_cdc_step_impl",
+        40
+      ],
+      [
+        "mt_control_rx_feed",
+        48
+      ],
+      [
+        "mt_control_receive",
+        640
+      ],
+      [
+        "mt_capture_link_stop",
+        1696
+      ],
+      [
+        "mt_tx_stop",
+        64
+      ],
+      [
+        "append",
+        16
+      ],
+      [
+        "memcpy",
+        8
+      ]
+    ]
+  },
+  "USB_HP_CAN1_TX_IRQHandler": {
+    "bytes": 264,
+    "path": [
+      [
+        "USB_HP_CAN1_TX_IRQHandler",
+        0
+      ],
+      [
+        "usb_irq_dispatch",
+        8
+      ],
+      [
+        "dcd_int_handler",
+        72
+      ],
+      [
+        "dcd_event_handler",
+        48
+      ],
+      [
+        "queue_event_epoch.isra.0",
+        48
+      ],
+      [
+        "tu_fifo_write_n_access_mode",
+        64
+      ],
+      [
+        "tu_hwfifo_read",
+        16
+      ],
+      [
+        "memcpy",
+        8
+      ]
+    ]
+  },
+  "USB_LP_CAN1_RX0_IRQHandler": {
+    "bytes": 264,
+    "path": [
+      [
+        "USB_LP_CAN1_RX0_IRQHandler",
+        0
+      ],
+      [
+        "usb_irq_dispatch",
+        8
+      ],
+      [
+        "dcd_int_handler",
+        72
+      ],
+      [
+        "dcd_event_handler",
+        48
+      ],
+      [
+        "queue_event_epoch.isra.0",
+        48
+      ],
+      [
+        "tu_fifo_write_n_access_mode",
+        64
+      ],
+      [
+        "tu_hwfifo_read",
+        16
+      ],
+      [
+        "memcpy",
+        8
+      ]
+    ]
+  },
+  "tud_task_ext": {
+    "bytes": 408,
+    "path": [
+      [
+        "tud_task_ext",
+        96
+      ],
+      [
+        "cdcd_xfer_cb",
+        40
+      ],
+      [
+        "tu_edpt_stream_write_xfer",
+        16
+      ],
+      [
+        "stream_xfer",
+        24
+      ],
+      [
+        "usbd_edpt_xfer_fifo",
+        24
+      ],
+      [
+        "mt_usb_bridge_fifo",
+        32
+      ],
+      [
+        "dcd_edpt_xfer_fifo",
+        24
+      ],
+      [
+        "edpt_xfer.isra.0",
+        16
+      ],
+      [
+        "dcd_transmit_packet",
+        40
+      ],
+      [
+        "tu_fifo_read_n_access_mode",
+        24
+      ],
+      [
+        "tu_fifo_peek_n_access_mode",
+        48
+      ],
+      [
+        "tu_hwfifo_write",
+        16
+      ],
+      [
+        "memcpy",
+        8
+      ]
+    ]
+  },
+  "functions": 363,
+  "defined_function_addresses": 360,
+  "overridden_weak_text": [
+    "dcd_deinit",
+    "dcd_edpt0_status_complete",
+    "dcd_edpt_xfer_fifo"
+  ],
+  "instruction_count": 11773,
+  "indirect_sites": 53,
+  "switch_guard_dominance": [
+    {
+      "site": "0x8001530",
+      "cmp": "0x800152c",
+      "branch": "0x800152e",
+      "count": 6,
+      "base": "0x8001534"
+    },
+    {
+      "site": "0x800323a",
+      "cmp": "0x8003236",
+      "branch": "0x8003238",
+      "count": 7,
+      "base": "0x800323e"
+    },
+    {
+      "site": "0x8003524",
+      "cmp": "0x800351e",
+      "branch": "0x8003520",
+      "count": 18,
+      "base": "0x8003528"
+    },
+    {
+      "site": "0x80040d6",
+      "cmp": "0x80040d2",
+      "branch": "0x80040d4",
+      "count": 7,
+      "base": "0x80040da"
+    },
+    {
+      "site": "0x8005484",
+      "cmp": "0x800547e",
+      "branch": "0x8005480",
+      "count": 4,
+      "base": "0x8005488"
+    },
+    {
+      "site": "0x80059b0",
+      "cmp": "0x80059ac",
+      "branch": "0x80059ae",
+      "count": 6,
+      "base": "0x80059b4"
+    },
+    {
+      "site": "0x8005f3e",
+      "cmp": "0x8005f38",
+      "branch": "0x8005f3a",
+      "count": 8,
+      "base": "0x8005f42"
+    },
+    {
+      "site": "0x8006036",
+      "cmp": "0x8006030",
+      "branch": "0x8006032",
+      "count": 10,
+      "base": "0x800603c"
+    },
+    {
+      "site": "0x8006202",
+      "cmp": "0x80061fa",
+      "branch": "0x80061fc",
+      "count": 15,
+      "base": "0x8006208"
+    }
+  ],
+  "it_instructions_checked": 236,
+  "executable_ranges": [
+    [
+      "0x80000ec",
+      32172
+    ],
+    [
+      "0x8007f18",
+      0
+    ]
+  ],
+  "all_frames_agree": true,
+  "all_direct_edges_agree": true,
+  "recursion_absent": true,
+  "conditional_terminal_total": 3012,
+  "rounded8": 3016
+}

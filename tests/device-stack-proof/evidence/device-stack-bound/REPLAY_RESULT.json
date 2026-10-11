@@ -1,0 +1,60 @@
+{
+  "status": "SUPPORTING_ANALYSIS_COMPLETE_INDEPENDENT_ACCEPTANCE_PENDING",
+  "input_manifest_sha256": "a5086666280e0ea07468190a35e835733e1b07a68b49edff1d9014a11475e521",
+  "inputs_unchanged": true,
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/shared/device-stack-bound/analyze.py"
+      ],
+      "exit_code": 0,
+      "stdout": "initial.txt",
+      "stderr": "initial.txt.stderr"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/shared/device-stack-bound/inventory.py"
+      ],
+      "exit_code": 0,
+      "stdout": "inventory-check.txt",
+      "stderr": "inventory-check.txt.stderr"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/shared/device-stack-bound/verify_machine.py"
+      ],
+      "exit_code": 0,
+      "stdout": "machine-check.txt",
+      "stderr": "machine-check.txt.stderr"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/shared/device-stack-bound/bound.py"
+      ],
+      "exit_code": 0,
+      "stdout": "bounds.txt",
+      "stderr": "bounds.txt.stderr"
+    }
+  ],
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "foreground_including_main": 2640,
+  "usb_irq_software": 264,
+  "single_exception_allowance": 36,
+  "normal_combined_upper_bound": 2940,
+  "with_terminal_hardfault_nmi_upper_bound": 3012,
+  "rounded_up_to_8": 3016,
+  "not_hardware_measurement": true,
+  "not_production_stack_selection": true
+}

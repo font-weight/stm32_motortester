@@ -1,0 +1,251 @@
+{
+  "status": "PASS_REFERENCE_DERIVATION",
+  "reference_sha256": "c447746787bceb3c603e3847b6e6308937d4773a14673ad0d040ac7f2e88730d",
+  "design_sha256": "f4b2b72907820dcc1f3467444f781f298a35232cf0c3d8ea5eda091324d4f5ce",
+  "baseline_elf_sha256": "0450e7ee104e19d6a1c018c2f6d1bdcb6f4b74544063044e14c41c01b586c2ae",
+  "ordered_objects": [
+    {
+      "ordinal": 0,
+      "name": "Os-mt_device_main.o",
+      "sha256": "0136f3fdc5f8e51fd36e26cc0366ff2fa51a54089453b82174d3914767cf033a"
+    },
+    {
+      "ordinal": 1,
+      "name": "Os-mt_boot_cpu.o",
+      "sha256": "fca6eb470b9d515f80cfa5d050be4974f8890160358ba3e1c0adf6a126d80f4e"
+    },
+    {
+      "ordinal": 2,
+      "name": "0-acquisition.o",
+      "sha256": "67062f96ea7871a2163aea23fce7e4dfd91dc8d8f918f7a984481e26a2bf7a01"
+    },
+    {
+      "ordinal": 3,
+      "name": "1-mt_capture_link.o",
+      "sha256": "79dfe0181f70dfa77e303007212ad1fb462ce2d3a117252ad2c8b03854972712"
+    },
+    {
+      "ordinal": 4,
+      "name": "2-mt_adc_control.o",
+      "sha256": "30728756c3f01be97b87670db187204b3f6f54613244a24cb93ca79b1d7f78d7"
+    },
+    {
+      "ordinal": 5,
+      "name": "3-mt_control.o",
+      "sha256": "d5f9d50c21c9b46df34a48225bd0c718080faa6083d01cec65e67946457ed456"
+    },
+    {
+      "ordinal": 6,
+      "name": "4-mt_control_rx.o",
+      "sha256": "75a29c82113efb8e791fbd5380e64a11192cb13b763f55aa0b02e9554fe61e8d"
+    },
+    {
+      "ordinal": 7,
+      "name": "5-mt_runtime.o",
+      "sha256": "2d414184f46eaf31112ca741855b941e9dbf288e358c65305062df2ab3c49aaf"
+    },
+    {
+      "ordinal": 8,
+      "name": "6-adc_timer_dma.o",
+      "sha256": "dcd5ad5abf478c5e22ce516ec76bed86456aaf952d340a37c63e9321dad4ac84"
+    },
+    {
+      "ordinal": 9,
+      "name": "7-mt_timebase.o",
+      "sha256": "0621764e9786a2b1698b01e25b92e38d953d7f8f9cad74eabe748b1d43048933"
+    },
+    {
+      "ordinal": 10,
+      "name": "8-mt_irq_guard.o",
+      "sha256": "26dc5875058aa1e4b39bcf9d80da173a65ceefbdd44725c50bb203d2d945a2fc"
+    },
+    {
+      "ordinal": 11,
+      "name": "9-mt_wire.o",
+      "sha256": "cd2496146684a1a2f0f96f04e24beb4d694f3fbd961c5ee853784a96ed647c1c"
+    },
+    {
+      "ordinal": 12,
+      "name": "10-mt_stream.o",
+      "sha256": "42d6707975c330526653da948dd7d534e9bce9da135798906dae72d7cd1a6c02"
+    },
+    {
+      "ordinal": 13,
+      "name": "11-mt_session.o",
+      "sha256": "5b18e0ef8645c49fe7011727a9e98ba8c2834e127164e5ea18447559804ebf98"
+    },
+    {
+      "ordinal": 14,
+      "name": "12-mt_command.o",
+      "sha256": "c26e329ac6a4802ffa97c6af51cf12ecf45d604b94c331ede2479eb6ecc412a4"
+    },
+    {
+      "ordinal": 15,
+      "name": "13-mt_tx.o",
+      "sha256": "deac4c0b2fc0a1502ca2e1cbd1c37b89738f8a5365a870aed09e1dd34537c5ed"
+    },
+    {
+      "ordinal": 16,
+      "name": "14-mt_usb_epoch.o",
+      "sha256": "c337ad6b3ea44185ddf1d7fed818ae62a3411d0927b39c4e13ad29ba5e0ea277"
+    },
+    {
+      "ordinal": 17,
+      "name": "15-mt_usb_cdc.o",
+      "sha256": "5e6c7b61f27248d4d56fa32598774498c1fcff57112cd18c24c8b7a0753abe09"
+    },
+    {
+      "ordinal": 18,
+      "name": "16-mt_usb_bridge.o",
+      "sha256": "ae702d288ccdd20e5f277385673db2a6e16d0052d1124e02b51baba94839d8e1"
+    },
+    {
+      "ordinal": 19,
+      "name": "17-mt_usb_descriptors.o",
+      "sha256": "c663536cde08979db44f22d1aa035a64298d8c82312c9b590bc4d2698eeebd06"
+    },
+    {
+      "ordinal": 20,
+      "name": "18-mt_memory.o",
+      "sha256": "0876c6757b36e7c0302cfaa76f78b4c8350079827475774bce86a3509514579e"
+    },
+    {
+      "ordinal": 21,
+      "name": "19-tusb.o",
+      "sha256": "376920daa77efcec384a2ba3ce59f7ddfda9b68354d58b81d5adecdf07c2b55e"
+    },
+    {
+      "ordinal": 22,
+      "name": "20-tusb_fifo.o",
+      "sha256": "5b60a3bc11e109f82fbfbb0ea7e1473d82986840a696bc48196cea016223c72b"
+    },
+    {
+      "ordinal": 23,
+      "name": "21-cdc_device.o",
+      "sha256": "494f4ac490b89cbb546e210a468e079950d430414807f8c4a9e77f0c8cdc83cc"
+    },
+    {
+      "ordinal": 24,
+      "name": "22-usbd.o",
+      "sha256": "40678d4e87f1b6bbe3bc51a6da49194d141e2b7c5f201cfde393909f828d6c02"
+    },
+    {
+      "ordinal": 25,
+      "name": "23-dcd_stm32_fsdev.o",
+      "sha256": "d145d093d134952cb2401ee8de02c466ff7dcac8f349157604251f0e1a1d0819"
+    },
+    {
+      "ordinal": 26,
+      "name": "24-fsdev_common.o",
+      "sha256": "5f7cfd87ed8368ca47d405d4f15a58ea383ea2c61342d97f08ced4dab42edef8"
+    },
+    {
+      "ordinal": 27,
+      "name": "mt_clock_startup.o",
+      "sha256": "d36efeb8ea4559ad7c5069d28ed6cd836aabf7c210205b68952abef083aa4b04"
+    },
+    {
+      "ordinal": 28,
+      "name": "mt_boot_time.o",
+      "sha256": "301eaeea1686b549411eea15ec60ffb24e1ae2948812d9bc7f3e1f2b248b074f"
+    },
+    {
+      "ordinal": 29,
+      "name": "mt_boot_usb.o",
+      "sha256": "128444b73d575363dcb132b38f7221557c3c7c33827e754a7eab61927645dc30"
+    },
+    {
+      "ordinal": 30,
+      "name": "mt_usb_time.o",
+      "sha256": "7eae9f369f37c51fe3eaaf5c39e30db281cf0a15cf9da534ee6cb6ff5537088a"
+    },
+    {
+      "ordinal": 31,
+      "name": "mt_usb_irq.o",
+      "sha256": "d87ca22b29e1bd40a639273caa8ce6a9dc3481a61785c7d8b39a8542cccf405f"
+    },
+    {
+      "ordinal": 32,
+      "name": "reset.o",
+      "sha256": "ab8db984960fae4c1456bd9add1842615ee58355c9eff06b9a16c0ae0dcd7850"
+    }
+  ],
+  "range_count": 363,
+  "function_records": 410,
+  "immutable_records": 1053,
+  "regions_checked": 4,
+  "old_proof_inputs_rehashed": 344,
+  "old_proof_artifacts_rehashed": 29,
+  "reset_literal_address": "0x8007de8",
+  "reset_literal_input_relocation": [
+    {
+      "section": ".text.Reset_Handler",
+      "offset": 88,
+      "type": 2,
+      "target": [
+        "__data_load",
+        0,
+        0,
+        0,
+        1,
+        0,
+        "SHN_UNDEF"
+      ],
+      "target_ndx": 0
+    }
+  ],
+  "max_geometric_reserve": 8104,
+  "baseline_program_headers": [
+    [
+      1,
+      65536,
+      134217728,
+      134217728,
+      32408,
+      32408,
+      5,
+      65536
+    ],
+    [
+      1,
+      131072,
+      536870912,
+      134250136,
+      128,
+      128,
+      6,
+      65536
+    ],
+    [
+      1,
+      163608,
+      134250264,
+      134250264,
+      0,
+      0,
+      5,
+      65536
+    ],
+    [
+      1,
+      128,
+      536871040,
+      134250264,
+      0,
+      12248,
+      6,
+      65536
+    ],
+    [
+      1685382481,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      16
+    ]
+  ],
+  "status_scope": "Design/reference derivation only; not implementation qualification."
+}

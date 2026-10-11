@@ -1,0 +1,12 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:7:13:put32	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:16:16:state	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:23:13:fill_status	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:38:19:mt_control_recover	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:69:12:flush_states	568	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:58:12:enqueue	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:85:26:error	568	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:49:26:remember_state	24	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:93:19:mt_control_init	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:159:19:mt_control_receive	640	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:235:19:mt_control_sample	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control.c:247:19:mt_control_poll	576	static

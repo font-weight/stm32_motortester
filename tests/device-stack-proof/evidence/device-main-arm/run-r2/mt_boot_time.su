@@ -1,0 +1,3 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-time-draft/mt_boot_time.c:11:17:read_reg	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-time-draft/mt_boot_time.c:17:12:same_clock	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-time-draft/mt_boot_time.c:29:21:mt_boot_time_start	48	static

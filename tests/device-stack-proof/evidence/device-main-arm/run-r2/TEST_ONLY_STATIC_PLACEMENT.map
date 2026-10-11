@@ -1,0 +1,1523 @@
+
+Discarded input sections
+
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/boot/reset.o
+ .comment       0x00000000       0x27 /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+ .note.GNU-stack
+                0x00000000        0x0 /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00010000         xr
+RAM              0x20000000         0x00005000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00001000                        __boot_stack_bytes = 0x1000
+                0x20005000                        __StackTop = (ORIGIN (RAM) + LENGTH (RAM))
+                0x20004000                        __StackLimit = (__StackTop - __boot_stack_bytes)
+
+.isr_vector     0x08000000       0xec
+ *(.isr_vector .isr_vector.*)
+ .isr_vector    0x08000000       0xec /workspace/shared/device-main-arm/run-r2/boot/reset.o
+                0x08000000                mt_boot_vectors
+
+.text           0x080000ec     0x7dac
+ *(.text .text.*)
+ .text          0x080000ec        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .text.rd       0x080000ec        0x8 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .text.startup.main
+                0x080000f4      0x35c /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+                0x080000f4                main
+ .text          0x08000450        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+ .text.mt_boot_cpu_masked
+                0x08000450       0x30 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+                0x08000450                mt_boot_cpu_masked
+ .text.mt_boot_cpu_admit
+                0x08000480       0x18 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+                0x08000480                mt_boot_cpu_admit
+ .text.mt_boot_cpu_halt
+                0x08000498        0x6 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+                0x08000498                mt_boot_cpu_halt
+ .text          0x0800049e        0x0 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .text.reset_capture
+                0x0800049e       0x24 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .text.append_sample
+                0x080004c2       0x50 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .text.mt_acq_init
+                0x08000512       0x26 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x08000512                mt_acq_init
+ .text.mt_acq_configure
+                0x08000538       0x74 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x08000538                mt_acq_configure
+ .text.mt_acq_arm
+                0x080005ac       0x3c /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x080005ac                mt_acq_arm
+ .text.mt_acq_window
+                0x080005e8       0x28 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x080005e8                mt_acq_window
+ .text.mt_acq_read
+                0x08000610       0x34 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x08000610                mt_acq_read
+ .text.mt_acq_stop
+                0x08000644       0x1a /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x08000644                mt_acq_stop
+ .text.mt_acq_release
+                0x0800065e       0x40 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x0800065e                mt_acq_release
+ .text.mt_acq_fail
+                0x0800069e       0x24 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x0800069e                mt_acq_fail
+ .text.mt_acq_push
+                0x080006c2       0xec /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+                0x080006c2                mt_acq_push
+ .text          0x080007ae        0x0 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .text.put32    0x080007ae        0xc /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .text.valid    0x080007ba       0x10 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ *fill*         0x080007ca        0x2 
+ .text.queue_bulk
+                0x080007cc      0x220 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .text.mt_capture_link_init
+                0x080009ec       0x3c /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x080009ec                mt_capture_link_init
+ .text.mt_capture_link_configure
+                0x08000a28       0x7a /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x08000a28                mt_capture_link_configure
+ .text.mt_capture_link_arm
+                0x08000aa2       0x92 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x08000aa2                mt_capture_link_arm
+ .text.mt_capture_link_sample
+                0x08000b34       0x98 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x08000b34                mt_capture_link_sample
+ .text.mt_capture_link_poll
+                0x08000bcc      0x104 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x08000bcc                mt_capture_link_poll
+ .text.mt_capture_link_stop
+                0x08000cd0      0x180 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x08000cd0                mt_capture_link_stop
+ .text.mt_capture_link_release
+                0x08000e50      0x124 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+                0x08000e50                mt_capture_link_release
+ .text          0x08000f74        0x0 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .text.stop     0x08000f74       0x10 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .text.start    0x08000f84       0x90 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .text.profile  0x08001014        0x6 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ *fill*         0x0800101a        0x2 
+ .text.init     0x0800101c       0x74 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .text.mt_adc_control_init
+                0x08001090       0x16 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+                0x08001090                mt_adc_control_init
+ .text.mt_adc_control_init_guarded
+                0x080010a6       0x28 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+                0x080010a6                mt_adc_control_init_guarded
+ .text.mt_adc_control_service
+                0x080010ce       0xcc /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+                0x080010ce                mt_adc_control_service
+ .text          0x0800119a        0x0 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.put32    0x0800119a        0xc /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.state    0x080011a6       0x30 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.fill_status
+                0x080011d6       0x46 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.mt_control_recover
+                0x0800121c       0x3a /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+                0x0800121c                mt_control_recover
+ .text.flush_states
+                0x08001256       0x62 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.enqueue  0x080012b8       0x40 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.error    0x080012f8       0x5c /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.remember_state
+                0x08001354       0x66 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .text.mt_control_init
+                0x080013ba       0x52 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+                0x080013ba                mt_control_init
+ .text.mt_control_receive
+                0x0800140c      0x498 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+                0x0800140c                mt_control_receive
+ .text.mt_control_sample
+                0x080018a4       0x58 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+                0x080018a4                mt_control_sample
+ .text.mt_control_poll
+                0x080018fc       0xc2 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+                0x080018fc                mt_control_poll
+ .text          0x080019be        0x0 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .text.observe  0x080019be       0x3c /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .text.mt_control_rx_init
+                0x080019fa       0x26 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+                0x080019fa                mt_control_rx_init
+ .text.mt_control_rx_poll
+                0x08001a20       0x20 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+                0x08001a20                mt_control_rx_poll
+ .text.mt_control_rx_feed
+                0x08001a40       0x88 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+                0x08001a40                mt_control_rx_feed
+ .text.mt_control_rx_transport_lost
+                0x08001ac8       0x1e /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+                0x08001ac8                mt_control_rx_transport_lost
+ .text          0x08001ae6        0x0 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.adc_read
+                0x08001ae6        0xe /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.adc_write
+                0x08001af4        0xe /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.commit_enter
+                0x08001b02        0x4 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.commit_leave
+                0x08001b06        0x6 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.adc_time
+                0x08001b0c        0xc /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.stable   0x08001b18       0x8a /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.commit_allowed
+                0x08001ba2       0x26 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.time_fault.isra.0
+                0x08001bc8       0x3e /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.synchronize_loss
+                0x08001c06       0xc6 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .text.mt_runtime_init
+                0x08001ccc      0x138 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+                0x08001ccc                mt_runtime_init
+ .text.mt_runtime_step
+                0x08001e04       0xfe /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+                0x08001e04                mt_runtime_step
+ .text          0x08001f02        0x0 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.rd       0x08001f02        0xa /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.wr       0x08001f0c        0xa /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.now      0x08001f16        0x6 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.wait_clear
+                0x08001f1c       0x3e /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ *fill*         0x08001f5a        0x2 
+ .text.gates_enabled
+                0x08001f5c       0x40 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.quiesce  0x08001f9c       0xb4 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.fail.isra.0
+                0x08002050       0x18 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.clock_plan
+                0x08002068      0x18c /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.start    0x080021f4      0x3f4 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .text.mt_adc_dma_mmio_read32
+                0x080025e8        0x4 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080025e8                mt_adc_dma_mmio_read32
+ .text.mt_adc_dma_mmio_write32
+                0x080025ec        0x4 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080025ec                mt_adc_dma_mmio_write32
+ .text.mt_adc_dma_init
+                0x080025f0       0x42 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080025f0                mt_adc_dma_init
+ *fill*         0x08002632        0x2 
+ .text.mt_adc_dma_profile1_ready
+                0x08002634       0x8c /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x08002634                mt_adc_dma_profile1_ready
+ .text.mt_adc_dma_start
+                0x080026c0        0x6 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080026c0                mt_adc_dma_start
+ .text.mt_adc_dma_start_guarded
+                0x080026c6       0x18 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080026c6                mt_adc_dma_start_guarded
+ *fill*         0x080026de        0x2 
+ .text.mt_adc_dma_read_block
+                0x080026e0      0x200 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080026e0                mt_adc_dma_read_block
+ .text.mt_adc_dma_stop
+                0x080028e0       0x2e /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+                0x080028e0                mt_adc_dma_stop
+ .text          0x0800290e        0x0 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .text.read_reg
+                0x0800290e        0x6 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .text.write_reg
+                0x08002914        0x6 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .text.valid    0x0800291a       0x18 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ *fill*         0x08002932        0x2 
+ .text.accessible
+                0x08002934       0x28 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .text.clock_matches
+                0x0800295c       0x48 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .text.timer_matches
+                0x080029a4       0x9c /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .text.mt_timebase_update
+                0x08002a40       0x8c /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+                0x08002a40                mt_timebase_update
+ .text.mt_timebase_init
+                0x08002acc      0x19c /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+                0x08002acc                mt_timebase_init
+ .text.mt_timebase_healthy
+                0x08002c68       0x1c /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+                0x08002c68                mt_timebase_healthy
+ .text.mt_timebase_now_us
+                0x08002c84       0x14 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+                0x08002c84                mt_timebase_now_us
+ .text.mt_timebase_now_ms
+                0x08002c98       0x14 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+                0x08002c98                mt_timebase_now_ms
+ .text.mt_timebase_stop
+                0x08002cac       0x54 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+                0x08002cac                mt_timebase_stop
+ .text          0x08002d00        0x0 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+ .text.mt_irq_guard_enter
+                0x08002d00        0x8 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+                0x08002d00                mt_irq_guard_enter
+ .text.mt_irq_guard_leave
+                0x08002d08        0x6 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+                0x08002d08                mt_irq_guard_leave
+ .text          0x08002d0e        0x0 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .text.put32    0x08002d0e       0x10 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .text.get32    0x08002d1e       0x18 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ *fill*         0x08002d36        0x2 
+ .text.mt_wire_crc32
+                0x08002d38       0x30 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+                0x08002d38                mt_wire_crc32
+ .text.mt_wire_encode
+                0x08002d68       0xfe /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+                0x08002d68                mt_wire_encode
+ .text.mt_wire_decode
+                0x08002e66      0x132 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+                0x08002e66                mt_wire_decode
+ .text          0x08002f98        0x0 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+ .text.mt_stream_init
+                0x08002f98       0x12 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+                0x08002f98                mt_stream_init
+ .text.mt_stream_poll
+                0x08002faa       0x48 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+                0x08002faa                mt_stream_poll
+ .text.mt_stream_feed
+                0x08002ff2       0x7e /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+                0x08002ff2                mt_stream_feed
+ .text          0x08003070        0x0 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+ .text.mt_session_init
+                0x08003070       0x16 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+                0x08003070                mt_session_init
+ .text.mt_session_require_hello
+                0x08003086        0xe /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+                0x08003086                mt_session_require_hello
+ .text.mt_session_receive
+                0x08003094      0x134 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+                0x08003094                mt_session_receive
+ .text          0x080031c8        0x0 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .text.read32   0x080031c8       0x18 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .text.mt_command_parse
+                0x080031e0      0x130 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+                0x080031e0                mt_command_parse
+ .text.mt_command_config_valid
+                0x08003310       0x9c /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+                0x08003310                mt_command_config_valid
+ .text          0x080033ac        0x0 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .text.read32   0x080033ac        0x4 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .text.append   0x080033b0       0x3e /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .text.shape    0x080033ee       0x3c /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .text.mt_tx_init
+                0x0800342a        0xe /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x0800342a                mt_tx_init
+ .text.mt_tx_hello
+                0x08003438       0x94 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x08003438                mt_tx_hello
+ .text.mt_tx_enqueue
+                0x080034cc      0x154 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x080034cc                mt_tx_enqueue
+ .text.mt_tx_terminal_committed
+                0x08003620       0x1e /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x08003620                mt_tx_terminal_committed
+ .text.mt_tx_window_status
+                0x0800363e       0x8c /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x0800363e                mt_tx_window_status
+ .text.mt_tx_stop
+                0x080036ca      0x28c /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x080036ca                mt_tx_stop
+ .text.mt_tx_poll
+                0x08003956      0x1e2 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+                0x08003956                mt_tx_poll
+ .text          0x08003b38        0x0 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .text.current  0x08003b38       0x18 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .text.mt_usb_epoch_init
+                0x08003b50        0xe /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003b50                mt_usb_epoch_init
+ .text.mt_usb_epoch_reset
+                0x08003b5e       0x36 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003b5e                mt_usb_epoch_reset
+ .text.mt_usb_epoch_disconnect
+                0x08003b94       0x36 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003b94                mt_usb_epoch_disconnect
+ .text.mt_usb_epoch_enqueued
+                0x08003bca       0x3e /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003bca                mt_usb_epoch_enqueued
+ .text.mt_usb_epoch_cleaned
+                0x08003c08        0xe /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c08                mt_usb_epoch_cleaned
+ .text.mt_usb_epoch_dispatch
+                0x08003c16       0x46 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c16                mt_usb_epoch_dispatch
+ .text.mt_usb_epoch_reset_done
+                0x08003c5c       0x12 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c5c                mt_usb_epoch_reset_done
+ .text.mt_usb_epoch_core_io
+                0x08003c6e        0x6 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c6e                mt_usb_epoch_core_io
+ .text.mt_usb_epoch_configured
+                0x08003c74       0x10 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c74                mt_usb_epoch_configured
+ .text.mt_usb_epoch_app_io
+                0x08003c84       0x16 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c84                mt_usb_epoch_app_io
+ .text.mt_usb_epoch_fail
+                0x08003c9a       0x2e /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003c9a                mt_usb_epoch_fail
+ .text.mt_usb_epoch_suspend
+                0x08003cc8       0x24 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003cc8                mt_usb_epoch_suspend
+ .text.mt_usb_epoch_resume
+                0x08003cec       0x22 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+                0x08003cec                mt_usb_epoch_resume
+ .text          0x08003d0e        0x0 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .text.valid    0x08003d0e       0x18 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .text.usable   0x08003d26       0x32 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .text.mt_usb_cdc_write_impl
+                0x08003d58       0x42 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003d58                mt_usb_cdc_write_impl
+ .text.mt_usb_cdc_init
+                0x08003d9a       0x3c /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003d9a                mt_usb_cdc_init
+ .text.mt_usb_cdc_open_epoch_impl
+                0x08003dd6       0x5e /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003dd6                mt_usb_cdc_open_epoch_impl
+ .text.mt_usb_cdc_step_impl
+                0x08003e34       0xbc /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003e34                mt_usb_cdc_step_impl
+ .text.mt_usb_cdc_soft_pause
+                0x08003ef0       0x32 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003ef0                mt_usb_cdc_soft_pause
+ .text.mt_usb_cdc_hard_loss
+                0x08003f22       0x38 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003f22                mt_usb_cdc_hard_loss
+ .text.mt_usb_cdc_open_epoch
+                0x08003f5a       0x4e /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003f5a                mt_usb_cdc_open_epoch
+ .text.mt_usb_cdc_write
+                0x08003fa8       0x3e /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003fa8                mt_usb_cdc_write
+ .text.mt_usb_cdc_step
+                0x08003fe6       0x32 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+                0x08003fe6                mt_usb_cdc_step
+ .text          0x08004018        0x0 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .text.permitted
+                0x08004018       0x30 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .text.result.part.0
+                0x08004048       0x14 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .text.mt_usb_bridge_init
+                0x0800405c       0x4c /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800405c                mt_usb_bridge_init
+ .text.mt_usb_bridge_lock
+                0x080040a8       0x10 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080040a8                mt_usb_bridge_lock
+ .text.mt_usb_bridge_unlock
+                0x080040b8       0x10 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080040b8                mt_usb_bridge_unlock
+ .text.mt_usb_bridge_ingress
+                0x080040c8       0x5c /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080040c8                mt_usb_bridge_ingress
+ .text.mt_usb_bridge_enqueued
+                0x08004124       0x10 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004124                mt_usb_bridge_enqueued
+ .text.mt_usb_bridge_actor
+                0x08004134        0xc /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004134                mt_usb_bridge_actor
+ .text.mt_usb_bridge_snapshot
+                0x08004140       0x2c /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004140                mt_usb_bridge_snapshot
+ .text.mt_usb_bridge_cleaned
+                0x0800416c       0x20 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800416c                mt_usb_bridge_cleaned
+ .text.mt_usb_bridge_dispatch
+                0x0800418c       0x90 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800418c                mt_usb_bridge_dispatch
+ .text.mt_usb_bridge_app_enter
+                0x0800421c       0x54 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800421c                mt_usb_bridge_app_enter
+ .text.mt_usb_bridge_leave
+                0x08004270       0x24 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004270                mt_usb_bridge_leave
+ .text.mt_usb_bridge_reset_done
+                0x08004294       0x2c /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004294                mt_usb_bridge_reset_done
+ .text.mt_usb_bridge_config_begin
+                0x080042c0       0x3c /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080042c0                mt_usb_bridge_config_begin
+ .text.mt_usb_bridge_config_done
+                0x080042fc       0x3c /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080042fc                mt_usb_bridge_config_done
+ .text.mt_usb_bridge_xfer
+                0x08004338       0x46 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004338                mt_usb_bridge_xfer
+ .text.mt_usb_bridge_fifo
+                0x0800437e       0x46 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800437e                mt_usb_bridge_fifo
+ .text.mt_usb_bridge_open
+                0x080043c4       0x32 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080043c4                mt_usb_bridge_open
+ .text.mt_usb_bridge_stall
+                0x080043f6       0x24 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080043f6                mt_usb_bridge_stall
+ .text.mt_usb_bridge_clear_stall
+                0x0800441a       0x24 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800441a                mt_usb_bridge_clear_stall
+ .text.mt_usb_bridge_status
+                0x0800443e       0x24 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x0800443e                mt_usb_bridge_status
+ .text.mt_usb_bridge_sof
+                0x08004462       0x24 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004462                mt_usb_bridge_sof
+ .text.mt_usb_bridge_close_all
+                0x08004486       0x20 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004486                mt_usb_bridge_close_all
+ *fill*         0x080044a6        0x2 
+ .text.mt_usb_bridge_address
+                0x080044a8       0x60 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x080044a8                mt_usb_bridge_address
+ .text.mt_usb_bridge_address_result
+                0x08004508       0x20 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+                0x08004508                mt_usb_bridge_address_result
+ .text          0x08004528        0x0 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .text.mt_usb_descriptors_init
+                0x08004528      0x11c /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+                0x08004528                mt_usb_descriptors_init
+ .text.tud_descriptor_device_cb
+                0x08004644       0x18 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+                0x08004644                tud_descriptor_device_cb
+ .text.tud_descriptor_configuration_cb
+                0x0800465c       0x1c /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+                0x0800465c                tud_descriptor_configuration_cb
+ .text.tud_descriptor_string_cb
+                0x08004678       0x34 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+                0x08004678                tud_descriptor_string_cb
+ .text          0x080046ac        0x0 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+ .text.memcpy   0x080046ac       0x18 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+                0x080046ac                memcpy
+ .text.memmove  0x080046c4       0x2a /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+                0x080046c4                memmove
+ .text.memset   0x080046ee       0x10 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+                0x080046ee                memset
+ .text.memcmp   0x080046fe       0x1c /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+                0x080046fe                memcmp
+ .text          0x0800471a        0x0 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .text.stream_claim
+                0x0800471a       0x12 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .text.stream_xfer
+                0x0800472c       0x32 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .text.stream_release.isra.0
+                0x0800475e        0xe /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .text.tusb_time_delay_ms_api
+                0x0800476c       0x16 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x0800476c                tusb_time_delay_ms_api
+ .text.tusb_app_virt_to_phys
+                0x08004782        0x2 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004782                tusb_app_virt_to_phys
+ .text.tusb_app_phys_to_virt
+                0x08004784        0x2 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004784                tusb_app_phys_to_virt
+ *fill*         0x08004786        0x2 
+ .text.tusb_rhport_init
+                0x08004788       0x64 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004788                tusb_rhport_init
+ .text.tusb_inited
+                0x080047ec        0x4 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x080047ec                tusb_inited
+ .text.tusb_int_handler
+                0x080047f0       0x18 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x080047f0                tusb_int_handler
+ .text.tusb_deinit
+                0x08004808       0x38 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004808                tusb_deinit
+ .text.tu_desc_find
+                0x08004840       0x16 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004840                tu_desc_find
+ .text.tu_desc_find2
+                0x08004856       0x1e /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004856                tu_desc_find2
+ .text.tu_desc_find3
+                0x08004874       0x28 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004874                tu_desc_find3
+ .text.tu_edpt_claim
+                0x0800489c       0x22 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x0800489c                tu_edpt_claim
+ .text.tu_edpt_release
+                0x080048be       0x1c /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x080048be                tu_edpt_release
+ .text.tu_bind_driver_to_ep_itf
+                0x080048da       0x5a /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x080048da                tu_bind_driver_to_ep_itf
+ .text.tu_edpt_stream_init
+                0x08004934       0x2a /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004934                tu_edpt_stream_init
+ .text.tu_edpt_stream_write_zlp_if_needed
+                0x0800495e       0x46 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x0800495e                tu_edpt_stream_write_zlp_if_needed
+ .text.tu_edpt_stream_write_xfer
+                0x080049a4       0x86 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x080049a4                tu_edpt_stream_write_xfer
+ .text.tu_edpt_stream_write
+                0x08004a2a       0x48 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004a2a                tu_edpt_stream_write
+ .text.tu_edpt_stream_write_available
+                0x08004a72       0x24 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004a72                tu_edpt_stream_write_available
+ .text.tu_edpt_stream_read_xfer
+                0x08004a96       0x94 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004a96                tu_edpt_stream_read_xfer
+ .text.tu_edpt_stream_read
+                0x08004b2a       0x1a /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x08004b2a                tu_edpt_stream_read
+ .text          0x08004b44        0x0 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .text.advance_index
+                0x08004b44       0x18 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .text.ff_peek_local
+                0x08004b5c       0x44 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .text.tu_fifo_config
+                0x08004ba0       0x1c /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004ba0                tu_fifo_config
+ .text.tu_fifo_clear
+                0x08004bbc        0x8 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004bbc                tu_fifo_clear
+ .text.tu_fifo_set_overwritable
+                0x08004bc4        0xa /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004bc4                tu_fifo_set_overwritable
+ .text.tu_hwfifo_write
+                0x08004bce       0x34 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004bce                tu_hwfifo_write
+ .text.tu_hwfifo_read
+                0x08004c02       0x32 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004c02                tu_hwfifo_read
+ .text.tu_fifo_peek_n_access_mode
+                0x08004c34      0x13c /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004c34                tu_fifo_peek_n_access_mode
+ .text.tu_fifo_peek_n
+                0x08004d70       0x18 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004d70                tu_fifo_peek_n
+ .text.tu_fifo_read_n_access_mode
+                0x08004d88       0x2a /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004d88                tu_fifo_read_n_access_mode
+ .text.tu_fifo_write_n_access_mode
+                0x08004db2      0x192 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004db2                tu_fifo_write_n_access_mode
+ .text.tu_fifo_discard_n
+                0x08004f44       0x3a /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004f44                tu_fifo_discard_n
+ .text.tu_fifo_read
+                0x08004f7e       0x26 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004f7e                tu_fifo_read
+ .text.tu_fifo_peek
+                0x08004fa4        0xc /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004fa4                tu_fifo_peek
+ .text.tu_fifo_write
+                0x08004fb0       0x50 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08004fb0                tu_fifo_write
+ .text.tu_fifo_advance_write_pointer
+                0x08005000       0x14 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08005000                tu_fifo_advance_write_pointer
+ .text.tu_fifo_correct_read_pointer
+                0x08005014       0x14 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08005014                tu_fifo_correct_read_pointer
+ .text.tu_fifo_advance_read_pointer
+                0x08005028       0x14 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x08005028                tu_fifo_advance_read_pointer
+ .text.tu_fifo_get_read_info
+                0x0800503c       0x74 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x0800503c                tu_fifo_get_read_info
+ .text.tu_fifo_get_write_info
+                0x080050b0       0x5e /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+                0x080050b0                tu_fifo_get_write_info
+ .text          0x0800510e        0x0 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .text.tud_cdc_rx_cb
+                0x0800510e        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x0800510e                tud_cdc_rx_cb
+ .text.tud_cdc_rx_wanted_cb
+                0x08005110        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005110                tud_cdc_rx_wanted_cb
+ .text.tud_cdc_tx_complete_cb
+                0x08005112        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005112                tud_cdc_tx_complete_cb
+ .text.tud_cdc_notify_complete_cb
+                0x08005114        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005114                tud_cdc_notify_complete_cb
+ .text.tud_cdc_line_state_cb
+                0x08005116        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005116                tud_cdc_line_state_cb
+ .text.tud_cdc_line_coding_cb
+                0x08005118        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005118                tud_cdc_line_coding_cb
+ .text.tud_cdc_send_break_cb
+                0x0800511a        0x2 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x0800511a                tud_cdc_send_break_cb
+ .text.tud_cdc_n_ready
+                0x0800511c       0x34 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x0800511c                tud_cdc_n_ready
+ .text.tud_cdc_n_connected
+                0x08005150       0x28 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005150                tud_cdc_n_connected
+ .text.tud_cdc_n_get_line_state
+                0x08005178       0x10 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005178                tud_cdc_n_get_line_state
+ .text.tud_cdc_n_get_line_coding
+                0x08005188       0x18 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005188                tud_cdc_n_get_line_coding
+ .text.tud_cdc_n_set_wanted_char
+                0x080051a0        0xc /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080051a0                tud_cdc_n_set_wanted_char
+ .text.tud_cdc_n_available
+                0x080051ac       0x2c /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080051ac                tud_cdc_n_available
+ .text.tud_cdc_n_read
+                0x080051d8       0x10 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080051d8                tud_cdc_n_read
+ .text.tud_cdc_n_peek
+                0x080051e8       0x10 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080051e8                tud_cdc_n_peek
+ .text.tud_cdc_n_read_flush
+                0x080051f8       0x20 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080051f8                tud_cdc_n_read_flush
+ .text.tud_cdc_n_write
+                0x08005218       0x10 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005218                tud_cdc_n_write
+ .text.tud_cdc_n_write_flush
+                0x08005228       0x10 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005228                tud_cdc_n_write_flush
+ .text.tud_cdc_n_write_available
+                0x08005238       0x10 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005238                tud_cdc_n_write_available
+ .text.tud_cdc_n_write_clear
+                0x08005248       0x18 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005248                tud_cdc_n_write_clear
+ .text.cdcd_init
+                0x08005260       0x58 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x08005260                cdcd_init
+ .text.cdcd_deinit
+                0x080052b8        0x4 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080052b8                cdcd_deinit
+ .text.cdcd_reset
+                0x080052bc       0x28 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080052bc                cdcd_reset
+ .text.cdcd_open
+                0x080052e4      0x118 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080052e4                cdcd_open
+ .text.cdcd_control_xfer_cb
+                0x080053fc       0xa8 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080053fc                cdcd_control_xfer_cb
+ .text.cdcd_xfer_cb
+                0x080054a4      0x100 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+                0x080054a4                cdcd_xfer_cb
+ .text          0x080055a4        0x0 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.tud_vendor_control_xfer_cb
+                0x080055a4        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080055a4                tud_vendor_control_xfer_cb
+ .text.configuration_reset
+                0x080055a8       0x88 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.usbd_int_set
+                0x08005630       0x14 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005630                usbd_int_set
+ .text.invoke_class_control.constprop.0.isra.0
+                0x08005644       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.tud_event_hook_cb
+                0x08005654        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005654                tud_event_hook_cb
+ *fill*         0x08005656        0x2 
+ .text.queue_event_epoch.isra.0
+                0x08005658       0x94 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.tud_sof_cb
+                0x080056ec        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056ec                tud_sof_cb
+ .text.tud_descriptor_bos_cb
+                0x080056ee        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056ee                tud_descriptor_bos_cb
+ .text.tud_descriptor_device_qualifier_cb
+                0x080056f2        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056f2                tud_descriptor_device_qualifier_cb
+ .text.tud_descriptor_other_speed_configuration_cb
+                0x080056f6        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056f6                tud_descriptor_other_speed_configuration_cb
+ .text.tud_mount_cb
+                0x080056fa        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056fa                tud_mount_cb
+ .text.tud_umount_cb
+                0x080056fc        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056fc                tud_umount_cb
+ .text.tud_suspend_cb
+                0x080056fe        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080056fe                tud_suspend_cb
+ .text.tud_resume_cb
+                0x08005700        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005700                tud_resume_cb
+ .text.dcd_deinit
+                0x08005702        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.dcd_connect
+                0x08005706        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005706                dcd_connect
+ .text.dcd_disconnect
+                0x08005708        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005708                dcd_disconnect
+ .text.dcd_dcache_clean
+                0x0800570a        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x0800570a                dcd_dcache_clean
+ .text.dcd_dcache_invalidate
+                0x0800570e        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x0800570e                dcd_dcache_invalidate
+ .text.dcd_dcache_clean_invalidate
+                0x08005712        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005712                dcd_dcache_clean_invalidate
+ .text.usbd_app_driver_get_cb
+                0x08005716        0x8 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005716                usbd_app_driver_get_cb
+ .text.dcd_edpt_xfer_fifo
+                0x0800571e        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.dcd_configure
+                0x08005722        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005722                dcd_configure
+ *fill*         0x08005726        0x2 
+ .text.tud_speed_get
+                0x08005728        0xc /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005728                tud_speed_get
+ .text.tud_connected
+                0x08005734       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005734                tud_connected
+ .text.tud_mounted
+                0x08005744       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005744                tud_mounted
+ .text.tud_suspended
+                0x08005754       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005754                tud_suspended
+ .text.tud_remote_wakeup
+                0x08005764       0x28 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005764                tud_remote_wakeup
+ .text.tud_disconnect
+                0x0800578c       0x14 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x0800578c                tud_disconnect
+ .text.tud_connect
+                0x080057a0       0x14 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080057a0                tud_connect
+ .text.tud_inited
+                0x080057b4       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080057b4                tud_inited
+ .text.tud_configure
+                0x080057c4        0x8 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080057c4                tud_configure
+ .text.tud_rhport_init
+                0x080057cc       0xd8 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080057cc                tud_rhport_init
+ .text.tud_deinit
+                0x080058a4       0xa8 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080058a4                tud_deinit
+ .text.tud_task_event_ready
+                0x0800594c       0x34 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x0800594c                tud_task_event_ready
+ .text.dcd_edpt0_status_complete
+                0x08005980        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ *fill*         0x08005982        0x2 
+ .text.usbd_get_ctrl_buf
+                0x08005984        0x8 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005984                usbd_get_ctrl_buf
+ .text.dcd_event_handler
+                0x0800598c      0x18c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x0800598c                dcd_event_handler
+ .text.usbd_spin_lock
+                0x08005b18       0x1c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005b18                usbd_spin_lock
+ .text.usbd_spin_unlock
+                0x08005b34       0x1c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005b34                usbd_spin_unlock
+ .text.usbd_defer_func
+                0x08005b50       0x30 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005b50                usbd_defer_func
+ .text.usbd_edpt_open
+                0x08005b80       0x34 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005b80                usbd_edpt_open
+ .text.usbd_open_edpt_pair
+                0x08005bb4       0x5c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005bb4                usbd_open_edpt_pair
+ .text.usbd_edpt_claim
+                0x08005c10       0x1c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005c10                usbd_edpt_claim
+ .text.usbd_edpt_release
+                0x08005c2c       0x1c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005c2c                usbd_edpt_release
+ .text.usbd_edpt_xfer
+                0x08005c48       0x60 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005c48                usbd_edpt_xfer
+ .text.tud_control_status
+                0x08005ca8       0x28 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005ca8                tud_control_status
+ .text.data_stage_xact
+                0x08005cd0       0x64 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .text.tud_control_xfer
+                0x08005d34       0x4c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005d34                tud_control_xfer
+ .text.usbd_edpt_xfer_fifo
+                0x08005d80       0x60 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005d80                usbd_edpt_xfer_fifo
+ .text.usbd_edpt_busy
+                0x08005de0       0x1c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005de0                usbd_edpt_busy
+ .text.usbd_edpt_stall
+                0x08005dfc       0x30 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005dfc                usbd_edpt_stall
+ .text.usbd_edpt_clear_stall
+                0x08005e2c       0x30 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005e2c                usbd_edpt_clear_stall
+ .text.usbd_edpt_stalled
+                0x08005e5c       0x1c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005e5c                usbd_edpt_stalled
+ .text.tud_task_ext
+                0x08005e78      0x6b4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08005e78                tud_task_ext
+ .text.usbd_edpt_close
+                0x0800652c        0x2 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x0800652c                usbd_edpt_close
+ *fill*         0x0800652e        0x2 
+ .text.usbd_sof_enable
+                0x08006530       0x50 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08006530                usbd_sof_enable
+ .text.tud_sof_cb_enable
+                0x08006580       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08006580                tud_sof_cb_enable
+ .text.usbd_edpt_iso_alloc
+                0x08006590       0x28 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x08006590                usbd_edpt_iso_alloc
+ .text.usbd_edpt_iso_activate
+                0x080065b8       0x48 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x080065b8                usbd_edpt_iso_activate
+ .text          0x08006600        0x0 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.__NVIC_EnableIRQ
+                0x08006600       0x1c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.__NVIC_DisableIRQ
+                0x0800661c       0x24 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.dcd_ep_alloc
+                0x08006640       0x80 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.dcd_transmit_packet
+                0x080066c0       0xfc /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.dcd_pma_alloc.constprop.0
+                0x080067bc       0x3c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.edpt_xfer.isra.0
+                0x080067f8       0x9c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.handle_bus_reset.isra.0
+                0x08006894       0xa0 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .text.dcd_init
+                0x08006934       0x34 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006934                dcd_init
+ .text.dcd_deinit
+                0x08006968        0xa /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006968                dcd_deinit
+ *fill*         0x08006972        0x2 
+ .text.dcd_sof_enable
+                0x08006974       0x24 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006974                dcd_sof_enable
+ .text.dcd_remote_wakeup
+                0x08006998       0x20 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006998                dcd_remote_wakeup
+ .text.dcd_int_handler
+                0x080069b8      0x38c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x080069b8                dcd_int_handler
+ .text.dcd_edpt0_status_complete
+                0x08006d44       0x20 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006d44                dcd_edpt0_status_complete
+ .text.dcd_edpt_open
+                0x08006d64       0xe8 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006d64                dcd_edpt_open
+ .text.dcd_edpt_iso_alloc
+                0x08006e4c       0x44 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006e4c                dcd_edpt_iso_alloc
+ .text.dcd_edpt_iso_activate
+                0x08006e90       0x84 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006e90                dcd_edpt_iso_activate
+ .text.dcd_edpt_xfer
+                0x08006f14       0x2c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006f14                dcd_edpt_xfer
+ .text.dcd_set_address
+                0x08006f40       0x1a /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006f40                dcd_set_address
+ *fill*         0x08006f5a        0x2 
+ .text.dcd_edpt_xfer_fifo
+                0x08006f5c       0x2c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006f5c                dcd_edpt_xfer_fifo
+ .text.dcd_edpt_stall
+                0x08006f88       0x7c /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08006f88                dcd_edpt_stall
+ .text.dcd_edpt_clear_stall
+                0x08007004       0x88 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x08007004                dcd_edpt_clear_stall
+ .text.dcd_int_enable
+                0x0800708c       0x1a /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x0800708c                dcd_int_enable
+ .text.dcd_int_disable
+                0x080070a6       0x12 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x080070a6                dcd_int_disable
+ .text.dcd_edpt_close_all
+                0x080070b8       0x44 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+                0x080070b8                dcd_edpt_close_all
+ .text          0x080070fc        0x0 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+ .text.fsdev_core_reset
+                0x080070fc       0x50 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+                0x080070fc                fsdev_core_reset
+ .text.fsdev_deinit
+                0x0800714c       0x30 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+                0x0800714c                fsdev_deinit
+ .text.pma_align_buffer_size
+                0x0800717c       0x24 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+                0x0800717c                pma_align_buffer_size
+ .text.btable_set_rx_bufsize
+                0x080071a0       0x42 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+                0x080071a0                btable_set_rx_bufsize
+ .text          0x080071e2        0x0 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.rd       0x080071e2        0x6 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.update   0x080071e8       0x22 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.wait_bits
+                0x0800720a       0x32 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.snapshot
+                0x0800723c       0x30 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.domains_idle
+                0x0800726c       0x7c /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.on_hsi   0x080072e8       0x34 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.fail     0x0800731c       0xe0 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.matches  0x080073fc       0x40 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .text.mt_clock_mmio_read32
+                0x0800743c        0x4 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+                0x0800743c                mt_clock_mmio_read32
+ .text.mt_clock_mmio_write32
+                0x08007440        0x4 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+                0x08007440                mt_clock_mmio_write32
+ .text.mt_clock_plan_72
+                0x08007444       0x70 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+                0x08007444                mt_clock_plan_72
+ .text.mt_clock_apply
+                0x080074b4      0x21c /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+                0x080074b4                mt_clock_apply
+ .text          0x080076d0        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .text.read_reg
+                0x080076d0        0x6 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ *fill*         0x080076d6        0x2 
+ .text.same_clock
+                0x080076d8       0x60 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .text.mt_boot_time_start
+                0x08007738      0x184 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+                0x08007738                mt_boot_time_start
+ .text          0x080078bc        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .text.rd       0x080078bc        0x6 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .text.wr       0x080078c2        0x6 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .text.same_clock
+                0x080078c8       0x60 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .text.quiescent
+                0x08007928       0xd4 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .text.priorities_match
+                0x080079fc       0x3c /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .text.mt_boot_usb_prepare
+                0x08007a38      0x1fc /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+                0x08007a38                mt_boot_usb_prepare
+ .text          0x08007c34        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .text.fail     0x08007c34       0x10 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .text.mt_usb_time_valid
+                0x08007c44       0x2c /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+                0x08007c44                mt_usb_time_valid
+ .text.mt_usb_time_status
+                0x08007c70       0x10 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+                0x08007c70                mt_usb_time_status
+ .text.mt_usb_time_bind
+                0x08007c80       0x80 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+                0x08007c80                mt_usb_time_bind
+ .text.tusb_time_millis_api
+                0x08007d00       0x70 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+                0x08007d00                tusb_time_millis_api
+ .text          0x08007d70        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .text.usb_irq_dispatch
+                0x08007d70       0x18 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .text.USB_HP_CAN1_TX_IRQHandler
+                0x08007d88        0x4 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+                0x08007d88                USB_HP_CAN1_TX_IRQHandler
+ .text.USB_LP_CAN1_RX0_IRQHandler
+                0x08007d8c        0x4 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+                0x08007d8c                USB_LP_CAN1_RX0_IRQHandler
+ .text          0x08007d90        0x0 /workspace/shared/device-main-arm/run-r2/boot/reset.o
+ .text.Reset_Handler
+                0x08007d90       0x6c /workspace/shared/device-main-arm/run-r2/boot/reset.o
+                0x08007d90                Reset_Handler
+ .text.Default_Handler
+                0x08007dfc        0x4 /workspace/shared/device-main-arm/run-r2/boot/reset.o
+                0x08007dfc                RTC_Alarm_IRQHandler
+                0x08007dfc                EXTI2_IRQHandler
+                0x08007dfc                DebugMon_Handler
+                0x08007dfc                TIM1_CC_IRQHandler
+                0x08007dfc                HardFault_Handler
+                0x08007dfc                SysTick_Handler
+                0x08007dfc                PVD_IRQHandler
+                0x08007dfc                PendSV_Handler
+                0x08007dfc                NMI_Handler
+                0x08007dfc                EXTI3_IRQHandler
+                0x08007dfc                EXTI0_IRQHandler
+                0x08007dfc                I2C2_EV_IRQHandler
+                0x08007dfc                UsageFault_Handler
+                0x08007dfc                ADC1_2_IRQHandler
+                0x08007dfc                SPI1_IRQHandler
+                0x08007dfc                TAMPER_IRQHandler
+                0x08007dfc                DMA1_Channel4_IRQHandler
+                0x08007dfc                USART3_IRQHandler
+                0x08007dfc                RTC_IRQHandler
+                0x08007dfc                DMA1_Channel7_IRQHandler
+                0x08007dfc                CAN1_RX1_IRQHandler
+                0x08007dfc                TIM4_IRQHandler
+                0x08007dfc                I2C1_EV_IRQHandler
+                0x08007dfc                DMA1_Channel6_IRQHandler
+                0x08007dfc                TIM3_IRQHandler
+                0x08007dfc                RCC_IRQHandler
+                0x08007dfc                TIM1_TRG_COM_IRQHandler
+                0x08007dfc                DMA1_Channel1_IRQHandler
+                0x08007dfc                Default_Handler
+                0x08007dfc                EXTI15_10_IRQHandler
+                0x08007dfc                EXTI9_5_IRQHandler
+                0x08007dfc                SPI2_IRQHandler
+                0x08007dfc                MemManage_Handler
+                0x08007dfc                SVC_Handler
+                0x08007dfc                DMA1_Channel5_IRQHandler
+                0x08007dfc                EXTI4_IRQHandler
+                0x08007dfc                DMA1_Channel3_IRQHandler
+                0x08007dfc                TIM1_UP_IRQHandler
+                0x08007dfc                WWDG_IRQHandler
+                0x08007dfc                TIM2_IRQHandler
+                0x08007dfc                TIM1_BRK_IRQHandler
+                0x08007dfc                EXTI1_IRQHandler
+                0x08007dfc                USART2_IRQHandler
+                0x08007dfc                I2C2_ER_IRQHandler
+                0x08007dfc                DMA1_Channel2_IRQHandler
+                0x08007dfc                CAN1_SCE_IRQHandler
+                0x08007dfc                FLASH_IRQHandler
+                0x08007dfc                BusFault_Handler
+                0x08007dfc                USART1_IRQHandler
+                0x08007dfc                I2C1_ER_IRQHandler
+                0x08007dfc                USBWakeUp_IRQHandler
+ .text          0x08007e00        0x0 /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+ *(.rodata .rodata.*)
+ .rodata        0x08007e00       0x18 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .rodata.ahb_divs.0
+                0x08007e18       0x20 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .rodata.CSWTCH.7
+                0x08007e38        0x7 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ *fill*         0x08007e3f        0x1 
+ .rodata.languages
+                0x08007e40        0x4 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .rodata._usbd_driver
+                0x08007e44       0x24 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .rodata.mt_board
+                0x08007e68       0x30 /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+                0x08007e68                mt_board
+                0x08007e98                        . = ALIGN (0x4)
+
+.data           0x20000000       0x80 load address 0x08007e98
+                0x20000000                        __data_start = .
+ *(.data .data.*)
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .data          0x20000000        0x0 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .data.configuration
+                0x20000000       0x4b /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .data.device   0x2000004b       0x12 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .data          0x2000005d        0x0 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+ .data          0x2000005d        0x0 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .data          0x2000005d        0x0 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .data          0x2000005d        0x0 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .data          0x2000005d        0x0 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ *fill*         0x2000005d        0x3 
+ .data._usbd_qdef
+                0x20000060       0x14 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x20000060                _usbd_qdef
+ .data._usbd_spin
+                0x20000074        0x8 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .data._usbd_rhport
+                0x2000007c        0x1 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/boot/reset.o
+ .data          0x2000007d        0x0 /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+                0x20000080                        . = ALIGN (0x4)
+ *fill*         0x2000007d        0x3 
+                0x20000080                        __data_end = .
+                0x08007e98                        __data_load = LOADADDR (.data)
+
+.bss            0x20000080     0x2fd8 load address 0x08007f18
+                0x20000080                        __bss_start = .
+ *(.bss .bss.*)
+ .bss           0x20000080        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .bss.mt_main_last_runtime
+                0x20000080        0x4 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+                0x20000080                mt_main_last_runtime
+ .bss.mt_main_usb_init_result
+                0x20000084        0x4 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+                0x20000084                mt_main_usb_init_result
+ .bss.mt_main_irq_admitted
+                0x20000088        0x4 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+                0x20000088                mt_main_irq_admitted
+ .bss.mt_main_boot_failure
+                0x2000008c        0x4 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+                0x2000008c                mt_main_boot_failure
+ .bss.runtime   0x20000090     0x2b40 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .bss.usb_start
+                0x20002bd0       0x10 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .bss.time_start
+                0x20002be0       0x10 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .bss.timebase  0x20002bf0       0x34 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .bss.startup   0x20002c24       0x40 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .bss           0x20002c64        0x0 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.address_accepted
+                0x20002c64        0x4 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.address_seen
+                0x20002c68        0x4 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.address_pending
+                0x20002c6c        0x4 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.actor     0x20002c70        0x4 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.unlock_fn
+                0x20002c74        0x4 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.lock_fn   0x20002c78        0x4 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss.state     0x20002c7c       0x30 /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .bss           0x20002cac        0x0 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .bss.initialized
+                0x20002cac        0x4 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .bss.strings   0x20002cb0       0xc0 /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .bss           0x20002d70        0x0 /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+ .bss           0x20002d70        0x0 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .bss._tusb_rhport_role
+                0x20002d70        0x8 /workspace/shared/device-main-arm/run-r2/19-tusb.o
+                0x20002d70                _tusb_rhport_role
+ .bss           0x20002d78        0x0 /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .bss           0x20002d78        0x0 /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .bss._cdcd_itf
+                0x20002d78       0xbc /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .bss           0x20002e34        0x0 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .bss._usbd_q   0x20002e34        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .bss.mt_has_held
+                0x20002e38        0x1 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ *fill*         0x20002e39        0x3 
+ .bss.mt_held   0x20002e3c       0x10 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .bss._usbd_qdef_buf
+                0x20002e4c      0x100 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+                0x20002e4c                _usbd_qdef_buf
+ .bss._app_driver_count
+                0x20002f4c        0x1 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ *fill*         0x20002f4d        0x3 
+ .bss._app_driver
+                0x20002f50        0x4 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .bss._ctrl_epbuf
+                0x20002f54       0x40 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .bss._usbd_queued_setup
+                0x20002f94        0x1 /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ *fill*         0x20002f95        0x3 
+ .bss._usbd_dev
+                0x20002f98       0x2c /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .bss           0x20002fc4        0x0 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .bss.ep_buf_ptr
+                0x20002fc4        0x2 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .bss.remoteWakeCountdown
+                0x20002fc6        0x1 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .bss.ep_alloc_status
+                0x20002fc7       0x20 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ *fill*         0x20002fe7        0x1 
+ .bss.xfer_status
+                0x20002fe8       0x60 /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .bss           0x20003048        0x0 /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+ .bss           0x20003048        0x0 /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .bss           0x20003048        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .bss           0x20003048        0x0 /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .bss           0x20003048        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .bss.state     0x20003048        0x4 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .bss.active    0x2000304c        0x4 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .bss.last_good_ms
+                0x20003050        0x4 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .bss.bound_clock
+                0x20003054        0x4 /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .bss           0x20003058        0x0 /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .bss           0x20003058        0x0 /workspace/shared/device-main-arm/run-r2/boot/reset.o
+ .bss           0x20003058        0x0 /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+                0x20003058                        . = ALIGN (0x4)
+                0x20003058                        __bss_end = .
+                0x20003058                        __static_end = .
+
+.unsupported
+ *(.preinit_array* .init_array* .fini_array* .ctors* .dtors*)
+ *(.init .fini .tdata* .tbss* .noinit*)
+ *(COMMON)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+
+.unsupported_stubs
+                0x08007f18        0x0
+ *(.glue_7 .glue_7t .vfp11_veneer .v4_bx .iplt)
+ .glue_7        0x08007f18        0x0 linker stubs
+ .glue_7t       0x08007f18        0x0 linker stubs
+ .vfp11_veneer  0x08007f18        0x0 linker stubs
+ .v4_bx         0x08007f18        0x0 linker stubs
+ .iplt          0x08007f18        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+
+.rel.iplt       0x08007f18        0x0
+ *(.rel.iplt)
+ .rel.iplt      0x08007f18        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+
+.igot.plt       0x20003058        0x0
+ *(.igot.plt)
+ .igot.plt      0x20003058        0x0 /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+
+.ARM.attributes
+                0x00000000       0x2b
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x2d /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+ .ARM.attributes
+                0x0000002d       0x2d /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+ .ARM.attributes
+                0x0000005a       0x2d /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+ .ARM.attributes
+                0x00000087       0x2d /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+ .ARM.attributes
+                0x000000b4       0x2d /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+ .ARM.attributes
+                0x000000e1       0x2d /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+ .ARM.attributes
+                0x0000010e       0x2d /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+ .ARM.attributes
+                0x0000013b       0x2d /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+ .ARM.attributes
+                0x00000168       0x2d /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+ .ARM.attributes
+                0x00000195       0x2d /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+ .ARM.attributes
+                0x000001c2       0x2d /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+ .ARM.attributes
+                0x000001ef       0x2d /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+ .ARM.attributes
+                0x0000021c       0x2d /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+ .ARM.attributes
+                0x00000249       0x2d /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+ .ARM.attributes
+                0x00000276       0x2d /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+ .ARM.attributes
+                0x000002a3       0x2d /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+ .ARM.attributes
+                0x000002d0       0x2d /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+ .ARM.attributes
+                0x000002fd       0x2d /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+ .ARM.attributes
+                0x0000032a       0x2d /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+ .ARM.attributes
+                0x00000357       0x2d /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+ .ARM.attributes
+                0x00000384       0x2d /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+ .ARM.attributes
+                0x000003b1       0x2d /workspace/shared/device-main-arm/run-r2/19-tusb.o
+ .ARM.attributes
+                0x000003de       0x2d /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+ .ARM.attributes
+                0x0000040b       0x2d /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+ .ARM.attributes
+                0x00000438       0x2d /workspace/shared/device-main-arm/run-r2/22-usbd.o
+ .ARM.attributes
+                0x00000465       0x2d /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+ .ARM.attributes
+                0x00000492       0x2d /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+ .ARM.attributes
+                0x000004bf       0x2d /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+ .ARM.attributes
+                0x000004ec       0x2d /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+ .ARM.attributes
+                0x00000519       0x2d /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+ .ARM.attributes
+                0x00000546       0x2d /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+ .ARM.attributes
+                0x00000573       0x2d /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+ .ARM.attributes
+                0x000005a0       0x21 /workspace/shared/device-main-arm/run-r2/boot/reset.o
+ .ARM.attributes
+                0x000005c1       0x2d /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+
+/DISCARD/
+ *(.comment .note.GNU-stack)
+                0x00000001                        ASSERT (DEFINED (Reset_Handler), missing Reset_Handler)
+                0x00000001                        ASSERT (DEFINED (main), missing main)
+                0x00000001                        ASSERT ((ADDR (.isr_vector) == ORIGIN (FLASH)), vector base must be Flash origin)
+                0x00000001                        ASSERT (((ADDR (.isr_vector) & 0x1ff) == 0x0), vector base must align to 512 bytes)
+                0x00000001                        ASSERT ((SIZEOF (.isr_vector) == 0xec), expected exactly 59 vector words)
+                0x00000001                        ASSERT (DEFINED (__boot_stack_bytes), explicit __boot_stack_bytes required)
+                0x00000001                        ASSERT (((__boot_stack_bytes > 0x0) && (__boot_stack_bytes <= LENGTH (RAM))), invalid stack reservation)
+                0x00000001                        ASSERT (((__boot_stack_bytes & 0x7) == 0x0), stack reservation must align to 8 bytes)
+                0x00000001                        ASSERT (((__StackTop & 0x7) == 0x0), initial MSP must align to 8 bytes)
+                0x00000001                        ASSERT ((__static_end <= __StackLimit), static storage overlaps reserved stack)
+                0x00000001                        ASSERT (((((((__data_start | __data_end) | __data_load) | __bss_start) | __bss_end) & 0x3) == 0x0), reset ranges must align to words)
+                0x00000001                        ASSERT (((__data_start <= __data_end) && (__bss_start <= __bss_end)), reversed reset range)
+                0x00000001                        ASSERT (((__data_start >= ORIGIN (RAM)) && (__bss_end <= __StackTop)), reset range outside SRAM)
+                0x00000001                        ASSERT (((__data_load >= ORIGIN (FLASH)) && ((__data_load + SIZEOF (.data)) <= (ORIGIN (FLASH) + LENGTH (FLASH)))), data load image outside Flash)
+                0x00000001                        ASSERT ((SIZEOF (.unsupported) == 0x0), constructors, TLS, noinit and COMMON unsupported)
+                0x00000001                        ASSERT (((SIZEOF (.ARM.extab) == 0x0) && (SIZEOF (.ARM.exidx) == 0x0)), unwind tables unsupported)
+                0x00000001                        ASSERT ((((SIZEOF (.unsupported_stubs) == 0x0) && (SIZEOF (.rel.iplt) == 0x0)) && (SIZEOF (.igot.plt) == 0x0)), interworking and dynamic stubs unsupported)
+LOAD /workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o
+LOAD /workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o
+LOAD /workspace/shared/device-main-arm/run-r2/0-acquisition.o
+LOAD /workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o
+LOAD /workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o
+LOAD /workspace/shared/device-main-arm/run-r2/3-mt_control.o
+LOAD /workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o
+LOAD /workspace/shared/device-main-arm/run-r2/5-mt_runtime.o
+LOAD /workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o
+LOAD /workspace/shared/device-main-arm/run-r2/7-mt_timebase.o
+LOAD /workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o
+LOAD /workspace/shared/device-main-arm/run-r2/9-mt_wire.o
+LOAD /workspace/shared/device-main-arm/run-r2/10-mt_stream.o
+LOAD /workspace/shared/device-main-arm/run-r2/11-mt_session.o
+LOAD /workspace/shared/device-main-arm/run-r2/12-mt_command.o
+LOAD /workspace/shared/device-main-arm/run-r2/13-mt_tx.o
+LOAD /workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o
+LOAD /workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o
+LOAD /workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o
+LOAD /workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o
+LOAD /workspace/shared/device-main-arm/run-r2/18-mt_memory.o
+LOAD /workspace/shared/device-main-arm/run-r2/19-tusb.o
+LOAD /workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o
+LOAD /workspace/shared/device-main-arm/run-r2/21-cdc_device.o
+LOAD /workspace/shared/device-main-arm/run-r2/22-usbd.o
+LOAD /workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o
+LOAD /workspace/shared/device-main-arm/run-r2/24-fsdev_common.o
+LOAD /workspace/shared/device-main-arm/run-r2/mt_clock_startup.o
+LOAD /workspace/shared/device-main-arm/run-r2/mt_boot_time.o
+LOAD /workspace/shared/device-main-arm/run-r2/mt_boot_usb.o
+LOAD /workspace/shared/device-main-arm/run-r2/mt_usb_time.o
+LOAD /workspace/shared/device-main-arm/run-r2/mt_usb_irq.o
+LOAD /workspace/shared/device-main-arm/run-r2/boot/reset.o
+LOAD /workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.o
+OUTPUT(/workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_BOARD_STATIC_PLACEMENT_NOT_FLASHABLE.elf elf32-littlearm)
+LOAD linker stubs

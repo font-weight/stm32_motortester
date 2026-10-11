@@ -1,0 +1,3269 @@
+[
+  {
+    "address": "0x80000ec",
+    "name": "rd",
+    "object": "Os-mt_device_main.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80000f4",
+    "name": "main",
+    "object": "Os-mt_device_main.o",
+    "su_bytes": 88,
+    "machine_max_sp_decrement": 88,
+    "reachable_machine_instructions": 270,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000450",
+    "name": "mt_boot_cpu_masked",
+    "object": "Os-mt_boot_cpu.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 17,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000480",
+    "name": "mt_boot_cpu_admit",
+    "object": "Os-mt_boot_cpu.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000498",
+    "name": "mt_boot_cpu_halt",
+    "object": "Os-mt_boot_cpu.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800049e",
+    "name": "reset_capture",
+    "object": "0-acquisition.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80004c2",
+    "name": "append_sample",
+    "object": "0-acquisition.o",
+    "su_bytes": 12,
+    "machine_max_sp_decrement": 12,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000512",
+    "name": "mt_acq_init",
+    "object": "0-acquisition.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 14,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000538",
+    "name": "mt_acq_configure",
+    "object": "0-acquisition.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 48,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80005ac",
+    "name": "mt_acq_arm",
+    "object": "0-acquisition.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80005e8",
+    "name": "mt_acq_window",
+    "object": "0-acquisition.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000610",
+    "name": "mt_acq_read",
+    "object": "0-acquisition.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 20,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000644",
+    "name": "mt_acq_stop",
+    "object": "0-acquisition.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800065e",
+    "name": "mt_acq_release",
+    "object": "0-acquisition.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 25,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800069e",
+    "name": "mt_acq_fail",
+    "object": "0-acquisition.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 15,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80006c2",
+    "name": "mt_acq_push",
+    "object": "0-acquisition.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 105,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80007ae",
+    "name": "put32",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80007ba",
+    "name": "valid",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 7,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80007cc",
+    "name": "queue_bulk",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 600,
+    "machine_max_sp_decrement": 600,
+    "reachable_machine_instructions": 190,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80009ec",
+    "name": "mt_capture_link_init",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000a28",
+    "name": "mt_capture_link_configure",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 50,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000aa2",
+    "name": "mt_capture_link_arm",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 59,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000b34",
+    "name": "mt_capture_link_sample",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 61,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000bcc",
+    "name": "mt_capture_link_poll",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 80,
+    "machine_max_sp_decrement": 80,
+    "reachable_machine_instructions": 108,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000cd0",
+    "name": "mt_capture_link_stop",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 1696,
+    "machine_max_sp_decrement": 1696,
+    "reachable_machine_instructions": 132,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000e50",
+    "name": "mt_capture_link_release",
+    "object": "1-mt_capture_link.o",
+    "su_bytes": 576,
+    "machine_max_sp_decrement": 576,
+    "reachable_machine_instructions": 116,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000f74",
+    "name": "stop",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8000f84",
+    "name": "start",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 56,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001014",
+    "name": "profile",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800101c",
+    "name": "init",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 40,
+    "machine_max_sp_decrement": 40,
+    "reachable_machine_instructions": 44,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001090",
+    "name": "mt_adc_control_init",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80010a6",
+    "name": "mt_adc_control_init_guarded",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 17,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80010ce",
+    "name": "mt_adc_control_service",
+    "object": "2-mt_adc_control.o",
+    "su_bytes": 56,
+    "machine_max_sp_decrement": 56,
+    "reachable_machine_instructions": 82,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800119a",
+    "name": "put32",
+    "object": "3-mt_control.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80011a6",
+    "name": "state",
+    "object": "3-mt_control.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80011d6",
+    "name": "fill_status",
+    "object": "3-mt_control.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 26,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800121c",
+    "name": "mt_control_recover",
+    "object": "3-mt_control.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 20,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001256",
+    "name": "flush_states",
+    "object": "3-mt_control.o",
+    "su_bytes": 568,
+    "machine_max_sp_decrement": 568,
+    "reachable_machine_instructions": 36,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80012b8",
+    "name": "enqueue",
+    "object": "3-mt_control.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 27,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80012f8",
+    "name": "error",
+    "object": "3-mt_control.o",
+    "su_bytes": 568,
+    "machine_max_sp_decrement": 568,
+    "reachable_machine_instructions": 29,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001354",
+    "name": "remember_state",
+    "object": "3-mt_control.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 34,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80013ba",
+    "name": "mt_control_init",
+    "object": "3-mt_control.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 33,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800140c",
+    "name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "su_bytes": 640,
+    "machine_max_sp_decrement": 640,
+    "reachable_machine_instructions": 393,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80018a4",
+    "name": "mt_control_sample",
+    "object": "3-mt_control.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 33,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80018fc",
+    "name": "mt_control_poll",
+    "object": "3-mt_control.o",
+    "su_bytes": 576,
+    "machine_max_sp_decrement": 576,
+    "reachable_machine_instructions": 70,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80019be",
+    "name": "observe",
+    "object": "4-mt_control_rx.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 24,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80019fa",
+    "name": "mt_control_rx_init",
+    "object": "4-mt_control_rx.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 15,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001a20",
+    "name": "mt_control_rx_poll",
+    "object": "4-mt_control_rx.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 14,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001a40",
+    "name": "mt_control_rx_feed",
+    "object": "4-mt_control_rx.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 54,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001ac8",
+    "name": "mt_control_rx_transport_lost",
+    "object": "4-mt_control_rx.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001ae6",
+    "name": "adc_read",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 4,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001af4",
+    "name": "adc_write",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 4,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001b02",
+    "name": "commit_enter",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001b06",
+    "name": "commit_leave",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001b0c",
+    "name": "adc_time",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001b18",
+    "name": "stable",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 120,
+    "machine_max_sp_decrement": 120,
+    "reachable_machine_instructions": 54,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001ba2",
+    "name": "commit_allowed",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001bc8",
+    "name": "time_fault.isra.0",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 56,
+    "machine_max_sp_decrement": 56,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001c06",
+    "name": "synchronize_loss",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 64,
+    "machine_max_sp_decrement": 64,
+    "reachable_machine_instructions": 70,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001ccc",
+    "name": "mt_runtime_init",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 104,
+    "machine_max_sp_decrement": 104,
+    "reachable_machine_instructions": 107,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001e04",
+    "name": "mt_runtime_step",
+    "object": "5-mt_runtime.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 93,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001f02",
+    "name": "rd",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001f0c",
+    "name": "wr",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001f16",
+    "name": "now",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001f1c",
+    "name": "wait_clear",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001f5c",
+    "name": "gates_enabled",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8001f9c",
+    "name": "quiesce",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 62,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002050",
+    "name": "fail.isra.0",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002068",
+    "name": "clock_plan",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 130,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80021f4",
+    "name": "start",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 334,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80025e8",
+    "name": "mt_adc_dma_mmio_read32",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80025ec",
+    "name": "mt_adc_dma_mmio_write32",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80025f0",
+    "name": "mt_adc_dma_init",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 25,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002634",
+    "name": "mt_adc_dma_profile1_ready",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 48,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80026c0",
+    "name": "mt_adc_dma_start",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80026c6",
+    "name": "mt_adc_dma_start_guarded",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80026e0",
+    "name": "mt_adc_dma_read_block",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 40,
+    "machine_max_sp_decrement": 40,
+    "reachable_machine_instructions": 166,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80028e0",
+    "name": "mt_adc_dma_stop",
+    "object": "6-adc_timer_dma.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 17,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800290e",
+    "name": "read_reg",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002914",
+    "name": "write_reg",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800291a",
+    "name": "valid",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002934",
+    "name": "accessible",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800295c",
+    "name": "clock_matches",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 24,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80029a4",
+    "name": "timer_matches",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 51,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002a40",
+    "name": "mt_timebase_update",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 58,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002acc",
+    "name": "mt_timebase_init",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 139,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002c68",
+    "name": "mt_timebase_healthy",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002c84",
+    "name": "mt_timebase_now_us",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002c98",
+    "name": "mt_timebase_now_ms",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002cac",
+    "name": "mt_timebase_stop",
+    "object": "7-mt_timebase.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 33,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002d00",
+    "name": "mt_irq_guard_enter",
+    "object": "8-mt_irq_guard.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002d08",
+    "name": "mt_irq_guard_leave",
+    "object": "8-mt_irq_guard.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002d0e",
+    "name": "put32",
+    "object": "9-mt_wire.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002d1e",
+    "name": "get32",
+    "object": "9-mt_wire.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002d38",
+    "name": "mt_wire_crc32",
+    "object": "9-mt_wire.o",
+    "su_bytes": 12,
+    "machine_max_sp_decrement": 12,
+    "reachable_machine_instructions": 18,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002d68",
+    "name": "mt_wire_encode",
+    "object": "9-mt_wire.o",
+    "su_bytes": 576,
+    "machine_max_sp_decrement": 576,
+    "reachable_machine_instructions": 96,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002e66",
+    "name": "mt_wire_decode",
+    "object": "9-mt_wire.o",
+    "su_bytes": 568,
+    "machine_max_sp_decrement": 568,
+    "reachable_machine_instructions": 120,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002f98",
+    "name": "mt_stream_init",
+    "object": "10-mt_stream.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002faa",
+    "name": "mt_stream_poll",
+    "object": "10-mt_stream.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 28,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8002ff2",
+    "name": "mt_stream_feed",
+    "object": "10-mt_stream.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 48,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003070",
+    "name": "mt_session_init",
+    "object": "11-mt_session.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003086",
+    "name": "mt_session_require_hello",
+    "object": "11-mt_session.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003094",
+    "name": "mt_session_receive",
+    "object": "11-mt_session.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 131,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80031c8",
+    "name": "read32",
+    "object": "12-mt_command.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80031e0",
+    "name": "mt_command_parse",
+    "object": "12-mt_command.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 114,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003310",
+    "name": "mt_command_config_valid",
+    "object": "12-mt_command.o",
+    "su_bytes": 20,
+    "machine_max_sp_decrement": 20,
+    "reachable_machine_instructions": 66,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80033ac",
+    "name": "read32",
+    "object": "13-mt_tx.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80033b0",
+    "name": "append",
+    "object": "13-mt_tx.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80033ee",
+    "name": "shape",
+    "object": "13-mt_tx.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 27,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800342a",
+    "name": "mt_tx_init",
+    "object": "13-mt_tx.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003438",
+    "name": "mt_tx_hello",
+    "object": "13-mt_tx.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 51,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80034cc",
+    "name": "mt_tx_enqueue",
+    "object": "13-mt_tx.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 116,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003620",
+    "name": "mt_tx_terminal_committed",
+    "object": "13-mt_tx.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800363e",
+    "name": "mt_tx_window_status",
+    "object": "13-mt_tx.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 57,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80036ca",
+    "name": "mt_tx_stop",
+    "object": "13-mt_tx.o",
+    "su_bytes": 64,
+    "machine_max_sp_decrement": 64,
+    "reachable_machine_instructions": 233,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003956",
+    "name": "mt_tx_poll",
+    "object": "13-mt_tx.o",
+    "su_bytes": 96,
+    "machine_max_sp_decrement": 96,
+    "reachable_machine_instructions": 175,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003b38",
+    "name": "current",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003b50",
+    "name": "mt_usb_epoch_init",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003b5e",
+    "name": "mt_usb_epoch_reset",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003b94",
+    "name": "mt_usb_epoch_disconnect",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003bca",
+    "name": "mt_usb_epoch_enqueued",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 28,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c08",
+    "name": "mt_usb_epoch_cleaned",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c16",
+    "name": "mt_usb_epoch_dispatch",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 33,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c5c",
+    "name": "mt_usb_epoch_reset_done",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c6e",
+    "name": "mt_usb_epoch_core_io",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c74",
+    "name": "mt_usb_epoch_configured",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 7,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c84",
+    "name": "mt_usb_epoch_app_io",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003c9a",
+    "name": "mt_usb_epoch_fail",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 22,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003cc8",
+    "name": "mt_usb_epoch_suspend",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003cec",
+    "name": "mt_usb_epoch_resume",
+    "object": "14-mt_usb_epoch.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003d0e",
+    "name": "valid",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003d26",
+    "name": "usable",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 22,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003d58",
+    "name": "mt_usb_cdc_write_impl",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 28,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003d9a",
+    "name": "mt_usb_cdc_init",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003dd6",
+    "name": "mt_usb_cdc_open_epoch_impl",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 41,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003e34",
+    "name": "mt_usb_cdc_step_impl",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 40,
+    "machine_max_sp_decrement": 40,
+    "reachable_machine_instructions": 74,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003ef0",
+    "name": "mt_usb_cdc_soft_pause",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003f22",
+    "name": "mt_usb_cdc_hard_loss",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003f5a",
+    "name": "mt_usb_cdc_open_epoch",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003fa8",
+    "name": "mt_usb_cdc_write",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 26,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8003fe6",
+    "name": "mt_usb_cdc_step",
+    "object": "15-mt_usb_cdc.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004018",
+    "name": "permitted",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 15,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004048",
+    "name": "result.part.0",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800405c",
+    "name": "mt_usb_bridge_init",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80040a8",
+    "name": "mt_usb_bridge_lock",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80040b8",
+    "name": "mt_usb_bridge_unlock",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80040c8",
+    "name": "mt_usb_bridge_ingress",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004124",
+    "name": "mt_usb_bridge_enqueued",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004134",
+    "name": "mt_usb_bridge_actor",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004140",
+    "name": "mt_usb_bridge_snapshot",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800416c",
+    "name": "mt_usb_bridge_cleaned",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800418c",
+    "name": "mt_usb_bridge_dispatch",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 54,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800421c",
+    "name": "mt_usb_bridge_app_enter",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 30,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004270",
+    "name": "mt_usb_bridge_leave",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004294",
+    "name": "mt_usb_bridge_reset_done",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80042c0",
+    "name": "mt_usb_bridge_config_begin",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 22,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80042fc",
+    "name": "mt_usb_bridge_config_done",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004338",
+    "name": "mt_usb_bridge_xfer",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 27,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800437e",
+    "name": "mt_usb_bridge_fifo",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 27,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80043c4",
+    "name": "mt_usb_bridge_open",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 20,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80043f6",
+    "name": "mt_usb_bridge_stall",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800441a",
+    "name": "mt_usb_bridge_clear_stall",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800443e",
+    "name": "mt_usb_bridge_status",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004462",
+    "name": "mt_usb_bridge_sof",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004486",
+    "name": "mt_usb_bridge_close_all",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80044a8",
+    "name": "mt_usb_bridge_address",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 40,
+    "machine_max_sp_decrement": 40,
+    "reachable_machine_instructions": 29,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004508",
+    "name": "mt_usb_bridge_address_result",
+    "object": "16-mt_usb_bridge.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004528",
+    "name": "mt_usb_descriptors_init",
+    "object": "17-mt_usb_descriptors.o",
+    "su_bytes": 56,
+    "machine_max_sp_decrement": 56,
+    "reachable_machine_instructions": 112,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004644",
+    "name": "tud_descriptor_device_cb",
+    "object": "17-mt_usb_descriptors.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 7,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800465c",
+    "name": "tud_descriptor_configuration_cb",
+    "object": "17-mt_usb_descriptors.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004678",
+    "name": "tud_descriptor_string_cb",
+    "object": "17-mt_usb_descriptors.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 18,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80046ac",
+    "name": "memcpy",
+    "object": "18-mt_memory.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80046c4",
+    "name": "memmove",
+    "object": "18-mt_memory.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80046ee",
+    "name": "memset",
+    "object": "18-mt_memory.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 7,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80046fe",
+    "name": "memcmp",
+    "object": "18-mt_memory.o",
+    "su_bytes": 12,
+    "machine_max_sp_decrement": 12,
+    "reachable_machine_instructions": 14,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800471a",
+    "name": "stream_claim",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800472c",
+    "name": "stream_xfer",
+    "object": "19-tusb.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800475e",
+    "name": "stream_release.isra.0",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800476c",
+    "name": "tusb_time_delay_ms_api",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004782",
+    "name": "tusb_app_virt_to_phys",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004784",
+    "name": "tusb_app_phys_to_virt",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004788",
+    "name": "tusb_rhport_init",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 40,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80047ec",
+    "name": "tusb_inited",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80047f0",
+    "name": "tusb_int_handler",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004808",
+    "name": "tusb_deinit",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 20,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004840",
+    "name": "tu_desc_find",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004856",
+    "name": "tu_desc_find2",
+    "object": "19-tusb.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 15,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004874",
+    "name": "tu_desc_find3",
+    "object": "19-tusb.o",
+    "su_bytes": 12,
+    "machine_max_sp_decrement": 12,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800489c",
+    "name": "tu_edpt_claim",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 14,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80048be",
+    "name": "tu_edpt_release",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80048da",
+    "name": "tu_bind_driver_to_ep_itf",
+    "object": "19-tusb.o",
+    "su_bytes": 20,
+    "machine_max_sp_decrement": 20,
+    "reachable_machine_instructions": 40,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004934",
+    "name": "tu_edpt_stream_init",
+    "object": "19-tusb.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 18,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800495e",
+    "name": "tu_edpt_stream_write_zlp_if_needed",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 30,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80049a4",
+    "name": "tu_edpt_stream_write_xfer",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 58,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004a2a",
+    "name": "tu_edpt_stream_write",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004a72",
+    "name": "tu_edpt_stream_write_available",
+    "object": "19-tusb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 17,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004a96",
+    "name": "tu_edpt_stream_read_xfer",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 66,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004b2a",
+    "name": "tu_edpt_stream_read",
+    "object": "19-tusb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004b44",
+    "name": "advance_index",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004b5c",
+    "name": "ff_peek_local",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004ba0",
+    "name": "tu_fifo_config",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004bbc",
+    "name": "tu_fifo_clear",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 4,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004bc4",
+    "name": "tu_fifo_set_overwritable",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004bce",
+    "name": "tu_hwfifo_write",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004c02",
+    "name": "tu_hwfifo_read",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 22,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004c34",
+    "name": "tu_fifo_peek_n_access_mode",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 121,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004d70",
+    "name": "tu_fifo_peek_n",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004d88",
+    "name": "tu_fifo_read_n_access_mode",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 18,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004db2",
+    "name": "tu_fifo_write_n_access_mode",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 64,
+    "machine_max_sp_decrement": 64,
+    "reachable_machine_instructions": 161,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004f44",
+    "name": "tu_fifo_discard_n",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 27,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004f7e",
+    "name": "tu_fifo_read",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 17,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004fa4",
+    "name": "tu_fifo_peek",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8004fb0",
+    "name": "tu_fifo_write",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 37,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005000",
+    "name": "tu_fifo_advance_write_pointer",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005014",
+    "name": "tu_fifo_correct_read_pointer",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005028",
+    "name": "tu_fifo_advance_read_pointer",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800503c",
+    "name": "tu_fifo_get_read_info",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 56,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80050b0",
+    "name": "tu_fifo_get_write_info",
+    "object": "20-tusb_fifo.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 45,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800510e",
+    "name": "tud_cdc_rx_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005110",
+    "name": "tud_cdc_rx_wanted_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005112",
+    "name": "tud_cdc_tx_complete_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005114",
+    "name": "tud_cdc_notify_complete_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005116",
+    "name": "tud_cdc_line_state_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005118",
+    "name": "tud_cdc_line_coding_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800511a",
+    "name": "tud_cdc_send_break_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800511c",
+    "name": "tud_cdc_n_ready",
+    "object": "21-cdc_device.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 20,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005150",
+    "name": "tud_cdc_n_connected",
+    "object": "21-cdc_device.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 15,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005178",
+    "name": "tud_cdc_n_get_line_state",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005188",
+    "name": "tud_cdc_n_get_line_coding",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80051a0",
+    "name": "tud_cdc_n_set_wanted_char",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 4,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80051ac",
+    "name": "tud_cdc_n_available",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80051d8",
+    "name": "tud_cdc_n_read",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80051e8",
+    "name": "tud_cdc_n_peek",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80051f8",
+    "name": "tud_cdc_n_read_flush",
+    "object": "21-cdc_device.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005218",
+    "name": "tud_cdc_n_write",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005228",
+    "name": "tud_cdc_n_write_flush",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005238",
+    "name": "tud_cdc_n_write_available",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005248",
+    "name": "tud_cdc_n_write_clear",
+    "object": "21-cdc_device.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005260",
+    "name": "cdcd_init",
+    "object": "21-cdc_device.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80052b8",
+    "name": "cdcd_deinit",
+    "object": "21-cdc_device.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80052bc",
+    "name": "cdcd_reset",
+    "object": "21-cdc_device.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80052e4",
+    "name": "cdcd_open",
+    "object": "21-cdc_device.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 112,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80053fc",
+    "name": "cdcd_control_xfer_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 60,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80054a4",
+    "name": "cdcd_xfer_cb",
+    "object": "21-cdc_device.o",
+    "su_bytes": 40,
+    "machine_max_sp_decrement": 40,
+    "reachable_machine_instructions": 101,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80055a4",
+    "name": "tud_vendor_control_xfer_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80055a8",
+    "name": "configuration_reset",
+    "object": "22-usbd.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 45,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005630",
+    "name": "usbd_int_set",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005644",
+    "name": "invoke_class_control.constprop.0.isra.0",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005654",
+    "name": "tud_event_hook_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005658",
+    "name": "queue_event_epoch.isra.0",
+    "object": "22-usbd.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 53,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056ec",
+    "name": "tud_sof_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056ee",
+    "name": "tud_descriptor_bos_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056f2",
+    "name": "tud_descriptor_device_qualifier_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056f6",
+    "name": "tud_descriptor_other_speed_configuration_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056fa",
+    "name": "tud_mount_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056fc",
+    "name": "tud_umount_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80056fe",
+    "name": "tud_suspend_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005700",
+    "name": "tud_resume_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005702",
+    "name": "dcd_deinit",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005706",
+    "name": "dcd_connect",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005708",
+    "name": "dcd_disconnect",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800570a",
+    "name": "dcd_dcache_clean",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800570e",
+    "name": "dcd_dcache_invalidate",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005712",
+    "name": "dcd_dcache_clean_invalidate",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005716",
+    "name": "usbd_app_driver_get_cb",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 4,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800571e",
+    "name": "dcd_edpt_xfer_fifo",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005722",
+    "name": "dcd_configure",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005728",
+    "name": "tud_speed_get",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005734",
+    "name": "tud_connected",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005744",
+    "name": "tud_mounted",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005754",
+    "name": "tud_suspended",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005764",
+    "name": "tud_remote_wakeup",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800578c",
+    "name": "tud_disconnect",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80057a0",
+    "name": "tud_connect",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80057b4",
+    "name": "tud_inited",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80057c4",
+    "name": "tud_configure",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80057cc",
+    "name": "tud_rhport_init",
+    "object": "22-usbd.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 71,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80058a4",
+    "name": "tud_deinit",
+    "object": "22-usbd.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 58,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800594c",
+    "name": "tud_task_event_ready",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005980",
+    "name": "dcd_edpt0_status_complete",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005984",
+    "name": "usbd_get_ctrl_buf",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800598c",
+    "name": "dcd_event_handler",
+    "object": "22-usbd.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 142,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005b18",
+    "name": "usbd_spin_lock",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005b34",
+    "name": "usbd_spin_unlock",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005b50",
+    "name": "usbd_defer_func",
+    "object": "22-usbd.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 18,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005b80",
+    "name": "usbd_edpt_open",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 18,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005bb4",
+    "name": "usbd_open_edpt_pair",
+    "object": "22-usbd.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 39,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005c10",
+    "name": "usbd_edpt_claim",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005c2c",
+    "name": "usbd_edpt_release",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005c48",
+    "name": "usbd_edpt_xfer",
+    "object": "22-usbd.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 30,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005ca8",
+    "name": "tud_control_status",
+    "object": "22-usbd.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 15,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005cd0",
+    "name": "data_stage_xact",
+    "object": "22-usbd.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 42,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005d34",
+    "name": "tud_control_xfer",
+    "object": "22-usbd.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005d80",
+    "name": "usbd_edpt_xfer_fifo",
+    "object": "22-usbd.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 30,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005de0",
+    "name": "usbd_edpt_busy",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 7,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005dfc",
+    "name": "usbd_edpt_stall",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005e2c",
+    "name": "usbd_edpt_clear_stall",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005e5c",
+    "name": "usbd_edpt_stalled",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 7,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8005e78",
+    "name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "su_bytes": 96,
+    "machine_max_sp_decrement": 96,
+    "reachable_machine_instructions": 604,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800652c",
+    "name": "usbd_edpt_close",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006530",
+    "name": "usbd_sof_enable",
+    "object": "22-usbd.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 31,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006580",
+    "name": "tud_sof_cb_enable",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006590",
+    "name": "usbd_edpt_iso_alloc",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80065b8",
+    "name": "usbd_edpt_iso_activate",
+    "object": "22-usbd.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006600",
+    "name": "__NVIC_EnableIRQ",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800661c",
+    "name": "__NVIC_DisableIRQ",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006640",
+    "name": "dcd_ep_alloc",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 20,
+    "machine_max_sp_decrement": 20,
+    "reachable_machine_instructions": 52,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80066c0",
+    "name": "dcd_transmit_packet",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 40,
+    "machine_max_sp_decrement": 40,
+    "reachable_machine_instructions": 82,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80067bc",
+    "name": "dcd_pma_alloc.constprop.0",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 20,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80067f8",
+    "name": "edpt_xfer.isra.0",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 51,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006894",
+    "name": "handle_bus_reset.isra.0",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 56,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006934",
+    "name": "dcd_init",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006968",
+    "name": "dcd_deinit",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 4,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006974",
+    "name": "dcd_sof_enable",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 11,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006998",
+    "name": "dcd_remote_wakeup",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 9,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80069b8",
+    "name": "dcd_int_handler",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 72,
+    "machine_max_sp_decrement": 72,
+    "reachable_machine_instructions": 309,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006d44",
+    "name": "dcd_edpt0_status_complete",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 12,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006d64",
+    "name": "dcd_edpt_open",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 73,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006e4c",
+    "name": "dcd_edpt_iso_alloc",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006e90",
+    "name": "dcd_edpt_iso_activate",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 41,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006f14",
+    "name": "dcd_edpt_xfer",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006f40",
+    "name": "dcd_set_address",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 10,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006f5c",
+    "name": "dcd_edpt_xfer_fifo",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8006f88",
+    "name": "dcd_edpt_stall",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 39,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007004",
+    "name": "dcd_edpt_clear_stall",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 44,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800708c",
+    "name": "dcd_int_enable",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80070a6",
+    "name": "dcd_int_disable",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80070b8",
+    "name": "dcd_edpt_close_all",
+    "object": "23-dcd_stm32_fsdev.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80070fc",
+    "name": "fsdev_core_reset",
+    "object": "24-fsdev_common.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800714c",
+    "name": "fsdev_deinit",
+    "object": "24-fsdev_common.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800717c",
+    "name": "pma_align_buffer_size",
+    "object": "24-fsdev_common.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80071a0",
+    "name": "btable_set_rx_bufsize",
+    "object": "24-fsdev_common.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 23,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80071e2",
+    "name": "rd",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80071e8",
+    "name": "update",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 13,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800720a",
+    "name": "wait_bits",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 21,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800723c",
+    "name": "snapshot",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 14,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800726c",
+    "name": "domains_idle",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 38,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80072e8",
+    "name": "on_hsi",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800731c",
+    "name": "fail",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 90,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80073fc",
+    "name": "matches",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 24,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x800743c",
+    "name": "mt_clock_mmio_read32",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007440",
+    "name": "mt_clock_mmio_write32",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007444",
+    "name": "mt_clock_plan_72",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 40,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80074b4",
+    "name": "mt_clock_apply",
+    "object": "mt_clock_startup.o",
+    "su_bytes": 64,
+    "machine_max_sp_decrement": 64,
+    "reachable_machine_instructions": 203,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80076d0",
+    "name": "read_reg",
+    "object": "mt_boot_time.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80076d8",
+    "name": "same_clock",
+    "object": "mt_boot_time.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007738",
+    "name": "mt_boot_time_start",
+    "object": "mt_boot_time.o",
+    "su_bytes": 48,
+    "machine_max_sp_decrement": 48,
+    "reachable_machine_instructions": 153,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80078bc",
+    "name": "rd",
+    "object": "mt_boot_usb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 3,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80078c2",
+    "name": "wr",
+    "object": "mt_boot_usb.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80078c8",
+    "name": "same_clock",
+    "object": "mt_boot_usb.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 32,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007928",
+    "name": "quiescent",
+    "object": "mt_boot_usb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 64,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x80079fc",
+    "name": "priorities_match",
+    "object": "mt_boot_usb.o",
+    "su_bytes": 16,
+    "machine_max_sp_decrement": 16,
+    "reachable_machine_instructions": 19,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007a38",
+    "name": "mt_boot_usb_prepare",
+    "object": "mt_boot_usb.o",
+    "su_bytes": 32,
+    "machine_max_sp_decrement": 32,
+    "reachable_machine_instructions": 186,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007c34",
+    "name": "fail",
+    "object": "mt_usb_time.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 6,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007c44",
+    "name": "mt_usb_time_valid",
+    "object": "mt_usb_time.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 16,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007c70",
+    "name": "mt_usb_time_status",
+    "object": "mt_usb_time.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 5,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007c80",
+    "name": "mt_usb_time_bind",
+    "object": "mt_usb_time.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 45,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007d00",
+    "name": "tusb_time_millis_api",
+    "object": "mt_usb_time.o",
+    "su_bytes": 24,
+    "machine_max_sp_decrement": 24,
+    "reachable_machine_instructions": 35,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007d70",
+    "name": "usb_irq_dispatch",
+    "object": "mt_usb_irq.o",
+    "su_bytes": 8,
+    "machine_max_sp_decrement": 8,
+    "reachable_machine_instructions": 8,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007d88",
+    "name": "USB_HP_CAN1_TX_IRQHandler",
+    "object": "mt_usb_irq.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007d8c",
+    "name": "USB_LP_CAN1_RX0_IRQHandler",
+    "object": "mt_usb_irq.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 1,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007d90",
+    "name": "Reset_Handler",
+    "object": "reset.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 29,
+    "sp_state_unique_at_every_reachable_instruction": true
+  },
+  {
+    "address": "0x8007dfc",
+    "name": "Default_Handler",
+    "object": "reset.o",
+    "su_bytes": 0,
+    "machine_max_sp_decrement": 0,
+    "reachable_machine_instructions": 2,
+    "sp_state_unique_at_every_reachable_instruction": true
+  }
+]

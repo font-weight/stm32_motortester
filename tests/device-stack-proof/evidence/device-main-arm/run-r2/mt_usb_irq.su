@@ -1,0 +1,3 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-irq-draft/mt_usb_irq.c:7:13:usb_irq_dispatch	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-irq-draft/mt_usb_irq.c:14:6:USB_HP_CAN1_TX_IRQHandler	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-irq-draft/mt_usb_irq.c:19:6:USB_LP_CAN1_RX0_IRQHandler	0	static

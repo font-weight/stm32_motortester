@@ -1,0 +1,3 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/protocol/mt_stream.c:3:6:mt_stream_init	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/protocol/mt_stream.c:12:17:mt_stream_poll	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/protocol/mt_stream.c:24:17:mt_stream_feed	24	static
