@@ -163,7 +163,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.open_button = self._button("Открыть запись…", "open", self.open_dialog, "Ctrl+O")
         self.save_button = self._button("Сохранить .mtcap…", "save", self.save_dialog, "Ctrl+S")
         self.csv_button = self._button("Экспортировать CSV…", "csv", self.csv_dialog, "Ctrl+E")
-        for button in (self.open_button, self.save_button, self.csv_button):
+        self.png_button = self._button("Экспортировать PNG…", "png", self.png_dialog, "Ctrl+Shift+E")
+        for button in (self.open_button, self.save_button, self.csv_button, self.png_button):
             side.addWidget(button)
         self.file_label = _label("Файл не открыт", "muted", wrap=True)
         self.file_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
@@ -279,7 +280,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def _set_actions(self):
         for button in (self.generate_button, self.open_button):
             button.setEnabled(not self.busy)
-        for button in (self.save_button, self.csv_button):
+        for button in (self.save_button, self.csv_button, self.png_button):
             button.setEnabled(not self.busy and self.capture is not None)
         self.reset_button.setEnabled(self.capture is not None)
         self.cursor_toggle.setEnabled(self.capture is not None)
@@ -493,6 +494,78 @@ class MainWindow(QtWidgets.QMainWindow):
         self._submit(lambda: recording.export_csv(path, capture, overwrite=overwrite),
                      lambda _: self._status(f"CSV экспортирован: {path.name}. Время в секундах, номинальное; исходная запись в .mtcap."),
                      "Экспорт CSV…", "Не удалось экспортировать CSV")
+
+    def png_image(self) -> QtGui.QImage:
+        """Render the current view with provenance; never replace raw samples."""
+        if self.capture is None:
+            raise CaptureError("Нет записи для экспорта PNG")
+        chart = self.plot.grab().toImage()
+        # PNG is an illustration of the visible viewport. Limit image resources
+        # independently of the capture size, including high-DPI displays.
+        width = chart.width()
+        if width < 1 or chart.height() < 1 or width > 4096 or chart.height() > 4096:
+            raise CaptureError("Размер графика для PNG должен быть не более 4096 × 4096 пикселей")
+        chart.setDevicePixelRatio(1)
+        capture = self.capture
+        origin = "ДЕМОНСТРАЦИЯ · синтетические данные" if capture.origin == "simulator" else "Данные из файла прибора · происхождение не проверено"
+        header = f"Мотортестер · PNG-иллюстрация\n{origin}"
+        footer = (f"{len(capture.samples)} исходных отсчётов · Fs ном. {capture.nominal_fs_hz:g} Гц · шкалы не калиброваны\n"
+                  f"{self.trigger_label.text()}\n{self.quality_label.text()}\n")
+        if self.cursor_toggle.isChecked():
+            footer += self.cursor_label.text() + "\n"
+        footer += "Изображение не заменяет исходную запись .mtcap. Сохранён текущий масштаб графика."
+        font = QtGui.QFont("DejaVu Sans", 10)
+        metrics = QtGui.QFontMetrics(font)
+        flags = QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.TextFlag.TextWrapAnywhere
+        inner_width = max(1, width - 32)
+        header_h = metrics.boundingRect(QtCore.QRect(0, 0, inner_width, 10000), int(flags), header).height() + 24
+        footer_h = metrics.boundingRect(QtCore.QRect(0, 0, inner_width, 10000), int(flags), footer).height() + 24
+        height = header_h + chart.height() + footer_h
+        if width * height > 16_000_000:
+            raise CaptureError("Изображение PNG превышает допустимые 16 миллионов пикселей")
+        result = QtGui.QImage(width, height, QtGui.QImage.Format.Format_ARGB32)
+        if result.isNull():
+            raise CaptureError("Недостаточно памяти для PNG")
+        result.fill(QtGui.QColor("#10151f"))
+        painter = QtGui.QPainter(result)
+        painter.setFont(font)
+        painter.setPen(QtGui.QColor("#e5edf7"))
+        painter.drawText(QtCore.QRect(16, 12, inner_width, header_h - 12), int(flags), header)
+        painter.drawImage(0, header_h, chart)
+        painter.drawText(QtCore.QRect(16, header_h + chart.height() + 12, inner_width, footer_h - 12), int(flags), footer)
+        painter.end()
+        result.setText("Provenance", origin)
+        result.setText("Scale", "adc_code; time from nominal Fs; uncalibrated")
+        result.setText("RawSampleCount", str(len(capture.samples)))
+        result.setText("Purpose", "Illustration only; preserve original .mtcap")
+        return result
+
+    def png_dialog(self):
+        if self.capture is None or self.busy:
+            return
+        choice = self._choose_save_path("Экспортировать иллюстрацию PNG", ".png", "Изображение PNG (*.png)")
+        if choice is not None:
+            self.export_png_path(choice[0], overwrite=choice[1])
+
+    def export_png_path(self, path: str | Path, *, overwrite=False):
+        if self.capture is None or self.busy:
+            return
+        path = Path(path)
+        try:
+            if path.suffix.lower() != ".png":
+                raise CaptureError("Для иллюстрации выберите имя с расширением .png")
+            image = self.png_image()
+            buffer = QtCore.QBuffer()
+            if not buffer.open(QtCore.QIODevice.OpenModeFlag.WriteOnly) or not image.save(buffer, "PNG"):
+                raise CaptureError("Не удалось закодировать изображение PNG")
+            data = bytes(buffer.data())
+            buffer.close()
+        except (CaptureError, OSError) as exc:
+            self._status(f"Не удалось подготовить PNG: {exc}. Запись не изменена.", error=True)
+            return
+        self._submit(lambda: recording.atomic_write(path, data, overwrite=overwrite),
+                     lambda _: self._status(f"PNG сохранён: {path.name}. Это иллюстрация; исходные данные сохраняйте в .mtcap."),
+                     "Экспорт PNG…", "Не удалось сохранить PNG")
 
     def show_help(self):
         if self._help_dialog is not None:
