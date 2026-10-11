@@ -1,0 +1,5 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control_rx.c:6:13:observe	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control_rx.c:11:19:mt_control_rx_init	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control_rx.c:18:19:mt_control_rx_poll	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control_rx.c:23:19:mt_control_rx_feed	48	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_control_rx.c:44:19:mt_control_rx_transport_lost	8	static

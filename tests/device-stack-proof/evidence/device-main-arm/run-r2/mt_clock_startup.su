@@ -1,0 +1,12 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:56:17:rd	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:59:13:update	24	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:63:12:wait_bits	32	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:69:13:snapshot	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:73:12:domains_idle	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:78:12:on_hsi	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:81:24:fail	32	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:105:12:matches	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:24:10:mt_clock_mmio_read32	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:27:6:mt_clock_mmio_write32	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:37:17:mt_clock_plan_72	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/clock-startup-draft/mt_clock_startup.c:111:17:mt_clock_apply	64	static

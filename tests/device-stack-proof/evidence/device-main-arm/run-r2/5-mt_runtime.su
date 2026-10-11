@@ -1,0 +1,11 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:7:17:adc_read	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:11:13:adc_write	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:35:17:commit_enter	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:46:13:commit_leave	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:15:17:adc_time	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:19:12:stable	120	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:39:12:commit_allowed	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:110:26:time_fault.isra	56	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:84:12:synchronize_loss	64	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:50:19:mt_runtime_init	104	static
+/workspace/shared/device-main-arm/run-r2/snapshot/firmware/app/mt_runtime.c:147:19:mt_runtime_step	16	static

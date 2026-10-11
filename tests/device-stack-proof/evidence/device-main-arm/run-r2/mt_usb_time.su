@@ -1,0 +1,5 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-time-draft/mt_usb_time.c:8:13:fail	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-time-draft/mt_usb_time.c:11:5:mt_usb_time_valid	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-time-draft/mt_usb_time.c:16:19:mt_usb_time_status	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-time-draft/mt_usb_time.c:20:5:mt_usb_time_bind	24	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/usb-time-draft/mt_usb_time.c:39:10:tusb_time_millis_api	24	static

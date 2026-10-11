@@ -1,0 +1,191 @@
+[
+  {
+    "site": "0x8001530",
+    "function": "0x800140c",
+    "name": "mt_control_receive",
+    "base": "0x8001534",
+    "count": 6,
+    "entry_size": 2,
+    "evidence": "cmp r3,#5; bhi at 0x800152e",
+    "targets": [
+      "0x8001540",
+      "0x80015b0",
+      "0x8001694",
+      "0x8001760",
+      "0x80017c2",
+      "0x80017f6"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x800323a",
+    "function": "0x80031e0",
+    "name": "mt_command_parse",
+    "base": "0x800323e",
+    "count": 7,
+    "entry_size": 1,
+    "evidence": "cmp r3,#6; bhi at 0x8003238",
+    "targets": [
+      "0x8003246",
+      "0x80032da",
+      "0x8003282",
+      "0x80032d4",
+      "0x80032d4",
+      "0x80032da",
+      "0x80032de"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x8003524",
+    "function": "0x80034cc",
+    "name": "mt_tx_enqueue",
+    "base": "0x8003528",
+    "count": 18,
+    "entry_size": 4,
+    "evidence": "cmp r1,#17; bhi at 0x8003520",
+    "targets": [
+      "0x800357a",
+      "0x800358a",
+      "0x8003592",
+      "0x8003510",
+      "0x800359a",
+      "0x80035de",
+      "0x8003510",
+      "0x8003510",
+      "0x8003510",
+      "0x8003510",
+      "0x8003510",
+      "0x8003510",
+      "0x8003510",
+      "0x8003510",
+      "0x80035e6",
+      "0x80035ee",
+      "0x80035fe",
+      "0x8003606"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x80040d6",
+    "function": "0x80040c8",
+    "name": "mt_usb_bridge_ingress",
+    "base": "0x80040da",
+    "count": 7,
+    "entry_size": 1,
+    "evidence": "cmp r3,#6; bhi at 0x80040d4",
+    "targets": [
+      "0x80040e2",
+      "0x80040ec",
+      "0x8004102",
+      "0x80040f6",
+      "0x8004102",
+      "0x80040fe",
+      "0x800410e"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x8005484",
+    "function": "0x80053fc",
+    "name": "cdcd_control_xfer_cb",
+    "base": "0x8005488",
+    "count": 4,
+    "entry_size": 4,
+    "evidence": "cmp r2,#3; bhi at 0x8005480",
+    "targets": [
+      "0x800541a",
+      "0x8005438",
+      "0x800543e",
+      "0x8005468"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x80059b0",
+    "function": "0x800598c",
+    "name": "dcd_event_handler",
+    "base": "0x80059b4",
+    "count": 6,
+    "entry_size": 1,
+    "evidence": "cmp r3,#5; bhi at 0x80059ae",
+    "targets": [
+      "0x80059ba",
+      "0x8005a86",
+      "0x80059d6",
+      "0x80059e2",
+      "0x80059c6",
+      "0x8005a96"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x8005f3e",
+    "function": "0x8005e78",
+    "name": "tud_task_ext",
+    "base": "0x8005f42",
+    "count": 8,
+    "entry_size": 2,
+    "evidence": "cmp r2,#7; bhi at 0x8005f3a",
+    "targets": [
+      "0x8005f52",
+      "0x8005f70",
+      "0x80064fa",
+      "0x80064c6",
+      "0x80064dc",
+      "0x8005f7c",
+      "0x80063b0",
+      "0x80064ec"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x8006036",
+    "function": "0x8005e78",
+    "name": "tud_task_ext",
+    "base": "0x800603c",
+    "count": 10,
+    "entry_size": 4,
+    "evidence": "cmp r3,#9; bhi at 0x8006032",
+    "targets": [
+      "0x80062c2",
+      "0x80062b2",
+      "0x8005fae",
+      "0x8006298",
+      "0x8005fae",
+      "0x8006064",
+      "0x80061f2",
+      "0x8005fae",
+      "0x8006076",
+      "0x800608c"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  },
+  {
+    "site": "0x8006202",
+    "function": "0x8005e78",
+    "name": "tud_task_ext",
+    "base": "0x8006208",
+    "count": 15,
+    "entry_size": 4,
+    "evidence": "cmp r3,#14; bhi at 0x80061fc",
+    "targets": [
+      "0x8006244",
+      "0x8006266",
+      "0x8006280",
+      "0x800600a",
+      "0x800600a",
+      "0x8006292",
+      "0x8006266",
+      "0x800600a",
+      "0x800600a",
+      "0x800600a",
+      "0x800600a",
+      "0x800600a",
+      "0x800600a",
+      "0x800600a",
+      "0x800625c"
+    ],
+    "all_targets_same_function_and_instruction_start": true
+  }
+]

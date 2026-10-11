@@ -1,0 +1,16 @@
+{
+  "subject_report": "33a27d1ce2b9d9361d1bf95eeaea14764f63c99a07743cb7161aa8eee58a954c",
+  "artifacts_manifest": "c85b25382a2e79a2c588d1fc10cf1092f364e902d9f298165a9fd667fed85aaf",
+  "subject_inputs_verified": 344,
+  "subject_artifacts_verified": 29,
+  "copied_scripts_exact": true,
+  "previous_independent_full_ARM_rebuild_ELF_equal": "/workspace/shared/device-main-arm/critic-a-replay-r1/TEST_ONLY_INVALID_BOARD_STATIC_PLACEMENT_NOT_FLASHABLE.elf",
+  "vector_words": {
+    "0": "0x20005000",
+    "1": "0x8007d91",
+    "2": "0x8007dfd",
+    "3": "0x8007dfd",
+    "35": "0x8007d89",
+    "36": "0x8007d8d"
+  }
+}

@@ -1,0 +1,945 @@
+[
+  {
+    "function": "0x8000f84",
+    "function_name": "start",
+    "object": "2-mt_adc_control.o",
+    "site": "0x8000f90",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "adc_time"
+      ]
+    ],
+    "evidence": "mt_runtime.c:66 adc_io.now_us=adc_time; mt_adc_control.c:21,24 d->io.now_us",
+    "resolved_addresses": [
+      "0x8001b0c"
+    ]
+  },
+  {
+    "function": "0x8000f84",
+    "function_name": "start",
+    "object": "2-mt_adc_control.o",
+    "site": "0x8000f98",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "7-mt_timebase.o",
+        "mt_timebase_now_ms"
+      ]
+    ],
+    "evidence": "mt_runtime.c:71 passes mt_timebase_now_ms; mt_adc_control.c:46 saves b->now_ms, line22 calls",
+    "resolved_addresses": [
+      "0x8002c98"
+    ]
+  },
+  {
+    "function": "0x8000f84",
+    "function_name": "start",
+    "object": "2-mt_adc_control.o",
+    "site": "0x8000fa0",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "adc_time"
+      ]
+    ],
+    "evidence": "mt_runtime.c:66 adc_io.now_us=adc_time; mt_adc_control.c:21,24 d->io.now_us",
+    "resolved_addresses": [
+      "0x8001b0c"
+    ]
+  },
+  {
+    "function": "0x800121c",
+    "function_name": "mt_control_recover",
+    "object": "3-mt_control.o",
+    "site": "0x8001246",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "stop"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.stop=stop; mt_control.c:96 copies io; .stop offsets #536",
+    "resolved_addresses": [
+      "0x8000f74"
+    ]
+  },
+  {
+    "function": "0x800140c",
+    "function_name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "site": "0x8001438",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "stop"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.stop=stop; mt_control.c:96 copies io; .stop offsets #536",
+    "resolved_addresses": [
+      "0x8000f74"
+    ]
+  },
+  {
+    "function": "0x800140c",
+    "function_name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "site": "0x8001452",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "profile"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.profile_ready=profile; mt_control.c:96 copies io; offsets #528",
+    "resolved_addresses": [
+      "0x8001014"
+    ]
+  },
+  {
+    "function": "0x800140c",
+    "function_name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "site": "0x80016da",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "profile"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.profile_ready=profile; mt_control.c:96 copies io; offsets #528",
+    "resolved_addresses": [
+      "0x8001014"
+    ]
+  },
+  {
+    "function": "0x800140c",
+    "function_name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "site": "0x8001746",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "start"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.start=start; mt_control.c:96 copies io; offset #532",
+    "resolved_addresses": [
+      "0x8000f84"
+    ]
+  },
+  {
+    "function": "0x800140c",
+    "function_name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "site": "0x8001790",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "stop"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.stop=stop; mt_control.c:96 copies io; .stop offsets #536",
+    "resolved_addresses": [
+      "0x8000f74"
+    ]
+  },
+  {
+    "function": "0x800140c",
+    "function_name": "mt_control_receive",
+    "object": "3-mt_control.o",
+    "site": "0x8001890",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "profile"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.profile_ready=profile; mt_control.c:96 copies io; offsets #528",
+    "resolved_addresses": [
+      "0x8001014"
+    ]
+  },
+  {
+    "function": "0x80018a4",
+    "function_name": "mt_control_sample",
+    "object": "3-mt_control.o",
+    "site": "0x80018cc",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "2-mt_adc_control.o",
+        "stop"
+      ]
+    ],
+    "evidence": "mt_adc_control.c:49 io.stop=stop; mt_control.c:96 copies io; .stop offsets #536",
+    "resolved_addresses": [
+      "0x8000f74"
+    ]
+  },
+  {
+    "function": "0x8001ae6",
+    "function_name": "adc_read",
+    "object": "5-mt_runtime.o",
+    "site": "0x8001af2",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_read32"
+      ]
+    ],
+    "evidence": "main:66 runtime_io.read32=mt_clock_mmio_read32; mt_runtime.c:63 saves mmio; adc_read wrapper",
+    "resolved_addresses": [
+      "0x800743c"
+    ]
+  },
+  {
+    "function": "0x8001af4",
+    "function_name": "adc_write",
+    "object": "5-mt_runtime.o",
+    "site": "0x8001b00",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:66 runtime_io.write32=mt_clock_mmio_write32; mt_runtime.c:63 saves mmio; adc_write wrapper",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  },
+  {
+    "function": "0x8001f02",
+    "function_name": "rd",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x8001f0a",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "adc_read"
+      ]
+    ],
+    "evidence": "mt_runtime.c:65 adc_io.read32=adc_read; mt_adc_dma_init copies io",
+    "resolved_addresses": [
+      "0x8001ae6"
+    ]
+  },
+  {
+    "function": "0x8001f0c",
+    "function_name": "wr",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x8001f14",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "adc_write"
+      ]
+    ],
+    "evidence": "mt_runtime.c:65 adc_io.write32=adc_write; mt_adc_dma_init copies io",
+    "resolved_addresses": [
+      "0x8001af4"
+    ]
+  },
+  {
+    "function": "0x8001f16",
+    "function_name": "now",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x8001f1a",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "adc_time"
+      ]
+    ],
+    "evidence": "mt_runtime.c:66 adc_io.now_us=adc_time; mt_adc_dma_init copies io",
+    "resolved_addresses": [
+      "0x8001b0c"
+    ]
+  },
+  {
+    "function": "0x80021f4",
+    "function_name": "start",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x8002460",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "commit_enter"
+      ]
+    ],
+    "evidence": "mt_runtime.c:69 guard.enter=commit_enter; mt_adc_control.c:48 copies guarded guard; ADC start guard offset0",
+    "resolved_addresses": [
+      "0x8001b02"
+    ]
+  },
+  {
+    "function": "0x80021f4",
+    "function_name": "start",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x8002472",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "commit_allowed"
+      ]
+    ],
+    "evidence": "mt_runtime.c:69 guard.allowed=commit_allowed; mt_adc_control.c:48 copies guard; ADC start guard offset4",
+    "resolved_addresses": [
+      "0x8001ba2"
+    ]
+  },
+  {
+    "function": "0x80021f4",
+    "function_name": "start",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x800247e",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "commit_leave"
+      ]
+    ],
+    "evidence": "mt_runtime.c:70 guard.leave=commit_leave; mt_adc_control.c:48 copies guard; ADC start guard offset8",
+    "resolved_addresses": [
+      "0x8001b06"
+    ]
+  },
+  {
+    "function": "0x80021f4",
+    "function_name": "start",
+    "object": "6-adc_timer_dma.o",
+    "site": "0x80024fa",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "commit_allowed"
+      ]
+    ],
+    "evidence": "mt_runtime.c:69 guard.allowed=commit_allowed; mt_adc_control.c:48 copies guard; ADC start guard offset4",
+    "resolved_addresses": [
+      "0x8001ba2"
+    ]
+  },
+  {
+    "function": "0x800290e",
+    "function_name": "read_reg",
+    "object": "7-mt_timebase.o",
+    "site": "0x8002912",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_read32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.read32=mt_clock_mmio_read32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB read wrappers",
+    "resolved_addresses": [
+      "0x800743c"
+    ]
+  },
+  {
+    "function": "0x8002914",
+    "function_name": "write_reg",
+    "object": "7-mt_timebase.o",
+    "site": "0x8002918",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.write32=mt_clock_mmio_write32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB write wrappers",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  },
+  {
+    "function": "0x8003956",
+    "function_name": "mt_tx_poll",
+    "object": "13-mt_tx.o",
+    "site": "0x8003a16",
+    "op": "blx",
+    "operand": "r6",
+    "targets": [
+      [
+        "15-mt_usb_cdc.o",
+        "mt_usb_cdc_write_impl"
+      ]
+    ],
+    "evidence": "mt_usb_cdc.c:6 macro maps write name to _impl; line75 mt_control_poll passes write; control_poll->capture_link_poll->mt_tx_poll preserves write/context",
+    "resolved_addresses": [
+      "0x8003d58"
+    ]
+  },
+  {
+    "function": "0x8003d26",
+    "function_name": "usable",
+    "object": "15-mt_usb_cdc.o",
+    "site": "0x8003d38",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "stable"
+      ]
+    ],
+    "evidence": "mt_runtime.c:74 mt_usb_cdc_init(...stable...); mt_usb_cdc.c:28 saves a->stable; these are its only indirect callsites",
+    "resolved_addresses": [
+      "0x8001b18"
+    ]
+  },
+  {
+    "function": "0x8003dd6",
+    "function_name": "mt_usb_cdc_open_epoch_impl",
+    "object": "15-mt_usb_cdc.o",
+    "site": "0x8003df2",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "stable"
+      ]
+    ],
+    "evidence": "mt_runtime.c:74 mt_usb_cdc_init(...stable...); mt_usb_cdc.c:28 saves a->stable; these are its only indirect callsites",
+    "resolved_addresses": [
+      "0x8001b18"
+    ]
+  },
+  {
+    "function": "0x8003dd6",
+    "function_name": "mt_usb_cdc_open_epoch_impl",
+    "object": "15-mt_usb_cdc.o",
+    "site": "0x8003e12",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "5-mt_runtime.o",
+        "stable"
+      ]
+    ],
+    "evidence": "mt_runtime.c:74 mt_usb_cdc_init(...stable...); mt_usb_cdc.c:28 saves a->stable; these are its only indirect callsites",
+    "resolved_addresses": [
+      "0x8001b18"
+    ]
+  },
+  {
+    "function": "0x80040a8",
+    "function_name": "mt_usb_bridge_lock",
+    "object": "16-mt_usb_bridge.o",
+    "site": "0x80040ae",
+    "op": "bx",
+    "operand": "r0",
+    "targets": [
+      [
+        "8-mt_irq_guard.o",
+        "mt_irq_guard_enter"
+      ]
+    ],
+    "evidence": "main:82 mt_runtime_init(...mt_irq_guard_enter...); runtime:76 mt_usb_bridge_init; bridge:12 assigns lock_fn",
+    "resolved_addresses": [
+      "0x8002d00"
+    ]
+  },
+  {
+    "function": "0x80040b8",
+    "function_name": "mt_usb_bridge_unlock",
+    "object": "16-mt_usb_bridge.o",
+    "site": "0x80040be",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "8-mt_irq_guard.o",
+        "mt_irq_guard_leave"
+      ]
+    ],
+    "evidence": "main:82 mt_runtime_init(...mt_irq_guard_leave...); runtime:76 mt_usb_bridge_init; bridge:13 assigns unlock_fn",
+    "resolved_addresses": [
+      "0x8002d08"
+    ]
+  },
+  {
+    "function": "0x80055a8",
+    "function_name": "configuration_reset",
+    "object": "22-usbd.o",
+    "site": "0x800560e",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_reset"
+      ]
+    ],
+    "evidence": "usbd.c:218-230 CDC-only builtin table reset; CFG_TUD_CDC=1/all other classes0; actual weak app_driver_get sets count0",
+    "resolved_addresses": [
+      "0x80052bc"
+    ]
+  },
+  {
+    "function": "0x8005644",
+    "function_name": "invoke_class_control.constprop.0.isra.0",
+    "object": "22-usbd.o",
+    "site": "0x800564c",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_control_xfer_cb"
+      ]
+    ],
+    "evidence": "usbd.c:1076 invoke_class_control receives get_driver()->control_xfer_cb; CDC-only table",
+    "resolved_addresses": [
+      "0x80053fc"
+    ]
+  },
+  {
+    "function": "0x8005658",
+    "function_name": "queue_event_epoch.isra.0",
+    "object": "22-usbd.o",
+    "site": "0x8005682",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "22-usbd.o",
+        "usbd_int_set"
+      ]
+    ],
+    "evidence": "usbd.c:462 OSAL_SPINLOCK_DEF and :468 OSAL_QUEUE_DEF bind interrupt_set=usbd_int_set; osal_none.h:66,189 preserve it",
+    "resolved_addresses": [
+      "0x8005630"
+    ]
+  },
+  {
+    "function": "0x8005658",
+    "function_name": "queue_event_epoch.isra.0",
+    "object": "22-usbd.o",
+    "site": "0x80056a8",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "22-usbd.o",
+        "usbd_int_set"
+      ]
+    ],
+    "evidence": "usbd.c:462 OSAL_SPINLOCK_DEF and :468 OSAL_QUEUE_DEF bind interrupt_set=usbd_int_set; osal_none.h:66,189 preserve it",
+    "resolved_addresses": [
+      "0x8005630"
+    ]
+  },
+  {
+    "function": "0x80057cc",
+    "function_name": "tud_rhport_init",
+    "object": "22-usbd.o",
+    "site": "0x800584c",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_init"
+      ]
+    ],
+    "evidence": "usbd.c:218-230 CDC-only builtin init; actual app_driver_count=0",
+    "resolved_addresses": [
+      "0x8005260"
+    ]
+  },
+  {
+    "function": "0x80058a4",
+    "function_name": "tud_deinit",
+    "object": "22-usbd.o",
+    "site": "0x8005922",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_deinit"
+      ]
+    ],
+    "evidence": "usbd.c:218-230 CDC-only builtin deinit; actual app_driver_count=0; tud_deinit itself unreachable from actual roots",
+    "resolved_addresses": [
+      "0x80052b8"
+    ]
+  },
+  {
+    "function": "0x800598c",
+    "function_name": "dcd_event_handler",
+    "object": "22-usbd.o",
+    "site": "0x8005a82",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [],
+    "evidence": "INFEASIBLE: driver->sof NULL in the only CDC table (usbd.c:229); app_driver_get weak count0, no other table mutation",
+    "resolved_addresses": []
+  },
+  {
+    "function": "0x800598c",
+    "function_name": "dcd_event_handler",
+    "object": "22-usbd.o",
+    "site": "0x8005aec",
+    "op": "blx",
+    "operand": "r8",
+    "targets": [],
+    "evidence": "INFEASIBLE: driver->xfer_isr NULL in the only CDC table (usbd.c:228); app_driver_get weak count0, no other table mutation",
+    "resolved_addresses": []
+  },
+  {
+    "function": "0x8005b18",
+    "function_name": "usbd_spin_lock",
+    "object": "22-usbd.o",
+    "site": "0x8005b24",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "22-usbd.o",
+        "usbd_int_set"
+      ]
+    ],
+    "evidence": "usbd.c:462 OSAL_SPINLOCK_DEF and :468 OSAL_QUEUE_DEF bind interrupt_set=usbd_int_set; osal_none.h:66,189 preserve it",
+    "resolved_addresses": [
+      "0x8005630"
+    ]
+  },
+  {
+    "function": "0x8005b34",
+    "function_name": "usbd_spin_unlock",
+    "object": "22-usbd.o",
+    "site": "0x8005b46",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "22-usbd.o",
+        "usbd_int_set"
+      ]
+    ],
+    "evidence": "usbd.c:462 OSAL_SPINLOCK_DEF and :468 OSAL_QUEUE_DEF bind interrupt_set=usbd_int_set; osal_none.h:66,189 preserve it",
+    "resolved_addresses": [
+      "0x8005630"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x8005eae",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "22-usbd.o",
+        "usbd_int_set"
+      ]
+    ],
+    "evidence": "usbd.c:462 OSAL_SPINLOCK_DEF and :468 OSAL_QUEUE_DEF bind interrupt_set=usbd_int_set; osal_none.h:66,189 preserve it",
+    "resolved_addresses": [
+      "0x8005630"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x8005ec4",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "22-usbd.o",
+        "usbd_int_set"
+      ]
+    ],
+    "evidence": "usbd.c:462 OSAL_SPINLOCK_DEF and :468 OSAL_QUEUE_DEF bind interrupt_set=usbd_int_set; osal_none.h:66,189 preserve it",
+    "resolved_addresses": [
+      "0x8005630"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x80061aa",
+    "op": "blx",
+    "operand": "r9",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_open"
+      ]
+    ],
+    "evidence": "usbd.c:218-230 CDC-only builtin open; actual app_driver_count=0",
+    "resolved_addresses": [
+      "0x80052e4"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x8006410",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_control_xfer_cb"
+      ],
+      [
+        "22-usbd.o",
+        "tud_vendor_control_xfer_cb"
+      ]
+    ],
+    "evidence": "usbd.c:1077,1217,1224,1293,1351 complete_cb only NULL/class CDC/vendor; test-mode branch absent CFG_TUD_TEST_MODE=0",
+    "resolved_addresses": [
+      "0x80053fc",
+      "0x80055a4"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x8006488",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_control_xfer_cb"
+      ],
+      [
+        "22-usbd.o",
+        "tud_vendor_control_xfer_cb"
+      ]
+    ],
+    "evidence": "usbd.c:1077,1217,1224,1293,1351 complete_cb only NULL/class CDC/vendor; test-mode branch absent CFG_TUD_TEST_MODE=0",
+    "resolved_addresses": [
+      "0x80053fc",
+      "0x80055a4"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x80064bc",
+    "op": "blx",
+    "operand": "r4",
+    "targets": [
+      [
+        "21-cdc_device.o",
+        "cdcd_xfer_cb"
+      ]
+    ],
+    "evidence": "usbd.c:218-230 CDC-only builtin xfer_cb; actual app_driver_count=0",
+    "resolved_addresses": [
+      "0x80054a4"
+    ]
+  },
+  {
+    "function": "0x8005e78",
+    "function_name": "tud_task_ext",
+    "object": "22-usbd.o",
+    "site": "0x80064f6",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [],
+    "evidence": "INFEASIBLE FROM ACTUAL ROOTS: USBD_EVENT_FUNC_CALL only producer usbd_defer_func (usbd.c:1681), no callers/address references in linked objects; other producers dcd_int_handler and handler SOF/resume enqueue only fixed hardware event tags1..7. Excludes arbitrary debugger/RAM corruption and external new callers.",
+    "resolved_addresses": []
+  },
+  {
+    "function": "0x80071e2",
+    "function_name": "rd",
+    "object": "mt_clock_startup.o",
+    "site": "0x80071e6",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_read32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.read32=mt_clock_mmio_read32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB read wrappers",
+    "resolved_addresses": [
+      "0x800743c"
+    ]
+  },
+  {
+    "function": "0x80071e8",
+    "function_name": "update",
+    "object": "mt_clock_startup.o",
+    "site": "0x8007208",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.write32=mt_clock_mmio_write32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB write wrappers",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  },
+  {
+    "function": "0x80076d0",
+    "function_name": "read_reg",
+    "object": "mt_boot_time.o",
+    "site": "0x80076d4",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_read32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.read32=mt_clock_mmio_read32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB read wrappers",
+    "resolved_addresses": [
+      "0x800743c"
+    ]
+  },
+  {
+    "function": "0x8007738",
+    "function_name": "mt_boot_time_start",
+    "object": "mt_boot_time.o",
+    "site": "0x8007800",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.write32=mt_clock_mmio_write32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB write wrappers",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  },
+  {
+    "function": "0x8007738",
+    "function_name": "mt_boot_time_start",
+    "object": "mt_boot_time.o",
+    "site": "0x8007824",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.write32=mt_clock_mmio_write32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB write wrappers",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  },
+  {
+    "function": "0x8007738",
+    "function_name": "mt_boot_time_start",
+    "object": "mt_boot_time.o",
+    "site": "0x8007842",
+    "op": "blx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.write32=mt_clock_mmio_write32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB write wrappers",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  },
+  {
+    "function": "0x80078bc",
+    "function_name": "rd",
+    "object": "mt_boot_usb.o",
+    "site": "0x80078c0",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_read32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.read32=mt_clock_mmio_read32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB read wrappers",
+    "resolved_addresses": [
+      "0x800743c"
+    ]
+  },
+  {
+    "function": "0x80078c2",
+    "function_name": "wr",
+    "object": "mt_boot_usb.o",
+    "site": "0x80078c6",
+    "op": "bx",
+    "operand": "r3",
+    "targets": [
+      [
+        "mt_clock_startup.o",
+        "mt_clock_mmio_write32"
+      ]
+    ],
+    "evidence": "main:65 clock_io.write32=mt_clock_mmio_write32; mt_clock_apply copies io; mt_boot_time_start:62 copies same io into timebase; boot/time/USB write wrappers",
+    "resolved_addresses": [
+      "0x8007440"
+    ]
+  }
+]

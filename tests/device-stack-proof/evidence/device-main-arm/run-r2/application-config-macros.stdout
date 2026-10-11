@@ -1,0 +1,755 @@
+#define __DBL_MIN_EXP__ (-1021)
+#define __HQ_FBIT__ 15
+#define OPT_MCU_AT32F435_437 2502
+#define CFG_TUSB_OS_HAS_SCHEDULER 0
+#define TU_BSWAP32(u32) (__builtin_bswap32(u32))
+#define OPT_MCU_LPC40XX 7
+#define __UINT_LEAST16_MAX__ 0xffff
+#define __ARM_SIZEOF_WCHAR_T 4
+#define __ATOMIC_ACQUIRE 2
+#define __WCHAR_MAX__ 0xffffffffU
+#define __SFRACT_IBIT__ 0
+#define __FLT_MIN__ 1.1754943508222875e-38F
+#define __GCC_IEC_559_COMPLEX 0
+#define __UFRACT_MAX__ 0XFFFFP-16UR
+#define __UINT_LEAST8_TYPE__ unsigned char
+#define OPT_MCU_ESP32C2 905
+#define OPT_MCU_ESP32C3 903
+#define OPT_MCU_ESP32C5 908
+#define CFG_TUD_LOG_LEVEL 2
+#define __DQ_FBIT__ 63
+#define CFG_TUD_ENDPPOINT_MAX 3
+#define __INTMAX_C(c) c ## LL
+#define __ARM_FEATURE_SAT 1
+#define __ULFRACT_FBIT__ 32
+#define __CHAR_BIT__ 8
+#define OPT_MCU_SAMD21 200
+#define __USQ_IBIT__ 0
+#define OPT_MCU_CXD56 400
+#define __UINT8_MAX__ 0xff
+#define __ACCUM_FBIT__ 15
+#define OPT_MCU_ESP32H2 906
+#define OPT_MCU_ESP32H4 910
+#define __WINT_MAX__ 0xffffffffU
+#define OPT_MCU_KINETIS_K32L 1201
+#define __FLT32_MIN_EXP__ (-125)
+#define OPT_MCU_CH32V103 2230
+#define OPT_MCU_SAMD51 201
+#define __USFRACT_FBIT__ 8
+#define CFG_TUD_MIDI 0
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __SIZE_MAX__ 0xffffffffU
+#define CFG_TUC_ENABLED 0
+#define CFG_TUH_DWC2_DMA_ENABLE CFG_TUH_DWC2_DMA_ENABLE_DEFAULT
+#define TU_ATTR_WEAK __attribute__((weak))
+#define CFG_TUD_AUDIO 0
+#define __LACCUM_IBIT__ 32
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1
+#define __DBL_DENORM_MIN__ ((double)4.9406564584124654e-324L)
+#define TU_ARGS_APPLY_EXPAND_2(_X,_a1,_a2) _X(_a1), _X(_a2)
+#define TU_ARGS_APPLY_EXPAND_3(_X,_a1,_a2,_a3) _X(_a1), TU_ARGS_APPLY_EXPAND_2(_X, _a2, _a3)
+#define TU_ARGS_APPLY_EXPAND_4(_X,_a1,_a2,_a3,_a4) _X(_a1), TU_ARGS_APPLY_EXPAND_3(_X, _a2, _a3, _a4)
+#define TU_ARGS_APPLY_EXPAND_6(_X,_a1,_a2,_a3,_a4,_a5,_a6) _X(_a1), TU_ARGS_APPLY_EXPAND_5(_X, _a2, _a3, _a4, _a5, _a6)
+#define TU_ARGS_APPLY_EXPAND_8(_X,_a1,_a2,_a3,_a4,_a5,_a6,_a7,_a8) _X(_a1), TU_ARGS_APPLY_EXPAND_7(_X, _a2, _a3, _a4, _a5, _a6, _a7, _a8)
+#define __GCC_ATOMIC_CHAR_LOCK_FREE 2
+#define __GCC_IEC_559 0
+#define __FLT32X_DECIMAL_DIG__ 17
+#define __FLT_EVAL_METHOD__ 0
+#define TU_STRCAT(a,b) a ##b
+#define __TQ_IBIT__ 0
+#define CFG_TUH_HID 0
+#define __LLACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LLK
+#define __FLT64_DECIMAL_DIG__ 17
+#define OPT_MCU_ESP32P4 907
+#define __GCC_ATOMIC_CHAR32_T_LOCK_FREE 2
+#define CFG_TUSB_MEM_SECTION 
+#define TU_ATTR_PACKED __attribute__((packed))
+#define CFG_TUH_CDC_CH34X 0
+#define OPT_MCU_ESP32S2 900
+#define OPT_MCU_ESP32S3 901
+#define __UINT_FAST64_MAX__ 0xffffffffffffffffULL
+#define __SIG_ATOMIC_TYPE__ int
+#define __DBL_MIN_10_EXP__ (-307)
+#define __FINITE_MATH_ONLY__ 0
+#define __ARMEL__ 1
+#define tu_le32toh(u32) (u32)
+#define TU_ATTR_PACKED_BEGIN 
+#define __FLT32X_MAX_EXP__ 1024
+#define OPT_MCU_RP2040 1100
+#define OPT_MCU_RX63X 1400
+#define __ARM_ARCH_7M__ 1
+#define __LFRACT_IBIT__ 0
+#define __GNUC_PATCHLEVEL__ 1
+#define __FLT32_HAS_DENORM__ 1
+#define __LFRACT_MAX__ 0X7FFFFFFFP-31LR
+#define OPT_OS_FREERTOS 2
+#define __USA_FBIT__ 16
+#define __UINT_FAST8_MAX__ 0xffffffffU
+#define OPT_MCU_CH32V307 2200
+#define OPT_MCU_RX65X 1401
+#define __FLT32_MAX_10_EXP__ 38
+#define TU_ARGS_APPLY_EXPAND_1(_X,_a1) _X(_a1)
+#define __INT8_C(c) c
+#define TU_ARGS_APPLY_EXPAND_5(_X,_a1,_a2,_a3,_a4,_a5) _X(_a1), TU_ARGS_APPLY_EXPAND_4(_X, _a2, _a3, _a4, _a5)
+#define CFG_TUH_VENDOR 0
+#define __INT_LEAST8_WIDTH__ 8
+#define __UINT_LEAST64_MAX__ 0xffffffffffffffffULL
+#define TU_ARGS_APPLY_EXPAND_7(_X,_a1,_a2,_a3,_a4,_a5,_a6,_a7) _X(_a1), TU_ARGS_APPLY_EXPAND_6(_X, _a2, _a3, _a4, _a5, _a6, _a7)
+#define __SA_FBIT__ 15
+#define CFG_TUH_HUB 0
+#define OPT_MCU_CH32F20X 2210
+#define __SHRT_MAX__ 0x7fff
+#define __LDBL_MAX__ 1.7976931348623157e+308L
+#define __ARM_FEATURE_IDIV 1
+#define __FRACT_MAX__ 0X7FFFP-15R
+#define CFG_TUD_CI_HS_VBUS_CHARGE CFG_TUD_CI_HS_VBUS_CHARGE_DEFAULT
+#define __thumb2__ 1
+#define __LDBL_IS_IEC_60559__ 1
+#define OPT_MCU_LPC18XX 6
+#define __UFRACT_FBIT__ 16
+#define TU_MCU_IS_EQUAL(_m) (CFG_TUSB_MCU == (_m))
+#define __UFRACT_MIN__ 0.0UR
+#define __UINT_LEAST8_MAX__ 0xff
+#define __GCC_ATOMIC_BOOL_LOCK_FREE 2
+#define __UINTMAX_TYPE__ long long unsigned int
+#define __LLFRACT_EPSILON__ 0x1P-63LLR
+#define __FLT_EVAL_METHOD_TS_18661_3__ 0
+#define TU_BYTE_ORDER TU_LITTLE_ENDIAN
+#define CFG_TUD_INTERFACE_MAX 2
+#define CFG_TUSB_MCU OPT_MCU_STM32F1
+#define __UINT32_MAX__ 0xffffffffUL
+#define __ULFRACT_MAX__ 0XFFFFFFFFP-32ULR
+#define __TA_IBIT__ 64
+#define TU_ARGS_NUM(...) TU_NARG_IMPL(_0, ##__VA_ARGS__, TU_NARG_RSEQ_N())
+#define __LDBL_MAX_EXP__ 1024
+#define OPT_MCU_MIMXRT1XXX 700
+#define __WINT_MIN__ 0U
+#define OPT_MCU_BCM2711 1700
+#define CFG_TUH_DWC2_DMA_ENABLE_DEFAULT 0
+#define __ARM_ASM_SYNTAX_UNIFIED__ 1
+#define CFG_TUD_TEST_MODE 0
+#define __FLT32X_IS_IEC_60559__ 1
+#define __INT_LEAST16_WIDTH__ 16
+#define __ULLFRACT_MIN__ 0.0ULLR
+#define __SCHAR_MAX__ 0x7f
+#define OPT_OS_CUSTOM 4
+#define __WCHAR_MIN__ 0U
+#define CFG_TUH_MEM_ALIGN CFG_TUSB_MEM_ALIGN
+#define TU_BITFIELD_ORDER TU_BITFIELD_LE
+#define __INT64_C(c) c ## LL
+#define CFG_TUH_API_EDPT_XFER 0
+#define __GCC_ATOMIC_POINTER_LOCK_FREE 2
+#define OPT_MCU_STM32L1 308
+#define __ATOMIC_SEQ_CST 5
+#define CFG_TUH_CDC_FTDI_VID_PID_LIST {0x0403, 0x6001}, {0x0403, 0x6006}, {0x0403, 0x6010}, {0x0403, 0x6011}, {0x0403, 0x6014}, {0x0403, 0x6015}, {0x0403, 0x6040}, {0x0403, 0x6041}, {0x0403, 0x6042}, {0x0403, 0x6043}, {0x0403, 0x6044}, {0x0403, 0x6045}, {0x0403, 0x6048}, {0x0403, 0x8372}, {0x0403, 0xFBFA}, {0x0403, 0xCD18},
+#define __SIZEOF_INT__ 4
+#define CFG_TUH_EDPT_DEDICATED_HWFIFO 0
+#define OPT_MCU_STM32C0 318
+#define OPT_MCU_STM32C5 322
+#define TU_ATTR_USED __attribute__ ((used))
+#define __FLT32X_MANT_DIG__ 53
+#define __USACCUM_IBIT__ 8
+#define OPT_MCU_MIMXRT10XX OPT_MCU_MIMXRT1XXX
+#define TU_XSTRCAT3(a,b,c) TU_STRCAT3(a, b, c)
+#define tu_static static
+#define CFG_TUD_USBTMC 0
+#define OPT_MCU_TM4C123 511
+#define OPT_MCU_TM4C129 512
+#define OPT_MCU_STM32F0 300
+#define OPT_MCU_STM32F1 301
+#define OPT_MCU_STM32F3 303
+#define OPT_MCU_STM32F4 304
+#define OPT_MCU_STM32F7 305
+#define __STDC_HOSTED__ 0
+#define OPT_MCU_STM32G0 310
+#define OPT_MCU_STM32G4 311
+#define OPT_MCU_STM32H5 315
+#define OPT_MCU_MKL25ZXX 1200
+#define __LFRACT_MIN__ (-0.5LR-0.5LR)
+#define __HA_IBIT__ 8
+#define __DBL_DIG__ 15
+#define OPT_MCU_CH582 OPT_MCU_CH583
+#define OPT_MCU_CH583 2240
+#define __FLT_EPSILON__ 1.1920928955078125e-7F
+#define OPT_MCU_SAML21 OPT_MCU_SAML2X
+#define OPT_MCU_SAML22 OPT_MCU_SAML2X
+#define __APCS_32__ 1
+#define OPT_MCU_SAML2X 205
+#define __SHRT_WIDTH__ 16
+#define TU_ATTR_UNUSED __attribute__ ((unused))
+#define OPT_MCU_STM32L0 307
+#define OPT_MCU_STM32L4 309
+#define OPT_MCU_STM32L5 314
+#define TU_TOKEN(x) x
+#define __FLT32_IS_IEC_60559__ 1
+#define CFG_TUH_CDC 0
+#define CFG_TUSB_OS OPT_OS_NONE
+#define __USFRACT_IBIT__ 0
+#define CFG_TUD_VENDOR 0
+#define TUP_MCU_STRICT_ALIGN 0
+#define __LDBL_MIN__ 2.2250738585072014e-308L
+#define __STDC_UTF_16__ 1
+#define __DBL_IS_IEC_60559__ 1
+#define __FRACT_MIN__ (-0.5R-0.5R)
+#define OPT_MCU_STM32N6 319
+#define CFG_MT_USB_BRIDGE 1
+#define TU_ARGS_APPLY_2(_X,_s,_a1,_a2) _X(_a1) _s _X(_a2)
+#define __DA_IBIT__ 32
+#define __ARM_SIZEOF_MINIMAL_ENUM 4
+#define OPT_MCU_LPC51 9
+#define OPT_MCU_LPC54 10
+#define OPT_MCU_LPC55 11
+#define CFG_TUD_ENDPOINT_ONE_DIRECTION_ONLY 0
+#define CFG_TUD_SAMX7X_DMA_ENABLE_DEFAULT 0
+#define __FLT32X_HAS_INFINITY__ 1
+#define __INT32_MAX__ 0x7fffffffL
+#define OPT_OS_ZEPHYR 8
+#define CFG_TUD_DFU 0
+#define TU_COUNTER __COUNTER__
+#define __UQQ_FBIT__ 8
+#define __INT_WIDTH__ 32
+#define __UACCUM_MAX__ 0XFFFFFFFFP-16UK
+#define CFG_TUSB_FIFO_HWFIFO_DATA_STRIDE 2
+#define TU_BIG_ENDIAN (0x21u)
+#define __DECIMAL_DIG__ 17
+#define __LFRACT_EPSILON__ 0x1P-31LR
+#define TU_XSTRING(x) TU_STRING(x)
+#define OPT_MCU_STM32U0 316
+#define __FLT64_EPSILON__ 2.2204460492503131e-16F64
+#define OPT_MCU_STM32U5 313
+#define OPT_MCU_LPC11UXX 1
+#define __ULFRACT_MIN__ 0.0ULR
+#define TU_BITFIELD_LE (0x34u)
+#define OPT_MCU_STM32WB 312
+#define __LDBL_HAS_QUIET_NAN__ 1
+#define __ULACCUM_IBIT__ 32
+#define __FLT64_MANT_DIG__ 53
+#define TU_ATTR_PACKED_END 
+#define __UACCUM_EPSILON__ 0x1P-16UK
+#define CFG_TUD_MEM_ALIGN CFG_TUSB_MEM_ALIGN
+#define __GNUC__ 14
+#define __ULLACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULLK
+#define __HQ_IBIT__ 0
+#define TUP_DCD_ENDPOINT_MAX 8
+#define __FLT_HAS_DENORM__ 1
+#define __SIZEOF_LONG_DOUBLE__ 8
+#define CFG_TUH_MAX_SPEED (TUH_RHPORT_MODE & OPT_MODE_SPEED_MASK)
+#define __SA_IBIT__ 16
+#define CFG_TUH_CDC_PL2303_VID_PID_LIST { 0x067b, 0x2303 }, { 0x067b, 0x2304 }, { 0x067b, 0x23a3 }, { 0x067b, 0x23b3 }, { 0x067b, 0x23c3 }, { 0x067b, 0x23d3 }, { 0x067b, 0x23e3 }, { 0x067b, 0x23f3 }
+#define __BIGGEST_ALIGNMENT__ 8
+#define OPT_MCU_AT32F402_405 2504
+#define CFG_TUH_RPI_PIO_USB 0
+#define OPT_MCU_NUC120 802
+#define OPT_MCU_NUC121 800
+#define OPT_MCU_NUC126 801
+#define OPT_MCU_MM32F327X 1500
+#define CFG_TUD_TASK_QUEUE_SZ 16
+#define __FLT64_MAX_10_EXP__ 308
+#define __GNUC_STDC_INLINE__ 1
+#define __DQ_IBIT__ 0
+#define CFG_TUD_RPI_PIO_USB 0
+#define CFG_TUD_CDC_TX_OVERWRITABLE_IF_NOT_CONNECTED 0
+#define __DBL_MAX__ ((double)1.7976931348623157e+308L)
+#define __ULFRACT_IBIT__ 0
+#define __INT_FAST32_MAX__ 0x7fffffff
+#define OPT_MCU_SAME5X 203
+#define __DBL_HAS_INFINITY__ 1
+#define TU_VERIFY_STATIC _Static_assert
+#define OPT_MODE_LOW_SPEED 0x0100u
+#define __HAVE_SPECULATION_SAFE_VALUE 1
+#define __ACCUM_IBIT__ 16
+#define __THUMB_INTERWORK__ 1
+#define __INTPTR_WIDTH__ 32
+#define __UINT_LEAST32_MAX__ 0xffffffffUL
+#define __LACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LK
+#define CFG_TUD_CDC_RX_EPSIZE 64
+#define OPT_MCU_MAX32650 2402
+#define __FLT32X_HAS_DENORM__ 1
+#define __INT_FAST16_TYPE__ int
+#define __STRICT_ANSI__ 1
+#define CFG_TUSB_MEM_DCACHE_LINE_SIZE CFG_TUSB_MEM_DCACHE_LINE_SIZE_DEFAULT
+#define TU_RESERVED TU_XSTRCAT(reserved, TU_COUNTER)
+#define OPT_MCU_MAX32665 2401
+#define OPT_MCU_MAX32666 2401
+#define OPT_MCU_RAXXX 1403
+#define __LDBL_HAS_DENORM__ 1
+#define OPT_MODE_DEVICE 0x0001
+#define __ARM_FEATURE_LDREX 7
+#define __INT_LEAST32_MAX__ 0x7fffffffL
+#define OPT_MCU_FT90X 2000
+#define __ARM_PCS 1
+#define __ACCUM_MAX__ 0X7FFFFFFFP-15K
+#define __DBL_MAX_EXP__ 1024
+#define __USACCUM_EPSILON__ 0x1P-8UHK
+#define __WCHAR_WIDTH__ 32
+#define OPT_OS_RTTHREAD 6
+#define __FLT32_MAX__ 3.4028234663852886e+38F32
+#define OPT_MCU_RX72N 1402
+#define __GCC_ATOMIC_LONG_LOCK_FREE 2
+#define OPT_MCU_FT93X 2001
+#define __SFRACT_MAX__ 0X7FP-7HR
+#define __FRACT_IBIT__ 0
+#define tu_ntohl(u32) (TU_BSWAP32(u32))
+#define OPT_MODE_HOST 0x0002
+#define tu_ntohs(u16) (TU_BSWAP16(u16))
+#define __PTRDIFF_MAX__ 0x7fffffff
+#define __UACCUM_MIN__ 0.0UK
+#define TUD_OPT_HIGH_SPEED (CFG_TUD_MAX_SPEED ? (CFG_TUD_MAX_SPEED & OPT_MODE_HIGH_SPEED) : TUP_RHPORT_HIGHSPEED)
+#define __UACCUM_IBIT__ 16
+#define __LLACCUM_MIN__ (-0X1P31LLK-0X1P31LLK)
+#define CFG_TUD_ENDPOINT0_SIZE 64
+#define OPT_MCU_ESP32 902
+#define __FLT32_HAS_QUIET_NAN__ 1
+#define OPT_MCU_MCXN9 2300
+#define __LONG_LONG_MAX__ 0x7fffffffffffffffLL
+#define __ULACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULK
+#define CFG_TUD_CDC_TX_PERSISTENT 0
+#define OPT_OS_RTX4 7
+#define OPT_MCU_ESP32C6 904
+#define TU_INCLUDE_PATH(_dir,_file) TU_XSTRING( TU_TOKEN(_dir)TU_TOKEN(_file) )
+#define __SIZEOF_WINT_T__ 4
+#define OPT_MCU_NUC505 803
+#define CFG_TUSB_MEM_DCACHE_LINE_SIZE_DEFAULT 1
+#define TU_ARGS_APPLY_1(_X,_s,_a1) _X(_a1)
+#define TU_ARGS_APPLY_3(_X,_s,_a1,_a2,_a3) _X(_a1) _s TU_ARGS_APPLY_2(_X, _s, _a2, _a3)
+#define TU_ARGS_APPLY_4(_X,_s,_a1,_a2,_a3,_a4) _X(_a1) _s TU_ARGS_APPLY_3(_X, _s, _a2, _a3, _a4)
+#define TU_ARGS_APPLY_5(_X,_s,_a1,_a2,_a3,_a4,_a5) _X(_a1) _s TU_ARGS_APPLY_4(_X, _s, _a2, _a3, _a4, _a5)
+#define TU_ARGS_APPLY_6(_X,_s,_a1,_a2,_a3,_a4,_a5,_a6) _X(_a1) _s TU_ARGS_APPLY_5(_X, _s, _a2, _a3, _a4, _a5, _a6)
+#define TU_ARGS_APPLY_7(_X,_s,_a1,_a2,_a3,_a4,_a5,_a6,_a7) _X(_a1) _s TU_ARGS_APPLY_6(_X, _s, _a2, _a3, _a4, _a5, _a6, _a7)
+#define TU_ARGS_APPLY_8(_X,_s,_a1,_a2,_a3,_a4,_a5,_a6,_a7,_a8) _X(_a1) _s TU_ARGS_APPLY_7(_X, _s, _a2, _a3, _a4, _a5, _a6, _a7, _a8)
+#define __LONG_LONG_WIDTH__ 64
+#define TU_ATTR_ALWAYS_INLINE __attribute__((always_inline))
+#define __FLT32_MAX_EXP__ 128
+#define TU_ATTR_DEPRECATED(mess) __attribute__ ((deprecated(mess)))
+#define __ULLACCUM_MIN__ 0.0ULLK
+#define OPT_MCU_MCXA15 2301
+#define TU_ATTR_SECTION(sec_name) __attribute__((section(#sec_name)))
+#define __GXX_ABI_VERSION 1019
+#define OPT_MCU_ESP32C61 909
+#define __UTA_FBIT__ 64
+#define __FLT_MIN_EXP__ (-125)
+#define __UFRACT_IBIT__ 0
+#define __INT16_MAX__ 0x7fff
+#define OPT_MCU_XMC4000 1800
+#define __ARM_FEATURE_QBIT 1
+#define __INT_FAST64_TYPE__ long long int
+#define OPT_MCU_PIC32MK 1903
+#define OPT_MCU_PIC32MM 1901
+#define OPT_MCU_PIC32MX 1902
+#define OPT_MCU_PIC32MZ 1900
+#define __FLT64_DENORM_MIN__ 4.9406564584124654e-324F64
+#define TUP_RHPORT_HIGHSPEED 0
+#define __DBL_MIN__ ((double)2.2250738585072014e-308L)
+#define CFG_TUD_MEM_DCACHE_ENABLE_DEFAULT 0
+#define CFG_TUH_MIDI 0
+#define OPT_MCU_PIC24 1910
+#define OPT_MCU_BCM2835 1701
+#define OPT_MCU_BCM2837 1702
+#define __SIZEOF_POINTER__ 4
+#define OPT_MCU_GD32VF103 1600
+#define __DBL_HAS_QUIET_NAN__ 1
+#define OPT_MCU_SAMG 202
+#define CFG_TUH_CDC_CP210X_VID_PID_LIST { 0x10C4, 0xEA60 }, { 0x10C4, 0xEA61 }, { 0x10C4, 0xEA70 }
+#define TUSB_OPT_HOST_ENABLED CFG_TUH_ENABLED
+#define __FLT32X_EPSILON__ 2.2204460492503131e-16F32x
+#define OPT_MCU_LPC177X_8X 5
+#define CFG_TUD_CDC_RX_NEED_ZLP 0
+#define __FLT64_MIN_EXP__ (-1021)
+#define __LACCUM_MIN__ (-0X1P31LK-0X1P31LK)
+#define __FRACT_FBIT__ 15
+#define __ULLACCUM_FBIT__ 32
+#define TU_CHECK_MCU(...) (TU_ARGS_APPLY(TU_MCU_IS_EQUAL, ||, __VA_ARGS__))
+#define __GXX_TYPEINFO_EQUALITY_INLINE 0
+#define __FLT64_MIN_10_EXP__ (-307)
+#define CFG_TUD_PRINTER 0
+#define __ULLFRACT_EPSILON__ 0x1P-64ULLR
+#define __USES_INITFINI__ 1
+#define OPT_MCU_DA1469X 1000
+#define CFG_TUD_TASK_EVENTS_PER_RUN 1
+#define OPT_MCU_MIMXRT11XX OPT_MCU_MIMXRT1XXX
+#define __REGISTER_PREFIX__ 
+#define __UINT16_MAX__ 0xffff
+#define __DBL_HAS_DENORM__ 1
+#define __ACCUM_MIN__ (-0X1P15K-0X1P15K)
+#define CFG_TUH_MSC 0
+#define __LDBL_HAS_INFINITY__ 1
+#define __SQ_IBIT__ 0
+#define CFG_TUD_DWC2_DMA_ENABLE_DEFAULT 0
+#define OPT_OS_PICO 5
+#define TUP_ARCH_STRICT_ALIGN 0
+#define __FLT32_MIN__ 1.1754943508222875e-38F32
+#define __UINT8_TYPE__ unsigned char
+#define STM32F103xB 1
+#define __UHA_FBIT__ 8
+#define __FLT_DIG__ 6
+#define OPT_MCU_AT32F403A_407 2500
+#define __NO_INLINE__ 1
+#define __SFRACT_MIN__ (-0.5HR-0.5HR)
+#define __UTQ_FBIT__ 128
+#define TU_ATTR_BIT_FIELD_ORDER_BEGIN 
+#define __DEC_EVAL_METHOD__ 2
+#define OPT_MODE_NONE 0x0000
+#define __FLT_MANT_DIG__ 24
+#define __LDBL_DECIMAL_DIG__ 17
+#define CFG_TUSB_DEBUG 0
+#define __VERSION__ "14.2.1 20241119"
+#define __UINT64_C(c) c ## ULL
+#define __ULLFRACT_FBIT__ 64
+#define __SOFTFP__ 1
+#define CFG_TUD_CDC 1
+#define OPT_MCU_NONE 0
+#define OPT_MCU_MAX32690 2400
+#define __FRACT_EPSILON__ 0x1P-15R
+#define __ULACCUM_MIN__ 0.0ULK
+#define __UDA_FBIT__ 32
+#define TUP_MCU_MULTIPLE_CORE 0
+#define CFG_TUD_DFU_RUNTIME 0
+#define TU_ATTR_FAST_FUNC 
+#define __LLACCUM_EPSILON__ 0x1P-31LLK
+#define __GCC_ATOMIC_INT_LOCK_FREE 2
+#define TU_NARG_IMPL(...) TU_GET_NTH_ARG(__VA_ARGS__)
+#define TU_ATTR_ALIGNED(Bytes) __attribute__((aligned(Bytes)))
+#define TUP_USBIP_FSDEV_STM32 
+#define TU_FUNC_OPTIONAL_ARG(func,...) TU_XSTRCAT(func ##_arg, TU_ARGS_NUM(__VA_ARGS__))(__VA_ARGS__)
+#define CFG_TUH_CDC_FTDI 0
+#define TU_ATTR_FALLTHROUGH __attribute__((fallthrough))
+#define OPT_MCU_LPC15XX 3
+#define OPT_MCU_MAX78002 2403
+#define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define TU_STRCAT3(a,b,c) a ##b ##c
+#define OPT_OS_THREADX 9
+#define __USFRACT_MIN__ 0.0UHR
+#define __FLT32_MANT_DIG__ 24
+#define CFG_TUH_MIDI2 0
+#define OPT_MCU_SAMX7X 207
+#define tu_htole16(u16) (u16)
+#define CFG_TUSB_RHPORT0_MODE (OPT_MODE_DEVICE | OPT_MODE_FULL_SPEED)
+#define __UQQ_IBIT__ 0
+#define tu_htole32(u32) (u32)
+#define OPT_MCU_KINETIS_K32 1201
+#define CFG_TUD_MAX_SPEED (TUD_RHPORT_MODE & OPT_MODE_SPEED_MASK)
+#define OPT_MODE_SPEED_MASK 0xff00u
+#define OPT_OS_NONE 1
+#define tuc_int_handler(_p) 
+#define __USFRACT_MAX__ 0XFFP-8UHR
+#define __SCHAR_WIDTH__ 8
+#define __INT32_C(c) c ## L
+#define __ORDER_PDP_ENDIAN__ 3412
+#define __UHQ_FBIT__ 16
+#define __LLACCUM_FBIT__ 31
+#define __INT_FAST32_TYPE__ int
+#define TU_XSTRCAT(a,b) TU_STRCAT(a, b)
+#define OPT_MCU_STM32H7 306
+#define __UINT_LEAST16_TYPE__ short unsigned int
+#define OPT_MCU_SAMD11 204
+#define OPT_MODE_HIGH_SPEED 0x0400u
+#define CFG_TUD_MIDI2 0
+#define __SIZE_TYPE__ unsigned int
+#define __UINT64_MAX__ 0xffffffffffffffffULL
+#define __FLT_IS_IEC_60559__ 1
+#define __UDQ_FBIT__ 64
+#define OPT_MCU_STM32WBA 320
+#define __GNUC_WIDE_EXECUTION_CHARSET_NAME "UTF-32LE"
+#define __INT8_TYPE__ signed char
+#define __thumb__ 1
+#define __ELF__ 1
+#define __GCC_ASM_FLAG_OUTPUTS__ 1
+#define OPT_MCU_LPC175X_6X 4
+#define __SACCUM_EPSILON__ 0x1P-7HK
+#define __ULFRACT_EPSILON__ 0x1P-32ULR
+#define __LLFRACT_FBIT__ 63
+#define CFG_TUD_DWC2_SLAVE_ENABLE_DEFAULT !CFG_TUD_DWC2_DMA_ENABLE
+#define __FLT_RADIX__ 2
+#define __INT_LEAST16_TYPE__ short int
+#define __ARM_ARCH_PROFILE 77
+#define __LDBL_EPSILON__ 2.2204460492503131e-16L
+#define TUSB_VERSION_MINOR 21
+#define __UINTMAX_C(c) c ## ULL
+#define CFG_TUD_CDC_RX_PERSISTENT 0
+#define __SACCUM_MAX__ 0X7FFFP-7HK
+#define CFG_TUH_MEM_DCACHE_ENABLE CFG_TUH_MEM_DCACHE_ENABLE_DEFAULT
+#define __FLT32X_MIN__ 2.2250738585072014e-308F32x
+#define __SIG_ATOMIC_MAX__ 0x7fffffff
+#define __UACCUM_FBIT__ 16
+#define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
+#define __USER_LABEL_PREFIX__ 
+#define __VFP_FP__ 1
+#define __SIZEOF_PTRDIFF_T__ 4
+#define CFG_TUH_TASK_EVENTS_PER_RUN 16
+#define TUP_USBIP_FSDEV 
+#define __SIZEOF_LONG__ 4
+#define OPT_MCU_NRF54 101
+#define __LACCUM_EPSILON__ 0x1P-31LK
+#define OPT_MCU_MSP432E4 510
+#define OPT_MCU_NRF5X 100
+#define __LDBL_DIG__ 15
+#define __FLT64_IS_IEC_60559__ 1
+#define __FLT32X_MIN_EXP__ (-1021)
+#define CFG_TUH_MEM_DCACHE_LINE_SIZE CFG_TUSB_MEM_DCACHE_LINE_SIZE
+#define CFG_TUH_CDC_CP210X 0
+#define __INT_FAST16_MAX__ 0x7fffffff
+#define TUH_RHPORT_MODE OPT_MODE_NONE
+#define TUSB_VERSION_MAJOR 0
+#define __GCC_CONSTRUCTIVE_SIZE 64
+#define CFG_TUSB_OS_INC_PATH_DEFAULT 
+#define __FLT64_DIG__ 15
+#define OPT_MCU_KINETIS_K 1202
+#define __UINT_FAST32_MAX__ 0xffffffffU
+#define __UINT_LEAST64_TYPE__ long long unsigned int
+#define OPT_MCU_DSPIC33 1911
+#define __SFRACT_EPSILON__ 0x1P-7HR
+#define __FLT_HAS_QUIET_NAN__ 1
+#define TUSB_VERSION_NUMBER (TUSB_VERSION_MAJOR * 10000 + TUSB_VERSION_MINOR * 100 + TUSB_VERSION_REVISION)
+#define __FLT_MAX_10_EXP__ 38
+#define CFG_TUSB_FIFO_HWFIFO_ADDR_STRIDE 4
+#define __LONG_MAX__ 0x7fffffffL
+#define __SIZEOF_SIZE_T__ 4
+#define __FLT_HAS_INFINITY__ 1
+#define __GNUC_EXECUTION_CHARSET_NAME "UTF-8"
+#define __CHAR_UNSIGNED__ 1
+#define tu_le16toh(u16) (u16)
+#define __UINT_FAST16_TYPE__ unsigned int
+#define __ARM_32BIT_STATE 1
+#define __INT_FAST32_WIDTH__ 32
+#define __CHAR16_TYPE__ short unsigned int
+#define __PRAGMA_REDEFINE_EXTNAME 1
+#define TUSB_VERSION_REVISION 0
+#define __SIZE_WIDTH__ 32
+#define __INT_LEAST16_MAX__ 0x7fff
+#define __INT64_MAX__ 0x7fffffffffffffffLL
+#define __SACCUM_FBIT__ 7
+#define __FLT32_DENORM_MIN__ 1.4012984643248171e-45F32
+#define CFG_TUD_MEM_DCACHE_ENABLE CFG_TUD_MEM_DCACHE_ENABLE_DEFAULT
+#define __SIG_ATOMIC_WIDTH__ 32
+#define __INT_LEAST64_TYPE__ long long int
+#define __ARM_FEATURE_CLZ 1
+#define __INT16_TYPE__ short int
+#define __INT_LEAST8_TYPE__ signed char
+#define __STDC_VERSION__ 201112L
+#define __SQ_FBIT__ 31
+#define TU_BITFIELD_BE (0x43u)
+#define __ARM_ARCH_ISA_THUMB 2
+#define CFG_TUSB_MEM_ALIGN TU_ATTR_ALIGNED(4)
+#define __INT_FAST8_MAX__ 0x7fffffff
+#define __ARM_ARCH 7
+#define __INTPTR_MAX__ 0x7fffffff
+#define CFG_TUD_HID 0
+#define __QQ_FBIT__ 7
+#define __UTA_IBIT__ 64
+#define __FLT64_HAS_QUIET_NAN__ 1
+#define CFG_TUSB_OS_INC_PATH CFG_TUSB_OS_INC_PATH_DEFAULT
+#define __FLT32_MIN_10_EXP__ (-37)
+#define CFG_TUD_CDC_TX_BUFSIZE 64
+#define __FLT32X_DIG__ 15
+#define __UINT16_C(c) c
+#define CFG_TUH_MIDI2_TX_BUFSIZE TUH_EPSIZE_BULK_MAX
+#define __PTRDIFF_WIDTH__ 32
+#define __LDBL_MANT_DIG__ 53
+#define __SFRACT_FBIT__ 7
+#define __SACCUM_MIN__ (-0X1P7HK-0X1P7HK)
+#define __FLT64_HAS_INFINITY__ 1
+#define CFG_TUD_ENDPOINT0_BUFSIZE CFG_TUD_ENDPOINT0_SIZE
+#define __SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)
+#define OPT_MCU_RW61X 2302
+#define MT_DEVICE_TUSB_CONFIG_H 
+#define OPT_MCU_LPC55XX OPT_MCU_LPC55
+#define __INTPTR_TYPE__ int
+#define __UINT16_TYPE__ short unsigned int
+#define __WCHAR_TYPE__ unsigned int
+#define __SIZEOF_FLOAT__ 4
+#define TUP_DCD_EDPT_ISO_ALLOC 
+#define OPT_MCU_STM32F2 302
+#define __THUMBEL__ 1
+#define __TQ_FBIT__ 127
+#define CFG_TUH_MAX3421 0
+#define __USQ_FBIT__ 32
+#define CFG_TUH_CDC_PL2303 0
+#define __UINTPTR_MAX__ 0xffffffffU
+#define __INT_FAST64_WIDTH__ 64
+#define __ARM_FEATURE_UNALIGNED 1
+#define CFG_TUH_MEM_SECTION CFG_TUSB_MEM_SECTION
+#define TU_LITTLE_ENDIAN (0x12u)
+#define __ULLACCUM_IBIT__ 32
+#define __FLT32_DECIMAL_DIG__ 9
+#define __INT_FAST64_MAX__ 0x7fffffffffffffffLL
+#define __GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1
+#define __FLT_NORM_MAX__ 3.4028234663852886e+38F
+#define __FLT32_HAS_INFINITY__ 1
+#define OPT_MCU_LPC13XX 2
+#define __UINT_FAST64_TYPE__ long long unsigned int
+#define CFG_TUD_BTH 0
+#define TU_STRING(x) #x
+#define CFG_TUH_MEM_DCACHE_ENABLE_DEFAULT 0
+#define __INT_MAX__ 0x7fffffff
+#define TUSB_OPT_DEVICE_ENABLED CFG_TUD_ENABLED
+#define __LACCUM_FBIT__ 31
+#define CFG_TUD_SAMX7X_DMA_ENABLE CFG_TUD_SAMX7X_DMA_ENABLE_DEFAULT
+#define OPT_MCU_STM32H7RS 317
+#define CFG_TUD_MSC 0
+#define __USACCUM_MIN__ 0.0UHK
+#define OPT_MCU_K32L2BXX 1201
+#define __UHA_IBIT__ 8
+#define CFG_TUH_ENABLED 0
+#define __INT64_TYPE__ long long int
+#define CFG_TUD_MTP 0
+#define __FLT_MAX_EXP__ 128
+#define __UTQ_IBIT__ 0
+#define __DBL_MANT_DIG__ 53
+#define OPT_MCU_ESP32S31 911
+#define __INT_LEAST64_MAX__ 0x7fffffffffffffffLL
+#define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
+#define CFG_TUH_MIDI2_LOG_LEVEL CFG_TUH_LOG_LEVEL
+#define __WINT_TYPE__ unsigned int
+#define __UINT_LEAST32_TYPE__ long unsigned int
+#define __SIZEOF_SHORT__ 2
+#define __ULLFRACT_IBIT__ 0
+#define __FLT32_NORM_MAX__ 3.4028234663852886e+38F32
+#define TUD_OPT_RHPORT 0
+#define __LDBL_MIN_EXP__ (-1021)
+#define __arm__ 1
+#define __FLT64_MAX__ 1.7976931348623157e+308F64
+#define __UDA_IBIT__ 32
+#define CFG_TUD_ENABLED 1
+#define __WINT_WIDTH__ 32
+#define __INT_LEAST8_MAX__ 0x7f
+#define __INT_LEAST64_WIDTH__ 64
+#define __FLT32X_MAX_10_EXP__ 308
+#define __LFRACT_FBIT__ 31
+#define CFG_TUD_ECM_RNDIS 0
+#define __LDBL_MAX_10_EXP__ 308
+#define __ATOMIC_RELAXED 0
+#define __DBL_EPSILON__ ((double)2.2204460492503131e-16L)
+#define CFG_TUH_DWC2_SLAVE_ENABLE_DEFAULT !CFG_TUH_DWC2_DMA_ENABLE
+#define __INT_LEAST32_TYPE__ long int
+#define __UINT8_C(c) c
+#define __FLT64_MAX_EXP__ 1024
+#define __SIZEOF_WCHAR_T__ 4
+#define __UINT64_TYPE__ long long unsigned int
+#define OPT_MODE_FULL_SPEED 0x0200u
+#define OPT_MCU_LPC43XX 8
+#define OPT_MCU_F1C100S 2100
+#define __LLFRACT_MAX__ 0X7FFFFFFFFFFFFFFFP-63LLR
+#define CFG_TUD_CDC_TX_EPSIZE 64
+#define OPT_MCU_CH32V20X 2220
+#define tu_htonl(u32) (TU_BSWAP32(u32))
+#define __FLT64_NORM_MAX__ 1.7976931348623157e+308F64
+#define tu_htons(u16) (TU_BSWAP16(u16))
+#define __INTMAX_MAX__ 0x7fffffffffffffffLL
+#define TUD_RHPORT_MODE (CFG_TUSB_RHPORT0_MODE)
+#define TU_GET_3RD_ARG(arg1,arg2,arg3,...) arg3
+#define __INT_FAST8_TYPE__ int
+#define CFG_TUD_EDPT_DEDICATED_HWFIFO 1
+#define __ULLACCUM_EPSILON__ 0x1P-32ULLK
+#define __USACCUM_MAX__ 0XFFFFP-8UHK
+#define OPT_MCU_STM32U3 321
+#define __UHQ_IBIT__ 0
+#define __ARM_FEATURE_COPROC 15
+#define __LLACCUM_IBIT__ 32
+#define TU_ATTR_BIT_FIELD_ORDER_END 
+#define __FLT64_HAS_DENORM__ 1
+#define __FLT32_EPSILON__ 1.1920928955078125e-7F32
+#define __DBL_DECIMAL_DIG__ 17
+#define __STDC_UTF_32__ 1
+#define __INT_FAST8_WIDTH__ 32
+#define __FLT32X_MAX__ 1.7976931348623157e+308F32x
+#define __TA_FBIT__ 63
+#define OPT_MCU_VALENTYUSB_EPTRI 600
+#define __DBL_NORM_MAX__ ((double)1.7976931348623157e+308L)
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define CFG_TUD_DWC2_DMA_ENABLE CFG_TUD_DWC2_DMA_ENABLE_DEFAULT
+#define CFG_TUD_VBUS_DETECT_HW_DEFAULT 0
+#define OPT_MCU_LPC54XXX OPT_MCU_LPC54
+#define __GCC_DESTRUCTIVE_SIZE 64
+#define __UDQ_IBIT__ 0
+#define __INTMAX_WIDTH__ 64
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __FLT32_DIG__ 6
+#define CFG_TUH_DWC2_SLAVE_ENABLE CFG_TUH_DWC2_SLAVE_ENABLE_DEFAULT
+#define __ACCUM_EPSILON__ 0x1P-15K
+#define __UINT32_C(c) c ## UL
+#define __FLT_DENORM_MIN__ 1.4012984643248171e-45F
+#define TUH_OPT_HIGH_SPEED (CFG_TUH_MAX_SPEED ? (CFG_TUH_MAX_SPEED & OPT_MODE_HIGH_SPEED) : TUP_RHPORT_HIGHSPEED)
+#define CFG_TUD_VBUS_DETECT_HW CFG_TUD_VBUS_DETECT_HW_DEFAULT
+#define __LLFRACT_IBIT__ 0
+#define __INT8_MAX__ 0x7f
+#define __LONG_WIDTH__ 32
+#define __UINT_FAST32_TYPE__ unsigned int
+#define __FLT32X_NORM_MAX__ 1.7976931348623157e+308F32x
+#define __CHAR32_TYPE__ long unsigned int
+#define __FLT_MAX__ 3.4028234663852886e+38F
+#define CFG_TUD_MEM_DCACHE_LINE_SIZE CFG_TUSB_MEM_DCACHE_LINE_SIZE
+#define CFG_TUD_VIDEO 0
+#define CFG_TUH_CDC_CH34X_VID_PID_LIST { 0x1a86, 0x5523 }, { 0x1a86, 0x7522 }, { 0x1a86, 0x7523 }, { 0x1a86, 0xe523 }, { 0x4348, 0x5523 }, { 0x2184, 0x0057 }, { 0x9986, 0x7523 }
+#define __USACCUM_FBIT__ 8
+#define CFG_TUH_LOG_LEVEL 2
+#define __INT32_TYPE__ long int
+#define __SIZEOF_DOUBLE__ 8
+#define __FLT_MIN_10_EXP__ (-37)
+#define OPT_MCU_AT32F413 2506
+#define OPT_MCU_AT32F415 2501
+#define __UFRACT_EPSILON__ 0x1P-16UR
+#define __FLT64_MIN__ 2.2250738585072014e-308F64
+#define __INT_LEAST32_WIDTH__ 32
+#define __INTMAX_TYPE__ long long int
+#define OPT_MCU_AT32F423 2503
+#define OPT_MCU_AT32F425 2505
+#define CFG_TUSB_FSDEV_PMA_SIZE 512u
+#define OPT_MCU_HPM 2600
+#define CFG_TUD_CI_HS_VBUS_CHARGE_DEFAULT 0
+#define __FLT32X_HAS_QUIET_NAN__ 1
+#define __ATOMIC_CONSUME 1
+#define __GNUC_MINOR__ 2
+#define __INT_FAST16_WIDTH__ 32
+#define __UINTMAX_MAX__ 0xffffffffffffffffULL
+#define __FLT32X_DENORM_MIN__ 4.9406564584124654e-324F32x
+#define __HA_FBIT__ 7
+#define OPT_MCU_AT32F45X 2507
+#define __DBL_MAX_10_EXP__ 308
+#define __LDBL_DENORM_MIN__ 4.9406564584124654e-324L
+#define __INT16_C(c) c
+#define TU_ARGS_APPLY(_X,_s,...) TU_XSTRCAT(TU_ARGS_APPLY_, TU_ARGS_NUM(__VA_ARGS__))(_X, _s, __VA_ARGS__)
+#define __ATOMIC_RELEASE 3
+#define __STDC__ 1
+#define TU_ARGS_APPLY_EXPAND(_X,...) TU_XSTRCAT(TU_ARGS_APPLY_EXPAND_, TU_ARGS_NUM(__VA_ARGS__))(_X, __VA_ARGS__)
+#define __PTRDIFF_TYPE__ int
+#define OPT_MCU_MSP430x5xx 500
+#define __LLFRACT_MIN__ (-0.5LLR-0.5LLR)
+#define CFG_TUD_CI_HS_EPBUF_4K_ALIGNED 0
+#define OPT_MCU_KINETIS_KL 1200
+#define TU_NARG_RSEQ_N() 62,61,60, 59,58,57,56,55,54,53,52,51,50, 49,48,47,46,45,44,43,42,41,40, 39,38,37,36,35,34,33,32,31,30, 29,28,27,26,25,24,23,22,21,20, 19,18,17,16,15,14,13,12,11,10, 9,8,7,6,5,4,3,2,1,0
+#define CFG_TUD_MEM_SECTION CFG_TUSB_MEM_SECTION
+#define CFG_TUD_DWC2_SLAVE_ENABLE CFG_TUD_DWC2_SLAVE_ENABLE_DEFAULT
+#define __DA_FBIT__ 31
+#define TUSB_VERSION_STRING TU_XSTRING(TUSB_VERSION_MAJOR) "." TU_XSTRING(TUSB_VERSION_MINOR) "." TU_XSTRING(TUSB_VERSION_REVISION)
+#define __UINT32_TYPE__ long unsigned int
+#define __FLT32X_MIN_10_EXP__ (-307)
+#define __ARM_ARCH_EXT_IDIV__ 1
+#define __UINTPTR_TYPE__ unsigned int
+#define __USA_IBIT__ 16
+#define __ARM_EABI__ 1
+#define TU_GET_NTH_ARG(_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39,_40,_41,_42,_43,_44,_45,_46,_47,_48,_49,_50,_51,_52,_53,_54,_55,_56,_57,_58,_59,_60,_61,_62,_63,N,...) N
+#define __LDBL_MIN_10_EXP__ (-307)
+#define TU_BSWAP16(u16) (__builtin_bswap16(u16))
+#define __SIZEOF_LONG_LONG__ 8
+#define __ULACCUM_EPSILON__ 0x1P-32ULK
+#define __SACCUM_IBIT__ 8
+#define OPT_MCU_LPC51UXX OPT_MCU_LPC51
+#define __GCC_ATOMIC_LLONG_LOCK_FREE 1
+#define __FLT_DECIMAL_DIG__ 9
+#define __UINT_FAST16_MAX__ 0xffffffffU
+#define CFG_TUD_NCM 0
+#define __LDBL_NORM_MAX__ 1.7976931348623157e+308L
+#define __GCC_ATOMIC_SHORT_LOCK_FREE 2
+#define OPT_OS_MYNEWT 3
+#define __ULLFRACT_MAX__ 0XFFFFFFFFFFFFFFFFP-64ULLR
+#define __UINT_FAST8_TYPE__ unsigned int
+#define __USFRACT_EPSILON__ 0x1P-8UHR
+#define __ULACCUM_FBIT__ 32
+#define __QQ_IBIT__ 0
+#define CFG_TUD_CDC_RX_BUFSIZE 64
+#define OPT_MODE_DEFAULT_SPEED 0x0000u
+#define __ATOMIC_ACQ_REL 4
+#define CFG_TUH_MIDI2_RX_BUFSIZE TUH_EPSIZE_BULK_MAX
+#define OPT_MCU_EFM32GG 1300

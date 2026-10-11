@@ -1,0 +1,1220 @@
+{
+  "schema": 1,
+  "source_commit": "6851f4880143692a28b29867cdc14b0c2a5fa0bb",
+  "source_tree": "15c912a75bdb61546148f0abe483706d977955c1",
+  "scope": "Historical conditional stack proof; integrity/byte-inspection package, not portable replay or hardware acceptance",
+  "binary_warning": "INVALID ZERO BOARD / NEVER_FLASH; historical objects are not a qualified image",
+  "files": [
+    {
+      "path": "evidence/critic-a-device-stack-review/CRITIC_A_CONDITIONAL_STACK_REVIEW.md",
+      "bytes": 12143,
+      "sha256": "035d31817eeccf077280fd36ae9c06e0240dbe61977e89bd80703d7c7f68afa4",
+      "historical_source": "/workspace/shared/critic-a-device-stack-review/CRITIC_A_CONDITIONAL_STACK_REVIEW.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-device-stack-review/REVIEW_MANIFEST.json",
+      "bytes": 4054,
+      "sha256": "1d98132b1d065f5c9f5d8e7c6d60ae37387d2777bca754c3160c00957fb55cfd",
+      "historical_source": "/workspace/shared/critic-a-device-stack-review/REVIEW_MANIFEST.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/critic-a-device-stack-review/audit_independent.py",
+      "bytes": 10808,
+      "sha256": "04f34e387c4f70b6de5e27078a5951b78489df469a94307daf8fb393f3e963ac",
+      "historical_source": "/workspace/shared/critic-a-device-stack-review/audit_independent.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/critic-a-device-stack-review/final-input-check.json",
+      "bytes": 612,
+      "sha256": "67bfb9321154cb148f9ada422ab34f539db1f1e868d35841886937c50f5067b1",
+      "historical_source": "/workspace/shared/critic-a-device-stack-review/final-input-check.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/critic-a-device-stack-review/independent-machine-result.json",
+      "bytes": 4829,
+      "sha256": "4f20f3ac87d9a2d2fc4cfe64cb46ad291bc2d72ba642b114327b184410c99a58",
+      "historical_source": "/workspace/shared/critic-a-device-stack-review/independent-machine-result.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/critic-a-final-link-review/CRITIC_A_STATIC_LINK_RECIPE_REVIEW.md",
+      "bytes": 9361,
+      "sha256": "4059f1723179dc5a9c4b77433a70dfb7d6f312c73f5e32a6906c7f121c70cf30",
+      "historical_source": "/workspace/shared/critic-a-final-link-review/CRITIC_A_STATIC_LINK_RECIPE_REVIEW.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-image-equivalence-review/CRITIC_A_IMAGE_EQUIVALENCE_REVIEW.md",
+      "bytes": 6784,
+      "sha256": "ca080d8fb4d973cdb10c1f2f4e74ff385e81829dbc49eb9bb094db53c8a4141d",
+      "historical_source": "/workspace/shared/critic-a-image-equivalence-review/CRITIC_A_IMAGE_EQUIVALENCE_REVIEW.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-integration-tree-review/MODEL_EVIDENCE_R8_ADDENDUM.md",
+      "bytes": 5250,
+      "sha256": "7154c7ea7536c18c08e4b068b549c612ea47798c8eec0148acee582143c759c2",
+      "historical_source": "/workspace/shared/critic-a-integration-tree-review/MODEL_EVIDENCE_R8_ADDENDUM.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-integration-tree-review/OBJECT_IMAGE_R4_ADDENDUM.md",
+      "bytes": 5069,
+      "sha256": "447416115bee486ba6901d2d6046c388abfcfc5d26afa5e854b78bea052307d9",
+      "historical_source": "/workspace/shared/critic-a-integration-tree-review/OBJECT_IMAGE_R4_ADDENDUM.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-integration-tree-review/STATIC_LINK_R5B_ADDENDUM.md",
+      "bytes": 6649,
+      "sha256": "542dad6bb2aa230ef9e331b7d963c1f2812815e39cbe51c31a9f2e041f28e465",
+      "historical_source": "/workspace/shared/critic-a-integration-tree-review/STATIC_LINK_R5B_ADDENDUM.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-stack-rebinding-review/CRITIC_A_STACK_REBINDING_DESIGN_REVIEW.md",
+      "bytes": 11806,
+      "sha256": "abd2126c03be3011215537285e7572578481c53b2237f30b6dca732e45f7b6f6",
+      "historical_source": "/workspace/shared/critic-a-stack-rebinding-review/CRITIC_A_STACK_REBINDING_DESIGN_REVIEW.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/critic-a-stack-rebinding-review/REVIEW_MANIFEST.json",
+      "bytes": 10304,
+      "sha256": "82f24a658810902952d6733bbd638ecafd7a805aa7e5480820a9e02aedf8d432",
+      "historical_source": "/workspace/shared/critic-a-stack-rebinding-review/REVIEW_MANIFEST.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/critic-a-stack-rebinding-review/derive_reference.py",
+      "bytes": 7723,
+      "sha256": "4e12d8e8ff339f5fbbe6ac3be641c3051f91d09e37ad2ba11203ecf85501b9a4",
+      "historical_source": "/workspace/shared/critic-a-stack-rebinding-review/derive_reference.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/critic-a-stack-rebinding-review/derived-ranges.json",
+      "bytes": 30281,
+      "sha256": "0787100fd86b995f4e70e382bb60c4d2ce211dc45b1b31f978380d1b69748702",
+      "historical_source": "/workspace/shared/critic-a-stack-rebinding-review/derived-ranges.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/critic-a-stack-rebinding-review/derived-symbols.json",
+      "bytes": 147511,
+      "sha256": "e19368c11ea8133f05edf62d1019ab258a0876c38ae792986cbbf829a8fd7fb9",
+      "historical_source": "/workspace/shared/critic-a-stack-rebinding-review/derived-symbols.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/critic-a-stack-rebinding-review/reference-derivation.json",
+      "bytes": 6474,
+      "sha256": "1e16a08aa44f8cabded65e42d7b28eff845fb2457ae5c0c71f493ac42358edeb",
+      "historical_source": "/workspace/shared/critic-a-stack-rebinding-review/reference-derivation.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/0-acquisition.o",
+      "bytes": 3244,
+      "sha256": "67062f96ea7871a2163aea23fce7e4dfd91dc8d8f918f7a984481e26a2bf7a01",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/0-acquisition.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/0-acquisition.su",
+      "bytes": 1257,
+      "sha256": "1b0ed3f4b0a747a35edb8838a7498dd6ede84753532b9d16833a14266b673c8d",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/0-acquisition.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/1-mt_capture_link.o",
+      "bytes": 5236,
+      "sha256": "79dfe0181f70dfa77e303007212ad1fb462ce2d3a117252ad2c8b03854972712",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/1-mt_capture_link.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/1-mt_capture_link.su",
+      "bytes": 1152,
+      "sha256": "0721fc45b5562ece987e24e49929de2aa34c36a8e1711bf09c9f41b42fab2937",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/1-mt_capture_link.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/10-mt_stream.o",
+      "bytes": 1444,
+      "sha256": "42d6707975c330526653da948dd7d534e9bce9da135798906dae72d7cd1a6c02",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/10-mt_stream.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/10-mt_stream.su",
+      "bytes": 329,
+      "sha256": "f61f91dbdf5723e0feecd6169991e83b690fd47e4132a5379b9ca5a976d13b64",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/10-mt_stream.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/11-mt_session.o",
+      "bytes": 1676,
+      "sha256": "5b18e0ef8645c49fe7011727a9e98ba8c2834e127164e5ea18447559804ebf98",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/11-mt_session.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/11-mt_session.su",
+      "bytes": 346,
+      "sha256": "8f26941637fff76962a76ba8459e34b15ee834b7df24fb09bbbde6cdac178e41",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/11-mt_session.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/12-mt_command.o",
+      "bytes": 1924,
+      "sha256": "c26e329ac6a4802ffa97c6af51cf12ecf45d604b94c331ede2479eb6ecc412a4",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/12-mt_command.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/12-mt_command.su",
+      "bytes": 336,
+      "sha256": "32506abe671483c626cd7b8ba2a36cef55e35b4f20c2bc9f7afd34ab17f7d6e3",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/12-mt_command.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/13-mt_tx.o",
+      "bytes": 4752,
+      "sha256": "deac4c0b2fc0a1502ca2e1cbd1c37b89738f8a5365a870aed09e1dd34537c5ed",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/13-mt_tx.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/13-mt_tx.su",
+      "bytes": 1050,
+      "sha256": "ec439dda4550e64dfaa2f326121910f60d600a339b6f3ac14fe6e0921631f71a",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/13-mt_tx.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/14-mt_usb_epoch.o",
+      "bytes": 3716,
+      "sha256": "c337ad6b3ea44185ddf1d7fed818ae62a3411d0927b39c4e13ad29ba5e0ea277",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/14-mt_usb_epoch.su",
+      "bytes": 1662,
+      "sha256": "ccaf4d6e4c98fa797de3f1d91dcb7d56774bb94285393e404ca6507dd75a1ab2",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/14-mt_usb_epoch.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/15-mt_usb_cdc.o",
+      "bytes": 4388,
+      "sha256": "5e6c7b61f27248d4d56fa32598774498c1fcff57112cd18c24c8b7a0753abe09",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/15-mt_usb_cdc.su",
+      "bytes": 1274,
+      "sha256": "a8185ae9d4b3d7d9889cb3df42beb5e417037b8e888ed069769a6ce47f71494c",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/15-mt_usb_cdc.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/16-mt_usb_bridge.o",
+      "bytes": 9600,
+      "sha256": "ae702d288ccdd20e5f277385673db2a6e16d0052d1124e02b51baba94839d8e1",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/16-mt_usb_bridge.su",
+      "bytes": 3162,
+      "sha256": "3fea6627e212ba251e392d0d931934c160429ddbce2bf36159cad05d9bc79081",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/16-mt_usb_bridge.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/17-mt_usb_descriptors.o",
+      "bytes": 2756,
+      "sha256": "c663536cde08979db44f22d1aa035a64298d8c82312c9b590bc4d2698eeebd06",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/17-mt_usb_descriptors.su",
+      "bytes": 508,
+      "sha256": "7cb3a23f4ee33d6a7bff855e0c56ed368c900f4a667489d6d4c55b4ecebc6c11",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/17-mt_usb_descriptors.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/18-mt_memory.o",
+      "bytes": 1312,
+      "sha256": "0876c6757b36e7c0302cfaa76f78b4c8350079827475774bce86a3509514579e",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/18-mt_memory.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/18-mt_memory.su",
+      "bytes": 418,
+      "sha256": "7d92fc699f25e97c82cece6505201db2236f85623fc746b239d7f3967cef57f8",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/18-mt_memory.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/19-tusb.o",
+      "bytes": 6304,
+      "sha256": "376920daa77efcec384a2ba3ce59f7ddfda9b68354d58b81d5adecdf07c2b55e",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/19-tusb.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/19-tusb.su",
+      "bytes": 2558,
+      "sha256": "2f2bedab3e2bc2ce0185a3a3b911e2673aebdd890d1dacb04617f2359a419ab8",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/19-tusb.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/2-mt_adc_control.o",
+      "bytes": 2932,
+      "sha256": "30728756c3f01be97b87670db187204b3f6f54613244a24cb93ca79b1d7f78d7",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/2-mt_adc_control.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/2-mt_adc_control.su",
+      "bytes": 764,
+      "sha256": "d83b30e36805abd1729fb856ad061528f1029ce18a362b75bf299ecfcdd42e2b",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/2-mt_adc_control.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/20-tusb_fifo.o",
+      "bytes": 5736,
+      "sha256": "5b60a3bc11e109f82fbfbb0ea7e1473d82986840a696bc48196cea016223c72b",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/20-tusb_fifo.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/20-tusb_fifo.su",
+      "bytes": 2481,
+      "sha256": "2f30c7777cc7db2acb4e2f5ee72cc089730a7a893d0f253a2e0cd804f308d998",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/20-tusb_fifo.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/21-cdc_device.o",
+      "bytes": 7796,
+      "sha256": "494f4ac490b89cbb546e210a468e079950d430414807f8c4a9e77f0c8cdc83cc",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/21-cdc_device.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/21-cdc_device.su",
+      "bytes": 3293,
+      "sha256": "eb14b684d900ade60bab8c18e2e6cbf56aefddb36353571683d795d4a1ee50d4",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/21-cdc_device.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/22-usbd.o",
+      "bytes": 20200,
+      "sha256": "40678d4e87f1b6bbe3bc51a6da49194d141e2b7c5f201cfde393909f828d6c02",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/22-usbd.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/22-usbd.su",
+      "bytes": 7039,
+      "sha256": "75716f36caae6646afa4a016678354e2470d46bac69be91c8508ee925c0f1b6c",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/22-usbd.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/23-dcd_stm32_fsdev.o",
+      "bytes": 9552,
+      "sha256": "d145d093d134952cb2401ee8de02c466ff7dcac8f349157604251f0e1a1d0819",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/23-dcd_stm32_fsdev.su",
+      "bytes": 2943,
+      "sha256": "6d544c9ac5db6e61a41c1809346a1ff335ee8063325e75e54608706fca1d7c2d",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/23-dcd_stm32_fsdev.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/24-fsdev_common.o",
+      "bytes": 1612,
+      "sha256": "5f7cfd87ed8368ca47d405d4f15a58ea383ea2c61342d97f08ced4dab42edef8",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/24-fsdev_common.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/24-fsdev_common.su",
+      "bytes": 564,
+      "sha256": "5ff1f5b70229afa35cfb31925a5594d6f7a767d41b960308536f76330ac0623a",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/24-fsdev_common.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/3-mt_control.o",
+      "bytes": 5928,
+      "sha256": "d5f9d50c21c9b46df34a48225bd0c718080faa6083d01cec65e67946457ed456",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/3-mt_control.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/3-mt_control.su",
+      "bytes": 1262,
+      "sha256": "1ce0698cbd158457a9078325f574485f1374db7ed5edb492e688b57126e2d1ff",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/3-mt_control.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/4-mt_control_rx.o",
+      "bytes": 2168,
+      "sha256": "75a29c82113efb8e791fbd5380e64a11192cb13b763f55aa0b02e9554fe61e8d",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/4-mt_control_rx.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/4-mt_control_rx.su",
+      "bytes": 565,
+      "sha256": "98a410dc896872cf4ceb5224085e428a3abedc09d9f5ec3a87f9011bd6a99686",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/4-mt_control_rx.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/5-mt_runtime.o",
+      "bytes": 4824,
+      "sha256": "2d414184f46eaf31112ca741855b941e9dbf288e358c65305062df2ab3c49aaf",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/5-mt_runtime.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/5-mt_runtime.su",
+      "bytes": 1150,
+      "sha256": "e1affd626fb15df9e1a70adfdca32d6c3d87467d278f71744bcbdae797dab197",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/5-mt_runtime.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/6-adc_timer_dma.o",
+      "bytes": 7072,
+      "sha256": "dcd5ad5abf478c5e22ce516ec76bed86456aaf952d340a37c63e9321dad4ac84",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/6-adc_timer_dma.su",
+      "bytes": 1938,
+      "sha256": "d46b5b9c97bcfb033583b8d2e2c3cccbbe0316b09b2d72038b03c4e2bfa49ad3",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/6-adc_timer_dma.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/7-mt_timebase.o",
+      "bytes": 4172,
+      "sha256": "0621764e9786a2b1698b01e25b92e38d953d7f8f9cad74eabe748b1d43048933",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/7-mt_timebase.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/7-mt_timebase.su",
+      "bytes": 1340,
+      "sha256": "ef2566dabd1ed66c31c3843baf82efcd3cb49dfd08f0c24d3faed3139e9d81ab",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/7-mt_timebase.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/8-mt_irq_guard.o",
+      "bytes": 1048,
+      "sha256": "26dc5875058aa1e4b39bcf9d80da173a65ceefbdd44725c50bb203d2d945a2fc",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/8-mt_irq_guard.su",
+      "bytes": 232,
+      "sha256": "d025e4070be525498c1abafa4ca81696a43214fc34644ec75a4883d776b24afe",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/8-mt_irq_guard.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/9-mt_wire.o",
+      "bytes": 2204,
+      "sha256": "cd2496146684a1a2f0f96f04e24beb4d694f3fbd961c5ee853784a96ed647c1c",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/9-mt_wire.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/9-mt_wire.su",
+      "bytes": 526,
+      "sha256": "068c01ccdaf6da390b3bb1ea04ed8f7f9f6114c1f34631ce1e792904aa0f977a",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/9-mt_wire.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/Os-mt_boot_cpu.o",
+      "bytes": 1292,
+      "sha256": "fca6eb470b9d515f80cfa5d050be4974f8890160358ba3e1c0adf6a126d80f4e",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/Os-mt_boot_cpu.su",
+      "bytes": 372,
+      "sha256": "33cb4b77fe75f0e796eba183b047db8cd89c86e455d39872b84fdb8aeb3381c9",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/Os-mt_boot_cpu.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/Os-mt_device_main.o",
+      "bytes": 4356,
+      "sha256": "0136f3fdc5f8e51fd36e26cc0366ff2fa51a54089453b82174d3914767cf033a",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/Os-mt_device_main.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/Os-mt_device_main.su",
+      "bytes": 228,
+      "sha256": "0bce99f66ff4e3bd627eeeb9f18913d9bac5fbd32156d5f833685d4b7f497059",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/Os-mt_device_main.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/RESULTS.json",
+      "bytes": 267623,
+      "sha256": "0c4a3161d018970ae01cd20ff4a697ebe226df141d9f03aa6220ed14debff60d",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/RESULTS.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.c",
+      "bytes": 164,
+      "sha256": "52d84e99a5a6c279c58cdea34d7bd0dcf29f853e4b24f107091ec05ddffa3f2d",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_ALL_ZERO_BOARD.c",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/TEST_ONLY_INVALID_BOARD_STATIC_PLACEMENT_NOT_FLASHABLE.elf",
+      "bytes": 189640,
+      "sha256": "0450e7ee104e19d6a1c018c2f6d1bdcb6f4b74544063044e14c41c01b586c2ae",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/TEST_ONLY_INVALID_BOARD_STATIC_PLACEMENT_NOT_FLASHABLE.elf",
+      "kind": "ELF32_ARM_executable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/TEST_ONLY_STATIC_PLACEMENT.map",
+      "bytes": 96840,
+      "sha256": "c710aff9ef8ad44f753233cd4052e1c559471afdeaf0305f06b8b03f7672cfa3",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/TEST_ONLY_STATIC_PLACEMENT.map",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/application-config-macros.stdout",
+      "bytes": 28389,
+      "sha256": "ad836564cd3fa61cfdcb6e1bf0627212f6385e9522445615a8d21e64b2758ad5",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/application-config-macros.stdout",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/boot/reset.o",
+      "bytes": 3952,
+      "sha256": "ab8db984960fae4c1456bd9add1842615ee58355c9eff06b9a16c0ae0dcd7850",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/boot/reset.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/final-headers.stdout",
+      "bytes": 3182,
+      "sha256": "8cdb7050646fadd495f67e7d77d35c0459e90f728dbcb6f1d515751745bf87db",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/final-headers.stdout",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/final-symbols.stdout",
+      "bytes": 17016,
+      "sha256": "1d457d9e4c7fe813d654357daeedfe745453d7396da4a7ab3746c57f18aed100",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/final-symbols.stdout",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/final-undefined.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/final-undefined.stdout",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_boot_time.o",
+      "bytes": 1928,
+      "sha256": "301eaeea1686b549411eea15ec60ffb24e1ae2948812d9bc7f3e1f2b248b074f",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_boot_time.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_boot_time.su",
+      "bytes": 358,
+      "sha256": "8b95f08d5f33fedf978a35bcefcff9e5fdeaa8c02e4f79ceb332b1fb2d1e2f2e",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_boot_time.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_boot_usb.o",
+      "bytes": 2940,
+      "sha256": "128444b73d575363dcb132b38f7221557c3c7c33827e754a7eab61927645dc30",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_boot_usb.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_boot_usb.su",
+      "bytes": 691,
+      "sha256": "d4a5e97298f3d022e61f1351e91cbd7aa61ca36bf33542b279317dc9742216ed",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_boot_usb.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_clock_startup.o",
+      "bytes": 4276,
+      "sha256": "d36efeb8ea4559ad7c5069d28ed6cd836aabf7c210205b68952abef083aa4b04",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_clock_startup.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_clock_startup.su",
+      "bytes": 1513,
+      "sha256": "7308dca8fb753b24d2446bf8164c231015ea7fe356284231c7cdf1a3eab7bb23",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_clock_startup.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_usb_irq.o",
+      "bytes": 1500,
+      "sha256": "d87ca22b29e1bd40a639273caa8ce6a9dc3481a61785c7d8b39a8542cccf405f",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_usb_irq.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_usb_irq.su",
+      "bytes": 373,
+      "sha256": "d9bb2a4660951287b4e79be16b1f8b5d7ef5bb222a39050ab7279547475d5a41",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_usb_irq.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_usb_time.o",
+      "bytes": 2748,
+      "sha256": "7eae9f369f37c51fe3eaaf5c39e30db281cf0a15cf9da534ee6cb6ff5537088a",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_usb_time.o",
+      "kind": "ELF32_ARM_relocatable"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/mt_usb_time.su",
+      "bytes": 599,
+      "sha256": "dff6f3e6f5b34870722c9650225c051186c018110a38cd121f569b9de6ea5d7a",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/mt_usb_time.su",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/snapshot/vendor/tinyusb/src/device/usbd.c",
+      "bytes": 63930,
+      "sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/snapshot/vendor/tinyusb/src/device/usbd.c",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-main-arm/run-r2/snapshot/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
+      "bytes": 30868,
+      "sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8",
+      "historical_source": "/workspace/shared/device-main-arm/run-r2/snapshot/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-stack-bound/ARTIFACTS_SHA256.json",
+      "bytes": 2651,
+      "sha256": "c85b25382a2e79a2c588d1fc10cf1092f364e902d9f298165a9fd667fed85aaf",
+      "historical_source": "/workspace/shared/device-stack-bound/ARTIFACTS_SHA256.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/INPUTS_SHA256.json",
+      "bytes": 52905,
+      "sha256": "a5086666280e0ea07468190a35e835733e1b07a68b49edff1d9014a11475e521",
+      "historical_source": "/workspace/shared/device-stack-bound/INPUTS_SHA256.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/REPLAY_RESULT.json",
+      "bytes": 1818,
+      "sha256": "3886351c892b9394fcccef22f2fc9ac4fd891efb25a8b1c3a7ce8a04ff49cfe6",
+      "historical_source": "/workspace/shared/device-stack-bound/REPLAY_RESULT.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/REPORT_RU.md",
+      "bytes": 18105,
+      "sha256": "33a27d1ce2b9d9361d1bf95eeaea14764f63c99a07743cb7161aa8eee58a954c",
+      "historical_source": "/workspace/shared/device-stack-bound/REPORT_RU.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-stack-bound/analyze.py",
+      "bytes": 3439,
+      "sha256": "0f2174cd8b668c6ec061b5ed1925b7ce0db98b5fc623d6852da605f407b0baae",
+      "historical_source": "/workspace/shared/device-stack-bound/analyze.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/device-stack-bound/bindings.py",
+      "bytes": 5285,
+      "sha256": "5f738dbe9f65951d81277c51f789ed775ae420f3b86295d80674e1083a8b91e9",
+      "historical_source": "/workspace/shared/device-stack-bound/bindings.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/device-stack-bound/bound.py",
+      "bytes": 3156,
+      "sha256": "d3a2f71fbde25c97cbee6a9dd898a7d97146ea97c2e9491725c377917c9021bf",
+      "historical_source": "/workspace/shared/device-stack-bound/bound.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/device-stack-bound/bounds.json",
+      "bytes": 112165,
+      "sha256": "480990440b931821adf2aa792bd16ceec69387320dc6b2a34d3752a0433b88e0",
+      "historical_source": "/workspace/shared/device-stack-bound/bounds.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/code-pointer-relocations.json",
+      "bytes": 10735,
+      "sha256": "61694e841c8d5d949489afc988522b52ba83254f0ba0c33ceaa4c5b115869876",
+      "historical_source": "/workspace/shared/device-stack-bound/code-pointer-relocations.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/computed-jumps.json",
+      "bytes": 4126,
+      "sha256": "e232036fe5f47b54281f09b5221162b1f2035110df97e6a3321b7d1ee1f570eb",
+      "historical_source": "/workspace/shared/device-stack-bound/computed-jumps.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/graph-resolved.json",
+      "bytes": 1648989,
+      "sha256": "3c2618eb9e74def0c1f22233fea4874e5e28b96524db61f958b14616bfaaf034",
+      "historical_source": "/workspace/shared/device-stack-bound/graph-resolved.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/indirect-resolutions.json",
+      "bytes": 23479,
+      "sha256": "d49837c10d64bdf6db9d0bbd2afdf36c156e7580f56cbd353da87bebc8d90244",
+      "historical_source": "/workspace/shared/device-stack-bound/indirect-resolutions.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/inventory.py",
+      "bytes": 2990,
+      "sha256": "4bc91e306d53a584a20399218990a7ba3787e82b38cdfa56c32ffb6de8f17995",
+      "historical_source": "/workspace/shared/device-stack-bound/inventory.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/device-stack-bound/machine-stack-check.json",
+      "bytes": 93284,
+      "sha256": "32be017dbc742506eb0305e84552c6944251504a7cad3e165111bcb4a20cca56",
+      "historical_source": "/workspace/shared/device-stack-bound/machine-stack-check.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/device-stack-bound/object-relocations.txt",
+      "bytes": 127892,
+      "sha256": "b16c3e4c753d6cbc0badb174dcc25fb874db39724d4116662dfedbe1e4452a4a",
+      "historical_source": "/workspace/shared/device-stack-bound/object-relocations.txt",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-stack-bound/regenerated-disassembly.txt",
+      "bytes": 545199,
+      "sha256": "86478d7bf613ae025bfc68b0685ab521816d43f3de78d978f58b09feae06c843",
+      "historical_source": "/workspace/shared/device-stack-bound/regenerated-disassembly.txt",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/device-stack-bound/replay.py",
+      "bytes": 1926,
+      "sha256": "101c3929aea4ac94642bdbfbfe6484bac879c2aad39da1ea054e7574c29e393d",
+      "historical_source": "/workspace/shared/device-stack-bound/replay.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/device-stack-bound/verify_machine.py",
+      "bytes": 4990,
+      "sha256": "1c5250b2ffe3b34edf21421a1f4b05c35d9407214aea753e53637d321caac8c7",
+      "historical_source": "/workspace/shared/device-stack-bound/verify_machine.py",
+      "kind": "python"
+    },
+    {
+      "path": "evidence/final-stack-rebinding-design/ARTIFACTS_SHA256.json",
+      "bytes": 2637,
+      "sha256": "1c2258966a796fb33b15f23f3e34fb50e3c43a0205e2d95b39d7ca41fd379305",
+      "historical_source": "/workspace/shared/final-stack-rebinding-design/ARTIFACTS_SHA256.json",
+      "kind": "json"
+    },
+    {
+      "path": "evidence/final-stack-rebinding-design/DESIGN_RU.md",
+      "bytes": 32322,
+      "sha256": "f4b2b72907820dcc1f3467444f781f298a35232cf0c3d8ea5eda091324d4f5ce",
+      "historical_source": "/workspace/shared/final-stack-rebinding-design/DESIGN_RU.md",
+      "kind": "text"
+    },
+    {
+      "path": "evidence/final-stack-rebinding-design/extract_reference_manifest.py",
+      "bytes": 5181,
+      "sha256": "4c59502c19d3f4d4d0e4c0cb8138d6faaf04902191afe076da8f09db876f14ea",
+      "historical_source": "/workspace/shared/final-stack-rebinding-design/extract_reference_manifest.py",
+      "kind": "python"
+    }
+  ],
+  "source_dependencies": [
+    {
+      "path": "firmware/acquisition/acquisition.c",
+      "bytes": 8272,
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d"
+    },
+    {
+      "path": "firmware/acquisition/acquisition.h",
+      "bytes": 4481,
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.c",
+      "bytes": 4216,
+      "sha256": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.h",
+      "bytes": 2135,
+      "sha256": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.c",
+      "bytes": 10807,
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.h",
+      "bytes": 4030,
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf"
+    },
+    {
+      "path": "firmware/app/mt_control.c",
+      "bytes": 12173,
+      "sha256": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed"
+    },
+    {
+      "path": "firmware/app/mt_control.h",
+      "bytes": 2284,
+      "sha256": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574"
+    },
+    {
+      "path": "firmware/app/mt_control_rx.c",
+      "bytes": 1995,
+      "sha256": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322"
+    },
+    {
+      "path": "firmware/app/mt_control_rx.h",
+      "bytes": 1831,
+      "sha256": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943"
+    },
+    {
+      "path": "firmware/app/mt_runtime.c",
+      "bytes": 6284,
+      "sha256": "b88e7f4d001f385f33235d6683bf89c09574b29b40014f8ad60212735a7ca859"
+    },
+    {
+      "path": "firmware/app/mt_runtime.h",
+      "bytes": 1867,
+      "sha256": "2c41e5cb875828a07e5d3bae4c3318b996ff1108e25a26bbdf1405a87cf8b95a"
+    },
+    {
+      "path": "firmware/boot/mt_board_inputs.h",
+      "bytes": 849,
+      "sha256": "45119dbca2ce9d7de62cbadb93835c86ceff3e3a44a8e65a4cc327f27a2bf5a5"
+    },
+    {
+      "path": "firmware/boot/mt_boot_cpu.c",
+      "bytes": 786,
+      "sha256": "4640364e1fdd44cd224552547f164e3bf4838556c6623d866cfbb02b8ae98b95"
+    },
+    {
+      "path": "firmware/boot/mt_boot_cpu.h",
+      "bytes": 668,
+      "sha256": "182b02a66981a33f39b5a3e1427ca83dabef55711450ec83e9da094f113c6680"
+    },
+    {
+      "path": "firmware/boot/mt_boot_time.c",
+      "bytes": 2967,
+      "sha256": "3e1ed0173d95e78910fc4841c39b976984f17d5b1970ac0c71d85b62f02b479d"
+    },
+    {
+      "path": "firmware/boot/mt_boot_time.h",
+      "bytes": 1693,
+      "sha256": "ba0f26042f97303f0fe9f3e6e4109f079a30b23f80381cec007a355fe79b5f53"
+    },
+    {
+      "path": "firmware/boot/mt_boot_usb.c",
+      "bytes": 4372,
+      "sha256": "0610dd327e29fd6c5d9f9289649d51d8428944654e6ccb496178f58e8f216aa9"
+    },
+    {
+      "path": "firmware/boot/mt_boot_usb.h",
+      "bytes": 1528,
+      "sha256": "2ea620b7a8318d52ddc4559d1f0c4f22b423c1b6596a688adafe2dafac83e1ff"
+    },
+    {
+      "path": "firmware/boot/mt_device_main.c",
+      "bytes": 4873,
+      "sha256": "f42d80a8c5c999819252d71d9cda9ce8797db3c22cd59e9dfeac7f55f8bcdc9b"
+    },
+    {
+      "path": "firmware/boot/mt_reset_stm32f103c8.S",
+      "bytes": 4746,
+      "sha256": "73aab7ae43f89544fb2d6b7a931ff1a42a1ad4034c57e5256453dd04b51f1e18"
+    },
+    {
+      "path": "firmware/boot/stm32f103c8.ld",
+      "bytes": 3230,
+      "sha256": "54a13bae7a9edc25ca38dadaa3c31a957108099fbb193c66d3e32dcc26b7d60c"
+    },
+    {
+      "path": "firmware/boot/tusb_config.h",
+      "bytes": 1256,
+      "sha256": "341fd5a09fe5594c9e6dbee0c14427c485476e58bd8efb640091a717dd657c9e"
+    },
+    {
+      "path": "firmware/build/stack_reference.json",
+      "bytes": 9806,
+      "sha256": "c447746787bceb3c603e3847b6e6308937d4773a14673ad0d040ac7f2e88730d"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.c",
+      "bytes": 16975,
+      "sha256": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.h",
+      "bytes": 6518,
+      "sha256": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d"
+    },
+    {
+      "path": "firmware/platform/mt_clock_startup.c",
+      "bytes": 6542,
+      "sha256": "90cddee98cb45e9abba300d9e15416802d22344d813f96f4e2629d48bc99bef6"
+    },
+    {
+      "path": "firmware/platform/mt_clock_startup.h",
+      "bytes": 2255,
+      "sha256": "8c6a62dbb14096b48a00336003dbded7187f479e3a7187703f365ad40a8e1da3"
+    },
+    {
+      "path": "firmware/platform/mt_irq_guard.c",
+      "bytes": 808,
+      "sha256": "70953014ab17475b35131cb3c71741fba6c4e8099b670de1abf64bda844506f3"
+    },
+    {
+      "path": "firmware/platform/mt_irq_guard.h",
+      "bytes": 465,
+      "sha256": "677b9880972c99b7ede19f8b6d5a89fab75a3d360c3a8ac4980f8d177d765c4c"
+    },
+    {
+      "path": "firmware/platform/mt_memory.c",
+      "bytes": 1582,
+      "sha256": "7ad72d47edfb50ae449633c04cb8376403151f424db7aa80f438d6d034370d98"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.c",
+      "bytes": 5149,
+      "sha256": "b403cc8f5e60cc2568b59d9fc5de6cf2cf1f116c03291876e7a05a5dc19f2740"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.h",
+      "bytes": 2490,
+      "sha256": "613135965695f6e1eb4e24edea9e2873a33b60ee4b44865a5db1ef1730b5b3d2"
+    },
+    {
+      "path": "firmware/platform/mt_usb_irq.c",
+      "bytes": 507,
+      "sha256": "bbd07408a4ee77d0fe1a95dba81cf24da418e4008f5ec1acea9c0816e1c57720"
+    },
+    {
+      "path": "firmware/platform/mt_usb_irq.h",
+      "bytes": 360,
+      "sha256": "1dce13b98392277dd515cff3e35ad36b9da9dc713d5b60dd922871bdf02146f4"
+    },
+    {
+      "path": "firmware/platform/mt_usb_time.c",
+      "bytes": 1717,
+      "sha256": "44bbb8b16d9483621c5f59340d5d33391b4fca8b073139287e0c3a80695f4d3e"
+    },
+    {
+      "path": "firmware/platform/mt_usb_time.h",
+      "bytes": 1425,
+      "sha256": "58f5f27dd9aacfdb2f84c6457fd8ad046bec924fbf84fcf8bcc3b37dcb9d67ab"
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "bytes": 3566,
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "bytes": 2397,
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    {
+      "path": "firmware/protocol/mt_session.c",
+      "bytes": 2855,
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40"
+    },
+    {
+      "path": "firmware/protocol/mt_session.h",
+      "bytes": 2253,
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.c",
+      "bytes": 1470,
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.h",
+      "bytes": 1921,
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "bytes": 4102,
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "bytes": 1679,
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_compiler.h",
+      "bytes": 9481,
+      "sha256": "b51963d271c1571ca3463654c76aa7ea50c4eac5d0a2710df10414ac64d9e0f8"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h",
+      "bytes": 63374,
+      "sha256": "43bfd1fe69fbbc2ca70aaf7d43cc3e20f16e0c7f66e1bdef9b51af6dc14b2617"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_version.h",
+      "bytes": 1680,
+      "sha256": "184c19fd3ee73632edf35a0b4d49cd48be75fbf49e6ccb19d9db05fa83bea4b3"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h",
+      "bytes": 109529,
+      "sha256": "c9937781259a8897adf514445441c68570087d6a72a558d8a4afe75cdb62dbd2"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/stm32f103xb.h",
+      "bytes": 842883,
+      "sha256": "d9c7c613d9fea74220892b4fbc3e80617493acad82a04bafadab2b4a7198399c"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/stm32f1xx.h",
+      "bytes": 10110,
+      "sha256": "05e93fa3ddefb2e83d762b9ca4de36e3bba9cd8e9690400fe9f2c11fc0a3cef5"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/system_stm32f1xx.h",
+      "bytes": 1758,
+      "sha256": "a54dfbb3480c672f532d472a6e84bcf34df6551771d2e9966c5a3503c676b6ab"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc.h",
+      "bytes": 26136,
+      "sha256": "40bfcfda287a7556d31e0a6ea607b9b4340be32436c3af0099b08ece6e853312"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "bytes": 18200,
+      "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.h",
+      "bytes": 11258,
+      "sha256": "1d9b3f42642e668d0bb8f82c494ffe971f387ffda2b03dc4ca78b4a6f09f13cc"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_common.h",
+      "bytes": 16313,
+      "sha256": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_compiler.h",
+      "bytes": 13258,
+      "sha256": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_debug.h",
+      "bytes": 5290,
+      "sha256": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.c",
+      "bytes": 28389,
+      "sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.h",
+      "bytes": 13787,
+      "sha256": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_mcu.h",
+      "bytes": 25894,
+      "sha256": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_private.h",
+      "bytes": 6936,
+      "sha256": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_types.h",
+      "bytes": 23210,
+      "sha256": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_verify.h",
+      "bytes": 5875,
+      "sha256": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/dcd.h",
+      "bytes": 9178,
+      "sha256": "baf785f2d5d8e3f74bd6d6a04559fc606d341983aad35aa08e168b452c2750db"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd.h",
+      "bytes": 64062,
+      "sha256": "48040a0ea812b5f099bab557c81aa83fb9386d7eb2dfd814b1eba9aa2468b298"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd_pvt.h",
+      "bytes": 5549,
+      "sha256": "3d3bae6a54ac6d677a2fdae156665c760a7f22f7651b34cfaa4460a585964db9"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/osal/osal.h",
+      "bytes": 4115,
+      "sha256": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/osal/osal_none.h",
+      "bytes": 8014,
+      "sha256": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c",
+      "bytes": 3894,
+      "sha256": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h",
+      "bytes": 16549,
+      "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h",
+      "bytes": 12083,
+      "sha256": "8ad617f61884ef9acc137fed9eab34264af79ef75df916cef1126f3106fdeabe"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "bytes": 16704,
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb.h",
+      "bytes": 5026,
+      "sha256": "115100fbffe8984964a321e477720a5586db7776ac832ca81749c89cc08183bb"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb_option.h",
+      "bytes": 30475,
+      "sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f"
+    },
+    {
+      "path": "firmware/transport/mt_tx.c",
+      "bytes": 9723,
+      "sha256": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf"
+    },
+    {
+      "path": "firmware/transport/mt_tx.h",
+      "bytes": 6194,
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9"
+    },
+    {
+      "path": "firmware/transport/mt_usb_bridge.c",
+      "bytes": 6495,
+      "sha256": "7cbbc13e481aa398b28f713f2b3067f27e622c99cd8c1eed833237b04cf59d7e"
+    },
+    {
+      "path": "firmware/transport/mt_usb_bridge.h",
+      "bytes": 2449,
+      "sha256": "5894b781971f5e5b3179f612d909f4299905fb997132008aa33225e9f2e35866"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.c",
+      "bytes": 5827,
+      "sha256": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.h",
+      "bytes": 2328,
+      "sha256": "4f7d054f5ec14c4b04b6b28240c93af2e9894e16c72db7a369f2d3221800563b"
+    },
+    {
+      "path": "firmware/transport/mt_usb_descriptors.c",
+      "bytes": 3174,
+      "sha256": "efe258f1567b17f66e9a6c48793d95586c3c6869ad890e05ee642c8f58ac3ad7"
+    },
+    {
+      "path": "firmware/transport/mt_usb_descriptors.h",
+      "bytes": 936,
+      "sha256": "f35ca537b41dd5b2c47e4c589b06545a0da59ed0d8a9be27f6ef10b78848437d"
+    },
+    {
+      "path": "firmware/transport/mt_usb_epoch.c",
+      "bytes": 3402,
+      "sha256": "c3f70c9937359d263cc78c668bd2a9cd91f8d384d82d958d6587a777b6947159"
+    },
+    {
+      "path": "firmware/transport/mt_usb_epoch.h",
+      "bytes": 2926,
+      "sha256": "0846781e5688642fc7ffb59910d3acc2492b3dd9afbef406a4b4671dc2d8be0b"
+    }
+  ]
+}

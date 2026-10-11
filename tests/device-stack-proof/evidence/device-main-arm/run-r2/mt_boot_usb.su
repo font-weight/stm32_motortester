@@ -1,0 +1,6 @@
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-usb-draft/mt_boot_usb.c:30:17:rd	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-usb-draft/mt_boot_usb.c:33:13:wr	0	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-usb-draft/mt_boot_usb.c:36:12:same_clock	8	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-usb-draft/mt_boot_usb.c:43:12:quiescent	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-usb-draft/mt_boot_usb.c:50:12:priorities_match	16	static
+/workspace/shared/device-main-arm/run-r2/snapshot/additions/boot-usb-draft/mt_boot_usb.c:59:20:mt_boot_usb_prepare	32	static
