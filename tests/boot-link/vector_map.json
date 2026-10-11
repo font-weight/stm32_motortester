@@ -1,0 +1,545 @@
+{
+  "actual_irq_count": 43,
+  "flash_only_vector_words": 59,
+  "flash_only_vector_bytes": 236,
+  "selected_alignment_bytes": 512,
+  "vendor_words_including_ram_boot_tail": 67,
+  "rows": [
+    {
+      "index": 0,
+      "offset_hex": "0x0",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "_estack",
+      "kind": "initial_msp"
+    },
+    {
+      "index": 1,
+      "offset_hex": "0x4",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "Reset_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 2,
+      "offset_hex": "0x8",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "NMI_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 3,
+      "offset_hex": "0xc",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "HardFault_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 4,
+      "offset_hex": "0x10",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "MemManage_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 5,
+      "offset_hex": "0x14",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "BusFault_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 6,
+      "offset_hex": "0x18",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "UsageFault_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 7,
+      "offset_hex": "0x1c",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "reserved_core"
+    },
+    {
+      "index": 8,
+      "offset_hex": "0x20",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "reserved_core"
+    },
+    {
+      "index": 9,
+      "offset_hex": "0x24",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "reserved_core"
+    },
+    {
+      "index": 10,
+      "offset_hex": "0x28",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "reserved_core"
+    },
+    {
+      "index": 11,
+      "offset_hex": "0x2c",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "SVC_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 12,
+      "offset_hex": "0x30",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "DebugMon_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 13,
+      "offset_hex": "0x34",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "reserved_core"
+    },
+    {
+      "index": 14,
+      "offset_hex": "0x38",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "PendSV_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 15,
+      "offset_hex": "0x3c",
+      "irq": null,
+      "cmsis_irq_name": null,
+      "vendor_word": "SysTick_Handler",
+      "kind": "handler"
+    },
+    {
+      "index": 16,
+      "offset_hex": "0x40",
+      "irq": 0,
+      "cmsis_irq_name": "WWDG_IRQn",
+      "vendor_word": "WWDG_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 17,
+      "offset_hex": "0x44",
+      "irq": 1,
+      "cmsis_irq_name": "PVD_IRQn",
+      "vendor_word": "PVD_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 18,
+      "offset_hex": "0x48",
+      "irq": 2,
+      "cmsis_irq_name": "TAMPER_IRQn",
+      "vendor_word": "TAMPER_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 19,
+      "offset_hex": "0x4c",
+      "irq": 3,
+      "cmsis_irq_name": "RTC_IRQn",
+      "vendor_word": "RTC_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 20,
+      "offset_hex": "0x50",
+      "irq": 4,
+      "cmsis_irq_name": "FLASH_IRQn",
+      "vendor_word": "FLASH_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 21,
+      "offset_hex": "0x54",
+      "irq": 5,
+      "cmsis_irq_name": "RCC_IRQn",
+      "vendor_word": "RCC_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 22,
+      "offset_hex": "0x58",
+      "irq": 6,
+      "cmsis_irq_name": "EXTI0_IRQn",
+      "vendor_word": "EXTI0_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 23,
+      "offset_hex": "0x5c",
+      "irq": 7,
+      "cmsis_irq_name": "EXTI1_IRQn",
+      "vendor_word": "EXTI1_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 24,
+      "offset_hex": "0x60",
+      "irq": 8,
+      "cmsis_irq_name": "EXTI2_IRQn",
+      "vendor_word": "EXTI2_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 25,
+      "offset_hex": "0x64",
+      "irq": 9,
+      "cmsis_irq_name": "EXTI3_IRQn",
+      "vendor_word": "EXTI3_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 26,
+      "offset_hex": "0x68",
+      "irq": 10,
+      "cmsis_irq_name": "EXTI4_IRQn",
+      "vendor_word": "EXTI4_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 27,
+      "offset_hex": "0x6c",
+      "irq": 11,
+      "cmsis_irq_name": "DMA1_Channel1_IRQn",
+      "vendor_word": "DMA1_Channel1_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 28,
+      "offset_hex": "0x70",
+      "irq": 12,
+      "cmsis_irq_name": "DMA1_Channel2_IRQn",
+      "vendor_word": "DMA1_Channel2_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 29,
+      "offset_hex": "0x74",
+      "irq": 13,
+      "cmsis_irq_name": "DMA1_Channel3_IRQn",
+      "vendor_word": "DMA1_Channel3_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 30,
+      "offset_hex": "0x78",
+      "irq": 14,
+      "cmsis_irq_name": "DMA1_Channel4_IRQn",
+      "vendor_word": "DMA1_Channel4_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 31,
+      "offset_hex": "0x7c",
+      "irq": 15,
+      "cmsis_irq_name": "DMA1_Channel5_IRQn",
+      "vendor_word": "DMA1_Channel5_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 32,
+      "offset_hex": "0x80",
+      "irq": 16,
+      "cmsis_irq_name": "DMA1_Channel6_IRQn",
+      "vendor_word": "DMA1_Channel6_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 33,
+      "offset_hex": "0x84",
+      "irq": 17,
+      "cmsis_irq_name": "DMA1_Channel7_IRQn",
+      "vendor_word": "DMA1_Channel7_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 34,
+      "offset_hex": "0x88",
+      "irq": 18,
+      "cmsis_irq_name": "ADC1_2_IRQn",
+      "vendor_word": "ADC1_2_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 35,
+      "offset_hex": "0x8c",
+      "irq": 19,
+      "cmsis_irq_name": "USB_HP_CAN1_TX_IRQn",
+      "vendor_word": "USB_HP_CAN1_TX_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 36,
+      "offset_hex": "0x90",
+      "irq": 20,
+      "cmsis_irq_name": "USB_LP_CAN1_RX0_IRQn",
+      "vendor_word": "USB_LP_CAN1_RX0_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 37,
+      "offset_hex": "0x94",
+      "irq": 21,
+      "cmsis_irq_name": "CAN1_RX1_IRQn",
+      "vendor_word": "CAN1_RX1_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 38,
+      "offset_hex": "0x98",
+      "irq": 22,
+      "cmsis_irq_name": "CAN1_SCE_IRQn",
+      "vendor_word": "CAN1_SCE_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 39,
+      "offset_hex": "0x9c",
+      "irq": 23,
+      "cmsis_irq_name": "EXTI9_5_IRQn",
+      "vendor_word": "EXTI9_5_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 40,
+      "offset_hex": "0xa0",
+      "irq": 24,
+      "cmsis_irq_name": "TIM1_BRK_IRQn",
+      "vendor_word": "TIM1_BRK_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 41,
+      "offset_hex": "0xa4",
+      "irq": 25,
+      "cmsis_irq_name": "TIM1_UP_IRQn",
+      "vendor_word": "TIM1_UP_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 42,
+      "offset_hex": "0xa8",
+      "irq": 26,
+      "cmsis_irq_name": "TIM1_TRG_COM_IRQn",
+      "vendor_word": "TIM1_TRG_COM_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 43,
+      "offset_hex": "0xac",
+      "irq": 27,
+      "cmsis_irq_name": "TIM1_CC_IRQn",
+      "vendor_word": "TIM1_CC_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 44,
+      "offset_hex": "0xb0",
+      "irq": 28,
+      "cmsis_irq_name": "TIM2_IRQn",
+      "vendor_word": "TIM2_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 45,
+      "offset_hex": "0xb4",
+      "irq": 29,
+      "cmsis_irq_name": "TIM3_IRQn",
+      "vendor_word": "TIM3_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 46,
+      "offset_hex": "0xb8",
+      "irq": 30,
+      "cmsis_irq_name": "TIM4_IRQn",
+      "vendor_word": "TIM4_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 47,
+      "offset_hex": "0xbc",
+      "irq": 31,
+      "cmsis_irq_name": "I2C1_EV_IRQn",
+      "vendor_word": "I2C1_EV_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 48,
+      "offset_hex": "0xc0",
+      "irq": 32,
+      "cmsis_irq_name": "I2C1_ER_IRQn",
+      "vendor_word": "I2C1_ER_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 49,
+      "offset_hex": "0xc4",
+      "irq": 33,
+      "cmsis_irq_name": "I2C2_EV_IRQn",
+      "vendor_word": "I2C2_EV_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 50,
+      "offset_hex": "0xc8",
+      "irq": 34,
+      "cmsis_irq_name": "I2C2_ER_IRQn",
+      "vendor_word": "I2C2_ER_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 51,
+      "offset_hex": "0xcc",
+      "irq": 35,
+      "cmsis_irq_name": "SPI1_IRQn",
+      "vendor_word": "SPI1_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 52,
+      "offset_hex": "0xd0",
+      "irq": 36,
+      "cmsis_irq_name": "SPI2_IRQn",
+      "vendor_word": "SPI2_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 53,
+      "offset_hex": "0xd4",
+      "irq": 37,
+      "cmsis_irq_name": "USART1_IRQn",
+      "vendor_word": "USART1_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 54,
+      "offset_hex": "0xd8",
+      "irq": 38,
+      "cmsis_irq_name": "USART2_IRQn",
+      "vendor_word": "USART2_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 55,
+      "offset_hex": "0xdc",
+      "irq": 39,
+      "cmsis_irq_name": "USART3_IRQn",
+      "vendor_word": "USART3_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 56,
+      "offset_hex": "0xe0",
+      "irq": 40,
+      "cmsis_irq_name": "EXTI15_10_IRQn",
+      "vendor_word": "EXTI15_10_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 57,
+      "offset_hex": "0xe4",
+      "irq": 41,
+      "cmsis_irq_name": "RTC_Alarm_IRQn",
+      "vendor_word": "RTC_Alarm_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 58,
+      "offset_hex": "0xe8",
+      "irq": 42,
+      "cmsis_irq_name": "USBWakeUp_IRQn",
+      "vendor_word": "USBWakeUp_IRQHandler",
+      "kind": "handler"
+    },
+    {
+      "index": 59,
+      "offset_hex": "0xec",
+      "irq": 43,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 60,
+      "offset_hex": "0xf0",
+      "irq": 44,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 61,
+      "offset_hex": "0xf4",
+      "irq": 45,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 62,
+      "offset_hex": "0xf8",
+      "irq": 46,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 63,
+      "offset_hex": "0xfc",
+      "irq": 47,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 64,
+      "offset_hex": "0x100",
+      "irq": 48,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 65,
+      "offset_hex": "0x104",
+      "irq": 49,
+      "cmsis_irq_name": null,
+      "vendor_word": "0",
+      "kind": "ram_boot_tail"
+    },
+    {
+      "index": 66,
+      "offset_hex": "0x108",
+      "irq": 50,
+      "cmsis_irq_name": null,
+      "vendor_word": "BootRAM",
+      "kind": "ram_boot_tail"
+    }
+  ]
+}

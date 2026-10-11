@@ -1,5 +1,170 @@
 # Прогресс проекта
 
+## 11.10.2026 — сквозные модельные проверки firmware (00:10 UTC)
+
+На неизменённом локальном дереве R7
+`d133d4a207ea7ab5a284fcb6cca96b77494a6065` закрыты три ограниченные
+области программных проверок. Каждая отдельно повторена Critic-A;
+Dot A также повторил строгие сборки. Производственного дефекта не найдено,
+C/H, Python, vendor и host/** не менялись.
+
+- Auto без пересечения и Single с пересечением, pretrigger 0/1024:
+  четыре сценария через runtime/TIME/DMA/controller/core/CDC с модельным DCD.
+  Проверены 2048 отсчётов/CRC, timeout, действительный Stop, Auto rearm и
+  отсутствие Single rearm после RELEASE/tombstone. Strict и ASan/UBSan
+  прошли; две узкие мутации выявили соответствующие нарушения.
+- Полный patched FSDEV DCD с логической моделью EP/ISTR/PMA, настоящими
+  core/CDC/descriptors/runtime: reset → минимальная модельная enumeration
+  (device 18 bytes, configuration 64+11) → HELLO → reset. Данные хоста
+  наблюдаются через PMA, события проходят реальную очередь. Проверены
+  отложенный адрес, очистка CTR и финальная инвалидизация сессии; два
+  отрицательных контроля отклонены в заданных местах.
+- На той же композиции Normal/pretrigger 1024: wire CONFIG/ARM,
+  DMA → 2048 отсчётов → девять DATA (8×250 + 48) → END,
+  CRC32 массива `c7756652`, затем RELEASE/rearm, STOP и reset.
+  Native и ASan/UBSan дали одинаковый 5186-byte поток, SHA-256
+  `665af6093665d6387b6962f1c7e6060edb3ec2d66af52a759145d64de1509605`.
+  Контроль потери отсчёта с исправленным frame CRC отклонён оракулом.
+
+Задержка IN внутри DATA в последнем сценарии проверена после freeze/Stop,
+при передаче готового окна. После RELEASE проверены очистка истории,
+счётчик и последний код 128 новых отсчётов, не второе полное окно.
+Проверки моделей не устанавливают реальные IRQ, физические USB/ADC timing,
+Windows interoperability, запас стека или безопасность платы. LeakSanitizer
+не включался. Свидетельства пока локальные; эта запись не является их
+публикацией или переносимым автономным тестовым комплектом.
+
+Формальный статус остаётся **BLOCKED_EVIDENCE, score:null**. Реальные
+board inputs, инженерный reserve/margin, аппаратные свидетельства,
+применимые межкомандные вердикты и разрешение публикации остаются открыты.
+
+## 10.10.2026 — входные документы и точное локальное ревью (23:28 UTC)
+
+Critic-A независимо проверил точное дерево R6
+`d235fd2501e8a1a5eb0eb6894337da21f52fccc8`: восстановление полного patch,
+relocated export и документацию board inputs. Локальная область разрешена
+к дальнейшей разработке; формальная приёмка остаётся BLOCKED_EVIDENCE,
+score:null, публикация и аппаратное разрешение открыты.
+
+В README/task устранены устаревшие утверждения об отсутствии кода и
+текущей DOC-005; исторический пакет передачи отделён от текущего draft.
+Добавлены прямые ссылки на разные object и static-link/export рецепты.
+Это новая документационная дельта для независимого ревью; C/H, Python,
+контракты, host/** и исторические записи не изменялись.
+
+## 10.10.2026 — проверенный экспорт и основания board inputs (23:20 UTC)
+
+Локальный [recipe](../firmware/build/BUILD_IMAGE_README.md) теперь создаёт
+BIN/Intel HEX после полного static-link gate. Отдельно закреплён существующий
+objcopy; независимый декодер сравнивает адреса/bytes экспортов с Flash LMA
+ELF, включая initial `.data`, checksum/EOF/entry и отсутствие overlaps.
+Синтетические файлы явно помечены NEVER_FLASH.
+
+Export-ревизия отдельно рассмотрена Critic-A: повторены 125 supporting
+проверок и 13 интеграционных сценариев ошибок, добавлены собственные
+validator/tool/gate probes и два полных relocated min/max exports.
+Это новый scoped verdict, не автоматическое расширение прежнего ревью.
+
+В [board inputs](../firmware/build/BOARD_CONFIG_README.md) добавлена краткая
+связь полей с основаниями: физические свойства, программная политика,
+USB identity и serial различены; HW-001A остаётся единственным паспортом.
+Реальные значения и инженерный запас не назначались. Нет аппаратной
+проверки, разрешения прошивки или публикации; проект BLOCKED_EVIDENCE,
+score:null. C/H и object builder не менялись.
+
+## 10.10.2026 — воспроизводимая static link и условный стек (23:09 UTC)
+
+Добавлен [полный ограниченный static-link recipe](../firmware/build/BUILD_IMAGE_README.md):
+проверка исходных 33 объектов и инструментов, генерация/компиляция только
+явного board input, исходные BOOT audits, проверки board.o/final ELF и
+связка 363 text input ranges через linker map. Reserve и margin обязательны;
+синтетическая проверка 3016/0 не назначает инженерный запас реальной плате.
+
+Critic-A независимо повторил 943 сценария supporting suite, отдельные
+57 map controls, собственные relocated min/max links и проверки сохранения
+ошибок. Исправлены прежний допуск symlink-вызова recipe и шесть пробелов
+проверки map consistency; исходные версии и неудачные прогоны сохранены.
+Локальный scope условного переноса оценки 3016 B очищен от обнаруженных
+дефектов, с привязкой результата к конкретному ELF и прежним предпосылкам.
+
+Условный результат не подтверждает физические timing/IRQ/board assumptions,
+USB identity и готовность прошивки. BIN/HEX не создаются, аппаратный reserve
+не выбирается, C/H прежней прошивки неизменны. Формальный статус проекта
+остаётся BLOCKED_EVIDENCE, score:null; публикационный hold сохраняется.
+
+## 10.10.2026 — структурные проверки board.o и final ELF (22:54 UTC)
+
+Добавлены отдельные [board-object](../firmware/build/BOARD_OBJECT_README.md)
+и [ELF byte/layout](../firmware/build/IMAGE_EQUIVALENCE_README.md) checker.
+Первый связывает read-only ABI и три string relocations с явным JSON;
+второй проверяет точную раскладку, loaded bytes и symbol multisets относительно
+замороженного reference. Они ничего не компилируют и не прошивают.
+
+Обе узкие реализации независимо рассмотрены Critic-A. Для board.o повторены
+296 сценариев и дополнительные bit/CLI проверки; для ELF — 76 API/CLI
+сценариев и отдельные probes структуры, символов и loaded bytes.
+Design/reference переноса условной оценки 3016 B проверен отдельно.
+
+Полного stack-transfer recipe пока нет: ordered-object provenance,
+исходные BOOT audits, board compilation provenance и linker-map binding
+остаются обязательными отдельными условиями. ELF checker прямо возвращает
+stack_bound_transferred=false. Резерв/запас стека и параметры реальной платы
+не выбирались. C/H и прежний object builder неизменны; новая компиляция
+в этом шаге интеграции не выполнялась. Всё остаётся локальным draft,
+BLOCKED_EVIDENCE, score:null, без публикационной и аппаратной приёмки.
+
+## 10.10.2026 — явные board inputs (22:31 UTC)
+
+Добавлен [data-only генератор](../firmware/build/BOARD_CONFIG_README.md):
+строгое описание JSON без defaults, duplicate/extra keys или числового
+приведения. Он создаёт только immutable `mt_board` и числовые ASCII-массивы.
+Caller assertions и synthetic fixtures различаются явно; hardware_verified
+и flash_approved всегда false. Значения конкретной платы не назначались.
+
+Независимый Critic-A проверил parser/CLI, byte preservation, действующие
+C-валидаторы и ARM data layout; локальный scope очищен от найденных дефектов.
+Генератор не выполняет final link, не выбирает стек и не прошивает устройство.
+Формальный статус проекта остаётся BLOCKED_EVIDENCE, score:null. Предыдущий
+33-object recipe и C/H не менялись; публикационная и аппаратная приёмка открыты.
+
+## 10.10.2026 — единый локальный firmware draft (22:12 UTC)
+
+**BLOCKED_EVIDENCE, score:null.** Это локальный исходный кандидат поверх
+USB005 PR72 `adabc2044a3a376056d6756e67bede05c0726440`, не опубликованный
+релиз или завершённый MVP. Main остаётся
+`3fe1a2d8c53f77e0510a3da9ddd125f68cb872fa`; merge не выполнялся.
+
+- Объединены acquisition/protocol/control, ADC003, TX002, runtime, USB bridge,
+  descriptors, IRQ guard, memory, clock, reset/linker, TIME и actual main.
+  `mt_board` намеренно остаётся внешним обязательным определением.
+- Автор и независимый Critic-A построили 32 C objects и reset из единого
+  дерева. Все 33 совпали побайтно с ранее проверенной ARM-композицией;
+  прошли BOOT input/vector audit и строгая relocatable link.
+- Добавлен [offline object-builder](../firmware/build/README.md), который
+  проверяет hashes исходников/toolchain, явно выбирает application config,
+  сохраняет исходный vendor и применяет USB patches в build-only overlays.
+  Локальное независимое ревью рецепта завершено. Поддерживающие 98 сценариев
+  проверили также перенос путей, отказные условия и сохранение evidence.
+  Это не выдача final ELF/BIN/HEX; отсутствующий board не подменён defaults.
+- Условная оценка стека прежней точной Os-композиции проверена независимо:
+  3016 B с консервативным учётом USB IRQ и terminal HardFault/NMI.
+  Production reserve, инженерный запас и привязка к final board image открыты.
+- Размеры relocatable `combined.o`: text 32329 B, data 122 B, bss 12238 B.
+  Их нельзя выдавать за конечную карту Flash/SRAM. Остались `mt_board` и
+  шесть предусмотренных linker symbols. Физического исполнения не было.
+- `host/**` в этой базе отсутствует и не добавлялся. Windows-направление
+  остаётся за Dot B. Новый Windows-пакет и cross-team protocol migration
+  не подтверждены этой работой.
+
+Обновлены пояснения runtime/Stop, текущего TIME и USB bridge; старые
+компонентные размеры явно отмечены историческими. Неудачные пробы,
+предыдущие источники и журнал проверок сохранены. Публикация исторических
+compiler/ARM evidence остаётся на отдельном согласовании раскрытия.
+Следующий доступный этап — привязка локального пакета и final-image recipe;
+для настоящей конфигурации нужны паспорт платы/HSE/pull-up/USB identity и
+применимые независимые доказательства. Аппаратные timing/ADC/USB/LV проверки
+не закрыты.
+
 ## 10.10.2026 — A-004: сеанс, проверяемый native draft и исправления Stop
 
 Добавлены mt_session.h/c, авторские тесты, [разбор сеанса](session-guard.md) и [native evidence](evidence/a004-native.txt). Root лично реализовал RX guard и выполнил строгую GCC14.2 C11-сборку, авторские тесты и ASan+UBSan с detect_leaks=0. На проверенном host ABI объект568байт; ARM-размер пока неизвестен. Изменения не являются полной прошивкой/диспетчером или аппаратным доказательством.
