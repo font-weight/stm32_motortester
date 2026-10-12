@@ -476,6 +476,13 @@ class DeviceEmulator:
         if t is None or (generation, window, crc) != (t.generation, t.window_id, t.sample_crc32):
             self._error(frame, 7)
             return
+        # Узкая defensive parity с A PR79 (66fce97b): committed END ещё
+        # не разрешает RELEASE. Источники и границы: early-release-parity.md.
+        if (self._tx is not None and self._tx.descriptor.completion == "end"
+                and self._tx.descriptor.epoch is self._epoch
+                and (generation, window) == (self._generation, self._window_id)):
+            self._error(frame, 2)
+            return
         first = (self._held and not self._active and self._terminal is t
                  and (self._generation, self._window_id) == (generation, window)
                  and not self._release_pending)
