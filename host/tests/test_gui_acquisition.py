@@ -1,5 +1,7 @@
 """Author GUI boundary checks with an explicit fake acquisition bridge."""
 from dataclasses import replace
+import json
+import os
 from types import SimpleNamespace
 import sys
 import unittest
@@ -20,6 +22,99 @@ def advertised_caps(**changes):
         adc_clock_hz=12000000, adc_sample_cycles_x2=143,
         window_samples=2048, pretrigger_samples=(0, 512, 1024),
         mode_bits=7, source_bits=3, edge_bits=3), **changes)
+
+
+def panel_geometry(app, dialog, scroll):
+    """Bounded, ASCII-safe evidence for native-platform layout failures."""
+    def size(value):
+        return [value.width(), value.height()]
+
+    def rect(value):
+        return [value.x(), value.y(), value.width(), value.height()]
+
+    def font(widget):
+        actual = QtGui.QFontInfo(widget.font())
+        return {"requested": widget.font().toString()[:160],
+                "actual_family": actual.family()[:80],
+                "actual_point_size": actual.pointSizeF(),
+                "actual_pixel_size": actual.pixelSize()}
+
+    def geometry(widget):
+        return {"class": type(widget).__name__, "name": widget.objectName()[:80],
+                "rect": rect(widget.geometry()), "minimum": size(widget.minimumSize()),
+                "maximum": size(widget.maximumSize()),
+                "minimum_hint": size(widget.minimumSizeHint()),
+                "size_hint": size(widget.sizeHint()), "font": font(widget),
+                "font_height": widget.fontMetrics().height(),
+                "policy": [widget.sizePolicy().horizontalPolicy().name,
+                           widget.sizePolicy().verticalPolicy().name]}
+
+    screen = dialog.screen()
+    content = scroll.widget()
+    widgets = []
+    for widget in content.findChildren(QtWidgets.QWidget):
+        if not isinstance(widget, (QtWidgets.QLabel, QtWidgets.QAbstractButton,
+                                   QtWidgets.QComboBox, QtWidgets.QLineEdit,
+                                   QtWidgets.QAbstractSpinBox)):
+            continue
+        entry = geometry(widget)
+        text = widget.currentText() if isinstance(widget, QtWidgets.QComboBox) else widget.text()
+        entry["text"] = text[:100]
+        if isinstance(widget, QtWidgets.QLabel):
+            entry["word_wrap"] = widget.wordWrap()
+            entry["height_for_width"] = widget.heightForWidth(widget.width())
+        if isinstance(widget, QtWidgets.QComboBox):
+            entry["native_minimum_hint"] = size(QtWidgets.QComboBox.minimumSizeHint(widget))
+            option = QtWidgets.QStyleOptionComboBox()
+            widget.initStyleOption(option)
+            entry["edit_rect"] = rect(widget.style().subControlRect(
+                QtWidgets.QStyle.ComplexControl.CC_ComboBox, option,
+                QtWidgets.QStyle.SubControl.SC_ComboBoxEditField, widget))
+            entry["widest_item_text"] = max(widget.fontMetrics().horizontalAdvance(widget.itemText(i))
+                                           for i in range(widget.count()))
+        widgets.append(entry)
+        if len(widgets) == 48:
+            break
+    layouts = []
+    for layout in content.findChildren(QtWidgets.QLayout)[:12]:
+        margins = layout.contentsMargins()
+        entry = {"class": type(layout).__name__, "rect": rect(layout.geometry()),
+                 "minimum": size(layout.minimumSize()), "size_hint": size(layout.sizeHint()),
+                 "spacing": layout.spacing(),
+                 "margins": [margins.left(), margins.top(), margins.right(), margins.bottom()],
+                 "constraint": layout.sizeConstraint().name}
+        if isinstance(layout, QtWidgets.QFormLayout):
+            entry["row_wrap"] = layout.rowWrapPolicy().name
+            entry["field_growth"] = layout.fieldGrowthPolicy().name
+        layouts.append(entry)
+    report = {"platform": sys.platform, "python_version": sys.version[:160],
+              "qt_version": QtCore.qVersion(),
+              "qt_platform": app.platformName(), "style": app.style().objectName(),
+              "style_class": app.style().metaObject().className(), "app_font": font(app),
+              "logical_dpi": screen.logicalDotsPerInch(),
+              "physical_dpi": screen.physicalDotsPerInch(), "dpr": dialog.devicePixelRatioF(),
+              "qt_scale_env": {key: os.environ.get(key) for key in
+                               ("QT_SCALE_FACTOR", "QT_FONT_DPI", "QT_SCREEN_SCALE_FACTORS")},
+              "dialog": geometry(dialog), "viewport": geometry(scroll.viewport()),
+              "scroll": geometry(scroll),
+              "dialog_style": dialog.style().metaObject().className(),
+              "scroll_style": scroll.style().metaObject().className(),
+              "content": geometry(content),
+              "horizontal_range": [scroll.horizontalScrollBar().minimum(),
+                                   scroll.horizontalScrollBar().maximum()],
+              "vertical_range": [scroll.verticalScrollBar().minimum(),
+                                 scroll.verticalScrollBar().maximum()],
+              "layouts": layouts, "widgets": widgets}
+    return "ACQUISITION_LAYOUT=" + json.dumps(report, ensure_ascii=True, separators=(",", ":"))
+
+
+class _PanelDiagnostic:
+    """Do not query/cache Qt size hints until an assertion has already failed."""
+    def __init__(self, app, dialog, scroll):
+        self.app, self.dialog, self.scroll = app, dialog, scroll
+
+    def __str__(self):
+        return panel_geometry(self.app, self.dialog, self.scroll)
 
 
 class FakeBridge(QtCore.QObject):
@@ -366,17 +461,57 @@ class AcquisitionGuiTests(unittest.TestCase):
         self.assert_panel_reachable(self.dialog)
         self.assertEqual(self.bridge.calls, [])
 
+    def test_layout_failure_includes_bounded_native_geometry_diagnostics(self):
+        self.bridge.emit_state(Phase.READY, capabilities=advertised_caps())
+        self.dialog.port.setMinimumWidth(600)
+        self.dialog.resize(420, 360)
+        for _ in range(3):
+            self.app.processEvents()
+        scroll = self.dialog.findChild(QtWidgets.QScrollArea)
+        before = (scroll.horizontalScrollBar().maximum(), scroll.widget().size(),
+                  scroll.viewport().size(), self.dialog.port.geometry())
+        with self.assertRaises(AssertionError) as failure:
+            self.assert_panel_reachable(self.dialog)
+        text = str(failure.exception).split("ACQUISITION_LAYOUT=", 1)[1]
+        self.assertTrue(text.isascii())
+        self.assertLess(len(text), 32768)
+        report = json.loads(text)
+        self.assertGreater(report["horizontal_range"][1], 0)
+        self.assertLessEqual(len(report["widgets"]), 48)
+        self.assertLessEqual(len(report["layouts"]), 12)
+        self.assertTrue(any(item["class"] == "QLineEdit" and item["minimum"][0] == 600
+                            for item in report["widgets"]))
+        self.assertTrue(any(item.get("edit_rect") and item.get("widest_item_text")
+                            for item in report["widgets"]))
+        self.assertIn("actual_family", report["app_font"])
+        self.assertIn("logical_dpi", report)
+        for _ in range(3):
+            self.app.processEvents()
+        self.assertEqual(before, (scroll.horizontalScrollBar().maximum(), scroll.widget().size(),
+                                  scroll.viewport().size(), self.dialog.port.geometry()))
+        self.assertEqual(self.bridge.calls, [])
+
+    def test_successful_layout_does_not_collect_or_cache_failure_diagnostics(self):
+        self.bridge.emit_state(Phase.READY, capabilities=advertised_caps())
+        with patch(__name__ + ".panel_geometry", side_effect=AssertionError("Unexpected hint probe")) as probe:
+            # A wide positive control tests instrumentation independently of
+            # the still-failing Windows small-viewport acceptance cases.
+            self.assert_panel_reachable(self.dialog, QtCore.QSize(1024, 360))
+        probe.assert_not_called()
+        self.assertEqual(self.bridge.calls, [])
+
     def assert_panel_reachable(self, dialog, size=QtCore.QSize(420, 360)):
         dialog.resize(size)
         # LayoutRequest can follow an initial resize/style event on native Qt.
         for _ in range(3):
             self.app.processEvents()
-        self.assertEqual(dialog.size(), size)
         scroll = dialog.findChild(QtWidgets.QScrollArea)
         self.assertIsNotNone(scroll)
-        self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
-        self.assertEqual(scroll.horizontalScrollBar().maximum(), 0)
-        self.assertLessEqual(scroll.widget().width(), scroll.viewport().width())
+        diagnostic = _PanelDiagnostic(self.app, dialog, scroll)
+        self.assertEqual(dialog.size(), size, diagnostic)
+        self.assertGreater(scroll.verticalScrollBar().maximum(), 0, diagnostic)
+        self.assertEqual(scroll.horizontalScrollBar().maximum(), 0, diagnostic)
+        self.assertLessEqual(scroll.widget().width(), scroll.viewport().width(), diagnostic)
         controls = (dialog.source, dialog.port, dialog.mode, dialog.edge,
                     dialog.level, dialog.timeout, dialog.reset, dialog.simulate,
                     dialog.connect_button, dialog.start_button,
@@ -384,11 +519,11 @@ class AcquisitionGuiTests(unittest.TestCase):
         labels = tuple(scroll.widget().findChildren(QtWidgets.QLabel))
         for widget in controls + labels:
             with self.subTest(widget=widget.objectName() or type(widget).__name__):
-                self.assertGreaterEqual(widget.width(), widget.minimumSizeHint().width())
+                self.assertGreaterEqual(widget.width(), widget.minimumSizeHint().width(), diagnostic)
                 if isinstance(widget, QtWidgets.QLabel) and widget.wordWrap():
-                    self.assertGreaterEqual(widget.height(), widget.heightForWidth(widget.width()))
+                    self.assertGreaterEqual(widget.height(), widget.heightForWidth(widget.width()), diagnostic)
                 else:
-                    self.assertGreaterEqual(widget.height(), widget.minimumSizeHint().height())
+                    self.assertGreaterEqual(widget.height(), widget.minimumSizeHint().height(), diagnostic)
                 if isinstance(widget, QtWidgets.QComboBox):
                     option = QtWidgets.QStyleOptionComboBox()
                     widget.initStyleOption(option)
@@ -397,8 +532,8 @@ class AcquisitionGuiTests(unittest.TestCase):
                         QtWidgets.QStyle.SubControl.SC_ComboBoxEditField, widget)
                     widest_item = max(widget.fontMetrics().horizontalAdvance(widget.itemText(i))
                                       for i in range(widget.count()))
-                    self.assertGreaterEqual(edit.width(), widest_item)
-                    self.assertGreaterEqual(edit.height(), widget.fontMetrics().height())
+                    self.assertGreaterEqual(edit.width(), widest_item, diagnostic)
+                    self.assertGreaterEqual(edit.height(), widget.fontMetrics().height(), diagnostic)
                 # A long CAPS/error label can be taller than the viewport. Each
                 # edge must remain reachable, not just its middle or the button.
                 for point in (widget.rect().topLeft(), widget.rect().topRight(),
@@ -407,12 +542,12 @@ class AcquisitionGuiTests(unittest.TestCase):
                     scroll.ensureVisible(target.x(), target.y(), 1, 1)
                     self.app.processEvents()
                     self.assertTrue(scroll.viewport().rect().contains(
-                        widget.mapTo(scroll.viewport(), point)))
+                        widget.mapTo(scroll.viewport(), point)), diagnostic)
         for button in dialog.findChildren(QtWidgets.QPushButton,
                                           options=QtCore.Qt.FindChildOption.FindDirectChildrenOnly):
-            self.assertGreaterEqual(button.width(), button.minimumSizeHint().width())
-            self.assertGreaterEqual(button.height(), button.minimumSizeHint().height())
-            self.assertTrue(dialog.rect().contains(button.geometry()))
+            self.assertGreaterEqual(button.width(), button.minimumSizeHint().width(), diagnostic)
+            self.assertGreaterEqual(button.height(), button.minimumSizeHint().height(), diagnostic)
+            self.assertTrue(dialog.rect().contains(button.geometry()), diagnostic)
 
     def test_small_panel_handles_larger_native_font_before_controls_are_created(self):
         original_font = QtGui.QFont(self.app.font())
