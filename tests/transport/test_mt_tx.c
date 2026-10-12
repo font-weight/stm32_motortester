@@ -458,7 +458,42 @@ static void test_old_stop_ack_after_hello(void) {
         assert(completions == 1u && !t.stopping);
     }
 }
+static void test_acquisition_fault_reserve_and_timer(void) {
+    mt_tx t;
+    fake_usb f;
+    mt_tx_event event;
+    unsigned wrap, boundary, i;
+    mt_wire_message reply = message(130, 2), abort_message = message(147, 0);
+    mt_wire_message status = message(134, 0);
+    status.payload[0] = 5; status.payload[1] = 1;
+    put32(status.payload + 4, 7); put32(status.payload + 8, 3);
+    abort_message.payload[8] = 2;
+    for (wrap = 0; wrap < 2u; ++wrap) for (boundary = 0; boundary < 2u; ++boundary) {
+        uint32_t start = wrap ? UINT32_MAX - 500u : 100u;
+        uint32_t now = start + 999u + boundary;
+        connected(&t, &f, start);
+        for (i = 0; i < 3u; ++i) {
+            reply.request = 2u + i;
+            assert(mt_tx_enqueue(&t, &reply, start) == MT_TX_OK);
+        }
+        assert(mt_tx_acquisition_fault(&t, 7, 3, &abort_message, &status, now) == MT_TX_OK);
+        assert(t.count == 5u && !t.stopping);
+        assert(t.head_ms == start && t.progress_ms == start);
+        assert(t.slots[3].message.type == 147u && t.slots[3].message.payload[8] == 2u);
+        assert(t.slots[4].message.type == 134u && t.slots[4].message.payload[0] == 5u);
+        if (boundary) {
+            assert(mt_tx_poll(&t, now, write_fake, &f, &event) == MT_TX_TIMEOUT);
+            assert(f.used == 0u);
+        } else assert(mt_tx_poll(&t, now, write_fake, &f, &event) == MT_TX_PROGRESS);
+    }
+    connected(&t, &f, 100);
+    assert(mt_tx_enqueue(&t, &status, 100) == MT_TX_OK);
+    assert(mt_tx_acquisition_fault(&t, 7, 3, &abort_message, &status, 1100) == MT_TX_OK);
+    assert(t.count == 2u && t.head_ms == 1100u && t.progress_ms == 1100u);
+    assert(mt_tx_poll(&t, 1100, write_fake, &f, &event) == MT_TX_PROGRESS);
+}
 int main(void) {
+    test_acquisition_fault_reserve_and_timer();
     test_old_stop_ack_after_hello();
     test_fragmentation();
     test_reservation_and_stop_order();
@@ -473,6 +508,6 @@ int main(void) {
     test_phase_and_atomic_invalid_stop();
     test_queued_abort_reason_preserved();
     test_ack_boundary_new_command_and_repeat();
-    printf("mt_tx: 14 suites passed; sizeof(mt_tx)=%zu, slot=%zu\n", sizeof(mt_tx), sizeof(mt_tx_slot));
+    printf("mt_tx: 15 suites passed; sizeof(mt_tx)=%zu, slot=%zu\n", sizeof(mt_tx), sizeof(mt_tx_slot));
     return 0;
 }

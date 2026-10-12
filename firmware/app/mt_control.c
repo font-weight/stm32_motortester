@@ -15,7 +15,8 @@ static void message(mt_wire_message *m, uint8_t type, uint16_t length,
 }
 static uint8_t state(const mt_control *c) {
     if (!c->ready || c->link.phase == MT_LINK_FAILED ||
-        c->link.phase == MT_LINK_RELEASE_EXPIRED) return 5;
+        c->link.phase == MT_LINK_RELEASE_EXPIRED ||
+        c->link.phase == MT_LINK_ACQ_ERROR) return 5;
     if (c->link.phase == MT_LINK_WAIT_RELEASE) return 6;
     if (c->link.phase != MT_LINK_IDLE) return 4;
     if (!c->link.armed) return 0;
@@ -32,8 +33,9 @@ static void fill_status(mt_wire_message *m, const mt_control_status *s,
 static mt_control_status status(const mt_control *c) {
     mt_control_status s;
     s.state = state(c);
-    s.reason = c->link.phase == MT_LINK_RELEASE_EXPIRED ? 3u :
-               (s.state == 5u ? 5u : 0u);
+    s.reason = c->link.phase == MT_LINK_ACQ_ERROR ? c->link.error_reason :
+               (c->link.phase == MT_LINK_RELEASE_EXPIRED ? 3u :
+               (s.state == 5u ? 5u : 0u));
     s.generation = c->link.generation; s.window = c->link.last_window;
     s.dropped = c->link.dropped_windows;
     return s;
@@ -242,6 +244,19 @@ mt_control_result mt_control_receive(mt_control *c,
         return remember_state(c);
     default: return mt_control_recover(c);
     }
+}
+mt_control_result mt_control_acquisition_fault(mt_control *c,
+                                               uint8_t reason, uint32_t now) {
+    if (!c || (reason != 1u && reason != 2u)) return MT_CONTROL_ARGUMENT;
+    if (!c->ready || !c->hardware_running) return MT_CONTROL_IGNORED;
+    if (!c->io.stop(c->io.context)) return mt_control_recover(c);
+    c->hardware_running = 0;
+    if (mt_capture_link_acquisition_fault(&c->link, reason, now) != MT_LINK_OK)
+        return mt_control_recover(c);
+    /* Link already queued the fault snapshot after its terminal. Only stale
+     * observational snapshots live here; mandatory replies remain in TX. */
+    c->state_count = 0; c->last_state = 5;
+    return MT_CONTROL_OK;
 }
 mt_control_result mt_control_sample(mt_control *c, uint16_t code, uint32_t now) {
     mt_link_result result;
