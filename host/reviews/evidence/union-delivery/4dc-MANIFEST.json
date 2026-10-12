@@ -1,0 +1,19 @@
+{
+  "archive": "critic-main-4dc-review-1af7c7c2.tar.gz",
+  "bytes": 170644,
+  "sha256": "bec38d41800d96c77bf1167676c1f6e818b671a5107742cebf6783585ba930b1",
+  "parts": [
+    {
+      "file": "4dc.part000.b64",
+      "sha256": "b8d4d0ee1a1c2b117016c8d7a9211da068a4563cb93239b31747fad3f84b4741"
+    },
+    {
+      "file": "4dc.part001.b64",
+      "sha256": "4f9ab7f933bbfb717f544d536e692a68d822555099fff78a5383a7ea93781ad5"
+    },
+    {
+      "file": "4dc.part002.b64",
+      "sha256": "8cc81a81b45aec72a6d407fdb5fc3b558bdfb414c7b2fe0ffe67caa6c66ef7a8"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "archive": "critic-main-e75-review-6a3bfef0.tar.gz",
+  "bytes": 81701,
+  "sha256": "559fe1adc9df5af950e88f93f96574f945f3f5fe5e9489f8c608a316bebe829c",
+  "parts": [
+    {
+      "file": "e75.part000.b64",
+      "sha256": "45839e7a3cf80b1ce7d4b3b987f59a2465aedf975eb2aac236bee699ba28883f"
+    },
+    {
+      "file": "e75.part001.b64",
+      "sha256": "397b09770d5235930adb93f3d5f0abacd5b222f3e4b3b1cbce7c59fc35f1165c"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "archive": "critic-union-review-16c40a84.tar.gz",
+  "bytes": 3003560,
+  "sha256": "028c87dfeec1755e4a7dac42d6bfed9d7fcf10aa79d7a157532bae1f87f9335c",
+  "parts": [
+    {
+      "file": "critic-union-16c40.part000.b64",
+      "sha256": "34925bd218c9a9f6687478d07ef1687447776acf2610b1edd6bf9e384ec96469"
+    },
+    {
+      "file": "critic-union-16c40.part001.b64",
+      "sha256": "153cfe779f91ffa56baaaa8a19f6c1ef8310fcee32651602d3cddddae43fb14a"
+    },
+    {
+      "file": "critic-union-16c40.part002.b64",
+      "sha256": "47de241c59333d6345f13cfbb32feb008e37393aa68940edace67dc2a6d03839"
+    },
+    {
+      "file": "critic-union-16c40.part003.b64",
+      "sha256": "7720610375f68e33aec3f57119a9da6ca7a5d7d927c5d22d47faed750cedc4aa"
+    },
+    {
+      "file": "critic-union-16c40.part004.b64",
+      "sha256": "2912be48d9a0c7de3d1042414a90ec8a56dbf11347733df11d6acc6a5154d180"
+    },
+    {
+      "file": "critic-union-16c40.part005.b64",
+      "sha256": "ffd0107db4f75c3dc6c66c46aaba7ecc8798cd14bce26935095fb45e97b14a45"
+    },
+    {
+      "file": "critic-union-16c40.part006.b64",
+      "sha256": "d869b7c6f855db275675e77d434f9dc229589c2d3d5dfa967e4babd4c5381978"
+    },
+    {
+      "file": "critic-union-16c40.part007.b64",
+      "sha256": "2070c943afa5d7ef2e91d681d15c8a3183abec97efe3da4d913fdc53d63289af"
+    },
+    {
+      "file": "critic-union-16c40.part008.b64",
+      "sha256": "d1e67eb0ce0f203daa1a0de4fa23503f529d71621c4d2f62346fca0d9a47e4bf"
+    },
+    {
+      "file": "critic-union-16c40.part009.b64",
+      "sha256": "6babdc0206c2052dc5be46dedea1b2c9e9b4202556c77822a2f3b7e89356ab6a"
+    },
+    {
+      "file": "critic-union-16c40.part010.b64",
+      "sha256": "175c919bc2f63dfee9262be4c8c205ca898ede5615d428b3aed64f06c5c76688"
+    },
+    {
+      "file": "critic-union-16c40.part011.b64",
+      "sha256": "42d9f02481ba7da62a199f541734f3baa67ac663137a896f84cd0aad3ea3efc9"
+    },
+    {
+      "file": "critic-union-16c40.part012.b64",
+      "sha256": "28e8067cd9c2230795b89b45e3fe0558d4f0354d0f44f256c714c97b7cdab9c7"
+    },
+    {
+      "file": "critic-union-16c40.part013.b64",
+      "sha256": "5c87b61ac2fc1e60926c22e87938cac8e1e035ec0b64cd0634f2076a92f4f47f"
+    },
+    {
+      "file": "critic-union-16c40.part014.b64",
+      "sha256": "43da750c99080a827d967e49ac1eb69b3131505f16eda3cea2500043edefc3f4"
+    },
+    {
+      "file": "critic-union-16c40.part015.b64",
+      "sha256": "c568c5f007af599766b07f7c18ac8893309f4949980e26db2948e82ad4c26c89"
+    },
+    {
+      "file": "critic-union-16c40.part016.b64",
+      "sha256": "9c36dc4933aeaec4c1b4c41b9645f4a151d595a1a14f7126cf58b8ae8bfd1df8"
+    },
+    {
+      "file": "critic-union-16c40.part017.b64",
+      "sha256": "6d5c936c02a28790ce051fbafaac465d52ba8d22474aa8dc19c6b23fa0d403d7"
+    },
+    {
+      "file": "critic-union-16c40.part018.b64",
+      "sha256": "5364da36698da7018751abbd7e6370a9d872628c6e2781bd2bd5f3b48273ca83"
+    },
+    {
+      "file": "critic-union-16c40.part019.b64",
+      "sha256": "cd03d5c688eaeb11435d202f5ba14e49c5db759b2a37385f01c0d477323e38d8"
+    },
+    {
+      "file": "critic-union-16c40.part020.b64",
+      "sha256": "1765b30bfa6f85535851c9c55a4f68198a20dc6c100e4341317158ead40c72b4"
+    },
+    {
+      "file": "critic-union-16c40.part021.b64",
+      "sha256": "100cd60930364cb8d0c76051bf6a21b0d8cad06ceb0bc2aa0cbcfbf003785cf7"
+    },
+    {
+      "file": "critic-union-16c40.part022.b64",
+      "sha256": "2e71852c0799a938286572fab715cd67708d268784b88a86216c1d5057dc449f"
+    },
+    {
+      "file": "critic-union-16c40.part023.b64",
+      "sha256": "a3ffa30ce8d836294bc50cb3a7f3ecb418354fbff7dd52b4e42737c878d44c0d"
+    },
+    {
+      "file": "critic-union-16c40.part024.b64",
+      "sha256": "f80b77bf0fd4e43c2b366988fb45390948c13ae8a15d91ba41cb71f3ebdd5755"
+    },
+    {
+      "file": "critic-union-16c40.part025.b64",
+      "sha256": "16eadb0cf65d1c70a57958cc7bc8cfc7e26304929675cd0684d35b6b060513b1"
+    },
+    {
+      "file": "critic-union-16c40.part026.b64",
+      "sha256": "dcc19f2b4db11e454884701b36dc799d590ea051044b3bb5eaf1d7bf0b2cc3dd"
+    },
+    {
+      "file": "critic-union-16c40.part027.b64",
+      "sha256": "06987b8d8ccc6dea727c2a063cfd94856070d8eb11766cff40bb43bcf25af606"
+    },
+    {
+      "file": "critic-union-16c40.part028.b64",
+      "sha256": "07093c32400fc86ef6bdf289e0b7a7c09453ba02b9bdb8f7f08f82a0b9e7516f"
+    },
+    {
+      "file": "critic-union-16c40.part029.b64",
+      "sha256": "31ab53f99adf59f8e38ab8fd19255907bbce1f5c235c62f4013802f162e428c5"
+    },
+    {
+      "file": "critic-union-16c40.part030.b64",
+      "sha256": "1e41b0c98b75494c5b0a8f4d4668ac152e9c9f7ccddaf7bfaf141098c880941c"
+    },
+    {
+      "file": "critic-union-16c40.part031.b64",
+      "sha256": "bf4febeafa4af67ae607966d091958a285ecad5f9159328d5e959ea0369779cc"
+    },
+    {
+      "file": "critic-union-16c40.part032.b64",
+      "sha256": "2f6425c0365c5deaa8a3f0f25970d7e2e5df3f2010f4efdf3d08304cf70b3de4"
+    },
+    {
+      "file": "critic-union-16c40.part033.b64",
+      "sha256": "f2573cc0c5fb626719b43fcad61d41f4e23f83206c88176df82c663a3a342f34"
+    },
+    {
+      "file": "critic-union-16c40.part034.b64",
+      "sha256": "721a69cacaabde332928ebef6dd8e95e4279a118e005944fb3c7f275598d520b"
+    },
+    {
+      "file": "critic-union-16c40.part035.b64",
+      "sha256": "598289c9bdfd828830719bead62f01afe9378de6262c5cac3ad832ed06734d2e"
+    },
+    {
+      "file": "critic-union-16c40.part036.b64",
+      "sha256": "e846c14dd26d4e04841407106ddfc106f3fea12eaa90c37daec49004db9f4b3d"
+    },
+    {
+      "file": "critic-union-16c40.part037.b64",
+      "sha256": "24d380fcc9bc3bbf29d02977a3dc52b7627a5848696a809115c7bc0738e2ecb7"
+    },
+    {
+      "file": "critic-union-16c40.part038.b64",
+      "sha256": "4e65331793bbd54a1f4d85bf9baf18bb41c9f08832db11d215238697519b7ed3"
+    },
+    {
+      "file": "critic-union-16c40.part039.b64",
+      "sha256": "eaf31ceacfb6b484d1d2a67e8530efdddd5d27e18974dfb47884d7e7aba2e7db"
+    },
+    {
+      "file": "critic-union-16c40.part040.b64",
+      "sha256": "6f43c806f6080e16169dbe29c8c179f24f0eab980469957523213132b0c2363e"
+    }
+  ],
+  "source_head": "16c40a8434c33b4e02bb71bf21294d58a90c5a18",
+  "source_tree": "88afe1d41f3c24ef032e1e17a6fd12655d6f5bfa",
+  "note": "Historical exact-source evidence; no automatic acceptance transfer to later composition. Concatenate parts in listed order and base64-decode, then verify archive SHA256 before extraction."
+}
