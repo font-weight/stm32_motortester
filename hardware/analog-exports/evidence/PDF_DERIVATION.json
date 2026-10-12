@@ -1,0 +1,21 @@
+{
+  "status": "PASS_EXACT_DERIVATION",
+  "pypdf": "6.10.0",
+  "hardware_validated": false,
+  "files": {
+    "option-a-dc.pdf": {
+      "raw_sha256": "d8af3c98e5bc6b77c8eedae69bc22f13302768f8048e3bdabfe1809ce2130103",
+      "derived_sha256": "72932be75690e752977598cc46409a51163a54d02c52c19627d2f6ab2c2ec64c",
+      "objects_checked": 41,
+      "render_sha256": "650ee0ab6766d55aa296bb6fee8a255bd0c86889523159536e3c31d88f2fad31",
+      "render_byte_equal": true
+    },
+    "option-b-ac.pdf": {
+      "raw_sha256": "44f29c141a54adee2cf514b3feee061e1549c6fd6549ca4b4c51263c631ef074",
+      "derived_sha256": "deefb6727131f7e64b74b58fb93d69bfb53bda6bbd95f90423efce360c34096d",
+      "objects_checked": 59,
+      "render_sha256": "b0a20cfbdff83c6d0c558670e6eef620eca48f2bfb2d23fa759d34d4f5477ae5",
+      "render_byte_equal": true
+    }
+  }
+}

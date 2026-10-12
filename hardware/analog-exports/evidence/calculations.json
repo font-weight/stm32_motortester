@@ -1,0 +1,360 @@
+{
+  "status": "calculated_nominal_NOT_MEASURED",
+  "assumptions": {
+    "fadc_hz": 12000000.0,
+    "fs_hz": 50000.0,
+    "vdda_v": 3.3,
+    "adc_bits": 12,
+    "cadc_F": 8e-12,
+    "radc_ohm": 1000.0,
+    "sample_cycles": 71.5,
+    "quarter_lsb_settling_log_factor": 9.704060527839234
+  },
+  "adc": {
+    "ideal_lsb_v": 0.0008056640625,
+    "sample_settings": [
+      {
+        "sample_cycles": 1.5,
+        "sample_us": 0.125,
+        "conversion_us": 1.1666666666666665,
+        "formula_Rmax_ohm": 610.1507152778611,
+        "datasheet_Rmax_cap_ohm": 610.1507152778611,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 7.5,
+        "sample_us": 0.625,
+        "conversion_us": 1.6666666666666667,
+        "formula_Rmax_ohm": 7050.7535763893065,
+        "datasheet_Rmax_cap_ohm": 7050.7535763893065,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 13.5,
+        "sample_us": 1.125,
+        "conversion_us": 2.1666666666666665,
+        "formula_Rmax_ohm": 13491.356437500752,
+        "datasheet_Rmax_cap_ohm": 13491.356437500752,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 28.5,
+        "sample_us": 2.375,
+        "conversion_us": 3.416666666666667,
+        "formula_Rmax_ohm": 29592.863590279365,
+        "datasheet_Rmax_cap_ohm": 29592.863590279365,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 41.5,
+        "sample_us": 3.4583333333333335,
+        "conversion_us": 4.5,
+        "formula_Rmax_ohm": 43547.50312268749,
+        "datasheet_Rmax_cap_ohm": 43547.50312268749,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 55.5,
+        "sample_us": 4.625,
+        "conversion_us": 5.666666666666667,
+        "formula_Rmax_ohm": 58575.57646528086,
+        "datasheet_Rmax_cap_ohm": 50000,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 71.5,
+        "sample_us": 5.958333333333334,
+        "conversion_us": 7.0,
+        "formula_Rmax_ohm": 75750.51742824473,
+        "datasheet_Rmax_cap_ohm": 50000,
+        "fits_20us_before_trigger_latency": true
+      },
+      {
+        "sample_cycles": 239.5,
+        "sample_us": 19.958333333333332,
+        "conversion_us": 21.0,
+        "formula_Rmax_ohm": 256087.39753936513,
+        "datasheet_Rmax_cap_ohm": 50000,
+        "fits_20us_before_trigger_latency": false
+      }
+    ]
+  },
+  "option_A": {
+    "ladder_ohm": [
+      1000,
+      1000,
+      1000,
+      1000
+    ],
+    "series_ohm": 1000,
+    "filter_F": 1e-08,
+    "rail_current_A": 0.000825,
+    "nominal_taps_V": [
+      0.825,
+      1.65,
+      2.4749999999999996
+    ],
+    "tap_thevenin_ohm": [
+      750.0,
+      1000.0,
+      750.0
+    ],
+    "worst_resistive_source_ohm": 2000,
+    "rc_corner_hz_at_midtap": 7957.747154594768,
+    "resistive_only_quarter_lsb_acq_us": 0.2328974526681416,
+    "single_pole_gain_at_25khz_db": -10.362137382398963,
+    "initial_full_scale_charge_share_lsb": 3.274180655475619,
+    "switched_capacitor_initial_condition": [
+      {
+        "sample": 1,
+        "hold_error_lsb": 2.433153391931011
+      },
+      {
+        "sample": 2,
+        "hold_error_lsb": 0.8960494982487764
+      },
+      {
+        "sample": 3,
+        "hold_error_lsb": 0.32998523889799436
+      },
+      {
+        "sample": 4,
+        "hold_error_lsb": 0.12152259233823541
+      },
+      {
+        "sample": 5,
+        "hold_error_lsb": 0.04475273044916406
+      },
+      {
+        "sample": 6,
+        "hold_error_lsb": 0.01648094271294919
+      },
+      {
+        "sample": 7,
+        "hold_error_lsb": 0.006069383252851037
+      },
+      {
+        "sample": 8,
+        "hold_error_lsb": 0.002235152060873632
+      },
+      {
+        "sample": 9,
+        "hold_error_lsb": 0.0008231321910477248
+      },
+      {
+        "sample": 10,
+        "hold_error_lsb": 0.0003031322189659894
+      },
+      {
+        "sample": 11,
+        "hold_error_lsb": 0.00011163351789010142
+      },
+      {
+        "sample": 12,
+        "hold_error_lsb": 4.111091311583014e-05
+      },
+      {
+        "sample": 13,
+        "hold_error_lsb": 1.5139782470003103e-05
+      },
+      {
+        "sample": 14,
+        "hold_error_lsb": 5.5754785254514975e-06
+      },
+      {
+        "sample": 15,
+        "hold_error_lsb": 2.053263370815421e-06
+      },
+      {
+        "sample": 16,
+        "hold_error_lsb": 7.561486338234811e-07
+      }
+    ]
+  },
+  "option_B": {
+    "rin_ohm": 10000,
+    "rbias_ohm": 100000,
+    "coupling_F": 1e-06,
+    "input_filter_F": 2.2e-09,
+    "output_series_ohm": 1000,
+    "output_filter_F": 1e-08,
+    "midband_gain_approx": 0.9090909090909091,
+    "hp_hz_approx": 1.4468631190172305,
+    "input_lp_hz_approx": 7957.747154594768,
+    "output_lp_hz": 15915.494309189537,
+    "gain_response": [
+      {
+        "frequency_hz": 1,
+        "magnitude": 0.5165745150634502,
+        "gain_db": -5.737340466557438
+      },
+      {
+        "frequency_hz": 10,
+        "magnitude": 0.898121565363126,
+        "gain_db": -0.9332975073401794
+      },
+      {
+        "frequency_hz": 100,
+        "magnitude": 0.9072568130411564,
+        "gain_db": -0.8453952356521276
+      },
+      {
+        "frequency_hz": 1000,
+        "magnitude": 0.8986120129409388,
+        "gain_db": -0.9285555982542884
+      },
+      {
+        "frequency_hz": 5000,
+        "magnitude": 0.7334136747113291,
+        "gain_db": -2.6930199350592976
+      },
+      {
+        "frequency_hz": 10000,
+        "magnitude": 0.4789722431654173,
+        "gain_db": -6.393793071557409
+      },
+      {
+        "frequency_hz": 25000,
+        "magnitude": 0.14805589066101785,
+        "gain_db": -16.591486175398227
+      },
+      {
+        "frequency_hz": 50000,
+        "magnitude": 0.04333802886522737,
+        "gain_db": -27.262616909895954
+      },
+      {
+        "frequency_hz": 100000,
+        "magnitude": 0.011334697858602267,
+        "gain_db": -38.91180104156652
+      }
+    ],
+    "droop_2ms_approx_percent": 1.8017526141772544,
+    "bias_divider_tau_ms": 5.0,
+    "coupling_settle_quarter_lsb_s": 1.0674466580623156,
+    "switched_capacitor_ideal_driver_initial_condition": [
+      {
+        "sample": 1,
+        "hold_error_lsb": 1.8081587622826563
+      },
+      {
+        "sample": 2,
+        "hold_error_lsb": 0.24542653670039333
+      },
+      {
+        "sample": 3,
+        "hold_error_lsb": 0.03331244256489312
+      },
+      {
+        "sample": 4,
+        "hold_error_lsb": 0.0045215926711055
+      },
+      {
+        "sample": 5,
+        "hold_error_lsb": 0.0006137286463929566
+      },
+      {
+        "sample": 6,
+        "hold_error_lsb": 8.330313648337526e-05
+      },
+      {
+        "sample": 7,
+        "hold_error_lsb": 1.1306971882040346e-05
+      },
+      {
+        "sample": 8,
+        "hold_error_lsb": 1.5347274849220776e-06
+      },
+      {
+        "sample": 9,
+        "hold_error_lsb": 2.0831293095514588e-07
+      },
+      {
+        "sample": 10,
+        "hold_error_lsb": 2.8274907193264087e-08
+      },
+      {
+        "sample": 11,
+        "hold_error_lsb": 3.837833653062277e-09
+      },
+      {
+        "sample": 12,
+        "hold_error_lsb": 5.209200881863978e-10
+      },
+      {
+        "sample": 13,
+        "hold_error_lsb": 7.070596664855528e-11
+      },
+      {
+        "sample": 14,
+        "hold_error_lsb": 9.597122155745565e-12
+      },
+      {
+        "sample": 15,
+        "hold_error_lsb": 1.3026447135658298e-12
+      },
+      {
+        "sample": 16,
+        "hold_error_lsb": 1.7681167565061361e-13
+      }
+    ],
+    "illustrative_100nA_net_leakage_error_dc_mV": 10.0,
+    "illustrative_100nA_net_leakage_error_midband_mV": 0.909090909090909
+  },
+  "pickup_ILLUSTRATIVE_NOT_COMPONENT_SELECTION": {
+    "coupling_F": 1e-12,
+    "ground_capacitance_F": 2e-10,
+    "plateau_s": 0.002,
+    "cases": [
+      {
+        "load_ohm": 100000.0,
+        "gain": 0.004975124378109453,
+        "tau_us": 20.1,
+        "highpass_hz": 7918.156372731112,
+        "remaining_after_2ms": 6.118130215797958e-44,
+        "droop_percent_after_2ms": 100.0
+      },
+      {
+        "load_ohm": 1000000.0,
+        "gain": 0.004975124378109453,
+        "tau_us": 201.0,
+        "highpass_hz": 791.8156372731111,
+        "remaining_after_2ms": 4.771576286760891e-05,
+        "droop_percent_after_2ms": 99.99522842371323
+      },
+      {
+        "load_ohm": 10000000.0,
+        "gain": 0.004975124378109453,
+        "tau_us": 2010.0,
+        "highpass_hz": 79.18156372731112,
+        "remaining_after_2ms": 0.36971424755783927,
+        "droop_percent_after_2ms": 63.02857524421608
+      },
+      {
+        "load_ohm": 100000000.0,
+        "gain": 0.004975124378109453,
+        "tau_us": 20100.0,
+        "highpass_hz": 7.918156372731111,
+        "remaining_after_2ms": 0.9052876979062595,
+        "droop_percent_after_2ms": 9.471230209374049
+      }
+    ],
+    "load_for_5_percent_droop_ohm": 193987320.857947,
+    "100M_with_10M_probe_R_ohm": 9090909.090909092,
+    "gain_change_from_10pF_probe_percent": -4.739336492890988,
+    "gain_change_from_100pF_probe_percent": -33.22259136212624
+  },
+  "protection_ILLUSTRATIVE_NOT_FAULT_TEST": {
+    "assumed_vf_v": 0.41,
+    "clamp_upper_v_at_3V3": 3.71,
+    "clamp_lower_v": -0.41,
+    "hypothetical_24V_current_through_10k_A": 0.002029,
+    "hypothetical_24V_resistor_power_W": 0.041168409999999996
+  },
+  "limitations": [
+    "No physical measurement, no transistor-level simulation, no validated sensor scaling.",
+    "Rmax formula omits external capacitor and does not waive 50kΩ datasheet limit.",
+    "Two-state model omits noise, leakage, op-amp dynamics, parasitics, tolerances, ADC kickback details.",
+    "Clamp arithmetic does not establish protection, rail sink capability or a permitted 24V input."
+  ]
+}
