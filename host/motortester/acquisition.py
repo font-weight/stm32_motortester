@@ -7,10 +7,14 @@ from dataclasses import dataclass, replace
 import secrets
 import threading
 import time
+from uuid import UUID, uuid4
 
 from PySide6 import QtCore
 
 from .device_emulator import DeviceEmulator, WAITING
+from . import __version__
+from .recording_bridge import RecordingBridgeState, RecordingSessionAdapter, SaveCompletion
+from .session_archive import SessionIdentity, SessionSpool
 from .runtime import AcquisitionRuntime
 from .session import Config, EventKind, Phase, Snapshot
 from .transport import SerialTransport, TransportState
@@ -32,6 +36,7 @@ class BridgeState:
     close_failed: bool = False
     has_capture: bool = False
     has_incomplete: bool = False
+    recording: RecordingBridgeState | None = None
 
 
 class _Mailbox:
@@ -46,13 +51,22 @@ class _Mailbox:
         self.executing = False  # Diagnostic: any pump, including idle reads.
         self.control_executing = False
         self.stop = self.disconnect = self.shutdown = False
+        self.cancel_save = None  # Exact Save operation, never a global cancellation flag.
         self.capture_ack = self.incomplete_ack = None
         self.state = BridgeState()
-        self.capture = self.incomplete = self.error = None
+        self.capture = self.incomplete = self.error = self.saved = None
         self.notified = False
 
     def barrier(self):
         return self.stop or self.disconnect or self.shutdown
+
+    def cancel_command(self, command=None):
+        """Caller holds lock; settle a queued Save's exact admission too."""
+        if command is None:
+            command, self.command = self.command, None
+        if command and command[0] == "save_recording":
+            self.saved = SaveCompletion(command[1][1], error="save_cancelled")
+            self.error = "Сохранение отменено; исходный spool оставлен"
 
 
 class _EmulatorTransport:
@@ -74,7 +88,8 @@ class _AcquisitionWorker(QtCore.QObject):
     notification = QtCore.Signal()
     finished = QtCore.Signal()
 
-    def __init__(self, mailbox, serial_factory, clock, interval_ms, edge_delay_ms):
+    def __init__(self, mailbox, serial_factory, clock, interval_ms, edge_delay_ms,
+                 spool_factory=SessionSpool.create):
         super().__init__()
         self.box, self.serial_factory, self.clock = mailbox, serial_factory, clock
         self.interval_ms, self.edge_delay_ms = interval_ms, edge_delay_ms
@@ -87,6 +102,9 @@ class _AcquisitionWorker(QtCore.QObject):
         self.sent_capture = self.sent_incomplete = None
         self.last_state = None
         self.last_nonce = 0
+        self.recording = None
+        self.spool_factory = spool_factory
+        self.last_save_completion = self.last_recording_error = None
 
     @QtCore.Slot()
     def initialize(self):
@@ -114,10 +132,11 @@ class _AcquisitionWorker(QtCore.QObject):
                 self.box.executing = self.box.control_executing = False
             state = BridgeState(self.source, self.connected, snapshot,
                 bool(self.box.command or self.box.control_executing or self.box.barrier()
-                     or self.staged_start or (snapshot and
+                     or self.staged_start or (self.recording and self.recording.owns_runtime) or (snapshot and
                      (snapshot.pending_request_id or snapshot.pending_stop_id))),
                 self.staged_start, self.closing, self.device_used,
-                self.close_failed, capture is not None, incomplete is not None)
+                self.close_failed, capture is not None, incomplete is not None,
+                self.recording.state if self.recording else None)
             # The monotonic observation timestamp alone is not a UI update.
             comparison = replace(state, snapshot=replace(snapshot, now_ms=None)
                                  if snapshot else None)
@@ -137,7 +156,22 @@ class _AcquisitionWorker(QtCore.QObject):
                 self.box.incomplete = incomplete
                 self.sent_incomplete = incomplete
                 changed = True
-            notify = (changed or force) and not self.box.notified
+            if state.recording is not None:
+                completion = self.recording.save_completion
+                if completion is not self.last_save_completion:
+                    self.last_save_completion = completion
+                    if completion is not None:
+                        self.box.saved = completion
+                        if completion.error is not None:
+                            self.box.error = self._recording_error_message(completion.error)
+                        changed = True
+                if state.recording.error != self.last_recording_error:
+                    self.last_recording_error = state.recording.error
+                    if self.last_recording_error is not None:
+                        self.box.error = self._recording_error_message(self.last_recording_error)
+                        changed = True
+            notify = (changed or force or self.box.saved is not None
+                      or self.box.error is not None) and not self.box.notified
             if notify:
                 self.box.notified = True
         if notify:
@@ -159,9 +193,12 @@ class _AcquisitionWorker(QtCore.QObject):
     def _disconnect(self):
         self.staged_start = self.arm_ready = self.simulate_edge = False
         self.wait_since = None
+        if self.recording and self.recording.owns_runtime:
+            with self.box.lock:
+                self.recording.stop()
         if self.runtime and self.runtime.snapshot().phase is not Phase.RECOVERY:
-            self.runtime.disconnect()
-        if self.runtime:
+            self._events(self.runtime.disconnect())
+        if self.runtime and not (self.recording and self.recording.owns_runtime):
             capture = self.runtime.pending_capture
             if capture is not None and (capture is self.ack_capture or capture is self.consumer_capture):
                 self.runtime.acknowledge(capture)  # Recovery transfers ownership without RELEASE.
@@ -176,6 +213,12 @@ class _AcquisitionWorker(QtCore.QObject):
             raise ValueError("Сначала сохраните и примите оставшиеся результаты")
         if source == "device" and self.device_used and not reset_confirmed:
             raise ValueError("Повторное подключение требует подтверждения физического сброса прибора")
+        if self.recording is not None:
+            state = self.recording.state
+            if self.recording.owns_runtime or (state.ready_to_save and state.saved_path is None) or state.saving:
+                raise ValueError("Сначала завершите и сохраните текущий сеанс записи")
+            self.recording.retire()
+            self.recording = None
         self.source = source
         self.close_failed = False
         self.staged_start = self.arm_ready = self.simulate_edge = False
@@ -205,6 +248,23 @@ class _AcquisitionWorker(QtCore.QObject):
             nonce = 1 if nonce == (1 << 64) - 1 else nonce + 1
         self.last_nonce = nonce
         self.runtime.start(nonce)
+
+    @staticmethod
+    def _recording_error_message(code):
+        return ("Сохранение отменено; исходный spool оставлен" if code == "save_cancelled" else
+                "Ошибка записи сеанса; автоматического повтора нет [" + code + "]")
+
+    def _recording_step(self, events=()):
+        if self.recording is None:
+            return
+        with self.box.lock:
+            # A GUI request racing this tick wins before any completion or ARM.
+            if self.box.barrier():
+                self.recording.stop()
+            cancellation, self.box.cancel_save = self.box.cancel_save, None
+            if cancellation is not None:
+                self.recording.cancel_save(cancellation)
+            self.recording.observe(events)
 
     def _events(self, events):
         command_error = None
@@ -247,9 +307,10 @@ class _AcquisitionWorker(QtCore.QObject):
                     if command_error is not None:
                         message += "\n" + command_error
                     self._error(message)
+        self._recording_step(events)
 
     def _accept_capture(self):
-        if self.runtime is None:
+        if self.runtime is None or (self.recording and self.recording.owns_runtime):
             return
         capture = self.runtime.pending_capture
         if capture is None:
@@ -288,17 +349,26 @@ class _AcquisitionWorker(QtCore.QObject):
     def pump(self):
         with self.box.lock:
             shutdown, disconnect, stop = self.box.shutdown, self.box.disconnect, self.box.stop
+            cancel_save, self.box.cancel_save = self.box.cancel_save, None
             self.box.shutdown = self.box.disconnect = self.box.stop = False
             command, self.box.command = self.box.command, None
+            if shutdown or disconnect:
+                self.box.cancel_command(command)
             ack, self.box.capture_ack = self.box.capture_ack, None
             incomplete_ack, self.box.incomplete_ack = self.box.incomplete_ack, None
             self.box.executing = True
             self.box.control_executing = bool(command or shutdown or disconnect or stop
                                                or ack is not None or incomplete_ack is not None)
         try:
+            if cancel_save is not None and self.recording:
+                with self.box.lock:
+                    self.recording.cancel_save(cancel_save)
             if shutdown:
                 self.closing = True
                 if self._disconnect():
+                    if self.recording:
+                        with self.box.lock:
+                            self.recording.retire()
                     self.timer.stop()
                     self._publish(force=True, complete_tick=True)
                     self.finished.emit()
@@ -308,27 +378,70 @@ class _AcquisitionWorker(QtCore.QObject):
                     self.ack_capture = ack
                 self._disconnect()
                 if (incomplete_ack is not None and self.runtime is not None
+                        and not (self.recording and self.recording.owns_runtime)
                         and incomplete_ack is self.runtime.incomplete_result):
                     self.runtime.take_incomplete()
             elif not self.closing:
                 if stop:
                     self.staged_start = self.arm_ready = self.simulate_edge = False
                     self.wait_since = None
-                    if self.runtime and self.connected:
+                    if self.recording and self.recording.owns_runtime:
+                        with self.box.lock:
+                            self.recording.stop()
+                    elif self.runtime and self.connected:
                         s = self.runtime.snapshot()
                         if s.phase in (Phase.CAPS, Phase.READY, Phase.ARMED) and not s.stop_barrier:
                             self._events(self.runtime.stop())
-                    if command and command[0] == "start":
+                    if command and command[0] in ("start", "record"):
                         command = None
                 if command:
                     kind, args = command
                     if kind == "connect":
                         self._connect(*args)
                     elif kind == "start":
+                        if self.recording is not None:
+                            state = self.recording.state
+                            if self.recording.owns_runtime or state.saved_path is None or state.saving:
+                                raise ValueError("Сначала завершите и сохраните сеанс записи")
+                            self.recording.retire()
+                            self.recording = None
                         self._events(self.runtime.configure(args[0]))
                         self.staged_start = True
                         self.simulate_edge = args[1] and self.source == "emulator"
                         self.wait_since = None
+                    elif kind == "record":
+                        settings, path, simulate_edge = args
+                        with self.box.lock:
+                            if self.box.barrier():
+                                command = None
+                            else:
+                                if self.recording is None:
+                                    self.recording = RecordingSessionAdapter(self.runtime,
+                                        clock_ms=self.clock, spool_factory=self.spool_factory)
+                                snapshot = self.runtime.snapshot()
+                                identity = SessionIdentity(str(uuid4()), str(UUID(int=snapshot.session)),
+                                    "simulator" if self.source == "emulator" else "device",
+                                    str(snapshot.capabilities.firmware_build),
+                                    f"draft-0.1@{snapshot.source_sha}", __version__)
+                                if not self.recording.record(identity, settings, path):
+                                    raise ValueError("Предыдущий сеанс записи ещё не сохранён")
+                                self.simulate_edge = simulate_edge and self.source == "emulator"
+                                self.wait_since = None
+                    elif kind == "save_recording":
+                        with self.box.lock:
+                            if self.box.shutdown or self.box.disconnect:
+                                self.box.cancel_command(command)
+                            elif self.recording is None or not self.recording.save(args[0], operation=args[1]):
+                                self.box.saved = SaveCompletion(args[1], error="save_rejected")
+                                self.box.error = "Сеанс ещё не готов к сохранению"
+                            else:
+                                if cancel_save is args[1] or self.box.cancel_save is args[1]:
+                                    self.recording.cancel_save(args[1])
+                                if self.box.cancel_save is args[1]:
+                                    self.box.cancel_save = None
+                if self.recording and self.recording.owns_runtime:
+                    # Display consumers never own the recorder's durable ACK.
+                    ack = incomplete_ack = None
                 if ack is not None:
                     if self.runtime is None or ack is not self.runtime.pending_capture:
                         raise ValueError("Запись больше не принадлежит текущему захвату")
@@ -347,6 +460,7 @@ class _AcquisitionWorker(QtCore.QObject):
                             events = ()
                     self._events(events)
                     self._accept_capture()
+                    self._recording_step()
                     with self.box.lock:
                         barrier = self.box.barrier()
                     if self.connected and not barrier:
@@ -391,10 +505,12 @@ class AcquisitionBridge(QtCore.QObject):
     incomplete_ready = QtCore.Signal(object)
     error = QtCore.Signal(str)
     finished = QtCore.Signal()
+    recording_changed = QtCore.Signal(object)
+    recording_saved = QtCore.Signal(str)
 
     def __init__(self, parent=None, *, serial_factory=SerialTransport,
                  clock_ms=None, interval_ms=PUMP_INTERVAL_MS,
-                 edge_delay_ms=SIMULATED_EDGE_DELAY_MS):
+                 edge_delay_ms=SIMULATED_EDGE_DELAY_MS, spool_factory=SessionSpool.create):
         super().__init__(parent)
         if type(interval_ms) is not int or not 1 <= interval_ms <= 1000:
             raise ValueError("Invalid pump interval")
@@ -403,12 +519,14 @@ class AcquisitionBridge(QtCore.QObject):
         self._box = _Mailbox()
         self._factory, self._clock = serial_factory, clock_ms or (lambda: time.monotonic_ns() // 1000000)
         self._interval, self._edge_delay = interval_ms, edge_delay_ms
+        self._spool_factory = spool_factory
         self._thread = self._worker = None
         self._native_joined = True
         self._state = BridgeState()
         self._capture = self._incomplete = None
         self._capture_ack_sent = self._incomplete_ack_sent = False
         self._closed = False
+        self._save_requested = None
 
     @property
     def state(self):
@@ -443,7 +561,7 @@ class AcquisitionBridge(QtCore.QObject):
         self._thread = QtCore.QThread(self)
         self._native_joined = False
         self._worker = _AcquisitionWorker(self._box, self._factory, self._clock,
-                                         self._interval, self._edge_delay)
+                                         self._interval, self._edge_delay, self._spool_factory)
         self._worker.moveToThread(self._thread)
         self._thread.started.connect(self._worker.initialize)
         self._worker.notification.connect(self._drain)
@@ -460,7 +578,7 @@ class AcquisitionBridge(QtCore.QObject):
                 return False
             self._box.command = (kind, args)
         self._state = replace(self._state, busy=True,
-                              start_pending=kind == "start")
+                              start_pending=kind in ("start", "record"))
         self.state_changed.emit(self._state)
         self._launch()
         return True
@@ -485,19 +603,69 @@ class AcquisitionBridge(QtCore.QObject):
         if (type(settings) is not Config or type(simulate_edge) is not bool
                 or not self._state.connected or self._state.busy or s is None
                 or s.phase is not Phase.READY or s.window_barrier
-                or self._state.has_capture or self._state.has_incomplete):
+                or self._state.has_capture or self._state.has_incomplete
+                or (self._state.recording is not None and
+                    (self._state.recording.saved_path is None or self._state.recording.saving))):
             return False
         return self._command("start", (settings, simulate_edge))
+
+    def record(self, settings, spool_path, *, simulate_edge=True):
+        """Queue exclusive spool preparation before CONFIG/ARM; no disk I/O here."""
+        self._owner()
+        state = self._state
+        s, recording = state.snapshot, state.recording
+        if (type(settings) is not Config or type(simulate_edge) is not bool
+                or not isinstance(spool_path, str) or not spool_path
+                or not state.connected or state.busy or s is None
+                or s.phase is not Phase.READY or s.window_barrier
+                or state.has_capture or state.has_incomplete
+                or (recording is not None and recording.saved_path is None)):
+            return False
+        return self._command("record", (settings, spool_path, simulate_edge))
+
+    def save_recording(self, destination):
+        """Save only the exact accepted terminal report; never overwrite a file."""
+        self._owner()
+        recording = self._state.recording
+        if (recording is None or not recording.ready_to_save or self._state.busy
+                or self._save_requested is not None
+                or not isinstance(destination, str) or not destination):
+            return False
+        operation = object()
+        self._save_requested = operation
+        accepted = self._command("save_recording", (destination, operation))
+        if not accepted and self._save_requested is operation:
+            self._save_requested = None
+        return accepted
+
+    def cancel_recording_save(self):
+        self._owner()
+        operation = self._save_requested
+        if operation is None or self._closed:
+            return False
+        queued = False
+        with self._box.lock:
+            command = self._box.command
+            if command and command[0] == "save_recording" and command[1][1] is operation:
+                self._box.cancel_command()
+                queued = True
+            else:
+                self._box.cancel_save = operation
+        if queued:
+            # No worker state change would otherwise clear optimistic GUI busy.
+            self._drain()
+        return True
 
     def stop(self):
         self._owner()
         with self._box.lock:
             if self._closed or self._state.closing or not self.running or self._box.barrier():
                 return False
-            if self._state.snapshot and self._state.snapshot.stop_barrier:
+            if (self._state.snapshot and self._state.snapshot.stop_barrier
+                    and self._state.recording is None):
                 return False
             self._box.stop = True
-            if self._box.command and self._box.command[0] == "start":
+            if self._box.command and self._box.command[0] in ("start", "record"):
                 self._box.command = None
         self._state = replace(self._state, busy=True, start_pending=False)
         self.state_changed.emit(self._state)
@@ -509,14 +677,15 @@ class AcquisitionBridge(QtCore.QObject):
             if self._closed or self._state.closing or not self.running or self._box.disconnect:
                 return False
             self._box.disconnect = True
-            self._box.command = None
+            self._box.cancel_command()
         self._state = replace(self._state, busy=True, start_pending=False)
         self.state_changed.emit(self._state)
         return True
 
     def acknowledge(self, capture):
         self._owner()
-        if capture is None or capture is not self._capture or self._capture_ack_sent:
+        if (self._state.recording is not None or capture is None
+                or capture is not self._capture or self._capture_ack_sent):
             return False
         with self._box.lock:
             if self._closed or self._state.closing or self._box.shutdown or self._box.disconnect:
@@ -527,7 +696,8 @@ class AcquisitionBridge(QtCore.QObject):
 
     def acknowledge_incomplete(self, result):
         self._owner()
-        if result is None or result is not self._incomplete or self._incomplete_ack_sent:
+        if (self._state.recording is not None or result is None
+                or result is not self._incomplete or self._incomplete_ack_sent):
             return False
         with self._box.lock:
             if self._closed or self._state.closing or self._box.shutdown or self._box.disconnect:
@@ -544,7 +714,8 @@ class AcquisitionBridge(QtCore.QObject):
             if self._box.shutdown or (self._state.closing and not self._state.close_failed):
                 return False
             self._box.shutdown = True
-            self._box.command = self._box.capture_ack = self._box.incomplete_ack = None
+            self._box.cancel_command()
+            self._box.capture_ack = self._box.incomplete_ack = None
             # The old attempt failed; a newly accepted retry has no outcome yet.
             # Also update the coalesced snapshot so an older notification cannot
             # turn the new close request back into the previous failure.
@@ -566,6 +737,7 @@ class AcquisitionBridge(QtCore.QObject):
             capture, self._box.capture = self._box.capture, None
             incomplete, self._box.incomplete = self._box.incomplete, None
             error, self._box.error = self._box.error, None
+            saved, self._box.saved = self._box.saved, None
             self._box.notified = False
             # Keep locally queued intent visible if this notification preceded it.
             if self._box.shutdown:
@@ -579,8 +751,16 @@ class AcquisitionBridge(QtCore.QObject):
         if not state.has_incomplete and incomplete is None:
             self._incomplete = None
             self._incomplete_ack_sent = False
+        previous_recording = self._state.recording
         self._state = state
         self.state_changed.emit(state)
+        if state.recording != previous_recording:
+            self.recording_changed.emit(state.recording)
+        if saved is not None:
+            if saved.operation is self._save_requested:
+                self._save_requested = None
+            if saved.path is not None:
+                self.recording_saved.emit(saved.path)
         if capture is not None:
             self._capture, self._capture_ack_sent = capture, False
             self.capture_ready.emit(capture)

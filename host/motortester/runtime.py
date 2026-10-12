@@ -3,13 +3,14 @@
 The caller owns transport open/close and must establish a real reset boundary
 before restarting a failed session. An open COM handle is not reset evidence.
 """
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from uuid import UUID
 
 from .model import Capture
 from .session import (SessionController, WindowReceipt, Phase, EventKind,
-                      FaultCode, MAX_TIME_MS)
-from .wire import DiagnosticCode, StreamDecoder
+                      FaultCode, MAX_TIME_MS, Config)
+from .wire import DiagnosticCode, StreamDecoder, Frame
 from .window import ExpectedContext, WindowReceiver, WindowCode
 
 
@@ -19,6 +20,21 @@ MAX_READ_BYTES = 4096
 
 class RuntimeError(ValueError):
     """Invalid caller action, safe to display without backend exception text."""
+
+
+@dataclass(frozen=True, slots=True)
+class ResultProvenance:
+    """Validated wire facts for an exact owned result; no inferred timestamps.
+
+    Only the runtime owner may sample this accessor, alongside its result slot.
+    A missing terminal frame means no validated terminal was received.
+    """
+    session_nonce: int
+    generation: int
+    config_id: int
+    config: Config
+    begin_frame: Frame
+    terminal_frame: Frame | None = None
 
 
 class AcquisitionRuntime:
@@ -42,6 +58,7 @@ class AcquisitionRuntime:
         self._controller, self._decoder = SessionController(), StreamDecoder()
         self._receiver = self._context = None
         self._capture = self._receipt = self._incomplete = None
+        self._provenance = self._capture_provenance = self._incomplete_provenance = None
         self._acknowledged = False
         self._now = None
         self._write_key = self._write_progress = None
@@ -57,9 +74,18 @@ class AcquisitionRuntime:
     def incomplete_result(self):
         return self._incomplete
 
+    def result_provenance(self, source):
+        """Immutable facts only for the exact currently retained source object."""
+        if source is not None and source is self._capture:
+            return self._capture_provenance
+        if source is not None and source is self._incomplete:
+            return self._incomplete_provenance
+        return None
+
     def take_incomplete(self):
         """Transfer the immutable fragments to the caller; never pad samples."""
         result, self._incomplete = self._incomplete, None
+        self._incomplete_provenance = None
         return result
 
     def _time(self, *, write_completed=False):
@@ -87,7 +113,7 @@ class AcquisitionRuntime:
             raise RuntimeError("Нужно подтверждение внешнего сброса транспорта")
         events = self._controller.start(nonce, self._time())
         self._decoder.reset()
-        self._receiver = self._context = None
+        self._receiver = self._context = self._provenance = None
         self._write_key = self._write_progress = None
         return events
 
@@ -116,7 +142,7 @@ class AcquisitionRuntime:
         if s.stop_barrier:
             raise RuntimeError("Дождитесь подтверждения Stop")
         if s.phase is Phase.RECOVERY or (s.phase is Phase.READY and not s.window_barrier):
-            self._capture = self._receipt = None
+            self._capture = self._receipt = self._capture_provenance = None
             self._acknowledged = False
             return ()
         events = self._controller.release(self._receipt, self._time())
@@ -128,6 +154,7 @@ class AcquisitionRuntime:
             result = self._receiver.disconnect(self._now)
             if result is not None:
                 self._incomplete = result
+                self._incomplete_provenance = self._provenance
             self._receiver = None
 
     def _dispatch(self, events):
@@ -136,9 +163,9 @@ class AcquisitionRuntime:
             if event.kind is EventKind.RECOVERY:
                 self._preserve()
             elif event.kind is EventKind.WINDOW_RELEASED:
-                self._capture = self._receipt = None
+                self._capture = self._receipt = self._capture_provenance = None
                 self._acknowledged = False
-                self._receiver = self._context = None
+                self._receiver = self._context = self._provenance = None
             elif event.kind is EventKind.WINDOW_BEGIN:
                 if self._capture is not None or self._incomplete is not None:
                     output.extend(self._dispatch(self._controller.protocol_fault(FaultCode.DOWNSTREAM, self._now)))
@@ -148,9 +175,13 @@ class AcquisitionRuntime:
                 self._context = ExpectedContext(s.session, s.generation, s.config_id,
                     c.mode, c.source, c.edge, c.level_code, c.pretrigger_samples, c.profile)
                 self._receiver = WindowReceiver(self._context)
+                self._provenance = ResultProvenance(s.session, s.generation,
+                    s.config_id, c, event.frame)
             if event.kind in (EventKind.WINDOW_BEGIN, EventKind.WINDOW_DATA,
                               EventKind.WINDOW_END_ADMITTED, EventKind.WINDOW_ABORT):
                 if self._receiver is not None:
+                    if event.kind in (EventKind.WINDOW_END_ADMITTED, EventKind.WINDOW_ABORT):
+                        self._provenance = replace(self._provenance, terminal_frame=event.frame)
                     result = self._receiver.feed(event.frame, self._now)
                     if result is not None:
                         output.extend(self._terminal(result))
@@ -160,6 +191,7 @@ class AcquisitionRuntime:
         self._receiver = None
         if not result.semantic_checks_complete:
             self._incomplete = result
+            self._incomplete_provenance = self._provenance
             # A genuine terminal ABORT may be followed by STOP_ACK; let it drain.
             if result.reason is WindowCode.ABORT:
                 return ()
@@ -187,8 +219,10 @@ class AcquisitionRuntime:
                 quality_flags=tuple(flags))
         except Exception:
             self._incomplete = result
+            self._incomplete_provenance = self._provenance
             return self._dispatch(self._controller.protocol_fault(FaultCode.DOWNSTREAM, self._now))
         self._capture, self._receipt = capture, receipt
+        self._capture_provenance = self._provenance
         self._acknowledged = False
         return ()
 
