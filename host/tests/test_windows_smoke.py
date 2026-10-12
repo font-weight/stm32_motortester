@@ -372,6 +372,7 @@ class RunnerTests(unittest.TestCase):
 
 class BuildRecipeTests(unittest.TestCase):
     def recipe(self, mode):
+        from test_recording_packaging import smoke as recording_smoke, write_fixture_report
         with tempfile.TemporaryDirectory(prefix="recipe тест ") as temp:
             root = Path(temp)
             output = root / "build result"
@@ -412,6 +413,10 @@ class BuildRecipeTests(unittest.TestCase):
                         png.write_bytes(b"broken PNG")
                     if mode == "receipt":
                         launcher.receipt_path(png).write_text('{"status":"passed"}')
+                if "--recording-smoke" in command:
+                    self.assertEqual(kwargs["timeout"], 60)
+                    self.assertNotIn("QT_QPA_PLATFORM", kwargs["env"])
+                    write_fixture_report(Path(command[-1]), Path(command[0]))
                 if command[0] == "git":
                     self.assertEqual(command[:4], ["git", "-C", str(build.REPOSITORY), "archive"])
                     (output / "source.zip").write_bytes(b"test source archive")
@@ -421,6 +426,7 @@ class BuildRecipeTests(unittest.TestCase):
                 archive.write_bytes(b"test bundle archive")
                 return str(archive)
             with ExitStack() as stack:
+                stack.enter_context(patch.dict(sys.modules, {"recording_smoke": recording_smoke}))
                 stack.enter_context(patch.object(sys, "argv", ["build_windows.py", "--output", str(output)]))
                 stack.enter_context(patch.object(build, "sys", SimpleNamespace(platform="win32", maxsize=2**63-1,
                     version_info=(3,13,16), executable="test-python")))
@@ -439,6 +445,8 @@ class BuildRecipeTests(unittest.TestCase):
                     self.assertEqual(manifest["frozen_gui_smoke"]["status"], "passed")
                     self.assertEqual(manifest["serial_import_smoke"]["result"], serial_smoke.SUCCESS_REPORT)
                     self.assertIn("frozen-serial-import.json", (output / "SHA256SUMS.txt").read_text())
+                    self.assertEqual(manifest["recording_smoke"]["result"]["status"], "passed")
+                    self.assertIn("frozen-recording.json", (output / "SHA256SUMS.txt").read_text())
                 else:
                     with self.assertRaises((OSError, ValueError, RuntimeError, subprocess.SubprocessError)):
                         build.main()

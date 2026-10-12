@@ -199,6 +199,11 @@ def main() -> int:
         if len(sys.argv) != 3:
             return 2
         return _screenshot_smoke(sys.argv[2])
+    if sys.argv[1:2] == ["--recording-smoke"]:
+        if len(sys.argv) != 3:
+            return 2
+        from recording_smoke import run
+        return run(sys.argv[2])
     from motortester.gui import main as gui_main
     return gui_main()
 

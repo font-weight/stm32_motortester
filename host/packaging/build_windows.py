@@ -73,6 +73,20 @@ def run_frozen_serial_smoke(executable: Path, output: Path, run) -> dict:
     return validate_report(output)
 
 
+
+def run_frozen_recording_smoke(executable: Path, output: Path, run) -> dict:
+    """Require the real child, fresh native receipt, artifacts and stable EXE."""
+    from recording_smoke import file_info, validate_report as validate_recording, work_path, MAX_EXECUTABLE_BYTES
+    if os.path.lexists(output) or os.path.lexists(work_path(output)):
+        raise RuntimeError("Recording smoke output/work directory already exists")
+    expected_executable = file_info(executable, MAX_EXECUTABLE_BYTES)
+    run(executable, "--recording-smoke", output, timeout=FROZEN_SMOKE_TIMEOUT)
+    report = validate_recording(output, executable=executable)
+    if report["executable"] != expected_executable:
+        raise ValueError("Recording smoke executable changed during invocation")
+    return report
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=HOST / "build" / "windows-x64-candidate",
@@ -149,6 +163,8 @@ def main() -> int:
             stream.write(datetime.now(timezone.utc).isoformat()
                          + f" FAILED frozen screenshot validation: {type(error).__name__}\n")
         raise
+    recording_report_path = output / "frozen-recording.json"
+    recording_report = run_frozen_recording_smoke(bundle / "Motortester.exe", recording_report_path, run)
     manifest = {
         "status": "candidate-not-release-approved",
         "source_commit": revision,
@@ -165,6 +181,16 @@ def main() -> int:
             "sha256": hashlib.sha256(serial_report_path.read_bytes()).hexdigest(),
             "result": serial_report,
         },
+        "recording_smoke": {
+            "report": recording_report_path.name,
+            "sha256": hashlib.sha256(recording_report_path.read_bytes()).hexdigest(),
+            "result": recording_report,
+            "source_binding": "external clean checkout; not binary-to-source attestation",
+            "source_files": {p.relative_to(HOST).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                             for p in sorted((HOST / "motortester").glob("*.py"))
+                             + [HOST / "packaging" / name for name in
+                                ("launch_gui.py", "recording_smoke.py", "build_windows.py")]},
+        },
         "license_review": "required; see LICENSE-REVIEW.md",
         "files": {p.relative_to(bundle).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in sorted(bundle.rglob("*")) if p.is_file()},
@@ -174,9 +200,11 @@ def main() -> int:
     archive = Path(shutil.make_archive(str(output / "Motortester-windows-x64-candidate"),
                                       "zip", root_dir=bundle.parent, base_dir=bundle.name))
     run("git", "-C", REPOSITORY, "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
-    artifacts = (archive, output / "source.zip", screenshot_path, receipt_path(screenshot_path), serial_report_path)
+    recording_work = recording_report_path.with_name(recording_report_path.name + ".work")
+    artifacts = (archive, output / "source.zip", screenshot_path, receipt_path(screenshot_path), serial_report_path,
+                 recording_report_path, *(recording_work / item["name"] for item in recording_report["artifacts"].values()))
     (output / "SHA256SUMS.txt").write_text(
-        "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n" for p in artifacts),
+        "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(output).as_posix()}\n" for p in artifacts),
         encoding="ascii",
     )
     print(f"Candidate built: {archive}\nManual Windows 10 and license acceptance remain open.")

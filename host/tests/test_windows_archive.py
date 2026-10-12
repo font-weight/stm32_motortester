@@ -45,6 +45,10 @@ class WindowsSourceArchiveTests(unittest.TestCase):
             "host/данные с пробелами/raw.bin": bytes(range(256)),
             "host/данные с пробелами/empty": b"",
         }
+        # The recording gate binds these tracked source inputs into the build
+        # manifest. They are fixture bytes; no native Windows build is claimed.
+        for name in ("launch_gui.py", "recording_smoke.py", "build_windows.py"):
+            self.expected["host/packaging/" + name] = ("# source fixture: " + name + "\n").encode("ascii")
         for name, data in self.expected.items():
             path = self.repository / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -86,6 +90,7 @@ class WindowsSourceArchiveTests(unittest.TestCase):
 
     @contextmanager
     def recipe(self, output, *, revision=None):
+        from test_recording_packaging import smoke as recording_smoke, write_fixture_report
         commands = []
         stdout = io.StringIO()
         real_run = build.run_logged
@@ -112,6 +117,10 @@ class WindowsSourceArchiveTests(unittest.TestCase):
                 self.assertNotIn("QT_QPA_PLATFORM", kwargs["env"])
                 Path(command[-1]).write_bytes(b"not a PNG: fixture")
                 launcher.receipt_path(Path(command[-1])).write_bytes(b"{}")
+            if "--recording-smoke" in command:
+                self.assertEqual(kwargs["timeout"], 60)
+                self.assertNotIn("QT_QPA_PLATFORM", kwargs["env"])
+                write_fixture_report(Path(command[-1]), Path(command[0]))
             return ""
 
         def check_output(command, **kwargs):
@@ -124,6 +133,7 @@ class WindowsSourceArchiveTests(unittest.TestCase):
             return ""
 
         with ExitStack() as stack:
+            stack.enter_context(patch.dict(sys.modules, {"recording_smoke": recording_smoke}))
             stack.enter_context(patch.object(sys, "argv", ["build_windows.py", "--output", str(output)]))
             stack.enter_context(patch.object(build, "HOST", self.host))
             stack.enter_context(patch.object(build, "REPOSITORY", self.repository))
@@ -171,6 +181,9 @@ class WindowsSourceArchiveTests(unittest.TestCase):
                     archive = next(i for i, (cmd, _) in enumerate(commands) if cmd[0] == "git")
                     self.assertLess(serial, screenshot)
                     self.assertLess(screenshot, archive)
+                    recording = next(i for i, (cmd, _) in enumerate(commands) if "--recording-smoke" in cmd)
+                    self.assertLess(screenshot, recording)
+                    self.assertLess(recording, archive)
                     # Also execute that exact production argument shape with
                     # each child cwd (the recipe itself always keeps cwd=HOST).
                     alternate = self.root / f"прямой архив {index}.zip"
