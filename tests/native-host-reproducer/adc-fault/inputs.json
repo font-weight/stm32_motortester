@@ -1,0 +1,62 @@
+{
+  "scope": "Frozen PR95 firmware subset and PR74 host component probe; no actual runtime/hardware acceptance",
+  "firmware_commit": "b607392cb4f1cc19918e2795359df4680b645643",
+  "host_commit": "c44bae42b19ec8208c2ebee4a3e662ce1b7ff240",
+  "firmware_files": {
+    "firmware/app/mt_control.c": "fbdbfbe460ebed2f5558eaea993ab49fe9c1244d7e76199cc7609a54073d041a",
+    "firmware/app/mt_control.h": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172",
+    "firmware/app/mt_capture_link.c": "7c78f0962c404af847b8e815034290f6938183917050290bc5eb7f9e7f304451",
+    "firmware/app/mt_capture_link.h": "9dcdd4f8119c8ccd8a7f79c6b16406ad686c4e53084c57a8fe55e8c5655be4d5",
+    "firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "firmware/protocol/mt_command.c": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+    "firmware/protocol/mt_command.h": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+    "firmware/protocol/mt_session.c": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+    "firmware/protocol/mt_session.h": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+    "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+    "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+    "firmware/transport/mt_tx.c": "6ff521de04f1c86d26b0d1aba8a96917fc8eb750074cb1364a89700d470293d0",
+    "firmware/transport/mt_tx.h": "6f008a8645dc53130ad2ecce39184ed4a563f71c812800dcf81954af102e2de8"
+  },
+  "package_files": {
+    "snapshots/a-native/tests/wait-release/fixtures/test_wait_release.c": "5738c272d2d470428885ec7ac52ffe315c0198817912973290882926846b0cfd",
+    "snapshots/pr74/host/motortester/__init__.py": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645",
+    "snapshots/pr74/host/motortester/wire.py": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+    "snapshots/pr74/host/motortester/session.py": "0bf21924f22971d895fc1ec0b7bcc4c4d041d475a0461a650c0b785078905ca9",
+    "snapshots/pr74/host/motortester/window.py": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273"
+  },
+  "local_files": {
+    "device_bridge.c": "586dca46b617f4842c2009d9413accad42bf656ca7f14717e297788919ffda68"
+  },
+  "production_c": [
+    "firmware/app/mt_control.c",
+    "firmware/app/mt_capture_link.c",
+    "firmware/protocol/mt_wire.c",
+    "firmware/protocol/mt_command.c",
+    "firmware/protocol/mt_session.c",
+    "firmware/acquisition/acquisition.c",
+    "firmware/transport/mt_tx.c"
+  ],
+  "matrix": {
+    "reason": [
+      1,
+      2
+    ],
+    "allocated": [
+      0,
+      1
+    ],
+    "prior": [
+      0,
+      1
+    ],
+    "chunk": [
+      1,
+      64
+    ],
+    "build": [
+      "strict",
+      "sanitize"
+    ]
+  }
+}
