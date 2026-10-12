@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "a_commit": "db09c263c022c27723fd9de9e4a79905097767c6",
+  "b_commit": "76f9e41a12a69651ed39ce8fded31f0c0a25b471",
+  "a": [
+    {
+      "path": "firmware/app/mt_control.c",
+      "sha256": "fbdbfbe460ebed2f5558eaea993ab49fe9c1244d7e76199cc7609a54073d041a",
+      "bytes": 13666
+    },
+    {
+      "path": "firmware/app/mt_control.h",
+      "sha256": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172",
+      "bytes": 2662
+    },
+    {
+      "path": "firmware/app/mt_capture_link.c",
+      "sha256": "7c78f0962c404af847b8e815034290f6938183917050290bc5eb7f9e7f304451",
+      "bytes": 12778
+    },
+    {
+      "path": "firmware/app/mt_capture_link.h",
+      "sha256": "9dcdd4f8119c8ccd8a7f79c6b16406ad686c4e53084c57a8fe55e8c5655be4d5",
+      "bytes": 4972
+    },
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+      "bytes": 4102
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+      "bytes": 1679
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+      "bytes": 3566
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+      "bytes": 2397
+    },
+    {
+      "path": "firmware/protocol/mt_session.c",
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+      "bytes": 2855
+    },
+    {
+      "path": "firmware/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+      "bytes": 2253
+    },
+    {
+      "path": "firmware/acquisition/acquisition.c",
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+      "bytes": 8272
+    },
+    {
+      "path": "firmware/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+      "bytes": 4481
+    },
+    {
+      "path": "firmware/transport/mt_tx.c",
+      "sha256": "6ff521de04f1c86d26b0d1aba8a96917fc8eb750074cb1364a89700d470293d0",
+      "bytes": 11184
+    },
+    {
+      "path": "firmware/transport/mt_tx.h",
+      "sha256": "6f008a8645dc53130ad2ecce39184ed4a563f71c812800dcf81954af102e2de8",
+      "bytes": 7065
+    },
+    {
+      "path": "tests/native-host-reproducer/snapshots/a-native/tests/wait-release/fixtures/test_wait_release.c",
+      "sha256": "5738c272d2d470428885ec7ac52ffe315c0198817912973290882926846b0cfd",
+      "bytes": 11158
+    }
+  ],
+  "b": [
+    {
+      "path": "motortester/__init__.py",
+      "sha256": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645",
+      "bytes": 87
+    },
+    {
+      "path": "motortester/lv_collector.py",
+      "sha256": "53dc0b7c0ff442001d6c64d3d48d2af53fe064b248cfdf7917295f02d96b9b04",
+      "bytes": 48389
+    },
+    {
+      "path": "motortester/runtime.py",
+      "sha256": "de8553dba4db77e05e407758a01a935ba5f8aae06309b7a0cbb4a2bfaf997742",
+      "bytes": 12922
+    },
+    {
+      "path": "motortester/recording.py",
+      "sha256": "4383bec4ecba4899f5ec814553bad1d9fc099ed711fd66c7ea1352d69aed6cb4",
+      "bytes": 5789
+    },
+    {
+      "path": "motortester/model.py",
+      "sha256": "c4f86b6b59b7230823d45c55bca3714250a1c60ce0974e00f0ead65b9a7a834b",
+      "bytes": 6447
+    },
+    {
+      "path": "motortester/session.py",
+      "sha256": "0bf21924f22971d895fc1ec0b7bcc4c4d041d475a0461a650c0b785078905ca9",
+      "bytes": 33994
+    },
+    {
+      "path": "motortester/window.py",
+      "sha256": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273",
+      "bytes": 16034
+    },
+    {
+      "path": "motortester/wire.py",
+      "sha256": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+      "bytes": 11580
+    }
+  ],
+  "probe": [
+    {
+      "path": "adapter.py",
+      "sha256": "73d2c414f72cdbb36ba3f26595b1df6656aae4ae55bae5e304655ebc9f7dede7",
+      "bytes": 3019
+    },
+    {
+      "path": "collector_bridge.c",
+      "sha256": "bad2c8acc3a824bbf37168612df0d3b9ed526fbf7e0ec3d8de781a8fd91fcad2",
+      "bytes": 4969
+    },
+    {
+      "path": "collector_probe.py",
+      "sha256": "19809071f6144ef6cdb89143e42e32bdc1064d12b4614b2ca1743a5912356826",
+      "bytes": 7506
+    }
+  ]
+}
