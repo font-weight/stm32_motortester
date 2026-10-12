@@ -2,6 +2,7 @@
 from dataclasses import FrozenInstanceError, replace
 import gc
 import struct
+import sys
 import threading
 import time
 import unittest
@@ -168,8 +169,76 @@ class AcquisitionBridgeTests(unittest.TestCase):
             if (time.monotonic() - start) * 1000 > timeout:
                 states = [(b.state, b.errors) for b in self.bridges]
                 self.fail(f"Qt deadline; current states: {states}")
-            QtTest.QTest.qWait(5)
+            # QTest.qWait holds the GIL in PySide6 6.12, starving Python worker
+            # slots. Keep its event/deferred-delete pump
+            # and 5 ms cadence, but use bindings that release the GIL.
+            step_end = time.monotonic() + 0.005
+            self.app.processEvents(QtCore.QEventLoop.ProcessEventsFlag.AllEvents, 5)
+            QtCore.QCoreApplication.sendPostedEvents(None, QtCore.QEvent.Type.DeferredDelete)
+            time.sleep(max(0, step_end - time.monotonic()))
         self.app.processEvents()
+
+    def test_wait_pumps_events_without_starving_python_worker_slots(self):
+        ready = threading.Event()
+        ticks = []
+
+        class Worker(QtCore.QObject):
+            @QtCore.Slot()
+            def begin(self):
+                self.timer = QtCore.QTimer(self)
+                self.timer.setInterval(1)
+                self.timer.timeout.connect(self.tick)
+                self.timer.start()
+                ready.set()
+
+            @QtCore.Slot()
+            def tick(self):
+                ticks.append((time.monotonic(), threading.get_ident()))
+
+            @QtCore.Slot()
+            def stop(self):
+                self.timer.stop()
+                QtCore.QThread.currentThread().quit()
+
+        thread = QtCore.QThread()
+        worker = Worker()
+        worker.moveToThread(thread)
+        thread.started.connect(worker.begin)
+        thread.finished.connect(worker.deleteLater)
+        old_switch_interval = sys.getswitchinterval()
+        thread.start()
+        try:
+            self.assertTrue(ready.wait(3), "regression worker did not initialize")
+            deleted = []
+            deferred = QtCore.QObject()
+            deferred.destroyed.connect(lambda: deleted.append(True))
+            deferred.deleteLater()
+            # Suppress incidental bytecode-boundary GIL handoffs: progress must
+            # come from the helper's event pump, not the interpreter timeslice.
+            sys.setswitchinterval(1.0)
+            started = time.monotonic()
+            ended = []
+
+            def elapsed():
+                now = time.monotonic()
+                if now - started >= 0.25:
+                    ended.append(now)
+                    return True
+                return False
+
+            self.wait(elapsed)
+            # Exclude entry/exit handoffs and the helper's final processEvents.
+            interior = [(stamp, ident) for stamp, ident in ticks
+                        if started + 0.01 < stamp < ended[0] - 0.01]
+            self.assertTrue(interior, "event pump starved Python Qt worker slots")
+            self.assertTrue(all(ident != threading.get_ident() for _, ident in interior))
+            self.assertEqual(deleted, [True])
+        finally:
+            sys.setswitchinterval(old_switch_interval)
+            QtCore.QMetaObject.invokeMethod(worker, "stop", QtCore.Qt.ConnectionType.QueuedConnection)
+            self.assertTrue(thread.wait(3000), "regression worker did not join")
+            thread.deleteLater()
+            QtCore.QCoreApplication.sendPostedEvents(thread, QtCore.QEvent.Type.DeferredDelete)
 
     def ready(self, bridge):
         return (bridge.state.connected and bridge.state.snapshot is not None
@@ -402,23 +471,27 @@ class AcquisitionBridgeTests(unittest.TestCase):
             return False if held[0] else native_wait(timeout)
 
         bridge._thread.wait = delayed_native_join
-        bridge.finished.connect(lambda: finished.append(True))
-        self.assertTrue(bridge.shutdown())
-        self.wait(lambda: len(attempts) >= 2)
-        # Even though Qt has emitted QThread.finished, the public lifetime
-        # contract does not permit deleting the owner before its native join.
-        self.assertFalse(bridge._thread.isRunning())
-        self.assertTrue(bridge.running)
-        self.assertFalse(bridge._closed)
-        self.assertEqual(finished, [])
-        ticks = []
-        QtCore.QTimer.singleShot(0, lambda: ticks.append(True))
-        self.wait(lambda: bool(ticks))
-        held[0] = False
-        self.wait(lambda: bool(finished))
-        self.assertTrue(bridge._closed)
-        self.assertFalse(bridge.running)
-        self.assertTrue(native_wait(0))
+        try:
+            bridge.finished.connect(lambda: finished.append(True))
+            self.assertTrue(bridge.shutdown())
+            self.wait(lambda: len(attempts) >= 2)
+            # Even though Qt has emitted QThread.finished, the public lifetime
+            # contract does not permit deleting the owner before its native join.
+            self.assertFalse(bridge._thread.isRunning())
+            self.assertTrue(bridge.running)
+            self.assertFalse(bridge._closed)
+            self.assertEqual(finished, [])
+            ticks = []
+            QtCore.QTimer.singleShot(0, lambda: ticks.append(True))
+            self.wait(lambda: bool(ticks))
+            held[0] = False
+            self.wait(lambda: bool(finished))
+            self.assertTrue(bridge._closed)
+            self.assertFalse(bridge.running)
+            self.assertTrue(native_wait(0))
+        finally:
+            # An assertion failure must not keep teardown behind the test gate.
+            bridge._thread.wait = native_wait
 
     def test_lazy_shutdown_under_gc_and_deferred_delete_pressure(self):
         thresholds = gc.get_threshold()
