@@ -18,6 +18,11 @@ void mt_usb_bridge_unlock(uint32_t previous);
 /* The following producer/queue calls require the caller-held bridge lock. */
 uint32_t mt_usb_bridge_ingress(const dcd_event_t *event);
 void mt_usb_bridge_enqueued(uint32_t token, unsigned reset, unsigned accepted);
+/* Direct peripheral fault ingress: takes its own guard, never queues an event
+ * or calls controller/Stop. PMAOVR does not advance the epoch. A physical
+ * BUS_RESET is required to clear poison; disconnect may also advance the
+ * epoch but leaves it blocked. */
+void mt_usb_bridge_pma_overrun(void);
 uint32_t mt_usb_bridge_actor(void);
 /* Snapshot and cleanup receipt never execute controller or USB callbacks.
  * cleaned is a caller assertion AFTER actual foreground controller/adapter

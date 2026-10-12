@@ -12,8 +12,8 @@
       "filename": "dcd_stm32_fsdev.c",
       "patch": "0003-usb005-fsdev.patch",
       "source_sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97",
-      "patch_sha256": "336e23e852d3998aa49ce374ff77bf92270cc38d01b2ee56df33a59364c4ff3d",
-      "result_sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8"
+      "patch_sha256": "cc5f9333cd5e4af84beebbc757d8225cb09368e4d32cbc23a10fcff7f4dbd671",
+      "result_sha256": "d35b9af93def9280db2cd7c8380842b846a99d471612c37ba708d2f2e8db7ddf"
     }
   }
 }
