@@ -370,7 +370,12 @@ class LicenseTests(unittest.TestCase):
             runtime.mkdir()
             (runtime / "LICENSE.txt").write_text("fake runtime license for test")
             dest = root / "licenses"
-            with patch.object(licenses.metadata, "distributions", return_value=[self.distribution()]), \
+            distributions = [self.distribution(),
+                             SimpleNamespace(metadata={"Name": "PySide6_Essentials"},
+                                             files=[], version="6.12.0"),
+                             SimpleNamespace(metadata={"Name": "shiboken6"},
+                                             files=[], version="6.12.0")]
+            with patch.object(licenses.metadata, "distributions", return_value=distributions), \
                     patch.object(licenses, "sys", SimpleNamespace(base_prefix=str(runtime))):
                 licenses.collect(dest)
             inventory = json.loads((dest / "inventory.json").read_text())
