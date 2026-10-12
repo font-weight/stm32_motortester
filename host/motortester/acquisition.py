@@ -207,6 +207,7 @@ class _AcquisitionWorker(QtCore.QObject):
         self.runtime.start(nonce)
 
     def _events(self, events):
+        command_error = None
         for event in events:
             if event.kind is EventKind.CONFIGURED and self.staged_start:
                 self.arm_ready = True
@@ -215,10 +216,37 @@ class _AcquisitionWorker(QtCore.QObject):
             elif event.kind in (EventKind.STOPPED, EventKind.COMMAND_ERROR, EventKind.RECOVERY):
                 self.staged_start = self.arm_ready = False
                 if event.kind is EventKind.COMMAND_ERROR:
-                    self._error("Прибор отклонил команду; проверьте поддерживаемые настройки")
+                    command_error = f"Прибор отклонил команду (код {event.reason}); проверьте поддерживаемые настройки"
+                    self._error(command_error)
                 elif event.kind is EventKind.RECOVERY:
                     self.simulate_edge = False
-                    self._error("Связь требует восстановления. Записи сохранены; автоматического запуска нет.")
+                    reason = getattr(event.reason, "value", str(event.reason))
+                    fault = getattr(event.fault, "value", None)
+                    messages = {
+                        "DIRECTION": "неверное направление кадра",
+                        "TYPE": "неподдерживаемый тип сообщения",
+                        "SEQUENCE": "нарушен порядок кадров",
+                        "REPLY": "неожиданный ответ",
+                        "PAYLOAD": "некорректные данные сообщения",
+                        "CAPABILITIES": "несовместимые возможности прибора",
+                        "WINDOW": "нарушен порядок данных окна",
+                        "TIMEOUT": "истёк срок ожидания",
+                        "TRANSPORT_LOST": "соединение потеряно",
+                        "UNKNOWN_WRITE": "неизвестен результат записи в порт",
+                        "EXHAUSTED": "исчерпаны идентификаторы сеанса",
+                        "DEVICE_ERROR": "прибор сообщил об ошибке",
+                        "PROTOCOL_FAULT": "ошибка протокола",
+                    }
+                    faults = {"VERSION": "несовместимая версия протокола",
+                              "DECODE": "повреждённый кадр",
+                              "DOWNSTREAM": "ошибка обработки данных"}
+                    detail = messages.get(reason, reason) + f" [{reason}]"
+                    if fault:
+                        detail += f" / {faults.get(fault, fault)} [{fault}]"
+                    message = f"Связь требует восстановления ({detail}). Записи сохранены; автоматического запуска нет."
+                    if command_error is not None:
+                        message += "\n" + command_error
+                    self._error(message)
 
     def _accept_capture(self):
         if self.runtime is None:

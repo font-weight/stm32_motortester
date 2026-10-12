@@ -8,6 +8,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         super().__init__(viewer)
         self.viewer, self.bridge = viewer, bridge
         self.state = None
+        self._last_error = ""
         self.setWindowTitle("Мотортестер · подключение и захват")
         self.resize(560, 650)
         self.setStyleSheet("""
@@ -75,6 +76,11 @@ class AcquisitionDialog(QtWidgets.QDialog):
         profile = QtWidgets.QLabel("Профиль LV-001 · один канал · аналоговый запуск · предыстория 0. Single требует нового нажатия «Старт» после каждого окна. При повторном захвате в памяти остаётся последнее полное окно; для сохранения нажмите «Стоп». Закрытие этой панели не останавливает захват.")
         profile.setWordWrap(True)
         layout.addWidget(profile)
+        self.device_details = QtWidgets.QLabel("Сведения о соединении: CAPS ещё не подтверждены.")
+        self.device_details.setObjectName("acquisitionDeviceDetails")
+        self.device_details.setWordWrap(True)
+        self.device_details.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        self.device_details.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.connect_button = QtWidgets.QPushButton("Подключить · без запуска захвата")
         self.start_button = QtWidgets.QPushButton("Старт")
         self.stop_button = QtWidgets.QPushButton("Стоп")
@@ -85,6 +91,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.status.setWordWrap(True)
         self.status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
         layout.addWidget(self.status)
+        layout.addWidget(self.device_details)
         self.connect_button.clicked.connect(self._connect)
         self.start_button.clicked.connect(self._start)
         self.stop_button.clicked.connect(lambda: self._request(self.bridge.stop))
@@ -97,6 +104,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
 
     def _request(self, operation):
         if operation():
+            self._last_error = ""
             self.viewer._acq_requested = True
             self.viewer._set_actions()
         else:
@@ -122,9 +130,13 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self._request(lambda: self.bridge.start(settings, simulate_edge=self.simulate.isChecked()))
 
     def update_state(self, state):
+        previous_phase = self.state.snapshot.phase if self.state and self.state.snapshot else Phase.IDLE
         self.state = state
         snapshot = state.snapshot
         phase = snapshot.phase if snapshot is not None else Phase.IDLE
+        if phase is Phase.HELLO and previous_phase is not Phase.HELLO:
+            self._last_error = ""
+        self._show_device_details(state)
         labels = {Phase.IDLE: "Не подключено", Phase.HELLO: "Согласование соединения", Phase.CAPS: "Чтение возможностей", Phase.READY: "Готово · захват остановлен", Phase.ARMED: "Захват / ожидание запуска", Phase.RECOVERY: "Ошибка · требуется восстановление соединения"}
         text = labels[phase]
         if state.start_pending:
@@ -133,11 +145,37 @@ class AcquisitionDialog(QtWidgets.QDialog):
             text = "Остановка · ожидание подтверждения прибора"
         if state.reset_required:
             text += ". Для прибора подтвердите физический сброс перед повторным подключением."
+        if self._last_error:
+            text += "\n" + self._last_error
         self.status.setText(text)
         self.refresh()
 
+    def _show_device_details(self, state):
+        snapshot = state.snapshot
+        source = {"emulator": "Эмулятор · синтетические данные", "device": "Прибор · выбранный COM-порт"}.get(state.source, "Источник не выбран")
+        current = (state.connected and snapshot is not None
+                   and snapshot.phase in (Phase.READY, Phase.ARMED)
+                   and snapshot.capabilities is not None)
+        if not current:
+            self.device_details.setText(source + "\nCAPS не подтверждены для текущего соединения.\nОжидаемый формат: wire 0.1 (draft); версия прошивки и возможности пока неизвестны.")
+            return
+        caps = snapshot.capabilities
+        modes = ", ".join(name for bit, name in ((1, "Auto"), (2, "Normal"), (4, "Single")) if caps.mode_bits & bit) or "нет"
+        edges = ", ".join(name for bit, name in ((1, "нарастающий"), (2, "спадающий")) if caps.edge_bits & bit) or "нет"
+        self.device_details.setText(
+            source + "\n"
+            + f"CAPS приняты в этом сеансе. Формат кадров: wire 0.1 (draft).\n"
+            + f"Объявленная сборка прошивки: {caps.firmware_build} (0x{caps.firmware_build:08x}); это не версия SemVer и не SHA.\n"
+            + "Серийный номер и версия SemVer не передаются этим контрактом.\n"
+            + f"Профиль {caps.profile}; окно {caps.window_samples} отсчётов; предыстория: {', '.join(map(str, caps.pretrigger_samples))}.\n"
+            + f"Режимы: {modes}; фронты: {edges}.\n"
+            + f"Маски возможностей/режимов/источников/фронтов: 0x{caps.capability_bits:x}/0x{caps.mode_bits:x}/0x{caps.source_bits:x}/0x{caps.edge_bits:x}.\n"
+            + f"Таймер: {caps.timer_clock_hz} Гц, PSC={caps.timer_psc}, ARR={caps.timer_arr}; АЦП: {caps.adc_clock_hz} Гц, sample_cycles_x2={caps.adc_sample_cycles_x2}.\n"
+            + "Параметры объявлены устройством; физическая точность и безопасность не подтверждены.")
+
     def show_error(self, text):
-        self.status.setText(text)
+        self._last_error = str(text)
+        self.status.setText(self._last_error)
 
     def refresh(self, *_):
         state = self.state

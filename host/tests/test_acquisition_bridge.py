@@ -1,20 +1,43 @@
 """Author Qt/byte-peer checks; fake serial is not Windows/hardware evidence."""
 from dataclasses import FrozenInstanceError, replace
 import gc
+import struct
 import threading
 import time
 import unittest
+import zlib
 
 try:
     from PySide6 import QtCore, QtTest, QtWidgets
-    from motortester.acquisition import AcquisitionBridge
+    from motortester.acquisition import AcquisitionBridge, _AcquisitionWorker, _Mailbox
+    from motortester.gui_acquisition import AcquisitionDialog
 except ModuleNotFoundError as exc:
     raise unittest.SkipTest(f"Qt dependencies unavailable: {exc}") from exc
 
 from motortester.device_emulator import DeviceEmulator, WAITING
-from motortester.session import Config, Phase
+from motortester.session import Config, Event, EventKind, FaultCode, Phase, RecoveryReason
 from motortester.transport import SerialTransport
 from motortester.wire import StreamDecoder
+
+
+class DiagnosticPeer(DeviceEmulator):
+    """Inject framed replies in the fake byte peer, never a physical port."""
+    def __init__(self, controls):
+        super().__init__(all_analog_modes=True)
+        self.controls = controls
+
+    def _enqueue(self, kind, payload, request=0, completion=""):
+        payload = self.controls.get("reply_payloads", {}).get(kind, payload)
+        return super()._enqueue(kind, payload, request, completion)
+
+    def _command(self, frame):
+        rejection = self.controls.get("reject_commands", {}).get(frame.message_type)
+        if rejection:
+            self._error(frame, rejection)
+        elif frame.message_type == 3 and self.controls.get("reject_config"):
+            self._error(frame, self.controls["reject_config"])
+        else:
+            super()._command(frame)
 
 
 class SerialPeer:
@@ -22,7 +45,7 @@ class SerialPeer:
     def __init__(self, *, calls, controls, **kwargs):
         self.calls, self.controls = calls, controls
         self.is_open, self.port = False, None
-        self.peer = DeviceEmulator(all_analog_modes=True)
+        self.peer = DiagnosticPeer(controls)
         self.decoder = StreamDecoder()
         self.kinds = []
         self.saw_config = False
@@ -65,6 +88,9 @@ class SerialPeer:
                 raise OSError("test idle-read gate timed out")
         if self.controls.get("read_fail"):
             raise OSError("private backend detail")
+        injected = self.controls.pop("read_bytes_once", None)
+        if injected is not None:
+            return injected
         if self.saw_config and self.controls.get("hold_config"):
             return b""
         if self.controls.get("trigger") and self.peer.snapshot().state == WAITING:
@@ -87,6 +113,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
 
     def setUp(self):
         self.bridges = []
+        self.dialog_viewers = []
         self.controls = {}
         self.calls = []
 
@@ -103,6 +130,10 @@ class AcquisitionBridgeTests(unittest.TestCase):
             bridge.deleteLater()
             QtCore.QCoreApplication.sendPostedEvents(bridge, QtCore.QEvent.Type.DeferredDelete)
         self.bridges.clear()
+        for viewer in self.dialog_viewers:
+            viewer.close()
+            viewer.deleteLater()
+            QtCore.QCoreApplication.sendPostedEvents(viewer, QtCore.QEvent.Type.DeferredDelete)
         self.app.processEvents()
 
     def make(self, **kwargs):
@@ -120,6 +151,16 @@ class AcquisitionBridgeTests(unittest.TestCase):
             return SerialPeer(calls=self.calls, controls=self.controls, **kwargs)
         return self.make(serial_factory=lambda: SerialTransport(backend_factory=factory),
                          edge_delay_ms=30)
+
+    def dialog(self, bridge):
+        """Real signal wiring without MainWindow's capture-ACK side effects."""
+        viewer = QtWidgets.QWidget()
+        viewer.busy = viewer._acq_requested = False
+        viewer._set_actions = lambda: None
+        panel = AcquisitionDialog(viewer, bridge)
+        self.dialog_viewers.append(viewer)
+        panel.update_state(bridge.state)
+        return panel
 
     def wait(self, predicate, timeout=3000):
         start = time.monotonic()
@@ -170,6 +211,182 @@ class AcquisitionBridgeTests(unittest.TestCase):
         self.assertEqual(bridge.captures, [])
         self.assertEqual(self.controls["settings"]["timeout"], 0)
         self.assertEqual(self.controls["settings"]["write_timeout"], 0.1)
+
+    def test_negotiated_emulator_caps_reach_gui_without_opening_serial_or_arming(self):
+        def forbidden():
+            raise AssertionError("Serial factory called while displaying emulator CAPS")
+        bridge = self.make(serial_factory=forbidden)
+        panel = self.dialog(bridge)
+        self.assertIn("CAPS не подтверждены", panel.device_details.text())
+        self.connect(bridge)
+        caps = bridge.state.snapshot.capabilities
+        self.assertIsNotNone(caps)
+        self.assertEqual((caps.firmware_build, caps.capability_bits, caps.mode_bits,
+                          caps.source_bits, caps.edge_bits), (0, 0x1D, 7, 1, 3))
+        text = panel.device_details.text()
+        for expected in ("Эмулятор · синтетические данные", "0 (0x00000000)",
+                         "wire 0.1 (draft)", "0x1d/0x7/0x1/0x3",
+                         "Auto, Normal, Single", "предыстория: 0"):
+            self.assertIn(expected, text)
+        QtTest.QTest.qWait(80)
+        self.assertIsNone(bridge.state.snapshot.config)
+        self.assertEqual(bridge.state.snapshot.generation, 0)
+        self.assertEqual(bridge.captures, [])
+
+    def test_nondefault_negotiated_masks_build_and_pretrigger_reach_gui(self):
+        # These alternate advertisements satisfy the existing session parser;
+        # displaying them does not enable new GUI acquisition profiles.
+        self.controls["reply_payloads"] = {
+            129: struct.pack("<BBBBHHII", 0, 1, 1, 12, 512, 2048, 0xFEDCBA98, 0x37),
+            130: struct.pack("<BBHIHHIHHBBBBHHH", 1, 0, 1, 72000000, 71, 19,
+                             12000000, 143, 2048, 3, 5, 3, 2, 0, 512, 1024),
+        }
+        bridge = self.serial()
+        panel = self.dialog(bridge)
+        self.connect(bridge, "device")
+        caps = bridge.state.snapshot.capabilities
+        self.assertEqual((caps.firmware_build, caps.capability_bits, caps.mode_bits,
+                          caps.source_bits, caps.edge_bits, caps.pretrigger_samples),
+                         (0xFEDCBA98, 0x37, 5, 3, 2, (0, 512, 1024)))
+        text = panel.device_details.text()
+        for expected in ("Прибор · выбранный COM-порт", "4275878552 (0xfedcba98)",
+                         "0x37/0x5/0x3/0x2", "Auto, Single", "фронты: спадающий",
+                         "предыстория: 0, 512, 1024"):
+            self.assertIn(expected, text)
+        self.assertNotIn("Normal", text)
+        self.assertNotIn("синтетические данные", text)
+        self.assertEqual(self.controls["backend"].kinds, [1, 2])
+
+    def test_real_recovery_clears_caps_but_keeps_diagnostic_through_state_polls(self):
+        bridge = self.serial()
+        panel = self.dialog(bridge)
+        self.connect(bridge, "device")
+        self.assertIn("CAPS приняты", panel.device_details.text())
+        self.controls["read_fail"] = True
+        self.wait(lambda: not bridge.state.connected and bool(bridge.errors))
+        self.assertIs(bridge.state.snapshot.phase, Phase.RECOVERY)
+        self.assertIsNotNone(bridge.state.snapshot.capabilities)
+        # Session retains its old CAPS as diagnostics; the GUI must not.
+        self.assertIn("CAPS не подтверждены", panel.device_details.text())
+        self.assertNotIn("0x00000000", panel.device_details.text())
+        for _ in range(3):
+            bridge._drain()
+            self.assertIn("соединение потеряно [TRANSPORT_LOST]", panel.status.text())
+        self.assertNotIn("private backend detail", panel.status.text())
+        self.assertFalse(panel.start_button.isEnabled())
+        self.assertEqual(self.controls["backend"].kinds, [1, 2])
+        self.assertEqual(sum(name == "open" for name, _ in self.calls), 1)
+
+    def test_bad_hello_payload_and_incompatible_caps_report_actual_recovery_reason(self):
+        cases = (
+            ({129: b"bad"}, "PAYLOAD", "некорректные данные сообщения", [1]),
+            ({130: bytes(30)}, "CAPABILITIES", "несовместимые возможности прибора", [1, 2]),
+            ({129: struct.pack("<BBBBHHII", 0, 2, 1, 12, 512, 2048, 0, 0x1D)},
+             "CAPABILITIES", "несовместимые возможности прибора", [1]),
+        )
+        for payloads, reason, explanation, commands in cases:
+            with self.subTest(reason=reason, payloads=payloads):
+                self.controls["reply_payloads"] = payloads
+                bridge = self.serial()
+                panel = self.dialog(bridge)
+                self.assertTrue(bridge.connect_source("device", port="COM_TEST"))
+                self.wait(lambda: bridge.state.snapshot is not None
+                          and bridge.state.snapshot.phase is Phase.RECOVERY
+                          and not bridge.state.connected and bool(bridge.errors))
+                self.assertIn(f"{explanation} [{reason}]", panel.status.text())
+                self.assertIn("CAPS не подтверждены", panel.device_details.text())
+                self.assertNotIn("CAPS приняты", panel.device_details.text())
+                self.assertEqual(self.controls["backend"].kinds, commands)
+                self.assertEqual(bridge.captures, [])
+                bridge.shutdown()
+                self.wait(lambda: bridge._closed)
+
+    def test_wire_version_diagnostic_currently_reaches_gui_as_decode_fault(self):
+        bridge = self.serial()
+        panel = self.dialog(bridge)
+        self.connect(bridge, "device")
+        # A valid CRC/COBS frame with unsupported wire 0.2, not random damage.
+        raw = struct.pack("<BBBBHHQII", 0, 2, 134, 0, 0, 0,
+                          bridge.state.snapshot.session, 3, 0)
+        raw += struct.pack("<I", zlib.crc32(raw))
+        encoded = b"".join(bytes((len(run) + 1,)) + run for run in raw.split(b"\0")) + b"\0"
+        self.controls["read_bytes_once"] = encoded
+        self.wait(lambda: not bridge.state.connected and bool(bridge.errors))
+        self.assertIn("ошибка протокола [PROTOCOL_FAULT]", panel.status.text())
+        self.assertIn("повреждённый кадр [DECODE]", panel.status.text())
+        self.assertNotIn("[VERSION]", panel.status.text())
+        self.assertIn("CAPS не подтверждены", panel.device_details.text())
+        self.assertEqual(self.controls["backend"].kinds, [1, 2])
+
+    def test_rejected_config_shows_numeric_reason_and_never_arms(self):
+        self.controls["reject_config"] = 1
+        bridge = self.serial()
+        panel = self.dialog(bridge)
+        self.connect(bridge, "device")
+        self.assertTrue(bridge.start(Config()))
+        self.wait(lambda: bool(bridge.errors) and self.ready(bridge))
+        self.assertIn("Прибор отклонил команду (код 1)", panel.status.text())
+        for _ in range(3):
+            bridge._drain()
+            self.assertIn("Прибор отклонил команду (код 1)", panel.status.text())
+        self.assertIn("CAPS приняты", panel.device_details.text())
+        self.assertEqual(self.controls["backend"].kinds, [1, 2, 3])
+        self.assertEqual(bridge.captures, [])
+
+    def test_terminal_command_rejection_keeps_numeric_reason_and_recovery_together(self):
+        # GET_CAPS, STOP and RELEASE generate COMMAND_ERROR then RECOVERY in
+        # one runtime event batch. The one-slot mailbox must retain both facts.
+        for command, code in ((2, 5), (5, 8), (7, 4)):
+            with self.subTest(command=command, code=code):
+                self.controls["reject_commands"] = {command: code}
+                self.controls["trigger"] = command == 7
+                bridge = self.serial()
+                panel = self.dialog(bridge)
+                capture = None
+                if command == 2:
+                    self.assertTrue(bridge.connect_source("device", port="COM_TEST"))
+                    expected_commands = [1, 2]
+                else:
+                    self.connect(bridge, "device")
+                    if command == 5:
+                        self.assertTrue(bridge.stop())
+                        expected_commands = [1, 2, 5]
+                    else:
+                        capture = self.capture(bridge)
+                        self.assertTrue(bridge.acknowledge(capture))
+                        expected_commands = [1, 2, 3, 4, 7]
+                self.wait(lambda: bridge.state.snapshot is not None
+                          and bridge.state.snapshot.phase is Phase.RECOVERY
+                          and not bridge.state.connected and bool(bridge.errors))
+                for _ in range(3):
+                    bridge._drain()
+                    self.assertIn(f"Прибор отклонил команду (код {code})", panel.status.text())
+                    self.assertIn("прибор сообщил об ошибке [DEVICE_ERROR]", panel.status.text())
+                self.assertIn("CAPS не подтверждены", panel.device_details.text())
+                self.assertFalse(panel.start_button.isEnabled())
+                QtTest.QTest.qWait(60)
+                self.assertEqual(self.controls["backend"].kinds, expected_commands)
+                if capture is not None:
+                    self.assertIs(bridge.captures[-1], capture)
+                else:
+                    self.assertEqual(bridge.captures, [])
+                bridge.shutdown()
+                self.wait(lambda: bridge._closed)
+
+    def test_typed_recovery_event_preserves_version_fault_at_worker_boundary(self):
+        # Formatting unit fixture only: existing runtime collapses byte decoder
+        # diagnostics to DECODE, separately demonstrated by the test above.
+        mailbox = _Mailbox()
+        worker = _AcquisitionWorker(mailbox, lambda: None, lambda: 0, 10, 20)
+        worker.staged_start = worker.arm_ready = worker.simulate_edge = True
+        worker._events((Event(EventKind.RECOVERY, reason=RecoveryReason.PROTOCOL_FAULT,
+                              fault=FaultCode.VERSION),))
+        self.assertIn("ошибка протокола [PROTOCOL_FAULT]", mailbox.error)
+        self.assertIn("несовместимая версия протокола [VERSION]", mailbox.error)
+        self.assertIn("автоматического запуска нет", mailbox.error)
+        self.assertFalse(worker.staged_start)
+        self.assertFalse(worker.arm_ready)
+        self.assertFalse(worker.simulate_edge)
 
     def test_finished_and_running_wait_for_nonblocking_native_join(self):
         bridge = self.make()
