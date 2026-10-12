@@ -1,0 +1,57 @@
+{
+  "local_base": "ef2880c0655d155284c176424a12378b3b66adf4",
+  "overlay_manifest_sha256": "a4596d0f5eea1318841390600bcc763d9aa02ad66649ec4a06fece3de37a0042",
+  "commands": [
+    {
+      "name": "new-normal",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/tmp/motortester-host-acquisition-modes/host/tests/fixtures/acquisition_modes/run_suite.py",
+        "--require-gui"
+      ],
+      "cwd": "/tmp/motortester-host-acquisition-modes",
+      "exit_code": 0,
+      "elapsed_seconds": 2.941
+    },
+    {
+      "name": "new-optimized",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "/tmp/motortester-host-acquisition-modes/host/tests/fixtures/acquisition_modes/run_suite.py",
+        "--require-gui"
+      ],
+      "cwd": "/tmp/motortester-host-acquisition-modes",
+      "exit_code": 0,
+      "elapsed_seconds": 3.24
+    },
+    {
+      "name": "full-host",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/tmp/motortester-host-acquisition-modes/host/tests/fixtures/acquisition_modes/run_suite.py",
+        "--pattern",
+        "test_*.py",
+        "--require-gui"
+      ],
+      "cwd": "/tmp/motortester-host-acquisition-modes",
+      "exit_code": 0,
+      "elapsed_seconds": 52.924
+    }
+  ],
+  "source_stable": true,
+  "changed_paths": [],
+  "source_file_count": 155,
+  "evidence_hashes": {
+    "captures/captures.json": "1b4a10e70c07f1499d4b1fd4adc871aa57b12f0a8152a801213b1fbab4b56657",
+    "captures/mode-0-device.bin": "dd5898d02b64a0bdeeba34850c560dc99db359b842e82c68ffe23c2054288aa6",
+    "captures/mode-0-host.bin": "654fe2764d927bc34c426c0fd2cf1fd65b2b626e3ac0f613e8ec078e4c574dcc",
+    "captures/mode-2-device.bin": "9bddb9473569604c93e31dfc29db3879fe411fcc2921f4f3b9a08877b0fdfec7",
+    "captures/mode-2-host.bin": "0e50accadf84522ed8a99c35832191b5b4c93da2bac57f32db70efc60c2adb9b",
+    "full-host.log": "50c9024c3950ea362931bb083d6c4ff2730afa017058206b647e7af60b2df9ad",
+    "new-normal.log": "2d474e45b9aeb8dfe8eb10d3da409c5d5dca961862bce2b11c93d3021ddce2dc",
+    "new-optimized.log": "6e8c1d3c062c0ac8a414ba91f820ae4bf69b614a9d5c072f41c81427ea49118f",
+    "source-after.json": "4b7529fde80377f45a52504fb017697dd56b0b7c672900706339e46b3c8e2df9",
+    "source-before.json": "4b7529fde80377f45a52504fb017697dd56b0b7c672900706339e46b3c8e2df9"
+  }
+}

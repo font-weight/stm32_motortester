@@ -11,7 +11,10 @@ a = Analysis(
     pathex=[str(host)],
     binaries=[],
     datas=[(str(host / "docs"), "docs")],
-    hiddenimports=[],
+    # pyserial selects its backend at runtime; do not rely on the host OS hook.
+    # These modules import definitions only; the smoke never constructs a port.
+    hiddenimports=["serial", "serial.serialutil", "serial.serialwin32", "serial.win32",
+                   "motortester.transport"],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

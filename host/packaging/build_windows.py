@@ -11,9 +11,21 @@ import subprocess
 import sys
 import sysconfig
 
+from serial_import_smoke import validate_report
+
 HOST = Path(__file__).resolve().parent.parent
 REPOSITORY = HOST.parent
 EXPECTED_PYTHON = (3, 13, 16)
+
+
+def run_frozen_serial_smoke(executable: Path, output: Path, run) -> dict:
+    """Require both a successful child and its strict, fresh import-only report."""
+    # lexists also catches a dangling link; the child still uses exclusive create
+    # to prevent a file appearing between this check and the actual write.
+    if os.path.lexists(output):
+        raise RuntimeError("Serial smoke output already exists")
+    run(executable, "--serial-import-smoke", output, timeout=30)
+    return validate_report(output)
 
 
 def main() -> int:
@@ -43,15 +55,26 @@ def main() -> int:
     env["PYQTGRAPH_QT_LIB"] = "PySide6"
     env["PYTHONHASHSEED"] = "0"
 
-    def run(*command, extra_env=None):
-        process = subprocess.run(
-            [str(item) for item in command], cwd=HOST,
-            env=env | (extra_env or {}), text=True, encoding="utf-8", errors="replace",
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        )
+    def run(*command, extra_env=None, timeout=None):
         with log.open("a", encoding="utf-8") as stream:
-            stream.write("\n> " + subprocess.list2cmdline([str(item) for item in command]) + "\n")
+            stream.write("\n" + datetime.now(timezone.utc).isoformat() + " > "
+                         + subprocess.list2cmdline([str(item) for item in command]) + "\n")
+        try:
+            process = subprocess.run(
+                [str(item) for item in command], cwd=HOST,
+                env=env | (extra_env or {}), text=True, encoding="utf-8", errors="replace",
+                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout,
+            )
+        except subprocess.TimeoutExpired as error:
+            partial = error.stdout or ""
+            if isinstance(partial, bytes):
+                partial = partial.decode("utf-8", errors="replace")
+            with log.open("a", encoding="utf-8") as stream:
+                stream.write(partial + "\nFAILED: child timed out\n")
+            raise
+        with log.open("a", encoding="utf-8") as stream:
             stream.write(process.stdout)
+            stream.write(f"\nexit_code={process.returncode}\n")
         print(process.stdout, end="")
         process.check_returncode()
         return process.stdout
@@ -76,13 +99,15 @@ def main() -> int:
     bundle = output / "dist" / "Motortester"
     if not (bundle / "Motortester.exe").is_file():
         raise RuntimeError("PyInstaller did not produce Motortester.exe")
+    serial_report_path = output / "frozen-serial-import.json"
+    serial_report = run_frozen_serial_smoke(bundle / "Motortester.exe", serial_report_path, run)
     run(python, HOST / "packaging" / "collect_licenses.py", bundle / "licenses")
     shutil.copy2(HOST / "packaging" / "LICENSE-REVIEW.md", bundle / "LICENSE-REVIEW.md")
     shutil.copy2(lock, bundle / lock.name)
     (bundle / "CANDIDATE.txt").write_text(
         "HOST-001: кандидат для проверки, не принятый Windows-релиз.\n"
         "Запуск: Motortester.exe. Для переноски нужна вся папка, включая _internal.\n"
-        "Физический USB не реализован. Демо синтетическое.\n"
+        "Импорт serial проверен без открытия порта. Физический USB не проверен. Демо синтетическое.\n"
         "Нужны ручная проверка Windows 10, лицензий и независимое ревью.\n",
         encoding="utf-8",
     )
@@ -100,6 +125,11 @@ def main() -> int:
         "packages": packages,
         "windows_10_manual_acceptance": "not performed by this script",
         "usb_verified": False,
+        "serial_import_smoke": {
+            "report": serial_report_path.name,
+            "sha256": hashlib.sha256(serial_report_path.read_bytes()).hexdigest(),
+            "result": serial_report,
+        },
         "license_review": "required; see LICENSE-REVIEW.md",
         "files": {p.relative_to(bundle).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in sorted(bundle.rglob("*")) if p.is_file()},
@@ -109,7 +139,7 @@ def main() -> int:
     archive = Path(shutil.make_archive(str(output / "Motortester-windows-x64-candidate"),
                                       "zip", root_dir=bundle.parent, base_dir=bundle.name))
     run("git", "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
-    artifacts = (archive, output / "source.zip", output / "frozen-window.png")
+    artifacts = (archive, output / "source.zip", output / "frozen-window.png", serial_report_path)
     (output / "SHA256SUMS.txt").write_text(
         "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n" for p in artifacts),
         encoding="ascii",
@@ -121,6 +151,6 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (OSError, subprocess.CalledProcessError, RuntimeError) as error:
+    except (OSError, subprocess.SubprocessError, RuntimeError, ValueError) as error:
         print(f"Build failed: {error}", file=sys.stderr)
         raise SystemExit(1)
