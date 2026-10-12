@@ -794,8 +794,10 @@ Windows и power-loss durability этой проверкой не подтвер
 
 Отдельная следующая версия `tests/recording-adapter-reproducer` закрепляет B
 `dbbff7812a9d811d6764dfb80ad83001c8f10bdb`, tree
-`412176cadae21859d677d08d130a654cbeb19643`. Изменение production B относительно
-PR154 ограничено worker mkdir и проверками retired вокруг него. A не меняет
+`412176cadae21859d677d08d130a654cbeb19643`. Среди десяти исполняемых здесь
+Qt-free модулей B относительно PR154 изменён только recording_bridge:
+worker mkdir и проверки retired вокруг него. В PR155 также изменены GUI-модули,
+которые эта native-проверка не исполняет и не принимает. A не меняет
 host/firmware/wire; native bridge/fixture/IPC остаются прежними.
 
 Исправлено P3 предыдущего checker: full nominal Fs, trigger kind/index/edge/
