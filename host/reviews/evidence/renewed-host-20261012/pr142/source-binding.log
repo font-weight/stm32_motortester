@@ -1,0 +1,20 @@
+{
+  "commit": "699363047fa923c128fd41da67326bc008acbcdb",
+  "tree": "03e334c06f3adabad704b5113b40a13f8b25ee36",
+  "sole_parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "files": 1391,
+  "unchanged_existing_files": 1384,
+  "changed_paths": [
+    "host/packaging/LICENSE-REVIEW.md",
+    "host/packaging/collect_licenses.py",
+    "host/packaging/licenses/qt-6.12.0/GPL-2.0-only.txt",
+    "host/packaging/licenses/qt-6.12.0/GPL-3.0-only.txt",
+    "host/packaging/licenses/qt-6.12.0/LGPL-3.0-only.txt",
+    "host/tests/test_license_packaging.py",
+    "host/tests/test_serial_packaging.py"
+  ],
+  "source_freeze_sha256": "976d60fa85cb7824470aa102c208709259e4074a7e10398d98253f94cc5a8794",
+  "pyserial_notice_function_ast_unchanged": true,
+  "all_preexisting_serial_assertions_ast_unchanged": true,
+  "recipe_blob": "503a9f4aec1cd7293770226caaaa5369c16b3cca"
+}

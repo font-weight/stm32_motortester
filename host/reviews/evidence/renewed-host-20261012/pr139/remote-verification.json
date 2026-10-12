@@ -1,0 +1,15 @@
+{
+  "remote_head": "da469ceaa6421de40357376b859ad5175d6d4984",
+  "tree": "062ef56c1fa13e3600a30873e273156bcd3fe921",
+  "remote_parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "local_head": "b57cbdd356e0b3c68e2758a33fe069c51e87c7bb",
+  "bound_entries": 1658,
+  "bound_files": 1388,
+  "actual_remote_bodies_sha256": {
+    "host/docs/help.md": "785a35c6d44d7e4a74e2a2b5d998b94981018ee2e432bc7a7cb6008db58b2d75",
+    "host/motortester/gui.py": "9db091b7d6384d458c2402e1caa327437ed2a88e0671872cb7ad7e3d148007a9",
+    "host/tests/test_axis_zoom.py": "45fb3e24a26581332e92515c5cd6742cd023f3bcbc62e357162dbb4cf5966608"
+  },
+  "draft": true,
+  "exact_source_binding": true
+}

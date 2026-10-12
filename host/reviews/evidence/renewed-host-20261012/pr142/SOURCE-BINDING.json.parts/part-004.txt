@@ -1,0 +1,1977 @@
+      "sha256": "c324411e85c6ca5372f6edaa0b07a158bc9d3426144eef446e7b403a3981ea65"
+    },
+    "tests/usb-cdc/evidence/root-f1-sanitized.log": {
+      "mode": "100644",
+      "git_blob": "906508810ea9721be4130f060622b84bd6a5045b",
+      "bytes": 12169,
+      "sha256": "6949432301ab35efa5a7c328f30ffb87ab341a9c672014d858e03a5a4209e382"
+    },
+    "tests/usb-cdc/package-manifest.json": {
+      "mode": "100644",
+      "git_blob": "b1f869e53768c56c0059f936eb645ad29b943916",
+      "bytes": 67860,
+      "sha256": "34962749ae49b2c2404db48557a45ccefbe367609a0fe51d4ecc5259d94a7854"
+    },
+    "tests/usb-cdc/reproduce.py": {
+      "mode": "100644",
+      "git_blob": "2f4283f0b35d32f5d9edea7d9a9bdf8004d4d1d8",
+      "bytes": 7770,
+      "sha256": "9515dc11b45504e5711740ed0e71013c2b5f79774fde3c33a07916ea79ea2342"
+    },
+    "tests/usb-cdc/supporting/.gitignore": {
+      "mode": "100644",
+      "git_blob": "488c41ae285ab34349a35dee9064bb5b631210b3",
+      "bytes": 56,
+      "sha256": "d1b044535ac908f1ce69366787f4e13a18afc19362bd856f63dd948cd76041db"
+    },
+    "tests/usb-cdc/supporting/README.md": {
+      "mode": "100644",
+      "git_blob": "1cf51d6c675f6009de83ea5c857ee9dd581dcb76",
+      "bytes": 8251,
+      "sha256": "1267ad36c3910249744724303064391a59d3613f28f0f145c025ad3bb87449e8"
+    },
+    "tests/usb-cdc/supporting/SHA256SUMS.harness": {
+      "mode": "100644",
+      "git_blob": "98dc0adb777110993ef97f9a76959fd6a2667b3c",
+      "bytes": 4427,
+      "sha256": "5bd2eb51d6a6c2e7d0e4fb126fe7c0a9d4d76311481796fe2e5abb6ea50edc21"
+    },
+    "tests/usb-cdc/supporting/build.py": {
+      "mode": "100644",
+      "git_blob": "e77a8a370723e61d8c933a01fe5524306e515e34",
+      "bytes": 4175,
+      "sha256": "0c5750b8cb6a44386ad715ea778179ecee811c2f7f54cf5e407fef671067be4e"
+    },
+    "tests/usb-cdc/supporting/config-buffered/tusb_config.h": {
+      "mode": "100644",
+      "git_blob": "7afbd3b8369be976107d58be96eb306dfc1f4377",
+      "bytes": 1373,
+      "sha256": "ef6f720feda7e9e5e427ee0d2b90f2430402b5f6d7076911b4e3757855ee3dfc"
+    },
+    "tests/usb-cdc/supporting/config-f1/tusb_config.h": {
+      "mode": "100644",
+      "git_blob": "b78f1974211531a8f841c25e326486cb56ab870d",
+      "bytes": 1345,
+      "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "20e65d442c44dc1d541b9d4e273cf8a5f2b24219",
+      "bytes": 15919,
+      "sha256": "1b91002efe8cc11ac06b02fe5b1d6a5425ed36aca79d91ee508f3538fde05d40"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/adapter.log": {
+      "mode": "100644",
+      "git_blob": "7d0a927ec97a1b9ee5ec0f493916eaac19922b67",
+      "bytes": 9372,
+      "sha256": "428c0b5fd3ec991e11333a1c23b2ce3af798c256a7c2d4ad62658ec5568219ff"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "1d31749f38c95029d994a5ec0d66789f42b6bdb3",
+      "bytes": 6019,
+      "sha256": "bc2408ff13858c31e19c7d2a98a976a4836198239c6858f2460f9a68d64579e4"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/core.log": {
+      "mode": "100644",
+      "git_blob": "63dd2931ea9d6071ff7c6218e849d1226a4c5bd8",
+      "bytes": 3096,
+      "sha256": "832d9bddb2380b78dc7960cfdb41c490fe7bf047e20d7e18c0b767299f024e4a"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-host-completed.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-positive.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-submissions.csv": {
+      "mode": "100644",
+      "git_blob": "4b52ac156386be1d0d8970992114cdd703d71adb",
+      "bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-submitted.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "ce92b94eda9ff2b5ccd3f7927e7b6c4bcadcb9dd",
+      "bytes": 16930,
+      "sha256": "b262b4ed335f3385c453d92aea675d553c78746f11ddc0931f5a208f08584ce5"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/adapter.log": {
+      "mode": "100644",
+      "git_blob": "14678df3c7f1653e4fc7c463ac0a4c33b23d9b83",
+      "bytes": 10171,
+      "sha256": "2b93c5a1481f4d6095a86405e7a7c68533a1a4b57bc6a87c253ab502fa20f08e"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "b6a955fa4654d6dd7afebc84fd7570bee41ed13f",
+      "bytes": 6470,
+      "sha256": "2281c7f8c044a2b5153ddaba3c5e30a40be55afe245af7be8a3296f37bf8ba2d"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/core.log": {
+      "mode": "100644",
+      "git_blob": "ec08b58501ffee81d0caa87e7888501d0a6a0c9a",
+      "bytes": 3425,
+      "sha256": "669a1f622c612a09e9ceef24de2a62b13464253e49a1d8debee15e34aa0d34d5"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-host-completed.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-positive.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-submissions.csv": {
+      "mode": "100644",
+      "git_blob": "4b52ac156386be1d0d8970992114cdd703d71adb",
+      "bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e"
+    },
+    "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-submitted.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "3981de66fced727821b1c61b85d82f7db37f188e",
+      "bytes": 16286,
+      "sha256": "d5d4b54df60e53a495cfdcc3457424f6a7354088333b668a9728764f6a34eb74"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/adapter.log": {
+      "mode": "100644",
+      "git_blob": "a4559c807728fdbf51685d7884c20f9c436f3c96",
+      "bytes": 9602,
+      "sha256": "e8812e7e7d6e55e54a0e43fc374c89cec81883ee2a834577ab62621bf2af0e69"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "b54bc88f1add22697ba049dd256baa106be2309d",
+      "bytes": 6156,
+      "sha256": "18bd2734777827c2699c974d2c60bd9500b958f03204f6836b0561497698b934"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/core.log": {
+      "mode": "100644",
+      "git_blob": "bbe70d97f252efe8caca6e29ed3045c61bab0a47",
+      "bytes": 3186,
+      "sha256": "db9eea79a79046ce0c3b65fdfc8a4dd2eaafcb1900d5ae4a19dec8b7c13144d4"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-host-completed.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-positive.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-submissions.csv": {
+      "mode": "100644",
+      "git_blob": "4b52ac156386be1d0d8970992114cdd703d71adb",
+      "bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-submitted.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "f324ff809d233150935ba18356223e036a30bc29",
+      "bytes": 17297,
+      "sha256": "e3a9150d6b95bd8d54859adc5dc766b946c9b580d6569b920dd489c44cf39803"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/adapter.log": {
+      "mode": "100644",
+      "git_blob": "a22d7f72769c00204057da6ba67f59f3e471724e",
+      "bytes": 10401,
+      "sha256": "9232451da2fa0e38cb70359d555b24401eeb4b51079cf4f02b01cabf62bfc1d5"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "ccecfbcf0b5529f9ec0f2a4debb2bc35df46f1c6",
+      "bytes": 6607,
+      "sha256": "3f0c2a0761d19d4f4efdf96659afb7a12e80d356e459c42ca9c21edcbffea586"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/core.log": {
+      "mode": "100644",
+      "git_blob": "77874582ae2b50cc1b736657abd4b7522bcee86e",
+      "bytes": 3515,
+      "sha256": "e1cf2f531dbe33833255259aab3e749f38d9064f3cf6811f0c44d7c09be7a215"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-host-completed.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-positive.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-submissions.csv": {
+      "mode": "100644",
+      "git_blob": "4b52ac156386be1d0d8970992114cdd703d71adb",
+      "bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e"
+    },
+    "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-submitted.bin.hex": {
+      "mode": "100644",
+      "git_blob": "bc6d4a4cedf2381841fc2e312351eeb51d042d52",
+      "bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b"
+    },
+    "tests/usb-cdc/supporting/evidence/matrix.json": {
+      "mode": "100644",
+      "git_blob": "29d91842b112746032d03ffb4e31999b84b503d2",
+      "bytes": 8961,
+      "sha256": "03644315d69d550d2c02a738c4b3af8c1a4a5c01f3166385a0dd15eb84cad0fb"
+    },
+    "tests/usb-cdc/supporting/evidence/upstream-sha256-check.log": {
+      "mode": "100644",
+      "git_blob": "5d0e3d1d4378ebc1c2280eeab5cffc9cd452ad70",
+      "bytes": 1563,
+      "sha256": "4cd49a05b9d5e26e265ccdbcff88dffd0591b6823ff761f5261a5ff98b473e80"
+    },
+    "tests/usb-cdc/supporting/fake_dcd.c": {
+      "mode": "100644",
+      "git_blob": "cce9d34659ede792bc18c0c8bd140f244e41ebfb",
+      "bytes": 10339,
+      "sha256": "fa91bed60b415d7c09e1b4aa1c3865f127d29232113c7dc1e1344e8469c595da"
+    },
+    "tests/usb-cdc/supporting/fake_dcd.h": {
+      "mode": "100644",
+      "git_blob": "2c7ddecacbb8ae4b9adaeef38aa28907eb2325e5",
+      "bytes": 1443,
+      "sha256": "60651a7dfc9c81158108c293185a4add62f044aac484333660ea826999af0f57"
+    },
+    "tests/usb-cdc/supporting/test_adapter.c": {
+      "mode": "100644",
+      "git_blob": "6152f7c6f840bb8fee65e8f7d998e23dc9796303",
+      "bytes": 28714,
+      "sha256": "30d45f6160a7f90d8db7f079417cc079da2ca784dff2d434b30af75a75fca16e"
+    },
+    "tests/usb-cdc/supporting/test_core.c": {
+      "mode": "100644",
+      "git_blob": "28c698343c3ce37af8ebdeafe89eefdca8d2f289",
+      "bytes": 1374,
+      "sha256": "84d802925f8c83c0313928beced3ef2df5629921b1fac2ab5af91bba062f0517"
+    },
+    "tests/usb-cdc/supporting/text-encoding.json": {
+      "mode": "100644",
+      "git_blob": "a8caf1646e806ae0dfc27799ccc5b038946a39ee",
+      "bytes": 3963,
+      "sha256": "ad5a538b8b3055e15a206f10f3f86a732ac982b51ba24243ccc95cdedcf34396"
+    },
+    "tests/usb-cdc/verify-package.py": {
+      "mode": "100644",
+      "git_blob": "23e93bb88821e34837a60d88ef1be3a497a4c965",
+      "bytes": 3808,
+      "sha256": "fac0f0904441f448412e0e6dbe3a8849afdd9c70a3677ccf6b395b6bf0341de2"
+    },
+    "tests/usb-epoch/README.md": {
+      "mode": "100644",
+      "git_blob": "18ea0ebbb068a88e635c2c5729c368fa218f442e",
+      "bytes": 7271,
+      "sha256": "58e1f1f6a01d6c079d3eb5c74657da3f600468fed55d4b631d48f881e2d5510c"
+    },
+    "tests/usb-epoch/arm-check.sh": {
+      "mode": "100644",
+      "git_blob": "d4d9d41f014cdba9522ab1beb996fd8a761c5f11",
+      "bytes": 894,
+      "sha256": "0cb6ababaf9d5651487afd6725474aeefdd20c7488fdfceafd2b7544f5552c1d"
+    },
+    "tests/usb-epoch/arm_probe.c": {
+      "mode": "100644",
+      "git_blob": "72311b6114fd62358f5df3a9376b08f52938f8a9",
+      "bytes": 253,
+      "sha256": "35173444a1119024b424d4a89a302b167f631de1d6802c2c7effbfb0ad561bc8"
+    },
+    "tests/usb-epoch/author-evidence/arm-final.log": {
+      "mode": "100644",
+      "git_blob": "0cfef43019c2bbb5069b00eee51d8c9ffc0a8a6a",
+      "bytes": 1696,
+      "sha256": "a3b955c84382f182f34ba61ba9f8e7028bf407fc2bff01e89627ee704b9cbbde"
+    },
+    "tests/usb-epoch/author-evidence/arm_probe.su": {
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/usb-epoch/author-evidence/mt_usb_epoch.su": {
+      "mode": "100644",
+      "git_blob": "802eb185d9a266b47c21a64095474850eecaeb5d",
+      "bytes": 962,
+      "sha256": "570c3aaad87fe8e52b608ffacbdaba296a71a0bbb6dfe06b386e34f37e432088"
+    },
+    "tests/usb-epoch/author-evidence/native.log": {
+      "mode": "100644",
+      "git_blob": "b978d82963ee6f1884537a2bfd70f9c13664c9cb",
+      "bytes": 197,
+      "sha256": "53cd171e1bbd114404f8c8ffb87da39280d75720d6852f1808145426886fb51f"
+    },
+    "tests/usb-epoch/critic/CRITIC_A_USB_EPOCH_REVIEW.md": {
+      "mode": "100644",
+      "git_blob": "9dfab6f347883bc5ddcc482078ede7c11656ec95",
+      "bytes": 9033,
+      "sha256": "d559368a4013efb2f66aeddd5862c6b87d08e79419f7c878e1e4b465527a135e"
+    },
+    "tests/usb-epoch/critic/SHA256SUMS": {
+      "mode": "100644",
+      "git_blob": "5b083223e6e2ab16cd0ead1c08c0863ef3a07d53",
+      "bytes": 841,
+      "sha256": "a23c01b80c3f254403347c538fd1db3ab98e43af49622a4d55ed33dbc7ea98fc"
+    },
+    "tests/usb-epoch/critic/analyzer.log": {
+      "mode": "100644",
+      "git_blob": "9200c2a7b292d47e4d2ba23a1c10b8bb334331c9",
+      "bytes": 7,
+      "sha256": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061"
+    },
+    "tests/usb-epoch/critic/author-arm.log": {
+      "mode": "100644",
+      "git_blob": "0c46fe09676111570e882f263f1135b4c22a4b1b",
+      "bytes": 1699,
+      "sha256": "87264ba17e43aa2be06c96b7527a73d960f67ba86ec682cafc7ad43277aa09ba"
+    },
+    "tests/usb-epoch/critic/author-native.log": {
+      "mode": "100644",
+      "git_blob": "b978d82963ee6f1884537a2bfd70f9c13664c9cb",
+      "bytes": 197,
+      "sha256": "53cd171e1bbd114404f8c8ffb87da39280d75720d6852f1808145426886fb51f"
+    },
+    "tests/usb-epoch/critic/relocated-final.log": {
+      "mode": "100644",
+      "git_blob": "ef22e599f7997948bc0cd1b2894ae176cadc567e",
+      "bytes": 105,
+      "sha256": "ad2e310bae4bca71249318b3ffba93812a6751c8112f530fb84d3db525fef0dc"
+    },
+    "tests/usb-epoch/critic/run.log": {
+      "mode": "100644",
+      "git_blob": "5f729e27a8912de28a23399b1d3ac99efce74827",
+      "bytes": 1170,
+      "sha256": "b961b75e7ccf58e78950deed2d318df27f62d26a5ee24dc9ea72f84277ffba5c"
+    },
+    "tests/usb-epoch/critic/run.sh": {
+      "mode": "100644",
+      "git_blob": "8b25327d48149ce27523dd94a576003a5778fbd8",
+      "bytes": 571,
+      "sha256": "78b36209a45c712c436a7998a7e5d43895a02ff665091ac7daa7aad23e40cdfe"
+    },
+    "tests/usb-epoch/critic/source-manifest.json": {
+      "mode": "100644",
+      "git_blob": "697936f9a011755bef598b8a2d1835904e63babd",
+      "bytes": 1084,
+      "sha256": "e3ead415156345e62dc581e7ef6fdc17048242ca681f00f8bb5d828e8e66ceea"
+    },
+    "tests/usb-epoch/critic/supporting-reproduction.log": {
+      "mode": "100644",
+      "git_blob": "ef22e599f7997948bc0cd1b2894ae176cadc567e",
+      "bytes": 105,
+      "sha256": "ad2e310bae4bca71249318b3ffba93812a6751c8112f530fb84d3db525fef0dc"
+    },
+    "tests/usb-epoch/critic/test_api_boundaries.c": {
+      "mode": "100644",
+      "git_blob": "175085996684fe6916d239bcf17eb08c3fb4377c",
+      "bytes": 6686,
+      "sha256": "6a734599f5cdb21cbefcf196085d9bec94a9390a7a54b37f9ef8a1d041d6f924"
+    },
+    "tests/usb-epoch/input-provenance.json": {
+      "mode": "100644",
+      "git_blob": "08e386814940f2bb13d8c22bdebcbd52aa11285f",
+      "bytes": 28320,
+      "sha256": "8f04b9003fa1d12a08037867d32a7aee9dd40931e7aee240534a1e288185da2a"
+    },
+    "tests/usb-epoch/package-manifest.json": {
+      "mode": "100644",
+      "git_blob": "90b7bcd9e4091b1adbd92dbd94b5174ae6f8f85a",
+      "bytes": 29684,
+      "sha256": "8da29cc67b4ddb345063c6a355a3917ffa1d7e20ca9bedb77e1bddb7c4251ad3"
+    },
+    "tests/usb-epoch/reproduce.py": {
+      "mode": "100644",
+      "git_blob": "148d8482c7801f511c673f3024b8718f3f42fba3",
+      "bytes": 4188,
+      "sha256": "572f13f818846aa82b6002bedd218f8e2929a85c4f2e832997418ffa47232758"
+    },
+    "tests/usb-epoch/run.sh": {
+      "mode": "100644",
+      "git_blob": "bfa0ff20d0210053e1646dcc13b466e679d672bb",
+      "bytes": 475,
+      "sha256": "6b83e11b506fadac6e41a21b6f06924afbacd595d9843c4253f5a4872f3e0e37"
+    },
+    "tests/usb-epoch/supporting/REPORT_RU.md": {
+      "mode": "100644",
+      "git_blob": "a2d63fedc78973da71dd128263621a6695defb6a",
+      "bytes": 15506,
+      "sha256": "87b6ead13792d3fbf6429ba6b1b41a445abef92af88a1272dfe12dd537946eed"
+    },
+    "tests/usb-epoch/supporting/SHA256SUMS": {
+      "mode": "100644",
+      "git_blob": "6afad5d5fa8e2745f750c99e292a89f6c3e986f3",
+      "bytes": 9892,
+      "sha256": "1f2efd76d8d51222327fb9c179e24c5cd421656c9d98559ce9cdd0caf811698f"
+    },
+    "tests/usb-epoch/supporting/evidence/abi_probe.arm.su": {
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-abi-build.log": {
+      "mode": "100644",
+      "git_blob": "d3104d20fcef3eeb354a3cd1ffe95494e41d1d64",
+      "bytes": 576,
+      "sha256": "142a10ad327ba3c5eca8c6d8a672e5586612231242ff771d5b3ba2ff778b2946"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-attributes.log": {
+      "mode": "100644",
+      "git_blob": "7c0af767cc94cc5ec28425e8274e4cfd4cd9d797",
+      "bytes": 1575,
+      "sha256": "12fea9ddef06582308e44b4d7db9d3244dc4699d59d16587bb73b2c74e6d8b30"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-disassembly.log": {
+      "mode": "100644",
+      "git_blob": "ee4a86700457ea16ce3f21d6471ebf9ca5925425",
+      "bytes": 13477,
+      "sha256": "b0c0b37c8f150aaa6c9628d57c841718dfc62c880dd14db6c35fdc95ec4f6124"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-package-hashes.log": {
+      "mode": "100644",
+      "git_blob": "e1de1e15afba57f950fcfb92584dd2503fe6b95e",
+      "bytes": 230,
+      "sha256": "a10b58dfa5960f2802ea861ef320df2bd5bff9ca619daa5bc3c67507eefae950"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-size.log": {
+      "mode": "100644",
+      "git_blob": "2b22f7c74bc7aed826030867978e50cf46b99f3f",
+      "bytes": 439,
+      "sha256": "945d6a170dba7ba4838af6ba9224e3715c35d44d242ea7abc37aa68bcd6d30bd"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-source-build.log": {
+      "mode": "100644",
+      "git_blob": "8a923da141a4b5261e8adc492b87ba0aa122b1a1",
+      "bytes": 583,
+      "sha256": "fdb419b87d166994a48b6f5cfa58afa74a978bfc27d815759e886b4528178863"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-symbols.log": {
+      "mode": "100644",
+      "git_blob": "a255bd7496a6fec90f10c185a8ded76919e454b0",
+      "bytes": 707,
+      "sha256": "4766a0a0787e9065ffc7e3b1b07ccad8f7dc857310147bc3e41cc4ce08a46ef9"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-toolchain.log": {
+      "mode": "100644",
+      "git_blob": "cb40d012dc5021312ad28b88bd924da9cce8a945",
+      "bytes": 354,
+      "sha256": "f92017dc4d5e70c618fba583ac160305847c4778be7d2488a0e137cdf8000b7e"
+    },
+    "tests/usb-epoch/supporting/evidence/arm-undefined.log": {
+      "mode": "100644",
+      "git_blob": "e2979846eb7f5afb2f0ea48f361fd935799317b5",
+      "bytes": 179,
+      "sha256": "026798d637067f00ecfc0ea363f057b894960abf29a565b9484c6c1213eaf94c"
+    },
+    "tests/usb-epoch/supporting/evidence/commands.json": {
+      "mode": "100644",
+      "git_blob": "bee10eb124ebc0792ea59d37135207f6ae455376",
+      "bytes": 40696,
+      "sha256": "3e6b9d495aa16f21daf14753ff3b860e2cfe350333377353b557d0a34b5f8ac7"
+    },
+    "tests/usb-epoch/supporting/evidence/coverage-gcov.log": {
+      "mode": "100644",
+      "git_blob": "76e2666e5b7014a58eab6c6824c269d49549b039",
+      "bytes": 293,
+      "sha256": "bbb8ea1520b5507a7ddf9a9f50cdc5c5a58b86e4a9d79b9624633c1449eb4ac5"
+    },
+    "tests/usb-epoch/supporting/evidence/coverage-run.log": {
+      "mode": "100644",
+      "git_blob": "19c3735146080af1927ada1ef06354d4a5bf9b91",
+      "bytes": 460,
+      "sha256": "bfc6e20fa6a86de4710c8df0b53349286cccd2c67cc13f91257441192353a396"
+    },
+    "tests/usb-epoch/supporting/evidence/coverage-source-build.log": {
+      "mode": "100644",
+      "git_blob": "d0c2748df422e595fc2c1d2e90b3f09150d819b1",
+      "bytes": 351,
+      "sha256": "82d7581c88f77b3297cb414631f7a5887114c1d95923fe68757d6ea0ea132af2"
+    },
+    "tests/usb-epoch/supporting/evidence/coverage-test-build.log": {
+      "mode": "100644",
+      "git_blob": "34c7c4aca6be03e71aefa6ebc90ff848f991a779",
+      "bytes": 424,
+      "sha256": "0f5fe567f0dc7c7d5cbe096df5676e7146d58f65bd5f13ebbda18921f219746f"
+    },
+    "tests/usb-epoch/supporting/evidence/coverage/mt_usb_epoch.c.gcov": {
+      "mode": "100644",
+      "git_blob": "1da1f3c1b421b3cdd51242b66555dab5c7b5b814",
+      "bytes": 9283,
+      "sha256": "0e0c971fb1308739edf294035f5fde5dbb0da35d7a42bdb860a647e4d3421fa9"
+    },
+    "tests/usb-epoch/supporting/evidence/input-output-manifest.json": {
+      "mode": "100644",
+      "git_blob": "350343b1adf2770ad50192657b400b150769b1e4",
+      "bytes": 2044,
+      "sha256": "1b99ad2f3e462089e01fdeca548a16c408e8f1026a4aa75ef58a6e13ef15ff18"
+    },
+    "tests/usb-epoch/supporting/evidence/issue54.json": {
+      "mode": "100644",
+      "git_blob": "cbb6a37230a6ea1e7cd09becebb8a0dcdb22509d",
+      "bytes": 3100,
+      "sha256": "acc1700b4a7f80a04600b08354871df38aa92d9f6bab74c27aec720776a133a6"
+    },
+    "tests/usb-epoch/supporting/evidence/leak-sanitizer-unsupported.log": {
+      "mode": "100644",
+      "git_blob": "9469fccd1f51edd274505eebfeaf197c0c7b9dc6",
+      "bytes": 295,
+      "sha256": "801e4cfe85ba8233f42eeb6cfaaec8d591f15d5a408ccfd154faf5323e6bea56"
+    },
+    "tests/usb-epoch/supporting/evidence/mt_usb_epoch.arm.su": {
+      "mode": "100644",
+      "git_blob": "b85f045ecd4edc2e3f125715083d660b825bcd8f",
+      "bytes": 1265,
+      "sha256": "300826d63e07c42f48809a116b8dc9940068c7000f0c6b33c35092fbe9fc2d31"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/allow_diagnostic_wrap.c": {
+      "mode": "100644",
+      "git_blob": "2bf231e0209d8b903f61fbd50f71ddcb7571dae4",
+      "bytes": 3376,
+      "sha256": "d3c5674af6fbb194c322120b13b1cfae931950fcdcc1224296dba6f490adfa71"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/allow_hard_wrap.c": {
+      "mode": "100644",
+      "git_blob": "37e23fcc9d7df3f527a0d3f818b01820c689f298",
+      "bytes": 3379,
+      "sha256": "3dea891838173d88a8eb28e7cdc81e39a8b4ec2fe596da96cba85dde023a385a"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/allow_old_pause_ack.c": {
+      "mode": "100644",
+      "git_blob": "480de7e5724a0ab3c73c6670f781090d72be7bf7",
+      "bytes": 3393,
+      "sha256": "a4fe34a4fdc8e9c7b976dbb81315b1733771c9b84ba4c3f14cf0f4a3007da699"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/dispatch_during_pause.c": {
+      "mode": "100644",
+      "git_blob": "b509a94b750e0d678d74e9ed68a27bd19cf2bf16",
+      "bytes": 3382,
+      "sha256": "316182708eb7f39f72174860b4a61370651b4d3eb9540d1909b44e651e35c658"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/ignore_cleanup.c": {
+      "mode": "100644",
+      "git_blob": "ef3059118103db484461f68a9141b55bd56e071c",
+      "bytes": 3384,
+      "sha256": "217165a93417039a3332061213e7a1542520f8b5ab0ae45edb742933f8ed979c"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/ignore_queue_loss.c": {
+      "mode": "100644",
+      "git_blob": "cf26b94bf6da2da3adaf56740dd77abbf161c42f",
+      "bytes": 3381,
+      "sha256": "ecff9521e16a46231ccc2cc963f73c977984a8df6ed44133441dbc443db067ac"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/ignore_stale_identity.c": {
+      "mode": "100644",
+      "git_blob": "8bb2a951ab423fbac4c6426f21c83414fa7204b6",
+      "bytes": 3398,
+      "sha256": "5907c71b73b9d9dd2dc493f83cea46b8ef6a396fc3377c2d911827596bc6d4ab"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/skip_config_receipt.c": {
+      "mode": "100644",
+      "git_blob": "cd77a2c2bbb32f69864f0f6816dfd93b430ca321",
+      "bytes": 3377,
+      "sha256": "c7988d2c55df536af1f4811d38b40a09427001fb9b3c10c635ed3ee4161a2f3b"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/skip_enqueue_receipt.c": {
+      "mode": "100644",
+      "git_blob": "455f8fb69f822d1694dfba72f56f546676401682",
+      "bytes": 3379,
+      "sha256": "df6dab570462ae2248e5f0c8046386586231381a6da9137476aaef616e64e83b"
+    },
+    "tests/usb-epoch/supporting/evidence/mutants/skip_processed_receipt.c": {
+      "mode": "100644",
+      "git_blob": "510237d0dabff0fabad8c0805868a1daf448dcc0",
+      "bytes": 3371,
+      "sha256": "9bf783645e0e75b7d91798995861900d7a76b3c95cbe7509fa2459fbd5c9820e"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-allow_diagnostic_wrap-build.log": {
+      "mode": "100644",
+      "git_blob": "ff8d42546c157904e2d2283d63cfdd2c0bc0d228",
+      "bytes": 425,
+      "sha256": "c06f65dc15ad2f8644ccca8013ed9f421dbf2e20c7343a5102d33032d2915446"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-allow_diagnostic_wrap-run.log": {
+      "mode": "100644",
+      "git_blob": "ee20d0c4d423bfef9b1ec106917e3248c88525ff",
+      "bytes": 262,
+      "sha256": "ba75fea7f8d1243a6f71a55667525a287fa72eff3f43b74161c5350756248fad"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-allow_hard_wrap-build.log": {
+      "mode": "100644",
+      "git_blob": "d6cc212b76538ad691dc400553e5b3f0949721c4",
+      "bytes": 413,
+      "sha256": "b70359390ed9b6dd37c41f223f542c2e61c15470dd077df462af983dd90beb17"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-allow_hard_wrap-run.log": {
+      "mode": "100644",
+      "git_blob": "1867a040648a27a46949b12944e3e7dcdde0851b",
+      "bytes": 250,
+      "sha256": "5096be3fc7ce81a2d80f5c4a79e1cb2d9079c696d6255a37fa82349845867552"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-allow_old_pause_ack-build.log": {
+      "mode": "100644",
+      "git_blob": "df945d5dc6f88bd1ee93553969fe9c0701423104",
+      "bytes": 421,
+      "sha256": "0aac223298967bc4902ae3f05a552992df153166afd8c5f79a3ae14d4f234cbf"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-allow_old_pause_ack-run.log": {
+      "mode": "100644",
+      "git_blob": "a6ff6486a8724a0314bed4f45e16c6ef67dd93e9",
+      "bytes": 249,
+      "sha256": "36a9ceece1be88b46acc2b82b304bc3aa5ca3dd168815a5a07a6e2f5ea28ef1e"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-dispatch_during_pause-build.log": {
+      "mode": "100644",
+      "git_blob": "5319c4ea994029f7a6ff9f19df22e2a55cb9c643",
+      "bytes": 425,
+      "sha256": "bd2427a743dd2f273f8483982633bde8930533cc2fb4ac9a641b8c9c236d6a10"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-dispatch_during_pause-run.log": {
+      "mode": "100644",
+      "git_blob": "ac6e3a667067c60f055fad96f14813ec9b51a1a9",
+      "bytes": 247,
+      "sha256": "241d33afb8864a2fd62433be92d24c797d126a46d0aa56113fce85ab4394067f"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-ignore_cleanup-build.log": {
+      "mode": "100644",
+      "git_blob": "76022129f28b185c4e253b0b4747b04ae90a3b18",
+      "bytes": 411,
+      "sha256": "6ff558aa69032eab99f4caac73e21ccca71c8ca6056e8dc671c63181d07acd23"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-ignore_cleanup-run.log": {
+      "mode": "100644",
+      "git_blob": "a98a67ce09078755c6422da04e5ddefa4fea7d2a",
+      "bytes": 242,
+      "sha256": "2e12b0ecc7c08137f003205d211657e22508cb038acd9fa14581e44a8401b276"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-ignore_queue_loss-build.log": {
+      "mode": "100644",
+      "git_blob": "40a50b58ebb8f521dd85b476a73acacac2295656",
+      "bytes": 417,
+      "sha256": "7ec59a13b11f9eb2c87cb8629091634eed7cb40e181ee83d98e8c7ab8f6e7f44"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-ignore_queue_loss-run.log": {
+      "mode": "100644",
+      "git_blob": "96934a30786f30643b6470554b4a9b0879d05be0",
+      "bytes": 263,
+      "sha256": "151a32aa8cde27f24afcb4ec4bbbb5c70a985b0ceed7e7966a8a59aa3ac4782d"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-ignore_stale_identity-build.log": {
+      "mode": "100644",
+      "git_blob": "63384160c589db859550804d03f93ddc1cab989b",
+      "bytes": 425,
+      "sha256": "bedeeda5e3756d422894f3cfd3b7f0b2ecf289c1ac852bd20c72493b4b610abe"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-ignore_stale_identity-run.log": {
+      "mode": "100644",
+      "git_blob": "631ce1fee83d22205b0edc701b77e501ac40b02d",
+      "bytes": 268,
+      "sha256": "2c280885efa606a84073865eeaefebc33db7476a3aebe2726d4837912afc6704"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-results.json": {
+      "mode": "100644",
+      "git_blob": "45b10181ce53ba551596909b8c185e1e6daced73",
+      "bytes": 3245,
+      "sha256": "9cea949c9ae1853a2d8e8e80a9f3925c754fdef29ee3d5a9ff73cc18bb430fba"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-skip_config_receipt-build.log": {
+      "mode": "100644",
+      "git_blob": "888d5db03762ab8c09e11e8372b60114509d515e",
+      "bytes": 421,
+      "sha256": "92362a3cf0dead7068483aba7e8fe9142573e3cda294b3fa3997a61992a15986"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-skip_config_receipt-run.log": {
+      "mode": "100644",
+      "git_blob": "3a9cd94e26050fca59c1f79fdde6425d560f9842",
+      "bytes": 236,
+      "sha256": "450475d9cc9987942e55dff2481826d208a09cb4c83c27f78d947cbe9158fcaf"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-skip_enqueue_receipt-build.log": {
+      "mode": "100644",
+      "git_blob": "a7b564c9861aa17e41a71fa217be83cda76a849f",
+      "bytes": 423,
+      "sha256": "aae6c8f26a69d0ba3c630cf3bb50b33caafb0c950b8096019c78985b41466891"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-skip_enqueue_receipt-run.log": {
+      "mode": "100644",
+      "git_blob": "eed6a458b407994a58f0329476a4d6c742467104",
+      "bytes": 241,
+      "sha256": "70e7b275a76e1e2726c6cce3e1ab230126d6f36e41c18a9802ac69c3a7f647a6"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-skip_processed_receipt-build.log": {
+      "mode": "100644",
+      "git_blob": "11a55a3dbf818ff8a71ab3a6f2991010306fbf23",
+      "bytes": 427,
+      "sha256": "693c01f5dc073bdee6a5172bc5268ebdd3e44f797b4b70803d633444465c8306"
+    },
+    "tests/usb-epoch/supporting/evidence/mutation-skip_processed_receipt-run.log": {
+      "mode": "100644",
+      "git_blob": "a7808f52ad8e02cfe33c853cf4e8e15b4d7bb2c3",
+      "bytes": 244,
+      "sha256": "3c6fc8f3847e3f2deb5a6805b3c1008a972f3dd8544421156796f06cbdca82ef"
+    },
+    "tests/usb-epoch/supporting/evidence/native-toolchain.log": {
+      "mode": "100644",
+      "git_blob": "8a3b4027c7b3c8c84a63af77b85a16db4e8c5364",
+      "bytes": 256,
+      "sha256": "b4268c50963d4110606c8a20473841d1d8d165d903f94a3b0f875a43be5008ce"
+    },
+    "tests/usb-epoch/supporting/evidence/preflight-with-lsan-commands.json": {
+      "mode": "100644",
+      "git_blob": "f5ec0a347cf49205967ab309225724e6bcf8574f",
+      "bytes": 3229,
+      "sha256": "5ecbc61105e9481fb283f6e1acc1b60060c5e4dfb7af274ffb9af46c7b3b2a3c"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/arm-abi-build.log": {
+      "mode": "100644",
+      "git_blob": "94aa9e9c91c89d3d93299bf0ec170cd7d62533ad",
+      "bytes": 624,
+      "sha256": "92f73d1a485b5827f902aaf8e169929b674b35bce552ad2d717cb72b60bdfbef"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/arm-undefined.log": {
+      "mode": "100644",
+      "git_blob": "c0a2fc70d6ea0fd742e7e88c7236b17a9c5e5f6b",
+      "bytes": 195,
+      "sha256": "234e133eb1ee939e1b63f2d6cf83299fb11c812f459be62a92d00c6301c8114c"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/commands.json": {
+      "mode": "100644",
+      "git_blob": "ad90a163ce2e56259f9bcf70bccc66ee9e3cf47d",
+      "bytes": 42762,
+      "sha256": "fc8613ae41bc56191a0a1a19c0b7322fd6c8b14509d5be70b6cb8780d7ac4f73"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/coverage-gcov.log": {
+      "mode": "100644",
+      "git_blob": "1b50356fdc12fabff28609c66e78b61f83fef555",
+      "bytes": 309,
+      "sha256": "e902f365047e7242f765e2244b24fe12bf1f541f81663919fff0095f73c26abc"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/input-output-manifest.json": {
+      "mode": "100644",
+      "git_blob": "9c12aab71aea29c77275d5aadcc6eb1e2bd1d7b1",
+      "bytes": 2220,
+      "sha256": "415ba55201d8b53b2c9c0f916284943766a71dffe396cd2c686b01b638c88d36"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/sanitizer-run.log": {
+      "mode": "100644",
+      "git_blob": "f5e568ecedcd36c7d5b18c6aebda612bba7be3d2",
+      "bytes": 467,
+      "sha256": "3b19abd23cf223d70b1efe44d4f7f96e9194edfab7bc9b29834d3ebf9c01d592"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/strict-run.log": {
+      "mode": "100644",
+      "git_blob": "b9f7575e4c58174a74efb9af00df59c65f84e4f3",
+      "bytes": 465,
+      "sha256": "a0c72d200954555cf73e06fcf0bf7b3d7f55c15af020a882f62fe02ee52aecbd"
+    },
+    "tests/usb-epoch/supporting/evidence/relocated-clean-run/summary.json": {
+      "mode": "100644",
+      "git_blob": "f72483bfc5a8499f3fb0d7a6465856db06e4eba4",
+      "bytes": 503,
+      "sha256": "823a36095c7a1f5773a5d5b58088ea83db9cfa32fc081334516500d23af10b94"
+    },
+    "tests/usb-epoch/supporting/evidence/sanitizer-build.log": {
+      "mode": "100644",
+      "git_blob": "7107c3e87e125a5dc15531e84644af1c2b58b57e",
+      "bytes": 480,
+      "sha256": "7e001e7d0300dd579df4200e57d2359df6ed35c4dc21d804052c78ff239fd8c7"
+    },
+    "tests/usb-epoch/supporting/evidence/sanitizer-run.log": {
+      "mode": "100644",
+      "git_blob": "40dc48df53db556ddbf0800d3ffc190c2e60afc3",
+      "bytes": 451,
+      "sha256": "bf08f7e594624b73fea6f49df2ba30b9851286f446fefd7666abb55c81b54326"
+    },
+    "tests/usb-epoch/supporting/evidence/strict-build.log": {
+      "mode": "100644",
+      "git_blob": "39d6c82ed4d30f14bcbf209a45c9abd05ffcc054",
+      "bytes": 391,
+      "sha256": "71722074835b6529e09b7ad680b3fceea2bf43452f84bf69d2b8f64ffea274ab"
+    },
+    "tests/usb-epoch/supporting/evidence/strict-run.log": {
+      "mode": "100644",
+      "git_blob": "e3fd0783cf2de1f3a9cf69d3eb4dbcca59696592",
+      "bytes": 449,
+      "sha256": "c95dc82d19b45e3b7b831e813112e32c6c432b145f94387e50c35f2fe9c62f14"
+    },
+    "tests/usb-epoch/supporting/inputs/issue54.json": {
+      "mode": "100644",
+      "git_blob": "cbb6a37230a6ea1e7cd09becebb8a0dcdb22509d",
+      "bytes": 3100,
+      "sha256": "acc1700b4a7f80a04600b08354871df38aa92d9f6bab74c27aec720776a133a6"
+    },
+    "tests/usb-epoch/supporting/inputs/mt_usb_epoch.c": {
+      "mode": "100644",
+      "git_blob": "c6e0b8d3e02bed1eaa8cb7e172176f18fbafecaf",
+      "bytes": 3402,
+      "sha256": "c3f70c9937359d263cc78c668bd2a9cd91f8d384d82d958d6587a777b6947159"
+    },
+    "tests/usb-epoch/supporting/inputs/mt_usb_epoch.h": {
+      "mode": "100644",
+      "git_blob": "ffa37367d9e37253871272032fe56bf5369b5506",
+      "bytes": 2926,
+      "sha256": "0846781e5688642fc7ffb59910d3acc2492b3dd9afbef406a4b4671dc2d8be0b"
+    },
+    "tests/usb-epoch/supporting/inputs/reference-provenance.json": {
+      "mode": "100644",
+      "git_blob": "5a77d2b8ca59de7ba302a04ac3a155ae565d49b2",
+      "bytes": 939,
+      "sha256": "5e61bf6d97ed8d2986f5c7b69278c146ad28439d822f7341fb1f02eaf097b824"
+    },
+    "tests/usb-epoch/supporting/inputs/reset-barrier-REPORT_RU.md": {
+      "mode": "100644",
+      "git_blob": "31563d5455dd58101e7ecf2e1e1e0e72be58afa8",
+      "bytes": 40418,
+      "sha256": "509312fadf462dfb7f6c49bc4296f7f437ac2317787316ec0edb7541a7c9b4ed"
+    },
+    "tests/usb-epoch/supporting/tests/abi_probe.c": {
+      "mode": "100644",
+      "git_blob": "6a88a52e930cd6d76305e4c4393464d9e12a797a",
+      "bytes": 1290,
+      "sha256": "9d8c5b2ce4624e4ffdc3c06adfe3fdcf0c91155928e66bd6a260839e4feef5a4"
+    },
+    "tests/usb-epoch/supporting/tests/epoch_independent.c": {
+      "mode": "100644",
+      "git_blob": "d64df3f96681bd416057f9b26c0a5fac19600272",
+      "bytes": 20010,
+      "sha256": "4064fe5801df86fb762ba0b80eaf4622f0e33bca2cc820a23e7a02af30698a93"
+    },
+    "tests/usb-epoch/supporting/tests/run.py": {
+      "mode": "100644",
+      "git_blob": "98ce8a87960b7eb07b92c2367c4212266085b12b",
+      "bytes": 6050,
+      "sha256": "e79b31ed4d29a021d1f8ca36f81af829fc2f260a3767fbe09749725e261cec37"
+    },
+    "tests/usb-epoch/supporting/text-selection.json": {
+      "mode": "100644",
+      "git_blob": "8d7d61a6dd7454aa916bc08b6f49f0a46084a1a0",
+      "bytes": 16541,
+      "sha256": "3f76009417bca07fdbd06194720e11c81680f8416bab1608000cd271554d0c3d"
+    },
+    "tests/usb-epoch/test_epoch.c": {
+      "mode": "100644",
+      "git_blob": "35f6c2e35cc135ce600eb6284eadd41b5a00e68a",
+      "bytes": 3783,
+      "sha256": "a69ef7a3291feebe39b3d251d963ad20785350e73330531b5493b38277d98786"
+    },
+    "tests/usb-epoch/verify-package.py": {
+      "mode": "100644",
+      "git_blob": "f7fe17efa4fcc446d7351e42bdcaa549e9cf5d52",
+      "bytes": 3267,
+      "sha256": "f0bb858fb965b2ceb10a8356d76458f07aed0b75c776d497f34b7c9acc6fcd34"
+    },
+    "tests/usb-fsdev-reset/PACKAGE_RU.md": {
+      "mode": "100644",
+      "git_blob": "be5e90870107df12d407560ba47effecff7df98d",
+      "bytes": 10961,
+      "sha256": "7f9dd9b4e337a5f559de5dca06211c6c128ef24df25cc86e999ed3876da53abc"
+    },
+    "tests/usb-fsdev-reset/README.md": {
+      "mode": "100644",
+      "git_blob": "2097d99f2bc163359f81704ed635cae6beb4f70d",
+      "bytes": 9429,
+      "sha256": "37f957983c41dbfb6b882da896055c530b737cceae93c51f3bc59fe4889c8457"
+    },
+    "tests/usb-fsdev-reset/arm_check.py": {
+      "mode": "100644",
+      "git_blob": "dbbee2478026007a478450a2724f4a82b86510a8",
+      "bytes": 4305,
+      "sha256": "90057ae2b12a35e9128345b1ce188dca18203ab67e58b306d8d9dec4f3f0a5de"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/CRITIC_A_FSDEV_RESET_REVIEW.md": {
+      "mode": "100644",
+      "git_blob": "3897f883c05ed8c4cee7a5a0761e9edf9f535253",
+      "bytes": 11416,
+      "sha256": "c34b6028f9c755844cc7cf7b20365f563ec1e00d0b028372d984de0f0d7846a2"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/EP0_BUFFER_TRACE_ADDENDUM.md": {
+      "mode": "100644",
+      "git_blob": "f27cee9ace9d37c638359aa166f91f0d1fd75648",
+      "bytes": 2400,
+      "sha256": "7578c4c8bc57840ffa221dfa81082941c5775e36cbb2620a758192ffa35265a0"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/README_BINDING_ADDENDUM.md": {
+      "mode": "100644",
+      "git_blob": "af16011c515245559d0ad83567f4ced33eb659c2",
+      "bytes": 1050,
+      "sha256": "f5ee1f024e09f1888bde4315307d8bf75d1475821ad69e174606216ec05fb7f2"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns.log": {
+      "mode": "100644",
+      "git_blob": "181bc99b627832c43b46aea53fd75cf5a7eea865",
+      "bytes": 576,
+      "sha256": "22916ef10c34fd0fda75d277ff8f5638dc0674b6498a87910dede00d1d3066d4"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns/commands.json": {
+      "mode": "100644",
+      "git_blob": "b113b4728fb913620f0674486957422d1de08a2c",
+      "bytes": 4445,
+      "sha256": "bf6dbe1a86bf3ee7717200e7fd532b9a6034a75423fac3b1337091953b1c13d5"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns/extraction-manifest.json": {
+      "mode": "100644",
+      "git_blob": "c785e4ec61cdf1e55041b21f820858cf71453450",
+      "bytes": 9779,
+      "sha256": "0e2d38bc761aab6589ff691d74789d035af3e1ac04bef3a776df5a2840617d85"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/all-ctr-patterns/receipt.json": {
+      "mode": "100644",
+      "git_blob": "0e9c10b92947ec2048caa4273c1d355a1c2c2a66",
+      "bytes": 1281,
+      "sha256": "9407e6cad48dc13ddf747e040e8b0deac642bbedcf44e50a0bb8a97540ecd70b"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction.log": {
+      "mode": "100644",
+      "git_blob": "012d4dd5fe871fcf4d23048cea68eac2e3cca173",
+      "bytes": 798,
+      "sha256": "468a43ef1d44f514edfb955d2000697f4946fd93e834dd78e27bfce02fc6697d"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/commands.json": {
+      "mode": "100644",
+      "git_blob": "93fb9f2279f1dd863cd2c0dfa19c928d87f919ed",
+      "bytes": 112183,
+      "sha256": "51c4dba845045593b681109e5f07b85f451d9cd377069b6bdfa5886da5985e5a"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/input-manifest.json": {
+      "mode": "100644",
+      "git_blob": "5967527d1792afbcee3f996d38c46890fc48cddb",
+      "bytes": 5344,
+      "sha256": "b51f4ef6ccb883c5df963c316fdf6f6e58aafdf87ae78ef946be28dd2af6a240"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched-nm.txt": {
+      "mode": "100644",
+      "git_blob": "75d3f42e0c6cb1d4517d605abcab0c599d747f6f",
+      "bytes": 336,
+      "sha256": "60a71c576f03e02e48af42fabfb95a215bc179a04dbdf5b6748b3761a951d5db"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched-objdump.txt": {
+      "mode": "100644",
+      "git_blob": "feeb25c31476930d702cb1d90d35b8f9d80863bb",
+      "bytes": 43117,
+      "sha256": "1e8b2e5c049aa74ecbc2fcda3be7e1ee8e006807a11bfb07cedd4a48ee8e7d61"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched-size.txt": {
+      "mode": "100644",
+      "git_blob": "f15ea51f0189ecc28daffb69e35b89b3feffc4d0",
+      "bytes": 1681,
+      "sha256": "2e47553d03aa7bf03e53f02c152e7683ea865ebdcf7ce794f92f4a0a828dcea9"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/patched.su": {
+      "mode": "100644",
+      "git_blob": "2726183b0b54ff43890faac75b359865d0138e54",
+      "bytes": 2746,
+      "sha256": "386cd2d3150a53f3a63e358c5473d18c4b0fd53e22a8aefa809cdc4d23f46448"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/summary.json": {
+      "mode": "100644",
+      "git_blob": "012d4dd5fe871fcf4d23048cea68eac2e3cca173",
+      "bytes": 798,
+      "sha256": "468a43ef1d44f514edfb955d2000697f4946fd93e834dd78e27bfce02fc6697d"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream-nm.txt": {
+      "mode": "100644",
+      "git_blob": "0015aecf04c170225ea8f70305939d45d6c3539b",
+      "bytes": 318,
+      "sha256": "7a616b7d1393e9bfa916f5e429830cad6b8c6a6abb4252d18b03af1070d9da23"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream-objdump.txt": {
+      "mode": "100644",
+      "git_blob": "4020dce66f993c14488506f3ede01dd1b421c889",
+      "bytes": 42930,
+      "sha256": "484a80071f1250b2010fb94a6d129269fa20fb0dfb788633a7265f9eca31c633"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream-size.txt": {
+      "mode": "100644",
+      "git_blob": "a45f5438be7570c4102ae7f0866cfcfe536f2c19",
+      "bytes": 1682,
+      "sha256": "b8b16ed2c50452fb6b2b57f1e18fd3ab846c148e415251152c7600874d955d8b"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/arm-reproduction/upstream.su": {
+      "mode": "100644",
+      "git_blob": "08caed8865c2f2ba992b8e409804692c57f3adf6",
+      "bytes": 3076,
+      "sha256": "af5b923e45350ea599c8d597ca6ed6e891fe628e6c4a60c408eba5c4da4db5c8"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/legal-ep0-portable.log": {
+      "mode": "100644",
+      "git_blob": "ec4d974d44df95c31f461a2613e3df8c9cb07471",
+      "bytes": 560,
+      "sha256": "d4d4f564486e17e6a545c0673acf53252c7a717b754993814f9fa39f52900be4"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/legal-ep0-portable/commands.json": {
+      "mode": "100644",
+      "git_blob": "dc08dfbe4aff20dbf5ea70ff84c004b5831093a0",
+      "bytes": 4177,
+      "sha256": "e050a0d87f3c53577943dd3fdf9b86b49c3925b9c041cc692ecddd0e33f89160"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/legal-ep0-portable/receipt.json": {
+      "mode": "100644",
+      "git_blob": "b6693bdb108412f948ec8a126aa4aa4ce66497fc",
+      "bytes": 2934,
+      "sha256": "9f6e71b25c2ca73d38614223e2dc680db3656c8044aa7b24973a79b2a8c003f6"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/patch-tool/patch-tool-results.json": {
+      "mode": "100644",
+      "git_blob": "b54988742e5a27b95a5fcec475788a1c40c950da",
+      "bytes": 10357,
+      "sha256": "a740fb27e2d27f0e1457ad8e2cbffa19deb783122b4eb614ef0b386e9ab968da"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/patch-tool/run.log": {
+      "mode": "100644",
+      "git_blob": "5597407d510476bb4b5890996325188bfbfa5ce2",
+      "bytes": 107,
+      "sha256": "557df83fb5fe1ca54d4b25f0ee3d76e6414955f05c31659d80495ffa201fcc27"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/patch-tool/test_patch_tool.py": {
+      "mode": "100644",
+      "git_blob": "f72b415c20628bcd1ae2fef723c36128900f522b",
+      "bytes": 4305,
+      "sha256": "93d4f573d4bd7f8171763a1598690286d87ea2fde8c70be0d4c3680ca9246d80"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/preprocessor-results.json": {
+      "mode": "100644",
+      "git_blob": "ff0eb1b9f6d7b00045b76ce24900be8b9f1109a1",
+      "bytes": 3263,
+      "sha256": "1605e4ca65caccb857711a543c081d72ab2b44ac1c65369cc59f27df372f1fe9"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/review-manifest.json": {
+      "mode": "100644",
+      "git_blob": "3737c0d839bc9f9704320170b36fecef5a81c3ed",
+      "bytes": 2249,
+      "sha256": "17f2c2681bad5a3374e0ba4645f1a6398a658665a52db95879454e953a76f4a2"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/run_all_ctr_patterns.py": {
+      "mode": "100644",
+      "git_blob": "9b44c8414334d5d54bbe431c12952a9d7993a4e8",
+      "bytes": 3941,
+      "sha256": "dcc2d79ce0563713971372e1dd3057030abd6e46b99dd63bbb43d070b0c54840"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/run_legal_ep0_buffers.py": {
+      "mode": "100644",
+      "git_blob": "f561884ab7240bb999436b3c081a9adc05237ee9",
+      "bytes": 2762,
+      "sha256": "fef18fe883462b2a8f4a9e709a0a864fe505801940fd1b6db02167ac157612d0"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-original-hashes.log": {
+      "mode": "100644",
+      "git_blob": "60275cc6731f3c09b8c71abced9f7e8926facb98",
+      "bytes": 19570,
+      "sha256": "ad01794b9193098cb0580d5193498215a8a8b2d58279a545b99a80eda41219b2"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction.log": {
+      "mode": "100644",
+      "git_blob": "099abee23406e8b5eec9bc1320bd72c860f69ccf",
+      "bytes": 19254,
+      "sha256": "3a2bfc385dbf98b880dd9736e186425915a62728a8f16239963d2326b2bc9d6b"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/commands.json": {
+      "mode": "100644",
+      "git_blob": "0df25ea65f2e27cf6627cb64a992fef05b247dcf",
+      "bytes": 29805,
+      "sha256": "7ea4bcbf3e3acf58546396a7ff290edfd0ab5a02e83a83b9429916280ecfe424"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/inputs-after.json": {
+      "mode": "100644",
+      "git_blob": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/inputs-before.json": {
+      "mode": "100644",
+      "git_blob": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/matrix.json": {
+      "mode": "100644",
+      "git_blob": "c28c8df60718b482dc91c9d12099ed24d13106aa",
+      "bytes": 11137,
+      "sha256": "7678c288cb2cd8964dffcf0a4133c7d406627b69e02ec49c5bf166dccb1feeb9"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-reproduction/summary.json": {
+      "mode": "100644",
+      "git_blob": "8b234ec421092a87ddc5636ce1eb71949c0a11c4",
+      "bytes": 1703,
+      "sha256": "db66a19f49a6ab8bea4a9ea14e1ff0dee943bf780d83118adb886a0b7c660c81"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/supporting-tooling-regressions.json": {
+      "mode": "100644",
+      "git_blob": "54d80054973cbbf1c6f1980bb04c36a50f2d41ec",
+      "bytes": 179,
+      "sha256": "428ed1e93ccb32db4511f90401fef475552d3fc320294c280bff7d869b854d0c"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/test_all_ctr_patterns.c": {
+      "mode": "100644",
+      "git_blob": "d544d3e42bee09fd605ad1567f8d51043099a975",
+      "bytes": 1471,
+      "sha256": "4e7139d074b0e4582886345a975bfeee5327de2ddfa73ccff737100b96e5c367"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/test_legal_ep0_buffers.c": {
+      "mode": "100644",
+      "git_blob": "b78ab9330f97d2c5a92a8953990f178c939bcc27",
+      "bytes": 2002,
+      "sha256": "adbe1fe0568b743428938c869fe21f0df28f215fafedd612c673f8c31f4c53ff"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/test_scope_preprocessor.py": {
+      "mode": "100644",
+      "git_blob": "285cefd7bb12094c3fd537cee495c0de0e9c46de",
+      "bytes": 2189,
+      "sha256": "ee41ec49dbff40517e0eb9a3a58796a96b3b7dcd5ab70ca0c5253fb575f8e40c"
+    },
+    "tests/usb-fsdev-reset/critic-a-local/upstream-binding.json": {
+      "mode": "100644",
+      "git_blob": "4772baecea7a2963aefeb59fad67826abd6cb742",
+      "bytes": 326,
+      "sha256": "31ab90105abc1fa49d1d0a174d3f61600aa10f723d3a5c3778e30e9bd400d2ef"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/commands.json": {
+      "mode": "100644",
+      "git_blob": "273cba794dc148b62a659e15809c572dee51fa44",
+      "bytes": 111925,
+      "sha256": "51db8e81b444b40e1e0e19f2bd85ff17c54effda80879dbe80f6b465c01f0f99"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/input-manifest.json": {
+      "mode": "100644",
+      "git_blob": "5967527d1792afbcee3f996d38c46890fc48cddb",
+      "bytes": 5344,
+      "sha256": "b51f4ef6ccb883c5df963c316fdf6f6e58aafdf87ae78ef946be28dd2af6a240"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/patched-nm.txt": {
+      "mode": "100644",
+      "git_blob": "75d3f42e0c6cb1d4517d605abcab0c599d747f6f",
+      "bytes": 336,
+      "sha256": "60a71c576f03e02e48af42fabfb95a215bc179a04dbdf5b6748b3761a951d5db"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/patched-objdump.txt": {
+      "mode": "100644",
+      "git_blob": "920b7bede88eb5ce82b108bc6f17a359289c4e6f",
+      "bytes": 43107,
+      "sha256": "92ecdbb558b0c0baea858abb4bb9f30ad1ca51c1f5cb5bbdd1a7c2ed2080abcf"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/patched-size.txt": {
+      "mode": "100644",
+      "git_blob": "d94fe18e30d95003a03d5136fba200af92eceeca",
+      "bytes": 1671,
+      "sha256": "6656b6d85dd24684a25a51de06a80acd97d618c9dafa1ced2546b3d82f7f00c8"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/patched.su": {
+      "mode": "100644",
+      "git_blob": "d16559d3af3217e1dad9abb9ee7120ac4afcb6ac",
+      "bytes": 2526,
+      "sha256": "6ffee1889aaa350ff7b7704008c7179bddaeaca6190a0de94a6f19f0667bf5e0"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/summary.json": {
+      "mode": "100644",
+      "git_blob": "012d4dd5fe871fcf4d23048cea68eac2e3cca173",
+      "bytes": 798,
+      "sha256": "468a43ef1d44f514edfb955d2000697f4946fd93e834dd78e27bfce02fc6697d"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/upstream-nm.txt": {
+      "mode": "100644",
+      "git_blob": "0015aecf04c170225ea8f70305939d45d6c3539b",
+      "bytes": 318,
+      "sha256": "7a616b7d1393e9bfa916f5e429830cad6b8c6a6abb4252d18b03af1070d9da23"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/upstream-objdump.txt": {
+      "mode": "100644",
+      "git_blob": "175f837674789dada9f114a0426d5f8043048b7f",
+      "bytes": 42920,
+      "sha256": "95d47310807290b048e75461b0da651114372e858fa571c8c4b79aba1ecfd6ca"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/upstream-size.txt": {
+      "mode": "100644",
+      "git_blob": "2a44aafa6e40f7c1109ad8426612b43fc027a013",
+      "bytes": 1672,
+      "sha256": "c27859e0434ad4f69ef1da7de47f0e22692f9632d4743ce9a34ed28b13516b9f"
+    },
+    "tests/usb-fsdev-reset/evidence-arm/upstream.su": {
+      "mode": "100644",
+      "git_blob": "08caed8865c2f2ba992b8e409804692c57f3adf6",
+      "bytes": 3076,
+      "sha256": "af5b923e45350ea599c8d597ca6ed6e891fe628e6c4a60c408eba5c4da4db5c8"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/candidate/extraction-manifest.json": {
+      "mode": "100644",
+      "git_blob": "c785e4ec61cdf1e55041b21f820858cf71453450",
+      "bytes": 9779,
+      "sha256": "0e2d38bc761aab6589ff691d74789d035af3e1ac04bef3a776df5a2840617d85"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/commands.json": {
+      "mode": "100644",
+      "git_blob": "37b41a59bf199335c8ab032a6e02325e0506ebf3",
+      "bytes": 28788,
+      "sha256": "af110e788616b6a340545ea426d17df49008f24d9bb254e16d4eb8967da5c1e2"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/guard_disabled/extraction-manifest.json": {
+      "mode": "100644",
+      "git_blob": "c785e4ec61cdf1e55041b21f820858cf71453450",
+      "bytes": 9779,
+      "sha256": "0e2d38bc761aab6589ff691d74789d035af3e1ac04bef3a776df5a2840617d85"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/inputs-after.json": {
+      "mode": "100644",
+      "git_blob": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/inputs-before.json": {
+      "mode": "100644",
+      "git_blob": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/matrix.json": {
+      "mode": "100644",
+      "git_blob": "7e53b407ddf7a0b620015834461cb844b986db8f",
+      "bytes": 10994,
+      "sha256": "38da4788bfd811fbe5151b7235fd468508bd31b679269ce7dc7c4971354261c0"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/original/extraction-manifest.json": {
+      "mode": "100644",
+      "git_blob": "7c1becf41feb1dd87678a2de7767b3896381127d",
+      "bytes": 9779,
+      "sha256": "126effeb75628f728a4c018e47c32851bdc77ca387e92ece3586e9cdadf3f317"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model-final/summary.json": {
+      "mode": "100644",
+      "git_blob": "23462fde24e6a37a748d6c9a6e4853c6a7ec8650",
+      "bytes": 1692,
+      "sha256": "12eb92ef3c08d8216ea5106c3c80a7270732f41277f3d278f60afafe9af1691e"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model/commands.json": {
+      "mode": "100644",
+      "git_blob": "60165e261b443b6e25733d0ace89897dbede0036",
+      "bytes": 24631,
+      "sha256": "07ef92d9a9734219d309c5264a37bb4fd4af18710f6372f3cbb24bbfdaaebd04"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model/matrix.json": {
+      "mode": "100644",
+      "git_blob": "237c628c78c81eeb3e68b9795d37a5baae36f7e7",
+      "bytes": 10747,
+      "sha256": "3d87bd89feb7f6a09120228660b5c90155ef25e9cd95aaffdcbc109641ed368b"
+    },
+    "tests/usb-fsdev-reset/evidence-root-model/summary.json": {
+      "mode": "100644",
+      "git_blob": "6226cb4edfe3fb5e17c53ce43b3bb4e2e9eac021",
+      "bytes": 1568,
+      "sha256": "219bd1b3edd26a20d9a1b35c84037ed9d0a9263c5262fa1661b051aebd451bb5"
+    },
+    "tests/usb-fsdev-reset/package-manifest.json": {
+      "mode": "100644",
+      "git_blob": "0903136341d15394213c9266a8a46407552782bd",
+      "bytes": 37271,
+      "sha256": "3b98423edd6b29fed5ba4c1657421ab323f577957b1746a7063d53c6d54ae519"
+    },
+    "tests/usb-fsdev-reset/publication/README-memset-clarification.diff": {
+      "mode": "100644",
+      "git_blob": "7ed9d84a1292a2b9562981cf795d91bb1ac48ae1",
+      "bytes": 1426,
+      "sha256": "ac311db8345f4f7c63b27a25475b0b50271e7381318a71688d8f99a97f7367c6"
+    },
+    "tests/usb-fsdev-reset/publication/base-binding.json": {
+      "mode": "100644",
+      "git_blob": "83772ef0acd445c3eb8ab7dca74b44b63366c3ce",
+      "bytes": 578,
+      "sha256": "c0edaa27b43e139ab64436609dfbb9cbeafeaa1913d4a0a109b1d9dcd10e1300"
+    },
+    "tests/usb-fsdev-reset/reproduce.py": {
+      "mode": "100644",
+      "git_blob": "0832638cec8d4d86356815de6990443aa96aa566",
+      "bytes": 6830,
+      "sha256": "1858b263720fc482ab8dde49a1e58f8e4b5db34131d6505cd07f1e540988e7e6"
+    },
+    "tests/usb-fsdev-reset/research/REPORT_RU.md": {
+      "mode": "100644",
+      "git_blob": "f4dbcf1e7da09cca325eb5d0ea464ea9413ee791",
+      "bytes": 32620,
+      "sha256": "f49b353c81d56d73f284ceea38d91775a83ad42f9324b44f108af1e467558d10"
+    },
+    "tests/usb-fsdev-reset/research/evidence/final-input-check.json": {
+      "mode": "100644",
+      "git_blob": "111e332ac0d2ddaad00490e3b850ec73e3af53e3",
+      "bytes": 1643,
+      "sha256": "01e8f8cdda36ec3ad4ee3748e52a44a186f97bd5097e16a5fa64954b26335b4c"
+    },
+    "tests/usb-fsdev-reset/research/evidence/provenance.json": {
+      "mode": "100644",
+      "git_blob": "e399ab35f4354f1f389218862d4e24d105edce51",
+      "bytes": 3260,
+      "sha256": "5934a158223e25a3383b096426b929f5da8dea820264a0cf53e0a5ff47696c39"
+    },
+    "tests/usb-fsdev-reset/root-model-final.log": {
+      "mode": "100644",
+      "git_blob": "6bacfa8cb304efafa0cf60c9d949712d126fdff7",
+      "bytes": 18226,
+      "sha256": "346b43de9d9c2a355b512b775c847009a09dea09bf8850746ae19ced67848c51"
+    },
+    "tests/usb-fsdev-reset/root-model.log": {
+      "mode": "100644",
+      "git_blob": "8027d8e5b874ba7a2704a5528881edc99cf4d375",
+      "bytes": 17441,
+      "sha256": "505cd23e099535d6527a41db6ca77c487b60c7d10f2f2d03e72bfc5f626b511c"
+    },
+    "tests/usb-fsdev-reset/source-selection.json": {
+      "mode": "100644",
+      "git_blob": "0acb7830c4f0c476f999bd1776b2aff02b884c52",
+      "bytes": 297427,
+      "sha256": "60ad452dd4e93ae25b2bfac8c15b2af2d29a063da30a6739124677e4766885b7"
+    },
+    "tests/usb-fsdev-reset/supporting/LICENSE.tinyusb": {
+      "mode": "100644",
+      "git_blob": "6cea08ff46de2c68cd7a11852cf2213854b4c132",
+      "bytes": 1330,
+      "sha256": "6d533dc9659ea02c9f2751f9d7f0c025edba58584f37cf7dd00c9bd181bfd08f"
+    },
+    "tests/usb-fsdev-reset/supporting/README_RU.md": {
+      "mode": "100644",
+      "git_blob": "b2774301476f473218f673722fa73fbef03be8a2",
+      "bytes": 1206,
+      "sha256": "09dc24d2bcbc1929de0174691ae282ab8252d50ec107b83eb74253052cf6dc6d"
+    },
+    "tests/usb-fsdev-reset/supporting/REPORT_RU.md": {
+      "mode": "100644",
+      "git_blob": "2ad2072b6342cf279cba092c12347fd1b95fa598",
+      "bytes": 19412,
+      "sha256": "2cf810bcf0ddea5257c137f6b87678090556bf0f3889480d34cb9a4058d17f0f"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened.log": {
+      "mode": "100644",
+      "git_blob": "2590235f2abcfcf67fa5ae8dcdf20dbd3237bab0",
+      "bytes": 18364,
+      "sha256": "ec3c3bf234fbb9b20bac60a108b6701677714b22a533d0f00354c37671d03c06"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/candidate-input.c": {
+      "mode": "100644",
+      "git_blob": "7315f39526e61a1bcea7fc88c08dbd775980361c",
+      "bytes": 30678,
+      "sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/commands.json": {
+      "mode": "100644",
+      "git_blob": "2c685b35cd33721e08b9b78329334a91fa91ab5a",
+      "bytes": 28926,
+      "sha256": "d39a381f4119aff47ea79ef01cc7a4ac7412cf3bca6329aee551a44ad35fe2e0"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/inputs-after.json": {
+      "mode": "100644",
+      "git_blob": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/inputs-before.json": {
+      "mode": "100644",
+      "git_blob": "28e1c9d241dca0265ed482d73e10c43d34ffaebd",
+      "bytes": 1054,
+      "sha256": "fff8411d668220ba58ead12afa03206dc2a157a617a4cb0008b64e885019f250"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/matrix.json": {
+      "mode": "100644",
+      "git_blob": "4fc4f10b864b27c6dc8eee74568e56faad1e8d6a",
+      "bytes": 10994,
+      "sha256": "7947acc142733846666ef866a54b7a0350dc1dcf66d251a296b05cb5d249d8ff"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final-hardened/summary.json": {
+      "mode": "100644",
+      "git_blob": "6d91726b1d62fcbe15b61f760c98c3985314af6e",
+      "bytes": 1692,
+      "sha256": "6f67d23481c6f57921a258205d9a6cf4dcbf8c4bf07949cd5912862443274209"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final.log": {
+      "mode": "100644",
+      "git_blob": "bd1b3d844f64f6f1f399c65438771eb1c8c7ca3e",
+      "bytes": 17619,
+      "sha256": "72c74485c7f9f951e4b9bf49c3e110fb98edd7e55fbafaf8a6024a28575ab4ba"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final/commands.json": {
+      "mode": "100644",
+      "git_blob": "a2df11d9c7e70107fc6519748fdc5a48851e0530",
+      "bytes": 28305,
+      "sha256": "8754cb68c79029e41e9e41cbffcf506298c650e7bcdc88f6df0cdb3cf3bd6b55"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final/matrix.json": {
+      "mode": "100644",
+      "git_blob": "41cab533b8bf6df6c2e445d1bafb5c550ce7e1ce",
+      "bytes": 10994,
+      "sha256": "a24fc5c73664e4b568d9c4db3424afa7707bc4817ef18351cf75aa127b3ba7a1"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/final/summary.json": {
+      "mode": "100644",
+      "git_blob": "df3f141f7398838214f0114e8c69fd35e36beccc",
+      "bytes": 1568,
+      "sha256": "597ee563ca01d79c287e7bfe0d2f362f8d4ec903ec25d6bb391958ec735a7d8f"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration1.log": {
+      "mode": "100644",
+      "git_blob": "2d52fa2accd34b1fb7742c7ea4f4f3b22f77578c",
+      "bytes": 1462,
+      "sha256": "836237c1d5bd0442551eea2c6cd8c3f20a568e26e434cc9edf1ae63faa7cc2e8"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration1/commands.json": {
+      "mode": "100644",
+      "git_blob": "2bf69a8ee8a31692deaf3b09fad64a003893ec02",
+      "bytes": 357,
+      "sha256": "ac9f3e95bb8dd9f73d7d7385aa9d5d72db20dc96bec2b8575fe4228a650360dd"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration1/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration2.log": {
+      "mode": "100644",
+      "git_blob": "62443c21d1bd7114972e8d0c414f770b84c40977",
+      "bytes": 1356,
+      "sha256": "c121e15888fd35d7625d935692bb0cf8ee330cbd6edecc9355f8385e32c64622"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration2/commands.json": {
+      "mode": "100644",
+      "git_blob": "2bf69a8ee8a31692deaf3b09fad64a003893ec02",
+      "bytes": 357,
+      "sha256": "ac9f3e95bb8dd9f73d7d7385aa9d5d72db20dc96bec2b8575fe4228a650360dd"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration2/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration3.log": {
+      "mode": "100644",
+      "git_blob": "195512662aa572ae85c1918329a7e05872dc17ef",
+      "bytes": 2452,
+      "sha256": "b6b4578683d303ee620d7965b8cc7fd76f6101e903cbd5091bb3f57ca2a0e711"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration3/commands.json": {
+      "mode": "100644",
+      "git_blob": "c6133ad9bf6391764339bb61f27b01eed5858568",
+      "bytes": 2550,
+      "sha256": "43c4c4b1a8a6b7d7b2153b95bc96478ad942563ad648716652a882625f7e9c56"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration3/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration3/matrix.json": {
+      "mode": "100644",
+      "git_blob": "112b7ba01430b320733d13316ca2f917a761c400",
+      "bytes": 466,
+      "sha256": "42d5d4ef808b9ce699a2b2b2865f427454d41b219dcffae8765e502e80098114"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration4.log": {
+      "mode": "100644",
+      "git_blob": "a16c5f3b2398fbb7537cd7e8a033594ea2341dbd",
+      "bytes": 17717,
+      "sha256": "e764b0a5fdb65c015e684e19e9bcce56fa559caea8ce9d7a0f1e7768a064498d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration4/commands.json": {
+      "mode": "100644",
+      "git_blob": "290afccf5ea5213c51864d731a5bd66d19859440",
+      "bytes": 24907,
+      "sha256": "c989756dec900c90b901e419efbdc1213443e7120b09db43c72ab97448b77f55"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration4/extraction-self-tests.json": {
+      "mode": "100644",
+      "git_blob": "5b350a006e9801209f84a6b312008af6774a3a07",
+      "bytes": 136,
+      "sha256": "408ea92527f56597952d8c2e25bee6319f6b3cc214fbd7ba2d5062e25b0cdb3d"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration4/matrix.json": {
+      "mode": "100644",
+      "git_blob": "a2d0ba9cf85c3d0dc0a4e642dc778de86aaad658",
+      "bytes": 10747,
+      "sha256": "ca3ced1cb6835395d0722a2d6e293ab8c37d70362bc3f916f2f910e34c1017ea"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/iteration4/summary.json": {
+      "mode": "100644",
+      "git_blob": "bf88819e1124ceef69ccb23579d8b6c1bcfb1c3e",
+      "bytes": 1568,
+      "sha256": "0ce62f08f254b7b322d801212e1548f90af5043565fb12e75fe8f036e5ce0a71"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/src/preamble.h": {
+      "mode": "100644",
+      "git_blob": "fba78e668996c6c476baf2a60d7af3b4667acce7",
+      "bytes": 7193,
+      "sha256": "e2df1faf918068c769d819c0cac17f6a9292fdaed931c74dfc290d9c4dbc2f07"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/src/tests.c": {
+      "mode": "100644",
+      "git_blob": "73b049f1d66d23bf78c136749165eb5dec6005b3",
+      "bytes": 11241,
+      "sha256": "e296d2a1378096e27d88feeef4616caa027102d4d45b07abff178483bac8b953"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/src/translation.c": {
+      "mode": "100644",
+      "git_blob": "4195911418d651e3f2b451e89bdcf09962eb97c5",
+      "bytes": 330,
+      "sha256": "0d105e7838429f0fa58e7a7ea819acaf556712c3d9969695c977e5857a7e277c"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/tools/extract.py": {
+      "mode": "100644",
+      "git_blob": "d4193a66dca8639f08b8b11f66860b2b6bebcb4c",
+      "bytes": 6084,
+      "sha256": "a6e5a7dd8f1ca5e3b7564be2988f0a3ac992f0813deb8bfa67b0c4254402b321"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/tooling-before-path-freeze/tools/run.py": {
+      "mode": "100644",
+      "git_blob": "b04103a6ee2f24cf7b5ce64eae1075313dd2fd3d",
+      "bytes": 6656,
+      "sha256": "c068b7004bf5fa20266e9d0cc0bd59edc464f05400aca07d0f17b8795c06091b"
+    },
+    "tests/usb-fsdev-reset/supporting/evidence/tooling-regressions.json": {
+      "mode": "100644",
+      "git_blob": "54d80054973cbbf1c6f1980bb04c36a50f2d41ec",
+      "bytes": 179,
+      "sha256": "428ed1e93ccb32db4511f90401fef475552d3fc320294c280bff7d869b854d0c"
+    },
+    "tests/usb-fsdev-reset/supporting/historical-full-package-SHA256SUMS.txt": {
+      "mode": "100644",
+      "git_blob": "551188f27f70481937f9a747b76d5b664f51cbb9",
+      "bytes": 43378,
+      "sha256": "6dd19c83979114a160b16f64a6aa464013a19f3c7fbdfeb3b98d3226fe5d4ada"
+    },
+    "tests/usb-fsdev-reset/supporting/inputs/dcd_stm32_fsdev.c": {
+      "mode": "100644",
+      "git_blob": "f5a8beb65dbdcef6304748553284cea5c063c0d8",
+      "bytes": 30229,
+      "sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f"
+    },
+    "tests/usb-fsdev-reset/supporting/inputs/fsdev_common.c": {
+      "mode": "100644",
+      "git_blob": "7c4572a1e524a305ea5cc0deb58c8fce83b52282",
+      "bytes": 3894,
+      "sha256": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f"
+    },
+    "tests/usb-fsdev-reset/supporting/inputs/fsdev_common.h": {
+      "mode": "100644",
+      "git_blob": "af84b8b97c2adab841165bf234e131a6f283ad18",
+      "bytes": 16549,
+      "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb"
+    },
+    "tests/usb-fsdev-reset/supporting/inputs/tusb_config.h": {
+      "mode": "100644",
+      "git_blob": "b78f1974211531a8f841c25e326486cb56ab870d",
+      "bytes": 1345,
+      "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a"
+    },
+    "tests/usb-fsdev-reset/supporting/src/preamble.h": {
+      "mode": "100644",
+      "git_blob": "fba78e668996c6c476baf2a60d7af3b4667acce7",
+      "bytes": 7193,
+      "sha256": "e2df1faf918068c769d819c0cac17f6a9292fdaed931c74dfc290d9c4dbc2f07"
+    },
+    "tests/usb-fsdev-reset/supporting/src/tests.c": {
+      "mode": "100644",
+      "git_blob": "73b049f1d66d23bf78c136749165eb5dec6005b3",
+      "bytes": 11241,
+      "sha256": "e296d2a1378096e27d88feeef4616caa027102d4d45b07abff178483bac8b953"
+    },
+    "tests/usb-fsdev-reset/supporting/src/translation.c": {
+      "mode": "100644",
+      "git_blob": "4195911418d651e3f2b451e89bdcf09962eb97c5",
+      "bytes": 330,
+      "sha256": "0d105e7838429f0fa58e7a7ea819acaf556712c3d9969695c977e5857a7e277c"
+    },
+    "tests/usb-fsdev-reset/supporting/tools/extract.py": {
+      "mode": "100644",
+      "git_blob": "d4193a66dca8639f08b8b11f66860b2b6bebcb4c",
+      "bytes": 6084,
+      "sha256": "a6e5a7dd8f1ca5e3b7564be2988f0a3ac992f0813deb8bfa67b0c4254402b321"
+    },
+    "tests/usb-fsdev-reset/supporting/tools/run.py": {
+      "mode": "100644",
+      "git_blob": "28b43faace2329a3178f96d0ee0a2c0a229761e0",
+      "bytes": 7948,
+      "sha256": "f7f01c7d86bf26b3c29dcc385de0717a0dfc657096497ec41a1ef6123c436f6e"
+    },
+    "tests/usb-fsdev-reset/supporting/tools/test_runner.py": {
+      "mode": "100644",
+      "git_blob": "4ac5d6b9115c4d8d164562274269f32106393136",
+      "bytes": 1901,
+      "sha256": "242519e147a5dc719c6f8ea403bf0fac42610e9cea7ca8779ac72f27de8691a4"
+    },
+    "tests/usb-setup/PACKAGE_RU.md": {
+      "mode": "100644",
+      "git_blob": "05db116ded421ac5ab2979f4e98f8eb6d9d95c00",
+      "bytes": 8774,
+      "sha256": "aa0f8215f6a538596bad78a9f20d6001b051138a3ab77c96c3596af222774865"
+    },
+    "tests/usb-setup/README.md": {
+      "mode": "100644",
+      "git_blob": "c5324e332df5eabdb27932a6060c1ac1ea1d9f7b",
+      "bytes": 8312,
+      "sha256": "c15c94cf1d52d566411f07dd37a2f6dfee9c87eda27f1dab1b94a39cb3d910d5"
+    },
+    "tests/usb-setup/check_patch.py": {
+      "mode": "100644",
+      "git_blob": "f07b197e2759dbb274cee523777c0a75df648a5a",
+      "bytes": 5426,
+      "sha256": "06b9b9237295786ddbdc152e2040a42e57e9fc6632685dbdfe00698e2483d57b"
+    },
+    "tests/usb-setup/critic-a-local/CRITIC_A_USB_SETUP_REVIEW.md": {
+      "mode": "100644",
+      "git_blob": "d89f47bda441082f90e87a1ad468cd1343b6a252",
+      "bytes": 8897,
+      "sha256": "8d30e446ac77b675bd24e2725ab7d70743030e796103567da3fc9e9035ab6225"
+    },
+    "tests/usb-setup/critic-a-local/SUPPLEMENTAL_RELOCATION_ADDENDUM.md": {
+      "mode": "100644",
+      "git_blob": "bfe3f7aaca05064493dacf903c12a6daf0c2ed8d",
+      "bytes": 1891,
+      "sha256": "c6543cf562034e7042571b11ab2b62d686406c7c06e487365d0e9b20bb914e2b"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-native/commands.json": {
+      "mode": "100644",
+      "git_blob": "8e001f6a7998ea17a5105d1c2581bf19591905f3",
+      "bytes": 23326,
+      "sha256": "97d90581bdadf26023074601cad8aeae41258a31d6be0b153c8f566a8244c07e"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-native/commands.log": {
+      "mode": "100644",
+      "git_blob": "4b6dbcce7412c381b5943cc911b8820fe2a94242",
+      "bytes": 16223,
+      "sha256": "db4bbffdcd0c7a324c18c33e17fc31b52859fe12e98164e7e0c2cb0346850d3a"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-native/input-manifest.json": {
+      "mode": "100644",
+      "git_blob": "c60f179816c0944e9149e84e490d09829c0400ad",
+      "bytes": 6489,
+      "sha256": "1b63826563b4288b6f16eaf89fc7a2af75bc8378fe8e0c65aaf89d993deab87c"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-native/matrix.json": {
+      "mode": "100644",
+      "git_blob": "a49fdf70b065d20131a91348d1f199e59e11560f",
+      "bytes": 6823,
+      "sha256": "ab8166208f5540e92834f37327cf33163cf3bee67dc6f9e85099e867af3e03b5"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-native/receipt.json": {
+      "mode": "100644",
+      "git_blob": "69faf6a26223de511eaefbd0971870d01932d54a",
+      "bytes": 479,
+      "sha256": "5e211d077451c84208cac4732a42bf913a54399119b3973a93c01012f741a985"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/commands.json": {
+      "mode": "100644",
+      "git_blob": "8f7e539c8b43898225cfc64709497d3057cbbfb7",
+      "bytes": 24618,
+      "sha256": "33e2a4e10754c77a99c2abcc0c86537baf0e597ac8d6e3b00cb67b7ee94c54fe"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/commands.log": {
+      "mode": "100644",
+      "git_blob": "82b906458d1a47d43dc51534c82f6ce8c14942d8",
+      "bytes": 17155,
+      "sha256": "83688719b87501f56c1b3a0c63cb9a4cf7a0e0f088aa1e6e262fd63c42ff6e2b"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/input-manifest.json": {
+      "mode": "100644",
+      "git_blob": "c60f179816c0944e9149e84e490d09829c0400ad",
+      "bytes": 6489,
+      "sha256": "1b63826563b4288b6f16eaf89fc7a2af75bc8378fe8e0c65aaf89d993deab87c"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/matrix.json": {
+      "mode": "100644",
+      "git_blob": "1add6923ada1ec00e60b6f9ade7daa47636e3ee2",
+      "bytes": 6823,
+      "sha256": "3935a753c4b851899001564d940a961d85b92cedd5f41918464502d3c3148361"
+    },
+    "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/receipt.json": {
+      "mode": "100644",
+      "git_blob": "ef59f8ef2e33d089cb80853edeb321970bff334f",
+      "bytes": 566,
+      "sha256": "f73ce9393015a81425e021d1c277a99509c694c22c5077ad20c1069dd1f7dad6"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-native/commands.json": {
+      "mode": "100644",
+      "git_blob": "fd186d20595d26a1ba15ff8b13f54beca84c3dd9",
+      "bytes": 24394,
+      "sha256": "1b26401600a38c205337d9b79cf1dd64b510d96ffb8c744be2c3e5899bd390d5"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-native/commands.log": {
+      "mode": "100644",
+      "git_blob": "05e0f1283bf08b06b39fea67fc8c25d06dad44d5",
+      "bytes": 17291,
+      "sha256": "2f409a8e5e9ee17fe17319164e07863523f35933d5911965ad3a7f782cc7202d"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-native/input-manifest.json": {
+      "mode": "100644",
+      "git_blob": "77f1acfcda75809128835798e513b7d96f1be7e5",
+      "bytes": 6357,
+      "sha256": "65c63299060a45b08e3b4972c3484e014233748f648a72eda79ea74301bfb411"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-native/matrix.json": {
+      "mode": "100644",
+      "git_blob": "771f29b00c0458619a871f94728bf076831e207f",
+      "bytes": 7175,
+      "sha256": "cfd69691cbc92ec8f42012794e41b08305fc89222060b7e0fb718865e18b9238"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-native/receipt.json": {
+      "mode": "100644",
+      "git_blob": "0d0286f4ec2c63ebb996c72daf905348e0bb5800",
+      "bytes": 491,
+      "sha256": "1c73db4e5d61bd7c209a426d9116044fc82e6045efb58f4628d98ff4936f041d"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/commands.json": {
+      "mode": "100644",
+      "git_blob": "7299afe55428a6f6a923184bbd1a2b0db2bfd6bd",
+      "bytes": 25686,
+      "sha256": "7ba9808b7e378a83a9d34ddb1eeb5b4f9c3175246957e0af30707bc7e2c39ffc"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/commands.log": {
+      "mode": "100644",
+      "git_blob": "6b4b8de6c7acb99186475b6c95d365b1c2c81435",
+      "bytes": 18223,
+      "sha256": "740956543a5e802bc3b3865121c814c9ee8693792667a90614a5a13110b93b16"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/input-manifest.json": {
+      "mode": "100644",
+      "git_blob": "77f1acfcda75809128835798e513b7d96f1be7e5",
+      "bytes": 6357,
+      "sha256": "65c63299060a45b08e3b4972c3484e014233748f648a72eda79ea74301bfb411"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/matrix.json": {
+      "mode": "100644",
+      "git_blob": "ba771aa44434e7df5a36d26dd23ebdc1e25e638d",
+      "bytes": 7175,
+      "sha256": "25e29cfd6555a880059365da14cec1b2855560d60f338ed36714508e0e0dced8"
+    },
+    "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/receipt.json": {
+      "mode": "100644",
+      "git_blob": "2b95bbcf2588bbb8260025e45f6384ba0df1b3a1",
+      "bytes": 578,
+      "sha256": "966981b78b94eba966f807f00ff81ba2e4d9929f6c028389cfe401e74861de5f"
+    },
+    "tests/usb-setup/critic-a-local/original-additions-manifest.json": {
+      "mode": "100644",
+      "git_blob": "97a565af2e88444ae23001903778f8ce75cee49a",
+      "bytes": 8999,
+      "sha256": "6dddb986a145755dc16daffe67bafc615449df96eee7ed9639d9f7bfcbc8a799"
+    },
+    "tests/usb-setup/critic-a-local/output-separation-results.json": {
+      "mode": "100644",
+      "git_blob": "acfb8f6bcb6587ff3952a244a7c5c5d35b5a3ce8",
+      "bytes": 5393,
+      "sha256": "7570dfb1759de4bf49caba62fe9704fe27a1b11eb5b4a7c09a931ea7c40ec32a"
+    },
+    "tests/usb-setup/critic-a-local/package-verification.json": {
+      "mode": "100644",
+      "git_blob": "341f3a53e213cddb9c4fb0a8d9d011a6f71c64ee",
+      "bytes": 609,
+      "sha256": "d1f1d9ee38de977b759a3df33c132b2b1f1263b78a2971da2c310467d0ff145c"
+    },
+    "tests/usb-setup/critic-a-local/patch-tool-results.json": {
+      "mode": "100644",
+      "git_blob": "a45de42a97cbbdcba8eaef22a18c5d43c6d1e102",
+      "bytes": 9575,
+      "sha256": "738010a21892bbac4f689d8f5ac73a56a7916ab386ee67590e5cdb3837e48452"
+    },
+    "tests/usb-setup/critic-a-local/patch-tool.log": {
+      "mode": "100644",
+      "git_blob": "5597407d510476bb4b5890996325188bfbfa5ce2",
+      "bytes": 107,
+      "sha256": "557df83fb5fe1ca54d4b25f0ee3d76e6414955f05c31659d80495ffa201fcc27"
+    },
+    "tests/usb-setup/critic-a-local/relocated-supplemental/commands.json": {
+      "mode": "100644",
+      "git_blob": "26b9aa8245933b80eeb487d48d8c55eb52c92f77",
+      "bytes": 672,
+      "sha256": "7a96e7dc116a89a0c17180ad525f97d71aba5e395ebe4104ee5d182fa5cb7485"
+    },
+    "tests/usb-setup/critic-a-local/relocated-supplemental/output-separation-results.json": {
+      "mode": "100644",
+      "git_blob": "97fc0be733213c6133a06169578388af310b78ad",
+      "bytes": 5671,
+      "sha256": "7a35fac1e79d31b12e6974ea8ed15d58f39521eae05a8c123bdd7bfb9cd6292b"
+    },
+    "tests/usb-setup/critic-a-local/relocated-supplemental/patch-tool-results.json": {
+      "mode": "100644",
+      "git_blob": "a32a343dc1cbe99047a7361f5a823595907cc203",
+      "bytes": 9704,
+      "sha256": "053e35e1e3273c0c48c49f65e486c56d8799488a048f5721850eb1825f496b8b"
+    },
+    "tests/usb-setup/critic-a-local/relocated-supplemental/receipt.json": {
+      "mode": "100644",
+      "git_blob": "699c8988f9272c965b5482c9e2069645492971f0",
+      "bytes": 1720,
+      "sha256": "7c1a1007c2de568ed009ddda079f95d01dc106c3a5f3ebf69fd0ecdc7f4396a2"
+    },
+    "tests/usb-setup/critic-a-local/relocated-supplemental/test_output_separation.py.log": {
+      "mode": "100644",
+      "git_blob": "f33976141e8f36c7d04b92cd0ec1deb2a05fd29d",
+      "bytes": 103,
+      "sha256": "6369af65c308c09ea504c3bf89a1575cf5b7acb7614c3c12d9f716800f8d2569"
+    },
+    "tests/usb-setup/critic-a-local/relocated-supplemental/test_patch_tool.py.log": {
+      "mode": "100644",
+      "git_blob": "5597407d510476bb4b5890996325188bfbfa5ce2",
+      "bytes": 107,
+      "sha256": "557df83fb5fe1ca54d4b25f0ee3d76e6414955f05c31659d80495ffa201fcc27"
+    },
+    "tests/usb-setup/critic-a-local/review-manifest.json": {
+      "mode": "100644",
+      "git_blob": "ad7f231e8b438eb88ad776a8a5a4366c9142003f",
+      "bytes": 2109,
+      "sha256": "cbb7a10f1fff57182a6872ba833db4ce8cfab3fb04d767fc60fb0a51cda139df"
+    },
+    "tests/usb-setup/critic-a-local/run_supplemental.py": {
+      "mode": "100644",
+      "git_blob": "f1dd6c9b385f3d9a1cfef1d0acb959e2ec0030f8",
+      "bytes": 4289,
+      "sha256": "64f5ae9efd4f7585317fd501ece5ff7e76e272154dd957861d42128b3bb9fbac"
+    },
+    "tests/usb-setup/critic-a-local/successful-stream-equality.json": {
+      "mode": "100644",
+      "git_blob": "975e8c91f9f4692a48004ebd0dadb409dd55ba18",
+      "bytes": 2287,
+      "sha256": "0113504b13564d69e6e2685fd88d19f43fe4618c6f5eb8e19cf70bc54983f44e"
+    },
+    "tests/usb-setup/critic-a-local/test_output_separation.py": {
+      "mode": "100644",
+      "git_blob": "3f4b93c4e6a0b52cf04507e3ba7545906dbfdb7a",
+      "bytes": 1656,
+      "sha256": "cfe46a9aa7797cbc0d6bcabcefbe777bd28f8f3eb2487959796f88a838947f08"
+    },
+    "tests/usb-setup/critic-a-local/test_patch_tool.py": {
+      "mode": "100644",
+      "git_blob": "53f1a51cdb2843222556a938746bce1b707a23da",
+      "bytes": 4277,
+      "sha256": "55f379b38bf3490c98eebbe1dd27c3afee95e96ce5ca6c6a51f190af19aa3704"
+    },
+    "tests/usb-setup/critic-a-local/upstream-remote-binding.json": {
+      "mode": "100644",
+      "git_blob": "02f1533373aa3682c7d61bec04a781ca46cac063",
+      "bytes": 310,
+      "sha256": "e74dfbb0a0e116a14cd6b91ce27e5d92dfffda5e20dd60f4e457bcc46ec01409"
+    },
+    "tests/usb-setup/evidence-author-final/commands.json": {
+      "mode": "100644",
+      "git_blob": "a3902d3c0825f8b685d6627a989fb4a5357ca17e",
+      "bytes": 160844,
+      "sha256": "9edaf9a6b3dc22bdd847d8f72cfea8bfdc79082b00947e780df45c57e649dfa6"
+    },
+    "tests/usb-setup/evidence-author-final/nm.txt": {
+      "mode": "100644",
+      "git_blob": "cdd5419b68c19a11224032f634c33a1f061d2fe1",
+      "bytes": 840,
+      "sha256": "e430eded515f0b533d851f6a2adda8d29192dc5e434c071c4b0efde5ddcf9deb"
+    },
+    "tests/usb-setup/evidence-author-final/objdump.txt": {
+      "mode": "100644",
+      "git_blob": "acd54a818525341f3f9ccbb42271b036b348600d",
+      "bytes": 70506,
+      "sha256": "d8ea446ed643d1b33c7ff96a5607bdc138653f30914a29ea635e87180682db69"
+    },
+    "tests/usb-setup/evidence-author-final/size.txt": {
+      "mode": "100644",
+      "git_blob": "8fd1322530d084af27c8d45db892d0d8518dc1b9",
+      "bytes": 4989,
+      "sha256": "1491a819fe097db7db3d72f865ac7ca67ffbd1def7f6e3e10e426c7f5f6c87cc"
+    },
+    "tests/usb-setup/evidence-author-final/summary.json": {
+      "mode": "100644",
+      "git_blob": "e56cdb34153ee79b63978e5771329c20574c2113",
+      "bytes": 617,
+      "sha256": "9b177c3151eb7ee2575f956b0926a24c4f2d917b6401c3b14a46af033c77cc3e"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build-f1/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "0b61c2d0d7f7c771fadd44a417439d4649632a04",
+      "bytes": 19725,
+      "sha256": "7e19b59e0a08f5c61f1e4c0e3d90f790b4232911e952815432e448b7a01a389e"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build-f1/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "fb50b5eb532c59045baa4211d1c6674c24324dee",
+      "bytes": 7855,
+      "sha256": "376b8f80856e401baca91c44bf2f19209fa386fd04253a5426f3fde344edae08"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build-sanitize-f1/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "33e13a53ebfff8a489aa48c963abf13279a6c967",
+      "bytes": 20736,
+      "sha256": "e658f3570135292e184d02d404723e70b6fe3ef707ccb30473ccac0b5f662e65"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build-sanitize-f1/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "24df8379dfdaed3927d12f45eded509dfe9d1459",
+      "bytes": 8306,
+      "sha256": "0a0bef8db757171d0baaa8dba072f41f887d61aacc31f997ac63f2fec34577e8"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build-sanitize/adapter-receipt.json": {
+      "mode": "100644",
+      "git_blob": "48c60ffa5df55350e37e72cb7774a275bd097ee3",
+      "bytes": 20369,
+      "sha256": "21ac499b4aa579b2de4d631c2772b89a5b2d1673e6208cb3b7f3d3ea437e6103"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build-sanitize/core-receipt.json": {
+      "mode": "100644",
+      "git_blob": "c61c696c508e29e9d97d35089c2f5ff4390d97c2",
+      "bytes": 8169,
+      "sha256": "a7c039d38c42a92de6cbfaa4259d1b69369f52eb03d54a6ec5c441d5cb8f54a4"
+    },
+    "tests/usb-setup/evidence-author-final/supporting/build/adapter-receipt.json": {

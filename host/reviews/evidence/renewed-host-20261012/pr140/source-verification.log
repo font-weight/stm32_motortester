@@ -1,0 +1,22 @@
+{
+  "local_head": "3a718eda6587b623b6ea3d06fd293f2068a351b5",
+  "tree": "131f11ec4ee21d5c281cae220baebee03906724b",
+  "parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "changed_paths": [
+    "host/docs/acquisition-integration.md",
+    "host/motortester/gui_acquisition.py",
+    "host/tests/test_gui_acquisition.py"
+  ],
+  "verified_files": 1387,
+  "unchanged_files": 1384,
+  "production_ast_identical_except_three_linebreaks": true,
+  "original_test_methods_unchanged": 28,
+  "original_helper_assertions_preserved": 14,
+  "added_helper_assertions": 3,
+  "new_tests": [
+    "test_multiline_controls_keep_native_click_keyboard_and_accessible_meaning",
+    "test_run11_metric_model_rejects_each_original_single_line_constraint",
+    "test_small_panel_fits_run11_horizontal_text_metrics"
+  ],
+  "clean": true
+}

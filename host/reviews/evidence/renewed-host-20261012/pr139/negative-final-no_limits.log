@@ -1,0 +1,66 @@
+test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) ... 
+  test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=1, rate=1.00000001, trigger=None) ... FAIL
+  test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=2, rate=999999.99999, trigger=1) ... FAIL
+  test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=7, rate=3.7, trigger=6) ... FAIL
+  test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=65536, rate=1.0, trigger=65535) ... FAIL
+  test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=65536, rate=1000000.0, trigger=0) ... FAIL
+
+======================================================================
+FAIL: test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=1, rate=1.00000001, trigger=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 100, in test_02_limits_extreme_fractional_rates_and_replacement
+    self.wheel('bottom',sign*120);self.wheel('left',sign*120);self.bounded(c)
+                                                              ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 76, in bounded
+    self.assertTrue((span>=minimum-tolerance).all(),(span,minimum))
+AssertionError: np.False_ is not true : (array([ 780.16545869, 3255.63049165]), array([999.99999,   1.     ]))
+
+======================================================================
+FAIL: test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=2, rate=999999.99999, trigger=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 100, in test_02_limits_extreme_fractional_rates_and_replacement
+    self.wheel('bottom',sign*120);self.wheel('left',sign*120);self.bounded(c)
+                                                              ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 76, in bounded
+    self.assertTrue((span>=minimum-tolerance).all(),(span,minimum))
+AssertionError: np.False_ is not true : (array([7.80165466e-04, 3.25563049e+03]), array([0.001, 1.   ]))
+
+======================================================================
+FAIL: test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=7, rate=3.7, trigger=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 100, in test_02_limits_extreme_fractional_rates_and_replacement
+    self.wheel('bottom',sign*120);self.wheel('left',sign*120);self.bounded(c)
+                                                              ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 76, in bounded
+    self.assertTrue((span>=minimum-tolerance).all(),(span,minimum))
+AssertionError: np.False_ is not true : (array([212.87310279, 547.79699907]), array([270.27027027,   1.        ]))
+
+======================================================================
+FAIL: test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=65536, rate=1.0, trigger=65535)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 100, in test_02_limits_extreme_fractional_rates_and_replacement
+    self.wheel('bottom',sign*120);self.wheel('left',sign*120);self.bounded(c)
+                                                              ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 76, in bounded
+    self.assertTrue((span>=minimum-tolerance).all(),(span,minimum))
+AssertionError: np.False_ is not true : (array([1.24907319e+04, 7.95358574e-01]), array([1000.,    1.]))
+
+======================================================================
+FAIL: test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) (n=65536, rate=1000000.0, trigger=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 100, in test_02_limits_extreme_fractional_rates_and_replacement
+    self.wheel('bottom',sign*120);self.wheel('left',sign*120);self.bounded(c)
+                                                              ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 76, in bounded
+    self.assertTrue((span>=minimum-tolerance).all(),(span,minimum))
+AssertionError: np.False_ is not true : (array([0.01249073, 0.79535857]), array([0.001, 1.   ]))
+
+----------------------------------------------------------------------
+Ran 1 test in 4.947s
+
+FAILED (failures=5)

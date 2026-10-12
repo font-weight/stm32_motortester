@@ -1,0 +1,35 @@
+test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) ... FAIL
+
+======================================================================
+FAIL: test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 92, in test_02_limits_extreme_fractional_rates_and_replacement
+    self.bounded(None,True)
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 77, in bounded
+    if overview:np.testing.assert_allclose(r,bounds,rtol=1e-11,atol=1e-10)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/motortester-runtime-recovery-20261012/deps/numpy/testing/_private/utils.py", line 1780, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/workspace/shared/motortester-runtime-recovery-20261012/deps/numpy/testing/_private/utils.py", line 988, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=1e-11, atol=1e-10
+
+Mismatched elements: 4 / 4 (100%)
+Mismatch at indices:
+ [0, 0]: 0 (ACTUAL), -0.025 (DESIRED)
+ [0, 1]: 1 (ACTUAL), 1.025 (DESIRED)
+ [1, 0]: 0 (ACTUAL), -143.32500000000002 (DESIRED)
+ [1, 1]: 1 (ACTUAL), 4238.325 (DESIRED)
+Max absolute difference among violations: 4237.325
+Max relative difference among violations: 1.
+ ACTUAL: array([[0, 1],
+       [0, 1]])
+ DESIRED: array([[-2.500000e-02,  1.025000e+00],
+       [-1.433250e+02,  4.238325e+03]])
+
+----------------------------------------------------------------------
+Ran 1 test in 0.081s
+
+FAILED (failures=1)

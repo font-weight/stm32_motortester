@@ -1,0 +1,15 @@
+test_01_actual_axis_and_plot_gestures (__main__.IndependentZoom.test_01_actual_axis_and_plot_gestures) ... FAIL
+
+======================================================================
+FAIL: test_01_actual_axis_and_plot_gestures (__main__.IndependentZoom.test_01_actual_axis_and_plot_gestures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 84, in test_01_actual_axis_and_plot_gestures
+    if axis in changed:self.assertLess(np.ptp(zoom[axis]),np.ptp(before[axis]))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: np.float64(35.59780695686922) not less than np.float64(35.59780695686922)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.140s
+
+FAILED (failures=1)

@@ -1,0 +1,15 @@
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+GEOMETRY {"tag": "mutant-reset", "scale": "1", "dialog": [420, 360], "viewport": [386, 280], "content": [408, 1143], "hmax": 22, "vmax": 863, "target_hints": {"connect_button": [273, 54], "reset": [390, 18], "simulate": [221, 32]}}
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-wrap-controls-review/component_negative.py", line 13, in <module>
+    checker.panel(t,(420,360),'mutant-'+mode)
+  File "/workspace/scratch/d2a4dc03255e/critic-wrap-controls-review/layout_probe.py", line 24, in panel
+    print('GEOMETRY',json.dumps(record),flush=True);self.assertEqual(d.size(),QtCore.QSize(*size));self.assertEqual(record['hmax'],0,record);self.assertLessEqual(content.width(),v.width());self.assertEqual(scroll.horizontalScrollBarPolicy(),QtCore.Qt.ScrollBarAsNeeded)
+                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/case.py", line 885, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/case.py", line 878, in _baseAssertEqual
+    raise self.failureException(msg)
+AssertionError: 22 != 0 : {'tag': 'mutant-reset', 'scale': '1', 'dialog': [420, 360], 'viewport': [386, 280], 'content': [408, 1143], 'hmax': 22, 'vmax': 863, 'target_hints': {'connect_button': (273, 54), 'reset': (390, 18), 'simulate': (221, 32)}}

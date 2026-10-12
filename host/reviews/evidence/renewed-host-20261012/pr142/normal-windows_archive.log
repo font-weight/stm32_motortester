@@ -1,0 +1,9 @@
+test_existing_output_directory_keeps_previous_source_archive (test_windows_archive.WindowsSourceArchiveTests.test_existing_output_directory_keeps_previous_source_archive) ... ok
+test_old_host_cwd_fails_and_root_control_preserves_exact_host_tree (test_windows_archive.WindowsSourceArchiveTests.test_old_host_cwd_fails_and_root_control_preserves_exact_host_tree) ... ok
+test_real_archive_failure_prevents_final_checksums_and_success (test_windows_archive.WindowsSourceArchiveTests.test_real_archive_failure_prevents_final_checksums_and_success) ... ok
+test_recipe_real_archive_from_root_host_and_unrelated_cwd (test_windows_archive.WindowsSourceArchiveTests.test_recipe_real_archive_from_root_host_and_unrelated_cwd) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.089s
+
+OK

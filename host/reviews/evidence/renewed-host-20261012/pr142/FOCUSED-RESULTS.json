@@ -1,0 +1,202 @@
+{
+  "normal": [
+    {
+      "module": "license_packaging",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_license_packaging.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "14",
+          "0.028"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 0.17567864800003008,
+      "log": "normal-license_packaging.log"
+    },
+    {
+      "module": "serial_packaging",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_serial_packaging.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "37",
+          "0.017"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 0.1638686330006749,
+      "log": "normal-serial_packaging.log"
+    },
+    {
+      "module": "windows_smoke",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_windows_smoke.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "26",
+          "8.209"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 8.38762718199996,
+      "log": "normal-windows_smoke.log"
+    },
+    {
+      "module": "windows_archive",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_windows_archive.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "4",
+          "0.089"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 0.2024245749998954,
+      "log": "normal-windows_archive.log"
+    }
+  ],
+  "optimized": [
+    {
+      "module": "license_packaging",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_license_packaging.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "14",
+          "0.020"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 0.48634623999987525,
+      "log": "optimized-license_packaging.log"
+    },
+    {
+      "module": "serial_packaging",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_serial_packaging.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "37",
+          "0.018"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 0.47094262300015544,
+      "log": "optimized-serial_packaging.log"
+    },
+    {
+      "module": "windows_smoke",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_windows_smoke.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "26",
+          "8.050"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 8.501822434000132,
+      "log": "optimized-windows_smoke.log"
+    },
+    {
+      "module": "windows_archive",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_windows_archive.py",
+        "-v"
+      ],
+      "exit": 0,
+      "tests": [
+        [
+          "4",
+          "0.081"
+        ]
+      ],
+      "zero_skips": true,
+      "elapsed_seconds": 0.42065927800013014,
+      "log": "optimized-windows_archive.log"
+    }
+  ]
+}

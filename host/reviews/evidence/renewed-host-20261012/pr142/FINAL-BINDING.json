@@ -1,0 +1,29 @@
+{
+  "status": "PASS bounded source notice supplementation only",
+  "remote_commit": "24eadd15530a84384f58f9edcb50ddfea8785796",
+  "local_commit": "699363047fa923c128fd41da67326bc008acbcdb",
+  "tree": "03e334c06f3adabad704b5113b40a13f8b25ee36",
+  "sole_parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "remote_tree_entries": 1662,
+  "remote_files": 1391,
+  "actual_delta_bodies": 7,
+  "unchanged_source_files_after_review": 1391,
+  "focused_tests": {
+    "normal": 81,
+    "optimized": 81
+  },
+  "independent_outcomes": {
+    "normal": 34,
+    "optimized": 34
+  },
+  "local_source_archive": {
+    "files": 230,
+    "members": 258,
+    "sha256": "2607e5a6c1e8ac6843c42d9caa219801d16e8fd2060f3505cf84fb7ff271fa0e",
+    "comment": "699363047fa923c128fd41da67326bc008acbcdb",
+    "remote_zip_identity_claimed": false
+  },
+  "windows_execution_performed": false,
+  "legal_clearance": false,
+  "full_composition_suite_performed": false
+}

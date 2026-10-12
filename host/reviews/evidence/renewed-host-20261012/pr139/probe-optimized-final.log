@@ -1,0 +1,22 @@
+test_01_actual_axis_and_plot_gestures (__main__.IndependentZoom.test_01_actual_axis_and_plot_gestures) ... ok
+test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) ... ok
+test_03_cursors_bytes_home_and_png (__main__.IndependentZoom.test_03_cursors_bytes_home_and_png) ... ok
+test_04_file_and_live_replacement (__main__.IndependentZoom.test_04_file_and_live_replacement) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+FAIL
+test_05_guidance_reachable_and_rendered (__main__.IndependentZoom.test_05_guidance_reachable_and_rendered) ... This plugin does not support propagateSizeHints()
+ok
+
+======================================================================
+FAIL: test_04_file_and_live_replacement (__main__.IndependentZoom.test_04_file_and_live_replacement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 138, in test_04_file_and_live_replacement
+    self.assertIs(self.w.capture,retained);self.assertFalse(d.stop_button.isEnabled())
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 5 tests in 44.868s
+
+FAILED (failures=1)

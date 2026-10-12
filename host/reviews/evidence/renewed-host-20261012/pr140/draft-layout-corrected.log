@@ -1,0 +1,103 @@
+test_multiline_checkboxes_keep_native_mouse_keyboard_and_names (__main__.LayoutProbe.test_multiline_checkboxes_keep_native_mouse_keyboard_and_names) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+ok
+test_native_and_measured_width_matrix (__main__.LayoutProbe.test_native_and_measured_width_matrix) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+GEOMETRY {"tag": "Fusion-native9-model0-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1013], "hmax": 0, "vmax": 779, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1045], "hmax": 0, "vmax": 461, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1157], "hmax": 0, "vmax": 863, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1237], "hmax": 0, "vmax": 1003, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model0-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1029], "hmax": 0, "vmax": 795, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+GEOMETRY {"tag": "Fusion-native9-model1-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1045], "hmax": 0, "vmax": 811, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1045], "hmax": 0, "vmax": 461, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1157], "hmax": 0, "vmax": 863, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1253], "hmax": 0, "vmax": 1019, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native9-model1-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1061], "hmax": 0, "vmax": 827, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+GEOMETRY {"tag": "Fusion-native22-model0-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1013], "hmax": 0, "vmax": 779, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1045], "hmax": 0, "vmax": 461, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1157], "hmax": 0, "vmax": 863, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1237], "hmax": 0, "vmax": 1003, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model0-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1029], "hmax": 0, "vmax": 795, "target_hints": {"connect_button": [165, 54], "reset": [152, 32], "simulate": [144, 32]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+GEOMETRY {"tag": "Fusion-native22-model1-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1045], "hmax": 0, "vmax": 811, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1045], "hmax": 0, "vmax": 461, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1157], "hmax": 0, "vmax": 863, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1253], "hmax": 0, "vmax": 1019, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 917], "hmax": 0, "vmax": 333, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 949], "hmax": 0, "vmax": 655, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+GEOMETRY {"tag": "Fusion-native22-model1-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1061], "hmax": 0, "vmax": 827, "target_hints": {"connect_button": [273, 54], "reset": [234, 32], "simulate": [221, 32]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+GEOMETRY {"tag": "Windows-native9-model0-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1017], "hmax": 0, "vmax": 783, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1049], "hmax": 0, "vmax": 465, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1161], "hmax": 0, "vmax": 867, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1241], "hmax": 0, "vmax": 1007, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native9-model0-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1033], "hmax": 0, "vmax": 799, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+GEOMETRY {"tag": "Windows-native9-model1-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1049], "hmax": 0, "vmax": 815, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1049], "hmax": 0, "vmax": 465, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1161], "hmax": 0, "vmax": 867, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1257], "hmax": 0, "vmax": 1023, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native9-model1-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1065], "hmax": 0, "vmax": 831, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+GEOMETRY {"tag": "Windows-native22-model0-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1017], "hmax": 0, "vmax": 783, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1049], "hmax": 0, "vmax": 465, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1161], "hmax": 0, "vmax": 867, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1241], "hmax": 0, "vmax": 1007, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+GEOMETRY {"tag": "Windows-native22-model0-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1033], "hmax": 0, "vmax": 799, "target_hints": {"connect_button": [165, 54], "reset": [153, 33], "simulate": [145, 33]}}
+This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support propagateSizeHints()
+GEOMETRY {"tag": "Windows-native22-model1-IDLE", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-IDLE", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-IDLE", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1049], "hmax": 0, "vmax": 815, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-READY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 1049], "hmax": 0, "vmax": 465, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-READY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 1161], "hmax": 0, "vmax": 867, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-READY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1257], "hmax": 0, "vmax": 1023, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-RECOVERY", "scale": "1", "dialog": [560, 650], "viewport": [526, 584], "content": [526, 921], "hmax": 0, "vmax": 337, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-RECOVERY", "scale": "1", "dialog": [420, 360], "viewport": [386, 294], "content": [386, 953], "hmax": 0, "vmax": 659, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+GEOMETRY {"tag": "Windows-native22-model1-RECOVERY", "scale": "1", "dialog": [360, 300], "viewport": [326, 234], "content": [326, 1065], "hmax": 0, "vmax": 831, "target_hints": {"connect_button": [273, 54], "reset": [235, 33], "simulate": [222, 33]}}
+LAYOUT_CASES 72 scale 1
+ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.215s
+
+OK

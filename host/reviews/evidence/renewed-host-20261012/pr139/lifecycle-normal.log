@@ -1,0 +1,27 @@
+test_all_modes_edges_real_capture_roundtrip (__main__.LifecycleProbe.test_all_modes_edges_real_capture_roundtrip) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+ok
+test_auto_timeout_and_stop (__main__.LifecycleProbe.test_auto_timeout_and_stop) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+ok
+test_connect_only_and_exact_single_retention (__main__.LifecycleProbe.test_connect_only_and_exact_single_retention) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+ok
+test_interrupted_handshake_is_async (__main__.LifecycleProbe.test_interrupted_handshake_is_async) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+ok
+test_main_close_failure_can_retry (__main__.LifecycleProbe.test_main_close_failure_can_retry) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+ok
+test_normal_wait_hide_and_stop_no_restart (__main__.LifecycleProbe.test_normal_wait_hide_and_stop_no_restart) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+This plugin does not support raise()
+ok
+test_reconnect_clears_current_caps_without_autostart (__main__.LifecycleProbe.test_reconnect_clears_current_caps_without_autostart) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.436s
+
+OK
