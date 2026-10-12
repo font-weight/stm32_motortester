@@ -3,6 +3,13 @@ from PySide6 import QtCore, QtWidgets
 from .session import Config, Phase
 
 
+class _ContentSizedComboBox(QtWidgets.QComboBox):
+    def minimumSizeHint(self):
+        # Qt can cache the unstyled native-font minimum while sizeHint already
+        # reflects the stylesheet. Keep the full styled item/arrow/padding size.
+        return self.sizeHint()
+
+
 class AcquisitionDialog(QtWidgets.QDialog):
     def __init__(self, viewer, bridge):
         super().__init__(viewer)
@@ -42,18 +49,21 @@ class AcquisitionDialog(QtWidgets.QDialog):
         warning.setWordWrap(True)
         layout.addWidget(warning)
         form = QtWidgets.QFormLayout()
-        self.source = QtWidgets.QComboBox()
+        # Stack full-size fields below their labels rather than add both widths
+        # offscreen. Vertical scrolling keeps every control reachable.
+        form.setRowWrapPolicy(QtWidgets.QFormLayout.RowWrapPolicy.WrapAllRows)
+        self.source = _ContentSizedComboBox()
         self.source.addItem("Эмулятор (синтетика)", "emulator")
         self.source.addItem("Прибор (COM-порт)", "device")
         self.port = QtWidgets.QLineEdit()
         self.port.setPlaceholderText("Например, COM3; автоматического поиска нет")
         self.reset = QtWidgets.QCheckBox("Подтверждаю физический сброс")
         self.reset.setToolTip("Открытие COM-порта не подтверждает сброс прибора.")
-        self.mode = QtWidgets.QComboBox()
+        self.mode = _ContentSizedComboBox()
         for title, value in (("Auto", 0), ("Normal", 1), ("Single", 2)):
             self.mode.addItem(title, value)
         self.mode.setCurrentIndex(1)
-        self.edge = QtWidgets.QComboBox()
+        self.edge = _ContentSizedComboBox()
         self.edge.addItem("Нарастающий", 0)
         self.edge.addItem("Спадающий", 1)
         self.level = QtWidgets.QSpinBox()

@@ -5,8 +5,9 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 from motortester.gui import MainWindow
+from motortester.gui_acquisition import AcquisitionDialog
 from motortester.emulator import demo_message, from_message
 from motortester.session import Capabilities, SessionController, Phase
 
@@ -362,18 +363,86 @@ class AcquisitionGuiTests(unittest.TestCase):
 
     def test_caps_details_and_actions_remain_reachable_at_small_viewport(self):
         self.bridge.emit_state(Phase.READY, capabilities=advertised_caps())
-        self.dialog.resize(420, 360)
-        self.app.processEvents()
-        scroll = self.dialog.findChild(QtWidgets.QScrollArea)
+        self.assert_panel_reachable(self.dialog)
+        self.assertEqual(self.bridge.calls, [])
+
+    def assert_panel_reachable(self, dialog, size=QtCore.QSize(420, 360)):
+        dialog.resize(size)
+        # LayoutRequest can follow an initial resize/style event on native Qt.
+        for _ in range(3):
+            self.app.processEvents()
+        self.assertEqual(dialog.size(), size)
+        scroll = dialog.findChild(QtWidgets.QScrollArea)
         self.assertIsNotNone(scroll)
         self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
         self.assertEqual(scroll.horizontalScrollBar().maximum(), 0)
-        for widget in (self.dialog.device_details, self.dialog.connect_button,
-                       self.dialog.start_button, self.dialog.stop_button,
-                       self.dialog.disconnect_button, self.dialog.status):
-            with self.subTest(widget=widget.objectName() or widget.text()):
-                scroll.ensureWidgetVisible(widget, 0, 0)
-                self.app.processEvents()
-                center = widget.mapTo(scroll.viewport(), widget.rect().center())
-                self.assertTrue(scroll.viewport().rect().contains(center))
-        self.assertEqual(self.bridge.calls, [])
+        self.assertLessEqual(scroll.widget().width(), scroll.viewport().width())
+        controls = (dialog.source, dialog.port, dialog.mode, dialog.edge,
+                    dialog.level, dialog.timeout, dialog.reset, dialog.simulate,
+                    dialog.connect_button, dialog.start_button,
+                    dialog.stop_button, dialog.disconnect_button)
+        labels = tuple(scroll.widget().findChildren(QtWidgets.QLabel))
+        for widget in controls + labels:
+            with self.subTest(widget=widget.objectName() or type(widget).__name__):
+                self.assertGreaterEqual(widget.width(), widget.minimumSizeHint().width())
+                if isinstance(widget, QtWidgets.QLabel) and widget.wordWrap():
+                    self.assertGreaterEqual(widget.height(), widget.heightForWidth(widget.width()))
+                else:
+                    self.assertGreaterEqual(widget.height(), widget.minimumSizeHint().height())
+                if isinstance(widget, QtWidgets.QComboBox):
+                    option = QtWidgets.QStyleOptionComboBox()
+                    widget.initStyleOption(option)
+                    edit = widget.style().subControlRect(
+                        QtWidgets.QStyle.ComplexControl.CC_ComboBox, option,
+                        QtWidgets.QStyle.SubControl.SC_ComboBoxEditField, widget)
+                    widest_item = max(widget.fontMetrics().horizontalAdvance(widget.itemText(i))
+                                      for i in range(widget.count()))
+                    self.assertGreaterEqual(edit.width(), widest_item)
+                    self.assertGreaterEqual(edit.height(), widget.fontMetrics().height())
+                # A long CAPS/error label can be taller than the viewport. Each
+                # edge must remain reachable, not just its middle or the button.
+                for point in (widget.rect().topLeft(), widget.rect().topRight(),
+                              widget.rect().bottomLeft(), widget.rect().bottomRight()):
+                    target = widget.mapTo(scroll.widget(), point)
+                    scroll.ensureVisible(target.x(), target.y(), 1, 1)
+                    self.app.processEvents()
+                    self.assertTrue(scroll.viewport().rect().contains(
+                        widget.mapTo(scroll.viewport(), point)))
+        for button in dialog.findChildren(QtWidgets.QPushButton,
+                                          options=QtCore.Qt.FindChildOption.FindDirectChildrenOnly):
+            self.assertGreaterEqual(button.width(), button.minimumSizeHint().width())
+            self.assertGreaterEqual(button.height(), button.minimumSizeHint().height())
+            self.assertTrue(dialog.rect().contains(button.geometry()))
+
+    def test_small_panel_handles_larger_native_font_before_controls_are_created(self):
+        original_font = QtGui.QFont(self.app.font())
+        original_style = self.app.style().objectName()
+        try:
+            # Source combo native minimumSizeHint can reflect this base font
+            # even though the inherited GUI stylesheet renders its text at 13px.
+            # Old two-column rows overflow by 131px with DejaVu Sans 22pt/Linux;
+            # the real Windows run9 showed 129px with unrecorded native metrics.
+            for style in ("Fusion", "Windows"):
+                if style not in QtWidgets.QStyleFactory.keys():
+                    continue
+                for points in (9, 14, 18, 22):
+                    with self.subTest(style=style, native_font_points=points):
+                        self.app.setStyle(style)
+                        self.app.setFont(QtGui.QFont("DejaVu Sans", points))
+                        bridge = FakeBridge(self.window)
+                        dialog = AcquisitionDialog(self.window, bridge)
+                        try:
+                            dialog.show()
+                            bridge.emit_state(Phase.READY, capabilities=advertised_caps())
+                            for size in (QtCore.QSize(420, 360), QtCore.QSize(360, 300)):
+                                with self.subTest(size=size):
+                                    self.assert_panel_reachable(dialog, size)
+                            self.assertEqual(bridge.calls, [])
+                        finally:
+                            dialog.close()
+                            dialog.deleteLater()
+                            bridge.deleteLater()
+                            self.app.processEvents()
+        finally:
+            self.app.setFont(original_font)
+            self.app.setStyle(original_style)
