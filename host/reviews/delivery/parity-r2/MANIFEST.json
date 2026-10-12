@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "kind": "parity",
+  "wrapper_is_not_original_commit": true,
+  "original_commit": "9a32271fcf40ac3b47fb0c9e81a66ec43ef8033a",
+  "original_tree": "10bdfb8906c22d33b917c869d86e938798f257eb",
+  "original_parent": "a60a05c0e0b0ce9db0c907843a5be97be73e64e1",
+  "bundle_bytes": 87080,
+  "bundle_sha256": "06d35cb3d18e7fa1b8ed84d6b0c95475818779f93b83b97b46d590dc47765f13",
+  "bundle_format": "git bundle v2; chunks are independently padded base64, decode each separately in listed order",
+  "chunks": [
+    {
+      "path": "host/reviews/delivery/parity-r2/checkpoint.part000.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b3a19c6251d6f1bcf1b60edb2b036738c66ce36479a6e0c500c105c5f304d8c7",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "cbdc28240322e4b27af65262a90819bcb99d6b80683f8599a14afab89f4bc657"
+    },
+    {
+      "path": "host/reviews/delivery/parity-r2/checkpoint.part001.b64",
+      "encoded_bytes": 4109,
+      "encoded_sha256": "cd74380707d7d0ce47f8042d5364a289c766c8c7524bc41dc3b278ca7fe9f276",
+      "decoded_bytes": 3080,
+      "decoded_sha256": "a69227a1643aa654e168236cb5fe10ce34b6d1f7310093e28524ed5730e5a48a"
+    }
+  ],
+  "source_paths": {
+    "host/motortester/device_emulator.py": {
+      "sha256": "f733ab0fad14a443402a26f437a399fe69499ef1a68a8fa793a64d8d630daef5",
+      "git_blob": "86085965123362dabf4e3bb719a4e68041d01e55",
+      "bytes": 23797
+    },
+    "host/tests/test_early_release_parity.py": {
+      "sha256": "3bcd73d8371d93fbd3af62eeffe16ba629a6b91d3b7683767c25db45bd11aca4",
+      "git_blob": "59c8864965a0de93043546b7ff9de211996d6ea2",
+      "bytes": 23773
+    },
+    "host/docs/early-release-parity.md": {
+      "sha256": "b387da8a7d7ea518a1a23ddd60c147dbd446121622b90e3b558edcd08f0674fa",
+      "git_blob": "53eddccc87f8ae4e4e4f8a3bc322a2d81e52b70f",
+      "bytes": 12953
+    },
+    "host/tests/fixtures/early_release_parity/raw_peer.py": {
+      "sha256": "d97c020564e0f97ed2f7c7108677809f0e6d26cc38f4e31ef3af4002a7a58acc",
+      "git_blob": "b1836e5bfa1395403351d7b957693cd737d00dfb",
+      "bytes": 6032
+    },
+    "host/tests/fixtures/early_release_parity/run_suite.py": {
+      "sha256": "1d2cb4b841937c6e975cfa428d2a060bff9e144c0d496a627611890e8a23044f",
+      "git_blob": "0fab06daaea90aff9498e629f44978772870de84",
+      "bytes": 2750
+    },
+    "host/tests/fixtures/early_release_parity/probe.py": {
+      "sha256": "d4b52ae117a7cd6a3ee50e540b74d444ea59028bddda937a36a28fef0ed70fe9",
+      "git_blob": "353d98e6d353102fef591f9f2564e1eeec997b7f",
+      "bytes": 4200
+    }
+  },
+  "historical_delta": {
+    "host/docs/early-release-parity.md": {
+      "mode": "100644",
+      "sha": "53eddccc87f8ae4e4e4f8a3bc322a2d81e52b70f"
+    },
+    "host/motortester/device_emulator.py": {
+      "mode": "100644",
+      "sha": "86085965123362dabf4e3bb719a4e68041d01e55"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/baseline-tree.json": {
+      "mode": "100644",
+      "sha": "256fef0fa4fea572f1ae5af43b7259c5e3506267"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/baseline_device_emulator.py": {
+      "mode": "100644",
+      "sha": "a17f427c7f14b0f0ced1fd02aa9e5d99150c45a2"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/candidate-normal.log": {
+      "mode": "100644",
+      "sha": "0694c6503003842ec5022d2199cc78057454c418"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/commands.json": {
+      "mode": "100644",
+      "sha": "5f3784cd43863a643437fe4733a03123782e1471"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/environment.log": {
+      "mode": "100644",
+      "sha": "b8091f86a5d55a5349b4c2dc9bc4aa022c2bf3b8"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/final-focused-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "49ec5072c765331a46bba5eeadabb738c7c22044"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/final-focused-normal.log": {
+      "mode": "100644",
+      "sha": "25420180b739957e2509b6f3ba9903dc52e05aa3"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/final-full-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "fb1aa16ea82c94263f6f0bd6f07a618777399bbd"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/final-full-normal.log": {
+      "mode": "100644",
+      "sha": "0ef61cac681eb52ee6fb02f0f0371d8b438142b1"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/final-handoff.md": {
+      "mode": "100644",
+      "sha": "37c7bf49e9c51bfbc2a66d3ed984d820f6fa37f0"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/final-manifest.json": {
+      "mode": "100644",
+      "sha": "f099f1bd5e312687ffc40ec31782c2028959ddb4"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/focused-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "6d62f92966984e586768bb9d8fac2881b0de80a4"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/focused-normal.log": {
+      "mode": "100644",
+      "sha": "110563f992674abf6dbccd61087b56448681d440"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/frozen-source-manifest-r1.json": {
+      "mode": "100644",
+      "sha": "1f1a9ea457dbbf5cce1d9fe222968e8f69bffa4c"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/frozen-source-manifest.json": {
+      "mode": "100644",
+      "sha": "1f1a9ea457dbbf5cce1d9fe222968e8f69bffa4c"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/initial-focused.log": {
+      "mode": "100644",
+      "sha": "885a8f38ea189179997b296a9b07982cb9bc9235"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/probe-r1.py": {
+      "mode": "100644",
+      "sha": "a35d3f8c4c65e3d3e24b99b1c1f121ffa15bde3a"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/published_c44_device_emulator.py": {
+      "mode": "100644",
+      "sha": "1efd07eeddbfb97ba9d2464ca47a93d5471941ca"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/candidate-normal.log": {
+      "mode": "100644",
+      "sha": "4f989d7228b50eef597af87110f7f9c4a7aa1d54"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/candidate-normal/observations.json": {
+      "mode": "100644",
+      "sha": "4305fef3463bc110a71afbccdbdf3e49c2b3b723"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/candidate-optimized.log": {
+      "mode": "100644",
+      "sha": "986ab853119449e233feb34d7d6010191dbcef73"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/candidate-optimized/observations.json": {
+      "mode": "100644",
+      "sha": "84ec50eca9921d815ca3d4b2d001bca685c2d394"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/commands.json": {
+      "mode": "100644",
+      "sha": "5bad8043630926f218ca4f6f207b32f48d333454"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/diff-check.log": {
+      "mode": "100644",
+      "sha": "3799c07fb06236e49d68dc576974267f756761dc"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/environment.log": {
+      "mode": "100644",
+      "sha": "7defa89f446590998de9ed151e7d69cf1121fe0e"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-focused-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "7190a32a83d8d252d56ab41787b0f868292c4e16"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-focused-normal.log": {
+      "mode": "100644",
+      "sha": "7e44378669afdd1f870c86f23f83be65931022aa"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-focused-optimized-inventory.json": {
+      "mode": "100644",
+      "sha": "c2890302f0df8d107f5d01e61c1c2e729c40e2c4"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-focused-optimized.log": {
+      "mode": "100644",
+      "sha": "e16ba47efbd74906c56a960703ec13d519b24319"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-full-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "c1269150d6fe1d036275c57d148aef44a7fe0b60"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-full-normal.log": {
+      "mode": "100644",
+      "sha": "e483c76aa394821fa8cfd02a2507fd995ef44799"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-full-optimized-inventory.json": {
+      "mode": "100644",
+      "sha": "a24b5150f3c0942c595306544e8643d643bba567"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/final-full-optimized.log": {
+      "mode": "100644",
+      "sha": "f8c5659f0e705f08c6259b8085a29764a9a74293"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/frozen-source-manifest.json": {
+      "mode": "100644",
+      "sha": "78185a15c0d6f73391c418333241963aed8fbc87"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/production.patch": {
+      "mode": "100644",
+      "sha": "f20f32dfe62ddf5252d7f0f6858f93959efa3447"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/published-c44-normal.log": {
+      "mode": "100644",
+      "sha": "63fd71c9e76a8d4f1f032fc961995dd2be57f7c3"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/published-c44-normal/observations.json": {
+      "mode": "100644",
+      "sha": "a6a334e0f1739252f2c8f242be381d34ca1c25e4"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/published-c44-optimized.log": {
+      "mode": "100644",
+      "sha": "d44c79f72d20b1d840ff98baa377c8e415393a03"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/published-c44-optimized/observations.json": {
+      "mode": "100644",
+      "sha": "eb0eff1ec3dc90a1b1c1856df16f72331a05a7ed"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/recovered-baseline-normal.log": {
+      "mode": "100644",
+      "sha": "db5b1b407d92a8872fc7430bc2372b82da33ae91"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/recovered-baseline-normal/observations.json": {
+      "mode": "100644",
+      "sha": "43f9fbd3e64f4d79b1d69d04882c49107e1a4ccb"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/recovered-baseline-optimized.log": {
+      "mode": "100644",
+      "sha": "7f076876daac8ac5d448fbd7b2adaef626f959e1"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/recovered-baseline-optimized/observations.json": {
+      "mode": "100644",
+      "sha": "0bcfc180d7523930109ab633cd45fe1908fe55ec"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/source-after.json": {
+      "mode": "100644",
+      "sha": "a29a29172ebdec1a77271b20cd50d5762238bf33"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/static-checks.json": {
+      "mode": "100644",
+      "sha": "bb73df3600d08ea1327fb1acb0661c42eae6ad43"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/trace-equivalence.json": {
+      "mode": "100644",
+      "sha": "e6978a2a5552a4105ee78add161c3a5cf79a7c78"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/r2/verification.json": {
+      "mode": "100644",
+      "sha": "9793e1ac67befbdabcd9cc97773e61fa56660be2"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/second-focused.log": {
+      "mode": "100644",
+      "sha": "f4e0d7f980446af22d5b2ac73dda6d2f28d451a0"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/source-inputs.json": {
+      "mode": "100644",
+      "sha": "b99702ec8f2489b1228acb73c701c8a9ca992895"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/verification-driver.log": {
+      "mode": "100644",
+      "sha": "c16cec9c122303b6f0e083acd77332dfa15580ea"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/verification-r2-driver.log": {
+      "mode": "100644",
+      "sha": "c660fea0149a5e46af9d160cffaed9853b7bbd22"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/verify_candidate.py": {
+      "mode": "100644",
+      "sha": "20ab820ab191301d1298e33f1ff0954b7c7675ed"
+    },
+    "host/tests/fixtures/early_release_parity/evidence/verify_candidate_r1.py": {
+      "mode": "100644",
+      "sha": "0c9e4f79d9d7c261a0c688146d8e7f68d88fb9ac"
+    },
+    "host/tests/fixtures/early_release_parity/probe.py": {
+      "mode": "100644",
+      "sha": "353d98e6d353102fef591f9f2564e1eeec997b7f"
+    },
+    "host/tests/fixtures/early_release_parity/raw_peer.py": {
+      "mode": "100644",
+      "sha": "b1836e5bfa1395403351d7b957693cd737d00dfb"
+    },
+    "host/tests/fixtures/early_release_parity/run_suite.py": {
+      "mode": "100644",
+      "sha": "0fab06daaea90aff9498e629f44978772870de84"
+    },
+    "host/tests/test_early_release_parity.py": {
+      "mode": "100644",
+      "sha": "59c8864965a0de93043546b7ff9de211996d6ea2"
+    }
+  },
+  "prerequisite": "Recover a60a05c0 from the separate Stop-r2 delivery bundle first.",
+  "acceptance": "New remote wrapper needs the same independent critic to verify source bytes and reconstruct this exact historical commit/tree. Historical evidence and failed runs remain unchanged. No Windows, physical or common protocol acceptance implied."
+}
