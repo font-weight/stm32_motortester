@@ -17,7 +17,7 @@ import pyqtgraph as pg
 
 from .emulator import demo_message, from_message
 from .model import Capture, CaptureError
-from . import recording
+from . import recording, session_archive
 
 
 STYLE = """
@@ -50,6 +50,8 @@ QScrollArea { border: none; background: #232a35; }
 QScrollBar:vertical { background: #171f2c; width: 12px; }
 QScrollBar::handle:vertical { background: #61718c; min-height: 20px; }
 QLineEdit, QTreeView, QListView { background: #10151f; color: #e5edf7; selection-background-color: #365772; }
+QComboBox { background: #10151f; color: #e5edf7; border: 1px solid #61718c; padding: 5px; }
+QComboBox QAbstractItemView { background: #10151f; color: #e5edf7; selection-background-color: #365772; }
 QToolTip { color: #e5edf7; background: #263348; border: 1px solid #61718c; }
 """
 
@@ -138,6 +140,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self._capture_waiting_for_safe_ack = None
         self._incomplete_waiting_for_safe_ack = None
         self._capture_live_device = False
+        self._recording = None
+        self._pending_recording_save = None
+        self._recording_exit_confirmed = False
+        self._archive = None
+        self._archive_ordinal = None
+        self._partial_bounds = None
         self.setWindowTitle("Мотортестер · запись и просмотр")
         self.resize(1240, 800)
         self.setMinimumSize(1000, 710)
@@ -156,13 +164,13 @@ class MainWindow(QtWidgets.QMainWindow):
         top = QtWidgets.QHBoxLayout()
         titles = QtWidgets.QVBoxLayout()
         titles.addWidget(_label("Мотортестер", "title"))
-        titles.addWidget(_label("Просмотр исходных записей  /  один канал", "subtitle"))
+        titles.addWidget(_label("Просмотр исходных записей  /  один канал", "subtitle", wrap=True))
         top.addLayout(titles)
         top.addStretch()
         self.acquisition_button = QtWidgets.QPushButton("Подключение и захват…")
         self.acquisition_button.clicked.connect(self.show_acquisition)
         top.addWidget(self.acquisition_button)
-        self.origin_badge = _label("НЕТ ЗАПИСИ", "badge")
+        self.origin_badge = _label("НЕТ ЗАПИСИ", "badge", wrap=True)
         top.addWidget(self.origin_badge)
         outer.addLayout(top)
 
@@ -189,6 +197,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.file_label = _label("Файл не открыт", "muted", wrap=True)
         self.file_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         side.addWidget(self.file_label)
+        self.segment_selector = QtWidgets.QComboBox()
+        self.segment_selector.setObjectName("recordingSegmentSelector")
+        self.segment_selector.setSizeAdjustPolicy(QtWidgets.QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon)
+        self.segment_selector.setMinimumContentsLength(12)
+        self.segment_selector.setMaxVisibleItems(12)
+        self.segment_selector.setAccessibleName("Сегмент сеанса по порядку записи")
+        self.segment_selector.currentIndexChanged.connect(self._select_archive_segment)
+        self.segment_selector.hide()
+        side.addWidget(self.segment_selector)
+        self.archive_label = _label("", "muted", wrap=True)
+        self.archive_label.hide()
+        side.addWidget(self.archive_label)
         side.addStretch(1)
         side.addWidget(_label("ГРАНИЦЫ ПРОТОТИПА", "section"))
         side.addWidget(_label("Эмулятор и USB · Auto / Normal / Single.\nWindows-пакет и аппаратные измерения требуют отдельной проверки.", "muted", wrap=True))
@@ -341,7 +361,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.acquisition_button.setEnabled(not self.busy and not self._closing)
         if self._acquisition_dialog is not None:
             self._acquisition_dialog.refresh()
-        self.reset_button.setEnabled(self.capture is not None)
+        self.segment_selector.setEnabled(not self.busy and not acquiring)
+        self.reset_button.setEnabled(self.capture is not None or self._partial_bounds is not None)
         self.cursor_toggle.setEnabled(self.capture is not None)
 
     def _submit(self, operation: Callable, complete: Callable, status: str, failure: str):
@@ -379,8 +400,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.show_capture(capture)
         self._status("Создано демо: синтетические данные, ещё не сохранены. Физических измерений нет.")
 
-    def show_capture(self, capture: Capture, path: Path | None = None, *, opened=False, live=False):
+    def show_capture(self, capture: Capture, path: Path | None = None, *, opened=False, live=False, archive_segment=False):
         """Display validated raw data, without modifying or filtering the tuple."""
+        if not archive_segment:
+            self._clear_archive()
+        self._partial_bounds = None
+        self.plot.setLabel("bottom", "Время, мс · номинальная Fs")
+        self.plot.getAxis("bottom").setStyle(showValues=True)
         self.capture = capture
         self.current_path = path
         self.opened_from_disk = opened
@@ -419,7 +445,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self._set_actions()
 
     def _update_file_label(self):
-        if self.current_path is None:
+        if self._archive is not None:
+            self.file_label.setText("Сеанс с диска:\n" + self._archive.path.name)
+            self.file_label.setToolTip(str(self._archive.path))
+        elif self.current_path is None:
             self.file_label.setText("В памяти · не сохранено")
             self.file_label.setToolTip("")
         else:
@@ -434,7 +463,9 @@ class MainWindow(QtWidgets.QMainWindow):
         Every newly displayed capture (including a live window) resets the view;
         limits from a previous, possibly much longer recording cannot leak in.
         """
-        if self.capture is None:
+        if self.capture is None and self._partial_bounds is not None:
+            first, last, sample_ms = self._partial_bounds
+        elif self.capture is None:
             # A finite empty viewport is not a capture or a sample-rate claim.
             first, last, sample_ms = 0.0, 1.0, 1.0
         else:
@@ -489,7 +520,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def open_dialog(self):
         if self.busy or self._acquisition_busy():
             return
-        path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Открыть запись", "", "Записи мотортестера (*.mtcap);;Все файлы (*)")
+        path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Открыть запись", "", "Записи мотортестера (*.mtcap *.mtrec);;Сеанс (*.mtrec);;Окно (*.mtcap);;Все файлы (*)")
         if not path:
             self._status("Открытие отменено. Текущая запись не изменена.")
             return
@@ -497,6 +528,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def open_path(self, path: str | Path):
         path = Path(path)
+        if path.suffix.lower() == ".mtrec":
+            self._submit(lambda: self._load_archive(path), self._show_archive,
+                         "Проверка всех сегментов сеанса…", f"Не удалось открыть «{path.name}»")
+            return
 
         def complete(capture):
             self.show_capture(capture, path, opened=True)
@@ -504,6 +539,221 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self._submit(lambda: recording.load(path), complete,
                      "Открытие файла… До завершения показана предыдущая запись.", f"Не удалось открыть «{path.name}»")
+
+    @staticmethod
+    def _load_archive(path):
+        # The strict bounded API checks every member. Only the selected member
+        # is retained/decoded for display; there is no concatenated waveform.
+        archive = session_archive.load(path)
+        selected = MainWindow._read_archive_segment(archive, 0) if archive.entries else None
+        return archive, selected
+
+    @staticmethod
+    def _read_archive_segment(archive, ordinal):
+        entry = archive.entries[ordinal]
+        data = archive.read_segment(ordinal)
+        return recording.decode(data) if entry.kind == "capture" else data
+
+    def _clear_archive(self):
+        self._archive = None
+        self._archive_ordinal = None
+        with QtCore.QSignalBlocker(self.segment_selector):
+            self.segment_selector.clear()
+        self.segment_selector.hide()
+        self.archive_label.hide()
+
+    def _show_archive(self, result):
+        archive, selected = result
+        self._archive = archive
+        self._archive_ordinal = None
+        self.current_path = archive.path
+        self.opened_from_disk = True
+        with QtCore.QSignalBlocker(self.segment_selector):
+            self.segment_selector.clear()
+            names = {"capture": "полное", "partial": "неполное", "abort": "событие без BEGIN"}
+            self.segment_selector.addItems([f"{entry.ordinal + 1}. {names[entry.kind]} · №{entry.sequence if entry.sequence is not None else '—'}" for entry in archive.entries])
+        self.segment_selector.setVisible(bool(archive.entries))
+        self.archive_label.setText(
+            f"Сегментов: {len(archive.entries)}. Завершение: {archive.outcome.reason}.\n"
+            f"Свидетельство Stop: {archive.outcome.stop_evidence}; физическая остановка не доказана.\n"
+            "Каждый сегмент показан отдельно. Промежутки времени прибора неизвестны."
+            + ("\nАрхив восстановлен; имеются потерянные / незавершённые записи." if archive.issues else ""))
+        self.archive_label.show()
+        if archive.entries:
+            self._show_archive_segment(0, selected)
+        else:
+            self._clear_waveform("Сеанс без сегментов. Отсчётов нет; отсутствие данных не доказывает отсутствие разряда.")
+            self.origin_badge.setText("СЕАНС БЕЗ ДАННЫХ")
+            self._update_file_label()
+        self._status(f"Открыт сеанс: {archive.path.name}. Сегментов: {len(archive.entries)}; промежутки между ними неизвестны.")
+        self._set_actions()
+
+    def _select_archive_segment(self, ordinal):
+        archive = self._archive
+        if (archive is None or ordinal < 0 or self.busy or self._acquisition_busy()
+                or ordinal == self._archive_ordinal):
+            return
+        def complete(selected):
+            if self._archive is archive:
+                self._show_archive_segment(ordinal, selected)
+                self._status(f"Показан сегмент {ordinal + 1} из {len(archive.entries)}. Общей непрерывной оси времени нет.")
+        # Keep selection aligned with the still-visible data until validation
+        # succeeds, including if the source file disappeared or was replaced.
+        with QtCore.QSignalBlocker(self.segment_selector):
+            self.segment_selector.setCurrentIndex(self._archive_ordinal if self._archive_ordinal is not None else -1)
+        self._submit(lambda: self._read_archive_segment(archive, ordinal), complete,
+                     "Чтение выбранного сегмента…", "Не удалось прочитать сегмент")
+
+    def _clear_waveform(self, explanation):
+        self.capture = None
+        self.incomplete_capture = None
+        self._capture_live_device = False
+        self._partial_bounds = None
+        self.curve.clear()
+        self.plot.setLabel("bottom", "Данные отсутствуют · шкала времени не определена")
+        self.plot.getAxis("bottom").setStyle(showValues=False)
+        self.trigger_line.hide()
+        self._toggle_cursors(False)
+        self.count_value.setText("0")
+        self.fs_value.setText("—")
+        self.span_value.setText("—")
+        self.trigger_label.setText(explanation)
+        self.quality_label.setText(explanation)
+        self.details_label.setText("Пропуски не заполнены. Физических выводов по отсутствующим данным нет.")
+        self.details_label.setToolTip("")
+        self.reset_view()
+        self._set_actions()
+
+    def _show_archive_segment(self, ordinal, selected):
+        archive = self._archive
+        entry = archive.entries[ordinal]
+        self._archive_ordinal = ordinal
+        with QtCore.QSignalBlocker(self.segment_selector):
+            self.segment_selector.setCurrentIndex(ordinal)
+        self.segment_selector.setToolTip(self.segment_selector.currentText())
+        if entry.kind == "capture":
+            self.show_capture(selected, archive.path, opened=True, archive_segment=True)
+        else:
+            self._clear_waveform("Событие без BEGIN: отсчётов и ожидаемого окна нет." if entry.kind == "abort"
+                                 else "Неполное окно: показаны только принятые фрагменты. Пропуски не соединены.")
+            self.current_path, self.opened_from_disk = archive.path, True
+            synthetic = archive.identity.origin == "simulator"
+            self.origin_badge.setText("СИНТЕТИКА · НЕПОЛНЫЕ ДАННЫЕ" if synthetic else "НЕПОЛНЫЕ ДАННЫЕ · ИЗ ФАЙЛА")
+            if entry.kind == "partial":
+                partial = entry.partial
+                # Offsets refer to original sample positions. NaNs are display
+                # separators, never replacement source samples in an archive.
+                codes = np.frombuffer(selected, dtype="<u2")
+                xs, ys, position = [], [], 0
+                scale = 1000 / partial.nominal_fs_hz if partial.nominal_fs_hz else 1
+                for offset, count in partial.fragments:
+                    xs.extend((np.arange(offset, offset + count) * scale).tolist())
+                    ys.extend(codes[position:position + count].tolist())
+                    xs.append(float("nan")); ys.append(float("nan"))
+                    position += count
+                self.curve.setData(xs, ys, connect="finite", symbol="o", symbolSize=3, symbolBrush="#79dcc8")
+                self.plot.getAxis("bottom").setStyle(showValues=True)
+                self.plot.setLabel("bottom", "Время от начала окна, мс · номинальная Fs" if partial.nominal_fs_hz else "Индекс исходного отсчёта · частота неизвестна")
+                self._partial_bounds = (0.0, (partial.expected_samples - 1) * scale, scale)
+                self.count_value.setText(f"{len(codes)} / {partial.expected_samples}")
+                self.fs_value.setText(f"{partial.nominal_fs_hz / 1000:g} кГц" if partial.nominal_fs_hz else "неизвестна")
+                self.quality_label.setText(f"Неполное окно: {partial.reason}. Пропусков: {len(partial.missing_ranges)}. Проверки не завершены: {', '.join(partial.deferred_checks) or 'см. причину'}.\nМетаданные: {', '.join(partial.metadata_issues) or 'без дополнительных замечаний'}. Достоверность полного окна не подтверждена.")
+                self.reset_view()
+            else:
+                self.quality_label.setText("Событие без BEGIN: " + entry.abort_reason + ". Отсчёты не созданы.")
+            self._update_file_label()
+        provenance = entry.provenance
+        unknown = provenance.unavailable_reason or "нет"
+        metadata = (f"Сегмент {ordinal + 1}/{len(archive.entries)} · wire nonce: {provenance.wire_session_nonce}; "
+                    f"generation: {provenance.generation}; config: {provenance.config_id}; режим: {provenance.acquisition_mode}; "
+                    f"терминал: {provenance.terminal_kind}; неизвестные поля: {unknown}. "
+                    "Межсегментные промежутки неизвестны.")
+        self.details_label.setText(f"Сегмент {ordinal + 1}/{len(archive.entries)} · {entry.kind} · промежутки времени прибора неизвестны.\n" + self.details_label.text().split("\n", 1)[-1])
+        self.details_label.setToolTip(metadata)
+        self._set_actions()
+
+    def save_recording_dialog(self):
+        current = self._recording
+        if (self.busy or self._closing or current is None or not current.ready_to_save
+                or current.retired or self._acq_requested):
+            return
+        path, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Сохранить сеанс", "сеанс.mtrec",
+            "Сеанс мотортестера (*.mtrec)", options=QtWidgets.QFileDialog.Option.DontConfirmOverwrite)
+        if not path:
+            self._status("Сохранение сеанса отменено. Файл восстановления оставлен.")
+            return
+        selected = Path(path)
+        if selected.suffix.lower() != ".mtrec":
+            selected = selected.with_name(selected.name + ".mtrec")
+        self.save_recording_path(selected)
+
+    def save_recording_path(self, path):
+        current = self._recording
+        if (self.busy or self._closing or current is None or not current.ready_to_save
+                or current.retired or self._acq_requested):
+            return False
+        path = Path(path).absolute()
+        # No synchronous filesystem preflight: the disk worker is authoritative
+        # for non-overwrite publication and reports failures without blocking Qt.
+        session = current.snapshot.session if current.snapshot is not None else None
+        self._pending_recording_save = (str(path), session)
+        if not self._acquisition.save_recording(str(path)):
+            self._pending_recording_save = None
+            self._status("Сохранение сеанса не принято: дождитесь подтверждённого завершения записи.", error=True)
+            return False
+        self._acq_requested = True
+        if self._acquisition_dialog is not None:
+            self._acquisition_dialog.clear_error()
+        self._status("Сохраняем сеанс .mtrec… Файл восстановления будет оставлен.")
+        self._set_actions()
+        return True
+
+    def cancel_recording_save(self):
+        if self._acquisition is not None and self._acquisition.cancel_recording_save():
+            self._status("Запрошена отмена сохранения. Если файл уже опубликован, отменить публикацию нельзя.")
+
+    def _recording_changed(self, current):
+        self._recording = current
+        if current is None or current.retired or (current.error and not current.saving):
+            self._pending_recording_save = None
+        self._set_actions()
+
+    def _recording_saved(self, path):
+        current, pending = self._recording, self._pending_recording_save
+        if (self._closing or current is None or current.retired or pending is None
+                or current.saving or current.error is not None or current.snapshot is None or current.snapshot.session is not pending[1]
+                or str(path) != pending[0] or current.saved_path != str(path)):
+            return
+        self._pending_recording_save = None
+        self._status(f"Сеанс сохранён: {Path(path).name}. Все сегменты в .mtrec; файл восстановления оставлен.")
+        self._set_actions()
+
+    def confirm_recording_exit(self, action):
+        current = self._recording
+        if current is None:
+            return True
+        snapshot = current.snapshot
+        unsettled = current.writer_busy or bool(snapshot and
+            (snapshot.writer_pending or snapshot.source_retention_required or snapshot.finalization_invalidated))
+        if current.saved_path is not None and not unsettled:
+            return True
+        dialog = QtWidgets.QMessageBox(self)
+        dialog.setWindowTitle(action + "?")
+        dialog.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        dialog.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        dialog.setText("Сеанс ещё не сохранён либо запись данных не завершена. "
+            "Ожидание диска не будет задерживать закрытие. При выходе незаписанный хвост может быть потерян; "
+            "отдельное восстановление возможно лишь для проверенного записанного префикса. Закрытие порта не доказывает физическую остановку.\n\n"
+            "Файл восстановления (если создан, не удаляется; подготовка могла не завершиться):\n" + (current.spool_path or "путь ещё не подтверждён")
+            + "\n\n" + action + "?")
+        proceed = dialog.addButton(action, QtWidgets.QMessageBox.ButtonRole.AcceptRole)
+        cancel = dialog.addButton("Отмена", QtWidgets.QMessageBox.ButtonRole.RejectRole)
+        dialog.setDefaultButton(cancel)
+        dialog.setEscapeButton(cancel)
+        dialog.exec()
+        accepted = dialog.clickedButton() is proceed
+        dialog.deleteLater()
+        return accepted
 
     def _choose_save_path(self, caption, suffix, file_filter):
         proposed = self.current_path.stem if self.current_path else "демо"
@@ -551,6 +801,7 @@ class MainWindow(QtWidgets.QMainWindow):
         path, capture = Path(path), self.capture
 
         def complete(_):
+            self._clear_archive()
             self.current_path = path
             self.opened_from_disk = False
             self._update_file_label()
@@ -683,19 +934,36 @@ class MainWindow(QtWidgets.QMainWindow):
             self._acquisition.state_changed.connect(self._acquisition_state)
             self._acquisition.capture_ready.connect(self._acquisition_capture)
             self._acquisition.incomplete_ready.connect(self._acquisition_incomplete)
-            self._acquisition.error.connect(lambda text: self._status(text, error=True))
+            self._acquisition.error.connect(self._acquisition_error)
             self._acquisition.finished.connect(self._acquisition_finished)
+            if hasattr(self._acquisition, "recording_changed"):
+                self._acquisition.recording_changed.connect(self._recording_changed)
+                self._acquisition.recording_saved.connect(self._recording_saved)
             self._acquisition_dialog = AcquisitionDialog(self, self._acquisition)
         self._acquisition_dialog.show()
         self._acquisition_dialog.raise_()
         self._acquisition_dialog.activateWindow()
 
+    def _acquisition_error(self, text):
+        # The bounded adapter error does not identify an existing destination.
+        # Keep its current error visible and suggest a safe explicit retry.
+        advice = (" Выберите новое имя; проверьте место и права. Существующие файлы не заменяются."
+                  if self._recording is not None and self._recording.error == "save_failed" else "")
+        self._status(str(text) + advice, error=True)
+
     def _acquisition_state(self, state):
         self._acq_state = state
+        self._recording = getattr(state, "recording", None)
         self._acq_requested = False
         self._set_actions()
         if not self.busy:
             self._show_acquisition_status()
+        if self._recording is not None:
+            # Recording durability/ownership belongs to the adapter. Display
+            # notifications must never authorize RELEASE or a local ACK.
+            self._capture_waiting_for_safe_ack = None
+            self._incomplete_waiting_for_safe_ack = None
+            return
         capture = self._capture_waiting_for_safe_ack
         snapshot = state.snapshot
         if (capture is not None and snapshot is not None and not self._closing
@@ -721,6 +989,14 @@ class MainWindow(QtWidgets.QMainWindow):
     def _show_acquisition_status(self):
         state = self._acq_state
         if state is None:
+            return
+        if self._recording is not None:
+            from .gui_acquisition import recording_status_text
+            text = recording_status_text(self._recording).split("\n")
+            close_warning = "Закрытие порта не подтверждено; повторите отключение / закрытие. " if state.close_failed else ""
+            self._status(close_warning + text[0] + " " + (text[1] if len(text) > 1 else "")
+                + (f" Показано последнее полное окно №{self.capture.sequence}." if self.capture is not None else " Полного окна для графика нет.")
+                + " Промежутки между сегментами неизвестны.", error=bool(self._recording.error or state.close_failed))
             return
         phase = state.snapshot.phase.value if state.snapshot is not None else "IDLE"
         retained = (f"Показано последнее полное окно №{self.capture.sequence}; это не новое измерение."
@@ -756,11 +1032,14 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception:
             self.curve.clear()
             self.trigger_line.hide()
-            self._capture_waiting_for_safe_ack = capture
+            if self._recording is None:
+                self._capture_waiting_for_safe_ack = capture
             self._acquisition.stop()
             self._status("Полученное окно сохранено в памяти; ошибка отображения. Захват останавливается.", error=True)
             return
         self._show_acquisition_status()
+        if self._recording is not None:
+            return
         if not self._acquisition.acknowledge(capture):
             self._capture_waiting_for_safe_ack = capture
             self._acquisition.stop()
@@ -769,6 +1048,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def _acquisition_incomplete(self, result):
         self.incomplete_capture = result
         self._status("Получено неполное окно. Фрагменты сохранены отдельно в памяти, график полного окна не заменён. Пропуски не заполнялись.", error=True)
+        if self._recording is not None:
+            self._status("Получено неполное окно; запись его принятых фрагментов выполняет сеанс. Пропуски не заполнены; сохранение ещё не подтверждено.", error=True)
+            return
         self._incomplete_waiting_for_safe_ack = result
         if self._acquisition.acknowledge_incomplete(result):
             self._incomplete_waiting_for_safe_ack = None
@@ -780,6 +1062,11 @@ class MainWindow(QtWidgets.QMainWindow):
             QtCore.QTimer.singleShot(0, self.close)
 
     def closeEvent(self, event):
+        if not self._closing and not self._recording_exit_confirmed:
+            if not self.confirm_recording_exit("Закрыть приложение"):
+                event.ignore()
+                return
+            self._recording_exit_confirmed = True
         self._closing = True
         if self._acquisition is not None and not self._acq_shutdown_complete:
             event.ignore()

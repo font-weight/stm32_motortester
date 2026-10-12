@@ -193,6 +193,113 @@ class RecordingAdapterTests(unittest.TestCase):
         self.assertEqual([f.message_type for f in h.link.tx], [1, 2])
         self.assertFalse(h.adapter.state.ready_to_save)
 
+    def test_prepare_creates_missing_parent_on_writer_before_config(self):
+        h = Harness(self)
+        h.path = Path(h.temp.name) / "Motortester" / "recovery" / "capture.spool"
+        original = Path.mkdir
+        calls = []
+        def mkdir(path, *args, **kwargs):
+            calls.append((path, threading.get_ident(), list(h.link.tx)))
+            return original(path, *args, **kwargs)
+        with patch.object(Path, "mkdir", mkdir):
+            h.start()
+        self.assertTrue(h.path.is_file())
+        self.assertTrue(calls)
+        self.assertEqual({call[1] for call in calls}, {h.adapter._writer._thread.ident})
+        self.assertTrue(all([f.message_type for f in call[2]] == [1, 2] for call in calls))
+        self.assertEqual(h.finish().entries, ())
+
+    def test_prepare_parent_failure_is_async_and_preserves_existing_path(self):
+        for failure in ("permission", "parent_file"):
+            with self.subTest(failure=failure):
+                h = Harness(self)
+                parent = Path(h.temp.name) / "recovery"
+                h.path = parent / "capture.spool"
+                original = Path.mkdir
+                def mkdir(path, *args, **kwargs):
+                    if path == parent and failure == "permission":
+                        raise PermissionError("private filesystem detail")
+                    return original(path, *args, **kwargs)
+                if failure == "parent_file":
+                    parent.write_bytes(b"preserve existing")
+                with patch.object(Path, "mkdir", mkdir):
+                    h.begin()
+                    h.until(lambda: h.adapter.state.error is not None)
+                self.assertEqual(h.adapter.state.error, "prepare_failed")
+                self.assertFalse(h.adapter.state.ready_to_save)
+                self.assertFalse(h.path.exists())
+                self.assertEqual([f.message_type for f in h.link.tx], [1, 2])
+                if failure == "parent_file":
+                    self.assertEqual(parent.read_bytes(), b"preserve existing")
+
+    def test_stop_while_parent_mkdir_blocked_never_configures_after_return(self):
+        h = Harness(self)
+        h.path = Path(h.temp.name) / "recovery" / "capture.spool"
+        entered, gate = threading.Event(), threading.Event()
+        original = Path.mkdir
+        def mkdir(path, *args, **kwargs):
+            if path == h.path.parent:
+                entered.set()
+                gate.wait(3)
+            return original(path, *args, **kwargs)
+        with patch.object(Path, "mkdir", mkdir):
+            try:
+                h.begin()
+                self.assertTrue(entered.wait(1))
+                self.assertFalse(h.path.exists())
+                before = time.monotonic()
+                self.assertTrue(h.adapter.stop())
+                for _ in range(20):
+                    h.pump()
+                self.assertLess(time.monotonic() - before, .2)
+                self.assertTrue(h.adapter.state.writer_busy)
+            finally:
+                gate.set()
+            h.until(lambda: h.adapter.state.ready_to_save)
+        self.assertEqual([f.message_type for f in h.link.tx], [1, 2])
+        report = archive.recover(h.path)
+        self.assertEqual(report.entries, ())
+        self.assertEqual(report.outcome.reason, "user_stop")
+
+    def test_retire_before_prepare_or_during_mkdir_keeps_spool_absent(self):
+        for boundary in ("queued", "mkdir"):
+            with self.subTest(boundary=boundary):
+                h = Harness(self)
+                h.path = Path(h.temp.name) / "recovery" / "capture.spool"
+                entered, gate = threading.Event(), threading.Event()
+                original = Path.mkdir
+                def mkdir(path, *args, **kwargs):
+                    if path == h.path.parent:
+                        entered.set()
+                        gate.wait(3)
+                    return original(path, *args, **kwargs)
+                with patch.object(Path, "mkdir", mkdir):
+                    try:
+                        if boundary == "queued":
+                            # The real daemon cannot claim this submitted job yet.
+                            with h.adapter._writer._condition:
+                                h.begin()
+                                h.adapter.observe(h.runtime.disconnect())
+                                h.adapter.retire()
+                        else:
+                            h.begin()
+                            self.assertTrue(entered.wait(1))
+                            h.adapter.observe(h.runtime.disconnect())
+                            h.adapter.retire()
+                        self.assertFalse(h.path.exists())
+                        self.assertTrue(h.adapter.state.retired)
+                        self.assertFalse(h.adapter.state.ready_to_save)
+                    finally:
+                        gate.set()
+                    h.adapter._writer._thread.join(2)  # Test only.
+                self.assertFalse(h.adapter._writer.running)
+                self.assertFalse(h.path.exists())
+                self.assertEqual(entered.is_set(), boundary == "mkdir")
+                h.adapter.observe()
+                self.assertFalse(h.adapter.state.ready_to_save)
+                self.assertEqual(h.adapter.state.snapshot.stop_evidence, "unknown")
+                self.assertEqual([f.message_type for f in h.link.tx], [1, 2])
+
     def test_blocked_member_fsync_stop_transport_pumps_exact_ack_only_after_receipt(self):
         h = Harness(self)
         h.start()
@@ -696,6 +803,123 @@ class QtRecordingBridgeTests(unittest.TestCase):
             self.wait(lambda: not adapter._writer.running)
         self.assertEqual(bridge.saved, [])
         self.assertEqual(len(archive.recover(path).entries), 1)
+
+    def test_qt_blocked_mkdir_keeps_heartbeat_stop_and_shutdown_responsive(self):
+        for action in ("stop", "shutdown"):
+            with self.subTest(action=action):
+                bridge = self.make()
+                path = Path(self.temp.name) / action / "recovery" / "capture.spool"
+                entered, gate = threading.Event(), threading.Event()
+                self.gates.append(gate)
+                original = Path.mkdir
+                threads, beats = [], []
+                timer = QtCore.QTimer()
+                timer.setInterval(1)
+                timer.timeout.connect(lambda: beats.append(time.monotonic()))
+                def mkdir(parent, *args, **kwargs):
+                    if parent == path.parent:
+                        threads.append(threading.get_ident())
+                        entered.set()
+                        gate.wait(5)
+                    return original(parent, *args, **kwargs)
+                with patch.object(Path, "mkdir", mkdir):
+                    try:
+                        before = time.monotonic()
+                        self.assertTrue(bridge.record(Config(), str(path)))
+                        self.assertLess(time.monotonic() - before, .1)
+                        self.wait(entered.is_set)
+                        adapter = bridge._worker.recording
+                        self.assertEqual(threads, [adapter._writer._thread.ident])
+                        self.assertNotEqual(threads[0], threading.get_ident())
+                        self.assertFalse(path.exists())
+                        timer.start()
+                        pump_events(50)
+                        self.assertGreater(len(beats), 2)
+                        self.assertIs(adapter.runtime.snapshot().phase, Phase.READY)
+                        before = time.monotonic()
+                        self.assertTrue(getattr(bridge, action)())
+                        if action == "shutdown":
+                            self.wait(lambda: bridge._closed and not bridge.running)
+                            state = bridge.state.recording
+                            self.assertTrue(state.retired)
+                            self.assertTrue(state.writer_running)
+                            self.assertFalse(state.ready_to_save)
+                            self.assertEqual(state.spool_path, str(path))
+                            self.assertEqual(state.snapshot.stop_evidence, "unknown")
+                        else:
+                            self.wait(lambda: bridge.state.recording.snapshot.user_stop_requested)
+                        self.assertLess(time.monotonic() - before, .5)
+                    finally:
+                        timer.stop()
+                        gate.set()
+                    if action == "shutdown":
+                        self.wait(lambda: not adapter._writer.running)
+                        self.assertFalse(path.exists())
+                        adapter.observe()  # Retired completion cannot publish success.
+                        self.assertFalse(adapter.state.ready_to_save)
+                    else:
+                        self.wait(lambda: bridge.state.recording.ready_to_save)
+                        self.assertIs(adapter.runtime.snapshot().phase, Phase.READY)
+                        report = archive.recover(path)
+                        self.assertEqual(report.entries, ())
+                        self.assertEqual(report.outcome.reason, "user_stop")
+                self.assertEqual(bridge.captures, [])
+                self.assertEqual(bridge.saved, [])
+
+    def test_blocked_mkdir_daemon_process_exit_is_bounded_without_spool_claim(self):
+        path = Path(self.temp.name) / "absent" / "recovery" / "exit.spool"
+        script = textwrap.dedent("""
+            import json, sys, threading, time
+            from pathlib import Path
+            from PySide6 import QtWidgets
+            from motortester.acquisition import AcquisitionBridge
+            from motortester.session import Config, Phase
+            from qt_test_support import pump_events
+            app = QtWidgets.QApplication([])
+            app.setQuitOnLastWindowClosed(False)
+            entered = threading.Event()
+            path = Path(sys.argv[1])
+            original = Path.mkdir
+            def blocked(parent, *args, **kwargs):
+                if parent == path.parent:
+                    entered.set()
+                    threading.Event().wait()  # Deliberately never finishes.
+                return original(parent, *args, **kwargs)
+            Path.mkdir = blocked
+            bridge = AcquisitionBridge(interval_ms=1, edge_delay_ms=1)
+            def wait(condition):
+                deadline = time.monotonic() + 3
+                while not condition():
+                    if time.monotonic() > deadline: raise RuntimeError('fixture deadline')
+                    pump_events(5)
+            if not bridge.connect_source('emulator'): raise RuntimeError('connect rejected')
+            wait(lambda: bridge.state.snapshot is not None and bridge.state.snapshot.phase is Phase.READY and not bridge.state.busy)
+            if not bridge.record(Config(), str(path)): raise RuntimeError('record rejected')
+            wait(entered.is_set)
+            if not bridge.shutdown(): raise RuntimeError('shutdown rejected')
+            wait(lambda: bridge._closed and not bridge.running)
+            state = bridge.state.recording
+            print(json.dumps(dict(retired=state.retired, writer_running=state.writer_running,
+                ready_to_save=state.ready_to_save, stop_evidence=state.snapshot.stop_evidence,
+                spool_exists=path.exists(), parent_exists=path.parent.exists())), flush=True)
+            bridge.deleteLater()
+            pump_events(20)
+        """)
+        env = dict(os.environ)
+        env["PYTHONPATH"] = os.pathsep.join([str(Path(__file__).resolve().parent),
+            str(Path(__file__).resolve().parents[1]), env.get("PYTHONPATH", "")])
+        command = [sys.executable] + (["-O"] if sys.flags.optimize else []) + ["-c", script, str(path)]
+        result = subprocess.run(command, capture_output=True, text=True, timeout=6, env=env)
+        evidence = os.environ.get("RECORDING_BRIDGE_EVIDENCE")
+        if evidence:
+            folder = Path(tempfile.mkdtemp(prefix="blocked-mkdir-exit-", dir=evidence))
+            (folder / "stdout.json").write_text(result.stdout)
+            (folder / "stderr.log").write_text(result.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout.strip()), dict(retired=True, writer_running=True,
+            ready_to_save=False, stop_evidence="unknown", spool_exists=False, parent_exists=False))
+        self.assertFalse(path.exists())
+        self.assertFalse(path.parent.exists())
 
 
     def test_qt_save_cancel_queued_and_running_without_spool_loss(self):

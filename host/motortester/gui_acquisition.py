@@ -1,6 +1,68 @@
 """Explicit acquisition controls; serial I/O belongs to AcquisitionBridge."""
+from pathlib import Path
+from uuid import uuid4
+
 from PySide6 import QtCore, QtWidgets
 from .session import Config, Phase
+
+
+def recording_status_text(recording):
+    """Describe only acknowledged host/storage facts; never infer device time."""
+    if recording is None:
+        return "Record сохраняет отдельные окна с неизвестными промежутками между ними."
+    snapshot = recording.snapshot
+    if snapshot is None:
+        return "Подготовка файла восстановления; файл может ещё не существовать, захват не подтверждён."
+    phases = {
+        "idle": "Запись ещё не начата", "preparing": "Подготовка файла восстановления",
+        "starting": "Применение настроек записи", "recording": "Запись / ожидание запуска",
+        "stopping": "Stop: ожидание ответа / завершение окна",
+        "persisting": "Запись сегмента на диск", "acknowledging": "Подтверждение сохранённого сегмента",
+        "finalize_ready": "Завершение файла восстановления", "finished": "Запись завершена",
+        "failed": "Ошибка записи; требуется восстановление",
+    }
+    phase = phases.get(snapshot.phase.value, "Состояние записи неизвестно")
+    if recording.retired:
+        phase = "Сеанс закрыт; фоновая запись могла не завершиться"
+    elif recording.saving:
+        phase = "Сохранение .mtrec… Отмена действует только до публикации файла"
+    elif recording.error:
+        phase = {"save_cancelled": "Сохранение отменено; файл восстановления оставлен",
+                 "save_failed": "Ошибка сохранения .mtrec. Выберите новое имя; проверьте место и права. Существующие файлы не заменяются",
+                 "prepare_failed": "Не удалось подготовить восстановление; файл мог не создаться. Проверьте место и права папки"}.get(
+                     recording.error, "Ошибка записи / сохранения; созданный файл восстановления не удаляется")
+        if recording.saved_path:
+            phase += ". Прежнее успешное сохранение не подтверждает новую попытку"
+    elif recording.saved_path:
+        phase = "Архив .mtrec сохранён; файл восстановления оставлен"
+    elif recording.ready_to_save:
+        phase = "Сеанс готов: выберите «Сохранить сеанс .mtrec…»"
+    reason = {"user_stop": "по кнопке Stop", "single_complete": "Single: одно окно",
+              "capacity": "достигнут предел ёмкости / времени", "error": "из-за ошибки",
+              "recovered": "после восстановления"}.get(snapshot.termination_reason)
+    stop = {"stop_ack": "Получен ответ Stop (не доказательство физической остановки)",
+            "single_release_ack": "Получен ответ Single (не доказательство физической остановки)",
+            "unknown": "Подтверждение Stop неизвестно", "none": "Подтверждения Stop пока нет"}.get(snapshot.stop_evidence, "Подтверждение Stop неизвестно")
+    text = (f"{phase}." + (f" Завершение: {reason}." if reason else "")
+            + f"\nСегментов на диске: {snapshot.committed_segments}; {snapshot.committed_bytes} байт. "
+            + f"Время ПК: {snapshot.elapsed_ms / 1000:.1f} с.\n{stop}."
+            + "\nПокрытие: отдельные сегменты; промежутки времени прибора неизвестны. "
+              "Номинальное полное окно: 2048 / 50 кГц = 40,96 мс данных; это не длительность сеанса.")
+    if snapshot.finalization_invalidated:
+        text += "\nЗавершение не подтверждено: обычное сохранение недоступно; сохраните spool для отдельного восстановления."
+    if snapshot.source_retention_required or snapshot.writer_pending or recording.writer_busy:
+        text += "\nЕсть незавершённая запись / удерживаемые данные."
+    if snapshot.fault or recording.error:
+        text += "\nОшибка: " + str(recording.error or snapshot.fault)
+    return text
+
+
+def recovery_directory():
+    """Persistent user-data folder; unlike TemporaryDirectory it is not deleted."""
+    base = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.StandardLocation.GenericDataLocation)
+    if not base:
+        raise OSError("Не найдена папка данных пользователя")
+    return Path(base) / "Motortester" / "recovery"
 
 
 class _ContentSizedComboBox(QtWidgets.QComboBox):
@@ -85,7 +147,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         reset_hint.setWordWrap(True)
         layout.addWidget(reset_hint)
         layout.addWidget(self.simulate)
-        profile = QtWidgets.QLabel("Профиль LV-001 · один канал · аналоговый запуск · предыстория 0. Single требует нового нажатия «Старт» после каждого окна. При повторном захвате в памяти остаётся последнее полное окно; для сохранения нажмите «Стоп». Закрытие этой панели не останавливает захват.")
+        profile = QtWidgets.QLabel("Профиль LV-001 · один канал · аналоговый запуск · предыстория 0. Обычный «Старт» хранит последнее полное окно; Single требует нового «Старт» после каждого окна. Для архива всех принимаемых сегментов выберите Record. Закрытие панели не останавливает захват.")
         profile.setWordWrap(True)
         layout.addWidget(profile)
         self.device_details = QtWidgets.QLabel("Сведения о соединении: CAPS ещё не подтверждены.")
@@ -96,18 +158,44 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.connect_button = QtWidgets.QPushButton("Подключить ·\nбез запуска захвата")
         self.start_button = QtWidgets.QPushButton("Старт")
         self.stop_button = QtWidgets.QPushButton("Стоп")
+        self.record_button = QtWidgets.QPushButton("Record ·\nзаписать сеанс")
+        self.record_button.setToolTip("Auto / Normal: отдельные окна до Stop. Single: одно окно. Между окнами есть неизвестные промежутки.")
+        self.save_recording_button = QtWidgets.QPushButton("Сохранить сеанс\n.mtrec…")
+        self.cancel_recording_button = QtWidgets.QPushButton("Отменить сохранение\nсеанса")
+        self.recording_status = QtWidgets.QLabel(recording_status_text(None))
+        self.recording_status.setWordWrap(True)
+        self.recording_status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        self.recovery_path = QtWidgets.QLineEdit()
+        self.recovery_path.setReadOnly(True)
+        self.recovery_path.setAccessibleName("Путь файла восстановления; можно скопировать")
+        self.recovery_path.setPlaceholderText("Путь файла восстановления; можно скопировать")
         self.disconnect_button = QtWidgets.QPushButton("Отключить")
-        for button in (self.connect_button, self.start_button, self.stop_button, self.disconnect_button):
+        for button in (self.connect_button, self.start_button, self.record_button, self.stop_button, self.save_recording_button, self.cancel_recording_button, self.disconnect_button):
             layout.addWidget(button)
         self.status = QtWidgets.QLabel("Не подключено")
         self.status.setWordWrap(True)
         self.status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
         layout.addWidget(self.status)
+        layout.addWidget(self.recording_status)
+        recovery_label = QtWidgets.QLabel("Файл восстановления · путь можно скопировать:")
+        recovery_label.setWordWrap(True)
+        layout.addWidget(recovery_label)
+        layout.addWidget(self.recovery_path)
         layout.addWidget(self.device_details)
         self.connect_button.clicked.connect(self._connect)
         self.start_button.clicked.connect(self._start)
+        self.record_button.clicked.connect(self._record)
+        # Ordinary acquisition can also be embedded in a simple viewer. Only
+        # offer recording when its save/close lifecycle is available as well.
+        save_recording = getattr(self.viewer, "save_recording_dialog", None)
+        cancel_save = getattr(self.viewer, "cancel_recording_save", None)
+        self._recording_supported = (hasattr(self.bridge, "record") and callable(save_recording)
+            and callable(cancel_save) and callable(getattr(self.viewer, "confirm_recording_exit", None)))
+        if self._recording_supported:
+            self.save_recording_button.clicked.connect(save_recording)
+            self.cancel_recording_button.clicked.connect(cancel_save)
         self.stop_button.clicked.connect(lambda: self._request(self.bridge.stop))
-        self.disconnect_button.clicked.connect(lambda: self._request(self.bridge.disconnect_source))
+        self.disconnect_button.clicked.connect(self._disconnect)
         self.source.currentIndexChanged.connect(self.refresh)
         self.mode.currentIndexChanged.connect(self.refresh)
         bridge.state_changed.connect(self.update_state)
@@ -137,9 +225,36 @@ class AcquisitionDialog(QtWidgets.QDialog):
     def _start(self):
         if self.viewer.busy:
             return
+        self._request(lambda: self.bridge.start(self._settings(), simulate_edge=self.simulate.isChecked()))
+
+    def _settings(self):
         mode = self.mode.currentData()
-        settings = Config(mode=mode, edge=self.edge.currentData(), level_code=self.level.value(), auto_timeout_ms=self.timeout.value() if mode == 0 else 0)
-        self._request(lambda: self.bridge.start(settings, simulate_edge=self.simulate.isChecked()))
+        return Config(mode=mode, edge=self.edge.currentData(), level_code=self.level.value(), auto_timeout_ms=self.timeout.value() if mode == 0 else 0)
+
+    def _record(self):
+        if self.viewer.busy or not self.record_button.isEnabled():
+            return
+        try:
+            folder = recovery_directory()
+            path = folder / ("recording-" + uuid4().hex + ".mtspool")
+            # Lexical selection only: even mkdir/stat can stall on a filesystem.
+            # Parent creation and exclusive file creation belong to the bridge's
+            # disk worker, before CONFIG/ARM and behind its Stop/close fences.
+            if len(str(path.absolute())) > 240:
+                raise OSError("Слишком длинный путь папки восстановления (предел 240 символов)")
+        except OSError:
+            self.show_error("Не удалось выбрать путь восстановления. Проверьте путь папки данных пользователя и предел 240 символов.")
+            return
+        self._request(lambda: self.bridge.record(self._settings(), str(path), simulate_edge=self.simulate.isChecked()))
+
+    def _disconnect(self):
+        if getattr(self.state, "recording", None) is None:
+            self._request(self.bridge.disconnect_source)
+        elif self._recording_supported:
+            if self.viewer.confirm_recording_exit("Отключить источник"):
+                self._request(self.bridge.disconnect_source)
+        else:
+            self.show_error("Для закрытия сеанса нужен просмотрщик с поддержкой предупреждения о восстановлении.")
 
     def update_state(self, state):
         previous_phase = self.state.snapshot.phase if self.state and self.state.snapshot else Phase.IDLE
@@ -149,6 +264,12 @@ class AcquisitionDialog(QtWidgets.QDialog):
         if phase is Phase.HELLO and previous_phase is not Phase.HELLO:
             self._last_error = ""
         self._show_device_details(state)
+        current_recording = getattr(state, "recording", None)
+        self.recording_status.setText(recording_status_text(current_recording))
+        spool = current_recording.spool_path if current_recording is not None else None
+        self.recovery_path.setText(spool or "")
+        self.recovery_path.setCursorPosition(0)
+        self.recovery_path.setToolTip("Выбранный путь; создание файла может быть не завершено. Созданный файл не удаляется автоматически: " + spool if spool else "Путь восстановления ещё не выбран")
         labels = {Phase.IDLE: "Не подключено", Phase.HELLO: "Согласование соединения", Phase.CAPS: "Чтение возможностей", Phase.READY: "Готово · захват остановлен", Phase.ARMED: "Захват / ожидание запуска", Phase.RECOVERY: "Ошибка · требуется восстановление соединения"}
         text = labels[phase]
         if state.start_pending:
@@ -185,6 +306,11 @@ class AcquisitionDialog(QtWidgets.QDialog):
             + f"Таймер: {caps.timer_clock_hz} Гц, PSC={caps.timer_psc}, ARR={caps.timer_arr}; АЦП: {caps.adc_clock_hz} Гц, sample_cycles_x2={caps.adc_sample_cycles_x2}.\n"
             + "Параметры объявлены устройством; физическая точность и безопасность не подтверждены.")
 
+    def clear_error(self):
+        self._last_error = ""
+        if self.state is not None:
+            self.update_state(self.state)
+
     def show_error(self, text):
         self._last_error = str(text)
         self.status.setText(self._last_error)
@@ -200,7 +326,14 @@ class AcquisitionDialog(QtWidgets.QDialog):
         if snapshot is not None:
             ready = ready and not (snapshot.pending_request_id or snapshot.pending_stop_id or snapshot.window_barrier)
         self.connect_button.setEnabled(idle and not self.viewer.busy)
-        self.start_button.setEnabled(ready and not self.viewer.busy)
+        recording = getattr(state, "recording", None)
+        can_restart = (recording is None or (recording.saved_path is not None
+                       and not recording.writer_busy and not recording.saving and not recording.retired))
+        self.start_button.setEnabled(ready and can_restart and not self.viewer.busy)
+        self.record_button.setEnabled(ready and can_restart and not self.viewer.busy and self._recording_supported)
+        self.save_recording_button.setEnabled(bool(self._recording_supported and recording and recording.ready_to_save
+            and not recording.retired and not pending and not self.viewer.busy))
+        self.cancel_recording_button.setEnabled(bool(self._recording_supported and recording and recording.saving and not recording.retired))
         self.stop_button.setEnabled(connected and phase is not Phase.RECOVERY and not (state and state.closing))
         self.disconnect_button.setEnabled((connected or bool(state and state.close_failed)) and not (state and state.closing))
         for widget in (self.source, self.port, self.reset):

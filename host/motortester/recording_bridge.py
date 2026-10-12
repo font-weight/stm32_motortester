@@ -110,6 +110,16 @@ class _DiskWriter:
 
     def _perform(self, job):
         if job.kind == "prepare":
+            # Directory preparation can stall just like fsync. Keep it on this
+            # daemon, outside both the admission and condition locks. A path in
+            # the public state is a requested location, not proof of creation.
+            with self._condition:
+                if self._retired:
+                    raise RuntimeError("Preparation retired")
+            Path(job.destination).parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+            with self._condition:
+                if self._retired:
+                    raise RuntimeError("Preparation retired")
             self._spool = self._factory(job.destination, job.payload)
             return self._spool.receipt_issuer, self._spool.capacity
         if job.kind == "persist":
