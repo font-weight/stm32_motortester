@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import sys
 
-MANIFEST_SHA = '617fb2a77e81943d73f6953eaec1820bcce64d6e3d563cb9c9cf484004394c48'
+MANIFEST_SHA = 'f1c77a245be2ef7d6793d79441b7403526d17278d18ad398b82d14b3080bdfeb'
 
 def require(ok, message):
     if not ok:
