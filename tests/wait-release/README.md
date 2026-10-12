@@ -11,8 +11,8 @@ ARM toolchain, TinyUSB, host codec, Git history и соседние внешни
 output вне него:
 
 ```sh
-python3 -I -B /absolute/checkout/tests/wait-release/reproduce.py \
-  --out /absolute/existing-parent/new-run
+python3 -I -B "/absolute/checkout/tests/wait-release/reproduce.py" \
+  --out "/absolute/existing-parent/new-run"
 ```
 
 Нужны POSIX/Linux, Python 3.9+ standard library и native GCC с C11, libc,
