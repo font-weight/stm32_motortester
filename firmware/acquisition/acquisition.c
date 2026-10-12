@@ -140,6 +140,26 @@ mt_acq_result_t mt_acq_arm(mt_acq_t *acq, uint32_t now_ms)
     return MT_ACQ_OK;
 }
 
+mt_acq_result_t mt_acq_record_now(mt_acq_t *acq, uint32_t now_ms)
+{
+    if (acq == NULL) {
+        return MT_ACQ_INVALID_ARGUMENT;
+    }
+    if (acq->state != MT_ACQ_STOPPED) {
+        return MT_ACQ_BUSY;
+    }
+    if (!acq->configured || acq->config.mode != (uint8_t)MT_ACQ_SINGLE ||
+        acq->config.pretrigger_samples != 0u) {
+        return MT_ACQ_INVALID_CONFIG;
+    }
+    begin_capture(acq, now_ms);
+    /* While WAITING, this marks a software request for the next valid sample.
+     * Reuse the ordinary trigger transition so callers allocate a window ID.
+     */
+    acq->window.trigger_kind = MT_ACQ_TRIGGER_SOFTWARE;
+    return MT_ACQ_OK;
+}
+
 mt_acq_result_t mt_acq_push(mt_acq_t *acq, uint16_t code, uint32_t sample_ms)
 {
     mt_acq_trigger_t trigger = MT_ACQ_TRIGGER_NONE;
@@ -162,7 +182,9 @@ mt_acq_result_t mt_acq_push(mt_acq_t *acq, uint16_t code, uint32_t sample_ms)
     acq->last_sample_ms = sample_ms;
 
     if (acq->state == MT_ACQ_WAITING) {
-        if (crossing(acq, code)) {
+        if (acq->window.trigger_kind == MT_ACQ_TRIGGER_SOFTWARE) {
+            trigger = MT_ACQ_TRIGGER_SOFTWARE;
+        } else if (crossing(acq, code)) {
             trigger = MT_ACQ_TRIGGER_ANALOG;
         } else if (acq->config.mode == (uint8_t)MT_ACQ_AUTO &&
                    (uint32_t)(sample_ms - acq->waiting_since_ms) >=
