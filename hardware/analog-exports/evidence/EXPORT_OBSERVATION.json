@@ -1,0 +1,126 @@
+{
+  "status": "COMPLETE_EXPORT_CHECKS_PASS",
+  "hardware_validated": false,
+  "source_commit": "dc4df8b735b02f57a2d14f760fff21379ad98ad1",
+  "source_tree": "5a0ba927d1dbd08422f1927ec4b97c7c2d075240",
+  "integration_base": "38ece8b490194ff55ffe5ca7848db42acb332859",
+  "command_template": "bash \"SOURCE/hardware/analog-source/tools/verify.sh\" --out \"FRESH_OUTPUT\"",
+  "source_sha256": {
+    "schematics/option-a-dc.kicad_sch": "2bb3f5c5785a62f0c81a31dc51480bc40a408ab0312bf18448cb68df9794a2fd",
+    "schematics/option-a-dc.kicad_pro": "a6c2f6e3eaa8e619608acf95f24502ff755e09b2fb350442f2ab1cab4c388ef4",
+    "schematics/option-b-ac.kicad_sch": "60668d241fd792354b27abfe6989ef21a9821562a982974b8529148ef39a6bb0",
+    "schematics/option-b-ac.kicad_pro": "d418ce265ab3a36165918ba14ce29e101751dd7c3d01faa5136a6cf1fd7efcca",
+    "schematics/AnalogDraft.kicad_sym": "21d1755fa43dd9d992eee17446e73c0ceb915297559db5f4a312e4798516ad96",
+    "schematics/sym-lib-table": "89a09628815978f4324cd7cf4be0bc6ff5606dba28b608991fd9d6528265ca39",
+    "option-a-dc-bom.csv": "007a9ce608cdf2b0b51f9e80add621cecaef77c96a1d28022ca969e821d0126b",
+    "option-b-ac-bom.csv": "2a5d5743e4c051890e40e7c55be4d0df1fc9ef82050d86de6a011e517da436ff",
+    "tools/calculate.py": "6c140aefe88ed23f35e2d2ed2252e31fd88c1ff2692ba3eddf0b43dac6457035",
+    "tools/generate_schematics.py": "20459290490ba86196f22fa091ea30b7effcda14837456356b2ce759f618b815",
+    "tools/generate_diagrams.py": "f5af9a5ff19c5a9c27075149c8b93dc8a9a2f2b5fcea3e83365c2d8f55bebdb3",
+    "tools/check_netlists.py": "67a3e6c48c9167b56f25a1300e33398bc34b763fd3b97649e91cdb369b32cff2",
+    "tools/verify.py": "db5a5d375fea02b31d9141437d8865ab5f0ff7f8c3348c4879db27d0c9c9d036",
+    "tools/verify.sh": "5df2ecaa8447e5a2886e2de506685ece258037074027ceb73048e8b67a3ff54a"
+  },
+  "tools": {
+    "Python": "3.12.14",
+    "KiCad": "9.0.2",
+    "Inkscape": "1.4",
+    "pypdf": "6.10.0",
+    "Poppler": "26.05.0"
+  },
+  "child_commands_returncodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "raw_artifacts": {
+    "exports/option-a-dc.svg": {
+      "sha256": "8751350d2994aaa073f6e860479d833abd3d2044807585eb5db58775fc2321fa",
+      "bytes": 509702
+    },
+    "exports/option-a-dc.pdf": {
+      "sha256": "d8af3c98e5bc6b77c8eedae69bc22f13302768f8048e3bdabfe1809ce2130103",
+      "bytes": 82057
+    },
+    "exports/option-b-ac.svg": {
+      "sha256": "a57cd12c465823a95e1a3fa5683befd203769e5a76231e7009c034139c62db08",
+      "bytes": 630746
+    },
+    "exports/option-b-ac.pdf": {
+      "sha256": "44f29c141a54adee2cf514b3feee061e1549c6fd6549ca4b4c51263c631ef074",
+      "bytes": 99931
+    },
+    "exports/structural.svg": {
+      "sha256": "e18bc0defea2f3282dcb0a7b96f317e2f88f0f0103c074700d05004d33aae18f",
+      "bytes": 4313
+    },
+    "exports/structural.pdf": {
+      "sha256": "5dfea82252d9192d87bf8c904e57c724b4a238f5af1a249b56fd1f7ad45b8550",
+      "bytes": 30557
+    },
+    "exports/functional.svg": {
+      "sha256": "7bb03b236218ccb0341133c9aa5177c3160e1917ce4c61a9597186532b1e2137",
+      "bytes": 5316
+    },
+    "exports/functional.pdf": {
+      "sha256": "ca0580bc9119f82d1c73ffc696b4155fc36dbeeaf50ca7d4093cee57a1bea1b7",
+      "bytes": 30202
+    },
+    "evidence/option-a-dc.net": {
+      "sha256": "33ae82d7d975fe0f87cf27f4a992b6f8833d07e2586294743a6f4c9dba8908fa",
+      "bytes": 12142
+    },
+    "evidence/option-a-dc-erc.rpt": {
+      "sha256": "71d3c7ec2a399abcbaa39cbe3045218c1b92ba04c4147e4d11113355c4e2cff9",
+      "bytes": 111
+    },
+    "evidence/option-b-ac.net": {
+      "sha256": "1569f8c706d15b386a998e97a21a878df3e5064df1cd9311cea0eb5164de2f6f",
+      "bytes": 18075
+    },
+    "evidence/option-b-ac-erc.rpt": {
+      "sha256": "a4290393fcbc1fa679415d80886b0543ff61b786746661a62c4810d8c278bd32",
+      "bytes": 111
+    },
+    "evidence/calculations.json": {
+      "sha256": "b7c59f4985e2b6ddb3da66056fad2691a54bfccbfe9f0304a79d51cb0d99453a",
+      "bytes": 9844
+    }
+  },
+  "qualification": "New export observation. Raw original schematic PDFs contain JavaScript; exports/ uses separately bound derivatives. Source formulas/connectivity/ERC only; no physical approval.",
+  "whole_source_sha256": {
+    "MEASUREMENTS_RU.md": "e24d3cd16247417c46592c4edd1326539b7b58e43eb8e1987942da85394929b2",
+    "PROVENANCE_RU.md": "77cd3870230f673f2a4da532e3ea7eaef45a894ad0dc259265e7677098da381c",
+    "README_RU.md": "8688e88a13dac7a220b6833238b97486165bf4de125c3e7113d03f73a1c19304",
+    "SOURCES.md": "242fa4b97d33b6cc2cbb6aa67a97ad7e2e9507662864fb07c0d759bc60a52ac5",
+    "SOURCE_MANIFEST.json": "72b32f9f3b806a62f58706150cd71d31b73edbcd02510bd28dc567aca41a11c3",
+    "option-a-dc-bom.csv": "007a9ce608cdf2b0b51f9e80add621cecaef77c96a1d28022ca969e821d0126b",
+    "option-b-ac-bom.csv": "2a5d5743e4c051890e40e7c55be4d0df1fc9ef82050d86de6a011e517da436ff",
+    "schematics/AnalogDraft.kicad_sym": "21d1755fa43dd9d992eee17446e73c0ceb915297559db5f4a312e4798516ad96",
+    "schematics/option-a-dc.kicad_pro": "a6c2f6e3eaa8e619608acf95f24502ff755e09b2fb350442f2ab1cab4c388ef4",
+    "schematics/option-a-dc.kicad_sch": "2bb3f5c5785a62f0c81a31dc51480bc40a408ab0312bf18448cb68df9794a2fd",
+    "schematics/option-b-ac.kicad_pro": "d418ce265ab3a36165918ba14ce29e101751dd7c3d01faa5136a6cf1fd7efcca",
+    "schematics/option-b-ac.kicad_sch": "60668d241fd792354b27abfe6989ef21a9821562a982974b8529148ef39a6bb0",
+    "schematics/sym-lib-table": "89a09628815978f4324cd7cf4be0bc6ff5606dba28b608991fd9d6528265ca39",
+    "tools/calculate.py": "6c140aefe88ed23f35e2d2ed2252e31fd88c1ff2692ba3eddf0b43dac6457035",
+    "tools/check_netlists.py": "67a3e6c48c9167b56f25a1300e33398bc34b763fd3b97649e91cdb369b32cff2",
+    "tools/generate_diagrams.py": "f5af9a5ff19c5a9c27075149c8b93dc8a9a2f2b5fcea3e83365c2d8f55bebdb3",
+    "tools/generate_schematics.py": "20459290490ba86196f22fa091ea30b7effcda14837456356b2ce759f618b815",
+    "tools/verify.py": "db5a5d375fea02b31d9141437d8865ab5f0ff7f8c3348c4879db27d0c9c9d036",
+    "tools/verify.sh": "5df2ecaa8447e5a2886e2de506685ece258037074027ceb73048e8b67a3ff54a"
+  }
+}
