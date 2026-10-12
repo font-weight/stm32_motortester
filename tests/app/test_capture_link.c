@@ -56,10 +56,45 @@ static void stop_cases(void){mt_capture_link l;mt_tx t;sink s;uint16_t expected[
  if(which>=3u){s.used=0;assert(mt_capture_link_release(&l,7,1,l.tomb_crc,6,0)==MT_LINK_OK);drain(&l,&s,0);assert(!l.armed&&l.acquisition.state==MT_ACQ_STOPPED);}
  }
 }
+static void release_deadline(void) {
+ mt_capture_link l; mt_tx t; sink s;
+ uint16_t expected[2048], retained[2048], code = 1234;
+ mt_wire_message frames[2]; uint32_t crc;
+ setup(&l,&t,&s,1,0); capture(&l,expected,0,0); drain(&l,&s,0);
+ crc=l.window_crc; memcpy(retained,l.acquisition.samples,sizeof retained);
+ s.used=0;
+ assert(mt_capture_link_poll(&l,4999,output,&s)==MT_LINK_OK);
+ assert(l.phase==MT_LINK_WAIT_RELEASE && l.armed && l.active_window==1u);
+ assert(mt_capture_link_poll(&l,5000,output,&s)==MT_LINK_OK);
+ assert(l.phase==MT_LINK_RELEASE_EXPIRED && !l.armed);
+ assert(l.session==123u && t.session==123u && l.active_window==1u);
+ assert(l.have_tombstone && l.tomb_generation==7u && l.tomb_window==1u);
+ assert(l.tomb_crc==crc && l.dropped_windows==0u);
+ assert(l.acquisition.state==MT_ACQ_STOPPED);
+ assert(memcmp(retained,l.acquisition.samples,sizeof retained)==0);
+ assert(mt_acq_read(&l.acquisition,0,&code)==MT_ACQ_NOT_READY && code==1234u);
+ assert(mt_capture_link_sample(&l,100,5000)==MT_LINK_BUSY);
+ assert(mt_capture_link_configure(&l,&l.acquisition.config,6)==MT_LINK_BUSY);
+ assert(mt_capture_link_arm(&l,5,8,5000)==MT_LINK_BUSY);
+ /* Link expiry preserves usable TX; the controller owns ERROR status. */
+ assert(s.used==0u && mt_capture_link_expire_release(&l,5001)==0);
+ assert(mt_capture_link_release(&l,7,1,crc,3,5001)==MT_LINK_OK);
+ drain(&l,&s,5001);
+ assert(decode(&s,frames,2)==1u && frames[0].type==135u);
+ assert(frames[0].request==3u && u32(frames[0].payload)==7u);
+ assert(u32(frames[0].payload+4)==1u);
+ assert(l.phase==MT_LINK_RELEASE_EXPIRED && !l.armed && l.active_window==0u);
+ assert(memcmp(retained,l.acquisition.samples,sizeof retained)==0);
+ s.used=0;
+ assert(mt_capture_link_release(&l,7,1,crc,4,5002)==MT_LINK_OK);
+ drain(&l,&s,5002);
+ assert(decode(&s,frames,2)==1u && frames[0].type==135u);
+ assert(frames[0].request==4u && !l.armed && l.phase==MT_LINK_RELEASE_EXPIRED);
+ assert(l.acquisition.state==MT_ACQ_STOPPED);
+}
 static void timeouts_single_auto(void){mt_capture_link l;mt_tx t;sink s;uint16_t expected[2048];unsigned i;
  setup(&l,&t,&s,2,1024);capture(&l,expected,0,3);drain(&l,&s,0);assert(mt_capture_link_release(&l,7,1,l.window_crc,3,1)==MT_LINK_OK);assert(!l.armed);drain(&l,&s,1);
- setup(&l,&t,&s,1,0);capture(&l,expected,0,0);drain(&l,&s,0);assert(mt_capture_link_poll(&l,4999,output,&s)==MT_LINK_OK);assert(mt_capture_link_poll(&l,5000,output,&s)==MT_LINK_RECOVERY);assert(!l.armed);
  setup(&l,&t,&s,1,0);capture(&l,expected,0,0);s.step=0;assert(mt_capture_link_poll(&l,0,output,&s)==MT_LINK_TX_BLOCKED);assert(mt_capture_link_poll(&l,1000,output,&s)==MT_LINK_RECOVERY);
  setup(&l,&t,&s,0,0);assert(mt_capture_link_sample(&l,100,0)==MT_LINK_OK);assert(mt_capture_link_sample(&l,100,100)==MT_LINK_TRIGGERED);for(i=1;i<2048u;++i)assert(mt_capture_link_sample(&l,100,100)==(i==2047u?MT_LINK_WINDOW_READY:MT_LINK_OK));drain(&l,&s,100);assert(l.acquisition.window.trigger_kind==MT_ACQ_TRIGGER_AUTO_TIMEOUT);assert(l.acquisition.window.trigger_index==UINT16_MAX);
 }
-int main(void){twenty_windows();stop_cases();timeouts_single_auto();puts("capture link: 20 full-array windows, Stop commitment, tombstone release, Single/Auto and timeout suites passed");return 0;}
+int main(void){twenty_windows();stop_cases();release_deadline();timeouts_single_auto();puts("capture link: 20 full-array windows, Stop commitment, tombstone release, Single/Auto and timeout suites passed");return 0;}
