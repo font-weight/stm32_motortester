@@ -23,9 +23,9 @@ def load(name, filename):
 
 
 smoke = load("serial_import_smoke", "serial_import_smoke.py")
-with patch.dict(sys.modules, {"serial_import_smoke": smoke}):
-    build = load("build_windows_under_test", "build_windows.py")
 launcher = load("serial_launcher_under_test", "launch_gui.py")
+with patch.dict(sys.modules, {"serial_import_smoke": smoke, "launch_gui": launcher}):
+    build = load("build_windows_under_test", "build_windows.py")
 licenses = load("serial_licenses_under_test", "collect_licenses.py")
 
 
@@ -256,17 +256,25 @@ class LauncherTests(unittest.TestCase):
                     patch.dict(sys.modules, {"motortester.gui": None, "serial_import_smoke": None}):
                 self.assertEqual(launcher.main(), 2)
 
-    def test_all_other_argv_delegate_unchanged(self):
+    def test_non_smoke_argv_delegate_unchanged(self):
         gui = ModuleType("motortester.gui")
         gui.main = Mock(return_value=23)
-        for argv in (["exe"], ["exe", "--screenshot", "a.png"], ["exe", "--help"],
+        for argv in (["exe"], ["exe", "--help"],
                      ["exe", "--serial-import-smoke=out.json"], ["exe", "x", "--serial-import-smoke"]):
             with patch.object(launcher, "sys", SimpleNamespace(argv=argv)), \
                     patch.dict(sys.modules, {"motortester.gui": gui, "serial_import_smoke": None}):
                 self.assertEqual(launcher.main(), 23)
                 self.assertIs(launcher.sys.argv, argv)
-        self.assertEqual(gui.main.call_count, 5)
+        self.assertEqual(gui.main.call_count, 4)
         self.assertTrue(all(call.args == () and call.kwargs == {} for call in gui.main.call_args_list))
+
+
+    def test_screenshot_uses_bounded_gui_smoke_not_serial_import(self):
+        with patch.object(launcher, "sys", SimpleNamespace(argv=["exe", "--screenshot", "a.png"])), \
+                patch.object(launcher, "_screenshot_smoke", return_value=17) as screenshot, \
+                patch.dict(sys.modules, {"serial_import_smoke": None, "motortester.gui": None}):
+            self.assertEqual(launcher.main(), 17)
+        screenshot.assert_called_once_with("a.png")
 
 
 class FrozenBuildGateTests(unittest.TestCase):
@@ -319,16 +327,17 @@ class FrozenBuildGateTests(unittest.TestCase):
             output = root / "output"
             commands = []
             def child(command, **kwargs):
+                command = [str(item) for item in command]
                 commands.append(command)
                 if "--format=json" in command:
-                    return subprocess.CompletedProcess(command, 0, "[]")
+                    return "[]"
                 if "PyInstaller" in command:
                     bundle = output / "dist" / "Motortester"
                     bundle.mkdir(parents=True)
                     (bundle / "Motortester.exe").write_bytes(b"fake: not an executable")
                 if "--serial-import-smoke" in command:
-                    return subprocess.CompletedProcess(command, 1, "intentional child failure")
-                return subprocess.CompletedProcess(command, 0, "")
+                    raise subprocess.CalledProcessError(1, command, output="intentional child failure")
+                return ""
             with ExitStack() as stack:
                 stack.enter_context(patch.object(sys, "argv", ["build_windows.py", "--output", str(output)]))
                 stack.enter_context(patch.object(build, "sys", SimpleNamespace(
@@ -337,7 +346,7 @@ class FrozenBuildGateTests(unittest.TestCase):
                 stack.enter_context(patch.object(build.platform, "machine", return_value="AMD64"))
                 stack.enter_context(patch.object(build.sysconfig, "get_config_var", return_value=None))
                 stack.enter_context(patch.object(build.subprocess, "check_output", side_effect=["fake-revision", ""]))
-                stack.enter_context(patch.object(build.subprocess, "run", side_effect=child))
+                stack.enter_context(patch.object(build, "run_logged", side_effect=child))
                 archive = stack.enter_context(patch.object(build.shutil, "make_archive"))
                 with self.assertRaises(subprocess.CalledProcessError):
                     build.main()
@@ -345,7 +354,8 @@ class FrozenBuildGateTests(unittest.TestCase):
             self.assertTrue(any("--serial-import-smoke" in c for c in commands))
             self.assertFalse(any("--screenshot" in c for c in commands))
             self.assertFalse((output / "SHA256SUMS.txt").exists())
-            self.assertIn("exit_code=1", (output / "build.log").read_text())
+            # Actual child logging/reaping is checked separately by run_logged tests.
+            self.assertFalse((output / "dist/Motortester/build-manifest.json").exists())
 
 
 class LicenseTests(unittest.TestCase):

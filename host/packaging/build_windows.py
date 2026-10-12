@@ -10,12 +10,57 @@ import shutil
 import subprocess
 import sys
 import sysconfig
+import time
 
+from launch_gui import receipt_path, validate_smoke_result
 from serial_import_smoke import validate_report
 
 HOST = Path(__file__).resolve().parent.parent
 REPOSITORY = HOST.parent
 EXPECTED_PYTHON = (3, 13, 16)
+FROZEN_SMOKE_TIMEOUT = 60
+CHILD_CLEANUP_TIMEOUT = 5
+
+
+def run_logged(command, *, cwd, env, log, timeout=None):
+    """Record launch before waiting; stream output and bound the direct child."""
+    command = [str(item) for item in command]
+    started = time.monotonic()
+    with log.open("ab", buffering=0) as stream:
+        def marker(text):
+            stream.write((datetime.now(timezone.utc).isoformat() + " " + text + "\n").encode("utf-8"))
+            stream.flush()
+        marker("START " + subprocess.list2cmdline(command)
+               + f" [timeout={timeout!r}; QT_QPA_PLATFORM={env.get('QT_QPA_PLATFORM', '<default>')}]")
+        output_start = stream.tell()
+        try:
+            process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stream, stderr=subprocess.STDOUT)
+        except OSError:
+            marker("FAILED launch")
+            raise
+        try:
+            process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            try:
+                marker("TIMEOUT: terminating direct child")
+            except OSError:
+                pass  # A full/broken log must not prevent child cleanup.
+            try:
+                process.kill()
+                process.wait(timeout=CHILD_CLEANUP_TIMEOUT)
+            except (OSError, subprocess.TimeoutExpired) as error:
+                marker("FAILED: direct-child termination/reaping unconfirmed")
+                raise RuntimeError("Timed-out child cleanup could not be confirmed") from error
+            marker(f"FAILED timeout; direct child reaped; exit_code={process.returncode}")
+            raise subprocess.TimeoutExpired(command, timeout)
+        output_end = stream.tell()
+        marker(f"END exit_code={process.returncode}; elapsed_seconds={time.monotonic()-started:.3f}")
+    with log.open("rb") as stream:
+        stream.seek(output_start)
+        output = stream.read(output_end - output_start).decode("utf-8", errors="replace")
+    if process.returncode:
+        raise subprocess.CalledProcessError(process.returncode, command, output=output)
+    return output
 
 
 def run_frozen_serial_smoke(executable: Path, output: Path, run) -> dict:
@@ -56,28 +101,9 @@ def main() -> int:
     env["PYTHONHASHSEED"] = "0"
 
     def run(*command, extra_env=None, timeout=None):
-        with log.open("a", encoding="utf-8") as stream:
-            stream.write("\n" + datetime.now(timezone.utc).isoformat() + " > "
-                         + subprocess.list2cmdline([str(item) for item in command]) + "\n")
-        try:
-            process = subprocess.run(
-                [str(item) for item in command], cwd=HOST,
-                env=env | (extra_env or {}), text=True, encoding="utf-8", errors="replace",
-                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout,
-            )
-        except subprocess.TimeoutExpired as error:
-            partial = error.stdout or ""
-            if isinstance(partial, bytes):
-                partial = partial.decode("utf-8", errors="replace")
-            with log.open("a", encoding="utf-8") as stream:
-                stream.write(partial + "\nFAILED: child timed out\n")
-            raise
-        with log.open("a", encoding="utf-8") as stream:
-            stream.write(process.stdout)
-            stream.write(f"\nexit_code={process.returncode}\n")
-        print(process.stdout, end="")
-        process.check_returncode()
-        return process.stdout
+        output_text = run_logged(command, cwd=HOST, env=env | (extra_env or {}), log=log, timeout=timeout)
+        print(output_text, end="")
+        return output_text
 
     run(sys.executable, "-m", "venv", output / "venv")
     python = output / "venv" / "Scripts" / "python.exe"
@@ -112,9 +138,17 @@ def main() -> int:
         encoding="utf-8",
     )
     # This exercises the frozen Qt application, not a screenshot of a web mockup.
-    run(bundle / "Motortester.exe", "--screenshot", output / "frozen-window.png")
-    if not (output / "frozen-window.png").is_file():
-        raise RuntimeError("Frozen application did not create its smoke screenshot")
+    screenshot_path = output / "frozen-window.png"
+    if os.path.lexists(screenshot_path) or os.path.lexists(receipt_path(screenshot_path)):
+        raise RuntimeError("Frozen screenshot output/receipt already exists")
+    run(bundle / "Motortester.exe", "--screenshot", screenshot_path, timeout=FROZEN_SMOKE_TIMEOUT)
+    try:
+        screenshot_report = validate_smoke_result(screenshot_path)
+    except (OSError, ValueError) as error:
+        with log.open("a", encoding="utf-8") as stream:
+            stream.write(datetime.now(timezone.utc).isoformat()
+                         + f" FAILED frozen screenshot validation: {type(error).__name__}\n")
+        raise
     manifest = {
         "status": "candidate-not-release-approved",
         "source_commit": revision,
@@ -125,6 +159,7 @@ def main() -> int:
         "packages": packages,
         "windows_10_manual_acceptance": "not performed by this script",
         "usb_verified": False,
+        "frozen_gui_smoke": screenshot_report,
         "serial_import_smoke": {
             "report": serial_report_path.name,
             "sha256": hashlib.sha256(serial_report_path.read_bytes()).hexdigest(),
@@ -139,7 +174,7 @@ def main() -> int:
     archive = Path(shutil.make_archive(str(output / "Motortester-windows-x64-candidate"),
                                       "zip", root_dir=bundle.parent, base_dir=bundle.name))
     run("git", "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
-    artifacts = (archive, output / "source.zip", output / "frozen-window.png", serial_report_path)
+    artifacts = (archive, output / "source.zip", screenshot_path, receipt_path(screenshot_path), serial_report_path)
     (output / "SHA256SUMS.txt").write_text(
         "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n" for p in artifacts),
         encoding="ascii",
