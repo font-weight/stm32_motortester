@@ -2,12 +2,12 @@
   "files": {
     "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
     "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
-    "firmware/app/mt_adc_control.c": "b771d00bf6fac333fac326b82f1e120a1ef4e582e8583e0974956e969f127620",
+    "firmware/app/mt_adc_control.c": "005c8e325a1abf875b9e2978937d88d5340d2a95568e2478c14ecc39d2a13376",
     "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
-    "firmware/app/mt_capture_link.c": "14386756c044aa509cd2e0b5f4fbcf1d29f1b022214f327c8f91ad26e82222b4",
-    "firmware/app/mt_capture_link.h": "1b9fbf145117333692b75324ee7d9c6dc53a771a76b1b3c31f409f34df7e6d11",
-    "firmware/app/mt_control.c": "e255e8425d5ac30ad9b4c083e5b80c43ba00f2c68eff020f9a6a7d6f19e304a6",
-    "firmware/app/mt_control.h": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+    "firmware/app/mt_capture_link.c": "7c78f0962c404af847b8e815034290f6938183917050290bc5eb7f9e7f304451",
+    "firmware/app/mt_capture_link.h": "9dcdd4f8119c8ccd8a7f79c6b16406ad686c4e53084c57a8fe55e8c5655be4d5",
+    "firmware/app/mt_control.c": "fbdbfbe460ebed2f5558eaea993ab49fe9c1244d7e76199cc7609a54073d041a",
+    "firmware/app/mt_control.h": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172",
     "firmware/app/mt_control_rx.c": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322",
     "firmware/app/mt_control_rx.h": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943",
     "firmware/app/mt_runtime.c": "b88e7f4d001f385f33235d6683bf89c09574b29b40014f8ad60212735a7ca859",
@@ -27,16 +27,16 @@
     "firmware/protocol/mt_stream.h": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
     "firmware/protocol/mt_wire.c": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
     "firmware/protocol/mt_wire.h": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
-    "firmware/transport/mt_tx.c": "b706eefbfeedd22941980b456d1a81fb0bbb7da91b8d895b206f43137b369ddf",
-    "firmware/transport/mt_tx.h": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
-    "firmware/transport/mt_usb_bridge.c": "7cbbc13e481aa398b28f713f2b3067f27e622c99cd8c1eed833237b04cf59d7e",
-    "firmware/transport/mt_usb_bridge.h": "5894b781971f5e5b3179f612d909f4299905fb997132008aa33225e9f2e35866",
+    "firmware/transport/mt_tx.c": "6ff521de04f1c86d26b0d1aba8a96917fc8eb750074cb1364a89700d470293d0",
+    "firmware/transport/mt_tx.h": "6f008a8645dc53130ad2ecce39184ed4a563f71c812800dcf81954af102e2de8",
+    "firmware/transport/mt_usb_bridge.c": "5e6a12261a5a0488c82b572d516a3fd9d0c0e27fccc8e1ade22b59013a2b7d5a",
+    "firmware/transport/mt_usb_bridge.h": "08fd79a9fc5e256e9708d9c0c43a5dbf2ec467a3a7875128e28a868523c5da6b",
     "firmware/transport/mt_usb_cdc.c": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f",
     "firmware/transport/mt_usb_cdc.h": "4f7d054f5ec14c4b04b6b28240c93af2e9894e16c72db7a369f2d3221800563b",
     "firmware/transport/mt_usb_descriptors.c": "efe258f1567b17f66e9a6c48793d95586c3c6869ad890e05ee642c8f58ac3ad7",
     "firmware/transport/mt_usb_descriptors.h": "f35ca537b41dd5b2c47e4c589b06545a0da59ed0d8a9be27f6ef10b78848437d",
-    "firmware/transport/mt_usb_epoch.c": "c3f70c9937359d263cc78c668bd2a9cd91f8d384d82d958d6587a777b6947159",
-    "firmware/transport/mt_usb_epoch.h": "0846781e5688642fc7ffb59910d3acc2492b3dd9afbef406a4b4671dc2d8be0b",
+    "firmware/transport/mt_usb_epoch.c": "ee7f7aab84cc13f79b9f95430229584457bec9800116d8c2b0768fc11ccf633e",
+    "firmware/transport/mt_usb_epoch.h": "21498b42c3cfa3f03fe78e6567cf996d4b1892a0d3d23ef90e097a6e858f9954",
     "firmware/platform/mt_clock_startup.c": "90cddee98cb45e9abba300d9e15416802d22344d813f96f4e2629d48bc99bef6",
     "firmware/platform/mt_clock_startup.h": "8c6a62dbb14096b48a00336003dbded7187f479e3a7187703f365ad40a8e1da3",
     "firmware/boot/README.md": "51a66675d85c602f8fbdd045824b2d0314c912b6a4e39ee47b4a78efe85ca211",
@@ -97,10 +97,10 @@
     "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h": "43bfd1fe69fbbc2ca70aaf7d43cc3e20f16e0c7f66e1bdef9b51af6dc14b2617",
     "firmware/third_party/usb/patches/apply_usb_bridge_patch.py": "73e25167eacff7b9ec5faf0d006fd37e5509eafe657ceec3b539fdb1f036d2a8",
     "firmware/third_party/usb/patches/apply_setup_patch.py": "28b1672b247a71d149b47d631659df9e09c9d761ea413bbedbf1c571658bb189",
-    "firmware/third_party/usb/patches/usb005-patches.json": "26f1c175578e3960b9805bd0d80370d1fdafcdae99b9321662ad6e0ed7f8181c",
+    "firmware/third_party/usb/patches/usb005-patches.json": "41ca4196cc022994e00efc1f3299318fd71e62016406d0ba222219ec1d45a2c6",
     "firmware/third_party/usb/patches/apply_f103_reset_patch.py": "e56442bfcefa0883759f62a1815a45641e51ee7fa84178d9759583150b6e265b",
     "firmware/third_party/usb/patches/0002-f103-reset-completion-cleanup.patch": "c80786e18ca1777be639fccb34573f10fbe73168c4749ff3e289e1103103332e",
-    "firmware/third_party/usb/patches/0003-usb005-fsdev.patch": "336e23e852d3998aa49ce374ff77bf92270cc38d01b2ee56df33a59364c4ff3d",
+    "firmware/third_party/usb/patches/0003-usb005-fsdev.patch": "cc5f9333cd5e4af84beebbc757d8225cb09368e4d32cbc23a10fcff7f4dbd671",
     "firmware/third_party/usb/patches/0003-usb005-core.patch": "4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf",
     "firmware/third_party/usb/patches/setup-accounting.json": "7fc3ac47a74ef0e85e1aadccf4207ea11fad238a690f43790fc66aaf44767a19",
     "firmware/third_party/usb/patches/f103-reset-cleanup.json": "640e86511f1e868b956fdde7a3b7c8523e2afe433b1f42d11606a09d841664a2",
@@ -216,7 +216,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "efbcb064d67cb40ee6520517ecb99f4c0c5637df7c4ca6092c85100a9d4cc5cc"
+      "expected_object_sha256": "575c1b56dcbb724dc8aa20d9064486d69a0d12080ebac253e05de2a2230f1f9a"
     },
     {
       "source": "firmware/app/mt_adc_control.c",
@@ -243,7 +243,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "30728756c3f01be97b87670db187204b3f6f54613244a24cb93ca79b1d7f78d7"
+      "expected_object_sha256": "82ced8d7b64281dc484fc52d12b98ebb84518578f6f0b11b143fb88b78a0b7aa"
     },
     {
       "source": "firmware/app/mt_control.c",
@@ -270,7 +270,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "485b3b957e4447ed3afcd02f7477b0e256d80453a306d3a1ff381e836af8a03b"
+      "expected_object_sha256": "9af929d7ce94425d446b67779ebd74daa6a9309fe0eae7966d258261cd70dd5a"
     },
     {
       "source": "firmware/app/mt_control_rx.c",
@@ -540,7 +540,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "deac4c0b2fc0a1502ca2e1cbd1c37b89738f8a5365a870aed09e1dd34537c5ed"
+      "expected_object_sha256": "6c4f0af1fdd7df7c88983dfb408ac35f028f909317288e4d24516ad7a3bb9feb"
     },
     {
       "source": "firmware/transport/mt_usb_epoch.c",
@@ -567,7 +567,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "c337ad6b3ea44185ddf1d7fed818ae62a3411d0927b39c4e13ad29ba5e0ea277"
+      "expected_object_sha256": "802dd6fa68052530a8a5a3d2afe4eb78db2571e16b12261aace14160079b563e"
     },
     {
       "source": "firmware/transport/mt_usb_cdc.c",
@@ -621,7 +621,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "ae702d288ccdd20e5f277385673db2a6e16d0052d1124e02b51baba94839d8e1"
+      "expected_object_sha256": "1c464c0a05653ed2e5b6b9dd997ec0f44a678bb4849b0cf02732a83dde3b6867"
     },
     {
       "source": "firmware/transport/mt_usb_descriptors.c",
@@ -813,7 +813,7 @@
         "-std=gnu11",
         "-Wno-error=conversion"
       ],
-      "expected_object_sha256": "d145d093d134952cb2401ee8de02c466ff7dcac8f349157604251f0e1a1d0819"
+      "expected_object_sha256": "0d5b028876c1813c961cbcee01856d30f8a6f12c4421c71437b328d9b726177d"
     },
     {
       "source": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c",
