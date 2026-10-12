@@ -81,3 +81,18 @@ loader и системные библиотеки не поставляются.
 собственный TMPDIR и изолированный Python для helpers. PATH helpers задан
 как /usr/bin:/bin; toolchain/bin не может подменить системный patch. Логи содержат абсолютные
 пути среды: перед их внешним распространением требуется согласование раскрытия.
+
+## PMA-overrun: новый relocatable snapshot (draft, 12.10.2026)
+
+Issue88: полный supporting rebuild установил три изменённых объекта
+(epoch, bridge, patched DCD), остальные 30 побайтово прежние. Новая версия
+inputs.json фиксирует шесть новых source SHA и три object SHA; команды,
+флаги и toolchain не изменены. Bridge-header r3 уточняет только комментарий,
+отдельная проверка пяти зависимых единиц подтвердила прежние machine bytes.
+
+Строгий повтор build_objects.py должен дать PASS_RELOCATABLE_ONLY и combined
+21e2a8aaa77efa22e1b07970e72ee87386bf2dbcb47af248dc4e66d0676fb7db.
+Это ожидаемый hash, а не заранее объявленный результат запуска.
+Image helper/reference намеренно ещё с прежними pins и должны отказать.
+Новая PMA callback-ветка требует собственного полного машинного stack proof;
+прежние 3024 байта не переносятся. Результат не разрешает прошивку/исполнение.
