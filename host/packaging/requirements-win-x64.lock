@@ -40,3 +40,6 @@ pefile==2024.8.26 --hash=sha256:76f8b485dcd3b1bb8166f1128d395fa3d87af26360c2358f
 
 # pywin32_ctypes-0.2.3-py3-none-any.whl
 pywin32-ctypes==0.2.3 --hash=sha256:8a1513379d709975552d202d942d9837758905c8d01eb82b8bcc30918929e7b8
+
+# pyserial-3.5-py2.py3-none-any.whl; freshly verified 2026-10-12.
+pyserial==3.5 --hash=sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0

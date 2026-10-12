@@ -1,0 +1,13 @@
+{
+  "host/requirements-gui.txt": "71ab87c948e3f592831a7c462f1e31a10bd8a8b4c46e7310717d0e6e8ee1a889",
+  "host/packaging/requirements-win-x64.lock": "05a7bb68dbb5247f76a585443d4d613fd7ecbcb0d6602e0a928f35e1ab933909",
+  "host/packaging/motortester.spec": "d4489eec950ee410e00e530bf870f47ca6d8cb9eb96d68aadd242087edd4e4c5",
+  "host/packaging/build_windows.py": "9a3f03a09d6173953ce546408ea42798519f7969b7bbd63b11b8e03f3818e5d9",
+  "host/packaging/launch_gui.py": "3a47909048a23c03c8615b4443882ca39ca778534a5f00925d30a5ee9ee8e5d7",
+  "host/packaging/LICENSE-REVIEW.md": "95c62df4c39a09e50bfea3c26e7d93fff1c340634d3ca081da8366b6b8ce2de7",
+  "host/packaging/collect_licenses.py": "51a354c8c4d43e05e927db11d32e29c755a51b6b1f71ecaa2401ac30f2e629e6",
+  "host/packaging/serial_import_smoke.py": "4c9dba2b0a52c349a32f12c89ef275e8c2c8664dde7f84072110361e82d09c29",
+  "host/packaging/licenses/pyserial-3.5-LICENSE.txt": "f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3",
+  "host/tests/test_serial_packaging.py": "0916758297ff673ee97fba3ab16b424e71894fe7a43aa55cdbb4bcb12820f8da",
+  "host/docs/serial-packaging.md": "e35f412f1d8bb913e65373be6ae71218db47a638cb55d15ada8ed6549d732f1b"
+}

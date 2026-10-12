@@ -1,0 +1,127 @@
+{
+  "generated_at_utc": "2026-10-12T03:30:54.900439+00:00",
+  "scope": "Fresh serial-r2 evidence only; resolver BLOCKED; not Windows execution or acceptance",
+  "files": [
+    {
+      "path": "host/packaging/evidence/serial-r2/BLOCKER.json",
+      "bytes": 1534,
+      "sha256": "fab719d80d1d9f01fde1d1c48edc0cc60f8365f267d0ef5afd1a0befb7aff5f8"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/HANDOFF.md",
+      "bytes": 4812,
+      "sha256": "73d9f176ffccf7627306a9f6d54a1cb5c6211af590a1da50c9c77311616f52eb"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/SOURCE-MANIFEST.json",
+      "bytes": 2399,
+      "sha256": "0ea3d9055ba8ad8434cc89ff9c67c84f8bbadea1bb149840f4f2d7167ce9a945"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/diff-check.log",
+      "bytes": 85,
+      "sha256": "d4111f4aede65600d7d395fd8c67ed3810b6b5b4fda51d3c3aaf4fded03d258d"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/environment-and-test-summary.json",
+      "bytes": 867,
+      "sha256": "6b0598228d8d97610405d71487ed58f02557040a266d0a7422f1afa1deb2003a"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/focused-initial.log",
+      "bytes": 6441,
+      "sha256": "d60ab30b2bad702cc234052bffca975db764c3b0b378990450f515d4508e2033"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/focused-normal.log",
+      "bytes": 5583,
+      "sha256": "f9378ad6a7302add5dc449311d4bc613bd4eb11a2587f637e1cb5851f02f0430"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/focused-optimized.log",
+      "bytes": 5589,
+      "sha256": "01f3af2d32c60cc9caf0e020a21e3e866e1f82a05519f553d5baa807b13a30e1"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/focused-second.log",
+      "bytes": 5152,
+      "sha256": "59077bca8b6a0e8af04cedf5aadb0b39414f5acda7e7664266fc95bfcdc25e38"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/full-normal.log",
+      "bytes": 56481,
+      "sha256": "9f0156ffe0f4b312bfee7566fdd56851b70004694103a876d7ac4f36c4e85377"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/full-optimized.log",
+      "bytes": 56487,
+      "sha256": "f40c9498fbce1583212a8d34af1bbca4aff94fbc8c863682614fbddd3235e307"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/linux-build-refusal.log",
+      "bytes": 446,
+      "sha256": "112744615e2ebc9341378a5bc6eab73953aab0d75b13d95d97ecc80058335dc7"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/negative-executions.json",
+      "bytes": 294,
+      "sha256": "0ddcb2af12114e994bdf6a3b470bc9d480a8970e3703a304b41965b838ec15ee"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/provenance.json",
+      "bytes": 1552,
+      "sha256": "89ac0b44e7eea17eb1b6416929aabab688984def804de79405a1f9ab94e5b6cf"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/pyserial-pypi-3.5.json",
+      "bytes": 3704,
+      "sha256": "7d1d5b73084f2fcfc980728ef6375177f6da3f553a815977890a82b24684d8ab"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/pyserial-wheel-METADATA.txt",
+      "bytes": 1650,
+      "sha256": "42a8ab7e94ef0b7baa7e94cdac65d6b9254c608476f630120c990007bf472943"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/pyserial-wheel-contents.txt",
+      "bytes": 1021,
+      "sha256": "79b2634d7de3ce42bb98f9faef64de5a130f3e206c917295357d24327eeca6ce"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/retained-failures.json",
+      "bytes": 1043,
+      "sha256": "b733c9abee28e18a276ecc51ca63571498224ff337a0a11d07f0541e350b73f9"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/source-after-tests.json",
+      "bytes": 1187,
+      "sha256": "ea443160c3ea3a2eff225ce500f5ca7d34537e3efff2d74e2fe36e3aba122f18"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/source-before-tests.json",
+      "bytes": 1187,
+      "sha256": "ea443160c3ea3a2eff225ce500f5ca7d34537e3efff2d74e2fe36e3aba122f18"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/source-negative.json",
+      "bytes": 112,
+      "sha256": "d35c7993ea3894104ea6dfc0f8a48e244769849a61bf4e49751d11c619d06d88"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/source-negative.log",
+      "bytes": 328,
+      "sha256": "0889e25413ff42217958b9de1ab89d35260a19cbafa6cbd029db8ec2296b067a"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/test-runs.json",
+      "bytes": 2097,
+      "sha256": "a2294acd4065f4b27f78efa56facbd37f574e2cf9e5b760040737c15e939daa2"
+    },
+    {
+      "path": "host/packaging/evidence/serial-r2/windows-resolver.log",
+      "bytes": 264,
+      "sha256": "459aa3ff1a69c4e96daa6aa9ae458d064bd6abdde2e595c898516ebff1cca980"
+    }
+  ],
+  "publication": "Publish source-first eleven files, then these evidence files incrementally. This manifest excludes itself."
+}

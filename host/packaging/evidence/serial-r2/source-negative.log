@@ -1,0 +1,6 @@
+started_at_utc=2026-10-12T03:28:04.380927+00:00
+command=['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python', 'host/packaging/launch_gui.py', '--serial-import-smoke', 'host/packaging/evidence/serial-r2/source-negative.json']
+
+ended_at_utc=2026-10-12T03:28:04.402222+00:00
+exit_code=1
+expected_exit_code=1

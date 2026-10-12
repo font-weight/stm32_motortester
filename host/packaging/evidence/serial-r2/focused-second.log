@@ -1,0 +1,43 @@
+test_build_stops_before_archive_if_serial_gate_fails (test_serial_packaging.FrozenBuildGateTests.test_build_stops_before_archive_if_serial_gate_fails) ... ok
+test_existing_report_blocks_child (test_serial_packaging.FrozenBuildGateTests.test_existing_report_blocks_child) ... ok
+test_failed_child_is_not_accepted_even_with_pass_json (test_serial_packaging.FrozenBuildGateTests.test_failed_child_is_not_accepted_even_with_pass_json) ... ok
+test_missing_invalid_and_timed_out_child_evidence_fails (test_serial_packaging.FrozenBuildGateTests.test_missing_invalid_and_timed_out_child_evidence_fails) ... ok
+test_success_requires_child_and_report (test_serial_packaging.FrozenBuildGateTests.test_success_requires_child_and_report) ... ok
+test_each_missing_module_fails_closed (test_serial_packaging.ImportGateTests.test_each_missing_module_fails_closed) ... ok
+test_import_exception_fails_without_leaking_unbounded_details (test_serial_packaging.ImportGateTests.test_import_exception_fails_without_leaking_unbounded_details) ... ok
+test_missing_wrong_transport_class_rejected (test_serial_packaging.ImportGateTests.test_missing_wrong_transport_class_rejected) ... ok
+test_source_and_non_windows_are_failed_distinct_scope_without_imports (test_serial_packaging.ImportGateTests.test_source_and_non_windows_are_failed_distinct_scope_without_imports) ... ok
+test_success_imports_exact_required_graph_and_no_constructors (test_serial_packaging.ImportGateTests.test_success_imports_exact_required_graph_and_no_constructors) ... ok
+test_wrong_backend_identity_name_and_type_rejected (test_serial_packaging.ImportGateTests.test_wrong_backend_identity_name_and_type_rejected) ... ok
+test_wrong_import_module_rejected (test_serial_packaging.ImportGateTests.test_wrong_import_module_rejected) ... ok
+test_wrong_or_missing_versions_rejected (test_serial_packaging.ImportGateTests.test_wrong_or_missing_versions_rejected) ... ok
+test_all_other_argv_delegate_unchanged (test_serial_packaging.LauncherTests.test_all_other_argv_delegate_unchanged) ... ok
+test_bad_smoke_arity_does_not_import_gui (test_serial_packaging.LauncherTests.test_bad_smoke_arity_does_not_import_gui) ... ok
+test_smoke_is_dispatched_before_gui_import (test_serial_packaging.LauncherTests.test_smoke_is_dispatched_before_gui_import) ... ok
+test_collector_rejects_wrong_installed_version (test_serial_packaging.LicenseTests.test_collector_rejects_wrong_installed_version) ... ok
+test_exact_notice_copied_with_source_hash_inventory_and_review_required (test_serial_packaging.LicenseTests.test_exact_notice_copied_with_source_hash_inventory_and_review_required) ... ok
+test_missing_notice_aborts (test_serial_packaging.LicenseTests.test_missing_notice_aborts) ... ok
+test_missing_pyserial_distribution_aborts (test_serial_packaging.LicenseTests.test_missing_pyserial_distribution_aborts) ... ok
+test_modified_notice_aborts (test_serial_packaging.LicenseTests.test_modified_notice_aborts) ... ok
+test_wrong_version_aborts_even_when_notice_exists (test_serial_packaging.LicenseTests.test_wrong_version_aborts_even_when_notice_exists) ... ok
+test_all_schema_fields_and_types_are_strict (test_serial_packaging.OutputTests.test_all_schema_fields_and_types_are_strict) ... ok
+test_existing_directory_and_missing_parent_fail (test_serial_packaging.OutputTests.test_existing_directory_and_missing_parent_fail) ... ok
+test_existing_file_never_clobbered_or_imported (test_serial_packaging.OutputTests.test_existing_file_never_clobbered_or_imported) ... ok
+test_malformed_duplicate_oversize_and_non_utf8_reports_rejected (test_serial_packaging.OutputTests.test_malformed_duplicate_oversize_and_non_utf8_reports_rejected) ... ok
+test_race_after_validation_never_clobbers (test_serial_packaging.OutputTests.test_race_after_validation_never_clobbers) ... ok
+test_report_writer_failure_returns_nonzero (test_serial_packaging.OutputTests.test_report_writer_failure_returns_nonzero) ... ok
+test_safe_windows_paths (test_serial_packaging.OutputTests.test_safe_windows_paths) ... ok
+test_source_failure_writes_failure_and_returns_nonzero (test_serial_packaging.OutputTests.test_source_failure_writes_failure_and_returns_nonzero) ... ok
+test_success_writes_bounded_validated_report (test_serial_packaging.OutputTests.test_success_writes_bounded_validated_report) ... ok
+test_unsafe_path_never_reaches_filesystem_or_imports (test_serial_packaging.OutputTests.test_unsafe_path_never_reaches_filesystem_or_imports) ... ok
+test_unsafe_windows_paths (test_serial_packaging.OutputTests.test_unsafe_windows_paths) ... ok
+test_exact_dependency_pin_added_without_other_version_upgrades (test_serial_packaging.RecipeTests.test_exact_dependency_pin_added_without_other_version_upgrades) ... ok
+test_real_source_imports_do_not_construct_or_enumerate (test_serial_packaging.RecipeTests.test_real_source_imports_do_not_construct_or_enumerate) ... ok
+test_spec_explicitly_collects_required_backend_graph (test_serial_packaging.RecipeTests.test_spec_explicitly_collects_required_backend_graph) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.017s
+
+OK
+[]intentional child failure
+exit_code=0

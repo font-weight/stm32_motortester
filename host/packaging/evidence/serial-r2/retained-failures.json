@@ -1,0 +1,24 @@
+{
+  "recorded_at_utc": "2026-10-12T03:29:18.776236+00:00",
+  "entries": [
+    {
+      "log": "focused-initial.log",
+      "tool_result_seen_at_utc": "2026-10-12T03:24:36Z",
+      "result": "36 tests, one test-harness argparse mocking error",
+      "cause": "Fake build.sys did not replace argparse sys.argv; corrected test harness only",
+      "source_binding": "Earlier intermediate source, not the final frozen manifest; preserved without overwriting"
+    },
+    {
+      "log": "focused-second.log",
+      "tool_result_seen_at_utc": "2026-10-12T03:25:16Z",
+      "result": "36 tests passed after harness fix",
+      "source_binding": "Before final documentation and AST-test strengthening; final normal/-O logs bind frozen manifest"
+    },
+    {
+      "log": "windows-resolver.log",
+      "tool_result_seen_at_utc": "2026-10-12T03:25:03Z",
+      "result": "Polling failed: automatic approval review was cancelled; no verified completion and zero wheels",
+      "source_binding": "Current lock bytes; not a successful resolution"
+    }
+  ]
+}
