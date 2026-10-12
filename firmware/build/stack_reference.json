@@ -1,8 +1,8 @@
 {
   "status": "DRAFT_REFERENCE_DATA_REQUIRES_INDEPENDENT_REVIEW",
   "not_production_gate": true,
-  "baseline_elf_sha256": "699892d36adbfa06cdf5e2ef5bb2e9757e41c5df522d2dd8f944f313f9bca446",
-  "baseline_source": "Independently reviewed WAIT_RELEASE invalid-zero-board static-placement ELF; no board-value pruning; conditional closed-composition proof only",
+  "baseline_elf_sha256": "e4dd2100075c6a3b095451919c1a66a4e5a3510058ebb5562f96cb24ade620f4",
+  "baseline_source": "Independently reviewed PMA invalid-zero-board static-placement ELF from r2 objects, with separately rebuilt byte-identical r3 header dependents; no board-value pruning; conditional closed-composition proof only",
   "canonical_json": "ASCII json.dumps(sort_keys=True,separators=(comma,colon),ensure_ascii=True); no trailing newline for hashes",
   "original_objects_in_order": [
     {
@@ -88,7 +88,7 @@
     {
       "name": "14-mt_usb_epoch.o",
       "ordinal": 16,
-      "sha256": "c337ad6b3ea44185ddf1d7fed818ae62a3411d0927b39c4e13ad29ba5e0ea277"
+      "sha256": "802dd6fa68052530a8a5a3d2afe4eb78db2571e16b12261aace14160079b563e"
     },
     {
       "name": "15-mt_usb_cdc.o",
@@ -98,7 +98,7 @@
     {
       "name": "16-mt_usb_bridge.o",
       "ordinal": 18,
-      "sha256": "ae702d288ccdd20e5f277385673db2a6e16d0052d1124e02b51baba94839d8e1"
+      "sha256": "1c464c0a05653ed2e5b6b9dd997ec0f44a678bb4849b0cf02732a83dde3b6867"
     },
     {
       "name": "17-mt_usb_descriptors.o",
@@ -133,7 +133,7 @@
     {
       "name": "23-dcd_stm32_fsdev.o",
       "ordinal": 25,
-      "sha256": "d145d093d134952cb2401ee8de02c466ff7dcac8f349157604251f0e1a1d0819"
+      "sha256": "0d5b028876c1813c961cbcee01856d30f8a6f12c4421c71437b328d9b726177d"
     },
     {
       "name": "24-fsdev_common.o",
@@ -175,30 +175,30 @@
     {
       "label": "vectors",
       "length": 236,
-      "sha256": "548e69dfeda0d4ebd3d4bd4f06c063d8f23c8e9aa9398593fab3049feb3c2352",
+      "sha256": "6c11ca5db6d1df79bd117a7f64eacba9bc1bfc691b8f4a9181758e197110ac06",
       "vma": 134217728
     },
     {
       "label": "immutable_text_prefix",
-      "length": 32204,
-      "sha256": "199d1472e5a6aa424c270c6a5e75ec56bcee5345a8bd951ec54d4ef6c52e2245",
+      "length": 32244,
+      "sha256": "b3fa0c908f3ec9d6f28a3a559aac998c8f5fb3231df65065e6ad6a252843f637",
       "vma": 134217964
     },
     {
       "label": "immutable_text_suffix",
       "length": 124,
-      "sha256": "9a9b1dc752f08b21f687f70c6a8c413c1f0175a11dbb5cd31fe67aa2be77838b",
-      "vma": 134250172
+      "sha256": "4830865b092b850ce7427a514dfae189e4852b825874cf3ff8b0beb5479af7d2",
+      "vma": 134250212
     },
     {
       "label": "initial_data",
       "length": 128,
-      "sha256": "b1fbe5b3c551f453a90df57ab497729acc6ddca6016e85f04cf82c401001e0d0",
+      "sha256": "37deb87245f54972c86397896c69adc43a980b169548642840c1fd39a8371928",
       "vma": 536870912
     }
   ],
   "single_variable_noninstruction_literal": {
-    "baseline_value": 134250344,
+    "baseline_value": 134250384,
     "input_object": "reset.o",
     "input_section": ".text.Reset_Handler",
     "length": 4,
@@ -206,18 +206,18 @@
     "rule": "little-endian uint32 equal to validated new .data LMA; input literal is nonexecuted data, not instruction bytes",
     "section_offset": 88,
     "symbol": "__data_load",
-    "vma": 134250168
+    "vma": 134250208
   },
   "fixed_layout": {
     "bss_size": 12248,
     "bss_vma": 536871040,
     "data_size": 128,
     "data_vma": 536870912,
-    "entry": 134250081,
+    "entry": 134250121,
     "flash_end_under_original_linker_model": 134283264,
     "mt_board_size": 48,
-    "mt_board_vma": 134250296,
-    "new_strings_start": 134250344,
+    "mt_board_vma": 134250336,
+    "new_strings_start": 134250384,
     "stack_top": 536891392,
     "static_end": 536883288,
     "text_base": 134217964,
@@ -230,11 +230,11 @@
       "vma_integer",
       "size_integer"
     ],
-    "count": 364,
-    "sorted_records_sha256": "319be73ba347e028b28f0a7363c37b1e50316472b8bce5499fa8d38ede6768fa"
+    "count": 365,
+    "sorted_records_sha256": "3591e7804bff3222d571a4cf5f84378669ce3062b8b33e141664fa31379985f9"
   },
   "function_symbol_multiset": {
-    "count": 411,
+    "count": 412,
     "record": [
       "name",
       "value",
@@ -244,18 +244,18 @@
       "other",
       "section_name_or_reserved_index_label"
     ],
-    "sorted_records_sha256": "5a2049c5e3c404d9a0bd7c24201244441f74b387e4ad223be5102957e27b7b03",
-    "unique_addresses": 361
+    "sorted_records_sha256": "a8f30c34327a848d2c78a8be90da5328d88712012e98faa4a1c8d309ddf304c3",
+    "unique_addresses": 362
   },
   "immutable_symbol_multiset": {
     "candidate_extra_exclusions": "Only separately validated three board_* local OBJECT records and three local $d mapping records at their exact starts; no other new symbol. Exclusions for FILE and empty stubs metadata do not authorize loaded bytes.",
-    "count": 1055,
+    "count": 1057,
     "reference_exclusions": [
       "all STT_FILE records",
       "symbols __boot_stack_bytes, __StackLimit, __data_load",
       "STT_SECTION for empty .unsupported_stubs"
     ],
-    "sorted_records_sha256": "8e3b85b71f8cb34d495487918e583bed7a200f09540c9d07edea2e8714982c98"
+    "sorted_records_sha256": "3630e024f50999ed7a46fbe922e54ec2484aeabd6ef07d426cfca22026e4fb83"
   },
   "reviewed_stack_bounds": {
     "startup": 288,
@@ -267,26 +267,33 @@
     "rounded_to_8": 3024
   },
   "proof_artifacts": {
-    "REPORT.md": "441545ba387a9fc0c745441e0660626c8882818303ec3695e496b18e7608a1d2",
-    "ASSUMPTIONS.md": "f889d4d35b11879d4a128aff020ef1a24b24b62aa1aaf1d4771cce43f7d24c23",
-    "RESULTS.json": "3dacd5db6549d58b2167f25cfa9b4cf2cd99d8d4bdf09760b1d2a0c7e53c8db5",
-    "ARTIFACTS_SHA256.json": "31ae56d9c238e8b2c6d54a2205ccea7dd3f0d569a8fdcc4fcf9bb9ac0c699cca",
-    "run-r4/inputs.json": "64c070faf110a8132bb169cd7c6bc47682d837e7b901d2e5621ba266f40bb556",
-    "run-r4/graph-initial.json": "acb60e5086ac5d5e12218bb79ad34246162690d896a68ab74da4859c304aa539",
-    "run-r4/machine-stack-check.json": "f0a6dea8134a1a85002e7448f589541a48c9b45d995d5ca9b9f4f0ed75668487",
-    "run-r4/computed-jumps.json": "9f360db6b3a0aabcae41016dfcbd4ad3c8cd4e848450a90ef588ef441285f9b6",
-    "run-r4/code-pointer-relocations.json": "5de5fa6139920b069328cc5b13467ce456ec9bfce24606787aa8581ad8ed7afb",
-    "bound-r4/graph-resolved.json": "3dfcfaf902f9932dc5d9f0d0da0a56d09366ddbc794aed612aa1b6db365c8e52",
-    "bound-r4/indirect-resolutions.json": "b3ef31a06631b785ac5517843c5589bf968322a6379d2b8d1025cd67b456f7d2",
-    "bound-r4/bounds.json": "0cc912defbf8c2a0524aacb4341f775a0260bcefd1d0c9669825c1459c0405d0",
-    "indirect-worker/indirect_bindings.json": "e8555b400901e666c27eec5e8ce839f8f9c999bd02fa3fda407757ba4fa1fe83",
-    "indirect-worker/weak_resolution.json": "13fe98b7abad647971a1d8dc0a1b54e004f46653aa9f8fa226200c1fcb606414",
-    "indirect-worker/deferred_event_closure.json": "495089d660ba2f7a3e47fc6d106600801534a14e11c7a66c5aa61e8bc01ef981",
-    "execution-profile-r1/execution-profile.json": "f51ddb1eb20872978e16dfaa94c52131f2b136f1194354ba60b4bf72861d7f46",
-    "config-r1/RESULTS.json": "c6db6c387633d3a34bc4af9083246dba9a4079790c84e4f49f15bef9d035d556",
-    "config-r1/macros.stdout": "1b4f97d39148154b95b5438b81e4fc7ca2d267eb89228b4d28f0389ca4d848ae"
+    "ARTIFACTS_SHA256.json": "620539f276ec70d40624bb84f33c17854e496c6b39d82a567700219ff5ce37a5",
+    "REPEAT.json": "056a7ac3841513d75d8033dfb36e70ce3b187d20265450f48a205ca4952c89a3",
+    "REPORT.md": "39c3d908244ec01ade016c5ab8783bd273f0520a3352cbc453a7babd9b3f36bb",
+    "RESULTS.json": "37ae9a967078856b45c7de171711cd37677ba6de293a6970ebc1c014be4f4d48",
+    "callback-r2/PMA_PATH.json": "2fd318e2a7b9892dff28ebd287eb0f9caefc315ddd8da1d15cedbd10cd40b987",
+    "callback-r2/deferred_event_closure.json": "9ec9834dd63e7ceb474cc68a01c4f6dc0c07e61bbf94e81acec1d81cb408464b",
+    "callback-r2/indirect_bindings.json": "ae52741a91bca9694ac45ce4d466d711ec28ee053e028405b76701040b082c0a",
+    "callback-r2/weak_resolution.json": "80770d4bb417357576b192a36b28267fbea87ce0fce149fa8ebb807e695794c4",
+    "config-r1/RESULTS.json": "fdc346b30741d7e3abea74f8c7a3d96ef262fcc366bd7df37e0555d28ef46839",
+    "config-r1/macros.stdout": "1b4f97d39148154b95b5438b81e4fc7ca2d267eb89228b4d28f0389ca4d848ae",
+    "profile-and-bounds/ARTIFACTS_SHA256.json": "8681db97846650583c7c5f4f3e90c94f6a0f574e6287e5215707599fd9761966",
+    "profile-and-bounds/ASSUMPTIONS.md": "209ee8ae236ac0bebe5b62ecad0586a0e0ea985fb7da2b3f4b185726a7bf1bd6",
+    "profile-and-bounds/REPEAT.json": "8e3450532292f1fdf72c442d7cc57727bd785f3ff1b3727791e1fd59b76038f7",
+    "profile-and-bounds/REPORT.md": "2d5f788fea67a3a8d307b823f17d2416f2416e0def1e6784094d18cf369865bc",
+    "profile-and-bounds/RESULTS.json": "b2dec953d10b86b8d88379847bc7041b647fd1f3dc561894244b28b567b953eb",
+    "profile-and-bounds/bounds-r1/RESULTS.json": "003aac5ed12ae08c60250fceaf86aee0fd22f6e4f85d4ccb5d7a235e9925d0f5",
+    "profile-and-bounds/bounds-r1/bounds.json": "ee992a07214839443ce137bc66066f945ab40c110c6b33eed7706c89af31e4b7",
+    "profile-and-bounds/profile-r1/execution-profile.json": "204495543d009d5828d2c3688f20f8b96ae6c2f76e62eccdaeebbfbfda8d956e",
+    "resolved-r1/graph-resolved.json": "97248f693cb4995da902aa4cb247e2c073511dbd24882bb7db0d204658bf6c1f",
+    "resolved-r1/indirect-resolutions.json": "3f2c7e1dec4adac8c9f06f3beac907c1fb71233918140fc2b0e0a44c9628dc4b",
+    "run-r1/code-pointer-relocations.json": "82348f94c1bc9d3824b4a36690bac6bf680aa6f6728162226ae51ca7786fa60a",
+    "run-r1/computed-jumps.json": "71f10a0a478ac8d58c8ef7bf31c01052337815ecb78ec977613099d2a74fee39",
+    "run-r1/graph-initial.json": "56b30c0bd60b05b6855fdce28d877f4ca87ac132b138cef7c0088d03f842690c",
+    "run-r1/inputs.json": "004edd34e806f31121e66df92f93677b72ed71c703e61e5f0bd963980c5167ee",
+    "run-r1/machine-stack-check.json": "322aa82aa8d536db9174a48a1f89b114f9e0e9148132c318de73d907d840c01f"
   },
-  "independent_review_sha256": "6b117b48add284677e84492d81205f2c2dc12c95451036bba60e5d898434ea8e",
+  "independent_review_sha256": "f808aec1560f560f335677e843993e1aebebe84d3f021c1859fdd8516a921b33",
   "original_boot_files": {
     "stm32f103c8.ld": "54a13bae7a9edc25ca38dadaa3c31a957108099fbb193c66d3e32dcc26b7d60c",
     "vector_map.json": "c081969e7a2d7243f5cffde1a1937e5fd799b4c798d2ad627ffd1af20dafac2c",
