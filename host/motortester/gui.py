@@ -143,6 +143,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setMinimumSize(1000, 710)
         self.setStyleSheet(STYLE)
         self._build_ui()
+        self.reset_view()
         self._set_actions()
         self._status("Создайте демо, откройте .mtcap или выберите «Подключение и захват» для эмулятора / USB.")
 
@@ -239,6 +240,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.plot.getViewBox().setMouseMode(pg.ViewBox.PanMode)
         self.plot.setLabel("left", "Код АЦП · 12 бит")
         self.plot.setLabel("bottom", "Время, мс · номинальная Fs")
+        self.plot.getAxis("bottom").setToolTip("Колесо: масштаб времени (X). Левая кнопка + перетаскивание: сдвиг по времени.")
+        self.plot.getAxis("left").setToolTip("Колесо: масштаб кодов АЦП (Y). Левая кнопка + перетаскивание: сдвиг по кодам.")
         for name in ("left", "bottom"):
             axis = self.plot.getAxis(name)
             axis.setPen(pg.mkPen("#63738b"))
@@ -261,7 +264,12 @@ class MainWindow(QtWidgets.QMainWindow):
         card_layout.addWidget(self.plot, 1)
         self.trigger_label = _label("Нет данных. Создайте демо или откройте запись.", "muted", wrap=True)
         card_layout.addWidget(self.trigger_label)
-        card_layout.addWidget(_label("Колесо: масштаб · перетаскивание: сдвиг · Home: всё окно", "muted", wrap=True))
+        self.zoom_help = _label(
+            "Колесо: масштаб · левая кнопка + перетаскивание: сдвиг. "
+            "Нижняя ось: только время (X); левая ось: только код (Y); поле графика: обе оси. "
+            "«Всё окно» / Home: обзор. Новая запись сбрасывает масштаб и сдвиг.",
+            "muted", wrap=True)
+        card_layout.addWidget(self.zoom_help)
         self.cursor_label = _label("Курсоры привязаны к исходным отсчётам; время номинальное.", "muted", wrap=True)
         self.cursor_label.hide()
         card_layout.addWidget(self.cursor_label)
@@ -420,15 +428,34 @@ class MainWindow(QtWidgets.QMainWindow):
             self.file_label.setToolTip(str(self.current_path))
 
     def reset_view(self):
+        """Fit the whole capture and constrain navigation to meaningful scales.
+
+        Display limits never modify samples, nominal Fs or cursor positions.
+        Every newly displayed capture (including a live window) resets the view;
+        limits from a previous, possibly much longer recording cannot leak in.
+        """
         if self.capture is None:
-            return
-        first = self.capture.time_seconds(0) * 1000
-        last = self.capture.time_seconds(len(self.capture.samples) - 1) * 1000
+            # A finite empty viewport is not a capture or a sample-rate claim.
+            first, last, sample_ms = 0.0, 1.0, 1.0
+        else:
+            first = self.capture.time_seconds(0) * 1000
+            last = self.capture.time_seconds(len(self.capture.samples) - 1) * 1000
+            sample_ms = 1000 / self.capture.nominal_fs_hz
         if first == last:
-            half_sample = 500 / self.capture.nominal_fs_hz
-            first, last = first - half_sample, last + half_sample
-        self.plot.setXRange(first, last, padding=0.025)
-        self.plot.setYRange(0, 4095, padding=0.035)
+            first, last = first - sample_ms / 2, last + sample_ms / 2
+        # Retain the existing fit margins. Navigation stays inside this finite
+        # overview; zooming further than one sample interval / one ADC code
+        # adds no source resolution. Y uses the ADC scale, not signal extrema,
+        # so a constant trace and rail codes remain inspectable and honest.
+        margin_x, margin_y = (last - first) * 0.025, 4095 * 0.035
+        x_range = (first - margin_x, last + margin_x)
+        y_range = (-margin_y, 4095 + margin_y)
+        view = self.plot.getViewBox()
+        view.setLimits(xMin=x_range[0], xMax=x_range[1],
+                       yMin=y_range[0], yMax=y_range[1],
+                       minXRange=sample_ms, maxXRange=x_range[1] - x_range[0],
+                       minYRange=1, maxYRange=y_range[1] - y_range[0])
+        view.setRange(xRange=x_range, yRange=y_range, padding=0)
 
     def _toggle_cursors(self, checked):
         visible = checked and self.capture is not None
