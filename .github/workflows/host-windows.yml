@@ -1,4 +1,4 @@
-name: Windows viewport and axis diagnostic
+name: Windows packaging verification
 on:
   pull_request:
     branches: [main]
@@ -18,7 +18,7 @@ jobs:
       (github.event_name == 'workflow_dispatch' ||
        github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: windows-2022
-    timeout-minutes: 20
+    timeout-minutes: 30
     defaults:
       run:
         shell: pwsh
@@ -26,6 +26,7 @@ jobs:
       SOURCE_SHA: 'db86d2247f02dbc6f770a674654f5c5bf9d92f99'
       SOURCE_TREE: 'b9d7ac81a2f36da0573d208f1d61cdb94a37cdbc'
       PYTHONNOUSERSITE: '1'
+      PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
       PIP_NO_CACHE_DIR: '1'
@@ -58,6 +59,8 @@ jobs:
           if ($LASTEXITCODE -ne 0 -or $recipe -cne '503a9f4aec1cd7293770226caaaa5369c16b3cca') { throw 'Unexpected recipe' }
           $lock = (git rev-parse HEAD:host/packaging/requirements-win-x64.lock).Trim()
           if ($LASTEXITCODE -ne 0 -or $lock -cne '256a8005b4f7de19651c9b9bdd70419b5b52af3d') { throw 'Unexpected dependency lock' }
+          $collector = (git rev-parse HEAD:host/packaging/collect_licenses.py).Trim()
+          if ($LASTEXITCODE -ne 0 -or $collector -cne 'fed7af5c94a658324b6940021d169417dab05c1e') { throw 'Unexpected notice collector' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
           git config --show-origin --get core.autocrlf
           if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
@@ -98,98 +101,238 @@ jobs:
           '@
           python -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
-      - name: Execute viewport and real axis-event assertions without skips
+      - name: Build and exercise unchanged host recipe
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python host/packaging/build_windows.py --output "$env:BUILD_DIR"
+          if ($LASTEXITCODE -ne 0) { throw "Build failed: $LASTEXITCODE" }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Source mutated during build' }
+      - name: Verify completed archives against source and manifest
         run: |
           $ErrorActionPreference = 'Stop'
           $check = @'
+          """Read-only archive/content observation; no upload, extraction or release approval."""
+          import hashlib
+          import json
           import os
-          from pathlib import Path
+          from pathlib import Path, PurePosixPath
+          import re
+          import stat
           import subprocess
           import sys
-          root = Path.cwd()
-          sys.path.insert(0, str(root / 'host' / 'packaging'))
-          from build_windows import run_logged
-          if sys.version_info[:3] != (3, 13, 16):
-              raise RuntimeError('Unexpected interpreter version')
-          output = Path(os.environ['BUILD_DIR'])
-          output.mkdir(parents=True, exist_ok=False)
-          log = output / 'viewport-diagnostic.log'
-          env = os.environ.copy()
-          for variable in ('PYTHONPATH', 'PYTHONHOME', 'QT_PLUGIN_PATH', 'QML2_IMPORT_PATH', 'QT_QPA_PLATFORM', 'QT_SCALE_FACTOR', 'QT_FONT_DPI', 'QT_SCREEN_SCALE_FACTORS'):
-              env.pop(variable, None)
-          env.update(PYTHONNOUSERSITE='1', PYTHONUTF8='1', PYQTGRAPH_QT_LIB='PySide6', PYTHONHASHSEED='0')
-          def run(*command, extra_env=None, timeout=300):
-              return run_logged(command, cwd=root / 'host', env=env | (extra_env or {}), log=log, timeout=timeout)
-          try:
-              run(sys.executable, '-m', 'venv', output / 'venv')
-              python = output / 'venv' / 'Scripts' / 'python.exe'
-              lock = root / 'host' / 'packaging' / 'requirements-win-x64.lock'
-              wheels = output / 'wheelhouse'
-              run(python, '-m', 'pip', '--isolated', 'download', '--index-url', 'https://pypi.org/simple', '--require-hashes', '--only-binary=:all:', '--dest', wheels, '-r', lock)
-              run(python, '-m', 'pip', '--isolated', 'install', '--no-index', '--find-links', wheels, '--require-hashes', '--only-binary=:all:', '-r', lock)
-              run(python, '-m', 'pip', 'check')
-              run(python, '-m', 'pip', 'list', '--format=json')
-              suite = output / 'source-gui-suite.py'
-              suite.write_text("\n".join([
-                  "import json, os, sys, unittest",
-                  "from pathlib import Path",
-                  "sys.path.insert(0, str(Path.cwd()))",
-                  "import PySide6, pyqtgraph",
-                  "from PySide6 import QtCore, QtGui, QtWidgets",
-                  "app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])",
-                  "font = QtGui.QFontInfo(app.font())",
-                  "print('QT_ENV', json.dumps(dict(python=sys.version, qt=QtCore.qVersion(), pyside=PySide6.__version__, pyqtgraph=pyqtgraph.__version__, platform=app.platformName(), scale=os.environ.get('QT_SCALE_FACTOR', 'native'), requested_font=app.font().family(), resolved_font=font.family(), pixel_size=font.pixelSize(), optimized=not __debug__)), flush=True)",
-                  "loader = unittest.TestLoader()",
-                  "acquisition = loader.discover('tests', pattern='test_gui_acquisition.py')",
-                  "axis = loader.discover('tests', pattern='test_axis_zoom.py')",
-                  "bridge = loader.discover('tests', pattern='test_acquisition_bridge.py')",
-                  "gui = loader.discover('tests', pattern='test_gui.py')",
-                  "png = loader.discover('tests', pattern='test_png_export.py')",
-                  "if loader.errors: raise RuntimeError(str(loader.errors))",
-                  "if (acquisition.countTestCases(), axis.countTestCases(), bridge.countTestCases(), gui.countTestCases(), png.countTestCases()) != (28, 11, 36, 23, 7): raise RuntimeError('Unexpected test inventory')",
-                  "result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([acquisition, axis, bridge, gui, png]))",
-                  "print('SOURCE_GUI_RESULT', json.dumps(dict(run=result.testsRun, skips=len(result.skipped), failures=len(result.failures), errors=len(result.errors), expected_failures=len(result.expectedFailures), unexpected_successes=len(result.unexpectedSuccesses))), flush=True)",
-                  "sys.exit(0 if result.wasSuccessful() and result.testsRun == 105 and not result.skipped and not result.expectedFailures else 1)",
-              ]) + "\n", encoding='utf-8')
-              failures = []
-              for scale in (None, '1.25', '1.5', '2'):
-                  for optimized in (False, True):
-                      label = f"scale={scale or 'native'} optimized={optimized}"
-                      print('SOURCE_GUI_PROFILE', label, flush=True)
-                      profile_env = {'QT_QPA_PLATFORM': 'offscreen'}
-                      if scale is not None:
-                          profile_env['QT_SCALE_FACTOR'] = scale
-                      try:
-                          run(python, *(['-O'] if optimized else []), suite,
-                              extra_env=profile_env, timeout=300)
-                      except subprocess.CalledProcessError as error:
-                          failures.append(label + ': ' + str(error))
-              if failures:
-                  raise RuntimeError('Source GUI profiles failed: ' + '; '.join(failures))
-          finally:
-              dirty = subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'], text=True)
-              print('SOURCE_DIRTY:', repr(dirty))
-              if dirty:
-                  raise RuntimeError('Source mutated during diagnostic')
+          import zipfile
+
+          MIB = 1024 * 1024
+          EXPECTED = {"Motortester-windows-x64-candidate.zip", "source.zip", "frozen-window.png",
+                      "frozen-window.png.smoke.json", "frozen-serial-import.json"}
+
+          def digest(path):
+              value = hashlib.sha256()
+              with path.open("rb") as stream:
+                  for block in iter(lambda: stream.read(MIB), b""):
+                      value.update(block)
+              return value.hexdigest()
+
+          def unique(pairs):
+              result = {}
+              for key, value in pairs:
+                  if key in result:
+                      raise ValueError("Duplicate JSON key")
+                  result[key] = value
+              return result
+
+          def bounded(path, maximum):
+              if path.is_symlink() or not path.is_file() or not 0 < path.stat().st_size <= maximum:
+                  raise ValueError("Missing, aliased or oversized artifact: " + path.name)
+              return path
+
+          def safe_name(name):
+              path = PurePosixPath(name)
+              if not name or "\\" in name or ":" in name or name.startswith("/") or any(ord(c) < 32 or ord(c) == 127 for c in name) or path.as_posix() != name.rstrip("/") or any(p in (".", "..") for p in path.parts):
+                  raise ValueError("Unsafe archive path")
+              for part in path.parts:
+                  if (part.endswith((".", " ")) or any(c in '<>"|?*' for c in part)
+                          or re.fullmatch(r"(?i:CON|PRN|AUX|NUL|CLOCK\$|CONIN\$|CONOUT\$|COM[0-9¹²³]|LPT[0-9¹²³])", part.split(".", 1)[0].rstrip(" "))):
+                      raise ValueError("Unsafe Windows archive component")
+              return name
+
+          def inventory(archive, prefix):
+              infos = archive.infolist()
+              if not 0 < len(infos) <= 10000 or sum(i.file_size for i in infos) > 1024 * MIB:
+                  raise ValueError("Archive expanded-size or count limit")
+              files, seen = {}, set()
+              file_keys, required_directories = set(), set()
+              for info in infos:
+                  name = safe_name(info.filename)
+                  key = name.rstrip("/").casefold()
+                  mode = stat.S_IFMT(info.external_attr >> 16)
+                  if info.orig_filename != name or key in seen or info.flag_bits & 1 or info.file_size > 256 * MIB:
+                      raise ValueError("Duplicate/encrypted/oversized archive entry")
+                  if not (name == prefix + "/" or name.startswith(prefix + "/")):
+                      raise ValueError("Unexpected archive root")
+                  if (mode not in (0, stat.S_IFREG, stat.S_IFDIR)
+                          or (mode == stat.S_IFDIR and not info.is_dir())
+                          or (mode == stat.S_IFREG and info.is_dir())
+                          or (info.is_dir() and info.file_size)):
+                      raise ValueError("Unsupported archive entry type")
+                  ancestors = {p.as_posix().casefold() for p in PurePosixPath(name.rstrip("/")).parents if p.as_posix() != "."}
+                  if ancestors & file_keys or (not info.is_dir() and key in required_directories):
+                      raise ValueError("Archive file/directory path collision")
+                  required_directories.update(ancestors)
+                  seen.add(key)
+                  if not info.is_dir():
+                      file_keys.add(key)
+                      files[name] = info
+              return files
+
+          def archive_hash(archive, info, git_blob=False):
+              value = hashlib.sha1() if git_blob else hashlib.sha256()
+              if git_blob:
+                  value.update(b"blob " + str(info.file_size).encode() + b"\0")
+              with archive.open(info) as stream:
+                  for block in iter(lambda: stream.read(MIB), b""):
+                      value.update(block)
+              return value.hexdigest()
+
+          def verify(root, output, source):
+              if not re.fullmatch(r"[0-9a-f]{40}", source):
+                  raise ValueError("Invalid source SHA")
+              sums_path = bounded(output / "SHA256SUMS.txt", MIB)
+              sums = {}
+              for line in sums_path.read_text(encoding="ascii").splitlines():
+                  match = re.fullmatch(r"([0-9a-f]{64})  ([A-Za-z0-9_.-]+)", line)
+                  if not match or match[2] in sums:
+                      raise ValueError("Invalid or duplicate checksum entry")
+                  sums[match[2]] = match[1]
+              if set(sums) != EXPECTED:
+                  raise ValueError("Incomplete or extra checksum inventory")
+              for name, expected in sums.items():
+                  cap = 200 * MIB if name == "Motortester-windows-x64-candidate.zip" else 20 * MIB if name == "source.zip" else 2 * MIB if name.endswith(".png") else MIB
+                  if digest(bounded(output / name, cap)) != expected:
+                      raise ValueError("Checksum mismatch: " + name)
+              sys.path.insert(0, str(root / "host" / "packaging"))
+              from launch_gui import validate_smoke_result
+              from serial_import_smoke import validate_report
+              gui = validate_smoke_result(output / "frozen-window.png")
+              serial = validate_report(output / "frozen-serial-import.json")
+              manifest_path = bounded(output / "dist" / "Motortester" / "build-manifest.json", 4 * MIB)
+              manifest_bytes = manifest_path.read_bytes()
+              manifest = json.loads(manifest_bytes, object_pairs_hook=unique)
+              if (manifest.get("source_commit") != source or manifest.get("status") != "candidate-not-release-approved"
+                      or manifest.get("usb_verified") is not False
+                      or manifest.get("windows_10_manual_acceptance") != "not performed by this script"
+                      or manifest.get("license_review") != "required; see LICENSE-REVIEW.md"):
+                  raise ValueError("Wrong source or candidate qualification")
+              if manifest.get("frozen_gui_smoke") != gui or manifest.get("serial_import_smoke") != {"report": "frozen-serial-import.json", "sha256": sums["frozen-serial-import.json"], "result": serial}:
+                  raise ValueError("Smoke receipt/manifest mismatch")
+              records = manifest.get("files")
+              if not isinstance(records, dict) or not records or any(safe_name(k).endswith("/") or not re.fullmatch(r"[0-9a-f]{64}", v) for k, v in records.items()):
+                  raise ValueError("Invalid binary inventory")
+              with zipfile.ZipFile(output / "Motortester-windows-x64-candidate.zip") as archive:
+                  files = inventory(archive, "Motortester")
+                  manifest_member = "Motortester/build-manifest.json"
+                  if set(files) != {"Motortester/" + name for name in records} | {manifest_member}:
+                      raise ValueError("Binary ZIP/manifest inventory mismatch")
+                  if files[manifest_member].file_size != len(manifest_bytes) or archive.read(files[manifest_member]) != manifest_bytes:
+                      raise ValueError("Embedded and external manifests differ")
+                  for name, expected in records.items():
+                      if archive_hash(archive, files["Motortester/" + name]) != expected:
+                          raise ValueError("Binary member mismatch: " + name)
+              entries = subprocess.check_output(["git", "-C", str(root), "ls-tree", "-rz", "--full-tree", source, "--", "host"], timeout=60)
+              expected_source = {}
+              for entry in filter(None, entries.split(b"\0")):
+                  metadata, name = entry.split(b"\t", 1)
+                  mode, kind, blob = metadata.split()
+                  name = name.decode("utf-8")
+                  if kind != b"blob" or mode not in (b"100644", b"100755") or not name.startswith("host/"):
+                      raise ValueError("Unsupported committed host entry")
+                  expected_source[name] = blob.decode("ascii")
+              if not expected_source:
+                  raise ValueError("No committed host source")
+              with zipfile.ZipFile(output / "source.zip") as archive:
+                  files = inventory(archive, "host")
+                  if archive.comment != source.encode("ascii") or set(files) != set(expected_source):
+                      raise ValueError("Wrong source ZIP commit or paths")
+                  for name, expected in expected_source.items():
+                      if archive_hash(archive, files[name], git_blob=True) != expected:
+                          raise ValueError("Source ZIP blob mismatch: " + name)
+              return {"source_sha": source, "source_files": len(expected_source), "binary_files": len(records),
+                      "artifacts_sha256": sums, "build_manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+                      "checksum_file_sha256": digest(sums_path), "bytes_delivered": False,
+                      "license_review": manifest.get("license_review"), "hardware_verified": False}
+
+          def main():
+              root, output = Path.cwd(), Path(os.environ["BUILD_DIR"])
+              path = output / "archive-verification.json"
+              receipt = {"status": "RUNNING", "scope": "on-runner-archive-content-only"}
+              with path.open("x", encoding="utf-8") as stream:
+                  stream.write(json.dumps(receipt) + "\n")
+              try:
+                  receipt.update(verify(root, output, os.environ["SOURCE_SHA"]), status="PASS")
+              except Exception as error:
+                  receipt.update(status="FAILED", error=f"{type(error).__name__}: {error}")
+                  raise
+              finally:
+                  path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+                  print(json.dumps(receipt))
+
+          if __name__ == "__main__":
+              main()
           '@
           python -c $check
-          if ($LASTEXITCODE -ne 0) { throw "Diagnostic test failed: $LASTEXITCODE (preserved, not product acceptance)" }
-      - name: Preserve bounded native geometry evidence in logs
+          if ($LASTEXITCODE -ne 0) { throw 'Archive content verification failed' }
+      - name: Preserve evidence in job logs only
         if: ${{ always() }}
         run: |
           $ErrorActionPreference = 'Stop'
-          $path = Join-Path $env:BUILD_DIR 'viewport-diagnostic.log'
-          if (Test-Path -LiteralPath $path -PathType Leaf) {
-            $size = (Get-Item -LiteralPath $path).Length
-            if ($size -gt 4194304) { throw 'Diagnostic log exceeds 4 MiB retention bound; evidence incomplete' }
-            Write-Output "DIAGNOSTIC_LOG bytes=$size sha256=$((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant())"
-            Get-Content -LiteralPath $path -Encoding utf8
+          foreach ($relative in @('build.log', 'frozen-serial-import.json', 'frozen-window.png.smoke.json', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json', 'archive-verification.json', 'dist/Motortester/licenses/inventory.json')) {
+            $path = Join-Path $env:BUILD_DIR $relative
+            if (Test-Path -LiteralPath $path -PathType Leaf) {
+              if ((Get-Item -LiteralPath $path).Length -gt 4194304) { throw 'Evidence file exceeds 4 MiB; retention incomplete' }
+              Write-Output "--- $relative ---"
+              Get-Content -LiteralPath $path
+            } else {
+              Write-Output "MISSING: $relative"
+            }
+          }
+          $png = Join-Path $env:BUILD_DIR 'frozen-window.png'
+          if (Test-Path -LiteralPath $png -PathType Leaf) {
+            $bytes = [byte[]]::new(2097153)
+            $size = 0
+            $stream = [IO.File]::OpenRead($png)
+            try {
+              while ($size -lt $bytes.Length) {
+                $read = $stream.Read($bytes, $size, $bytes.Length - $size)
+                if ($read -eq 0) { break }
+                $size += $read
+              }
+            } finally {
+              $stream.Dispose()
+            }
+            if ($size -le 2097152) {
+              $sha = [Security.Cryptography.SHA256]::Create()
+              try {
+                $hash = [BitConverter]::ToString($sha.ComputeHash($bytes, 0, $size)).Replace('-', '').ToLowerInvariant()
+              } finally {
+                $sha.Dispose()
+              }
+              Write-Output "PNG snapshot bytes=$size sha256=$hash"
+              $encoded = [Convert]::ToBase64String($bytes, 0, $size)
+              Write-Output 'BEGIN frozen-window.png BASE64'
+              for ($offset = 0; $offset -lt $encoded.Length; $offset += 4096) {
+                Write-Output $encoded.Substring($offset, [Math]::Min(4096, $encoded.Length - $offset))
+              }
+              Write-Output 'END frozen-window.png BASE64'
+            } else {
+              Write-Output 'PNG content not retained: exceeds 2 MiB job-log bound.'
+            }
           } else {
-            Write-Output 'MISSING: viewport-diagnostic.log'
+            Write-Output 'MISSING: frozen-window.png'
           }
           @"
-          Diagnostic-only source: $env:SOURCE_SHA
-          105 source tests per profile; normal/optimized at native/125/150/200 percent. No skips accepted.
-          Original assertion results are preserved; this is not Windows product acceptance.
-          No PyInstaller, frozen smoke, archive construction, upload or release was attempted.
+          Source SHA: $env:SOURCE_SHA
+          No ZIP artifact retained. Synthetic PNG is encoded in logs only when present and <= 2 MiB.
+          Logs retain build/smoke diagnostics without Actions artifact storage; missing or oversized PNG is explicit.
+          Windows 10 manual, license, USB and independent acceptance remain open.
           "@ | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
