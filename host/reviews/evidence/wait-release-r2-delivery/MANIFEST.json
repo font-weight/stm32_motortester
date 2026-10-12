@@ -1,0 +1,903 @@
+{
+  "schema": 1,
+  "archive": "fresh-review-evidence.tar.xz",
+  "archive_bytes": 10562000,
+  "archive_sha256": "9e0e4a544a19d4c9c57e44bf5915e9722d6ef6d007d756154ff9c0493bcd61dc",
+  "archive_files_verified": 10513,
+  "original_report_sha256": "901d0cf1cc861055cb584ffa805df88dcfa7d532abae3f05ef24b6fb3a748326",
+  "format": "Independent padded base64 parts; decode each listed part separately and concatenate decoded bytes in order.",
+  "chunks": [
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part000.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "bb5f5ebccb9c49e7eb87cb7366e63bd3a4554a63d852311faa834ed05566b1bd",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "8810f4bb20026ec874808658591b6e43758c88d6fe9449237e86bda255c81738"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part001.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "036d0bc8e86ccf5771a156aa95868b5810989030bbca8109d40bdaf4250cf26f",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "9eefdc0980443686053176ff6e6eadf8fc433d92027cafa898ceba487e90d946"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part002.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "2013f294f166c7c6f51c9e2d763bfbe10e861b1da1925218ca2672d2b07a9a21",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b0537775b35dbfb67af519b443e411cb8fc9e4c91a761ab8311e9c8eaaa8586b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part003.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e4493423de4bd68ac72c7653d27e7b4877ac1aaee292b15ec27c9786e26172c6",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "2fd58d15f02bb16919e5acded881de922afc51a4ce890d37aefa16afee2d9a0c"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part004.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "be30b43f53e2318b61df79b189c5363726ecd053beaa8aa858bc9ca1e8e605a4",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "58396cca85dd68ca9c433384d532e747539b215b7509d2677440416ce36be6bd"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part005.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "74d99924cf0127a696e0e41a1b5e2bab18c4c8fc061208d4d2a04974ce237134",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "e01686ab68f7c1e0b26532d5d7389b28c223a87747ab471d0ee10a7841ca88ff"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part006.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "c682fb0505f4f4168356d63d0ac12ec11892bc7e8b08096ec4681c7285c5828d",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "7cb4152442478f952da86a6517753c4ba826af80ee9d352a1a17ff4965479ebd"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part007.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "816c55078884bbc5926a7a8d260925bbb8f5f73735d7b67d92505b5b95b36817",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "6a684bff315f26c05664ed50a81d24c5437e93c9ac10ec4bc8c52d8a45640a04"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part008.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b4f4e41ddd794521586238723d4ad4f6b60d9d9cb7eba1ff713d382b2ff8f106",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "24433ef439896abf323f745b6d8e280637dc632af226b21cda13325394010d63"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part009.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "d56f324c15ffd246855b71091ae25c7a551aad757219137741b49dea85d4321c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b46c0a9007e4ace5a2f681fd10e3bad4d17230c8beb42130e76f0a6730c71e88"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part010.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b51f37762da1c23daf99593243905332aa38ed172222148b43b05425abaaaf6b",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "aae546ec4ba718f32c8e463af40a1d40b1e4912c88f855d40aad5b5bc66022f8"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part011.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3dcebc89a1da2fcb16b7fe80ed2884beb252be126db988d913a2cb43d0485704",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "1fbcf93c71a4ea0a70613631f066cf5cee186244bc272ba3a6ab046abad38460"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part012.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "474997753bfb8812ee2126840a9114fe3ba3afbfb1d237f0e8391fcefae7f053",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b52373585a755df2573ace678e61b44fead35b7488010aa3c048bb98fc88c21d"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part013.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "923862e083b38efdfd57ae299a36d1c2ff222cd6370c83698ace3afe4049b93c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ee6ae38fcc452a49a1338403ecf3c243ecaa5b6e7fa14eae25560138d584b543"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part014.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "faa86f3013ab027c6c5ef95366696eaef00fa5a76cb478607928b4b825f6315a",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "d317feb1d9fc84f2c7e8b2709eaddce528a7d8b7cc2271ac5de3b0c82a1212e2"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part015.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "60f1c63cd61e2a580f920786f139a78cf0b363d5c29a78edbda57e7a56f69397",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b424c5acd73eb449e0e3b7fbc182e21f1635e16ad3c59d108a1c77a43d938461"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part016.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b340bf9eeffd0e5e68a8b3ebe16e3e541ba407540b2135460a07dab4f4be3f0d",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "36284d61bb6cfb72cb52c7d4d983403f1a3777de36e57b76f2fdc82460d0e1c4"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part017.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "96eac98da7b44a650f35e8a873b254461aca5d0a897030b6d935a931fbfb1583",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "3a92a000fd057c1123e96ee86643376e84e35d60b87a99eb6cf9be2d5239fb9b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part018.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "231f99ea2ef752fa29df20b7811621da016fafe9195196e37e62a046274b67c3",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "afc5648893f9456c65f4532fa5d5e8a01f4d163b82711532dc9f198ddf1981f0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part019.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "854dca1deee0cef408336c88ed0ad706f3587ebb53a64e4c43472a7fa050eb06",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "5474148ca630126233c499087d972926f7726141f297a7d4724d46935da07a54"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part020.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "a29928299f32c1f2792c42c2ebfc47fe460fcd0226c34638de0b89f205cc531e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "6f97dafdc94230b774552f205c9c3e98e643f215c053004bea625a99d3fdc7be"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part021.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e565c304ba95b91b6ed7c6c90b3b3cf3189dd383cb90fc62f540cb8cd8b840fa",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "6c4c86bab239959b2cf9614bc0c11e8d1ae2eaf0814b97767138ba0d29a8ae5b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part022.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "1af48fb7539dfda03df597ada36b91c0a784422029d72c5971863f9e1425ddf4",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "58e1402ed7d93f326210631d5bdbba25eadee3b0c8149c3ac0f79b0bddf7a890"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part023.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "fb2b05ea8a2412abd8de49a9a82e7531131a8d8de67b4bcd5f4a03791417fd8e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "c2ab6ff9299b9e19e71fc93eeaebec190c693feed3e24ca1894d2c7f7300e2f7"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part024.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "6cc2e9c934447a3feba679427355b369a8f5c072142e9fb481723225e1ed614d",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "33cc915741b4a1171dbf5bc7411b37f36c94925439b89ecc91b7228f7f558281"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part025.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "4159221af7a1aad34194735c0b1fbeff1e3f61a1f9ee5cd840c1cf446a4cfffb",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "116c9442ac9f76a4b07cf7518ac48894a22dd30ddae450c0108b8edf23357ab1"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part026.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e7030049be221955e98216bd2620f7af7516a2bc144034a09226b9fe9e90bd59",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b3bba813cd927725c05d9a8f863106498e6a197440f4372cdb98f61155936679"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part027.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "81d1c47ca7efcb1fc3f59cd85a4f7926ef311bc06ea925a6c06dafcd98250db2",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "01387eaac0fc20a25a4cdf148a6474bc9acbfe0f7623f59d1d7c814296bdb8e9"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part028.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "1da6c4f897d386fb83ecdb5f348b19af6dcfa806539c1035356c0401fe495127",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0170010b453c1ea98537e83831e0f0673116febf89f29bfc9a9cedb72629a6c0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part029.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "6bbd67a01bfacb8f72d66b02e25ac4a25d0f4c1d02677d9499e74442b02bea81",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "56a2783d6456089d4edf501d9509d4535566e003aa958211bce9908216f5f261"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part030.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3d2cbfd0a69d748ecd6f9ae9c34231646a0b27f894fe75d5c05802f87db653b4",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "46b7458a27ecd1aa2bb7c31eeda9eb401f7ab44e211cb042113372d340083ff0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part031.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "710e246247be28b7cbc9a44fc235aed56c7140d308a650ae7f0516e0e387db89",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "3d5258b511b3de8eac24458b9f745f6d9e55a9c650426bdeccb5f46c3f2f8d9f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part032.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "6e2d05b2d27acc978acf917a47d1d89f5d01aa2c9e56dedf024501ba3923bc87",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "221049c8781c6d30ea197fc675e3decb5d9fb5344e6e34b5e9c51dabee36470a"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part033.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "0800e53c3ef5535478e0755b12eac5245e46746fd21cc5323c3ae67fd67aed98",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "4c7af8caa4973bb5b8be7d8ac04668de9cb06571ccb4124ec5a47db158953798"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part034.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "8be438ef58c1e9027867f0b837db3ca8c31c5474e0353acb31aaf45fbf7043e2",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "d371f4e736263b2eb85a7e9a7ed9c243fb53fd96160f9d02a157a28acd9e6f8a"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part035.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "1b9c6ad168b063cc552eb118ee97e30e942615a84e06cd0b9a8f54eea434f309",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "a5f065fec2e92578a29185115ad7f483534136dc28125724531a0790605ab83f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part036.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "894e3c5e149b8270989ead4f7bacb3efd1919f18612cf208effbc1085284b2ca",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "437e950806d5a9752e3973111eb6aec1f0f87ec69526635f2bfc7ef3daeb37b0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part037.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "2c9dfbdf97df4f3fe8103c3507431dc796a5dea37edc6d22beacfd84d836349b",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "be027fa0a1cbc88a83f54149b62bce54a4e686ebbff2c6b2c6f30c0cdd0b5d8e"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part038.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e1fba27c28a1f37995b41c5fe723074d08d5524344cb9a2781eee5dc52ee3c04",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "c19bfd384030f4bc3ced6bf186df82fc6f18ff4c4714261e0c168093ef1d9f4f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part039.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "aafbcfb850fb22d7ee602bdb4364a926775212e10180fb10981609a2d4ebb9a8",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0e642fd397ffdf2926b2d9aa7386ff394f32c556f631e6bda2d67308b5f6714f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part040.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "1b79e79b7a07865df1473623be0c891465d37277b36ee0b5073f42b12c3d4b41",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "6e95c75be1507a80d1d18248e1f481f843bfc5b536e377dbf2dd297459003cc4"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part041.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "79de4c2d6b0c04f2598b1681d6572d6251d7679b9c2e29693b20a709cfd46dc8",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "519dfdeaa617f4cb1fb6b7e212205ff221f2a7fafa186ed84c85edaa6d58a07f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part042.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b0d42effcd66afb62b567fd8f28902648df8d1ca76089e796d05421dddbccdff",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "d431302e290522bdb471e99b9527bdae2da63c82e35c07d0cdb30a75f449a785"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part043.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "18a0188626f6e021d91f344c90756293e86ca84f7b1fc3d969f755cb16a4498a",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "9cc36f50eec01f1b031c30d951f8bf46711593fc791f3003141213f42e6bc3a3"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part044.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3e04c3ca7cbbd5e17cd1fa45b23794f76f0872ae7ca7cb34d30af14f3cd3c9c0",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0bab1c1516e87cdbfce09ddab040a4a858147cb74f4e952038cf6157b125f6fe"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part045.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "bcdbb224f47addf3784c0749d51de38ff835d3bd85f3c47e57240a880dfaae86",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "777cb51068660945293917ae55687f5e8aedfa358df44ab4f13a201c5ebc997c"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part046.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "36525ae09c158f55acc62ec812acb5ef58db710d665b25db17537ec5de307adf",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "444e6b88305cbe464fc4ab5e3535a8cf5f645b1606b75b7112daaba559001839"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part047.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "81882b914c43fb526adec56983091c2dd7225cb8b762682b9256d808169e4bbf",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "16a05849a6e268a6d3721a0ab86ff5c26361533836a7d0dd6665e4d4d793206a"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part048.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "84f48cefc9b1615f585b8e19066db87819128c026268a2d99eb77b44599fac45",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "807fc4bd3b8913d3f1b11404c21b8b10584b60f7dfb80477f27cb595c178c79a"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part049.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "5d51d78f06b9ab61782012942466c3bb0984a99c86abe6b8831ffc13206c02ca",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "fec88444fd7e949adc7e7905bda3629ab8735269e0052deec6b47d8fd8e3b841"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part050.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "d6fa3a66459df06f77779d6b60f1d35f9b51e62c30a297292a703b1c23878de9",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "968f97afa414767b3730a9020903998f0ba151dec97333e8d1d8ca080a6eb875"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part051.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "5579e80dcfe6f510309ab295ba4673df4d50f358f853705a74feb04876da5d80",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "dcb7ee3dd56d7f1396bde802ef75fabbcb1949dc29b8b4a755420cd57ba6aa3d"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part052.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "4d87bde6f7f08260a181b476d1c5c0911b34e413f7cb34dbaaee737b37fbc16b",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ed798099d265d94951d45b6521ffa2e437bdd9ae20db35db131514b67a09c6db"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part053.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "dd1be91356b7c09002b5a82264d648dc2ab69407b0e73a671d5dec6b95de99c3",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "baa3872fdf6dfe0bc62f6d3ba5ac0f139bc1972280e9ac019f70526247cf26c5"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part054.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "78798a5e4773c0de5a6f5a16d91375245de877bac9799b6aed56fe9250d63077",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "f17c58acf7c98c6e9217562dd865cb8185a4d774a8a6bcc3a20e19cf49799f28"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part055.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "ca165b65c7a3a4506a988f21a78400221896dea437b9b6b869227a7328a19b1c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "c59a098ba1aa9ee2b6b24e7c2f814bc48506a3f60f2bf2841f19f18e42010199"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part056.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "29bf162a7468713586c013e0a123f026b0bcaa9d56f2818884893997f37f060e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "586a3c1b19b41887b3967d46f0b774cc8bd336c894b0b9f1d98e1c6fd23a88eb"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part057.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "d928471d89ff2c723d5a8a374a3c703ff5863aa99565f5ae67a5f7b0afb2a7e5",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "539b4fd7d4960f8fa90e8fcec1271b98226303b785d8e3f74f86f165052f7a58"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part058.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "333da3f8755c2da5004020a32c16222f68c017c17d7ba41279e44fefbcd6e2e9",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "181ce7d5378f1d8c9b8ae23497e70f520be18d1edb1c16dea2e3774db587f794"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part059.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b82f8584f99c45907caafa2099e9253532a05e8cae3b614bc197ec5edcf3c627",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b92232631f76d43b1ce3021f11f2adea4c8d21850939ea7d3be2ad0bab3ea28f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part060.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "9c398ab875be4ffae76c999e80066309477d2c2beb4c1905c3f7834add279515",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "706979fbace22e50274d3cad00fe0b3f97ed9316738ddaac56ecc05af3c57b79"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part061.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "0465118a5425d7e083e322a0224d661807099f31155bd541e4eb70cbb62c9f0c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "798c8b89ccb4613ab232d18969e38a0f655da7ca2dd310badf542032a0cdc571"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part062.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "464534bdcec3955da256299e317918d917975b571f4aac811ae1a10dcf36a044",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0f427ad28c65a34107066b4b75b30f6d4ffa470c8158396e6c938bccbb64205c"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part063.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "ef8c904a78b7ad064fba23a7e1e5d50d657a6e67fcd85901784d535868a30779",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "3ce98277df02aa10b104717f84e80a06d11e936dbaf358eb67854218fb2feccc"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part064.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "9ce6899fb39de152f23a68c57d33a0c55a9896f5befd18b6142846161c9e4780",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "bcb67e16e74b07289b50822df77d6d0cdf7f18857911ddbc8abb4792dcec79f6"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part065.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3bfb2e8b09afc59d0d23504aeb8466871fe19182969941058e11f0cd482115bf",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0d47ec2dfed5455e45203059b0fde8a26cbc02062f817fff1e13cfb90e2e3e7c"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part066.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "cb53e270a2ef21f8dd7ffa33265d81f9723efd8f9cc937cd694c8b9da0894d19",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "4a42774215fa32062606173b6118b450e0cacfdd11cdddc5565a5b83b6fe6a6a"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part067.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "112c0ca86b13e71506c81e62775f58fceca2efeff8c0810b919a6c232d300883",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "1cd8ca9bd5e0df1b7d5c400c81e165d1f09f4633b9c263a3b618b727404f5a04"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part068.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "2b89d37cc6cf3ddb8e9dc0e1f49e4cb5118d07130583f762be520b6ac071b874",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "89aaa6b79d3dcf7f54af34b3cb7df79c91385b3a243d416ba5b06c0e0bac533f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part069.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "259b6d0274deb6a9c22a095b165e1ca121b677234695e49062383b8c08573670",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "5ce6fb88b7fa9b4515a14edb894dab902061f6a08fa4f0142db137f7cd028384"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part070.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e0c1ad033ceca9bd9835d9576fb8fd2e7937f587f9499f93ea1be2aa04f71b05",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "11957b202ea0791e4a042e2ea4ba658584575a28663edf2422c3d4ad00486d30"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part071.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "284d06e384ac68fba328518ad2c6136951abbdeb56a0a802652da62fb791a38b",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ed525e18c402fed8e0efce2b0cee1590b6dc8016956049f96329a4dd08ffe29b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part072.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e91bfadb8f693cbb6368595d43ed6d3903152e600462ae2c6ee5b534396951e3",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "8c1bcbe46ff2dd909f53a829f02cc09ea97263cccc40ed527830e89ed6fcd55f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part073.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "c5f09d2ffb02043c6d5eb60d6ed4aa34dce9c1bde0f7b2a43a7a65cda4de2333",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "cffaa5945a51f6d60aa30233ebd181d011e4e99265018e52f18879f9703be771"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part074.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "ff30d59d7e90e30fbf520d26fc25a72d9984ca77e705a30a7939aac7ddd07366",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "efd886218e988c63528ce86fc0594ccc2d62dbc1e66e65569f3f84e2065c8811"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part075.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "2d487eaba0b11f723f05cef432fcef3642ced5ad89ba22f5dea6327b3ca7028d",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "5d0b2a075ac1455b54c7eee1759a8b9351fe8912ff128e4b2051f3c4901fec1a"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part076.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3e10cea338d59df97d516bf9b7d66a78b894fffd770d25a80f27f9dcf33973b3",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "87834ff8278552406f72a4f025742664d1d25c56bdd443a37ed3da9b594fd7c0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part077.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b76f39c9e7cebbadf6b4a6ca65fad1e1fbcd9cda2cef7db3e00eb63c8ad93f3f",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "8b3abf9b1f981e68cf8368b1bd070b27c6fe17bbd71c29d6ae7872ba0932a942"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part078.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "23c1178d5104dc5c605da2b8358f102527f45c00d94413da1403394a45881760",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "2eb5f2e00ad7d16409d4e0aba6a6db30ee0a50c86f847a02ae6b42d45f8833f9"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part079.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b5d3ad6eb92b13f4c9a85e88fa66349ee7dc70290c5840e4c2bfd9dc410039e6",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "7b1c0d6f5c74c6df554d7dc22306a68e082211307203174eea07ff1333f7f2e6"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part080.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "7f11b569641fbde9326730e4a457325ee4f37cbad87a3fac3f78d41c759b9133",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "18ea3f5f6a0275a030cf6a14c88be7cb4c3154d278fc40878dcb39fd755340ab"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part081.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "024de3439d58ad20fd807cc455073e9fd5d37733d4be84bd8952ef7db1b7b1f3",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "d1d37286db40d2fdceba96e83d6cda315ce9e1713c5831159ccc057823099e99"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part082.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "ac743c2db055feaa08dd1d5c3cfe52cc05cc1ab2b5f98fb50dc370e6c3355a60",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "9e802e3154b152ea0b326cc64bac90cc2435aea8ec7620cef253581c983eed0d"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part083.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "5846498cc0ac0812032ba486b0eac77468f674b384484b607184255507add6eb",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ae9c6cc320c3d5388c51535a5e31151bdb085d35d84016ed73645dbd87da1f6b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part084.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "fd07c137f4169d556ffe38882756e58b6303dff6ed14a67fd81ad8cbd771534c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "313f1db7ff323c9cdacb4d772f640513b337dc28868ea62cac31b9fba67fe4a5"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part085.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3de96883912d30afc0dc7f38fce90a72840b744aeb1a3f6e854b951cd6acb696",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "06edb001ccd9833689864553663f86d995c481cf7dfc19983aaeaa9296aab19d"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part086.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "fbdf3b79132707c8d56a15202c9225a3b38705b2bafb0db28880480ad2f5034d",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "027200f323123256b20ca46ebe277e7069dfa503bf81cdd9ed5ab631e00f1bc6"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part087.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "ac061e9cba951fcaff17a058ccbf07cdf47be5c9f2905d39f10464c93a8475bf",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ac3aad28a293cea1a17bb1028d180b9698bda96ef61cffbc05875937c8abca76"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part088.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "82c83aa754e764e6f503f5623572b6cfdb0441ab1434193d1ad892ded33c83b3",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "091193f7c23fea5bdbeee44c68eb958be20e2a5e65c2bdcae44ddb011e4e0a3b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part089.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "f85da3734a784df7a53204256acfa363e48c6ad2563fa4a30f8df5b23d931690",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0989095db742f509022e66dbbdd92140d8d72bdee29281e2e87d1a8c1c2fc692"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part090.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "176ca94a18b6ff41ba70722e03c613009d102d362636dccfa80c44bd6c4d4e67",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "2c35708007a18b37764ca8dc30431cf48e7328737ac952522758d77ac19e7263"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part091.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "806dcfa480c43c586f7387fd35e9a23e951df0a80216805fcbd8a4b32aba62b4",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0ff0e4394fdc7d044f424ccb84ec0de8e66b663c96a6f1cf8f52ccfedad30f37"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part092.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "8067158b9c0ecb578e2f09a8d49224f1e98eb82852ff8c21247ca8cc08ea8b1b",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "cf0d5777c2deebd552a64ececd895b2e6beca682b0b38df8170f408316a869f6"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part093.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "0577410490ebc869d509bf79e75cbdb96a99f3331aacee34a9c077e498b22c3c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b6bdeee688e8acddfb61afd953a4bb73d4d93bfd40d57f71fcdb7c6477f21460"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part094.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "543015e0efc591753e8af73ba23e4b2285f6d6c713fd3735a1430a1c888e8850",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "e9b22de64225b40ec271e40d07dce1f7582c731929539abe976745d6f02dfea2"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part095.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "98cf4452b8134e26fab27300b9426af135080662d2a7ac752cf7c7a726d54b35",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ea93e48a27432a4577f028a8feb98cc0d43482ad1a8643d758e584918f64b128"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part096.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "cec8091c6b7fa5ac788d5651ac0303acd5c1a4447a4c3c3d919a5b990456b28b",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "714fd1ddb15c818170715f77e5247fb016773744c53fcda9a9227b13789a9cea"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part097.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "6a7f9c9bb0c406be8d80d46a409e96971b767e6e2f3a709df3e173f0c77bb14c",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "f89a8840048fab6e316d9faf52bb8fd1eb7666bb532db30c9f40cc53f36d5b04"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part098.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "3ffa4a8e354d79226db68fc59641e34ddf231a2840d229cc1280575e0abfd4fb",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "e2c9b9a9bf72cdc51e83d8f99d27bbac85c67b7e48a4141b8c02e1c7b328a470"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part099.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "8179104a765d305805251f88d2269b95be0236625405f47e525357bcb12d5f05",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "55f418135a1777fd284ca2f3e2bcb58c08f6cd482c7fb43af9dee36bb49cc56f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part100.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "207ccf5057b1c974aaf92e1e8f5583351996c38dd45f6673cfbff5a094a6ea21",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "dc83201c14985e3c16ebce1c2a07945c0a0e4c4a5592e952da81651b25d73090"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part101.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "1a47842d52d93f8399e20202bf3207a99188c23173c4924704007279ea55178e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "0b61f40bff607cd1d1c9a5c58d2381a572a81856f35eceda48052c1e48ca0f60"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part102.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "eb9ac8bb416606b40aa5791ee72f0b8afbbfad904fda3b5ce9df883bd7b6d717",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "cd97c797d2fb5e6035452a72ed671b6e9365a2f906d267d1dbec163c7b901041"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part103.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "01712a451b1264cf12004a5295146cced15b50d114d8172c43ecd26d82c51262",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "17eed159f83bf24309ee8e3b028c5f992b1b1265037ca5fc184bcd7b3f1a7925"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part104.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "a727b3697e54143389a06f19f45fcee83a2930f759a22fc4cd461f19192d861f",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "d876c8bcf9a1ed5f6249947a345f99aed9b045019468e1862b0782da8a3c7dcb"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part105.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "8b2b8b407b2ebec687cd710f99429fc62df9f01f8191bca171bfe7dfad8fde95",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "dcfbd876e60be3e8838d17e1e8d3af01793680aff21918a7f0d63c1fcbd2a2d3"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part106.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "025d5fdaeb3df651eb6b24f8096efc3263c2c682a8c38a67a0520025582609ca",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "51f45da5ffc971909f0cb18c19d429126c13f6925e72fcdd94b8adc15b6a635f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part107.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "9b0bd6287d723125aabc7ad76e279814ec18ef9b2f2c8c45db49334586d1bccf",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "dd0c3d4ed4333a86cd713e73287ef7b915a32c3a3f685aa75b87e0c8e86d39d6"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part108.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "0e533f7cab3c57b33ed1a35b2cba701fd95972e22feca2b5995944a065031fd8",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "205e660973c6c62229bfb18a75c3b78911d7ce980158799c4d1ed6a52eef7f95"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part109.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "5592b149ce5575d90cbc7bd83606df03462664a1fd575aa9f48c35c5bd80d8ac",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "b0d8093639f67af800a52d32d9017306299345fcbf4384f5c4771e8eecf870ab"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part110.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b47be6374ff2cb3ed974b7ff338d11db090a2402f427900e317a43d9739c076e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "5605d6c859fdcb96815d591ec1b27a400b768f297e95bc2b2b36bb896809c67e"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part111.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e2646fd312315a2c5d7996500e0eb1a1a095d96cc87439a0d89f1cf7fd7e6bee",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "6d9b2d96905e71ac57df97af748866dda2c07fdc17eee861b048b35e5ad45138"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part112.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b015cefedd704b0354f2a1239ef01245aa05ad7857187450940f0ea865318ca0",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "d6f68f864f2b6a9a56a3216095d4c235aa60545ee90212e07b9bc3eb3ae728e4"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part113.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "38045b9ba4ab5bfb8e2065f70ece0f360dcb044ed3b8ce36ce4f71097c253f13",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "bad4329cba5daa1f5b8054b03e00f63bd16ce747cbadfb276e8b06c2e08d5dc0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part114.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "5bee6f621584528982188cfccd9b0abd95898e1eccd7ccbb3e340830782b258f",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "41b3d2796a058550d22989221597b830a83e72392bf71d3a8f93be003cd97d2f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part115.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "46b7a7dd1b0e7a61a1b096d08dd0decd77d94d52efb30d53a2ad6abd04079398",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "032a8cb4494c83779b32c392b0aff0a3f8b0d9f33ec891c782196c259edc5203"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part116.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "4c454c69cd21344eaf22d65102ec702edfa69f29e4c6c32d6d54f0eec89e4a4e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "42ecc0e2f57ce3b629d70926d8cb059d2a29aa08ca094c8733df10fbb652a70f"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part117.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "633616273c324223d87ad245af63bd14436b557abff4c454202a70f39425655f",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "72a773a289834b328d8fadbb42ba9c0039517a8a38b9c5b9de8350e5615a5396"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part118.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "4f9cf8ee931c7d60b6d3e780b7b1d80ff30a9fee0aa6378b9f7b0f7e76d45bcf",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "9116a0ab9cd130b05d3f496152a73cb766446adcbfd3accd62c393d371403cde"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part119.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "4c45ee893f242ef4e186caead8d071b676efa824e114b41258acaeaf0de6b4a7",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "a3fbd118ed6b1bbe1835762fd6a44e708e738f280aed317164bb144e13741616"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part120.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "99b58655958b6e738ed71a912a526d7980663fc6f6c2a066e9591859d4bfb2aa",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "ecf66d676c22cd1703c59cc9b8749edb5ca81513f86c270ef89df6ddd1d79200"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part121.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "e1a3223bd8a4683ea2a5a214d5cf29ca6c85385537da73cf431909972fd00ce7",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "e38d7bca719b6456a1eb9b671c7e395e4dde56f77379ca3c50a292e1c09cfa34"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part122.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "33b5f4eaa3106d7eb22763e1b845821f27e13ef08187425853b99ef9155009fa",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "bb3214153984e1a480c8af0fe1b8b49f034a7e60f542829297cc77f957db3e67"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part123.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "b20b6a50d0414e96e3289241d0212b678d5becf976a16bd24ca6beedc23fb866",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "32827d5d550aecad1ddfac95e753026b915d10b9758c56dac2c9b75887b85a7b"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part124.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "dd55b1f3a7bd2e9a458100dc65eaf64a7d425db9aac104f61463218c4614e11e",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "a9e04f8a7126ff246b9042e0405a96cfb619f4e6be8f94e9c74a606ad2365ae0"
+    },
+    {
+      "path": "host/reviews/evidence/wait-release-r2-delivery/archive.part125.b64",
+      "encoded_bytes": 82669,
+      "encoded_sha256": "d557be6ead496d28b17bdb3b44eb7501056da759f7826902bd99b8b2708cd2ad",
+      "decoded_bytes": 62000,
+      "decoded_sha256": "b359aac8e87e1ff1652f3cd905c732dcf7de29fa8448aace15c293d0abdf2a59"
+    }
+  ],
+  "review_scope": "Historical A79/A82/A87, B parity9a322, recovered Normal9988 and allmode a252/16c40 executions; later remote bindings are separate addenda. No PR95 acceptance or physical/Windows evidence.",
+  "source_reference": {
+    "A79": "66fce97ba86de459e6d597deb32130e030f34594",
+    "A82": "7382ae7f3490127d8a61733cbca948acd89047f9",
+    "A87": "50ed6608df2fa8bae6799e6a96c09b7543cec596"
+  },
+  "excluded_generated_artifacts": "Original archive excludes35 generated ELF/bytecode files with identities recorded inside the frozen evidence; original failed traces and input sources remain included.",
+  "archive_uncompressed_file_bytes": 2955952519,
+  "archive_regular_file_count": 10513,
+  "resource_warning": "Approximately 3 GB uncompressed. Verify all parts and complete compressed-archive checksum before reading members. Stream members without extraction for checksum inspection; provision free disk space explicitly before extraction."
+}
