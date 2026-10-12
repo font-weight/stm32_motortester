@@ -1,0 +1,7 @@
+{"case":"time_outputgap_deadline","injection_host_boundary":0,"injection_submit_boundary":0,"stage":3}
+{"case":"time_outputgap_deadline","first_runtime_result":3}
+{"case":"time_outputgap_deadline","dcd_endpoint":130,"dcd_length":54,"dcd_epoch":1,"dcd_accepted":1}
+{"case":"time_outputgap_deadline","host_bytes":54,"submitted_bytes":54,"runtime_ready":0,"hardware_running":0,"owns_peripherals":0,"adc_fault":5,"time_fault":2,"clock_fault":1,"epoch":1,"pending":2,"injection_fired":1,"actual_fault_stop_writes":1,"admitted_observed":1}
+{"case":"time_outputgap_deadline","message_type":134,"session":99,"sequence":5,"request":0,"payload_hex":"050200000300000000000000000000000000000000000000"}
+{"case":"time_outputgap_deadline","pass":false,"unexpected_aborts":0,"unexpected_errors":1}
+runtime_probe: /tmp/critic-b-adc-runtime-pr95/reviewer/runtime_probe.c:150: observe: Assertion `aborts==expected_abort && errors==expected_error' failed.

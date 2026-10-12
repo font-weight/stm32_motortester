@@ -1,0 +1,1301 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "gcc",
+        "--version"
+      ],
+      "exit_status": 0,
+      "output": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/patches/apply_setup_patch.py",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/device/usbd.c",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/intermediate/usbd.setup.c"
+      ],
+      "exit_status": 0,
+      "output": "patching file /tmp/critic-b-adc-runtime-pr95/final-sanitized/usb-setup-patch-wprfmleb/usbd.c (read from /tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/device/usbd.c)\n{\"patch_sha256\": \"51492cd96f4f9f8dd0699fe915f8c157c866f04cdc129e4c7c734e21f49b0f37\", \"result_sha256\": \"187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0\", \"source_sha256\": \"38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be\"}\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/patches/apply_usb_bridge_patch.py",
+        "core",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/intermediate/usbd.setup.c",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/build/usbd.c"
+      ],
+      "exit_status": 0,
+      "output": "patching file /tmp/critic-b-adc-runtime-pr95/final-sanitized/usb005-patch-3lat2dli/result.c (read from /tmp/critic-b-adc-runtime-pr95/final-sanitized/usb005-patch-3lat2dli/input.c)\n{\"filename\": \"usbd.c\", \"inputs_unchanged\": true, \"kind\": \"core\", \"patch\": \"0003-usb005-core.patch\", \"patch_sha256\": \"4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf\", \"result_sha256\": \"f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe\", \"source_sha256\": \"187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0\"}\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/patches/apply_f103_reset_patch.py",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/intermediate/fsdev.reset.c"
+      ],
+      "exit_status": 0,
+      "output": "patching file /tmp/critic-b-adc-runtime-pr95/final-sanitized/usb-fsdev-reset-patch-z284hua5/dcd_stm32_fsdev.c (read from /tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c)\n{\"patch_sha256\": \"c80786e18ca1777be639fccb34573f10fbe73168c4749ff3e289e1103103332e\", \"result_sha256\": \"1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97\", \"source_sha256\": \"62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f\"}\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/patches/apply_usb_bridge_patch.py",
+        "fsdev",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/intermediate/fsdev.reset.c",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/build/dcd_stm32_fsdev.c"
+      ],
+      "exit_status": 0,
+      "output": "patching file /tmp/critic-b-adc-runtime-pr95/final-sanitized/usb005-patch-q5qa3w5z/result.c (read from /tmp/critic-b-adc-runtime-pr95/final-sanitized/usb005-patch-q5qa3w5z/input.c)\n{\"filename\": \"dcd_stm32_fsdev.c\", \"inputs_unchanged\": true, \"kind\": \"fsdev\", \"patch\": \"0003-usb005-fsdev.patch\", \"patch_sha256\": \"cc5f9333cd5e4af84beebbc757d8225cb09368e4d32cbc23a10fcff7f4dbd671\", \"result_sha256\": \"d35b9af93def9280db2cd7c8380842b846a99d471612c37ba708d2f2e8db7ddf\", \"source_sha256\": \"1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97\"}\n"
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=gnu11",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/0_tusb.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/0_tusb.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=gnu11",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/1_tusb_fifo.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/1_tusb_fifo.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=gnu11",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/2_cdc_device.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/2_cdc_device.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=gnu11",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/3_usbd.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/build/usbd.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/3_usbd.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/4_mt_runtime.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/app/mt_runtime.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/4_mt_runtime.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/5_mt_adc_control.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/app/mt_adc_control.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/5_mt_adc_control.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/6_mt_control.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/app/mt_control.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/6_mt_control.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/7_mt_control_rx.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/app/mt_control_rx.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/7_mt_control_rx.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/8_mt_capture_link.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/app/mt_capture_link.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/8_mt_capture_link.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/9_adc_timer_dma.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/platform/adc_timer_dma.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/9_adc_timer_dma.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/10_mt_timebase.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/platform/mt_timebase.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/10_mt_timebase.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/11_mt_usb_time.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/platform/mt_usb_time.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/11_mt_usb_time.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/12_acquisition.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/acquisition/acquisition.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/12_acquisition.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/13_mt_wire.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/protocol/mt_wire.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/13_mt_wire.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/14_mt_command.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/protocol/mt_command.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/14_mt_command.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/15_mt_session.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/protocol/mt_session.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/15_mt_session.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/16_mt_stream.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/protocol/mt_stream.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/16_mt_stream.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/17_mt_tx.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/transport/mt_tx.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/17_mt_tx.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/18_mt_usb_cdc.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/transport/mt_usb_cdc.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/18_mt_usb_cdc.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/19_mt_usb_bridge.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/transport/mt_usb_bridge.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/19_mt_usb_bridge.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/20_mt_usb_epoch.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/transport/mt_usb_epoch.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/20_mt_usb_epoch.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-Dtusb_time_millis_api=test_unused_fake_time_api",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/21_fake_dcd_instrumented.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/fake_dcd_instrumented.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/21_fake_dcd_instrumented.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "-std=c11",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-DSTM32F103xB",
+        "-DCFG_MT_USB_BRIDGE=1",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/boot",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/platform",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/app",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/firmware/transport",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-bridge/supporting",
+        "-I/tmp/critic-b-adc-runtime-pr95/source/tests/usb-cdc/supporting",
+        "-isystem",
+        "/tmp/critic-b-adc-runtime-pr95/source/firmware/third_party/usb/vendor/tinyusb/src",
+        "-MD",
+        "-MF",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/22_runtime_probe.o.d",
+        "-c",
+        "/tmp/critic-b-adc-runtime-pr95/reviewer/runtime_probe.c",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/22_runtime_probe.o"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "-g",
+        "-O1",
+        "-fno-lto",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address,undefined",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/0_tusb.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/1_tusb_fifo.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/2_cdc_device.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/3_usbd.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/4_mt_runtime.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/5_mt_adc_control.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/6_mt_control.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/7_mt_control_rx.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/8_mt_capture_link.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/9_adc_timer_dma.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/10_mt_timebase.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/11_mt_usb_time.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/12_acquisition.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/13_mt_wire.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/14_mt_command.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/15_mt_session.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/16_mt_stream.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/17_mt_tx.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/18_mt_usb_cdc.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/19_mt_usb_bridge.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/20_mt_usb_epoch.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/21_fake_dcd_instrumented.o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/22_runtime_probe.o",
+        "-o",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe"
+      ],
+      "exit_status": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "transfer_wait",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"transfer_wait\",\"first_runtime_result\":0}\n{\"case\":\"transfer_wait\",\"dcd_endpoint\":130,\"dcd_length\":54,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"transfer_wait\",\"host_bytes\":54,\"submitted_bytes\":54,\"runtime_ready\":1,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":0,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"transfer_wait\",\"message_type\":134,\"session\":99,\"sequence\":5,\"request\":0,\"payload_hex\":\"050100000300000000000000000000000000000000000000\"}\n{\"case\":\"transfer_wait\",\"pass\":true,\"aborts\":0,\"errors\":1}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "deadline_wait",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"deadline_wait\",\"first_runtime_result\":0}\n{\"case\":\"deadline_wait\",\"dcd_endpoint\":130,\"dcd_length\":54,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"deadline_wait\",\"host_bytes\":54,\"submitted_bytes\":54,\"runtime_ready\":1,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":5,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":0,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"deadline_wait\",\"message_type\":134,\"session\":99,\"sequence\":5,\"request\":0,\"payload_hex\":\"050200000300000000000000000000000000000000000000\"}\n{\"case\":\"deadline_wait\",\"pass\":true,\"aborts\":0,\"errors\":1}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "transfer_capture",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"transfer_capture\",\"first_runtime_result\":0}\n{\"case\":\"transfer_capture\",\"dcd_endpoint\":130,\"dcd_length\":42,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"transfer_capture\",\"host_bytes\":96,\"submitted_bytes\":96,\"runtime_ready\":1,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":0,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"transfer_capture\",\"message_type\":147,\"session\":99,\"sequence\":6,\"request\":0,\"payload_hex\":\"030000000100000002000000\"}\n{\"case\":\"transfer_capture\",\"message_type\":134,\"session\":99,\"sequence\":7,\"request\":0,\"payload_hex\":\"050100000300000001000000000000000000000001000000\"}\n{\"case\":\"transfer_capture\",\"pass\":true,\"aborts\":1,\"errors\":1}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "deadline_capture",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"deadline_capture\",\"first_runtime_result\":0}\n{\"case\":\"deadline_capture\",\"dcd_endpoint\":130,\"dcd_length\":42,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"deadline_capture\",\"host_bytes\":96,\"submitted_bytes\":96,\"runtime_ready\":1,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":5,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":0,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"deadline_capture\",\"message_type\":147,\"session\":99,\"sequence\":6,\"request\":0,\"payload_hex\":\"030000000100000003000000\"}\n{\"case\":\"deadline_capture\",\"message_type\":134,\"session\":99,\"sequence\":7,\"request\":0,\"payload_hex\":\"050200000300000001000000000000000000000001000000\"}\n{\"case\":\"deadline_capture\",\"pass\":true,\"aborts\":1,\"errors\":1}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_before",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"time_before\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":0}\n{\"case\":\"time_before\",\"first_runtime_result\":3}\n{\"case\":\"time_before\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":0,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":0,\"admitted_observed\":0}\n{\"case\":\"time_before\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "reset_before",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"reset_before\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":0}\n{\"case\":\"reset_before\",\"first_runtime_result\":1}\n{\"case\":\"reset_before\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":0,\"time_fault\":0,\"clock_fault\":0,\"epoch\":2,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":0,\"admitted_observed\":0}\n{\"case\":\"reset_before\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "suspend_before",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"suspend_before\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":0}\n{\"case\":\"suspend_before\",\"first_runtime_result\":1}\n{\"case\":\"suspend_before\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":0,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":0,\"admitted_observed\":0}\n{\"case\":\"suspend_before\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "poison_before",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"poison_before\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":0}\n{\"case\":\"poison_before\",\"first_runtime_result\":1}\n{\"case\":\"poison_before\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":0,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":0,\"admitted_observed\":0}\n{\"case\":\"poison_before\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_stop",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"time_stop\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":1}\n{\"case\":\"time_stop\",\"first_runtime_result\":3}\n{\"case\":\"time_stop\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"time_stop\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "reset_stop",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"reset_stop\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":1}\n{\"case\":\"reset_stop\",\"first_runtime_result\":1}\n{\"case\":\"reset_stop\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":2,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"reset_stop\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "suspend_stop",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"suspend_stop\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":1}\n{\"case\":\"suspend_stop\",\"first_runtime_result\":1}\n{\"case\":\"suspend_stop\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"suspend_stop\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "poison_stop",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"poison_stop\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":1}\n{\"case\":\"poison_stop\",\"first_runtime_result\":1}\n{\"case\":\"poison_stop\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"poison_stop\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_admitted",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"time_admitted\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":2}\n{\"case\":\"time_admitted\",\"first_runtime_result\":3}\n{\"case\":\"time_admitted\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"time_admitted\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "reset_admitted",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"reset_admitted\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":2}\n{\"case\":\"reset_admitted\",\"first_runtime_result\":1}\n{\"case\":\"reset_admitted\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":2,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"reset_admitted\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "suspend_admitted",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"suspend_admitted\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":2}\n{\"case\":\"suspend_admitted\",\"first_runtime_result\":1}\n{\"case\":\"suspend_admitted\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"suspend_admitted\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "poison_admitted",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"poison_admitted\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":2}\n{\"case\":\"poison_admitted\",\"first_runtime_result\":1}\n{\"case\":\"poison_admitted\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"poison_admitted\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_outputgap",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": -6,
+      "output": "{\"case\":\"time_outputgap\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"time_outputgap\",\"first_runtime_result\":3}\n{\"case\":\"time_outputgap\",\"dcd_endpoint\":130,\"dcd_length\":54,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"time_outputgap\",\"host_bytes\":54,\"submitted_bytes\":54,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"time_outputgap\",\"message_type\":134,\"session\":99,\"sequence\":5,\"request\":0,\"payload_hex\":\"050100000300000000000000000000000000000000000000\"}\n{\"case\":\"time_outputgap\",\"pass\":false,\"unexpected_aborts\":0,\"unexpected_errors\":1}\nruntime_probe: /tmp/critic-b-adc-runtime-pr95/reviewer/runtime_probe.c:150: observe: Assertion `aborts==expected_abort && errors==expected_error' failed.\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "reset_outputgap",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"reset_outputgap\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"reset_outputgap\",\"first_runtime_result\":1}\n{\"case\":\"reset_outputgap\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":2,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"reset_outputgap\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "suspend_outputgap",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"suspend_outputgap\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"suspend_outputgap\",\"first_runtime_result\":1}\n{\"case\":\"suspend_outputgap\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"suspend_outputgap\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "poison_outputgap",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"poison_outputgap\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"poison_outputgap\",\"first_runtime_result\":1}\n{\"case\":\"poison_outputgap\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"poison_outputgap\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_outputgap_deadline",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": -6,
+      "output": "{\"case\":\"time_outputgap_deadline\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"time_outputgap_deadline\",\"first_runtime_result\":3}\n{\"case\":\"time_outputgap_deadline\",\"dcd_endpoint\":130,\"dcd_length\":54,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"time_outputgap_deadline\",\"host_bytes\":54,\"submitted_bytes\":54,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":5,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"time_outputgap_deadline\",\"message_type\":134,\"session\":99,\"sequence\":5,\"request\":0,\"payload_hex\":\"050200000300000000000000000000000000000000000000\"}\n{\"case\":\"time_outputgap_deadline\",\"pass\":false,\"unexpected_aborts\":0,\"unexpected_errors\":1}\nruntime_probe: /tmp/critic-b-adc-runtime-pr95/reviewer/runtime_probe.c:150: observe: Assertion `aborts==expected_abort && errors==expected_error' failed.\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_outputgap_capture",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": -6,
+      "output": "{\"case\":\"time_outputgap_capture\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"time_outputgap_capture\",\"first_runtime_result\":3}\n{\"case\":\"time_outputgap_capture\",\"dcd_endpoint\":130,\"dcd_length\":42,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"time_outputgap_capture\",\"host_bytes\":42,\"submitted_bytes\":42,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"time_outputgap_capture\",\"message_type\":147,\"session\":99,\"sequence\":6,\"request\":0,\"payload_hex\":\"030000000100000002000000\"}\n{\"case\":\"time_outputgap_capture\",\"pass\":false,\"unexpected_aborts\":1,\"unexpected_errors\":0}\nruntime_probe: /tmp/critic-b-adc-runtime-pr95/reviewer/runtime_probe.c:150: observe: Assertion `aborts==expected_abort && errors==expected_error' failed.\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "time_outputgap_capture_deadline",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": -6,
+      "output": "{\"case\":\"time_outputgap_capture_deadline\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"time_outputgap_capture_deadline\",\"first_runtime_result\":3}\n{\"case\":\"time_outputgap_capture_deadline\",\"dcd_endpoint\":130,\"dcd_length\":42,\"dcd_epoch\":1,\"dcd_accepted\":1}\n{\"case\":\"time_outputgap_capture_deadline\",\"host_bytes\":42,\"submitted_bytes\":42,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":5,\"time_fault\":2,\"clock_fault\":1,\"epoch\":1,\"pending\":2,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"time_outputgap_capture_deadline\",\"message_type\":147,\"session\":99,\"sequence\":6,\"request\":0,\"payload_hex\":\"030000000100000003000000\"}\n{\"case\":\"time_outputgap_capture_deadline\",\"pass\":false,\"unexpected_aborts\":1,\"unexpected_errors\":0}\nruntime_probe: /tmp/critic-b-adc-runtime-pr95/reviewer/runtime_probe.c:150: observe: Assertion `aborts==expected_abort && errors==expected_error' failed.\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "reset_outputgap_capture",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"reset_outputgap_capture\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"reset_outputgap_capture\",\"first_runtime_result\":1}\n{\"case\":\"reset_outputgap_capture\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":2,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"reset_outputgap_capture\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "suspend_outputgap_capture",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"suspend_outputgap_capture\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"suspend_outputgap_capture\",\"first_runtime_result\":1}\n{\"case\":\"suspend_outputgap_capture\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"suspend_outputgap_capture\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "poison_outputgap_capture",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"poison_outputgap_capture\",\"injection_host_boundary\":0,\"injection_submit_boundary\":0,\"stage\":3}\n{\"case\":\"poison_outputgap_capture\",\"first_runtime_result\":1}\n{\"case\":\"poison_outputgap_capture\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":4,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":1,\"actual_fault_stop_writes\":1,\"admitted_observed\":1}\n{\"case\":\"poison_outputgap_capture\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "stop_failed",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"stop_failed\",\"first_runtime_result\":2}\n{\"case\":\"stop_failed\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":1,\"owns_peripherals\":1,\"adc_fault\":6,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":1,\"injection_fired\":0,\"actual_fault_stop_writes\":8,\"admitted_observed\":0}\n{\"case\":\"stop_failed\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "adc_clock",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"adc_clock\",\"first_runtime_result\":2}\n{\"case\":\"adc_clock\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":1,\"owns_peripherals\":1,\"adc_fault\":6,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":1,\"injection_fired\":0,\"actual_fault_stop_writes\":8,\"admitted_observed\":0}\n{\"case\":\"adc_clock\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "adc_clock_plan",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"adc_clock_plan\",\"first_runtime_result\":2}\n{\"case\":\"adc_clock_plan\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":1,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":0,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"adc_clock_plan\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    },
+    {
+      "argv": [
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized/runtime_probe",
+        "sequence_limit",
+        "/tmp/critic-b-adc-runtime-pr95/final-sanitized"
+      ],
+      "exit_status": 0,
+      "output": "{\"case\":\"sequence_limit\",\"first_runtime_result\":2}\n{\"case\":\"sequence_limit\",\"host_bytes\":0,\"submitted_bytes\":0,\"runtime_ready\":0,\"hardware_running\":0,\"owns_peripherals\":0,\"adc_fault\":7,\"time_fault\":0,\"clock_fault\":0,\"epoch\":1,\"pending\":0,\"injection_fired\":0,\"actual_fault_stop_writes\":1,\"admitted_observed\":0}\n{\"case\":\"sequence_limit\",\"pass\":true,\"aborts\":0,\"errors\":0}\n"
+    }
+  ],
+  "result": "FAIL",
+  "executable_sha256": "1d55b9e21cdb7e6a23bf62b7836c8a9ec145253afae79c0b63aa1d11064aa888",
+  "cases": [
+    {
+      "case": "transfer_wait",
+      "exit_status": 0
+    },
+    {
+      "case": "deadline_wait",
+      "exit_status": 0
+    },
+    {
+      "case": "transfer_capture",
+      "exit_status": 0
+    },
+    {
+      "case": "deadline_capture",
+      "exit_status": 0
+    },
+    {
+      "case": "time_before",
+      "exit_status": 0
+    },
+    {
+      "case": "reset_before",
+      "exit_status": 0
+    },
+    {
+      "case": "suspend_before",
+      "exit_status": 0
+    },
+    {
+      "case": "poison_before",
+      "exit_status": 0
+    },
+    {
+      "case": "time_stop",
+      "exit_status": 0
+    },
+    {
+      "case": "reset_stop",
+      "exit_status": 0
+    },
+    {
+      "case": "suspend_stop",
+      "exit_status": 0
+    },
+    {
+      "case": "poison_stop",
+      "exit_status": 0
+    },
+    {
+      "case": "time_admitted",
+      "exit_status": 0
+    },
+    {
+      "case": "reset_admitted",
+      "exit_status": 0
+    },
+    {
+      "case": "suspend_admitted",
+      "exit_status": 0
+    },
+    {
+      "case": "poison_admitted",
+      "exit_status": 0
+    },
+    {
+      "case": "time_outputgap",
+      "exit_status": -6
+    },
+    {
+      "case": "reset_outputgap",
+      "exit_status": 0
+    },
+    {
+      "case": "suspend_outputgap",
+      "exit_status": 0
+    },
+    {
+      "case": "poison_outputgap",
+      "exit_status": 0
+    },
+    {
+      "case": "time_outputgap_deadline",
+      "exit_status": -6
+    },
+    {
+      "case": "time_outputgap_capture",
+      "exit_status": -6
+    },
+    {
+      "case": "time_outputgap_capture_deadline",
+      "exit_status": -6
+    },
+    {
+      "case": "reset_outputgap_capture",
+      "exit_status": 0
+    },
+    {
+      "case": "suspend_outputgap_capture",
+      "exit_status": 0
+    },
+    {
+      "case": "poison_outputgap_capture",
+      "exit_status": 0
+    },
+    {
+      "case": "stop_failed",
+      "exit_status": 0
+    },
+    {
+      "case": "adc_clock",
+      "exit_status": 0
+    },
+    {
+      "case": "adc_clock_plan",
+      "exit_status": 0
+    },
+    {
+      "case": "sequence_limit",
+      "exit_status": 0
+    }
+  ],
+  "inputs_unchanged": true
+}
