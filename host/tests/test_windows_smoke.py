@@ -412,7 +412,8 @@ class BuildRecipeTests(unittest.TestCase):
                         png.write_bytes(b"broken PNG")
                     if mode == "receipt":
                         launcher.receipt_path(png).write_text('{"status":"passed"}')
-                if command[:2] == ["git", "archive"]:
+                if command[0] == "git":
+                    self.assertEqual(command[:4], ["git", "-C", str(build.REPOSITORY), "archive"])
                     (output / "source.zip").write_bytes(b"test source archive")
                 return ""
             def fake_archive(name, *args, **kwargs):

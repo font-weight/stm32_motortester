@@ -61,6 +61,51 @@ UTF-8 passed receipt и exit 0. Отдельные регрессии прове
 исправленного frozen Windows-пакета. Новый Windows запуск точного исправленного
 SHA и независимое ревью остаются обязательными.
 
+## 12.10.2026: frozen-проверки прошли, отказал архив исходников
+
+В [запуске 38223631395](https://github.com/font-weight/stm32_motortester/actions/runs/38223631395),
+job `114725674660`, проверялся source
+`fd9291541c7b5ebcee0957cf0478ff99fd763c8a` (PR124). Прошли проверка 298
+исходных файлов, 1177 source-тестов, PyInstaller EXE, frozen serial-import и
+исправленный frozen GUI smoke. GUI вернул exit 0; receipt имеет статус passed,
+`platform=win32`, `frozen=true`, `qt_platform=windows` и PNG 1028×749.
+Это уже свидетельство исправленного frozen GUI на Windows runner, но не
+ручной проверки чистой Windows 10 и не физического USB.
+
+Полный журнал имеет SHA-256
+`ce529a093b3a520533fc3b7808ccffdc8e3eb871639d4f263a5c6f2d2a97ede7`;
+PNG — 71 648 байт, SHA-256
+`ea85eedecaafda7ecd8b1f10ebb8ee91ec48d11f61407ea9723eb0298aaaa3db`.
+Сохранены оба frozen receipt и build-manifest. Финальная команда
+`git archive --format=zip --output=... REVISION host` завершилась с кодом 128:
+`fatal: pathspec 'host' did not match any files`. Рецепт запускает дочерние
+команды из `host/`, поэтому Git трактует этот pathspec относительно `host/`,
+а не корня репозитория. Отрицательный контроль из `host/` воспроизводит отказ;
+та же команда из корня даёт ZIP с 249 элементами, все с префиксом `host/`.
+
+Узкое исправление задаёт корень только для архивной команды:
+`git -C REPOSITORY archive --format=zip --output=... REVISION host`.
+Рабочая папка остальных команд, состав и имена архива, порядок gates,
+30-секундный serial gate и 60-секундный GUI gate не меняются. В ZIP попадают
+байты указанного commit внутри `host/`, а не незакоммиченные файлы checkout.
+
+Регрессии `test_windows_archive.py` создают собственный временный Git-репозиторий
+и действительно выполняют `git archive`. Они сверяют весь набор ZIP-элементов
+и исходные байты каждого файла, включая бинарный и пустой файлы; проверяют
+префикс `host/`, отсутствие внешних и untracked-файлов, пробелы/кириллицу в
+путях и запуск рецепта из корня, `host/` и посторонней папки. Предшествующие
+Windows/Qt этапы в этих тестах заменены fixtures; это не новая Windows-сборка.
+Существующая выходная папка по-прежнему отклоняется до дочерних команд,
+старый `source.zip` сохраняется. Дополнительной защиты от конкурентной
+подмены файлов внутри новой папки этот узкий патч не добавляет.
+
+Настоящая ошибка Git прерывает рецепт до `SHA256SUMS.txt` и сообщения
+`Candidate built`. Более ранние manifest, ZIP приложения и диагностика
+сохраняются; их наличие не означает завершённого комплекта. Полный повтор
+точной исправленной версии на Windows ещё требуется для подтверждения
+`source.zip` и итоговых контрольных сумм. Причина старого зависания запуска
+38208738974 по-прежнему UNKNOWN.
+
 ## Состав текущего объединения
 
 Компонент PR116 (`c88d3c42d02bcb9d74502e4170236281f8147c6d`) был проверен
@@ -156,6 +201,8 @@ receipt включается в build-manifest, его файл входит в 
 ```sh
 QT_QPA_PLATFORM=offscreen python -m unittest discover -s tests -p test_windows_smoke.py -v
 QT_QPA_PLATFORM=offscreen python -O -m unittest discover -s tests -p test_windows_smoke.py -v
+python -m unittest discover -s tests -p test_windows_archive.py -v
+python -O -m unittest discover -s tests -p test_windows_archive.py -v
 QT_QPA_PLATFORM=offscreen python -m unittest discover -s tests -v
 QT_QPA_PLATFORM=offscreen python -O -m unittest discover -s tests -v
 ```

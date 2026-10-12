@@ -173,7 +173,7 @@ def main() -> int:
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     archive = Path(shutil.make_archive(str(output / "Motortester-windows-x64-candidate"),
                                       "zip", root_dir=bundle.parent, base_dir=bundle.name))
-    run("git", "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
+    run("git", "-C", REPOSITORY, "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
     artifacts = (archive, output / "source.zip", screenshot_path, receipt_path(screenshot_path), serial_report_path)
     (output / "SHA256SUMS.txt").write_text(
         "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n" for p in artifacts),
