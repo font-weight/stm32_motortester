@@ -10,10 +10,67 @@ import shutil
 import subprocess
 import sys
 import sysconfig
+import time
+
+from launch_gui import receipt_path, validate_smoke_result
+from serial_import_smoke import validate_report
 
 HOST = Path(__file__).resolve().parent.parent
 REPOSITORY = HOST.parent
 EXPECTED_PYTHON = (3, 13, 16)
+FROZEN_SMOKE_TIMEOUT = 60
+CHILD_CLEANUP_TIMEOUT = 5
+
+
+def run_logged(command, *, cwd, env, log, timeout=None):
+    """Record launch before waiting; stream output and bound the direct child."""
+    command = [str(item) for item in command]
+    started = time.monotonic()
+    with log.open("ab", buffering=0) as stream:
+        def marker(text):
+            stream.write((datetime.now(timezone.utc).isoformat() + " " + text + "\n").encode("utf-8"))
+            stream.flush()
+        marker("START " + subprocess.list2cmdline(command)
+               + f" [timeout={timeout!r}; QT_QPA_PLATFORM={env.get('QT_QPA_PLATFORM', '<default>')}]")
+        output_start = stream.tell()
+        try:
+            process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stream, stderr=subprocess.STDOUT)
+        except OSError:
+            marker("FAILED launch")
+            raise
+        try:
+            process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            try:
+                marker("TIMEOUT: terminating direct child")
+            except OSError:
+                pass  # A full/broken log must not prevent child cleanup.
+            try:
+                process.kill()
+                process.wait(timeout=CHILD_CLEANUP_TIMEOUT)
+            except (OSError, subprocess.TimeoutExpired) as error:
+                marker("FAILED: direct-child termination/reaping unconfirmed")
+                raise RuntimeError("Timed-out child cleanup could not be confirmed") from error
+            marker(f"FAILED timeout; direct child reaped; exit_code={process.returncode}")
+            raise subprocess.TimeoutExpired(command, timeout)
+        output_end = stream.tell()
+        marker(f"END exit_code={process.returncode}; elapsed_seconds={time.monotonic()-started:.3f}")
+    with log.open("rb") as stream:
+        stream.seek(output_start)
+        output = stream.read(output_end - output_start).decode("utf-8", errors="replace")
+    if process.returncode:
+        raise subprocess.CalledProcessError(process.returncode, command, output=output)
+    return output
+
+
+def run_frozen_serial_smoke(executable: Path, output: Path, run) -> dict:
+    """Require both a successful child and its strict, fresh import-only report."""
+    # lexists also catches a dangling link; the child still uses exclusive create
+    # to prevent a file appearing between this check and the actual write.
+    if os.path.lexists(output):
+        raise RuntimeError("Serial smoke output already exists")
+    run(executable, "--serial-import-smoke", output, timeout=30)
+    return validate_report(output)
 
 
 def main() -> int:
@@ -43,18 +100,10 @@ def main() -> int:
     env["PYQTGRAPH_QT_LIB"] = "PySide6"
     env["PYTHONHASHSEED"] = "0"
 
-    def run(*command, extra_env=None):
-        process = subprocess.run(
-            [str(item) for item in command], cwd=HOST,
-            env=env | (extra_env or {}), text=True, encoding="utf-8", errors="replace",
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        )
-        with log.open("a", encoding="utf-8") as stream:
-            stream.write("\n> " + subprocess.list2cmdline([str(item) for item in command]) + "\n")
-            stream.write(process.stdout)
-        print(process.stdout, end="")
-        process.check_returncode()
-        return process.stdout
+    def run(*command, extra_env=None, timeout=None):
+        output_text = run_logged(command, cwd=HOST, env=env | (extra_env or {}), log=log, timeout=timeout)
+        print(output_text, end="")
+        return output_text
 
     run(sys.executable, "-m", "venv", output / "venv")
     python = output / "venv" / "Scripts" / "python.exe"
@@ -76,20 +125,30 @@ def main() -> int:
     bundle = output / "dist" / "Motortester"
     if not (bundle / "Motortester.exe").is_file():
         raise RuntimeError("PyInstaller did not produce Motortester.exe")
+    serial_report_path = output / "frozen-serial-import.json"
+    serial_report = run_frozen_serial_smoke(bundle / "Motortester.exe", serial_report_path, run)
     run(python, HOST / "packaging" / "collect_licenses.py", bundle / "licenses")
     shutil.copy2(HOST / "packaging" / "LICENSE-REVIEW.md", bundle / "LICENSE-REVIEW.md")
     shutil.copy2(lock, bundle / lock.name)
     (bundle / "CANDIDATE.txt").write_text(
         "HOST-001: кандидат для проверки, не принятый Windows-релиз.\n"
         "Запуск: Motortester.exe. Для переноски нужна вся папка, включая _internal.\n"
-        "Физический USB не реализован. Демо синтетическое.\n"
+        "Импорт serial проверен без открытия порта. Физический USB не проверен. Демо синтетическое.\n"
         "Нужны ручная проверка Windows 10, лицензий и независимое ревью.\n",
         encoding="utf-8",
     )
     # This exercises the frozen Qt application, not a screenshot of a web mockup.
-    run(bundle / "Motortester.exe", "--screenshot", output / "frozen-window.png")
-    if not (output / "frozen-window.png").is_file():
-        raise RuntimeError("Frozen application did not create its smoke screenshot")
+    screenshot_path = output / "frozen-window.png"
+    if os.path.lexists(screenshot_path) or os.path.lexists(receipt_path(screenshot_path)):
+        raise RuntimeError("Frozen screenshot output/receipt already exists")
+    run(bundle / "Motortester.exe", "--screenshot", screenshot_path, timeout=FROZEN_SMOKE_TIMEOUT)
+    try:
+        screenshot_report = validate_smoke_result(screenshot_path)
+    except (OSError, ValueError) as error:
+        with log.open("a", encoding="utf-8") as stream:
+            stream.write(datetime.now(timezone.utc).isoformat()
+                         + f" FAILED frozen screenshot validation: {type(error).__name__}\n")
+        raise
     manifest = {
         "status": "candidate-not-release-approved",
         "source_commit": revision,
@@ -100,6 +159,12 @@ def main() -> int:
         "packages": packages,
         "windows_10_manual_acceptance": "not performed by this script",
         "usb_verified": False,
+        "frozen_gui_smoke": screenshot_report,
+        "serial_import_smoke": {
+            "report": serial_report_path.name,
+            "sha256": hashlib.sha256(serial_report_path.read_bytes()).hexdigest(),
+            "result": serial_report,
+        },
         "license_review": "required; see LICENSE-REVIEW.md",
         "files": {p.relative_to(bundle).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in sorted(bundle.rglob("*")) if p.is_file()},
@@ -108,8 +173,8 @@ def main() -> int:
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     archive = Path(shutil.make_archive(str(output / "Motortester-windows-x64-candidate"),
                                       "zip", root_dir=bundle.parent, base_dir=bundle.name))
-    run("git", "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
-    artifacts = (archive, output / "source.zip", output / "frozen-window.png")
+    run("git", "-C", REPOSITORY, "archive", "--format=zip", f"--output={output / 'source.zip'}", revision, "host")
+    artifacts = (archive, output / "source.zip", screenshot_path, receipt_path(screenshot_path), serial_report_path)
     (output / "SHA256SUMS.txt").write_text(
         "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n" for p in artifacts),
         encoding="ascii",
@@ -121,6 +186,6 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (OSError, subprocess.CalledProcessError, RuntimeError) as error:
+    except (OSError, subprocess.SubprocessError, RuntimeError, ValueError) as error:
         print(f"Build failed: {error}", file=sys.stderr)
         raise SystemExit(1)

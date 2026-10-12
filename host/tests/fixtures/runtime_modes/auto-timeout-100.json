@@ -1,0 +1,16 @@
+{
+  "description": "Синтетический фактический обмен DeviceEmulator → SerialTransport → AcquisitionRuntime; не аппаратное измерение",
+  "mode": 0,
+  "edge": 0,
+  "auto_timeout_ms": 100,
+  "nonce": 72623859790382856,
+  "generation": 4,
+  "window_id": 1,
+  "utc": "2026-10-12T03:00:00Z",
+  "host_bytes": 190,
+  "device_bytes": 5038,
+  "host_bytes_sha256": "53bc5734ebbe9eeb3ea502798058e4dea84eb72ae11d9574fe7b3f2107c601f3",
+  "device_bytes_sha256": "626dbae791dad91c1c153e3770e7cf7bf90fb9bd1e9e02d93b67fd9bed00a362",
+  "capture_sha256": "c8e39410e2cf9011bafbcdf1f4b1fda39dddebe8dcbd40c1ec72b52f12a67d91",
+  "raw_codes_sha256": "50fdf21f259809e83ecc4a52e55a06c711d26dc986862175cef052112b98312d"
+}
