@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "external_reference": "a855ef341bb5eb8906a16af67f4d6b328f08f02f",
+  "pages": [
+    "README.md",
+    "requirements.md",
+    "task.md",
+    "docs/mvp-spec.md",
+    "docs/architecture.md",
+    "docs/hardware.md",
+    "docs/validation.md",
+    "docs/bench.md",
+    "docs/glossary.md",
+    "docs/sources.md",
+    "docs/decisions.md",
+    "docs/risks.md",
+    "docs/budget.md",
+    "docs/data-plan.md",
+    "docs/progress.md",
+    "docs/quality-gate.md",
+    "docs/coordination.md",
+    "firmware/build/README.md",
+    "firmware/build/BUILD_IMAGE_README.md",
+    "firmware/build/BOARD_CONFIG_README.md",
+    "firmware/build/IMAGE_EQUIVALENCE_README.md",
+    "firmware/platform/README.md",
+    "firmware/acquisition/README.md",
+    "firmware/app/README.md",
+    "firmware/app/ADC_CONTROL_README.md",
+    "firmware/boot/INTEGRATION_README.md",
+    "firmware/transport/USB_CDC_README.md",
+    "hardware/analog-source/README_RU.md",
+    "hardware/analog-source/MEASUREMENTS_RU.md",
+    "hardware/analog-source/SOURCES.md",
+    "hardware/analog-source/PROVENANCE_RU.md",
+    "protocol/wire-v0.1.md"
+  ],
+  "downloads": [
+    "firmware/build/examples/SYNTHETIC_NEVER_FLASH.json",
+    "firmware/third_party/usb/evidence/toolchain-recovery/package-download-manifest.json",
+    "protocol/vectors-v0.1.json"
+  ]
+}
