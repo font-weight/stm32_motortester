@@ -67,6 +67,10 @@ def inspect(obj, name):
         need(pc in ins, 'branch into data/undecoded byte')
         states[pc] = depth
         size, op, args = ins[pc]
+        # Memory writeback through SP changes its value independently of the
+        # destination register. No such form is admitted by this finite model.
+        need(re.search(r'\[sp(?:,[^\]]*)?\](?:!|\s*,)', args) is None,
+             'unmodeled SP memory writeback')
         after = depth
         succ = [pc + size]
         regs = re.search('\\{([^}]+)\\}', args)
@@ -128,6 +132,21 @@ def inspect(obj, name):
         pc = TABLES[name][0]
         pred = lambda q: {p for p, targets in successors.items() if q in targets}
         need(pred(pc) == {pc - 2} and pred(pc - 2) == {pc - 4}, 'table guard bypass')
+        # An out-of-range branch must leave this table path. Immediate
+        # predecessor shape alone does not establish the range restriction.
+        match = re.search(r'([0-9a-f]+) <', ins[pc - 2][2])
+        need(match is not None, 'missing table rejection target')
+        pending_reject = [int(match[1], 16)]
+        visited_reject = set()
+        while pending_reject:
+            target = pending_reject.pop()
+            need(target != pc, 'out-of-range branch can reach table')
+            if target in visited_reject:
+                continue
+            visited_reject.add(target)
+            need(target in successors, 'unclassified rejection path')
+            pending_reject.extend(successors[target])
+
     ordered = sorted(ins)
     remaining = 0
     for pc in ordered:

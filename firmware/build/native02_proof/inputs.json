@@ -131,7 +131,7 @@
   },
   "proof_helpers": {
     "THEOREM_RU.md": "a0a48c4efc2b78290533daf6e364ef9a338dc2d9280e621729c0a0593b358bdb",
-    "frames.py": "2525594d32bf89ede65146e94b0e3d39663cb24f3745439762285ca3f3a2178a",
+    "frames.py": "219aa228e507eab7beab40416d7c4be1f7d6d0b0aa78c8eb1843b8e17650fa0a",
     "projection.py": "5cb190f2f74f2b6af2861ab7dd1f20bea0594ed469ddd27fd2c461a385e671c1",
     "relocations.py": "ca7e2eed6306878f8db29b8c7b0849ad00ef26924b3258edace10e79e6ced308"
   },

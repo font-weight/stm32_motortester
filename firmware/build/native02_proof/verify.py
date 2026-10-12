@@ -12,7 +12,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 HOME = Path(__file__).resolve().parent
 ROOT = HOME.parents[2]
-MANIFEST_SHA = '56dc7340052515316ed77d40bb51705dae96b1b15b8ef85a9d2a22e4cfa67b4c'
+MANIFEST_SHA = 'ff61687be500fafc9b038ee026caf57547a5934216436814c893e45f100a8c0c'
 
 def require(ok, message):
     if not ok:
