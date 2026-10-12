@@ -1,0 +1,178 @@
+{
+  "optimized": false,
+  "groups": 5,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "outcomes": [
+    {
+      "case": "happy",
+      "result": "PASS",
+      "kind": "fake distribution source check",
+      "inventory_sha256": "eeff3237990adb2295a8cb9bc5576cf9731aba4eb55ecdb9e0d706566d0d26fc"
+    },
+    {
+      "case": "normalized",
+      "result": "PASS",
+      "kind": "fake distribution source check",
+      "inventory_sha256": "ecf1007a237ea7af8cd1f8e19273d2d2a985b26fece24854502851e960563b4c"
+    },
+    {
+      "case": "installed-linux-inputs",
+      "result": "PASS",
+      "kind": "real Linux installed metadata/notices plus fixture CPython",
+      "inventory_sha256": "95be1a7cb5c40b9a5443979702c64f1e4373d55a98281c24bcab27c3ab591f4c"
+    },
+    {
+      "case": "baseline-gap",
+      "result": "old collector completes while omitting all three GNU texts",
+      "kind": "fresh negative control"
+    },
+    {
+      "case": "missing-qt-1",
+      "result": "rejected",
+      "error": "RuntimeError: Required PySide6-Essentials/shiboken6 distribution is absent"
+    },
+    {
+      "case": "version-1-0",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover pyside6-essentials 6.12.0"
+    },
+    {
+      "case": "version-1-1",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover pyside6-essentials 6.12.0"
+    },
+    {
+      "case": "version-1-2",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover pyside6-essentials 6.12.0"
+    },
+    {
+      "case": "version-1-3",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover pyside6-essentials 6.12.0"
+    },
+    {
+      "case": "duplicate-1",
+      "result": "rejected",
+      "error": "RuntimeError: Duplicate Qt-family distribution: pyside6-essentials"
+    },
+    {
+      "case": "missing-qt-2",
+      "result": "rejected",
+      "error": "RuntimeError: Required PySide6-Essentials/shiboken6 distribution is absent"
+    },
+    {
+      "case": "version-2-0",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover shiboken6 6.12.0"
+    },
+    {
+      "case": "version-2-1",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover shiboken6 6.12.0"
+    },
+    {
+      "case": "version-2-2",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover shiboken6 6.12.0"
+    },
+    {
+      "case": "version-2-3",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored Qt notices only cover shiboken6 6.12.0"
+    },
+    {
+      "case": "duplicate-2",
+      "result": "rejected",
+      "error": "RuntimeError: Duplicate Qt-family distribution: shiboken6"
+    },
+    {
+      "case": "text-0-missing",
+      "result": "rejected",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/notice-supplement-critic/evidence/independent-replay-normal/text-0-missing \u0442\u0435\u0441\u0442/altered texts/GPL-2.0-only.txt'"
+    },
+    {
+      "case": "text-0-same-size",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored Qt notice size/SHA-256 mismatch: GPL-2.0-only.txt"
+    },
+    {
+      "case": "text-0-extra-byte",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored Qt notice size/SHA-256 mismatch: GPL-2.0-only.txt"
+    },
+    {
+      "case": "text-1-missing",
+      "result": "rejected",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/notice-supplement-critic/evidence/independent-replay-normal/text-1-missing \u0442\u0435\u0441\u0442/altered texts/GPL-3.0-only.txt'"
+    },
+    {
+      "case": "text-1-same-size",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored Qt notice size/SHA-256 mismatch: GPL-3.0-only.txt"
+    },
+    {
+      "case": "text-1-extra-byte",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored Qt notice size/SHA-256 mismatch: GPL-3.0-only.txt"
+    },
+    {
+      "case": "text-2-missing",
+      "result": "rejected",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/notice-supplement-critic/evidence/independent-replay-normal/text-2-missing \u0442\u0435\u0441\u0442/altered texts/LGPL-3.0-only.txt'"
+    },
+    {
+      "case": "text-2-same-size",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored Qt notice size/SHA-256 mismatch: LGPL-3.0-only.txt"
+    },
+    {
+      "case": "text-2-extra-byte",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored Qt notice size/SHA-256 mismatch: LGPL-3.0-only.txt"
+    },
+    {
+      "case": "pyserial-absent",
+      "result": "rejected",
+      "error": "RuntimeError: Required pyserial distribution is absent"
+    },
+    {
+      "case": "pyserial-version",
+      "result": "rejected",
+      "error": "RuntimeError: The vendored pyserial notice only covers version 3.5"
+    },
+    {
+      "case": "pyserial-missing",
+      "result": "rejected",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/notice-supplement-critic/evidence/independent-replay-normal/pyserial-missing \u0442\u0435\u0441\u0442/pyserial-license.txt'"
+    },
+    {
+      "case": "pyserial-modified",
+      "result": "rejected",
+      "error": "RuntimeError: Vendored pyserial notice SHA-256 mismatch"
+    },
+    {
+      "case": "cpython-absent",
+      "result": "rejected",
+      "error": "RuntimeError: CPython LICENSE.txt missing: /tmp/notice-supplement-critic/evidence/independent-replay-normal/cpython-absent \u0442\u0435\u0441\u0442/python runtime/LICENSE.txt"
+    },
+    {
+      "case": "preexisting-file",
+      "result": "rejected, original bytes preserved"
+    },
+    {
+      "case": "preexisting-directory",
+      "result": "rejected, original bytes preserved"
+    },
+    {
+      "case": "preexisting-symlink",
+      "result": "rejected, original bytes preserved"
+    },
+    {
+      "case": "late-copy-fault",
+      "result": "partial output retained, no complete inventory"
+    }
+  ]
+}

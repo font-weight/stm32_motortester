@@ -1,0 +1,19 @@
+{
+  "local_head": "b57cbdd356e0b3c68e2758a33fe069c51e87c7bb",
+  "tree": "062ef56c1fa13e3600a30873e273156bcd3fe921",
+  "parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "changed_paths": [
+    "host/docs/help.md",
+    "host/motortester/gui.py",
+    "host/tests/test_axis_zoom.py"
+  ],
+  "verified_files": 1388,
+  "unchanged_files": 1385,
+  "changed_gui_methods": [
+    "__init__",
+    "_build_ui",
+    "reset_view"
+  ],
+  "other_production_ast_unchanged": true,
+  "clean": true
+}

@@ -1,0 +1,48 @@
+test_all_smoke_failures_stop_before_manifest_and_zip (test_windows_smoke.BuildRecipeTests.test_all_smoke_failures_stop_before_manifest_and_zip) ... ok
+test_success_requires_valid_png_receipt_and_zero_child_exit (test_windows_smoke.BuildRecipeTests.test_success_requires_valid_png_receipt_and_zero_child_exit) ... ok
+test_callback_error_is_not_silently_successful (test_windows_smoke.LauncherSmokeTests.test_callback_error_is_not_silently_successful) ... Screenshot smoke failed; see /tmp/smoke тест pwd7aw4v/снимок окна.png.smoke.json
+ok
+test_existing_png_and_receipt_are_never_reused_or_clobbered (test_windows_smoke.LauncherSmokeTests.test_existing_png_and_receipt_are_never_reused_or_clobbered) ... Screenshot smoke failed; see /tmp/smoke тест 59v2tvpp/снимок окна.png.smoke.json
+Screenshot smoke failed; see /tmp/smoke тест 59v2tvpp/снимок окна.png.smoke.json
+ok
+test_import_exception_has_early_receipt_and_no_uncaught_exception (test_windows_smoke.LauncherSmokeTests.test_import_exception_has_early_receipt_and_no_uncaught_exception) ... Screenshot smoke failed; see /tmp/smoke тест 2594q5gh/снимок окна.png.smoke.json
+ok
+test_missing_console_streams_success_and_error (test_windows_smoke.LauncherSmokeTests.test_missing_console_streams_success_and_error) ... ok
+test_missing_empty_invalid_and_truncated_png_fail (test_windows_smoke.LauncherSmokeTests.test_missing_empty_invalid_and_truncated_png_fail) ... Screenshot smoke failed; see /tmp/smoke тест nwgz230a/invalid-0.png.smoke.json
+Screenshot smoke failed; see /tmp/smoke тест nwgz230a/invalid-1.png.smoke.json
+Screenshot smoke failed; see /tmp/smoke тест nwgz230a/invalid-2.png.smoke.json
+libpng error: Read Error
+Screenshot smoke failed; see /tmp/smoke тест nwgz230a/invalid-3.png.smoke.json
+ok
+test_nonzero_and_invalid_return_values_fail (test_windows_smoke.LauncherSmokeTests.test_nonzero_and_invalid_return_values_fail) ... Screenshot smoke failed; see /tmp/smoke тест p0_3w9q7/return-0.png.smoke.json
+Screenshot smoke failed; see /tmp/smoke тест p0_3w9q7/return-1.png.smoke.json
+Screenshot smoke failed; see /tmp/smoke тест p0_3w9q7/return-2.png.smoke.json
+ok
+test_ordinary_launch_delegates_unchanged_and_bad_smoke_arity_fails (test_windows_smoke.LauncherSmokeTests.test_ordinary_launch_delegates_unchanged_and_bad_smoke_arity_fails) ... ok
+test_race_during_png_reservation_preserves_competing_file (test_windows_smoke.LauncherSmokeTests.test_race_during_png_reservation_preserves_competing_file) ... Screenshot smoke failed; see /tmp/smoke тест b_a9afnd/снимок окна.png.smoke.json
+ok
+test_real_source_launcher_with_spaces_unicode_and_no_console (test_windows_smoke.LauncherSmokeTests.test_real_source_launcher_with_spaces_unicode_and_no_console) ... ok
+test_receipt_validation_rejects_wrong_scope_json_and_changed_png (test_windows_smoke.LauncherSmokeTests.test_receipt_validation_rejects_wrong_scope_json_and_changed_png) ... ok
+test_receipt_write_failure_returns_nonzero_without_console (test_windows_smoke.LauncherSmokeTests.test_receipt_write_failure_returns_nonzero_without_console) ... ok
+test_screenshot_exception_and_system_exit_fail_closed (test_windows_smoke.LauncherSmokeTests.test_screenshot_exception_and_system_exit_fail_closed) ... Screenshot smoke failed; see /tmp/smoke тест nu24jqrc/RuntimeError.png.smoke.json
+Screenshot smoke failed; see /tmp/smoke тест nu24jqrc/SystemExit.png.smoke.json
+ok
+test_success_decodes_actual_png_and_records_complete_phases (test_windows_smoke.LauncherSmokeTests.test_success_decodes_actual_png_and_records_complete_phases) ... ok
+test_launch_error_logged_before_raise (test_windows_smoke.RunnerTests.test_launch_error_logged_before_raise) ... ok
+test_nonzero_exit_preserves_output_and_raises (test_windows_smoke.RunnerTests.test_nonzero_exit_preserves_output_and_raises) ... ok
+test_real_stalled_direct_child_is_terminated_reaped_with_partial_output (test_windows_smoke.RunnerTests.test_real_stalled_direct_child_is_terminated_reaped_with_partial_output) ... ok
+test_start_marker_flushed_before_launch_and_exact_argument_vector (test_windows_smoke.RunnerTests.test_start_marker_flushed_before_launch_and_exact_argument_vector) ... ok
+test_success_preserves_stdout_and_stderr (test_windows_smoke.RunnerTests.test_success_preserves_stdout_and_stderr) ... ok
+test_timeout_log_error_does_not_prevent_cleanup (test_windows_smoke.RunnerTests.test_timeout_log_error_does_not_prevent_cleanup) ... ok
+test_unconfirmed_cleanup_is_bounded_and_explicit (test_windows_smoke.RunnerTests.test_unconfirmed_cleanup_is_bounded_and_explicit) ... ok
+test_optional_console_io_failure_does_not_invalidate_png (test_windows_smoke.ScreenshotConsoleRegressionTests.test_optional_console_io_failure_does_not_invalidate_png) ... ok
+test_real_screenshot_render_save_and_receipt_failures_still_fail_closed (test_windows_smoke.ScreenshotConsoleRegressionTests.test_real_screenshot_render_save_and_receipt_failures_still_fail_closed) ... ok
+test_real_screenshot_succeeds_with_strict_cp1252_console (test_windows_smoke.ScreenshotConsoleRegressionTests.test_real_screenshot_succeeds_with_strict_cp1252_console) ... ok
+test_real_screenshot_succeeds_without_console (test_windows_smoke.ScreenshotConsoleRegressionTests.test_real_screenshot_succeeds_without_console) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 8.050s
+
+OK
+[][][][][][][]Candidate built: /tmp/recipe тест d655lshr/build result/Motortester-windows-x64-candidate.zip
+Manual Windows 10 and license acceptance remain open.

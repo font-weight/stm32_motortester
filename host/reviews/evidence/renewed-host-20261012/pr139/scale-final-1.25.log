@@ -1,0 +1,9 @@
+test_01_actual_axis_and_plot_gestures (__main__.IndependentZoom.test_01_actual_axis_and_plot_gestures) ... ok
+test_03_cursors_bytes_home_and_png (__main__.IndependentZoom.test_03_cursors_bytes_home_and_png) ... ok
+test_05_guidance_reachable_and_rendered (__main__.IndependentZoom.test_05_guidance_reachable_and_rendered) ... This plugin does not support propagateSizeHints()
+ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.376s
+
+OK

@@ -1,0 +1,2330 @@
+{
+  "local_head": "3a718eda6587b623b6ea3d06fd293f2068a351b5",
+  "tree": "131f11ec4ee21d5c281cae220baebee03906724b",
+  "parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "changed_paths": [
+    "host/docs/acquisition-integration.md",
+    "host/motortester/gui_acquisition.py",
+    "host/tests/test_gui_acquisition.py"
+  ],
+  "verified_files": 1387,
+  "unchanged_files": 1384,
+  "production_ast_identical_except_three_linebreaks": true,
+  "original_test_methods_unchanged": 28,
+  "original_helper_assertions_preserved": 14,
+  "added_helper_assertions": 3,
+  "new_tests": [
+    "test_multiline_controls_keep_native_click_keyboard_and_accessible_meaning",
+    "test_run11_metric_model_rejects_each_original_single_line_constraint",
+    "test_small_panel_fits_run11_horizontal_text_metrics"
+  ],
+  "clean": true,
+  "entries": [
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "blob": "1aa58bedd837e00501b611fd63d55dd1c4d5c627",
+      "size": 9799,
+      "sha256": "2767a628dc6c379e08f84c1575601ce6069423b71bcda6ab75917640f444b3eb"
+    },
+    {
+      "path": "DOT_PEER_START.md",
+      "mode": "100644",
+      "blob": "5c521f51caa7140c46ce66496d44bc4d103b7311",
+      "size": 12921,
+      "sha256": "32acebcdb99758b7eddf0caa3b5b8a7baddc36fc5a82285620870b1575c7088f"
+    },
+    {
+      "path": "DOT_START.md",
+      "mode": "100644",
+      "blob": "c312021446a7f5028298aec448f058106563ee66",
+      "size": 26661,
+      "sha256": "f5a1170426e2efd9f6f8de05483a1c4a51ecc9aad0029935c547ea8a15ded8e1"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "blob": "f8031480f21f5f3a7e8e83373df3cf1a3ee03970",
+      "size": 9721,
+      "sha256": "b215dbbc9580a6148303447edba1c82cab150d990ff653d6234715d7f9596ca4"
+    },
+    {
+      "path": "docs/architecture.md",
+      "mode": "100644",
+      "blob": "cbc25180a1e8d54dd818a50832720d9fb87f30ad",
+      "size": 14178,
+      "sha256": "cbd5a35fab3212070757e3686470bf49a8e11bbb38800c18d8d9bce63bf654af"
+    },
+    {
+      "path": "docs/bench.md",
+      "mode": "100644",
+      "blob": "2338e781eba17aab8d97be64e549df2107bcf76d",
+      "size": 12712,
+      "sha256": "3a19de8dad1c448b8e56ba675cbf46d776dffb20f8908005c1391113b822dede"
+    },
+    {
+      "path": "docs/budget.md",
+      "mode": "100644",
+      "blob": "5746724c2a635b324818915bb1ff403f4b8e151b",
+      "size": 4241,
+      "sha256": "7f784cd90bb878afa0ffba6bbd6020185c706187d84d48b308ae965e1f4a232f"
+    },
+    {
+      "path": "docs/command-parser.md",
+      "mode": "100644",
+      "blob": "b1f7cbde96eefcd628f9d838490eb30b9960f7f0",
+      "size": 6871,
+      "sha256": "c8aebaddd2e56ae0c9d220b6ff84c9c2a89926c3eb52a926b17357b169785dd5"
+    },
+    {
+      "path": "docs/coordination.md",
+      "mode": "100644",
+      "blob": "a173628f3365af6b2be8db51102986176574cc86",
+      "size": 29143,
+      "sha256": "77a2ae06f0501c69373dfc3e138b88ed0c386737d18fdb0c14d819c476d162da"
+    },
+    {
+      "path": "docs/data-plan.md",
+      "mode": "100644",
+      "blob": "1ed1ae08ce2edf838469456934f34ad3a1b4ebca",
+      "size": 18188,
+      "sha256": "d5e9a22226f80b6a108a2da47a16e9b8c85a4452e5ed7c985564369987aff6c8"
+    },
+    {
+      "path": "docs/decisions.md",
+      "mode": "100644",
+      "blob": "e3f861e16af323a90025419b1bc7f2f9e58b89ba",
+      "size": 14639,
+      "sha256": "8597dc3b0ff1d452a5f30f280d8210188d0e6eda257ef32d9e3b4d2426315c14"
+    },
+    {
+      "path": "docs/evidence/a004-native.txt",
+      "mode": "100644",
+      "blob": "5edbaf5e61616448dfb9b6af3afb100ec2a039ef",
+      "size": 1277,
+      "sha256": "c146d57da3a6fd835264f509149ad0c38bbcfd582448881f8b6a96a2034ad772"
+    },
+    {
+      "path": "docs/glossary.md",
+      "mode": "100644",
+      "blob": "2f96e7e8a13b1edb54da2545450c84becc3d2848",
+      "size": 5870,
+      "sha256": "8ab42a92dab3544467a43a1677ad665f57fb0f7473fe3ccfe89661ee14ac35df"
+    },
+    {
+      "path": "docs/hardware.md",
+      "mode": "100644",
+      "blob": "c9c2a548488916f03bc5872ef51c227b3d3aa23f",
+      "size": 18020,
+      "sha256": "1c3e49deed982c90dac3abfbcaec5c5d76a47e452fb4414475c5135c20e79eda"
+    },
+    {
+      "path": "docs/mvp-spec.md",
+      "mode": "100644",
+      "blob": "d6530867fea8d55e808d67b072d177995255dd5a",
+      "size": 29932,
+      "sha256": "5da1b56f59d65797c2bf72a5c347f2e97a5ece68100511e02b4885284d85beeb"
+    },
+    {
+      "path": "docs/progress.md",
+      "mode": "100644",
+      "blob": "368e2806f8fff1f57a72ba29ac132f9269b3e6dc",
+      "size": 80953,
+      "sha256": "9f9e1073638da0d5131110e180c6497d1718c65450dd20e504279a533084cdac"
+    },
+    {
+      "path": "docs/quality-gate.md",
+      "mode": "100644",
+      "blob": "755f6fc48057fb41cead074b019f64757d10a752",
+      "size": 17416,
+      "sha256": "fc090fb7aa699f011b210033aac302ef4a3a0335712273e09daa610d8fbee969"
+    },
+    {
+      "path": "docs/risks.md",
+      "mode": "100644",
+      "blob": "9d4e82c17b8659c3a24bde0e9b910e8df6682017",
+      "size": 5590,
+      "sha256": "826b63f82d79e0b9c9867b924f64d64e0562172f052308f36cbbbf6f2cd84073"
+    },
+    {
+      "path": "docs/session-guard.md",
+      "mode": "100644",
+      "blob": "bcb96e1ed80d43d61c8b5089c82918f95d6f8f2e",
+      "size": 6279,
+      "sha256": "cddb17168be9d936b1b19c4a2363026988e656ff50ed526c750ec7165cb7a6ae"
+    },
+    {
+      "path": "docs/sources.md",
+      "mode": "100644",
+      "blob": "0c38f9a71408698f515debd3781f13142e30e381",
+      "size": 15426,
+      "sha256": "abff27590ed20580f4c1c2c070ff0ac641287828e98de9df067771bf8d04c21a"
+    },
+    {
+      "path": "docs/stream-parser.md",
+      "mode": "100644",
+      "blob": "b7f66e92fe94a036237b35b36b264c44c67f11fb",
+      "size": 7293,
+      "sha256": "517b91a45531db621d48442ce1d067b7399f4dcbba931d67d632937304ca0bd2"
+    },
+    {
+      "path": "docs/validation.md",
+      "mode": "100644",
+      "blob": "d214a7c8e95159b2f7c637f8a91d7163e9ca7704",
+      "size": 22363,
+      "sha256": "0c35eb5866677b8ee4ad0ef2dcaf69c70cf37606d018f16c1bb4ad16eb84886a"
+    },
+    {
+      "path": "firmware/acquisition/README.md",
+      "mode": "100644",
+      "blob": "b708c90ce9e5db61e5f0a1ca406c9cf15b1fb70c",
+      "size": 15886,
+      "sha256": "3b2e37174c88d5a33748b9c8c09cf9cc7d5ec0dd1bee97e1634f3bb5b920f33b"
+    },
+    {
+      "path": "firmware/acquisition/acquisition.c",
+      "mode": "100644",
+      "blob": "99dbb52a932735c45e35af840545cf788362eba4",
+      "size": 8272,
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d"
+    },
+    {
+      "path": "firmware/acquisition/acquisition.h",
+      "mode": "100644",
+      "blob": "3e10c7cd58d9e335e6e49db18123ca4278d7bdfa",
+      "size": 4481,
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    {
+      "path": "firmware/app/ADC_CONTROL_README.md",
+      "mode": "100644",
+      "blob": "ae96cd44d6b9914622c5e5d93c2022cbf4ff50d1",
+      "size": 14662,
+      "sha256": "0ca43ecc99e31be5ce55db9f1a9197c9668abaabee8dfb625c705c89a0df32fe"
+    },
+    {
+      "path": "firmware/app/CONTROL_README.md",
+      "mode": "100644",
+      "blob": "d905ce2976c635e25d61c1157a2fa4ba46194d60",
+      "size": 8720,
+      "sha256": "6d5c787d9d4043d83cacebcade1a8f6ba1b60b932debc1ddf2922d665cc3ccf0"
+    },
+    {
+      "path": "firmware/app/CONTROL_RX_README.md",
+      "mode": "100644",
+      "blob": "b7027a9514029f8a8f4f7bbf1c4dd90fb5a383f7",
+      "size": 10998,
+      "sha256": "92e98b22e05be83783c95edb49d497fd8db93a764ec19183aa54ebd89da4e801"
+    },
+    {
+      "path": "firmware/app/README.md",
+      "mode": "100644",
+      "blob": "d3d86087fc898bd89b43ef5d5d3953f9488756b1",
+      "size": 6908,
+      "sha256": "b7d180aec6e8b695f16db2c96cadc4431278bd3ea39d83bbe9730e46e604e7f8"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.c",
+      "mode": "100644",
+      "blob": "df8104d6057f49830c5176fbc4f1eb520ce19eef",
+      "size": 4598,
+      "sha256": "005c8e325a1abf875b9e2978937d88d5340d2a95568e2478c14ecc39d2a13376"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.h",
+      "mode": "100644",
+      "blob": "70ea7016febb05a9f5dcd640cb920fa26dd65370",
+      "size": 2135,
+      "sha256": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.c",
+      "mode": "100644",
+      "blob": "2bef47dfbc564a4c528b0bb5e633901fd137a4c7",
+      "size": 12778,
+      "sha256": "7c78f0962c404af847b8e815034290f6938183917050290bc5eb7f9e7f304451"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.h",
+      "mode": "100644",
+      "blob": "141c36dd21ed93f22cb3c8cf4573a666944282e4",
+      "size": 4972,
+      "sha256": "9dcdd4f8119c8ccd8a7f79c6b16406ad686c4e53084c57a8fe55e8c5655be4d5"
+    },
+    {
+      "path": "firmware/app/mt_control.c",
+      "mode": "100644",
+      "blob": "0d578bc34f0157189c5e0e6d7e47e1a6c4ef0dbc",
+      "size": 13666,
+      "sha256": "fbdbfbe460ebed2f5558eaea993ab49fe9c1244d7e76199cc7609a54073d041a"
+    },
+    {
+      "path": "firmware/app/mt_control.h",
+      "mode": "100644",
+      "blob": "681f89ab88a3b564965d59a10dcb952ada4be1c5",
+      "size": 2662,
+      "sha256": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172"
+    },
+    {
+      "path": "firmware/app/mt_control_rx.c",
+      "mode": "100644",
+      "blob": "7bc3ba7896a7dd30d832f3e2c5aca0a6bd1d7d93",
+      "size": 1995,
+      "sha256": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322"
+    },
+    {
+      "path": "firmware/app/mt_control_rx.h",
+      "mode": "100644",
+      "blob": "9bbf3d445355c9a23097014b9927b8f741ab2247",
+      "size": 1831,
+      "sha256": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943"
+    },
+    {
+      "path": "firmware/app/mt_runtime.c",
+      "mode": "100644",
+      "blob": "4e65bc7e4a6220561afe7b956a1a0686ae647abf",
+      "size": 6284,
+      "sha256": "b88e7f4d001f385f33235d6683bf89c09574b29b40014f8ad60212735a7ca859"
+    },
+    {
+      "path": "firmware/app/mt_runtime.h",
+      "mode": "100644",
+      "blob": "95e3edcd02a1496614d53a43326740d66a2595ef",
+      "size": 1867,
+      "sha256": "2c41e5cb875828a07e5d3bae4c3318b996ff1108e25a26bbdf1405a87cf8b95a"
+    },
+    {
+      "path": "firmware/boot/INTEGRATION_README.md",
+      "mode": "100644",
+      "blob": "f940467e760347f97002dd1d71886c8515462e46",
+      "size": 5590,
+      "sha256": "49c8ff386059aef5441b428b3cb0132e77bf96ed8270335fb12c804e1a8030ba"
+    },
+    {
+      "path": "firmware/boot/MAIN_README.md",
+      "mode": "100644",
+      "blob": "d1ddb463b2a5dd7491a98752e10ae071745f7baf",
+      "size": 10480,
+      "sha256": "6e6b63fe8ca0c9abd0101dc8bcf681cc7bd03ea2ed192ea469c0ab23fde97f31"
+    },
+    {
+      "path": "firmware/boot/README.md",
+      "mode": "100644",
+      "blob": "20bb9d4a703bc5fe15140b218665257c3166f12c",
+      "size": 8662,
+      "sha256": "51a66675d85c602f8fbdd045824b2d0314c912b6a4e39ee47b4a78efe85ca211"
+    },
+    {
+      "path": "firmware/boot/TIME_START_README.md",
+      "mode": "100644",
+      "blob": "090aae4312dd61938217903a1717d6897f26b141",
+      "size": 7162,
+      "sha256": "10b3c8edc5674c6472529054f5dc7fa82e319c560b0518e3e673ced40cfc9e28"
+    },
+    {
+      "path": "firmware/boot/USB_START_README.md",
+      "mode": "100644",
+      "blob": "adf7e0008bc57cc9e6326e919d1c7981b1725bc0",
+      "size": 6913,
+      "sha256": "225ebd55e12f52a9b642779cf399de63242d29e6e608fef9fb73a5cac1a4d9db"
+    },
+    {
+      "path": "firmware/boot/mt_board_inputs.h",
+      "mode": "100644",
+      "blob": "f59c0126ad27b743cd945d3ab88d6706e00fcbc1",
+      "size": 849,
+      "sha256": "45119dbca2ce9d7de62cbadb93835c86ceff3e3a44a8e65a4cc327f27a2bf5a5"
+    },
+    {
+      "path": "firmware/boot/mt_boot_cpu.c",
+      "mode": "100644",
+      "blob": "2d4267780eb0c0efabde271ef5ffa3d35936f71d",
+      "size": 786,
+      "sha256": "4640364e1fdd44cd224552547f164e3bf4838556c6623d866cfbb02b8ae98b95"
+    },
+    {
+      "path": "firmware/boot/mt_boot_cpu.h",
+      "mode": "100644",
+      "blob": "b1d43591e7ab3ce0a336d69002f42d70aea4c8d7",
+      "size": 668,
+      "sha256": "182b02a66981a33f39b5a3e1427ca83dabef55711450ec83e9da094f113c6680"
+    },
+    {
+      "path": "firmware/boot/mt_boot_time.c",
+      "mode": "100644",
+      "blob": "d90a5cd2af657202595043bf1eb316eebdd347ee",
+      "size": 2967,
+      "sha256": "3e1ed0173d95e78910fc4841c39b976984f17d5b1970ac0c71d85b62f02b479d"
+    },
+    {
+      "path": "firmware/boot/mt_boot_time.h",
+      "mode": "100644",
+      "blob": "4ecc6fc47dee8bcae0c03be83288839e8736844a",
+      "size": 1693,
+      "sha256": "ba0f26042f97303f0fe9f3e6e4109f079a30b23f80381cec007a355fe79b5f53"
+    },
+    {
+      "path": "firmware/boot/mt_boot_usb.c",
+      "mode": "100644",
+      "blob": "54b391df8e8cbcd8c909c4c859c21e42abef8846",
+      "size": 4372,
+      "sha256": "0610dd327e29fd6c5d9f9289649d51d8428944654e6ccb496178f58e8f216aa9"
+    },
+    {
+      "path": "firmware/boot/mt_boot_usb.h",
+      "mode": "100644",
+      "blob": "a8a34a45f150f18f1a9a1909827c79a48dad4eda",
+      "size": 1528,
+      "sha256": "2ea620b7a8318d52ddc4559d1f0c4f22b423c1b6596a688adafe2dafac83e1ff"
+    },
+    {
+      "path": "firmware/boot/mt_device_main.c",
+      "mode": "100644",
+      "blob": "12b9b58e14a3e4e76a8d321c6ab37c208e048303",
+      "size": 4873,
+      "sha256": "f42d80a8c5c999819252d71d9cda9ce8797db3c22cd59e9dfeac7f55f8bcdc9b"
+    },
+    {
+      "path": "firmware/boot/mt_reset_stm32f103c8.S",
+      "mode": "100644",
+      "blob": "4d3df0bf1fc3fb87ce876cad322efc9f702f6c4c",
+      "size": 4746,
+      "sha256": "73aab7ae43f89544fb2d6b7a931ff1a42a1ad4034c57e5256453dd04b51f1e18"
+    },
+    {
+      "path": "firmware/boot/stm32f103c8.ld",
+      "mode": "100644",
+      "blob": "0039449d5271188445f32b9f6fc6de378e34a8ac",
+      "size": 3230,
+      "sha256": "54a13bae7a9edc25ca38dadaa3c31a957108099fbb193c66d3e32dcc26b7d60c"
+    },
+    {
+      "path": "firmware/boot/tusb_config.h",
+      "mode": "100644",
+      "blob": "cb7a78a812b194756cd3b96ec8df31d6a65032f7",
+      "size": 1256,
+      "sha256": "341fd5a09fe5594c9e6dbee0c14427c485476e58bd8efb640091a717dd657c9e"
+    },
+    {
+      "path": "firmware/build/BOARD_CONFIG_README.md",
+      "mode": "100644",
+      "blob": "f288bd67fdb16997414ce4b4712a51ae0fa9aff5",
+      "size": 12163,
+      "sha256": "ab633b1bcee03801f386cedfa8c059993d81dd402378db10971c42518f67ef57"
+    },
+    {
+      "path": "firmware/build/BOARD_OBJECT_README.md",
+      "mode": "100644",
+      "blob": "3a0a96e7d53ec439b354928b06c872f2c07e277c",
+      "size": 4748,
+      "sha256": "2037a4ee25eda97620ac720502d62465923764e75bb803a4bee4815bb94ba537"
+    },
+    {
+      "path": "firmware/build/BUILD_IMAGE_README.md",
+      "mode": "100644",
+      "blob": "d104cad83157d3edfcd8c1a3c11eebc7d07e4905",
+      "size": 12610,
+      "sha256": "ea1b334eb459e8586bb0e7af006b3c61598b71b6beada39f3811572b2db27a29"
+    },
+    {
+      "path": "firmware/build/IMAGE_EQUIVALENCE_README.md",
+      "mode": "100644",
+      "blob": "cdef172e31776f7f6819aa8ed8d6eca84edaf01b",
+      "size": 5336,
+      "sha256": "f16616095b268763a7dd49b4d9e4d9b7739e124baa346e96aedb458434703598"
+    },
+    {
+      "path": "firmware/build/README.md",
+      "mode": "100644",
+      "blob": "9d2bac2796cd73ea21dd82cc69a3c281c4e17025",
+      "size": 12273,
+      "sha256": "f242117bf5df53c9093ffab3f39336f6554b84fae9823b65a44104ad21eca79f"
+    },
+    {
+      "path": "firmware/build/board-input.schema.json",
+      "mode": "100644",
+      "blob": "e592177ef2cb2c10c2f14ccad1260155f0b2d280",
+      "size": 6420,
+      "sha256": "f4f020ecc3466112353a3d449a18200ea36adf040bc38bdf60634d0d4c4dc000"
+    },
+    {
+      "path": "firmware/build/board_config.py",
+      "mode": "100644",
+      "blob": "a9fe42d237fdc5a941a1b769e81c0abbef0a11f9",
+      "size": 7923,
+      "sha256": "0b5d6ba56603e908d7f0b079e3319863f1f7733c97324644377a3e46244f9f27"
+    },
+    {
+      "path": "firmware/build/board_object.py",
+      "mode": "100644",
+      "blob": "69a4d26b920bfd105aa8eee68a4a12cc489a0d77",
+      "size": 8031,
+      "sha256": "c8cce02a89bead37f59bff5c49572a08c55637d85a8fdf4f8f234ec89924dc9e"
+    },
+    {
+      "path": "firmware/build/build_image.py",
+      "mode": "100644",
+      "blob": "401c491dcb40ffff1913df537e928432f855820c",
+      "size": 21172,
+      "sha256": "0841b36bddb45e58228192f2fb18dbe59364a5b83ed1675fd3b91409556c1eb4"
+    },
+    {
+      "path": "firmware/build/build_objects.py",
+      "mode": "100644",
+      "blob": "d6e046d966937a72cd79893f16f893d63174d7fd",
+      "size": 12574,
+      "sha256": "82823aeb97393a619c87bc83910c552c46b7b17f51d3c679fa814adbb6843db1"
+    },
+    {
+      "path": "firmware/build/examples/SYNTHETIC_NEVER_FLASH.json",
+      "mode": "100644",
+      "blob": "450d2cbaefa33137e6a36206379631912345e571",
+      "size": 743,
+      "sha256": "4e3cf9c9e20b21afbb8ad032f049a577d6e10dfb9919c00668a001ffa99222fc"
+    },
+    {
+      "path": "firmware/build/image_equivalence.py",
+      "mode": "100644",
+      "blob": "4d5a4b024cdcddc0b74ff40b7d693480d3ad657a",
+      "size": 10571,
+      "sha256": "effda2504cac9e034ed30cd02b03dd5634e688fec655848d612da2fb6ff31cd0"
+    },
+    {
+      "path": "firmware/build/image_exports.py",
+      "mode": "100644",
+      "blob": "39f8e71ec7e5942e456deb4883e02e05783237bf",
+      "size": 5140,
+      "sha256": "738b116c45de81a9435090abf9748c1959355c387624ecc8efd05459c890412d"
+    },
+    {
+      "path": "firmware/build/inputs.json",
+      "mode": "100644",
+      "blob": "bc1d181500487dd61dcf0d3ac3a617b0e3c032f7",
+      "size": 35854,
+      "sha256": "3f0ae85dc02578332f2fff32142a84bd02b27be72083f5762564cc5282d72eec"
+    },
+    {
+      "path": "firmware/build/stack_reference.json",
+      "mode": "100644",
+      "blob": "c765939be714c0dbfc20b965baa47f86b2c8e82b",
+      "size": 12013,
+      "sha256": "e720fcf41cd06a4eb77c47bf579d8289b0c13e44143fc2b4e3322aaaeddf923d"
+    },
+    {
+      "path": "firmware/build/toolchain.json",
+      "mode": "100644",
+      "blob": "fc888ae3a382b4969a88a22ecd1ce1296e8bf856",
+      "size": 18052,
+      "sha256": "22f0c2204b8b381a26af3b910851b43b04f34549b6677cdb5b76f304c4e37b43"
+    },
+    {
+      "path": "firmware/platform/README.md",
+      "mode": "100644",
+      "blob": "a16b813a7e16331907bc67d8c9477cb1f4217e1e",
+      "size": 15642,
+      "sha256": "810eb36effff4b0599fdbc09e2f57d4502c02159200114cdd14b6a893481bb9a"
+    },
+    {
+      "path": "firmware/platform/TIMEBASE_README.md",
+      "mode": "100644",
+      "blob": "086e53f5bddaebb4e66058a80eae1176a30d876c",
+      "size": 12322,
+      "sha256": "132572c3ace22d447b190fe77591ecc6e1cde7441c616998f501905629433a6f"
+    },
+    {
+      "path": "firmware/platform/USB_IRQ_README.md",
+      "mode": "100644",
+      "blob": "53a5ef396f2dacee9c830afe06d4ef098a08b377",
+      "size": 4071,
+      "sha256": "1106aecf6dd0549c8c83eb7c86786a7eb14099d2fc428d75e0472f3d994c0b50"
+    },
+    {
+      "path": "firmware/platform/USB_TIME_README.md",
+      "mode": "100644",
+      "blob": "a5fdf6c1c0847c45e33d66946ff79c97a1171af7",
+      "size": 5223,
+      "sha256": "87ef2f0af2eec6530de0b0eab389b255bdf1fb8810475b597abbdf3d07858130"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.c",
+      "mode": "100644",
+      "blob": "e5eba02267f9bd6c8ffbb572e1af95d3aff3764a",
+      "size": 16975,
+      "sha256": "fc0edee4a0948047c76513f598580c419353752374f91c45d79bce2b2e724ba4"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.h",
+      "mode": "100644",
+      "blob": "d3b5abe48c6bb59ecf6f09955fefef1a6ad0f5d1",
+      "size": 6518,
+      "sha256": "930bb13278dfaf422fc78d453a9796977496f3e0e6393d7e8b3cf17268b0da3d"
+    },
+    {
+      "path": "firmware/platform/mt_clock_startup.c",
+      "mode": "100644",
+      "blob": "ded439fa5f1fdcad8b66bf9c7f6cfad9ef3a09e0",
+      "size": 6542,
+      "sha256": "90cddee98cb45e9abba300d9e15416802d22344d813f96f4e2629d48bc99bef6"
+    },
+    {
+      "path": "firmware/platform/mt_clock_startup.h",
+      "mode": "100644",
+      "blob": "fbcbd73ba6eb6ea6c695528abd9274675828d81b",
+      "size": 2255,
+      "sha256": "8c6a62dbb14096b48a00336003dbded7187f479e3a7187703f365ad40a8e1da3"
+    },
+    {
+      "path": "firmware/platform/mt_irq_guard.c",
+      "mode": "100644",
+      "blob": "dbaaf455289b48a4311e170992b11d24cc0bea0c",
+      "size": 808,
+      "sha256": "70953014ab17475b35131cb3c71741fba6c4e8099b670de1abf64bda844506f3"
+    },
+    {
+      "path": "firmware/platform/mt_irq_guard.h",
+      "mode": "100644",
+      "blob": "6a1b6baea243b6ccb0862123f6651b4facd18c8d",
+      "size": 465,
+      "sha256": "677b9880972c99b7ede19f8b6d5a89fab75a3d360c3a8ac4980f8d177d765c4c"
+    },
+    {
+      "path": "firmware/platform/mt_memory.c",
+      "mode": "100644",
+      "blob": "fa5f7e28510dc2a0536228628b3d59017c006ea1",
+      "size": 1582,
+      "sha256": "7ad72d47edfb50ae449633c04cb8376403151f424db7aa80f438d6d034370d98"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.c",
+      "mode": "100644",
+      "blob": "bbe5f5389eb5cc3b30aab39665ce9895ed157f2e",
+      "size": 5149,
+      "sha256": "b403cc8f5e60cc2568b59d9fc5de6cf2cf1f116c03291876e7a05a5dc19f2740"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.h",
+      "mode": "100644",
+      "blob": "dc72b5f9757337ce35269b4f99ac4d0c0e47237c",
+      "size": 2490,
+      "sha256": "613135965695f6e1eb4e24edea9e2873a33b60ee4b44865a5db1ef1730b5b3d2"
+    },
+    {
+      "path": "firmware/platform/mt_usb_irq.c",
+      "mode": "100644",
+      "blob": "afcde2f220bf890fd56a58e4842048da88998b04",
+      "size": 507,
+      "sha256": "bbd07408a4ee77d0fe1a95dba81cf24da418e4008f5ec1acea9c0816e1c57720"
+    },
+    {
+      "path": "firmware/platform/mt_usb_irq.h",
+      "mode": "100644",
+      "blob": "c900bee352949fa874d97cba31a41e6b78278a7f",
+      "size": 360,
+      "sha256": "1dce13b98392277dd515cff3e35ad36b9da9dc713d5b60dd922871bdf02146f4"
+    },
+    {
+      "path": "firmware/platform/mt_usb_time.c",
+      "mode": "100644",
+      "blob": "e19d86011c0ba9de9326993066bdc4748bde20a8",
+      "size": 1717,
+      "sha256": "44bbb8b16d9483621c5f59340d5d33391b4fca8b073139287e0c3a80695f4d3e"
+    },
+    {
+      "path": "firmware/platform/mt_usb_time.h",
+      "mode": "100644",
+      "blob": "e4bb772a3f8b3f4e6c639fd9f25143bb24e0dc17",
+      "size": 1425,
+      "sha256": "58f5f27dd9aacfdb2f84c6457fd8ad046bec924fbf84fcf8bcc3b37dcb9d67ab"
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "mode": "100644",
+      "blob": "ab15501f0afe68a01a3b371338619230cbd90d91",
+      "size": 3566,
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294"
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "mode": "100644",
+      "blob": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340",
+      "size": 2397,
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    {
+      "path": "firmware/protocol/mt_session.c",
+      "mode": "100644",
+      "blob": "f44099ebba52f99c5146ed719be2db5be6b0f71d",
+      "size": 2855,
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40"
+    },
+    {
+      "path": "firmware/protocol/mt_session.h",
+      "mode": "100644",
+      "blob": "646c6fd11f151d3d8a02fc49264f17b76d4204e4",
+      "size": 2253,
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.c",
+      "mode": "100644",
+      "blob": "419e78a74548387db990296357c4fd16d03556a4",
+      "size": 1470,
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.h",
+      "mode": "100644",
+      "blob": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76",
+      "size": 1921,
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "mode": "100644",
+      "blob": "3d76b7f6725615f3fad4305575312997e72152f9",
+      "size": 4102,
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "mode": "100644",
+      "blob": "dcd14d8507f2812d488e4ad9264c3875b4f368d6",
+      "size": 1679,
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547"
+    },
+    {
+      "path": "firmware/third_party/usb/PACKAGING.md",
+      "mode": "100644",
+      "blob": "c95f5aa524185f99157a36b57851019939fed6c2",
+      "size": 3592,
+      "sha256": "b4ec7df24f16e4bf8c965a136c7ea88ecf6b16bb211231527e1c7d2e6bc3dbb0"
+    },
+    {
+      "path": "firmware/third_party/usb/PROVENANCE_RU.md",
+      "mode": "100644",
+      "blob": "e07c2e65a86750e3eeef35a9d52e54a0bc8147de",
+      "size": 9035,
+      "sha256": "748c764069c0cd576bd4cd9d04e54672fe2295661a04d2076a606ad41a3361a7"
+    },
+    {
+      "path": "firmware/third_party/usb/SHA256SUMS.sources",
+      "mode": "100644",
+      "blob": "df54e203a9c79b7fe11f58aa26108e6829dd3b91",
+      "size": 3733,
+      "sha256": "72aa8488d9bbfb917c7b6af0dda15f0b782961d077adc330add3fbcd15a4a5a4"
+    },
+    {
+      "path": "firmware/third_party/usb/SOURCES.list",
+      "mode": "100644",
+      "blob": "8a9496eee137f3cbfcb3d406c75d30d3d5f711b5",
+      "size": 258,
+      "sha256": "de5418dfe04c8e53494d149473eb2e0f6c67303acc04bbe8f8f141ee945496dc"
+    },
+    {
+      "path": "firmware/third_party/usb/THIRD_PARTY_FILE_NOTICES.txt",
+      "mode": "100644",
+      "blob": "521825573c41e92886321d74dbbb84e4f4112f74",
+      "size": 36044,
+      "sha256": "e8e9f0bd6d7b867e521fc35a3a3ae227bb678a39f93aba42daa561e5d5ba0f95"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/assembler-version.log",
+      "mode": "100644",
+      "blob": "7f8e5c41c9b1f60f8a71223da806c7189a51d1d3",
+      "size": 313,
+      "sha256": "abdc186e619e73531e727a047213d95b9b104791041b0c494c3498e71e1d4fc2"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/cdc_device-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/commands.json",
+      "mode": "100644",
+      "blob": "614e910b0a32159e8902f2a91d7dba82fc8e795c",
+      "size": 15255,
+      "sha256": "105ce210b17e187fa8a039ff3784a2d821096d70bc6be348ece747bdf5dd7c2a"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/compiler-version.log",
+      "mode": "100644",
+      "blob": "3dd875223d52c3d2f7c95cb346175f17da124ef9",
+      "size": 253,
+      "sha256": "a24b8af1f922555c6996da666c05ac377382428a81e4ead6ac5e7b6a421daf33"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/dcd_stm32_fsdev-compile.log",
+      "mode": "100644",
+      "blob": "f78019dd5a2124aad7a3faad003021d82b6c7189",
+      "size": 2097,
+      "sha256": "031261b1f2beefd788a88fb41bafdbdf59569f0dc80fededcaa99d3b90f84b2a"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/fsdev_common-compile.log",
+      "mode": "100644",
+      "blob": "cc21705a20e8ef4c254433923a97a890a39c88af",
+      "size": 1221,
+      "sha256": "d21170ae2111880dacb6e07417a1860267a59f6222d9468c8ac09ef621052376"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/summary.json",
+      "mode": "100644",
+      "blob": "bd261a3c836e5f15f678c18a03cc52ecbe3ef5c6",
+      "size": 2246,
+      "sha256": "c8255276c20513b0adf0e93f6fc0b7cec3b17fd6026b3b46451c0d46e32e1fef"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/tusb-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/tusb_fifo-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/usbd-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/assembler-version.log",
+      "mode": "100644",
+      "blob": "7f8e5c41c9b1f60f8a71223da806c7189a51d1d3",
+      "size": 313,
+      "sha256": "abdc186e619e73531e727a047213d95b9b104791041b0c494c3498e71e1d4fc2"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/cdc_device-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/commands.json",
+      "mode": "100644",
+      "blob": "3022815b9963e1141550860278d32443e0c2df30",
+      "size": 16887,
+      "sha256": "d2d54e8f15a76bc693bc50c7cee0e3bde79736e2665d3576b01f863eceda1d65"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/compiler-version.log",
+      "mode": "100644",
+      "blob": "3dd875223d52c3d2f7c95cb346175f17da124ef9",
+      "size": 253,
+      "sha256": "a24b8af1f922555c6996da666c05ac377382428a81e4ead6ac5e7b6a421daf33"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/dcd_stm32_fsdev-compile.log",
+      "mode": "100644",
+      "blob": "f78019dd5a2124aad7a3faad003021d82b6c7189",
+      "size": 2097,
+      "sha256": "031261b1f2beefd788a88fb41bafdbdf59569f0dc80fededcaa99d3b90f84b2a"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/fsdev_common-compile.log",
+      "mode": "100644",
+      "blob": "a092a57308151492ca115d1f90926920b0d29e51",
+      "size": 1002,
+      "sha256": "cf2ce5ef283f68bd63d9297d3250baedce83f5d9f30ff1c21a19d190ea6fb400"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/summary.json",
+      "mode": "100644",
+      "blob": "42f42b5f8f3d73805c858f1467d8dff2fb82071b",
+      "size": 2398,
+      "sha256": "5806c9b2cfbc06b526fd8c89a092ab5d233b5d445a9c6cceab96952e91cc5713"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/tusb-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/tusb_fifo-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/usbd-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/assembler-version.log",
+      "mode": "100644",
+      "blob": "7f8e5c41c9b1f60f8a71223da806c7189a51d1d3",
+      "size": 313,
+      "sha256": "abdc186e619e73531e727a047213d95b9b104791041b0c494c3498e71e1d4fc2"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-global-symbols.log",
+      "mode": "100644",
+      "blob": "8689cef452bb0b6378c30b8a13e24b57b09777de",
+      "size": 1236,
+      "sha256": "d1a86d9a81a0de2bc1aa58c7ebdab9becc0ae9723f881c6d7abddd2c37817d2b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-size.log",
+      "mode": "100644",
+      "blob": "72dc32772d59e26b4546c3c2a114f450a0c51674",
+      "size": 1680,
+      "sha256": "6d59af135545da90c9e1212553b7226cd889cee7c0b897fcef6b31355fe1d64b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-symbols.log",
+      "mode": "100644",
+      "blob": "4c6d3feac4486d53d649189175c12dc9625ac199",
+      "size": 2699,
+      "sha256": "5a3c2c9b905796fad43b0d890ed1d97b3c8c46104a3e5956ea7f5c9099bd2756"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-unresolved.log",
+      "mode": "100644",
+      "blob": "8918b9edd0fce8c44cafea9eae840cdf8d61e389",
+      "size": 562,
+      "sha256": "b5e3cbffbee6c9a5c04f392ea0dd21c00facaf1a51375455f1b8b0f80481b5f4"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device.d",
+      "mode": "100644",
+      "blob": "c1158e3e2476f13c12dc1fde5830f2e29dfee004",
+      "size": 1366,
+      "sha256": "cf6a37ae935e4ad622b9d58bb9005f7d13cdb769f9d6f191b35a5f1d4ded6810"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device.su",
+      "mode": "100644",
+      "blob": "7058c50680580d8f3264485eebcd5b97c6d1eae0",
+      "size": 2903,
+      "sha256": "0a9b1631f8e973928cb43c6cf5b29f82422ce10b2cb35a9183022ec2af7197d3"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/commands.json",
+      "mode": "100644",
+      "blob": "913327593fb6b017efea2bea36bf5ce25be66c67",
+      "size": 16593,
+      "sha256": "d7a830680c7aba7270e4e855d5f940c3547476238199cadde0d9ec8ce921db22"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/compiler-version.log",
+      "mode": "100644",
+      "blob": "3dd875223d52c3d2f7c95cb346175f17da124ef9",
+      "size": 253,
+      "sha256": "a24b8af1f922555c6996da666c05ac377382428a81e4ead6ac5e7b6a421daf33"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-compile.log",
+      "mode": "100644",
+      "blob": "f78019dd5a2124aad7a3faad003021d82b6c7189",
+      "size": 2097,
+      "sha256": "031261b1f2beefd788a88fb41bafdbdf59569f0dc80fededcaa99d3b90f84b2a"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-global-symbols.log",
+      "mode": "100644",
+      "blob": "19c36a7364b8914d8320fc7d3244b4caec038d25",
+      "size": 722,
+      "sha256": "a20cdb50d6137cf7994f628acefe0e47bd2cbf3eccff17d3d2d07c93ec999f2c"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-size.log",
+      "mode": "100644",
+      "blob": "a6181ad5935d3256e9f75637b3f04b0fcdde1674",
+      "size": 1697,
+      "sha256": "6974c4b99dc3620ad79f2f22d63c21345bb0e191291e58b53a0d6c7cb18508bb"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-symbols.log",
+      "mode": "100644",
+      "blob": "dece7a23618d98c060e04d0215506d80b63658a6",
+      "size": 2434,
+      "sha256": "0106a5fbdcabc7d072507706385188e2e16c51164399a23049e53b7b4b9ce8d8"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-unresolved.log",
+      "mode": "100644",
+      "blob": "0015aecf04c170225ea8f70305939d45d6c3539b",
+      "size": 318,
+      "sha256": "7a616b7d1393e9bfa916f5e429830cad6b8c6a6abb4252d18b03af1070d9da23"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.d",
+      "mode": "100644",
+      "blob": "c15afc8a8a6d764d30800c2332e953b927a3b976",
+      "size": 1881,
+      "sha256": "4d622063442aea905140722c3f7642fb46939aab61a92ff9d57f86112b6dd7ba"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.su",
+      "mode": "100644",
+      "blob": "08caed8865c2f2ba992b8e409804692c57f3adf6",
+      "size": 3076,
+      "sha256": "af5b923e45350ea599c8d597ca6ed6e891fe628e6c4a60c408eba5c4da4db5c8"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-compile.log",
+      "mode": "100644",
+      "blob": "a092a57308151492ca115d1f90926920b0d29e51",
+      "size": 1002,
+      "sha256": "cf2ce5ef283f68bd63d9297d3250baedce83f5d9f30ff1c21a19d190ea6fb400"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-global-symbols.log",
+      "mode": "100644",
+      "blob": "23ed6526a1fc7085e4f82045ae01605fc2828946",
+      "size": 102,
+      "sha256": "d89c7a967ef9b27cd179dbd66e9e9f285fd56926e8eb30a9299b34715c218db1"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-size.log",
+      "mode": "100644",
+      "blob": "fb5d8c052a5ca346dc48700f92cf12a536e5f176",
+      "size": 546,
+      "sha256": "2562e24233cd0707ae6944bcb193142f2effcfbfe68cea15507ea5c60a34d8e4"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-symbols.log",
+      "mode": "100644",
+      "blob": "e1d252fc5dbb42911f0305d1410d7a1e8f2e1d0e",
+      "size": 419,
+      "sha256": "7aca9c45a7185b8d23bafbd6cf0f3ce646fd5b5b1adce4628634f57d411bb08d"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-unresolved.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common.d",
+      "mode": "100644",
+      "blob": "773b9eba26537603129859cd9888806ef76d2d36",
+      "size": 1875,
+      "sha256": "e7dc3d41dc3a02c3156a56c47059ae4ad0cb069b717dcbc863b0422b223ae779"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common.su",
+      "mode": "100644",
+      "blob": "b144e9707c9a618cc0d1dda65706086e73fd7da4",
+      "size": 504,
+      "sha256": "e6a9091e67a230be3043e1f1e08270432b128c86b2dcbae97f1ee48e88f5a180"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/summary.json",
+      "mode": "100644",
+      "blob": "42f42b5f8f3d73805c858f1467d8dff2fb82071b",
+      "size": 2398,
+      "sha256": "5806c9b2cfbc06b526fd8c89a092ab5d233b5d445a9c6cceab96952e91cc5713"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-global-symbols.log",
+      "mode": "100644",
+      "blob": "8338d1c0835cbfa46d9ca0924db6c4191a5b76fa",
+      "size": 906,
+      "sha256": "30b2980998e5ebf753e625c2f8b54e384e139ced779b0395b23a7db568118e75"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-size.log",
+      "mode": "100644",
+      "blob": "94e8ebb22665f673a3c1eeaa3ab68aeec7593791",
+      "size": 1781,
+      "sha256": "7b55bcf14b0de573b79524270b1cfc35f3d2f62446856663e393e0300af77158"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-symbols.log",
+      "mode": "100644",
+      "blob": "8fc6d8a7479233a10fde8693d8a093e38cea013d",
+      "size": 2276,
+      "sha256": "c1b5dd869142e484048cf632e4ce33a7e5f291546c85803a80ebc684336cd106"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-unresolved.log",
+      "mode": "100644",
+      "blob": "b77014403ea362721e383715a466dfd3f755a479",
+      "size": 346,
+      "sha256": "d94d29a1ffc008c56085d76236233319d220a3e9e7a5cfcdb40faede6852f90e"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb.d",
+      "mode": "100644",
+      "blob": "48a3095dca1c030ae57e419dd9f746bcb56a14ae",
+      "size": 1710,
+      "sha256": "8ee8abd76b27d793af068d313445afbf27c2c4c2f8cf3f3601208cd974458132"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb.su",
+      "mode": "100644",
+      "blob": "15405fd1dccff5b846b65b8d3836693a0d422454",
+      "size": 2213,
+      "sha256": "ff45edc2461a0815f537f18b548b929471e498240b63de6c678dedae4d8f9807"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-global-symbols.log",
+      "mode": "100644",
+      "blob": "534eefe9f1d839591e159ebfecb9ce9828cc9e8d",
+      "size": 516,
+      "sha256": "2ad92c96477e01e8c7b7e16656cbfb371fb07048478a6852df5125719716fc1f"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-size.log",
+      "mode": "100644",
+      "blob": "71ba16a7e1734800e8b0faf2003bf6f2ce76a7a4",
+      "size": 1431,
+      "sha256": "d5718ddc34df9815446b780432c3d59a33daf4cd63842c65558268d7e0ff0b4b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-symbols.log",
+      "mode": "100644",
+      "blob": "a235bb78fc0cacf3e3636bee756b04cf98e401a7",
+      "size": 1680,
+      "sha256": "34789b5f1ce68556410709a127829fd482d559e7cd2cab2285e51ac3255ceff1"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-unresolved.log",
+      "mode": "100644",
+      "blob": "9f3e824188285d6da19132cd53e5a2f354cf9d38",
+      "size": 18,
+      "sha256": "5d2792dcceb414c9e62f027ee69b602ab848e9d238d4ac34157d643a864678fd"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo.d",
+      "mode": "100644",
+      "blob": "68b882dd725b07769d4592fd2020a768c5c8f818",
+      "size": 1059,
+      "sha256": "de6fa2f1824c27b267b9bd440743efb259eb14a87e60f449d8d3d229d9180cb8"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo.su",
+      "mode": "100644",
+      "blob": "906c2567608ed5a6a505598609ad3818fc88ebc9",
+      "size": 2175,
+      "sha256": "540c02e0f5eeb52674b53cd26a8e3cf78aae24a178e63537d496bb95ac3ada50"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-compile.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-global-symbols.log",
+      "mode": "100644",
+      "blob": "89329ce95bd4f9470ab28a1f7f37200d4255c2bb",
+      "size": 2236,
+      "sha256": "ee78a418e460a348ef63c0dc3af9c90b5278ec0132021187589d37287053a46d"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-size.log",
+      "mode": "100644",
+      "blob": "add811edd1ce26ca2402bb33562451fa11cf59fa",
+      "size": 5004,
+      "sha256": "af02127ef6bd36c755bc96c90c5a8f8b9f5b61fa205d4d59505ad26c254dc2f5"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-symbols.log",
+      "mode": "100644",
+      "blob": "0183742c8f921d894842c55b37a9a4b26974e67b",
+      "size": 5948,
+      "sha256": "98bd1dedb525bac0bd1263cd1f3fd14d09b356c2229810c0e34f80c60a212e04"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-unresolved.log",
+      "mode": "100644",
+      "blob": "cdd5419b68c19a11224032f634c33a1f061d2fe1",
+      "size": 840,
+      "sha256": "e430eded515f0b533d851f6a2adda8d29192dc5e434c071c4b0efde5ddcf9deb"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd.d",
+      "mode": "100644",
+      "blob": "5977c940a31f1ea5bc8488aa5fe73abf24c4b96e",
+      "size": 1779,
+      "sha256": "3731779e7a67a4f6506497c40fa0244561ae36df44d5300a75fa02fddde7309b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd.su",
+      "mode": "100644",
+      "blob": "71f537c664f739ebb5d2b1fc53304e489705e45f",
+      "size": 5999,
+      "sha256": "6d11fac5bd763a12d8d1ab27896dcb349ad6c3845c7bbcf1f6cc0b5e9604f23c"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-summary.json",
+      "mode": "100644",
+      "blob": "ed1fb8a922b496b51bb60cae3e6694bf24e084f4",
+      "size": 2785,
+      "sha256": "f2b00049b5abf3c451f171bb65d7a6513f7cee39a2a77d1ac3c60b87ee4f63b9"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/config/tusb_config.h",
+      "mode": "100644",
+      "blob": "b78f1974211531a8f841c25e326486cb56ab870d",
+      "size": 1345,
+      "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/external-symbols.json",
+      "mode": "100644",
+      "blob": "f589639e36266212a4b99a9bfab825ff1674b5a4",
+      "size": 573,
+      "sha256": "e61d41cbd41fea28dfc3a626de3768f1c0cbd8d9ccdde145aad2f1da379ec375"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/reproduction.json",
+      "mode": "100644",
+      "blob": "8fc23ba457a233e26ca24da8445002c472d8bd27",
+      "size": 1389,
+      "sha256": "0c5de424b7095715f5601246bf340382b32354c9bf98dc4663cb2a3eca7280ac"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/stack-frames.json",
+      "mode": "100644",
+      "blob": "12c5f6e2f61683b6e11181bf9b4c27f5ab39dd83",
+      "size": 28210,
+      "sha256": "3665b35df5140af6c2013125c006f2237290eafbd5db63e25a4fb902b5ad5ebb"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/static-storage-symbols.json",
+      "mode": "100644",
+      "blob": "74f6a332f5888d09d79e7253d92d2c867311c765",
+      "size": 1590,
+      "sha256": "21b409a7c2cf1237529ccc8e2f70f2dd5bb1f3ad3e87132036e55d8c557babc1"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/RECOVERY_RU.md",
+      "mode": "100644",
+      "blob": "a8f9534e669e168c0c16da8173e44ceb6d7a914d",
+      "size": 2069,
+      "sha256": "2e72afc2b9da679be63b6cb92ff1b5664a3fa0819e6d957325a9842b80080787"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/package-download-manifest.json",
+      "mode": "100644",
+      "blob": "354c099ff5bbf84f14c440b0a1049c8cfcad4c89",
+      "size": 1527,
+      "sha256": "e2a43f3855626a0e717f8f9b6fe7ccbbc0b3cf92e36556b83d6bde05a7092e80"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/toolchain-binaries.json",
+      "mode": "100644",
+      "blob": "82701f546d11eb99aa237793cf30dbc7cf2179a3",
+      "size": 1692,
+      "sha256": "3fb178f2f8176a7dd82e7f42f73e3604feb7888d6735a46d7c666f06466ab5cf"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/toolchain-binary-check-new.json",
+      "mode": "100644",
+      "blob": "68014dd905988d704a128839d2adb94f71765fed",
+      "size": 2516,
+      "sha256": "5cbe54b95e6cec5be5ee9fe221a04c2698d630f0f7dfdc3dc063ea8c1e80a951"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/toolchain-package-SHA256SUMS",
+      "mode": "100644",
+      "blob": "1ed894fbbbf657db8e0d14ad27e869f1577a7153",
+      "size": 323,
+      "sha256": "3efc3d2aecf8a79f10aaaded27a345706fda945d26c591e95527f2d4e06036b8"
+    },
+    {
+      "path": "firmware/third_party/usb/omitted-archive.json",
+      "mode": "100644",
+      "blob": "5f507cdd015e59d24e949998471171127fae8a9d",
+      "size": 25713,
+      "sha256": "2500fe5a9787b416b44ee1b696a3a4a40c19040d0be46bbcab53989b2b967c43"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/0001-setup-rejection-accounting.patch",
+      "mode": "100644",
+      "blob": "43ef69ea95e2bd8e2c1d9094c81970720363cf0e",
+      "size": 410,
+      "sha256": "51492cd96f4f9f8dd0699fe915f8c157c866f04cdc129e4c7c734e21f49b0f37"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/0002-f103-reset-completion-cleanup.patch",
+      "mode": "100644",
+      "blob": "b8c041c9bbc1da43dd3099f58fb0ed77e32f59df",
+      "size": 996,
+      "sha256": "c80786e18ca1777be639fccb34573f10fbe73168c4749ff3e289e1103103332e"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/0003-usb005-core.patch",
+      "mode": "100644",
+      "blob": "d1bba75cd48e3518404dee05953c7a026e66c37d",
+      "size": 13237,
+      "sha256": "4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/0003-usb005-fsdev.patch",
+      "mode": "100644",
+      "blob": "946b5f74ac275ee91181438e3116a0be7c0cd3ac",
+      "size": 1538,
+      "sha256": "cc5f9333cd5e4af84beebbc757d8225cb09368e4d32cbc23a10fcff7f4dbd671"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/apply_f103_reset_patch.py",
+      "mode": "100644",
+      "blob": "60ab9e4c3d1a28d39e2e2144512d16faacb4e5b6",
+      "size": 2006,
+      "sha256": "e56442bfcefa0883759f62a1815a45641e51ee7fa84178d9759583150b6e265b"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/apply_setup_patch.py",
+      "mode": "100644",
+      "blob": "65a5f7f41181e0a0631896ad8fb4c569396b861c",
+      "size": 1962,
+      "sha256": "28b1672b247a71d149b47d631659df9e09c9d761ea413bbedbf1c571658bb189"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/apply_usb_bridge_patch.py",
+      "mode": "100644",
+      "blob": "001bf35ded9ef09d930b36ad868a9940cbe1fb97",
+      "size": 2123,
+      "sha256": "73e25167eacff7b9ec5faf0d006fd37e5509eafe657ceec3b539fdb1f036d2a8"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/f103-reset-cleanup.json",
+      "mode": "100644",
+      "blob": "8c08583bf107a585951da31d6b9a996aac3efed8",
+      "size": 394,
+      "sha256": "640e86511f1e868b956fdde7a3b7c8523e2afe433b1f42d11606a09d841664a2"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/setup-accounting.json",
+      "mode": "100644",
+      "blob": "0194c37362ffd5e93b407ecadb6b5cccfb9404a4",
+      "size": 366,
+      "sha256": "7fc3ac47a74ef0e85e1aadccf4207ea11fad238a690f43790fc66aaf44767a19"
+    },
+    {
+      "path": "firmware/third_party/usb/patches/usb005-patches.json",
+      "mode": "100644",
+      "blob": "873a8dc6d2db841710592ab5304a6e0734c80c5d",
+      "size": 817,
+      "sha256": "41ca4196cc022994e00efc1f3299318fd71e62016406d0ba222219ec1d45a2c6"
+    },
+    {
+      "path": "firmware/third_party/usb/source-manifest.json",
+      "mode": "100644",
+      "blob": "9e1acfebf5068dc83e16ad5f2b76776958a54360",
+      "size": 31236,
+      "sha256": "2c60508bafdf17d393fc2a11c54866c78fc10c04f377ea3c7bfe54de13a94d85"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_compiler.h",
+      "mode": "100644",
+      "blob": "adbf296f15a47a93e5058abddad6742bb4b9854d",
+      "size": 9481,
+      "sha256": "b51963d271c1571ca3463654c76aa7ea50c4eac5d0a2710df10414ac64d9e0f8"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h",
+      "mode": "100644",
+      "blob": "67bda4ef3c38dadc4471129d39eb4e870dc08fc7",
+      "size": 63374,
+      "sha256": "43bfd1fe69fbbc2ca70aaf7d43cc3e20f16e0c7f66e1bdef9b51af6dc14b2617"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_version.h",
+      "mode": "100644",
+      "blob": "8b4765f186efe577be5245b59c610056d3c54cbc",
+      "size": 1680,
+      "sha256": "184c19fd3ee73632edf35a0b4d49cd48be75fbf49e6ccb19d9db05fa83bea4b3"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h",
+      "mode": "100644",
+      "blob": "74fb87e5c561f39588388d3bf1d5a560ee1a63f4",
+      "size": 109529,
+      "sha256": "c9937781259a8897adf514445441c68570087d6a72a558d8a4afe75cdb62dbd2"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/LICENSE.txt",
+      "mode": "100644",
+      "blob": "8dada3edaf50dbc082c9a125058f25def75e625a",
+      "size": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/stm32f103xb.h",
+      "mode": "100644",
+      "blob": "82df4b00ab785323b004838664d90dc868b70eb1",
+      "size": 842883,
+      "sha256": "d9c7c613d9fea74220892b4fbc3e80617493acad82a04bafadab2b4a7198399c"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/stm32f1xx.h",
+      "mode": "100644",
+      "blob": "0f32778fef45a006ad2aded658a4cfcca1f32e7b",
+      "size": 10110,
+      "sha256": "05e93fa3ddefb2e83d762b9ca4de36e3bba9cd8e9690400fe9f2c11fc0a3cef5"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/system_stm32f1xx.h",
+      "mode": "100644",
+      "blob": "f8c5304cc509b67b46215ad2f15a7f46ee4e7434",
+      "size": 1758,
+      "sha256": "a54dfbb3480c672f532d472a6e84bcf34df6551771d2e9966c5a3503c676b6ab"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/License.md",
+      "mode": "100644",
+      "blob": "7733a496798048b4339d794446c8543be67a49ac",
+      "size": 11357,
+      "sha256": "b645e89bbfb6accf914cf7adca011712bf90055391fdd55f2af6439d98aa36d4"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/LICENSE",
+      "mode": "100644",
+      "blob": "0680c2f055bf770cad5a44321db41ed0f8fb0f36",
+      "size": 1094,
+      "sha256": "f878d62e47e693ea64160218edb1b9b4755f4839a3179e5bef4a6b0359399431"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc.h",
+      "mode": "100644",
+      "blob": "679723ba65dc5277997464844681c98034cb5dc0",
+      "size": 26136,
+      "sha256": "40bfcfda287a7556d31e0a6ea607b9b4340be32436c3af0099b08ece6e853312"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "mode": "100644",
+      "blob": "c499756b9e43213adb902633c9b4abb035df1923",
+      "size": 18200,
+      "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.h",
+      "mode": "100644",
+      "blob": "9ac6bc58aca28cb0fd9c6905fafdf7954db6b994",
+      "size": 11258,
+      "sha256": "1d9b3f42642e668d0bb8f82c494ffe971f387ffda2b03dc4ca78b4a6f09f13cc"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_common.h",
+      "mode": "100644",
+      "blob": "6ac1405f33746afb31a56c94cac35ad6ea37940e",
+      "size": 16313,
+      "sha256": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_compiler.h",
+      "mode": "100644",
+      "blob": "a8971c3dfe03ce808ef771d35f3cd17c455b4d93",
+      "size": 13258,
+      "sha256": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_debug.h",
+      "mode": "100644",
+      "blob": "ba5b4afd1b0a77ba2318611d0fc8cb26107f4582",
+      "size": 5290,
+      "sha256": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.c",
+      "mode": "100644",
+      "blob": "a8ac99fd2935b35530c236462075ffbc8e2dc505",
+      "size": 28389,
+      "sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.h",
+      "mode": "100644",
+      "blob": "b31a0802e87902cb51a7331be26e89095707636e",
+      "size": 13787,
+      "sha256": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_mcu.h",
+      "mode": "100644",
+      "blob": "35de47030809d6615297822a2653d1fa97b7a476",
+      "size": 25894,
+      "sha256": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_private.h",
+      "mode": "100644",
+      "blob": "a31bf7b03a0b0d73dbfbe9022f165a427cf94020",
+      "size": 6936,
+      "sha256": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_types.h",
+      "mode": "100644",
+      "blob": "cb06b89bba9bdee84db4fde66d1bc6f39428f6f4",
+      "size": 23210,
+      "sha256": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_verify.h",
+      "mode": "100644",
+      "blob": "c0e4d0883dfa85ea9e43f448488242f87c4bb18e",
+      "size": 5875,
+      "sha256": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/dcd.h",
+      "mode": "100644",
+      "blob": "f861eb2589cea42abcc87f9aa11f07f22bfecabf",
+      "size": 9178,
+      "sha256": "baf785f2d5d8e3f74bd6d6a04559fc606d341983aad35aa08e168b452c2750db"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd.c",
+      "mode": "100644",
+      "blob": "c4c418cb5e03a76deeab566ddac318eb903dba66",
+      "size": 58890,
+      "sha256": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd.h",
+      "mode": "100644",
+      "blob": "abce5a887813a2fd9cbd542525f40396b1da9d04",
+      "size": 64062,
+      "sha256": "48040a0ea812b5f099bab557c81aa83fb9386d7eb2dfd814b1eba9aa2468b298"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd_pvt.h",
+      "mode": "100644",
+      "blob": "be778f9af916656a235981f1a35c193a859a6206",
+      "size": 5549,
+      "sha256": "3d3bae6a54ac6d677a2fdae156665c760a7f22f7651b34cfaa4460a585964db9"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/osal/osal.h",
+      "mode": "100644",
+      "blob": "2114c0a61422fdf56257a8c08aea3715f5eb3680",
+      "size": 4115,
+      "sha256": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/osal/osal_none.h",
+      "mode": "100644",
+      "blob": "49439cef09db153d0fdbcca877688075f8936a3c",
+      "size": 8014,
+      "sha256": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
+      "mode": "100644",
+      "blob": "f5a8beb65dbdcef6304748553284cea5c063c0d8",
+      "size": 30229,
+      "sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c",
+      "mode": "100644",
+      "blob": "7c4572a1e524a305ea5cc0deb58c8fce83b52282",
+      "size": 3894,
+      "sha256": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h",
+      "mode": "100644",
+      "blob": "af84b8b97c2adab841165bf234e131a6f283ad18",
+      "size": 16549,
+      "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h",
+      "mode": "100644",
+      "blob": "93cdac808f10d78db02c6963f3a66141b5de3eb1",
+      "size": 12083,
+      "sha256": "8ad617f61884ef9acc137fed9eab34264af79ef75df916cef1126f3106fdeabe"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "mode": "100644",
+      "blob": "634cbc10b9b4439f7189b53f535ad3993ea6010a",
+      "size": 16704,
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb.h",
+      "mode": "100644",
+      "blob": "aa6b461e5f930072c7a9c7cd4a8bdc140ce0d549",
+      "size": 5026,
+      "sha256": "115100fbffe8984964a321e477720a5586db7776ac832ca81749c89cc08183bb"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb_option.h",
+      "mode": "100644",
+      "blob": "b23b374673765121a4b43d05fadc035076f014b9",
+      "size": 30475,
+      "sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f"
+    },
+    {
+      "path": "firmware/transport/README.md",
+      "mode": "100644",
+      "blob": "ff0f79345a8b5a293e00a579513f435d7b56cfbe",
+      "size": 23279,
+      "sha256": "7cb5d01614e4804c3b50bd2216c4244e39159e79d46d6a8a7f44d8c93ddc7abc"
+    },
+    {
+      "path": "firmware/transport/USB_CDC_README.md",
+      "mode": "100644",
+      "blob": "f853fafe3228307250770d13af2310a2d020a937",
+      "size": 11768,
+      "sha256": "a00fbf3d99da6a7bf9c9a316c5a7ae9bd37ec88d827f5c1ff305ef214dc5dac1"
+    },
+    {
+      "path": "firmware/transport/USB_EPOCH_README.md",
+      "mode": "100644",
+      "blob": "43fda07b83d8b0dc3e5084d26abe7fecbe93f26a",
+      "size": 13029,
+      "sha256": "dadc28f7fe17b2560b3431353ff20a75c2bd799434f33b1708b9513dec82be29"
+    },
+    {
+      "path": "firmware/transport/mt_tx.c",
+      "mode": "100644",
+      "blob": "a7a71301ea9310364307b3fc1a07f75a05ae4866",
+      "size": 11184,
+      "sha256": "6ff521de04f1c86d26b0d1aba8a96917fc8eb750074cb1364a89700d470293d0"
+    },
+    {
+      "path": "firmware/transport/mt_tx.h",
+      "mode": "100644",
+      "blob": "f319d99814c93c5a056fcd05c3b2cea90e145f19",
+      "size": 7065,
+      "sha256": "6f008a8645dc53130ad2ecce39184ed4a563f71c812800dcf81954af102e2de8"
+    },
+    {
+      "path": "firmware/transport/mt_usb_bridge.c",
+      "mode": "100644",
+      "blob": "6a2bf0b91ea5d732eed11c30d8f8087e12b3dcb0",
+      "size": 6720,
+      "sha256": "5e6a12261a5a0488c82b572d516a3fd9d0c0e27fccc8e1ade22b59013a2b7d5a"
+    },
+    {
+      "path": "firmware/transport/mt_usb_bridge.h",
+      "mode": "100644",
+      "blob": "ac73cb791756792079c16219e2545b903b77a7fb",
+      "size": 2750,
+      "sha256": "08fd79a9fc5e256e9708d9c0c43a5dbf2ec467a3a7875128e28a868523c5da6b"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.c",
+      "mode": "100644",
+      "blob": "80a2a1450e51e3f4b1e29ffed1e9180376d16d21",
+      "size": 5827,
+      "sha256": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.h",
+      "mode": "100644",
+      "blob": "34b9c947397e3e7e989f5460c1a2f196e083e21f",
+      "size": 2328,
+      "sha256": "4f7d054f5ec14c4b04b6b28240c93af2e9894e16c72db7a369f2d3221800563b"
+    },
+    {
+      "path": "firmware/transport/mt_usb_descriptors.c",
+      "mode": "100644",
+      "blob": "925a5ff9a944eb8e006b7ad4a4bf7e559ddc3ac2",
+      "size": 3174,
+      "sha256": "efe258f1567b17f66e9a6c48793d95586c3c6869ad890e05ee642c8f58ac3ad7"
+    },
+    {
+      "path": "firmware/transport/mt_usb_descriptors.h",
+      "mode": "100644",
+      "blob": "3605b04153dbf5ff7c9460d92acb3d0d89cd17d2",
+      "size": 936,
+      "sha256": "f35ca537b41dd5b2c47e4c589b06545a0da59ed0d8a9be27f6ef10b78848437d"
+    },
+    {
+      "path": "firmware/transport/mt_usb_epoch.c",
+      "mode": "100644",
+      "blob": "cab50f3e00930bd295f7b3042f6bcdc1ba8f7040",
+      "size": 3449,
+      "sha256": "ee7f7aab84cc13f79b9f95430229584457bec9800116d8c2b0768fc11ccf633e"
+    },
+    {
+      "path": "firmware/transport/mt_usb_epoch.h",
+      "mode": "100644",
+      "blob": "09c0222d295836f91ed751071f88c497e58c5813",
+      "size": 2958,
+      "sha256": "21498b42c3cfa3f03fe78e6567cf996d4b1892a0d3d23ef90e097a6e858f9954"
+    },
+    {
+      "path": "hardware/analog-source/MEASUREMENTS_RU.md",
+      "mode": "100644",
+      "blob": "11b8858e3bcba02155fca1be9a18deb87fa8f7fa",
+      "size": 14091,
+      "sha256": "e24d3cd16247417c46592c4edd1326539b7b58e43eb8e1987942da85394929b2"
+    },
+    {
+      "path": "hardware/analog-source/PROVENANCE_RU.md",
+      "mode": "100644",
+      "blob": "9f5728016c269044eadabc2599f00f93960c8a03",
+      "size": 3318,
+      "sha256": "77cd3870230f673f2a4da532e3ea7eaef45a894ad0dc259265e7677098da381c"
+    },
+    {
+      "path": "hardware/analog-source/README_RU.md",
+      "mode": "100644",
+      "blob": "20175d3ac5c91e1819a53b1b868bcf209c9cb057",
+      "size": 27319,
+      "sha256": "8688e88a13dac7a220b6833238b97486165bf4de125c3e7113d03f73a1c19304"
+    },
+    {
+      "path": "hardware/analog-source/SOURCES.md",
+      "mode": "100644",
+      "blob": "44c90cb0b41d35416ff7af5a27dcf44439135699",
+      "size": 6245,
+      "sha256": "242fa4b97d33b6cc2cbb6aa67a97ad7e2e9507662864fb07c0d759bc60a52ac5"
+    },
+    {
+      "path": "hardware/analog-source/SOURCE_MANIFEST.json",
+      "mode": "100644",
+      "blob": "b993046f28eb9200b5341addf970fbf79bd1a8a2",
+      "size": 1863,
+      "sha256": "72b32f9f3b806a62f58706150cd71d31b73edbcd02510bd28dc567aca41a11c3"
+    },
+    {
+      "path": "hardware/analog-source/option-a-dc-bom.csv",
+      "mode": "100644",
+      "blob": "042a1da1bc954ccc8e187631796a3e599b731f53",
+      "size": 854,
+      "sha256": "007a9ce608cdf2b0b51f9e80add621cecaef77c96a1d28022ca969e821d0126b"
+    },
+    {
+      "path": "hardware/analog-source/option-b-ac-bom.csv",
+      "mode": "100644",
+      "blob": "54a3f5bdb8e512fdd1eaa42a7f8aa5e5cea380c6",
+      "size": 1521,
+      "sha256": "2a5d5743e4c051890e40e7c55be4d0df1fc9ef82050d86de6a011e517da436ff"
+    },
+    {
+      "path": "hardware/analog-source/schematics/AnalogDraft.kicad_sym",
+      "mode": "100644",
+      "blob": "6311b58b3d5fd2d997fd91ceef3262f956ed8bf7",
+      "size": 10323,
+      "sha256": "21d1755fa43dd9d992eee17446e73c0ceb915297559db5f4a312e4798516ad96"
+    },
+    {
+      "path": "hardware/analog-source/schematics/option-a-dc.kicad_pro",
+      "mode": "100644",
+      "blob": "c1e5bb1f30cebb717a5fb5d53782fb1dae8062ae",
+      "size": 169,
+      "sha256": "a6c2f6e3eaa8e619608acf95f24502ff755e09b2fb350442f2ab1cab4c388ef4"
+    },
+    {
+      "path": "hardware/analog-source/schematics/option-a-dc.kicad_sch",
+      "mode": "100644",
+      "blob": "97d486e391daa1a68d305bad49a0e2412c9088d8",
+      "size": 25708,
+      "sha256": "2bb3f5c5785a62f0c81a31dc51480bc40a408ab0312bf18448cb68df9794a2fd"
+    },
+    {
+      "path": "hardware/analog-source/schematics/option-b-ac.kicad_pro",
+      "mode": "100644",
+      "blob": "75c32882d56cb6e67407c8f201bb6ba6c7b9029e",
+      "size": 169,
+      "sha256": "d418ce265ab3a36165918ba14ce29e101751dd7c3d01faa5136a6cf1fd7efcca"
+    },
+    {
+      "path": "hardware/analog-source/schematics/option-b-ac.kicad_sch",
+      "mode": "100644",
+      "blob": "75c7d29a46edef4d4bab95b9636c3223ffd99368",
+      "size": 38266,
+      "sha256": "60668d241fd792354b27abfe6989ef21a9821562a982974b8529148ef39a6bb0"
+    },
+    {
+      "path": "hardware/analog-source/schematics/sym-lib-table",
+      "mode": "100644",
+      "blob": "f43c2663c69534151c96e27afdc57ddc51e58c5c",
+      "size": 178,
+      "sha256": "89a09628815978f4324cd7cf4be0bc6ff5606dba28b608991fd9d6528265ca39"
+    },
+    {
+      "path": "hardware/analog-source/tools/calculate.py",
+      "mode": "100644",
+      "blob": "6dd00170d32490ca1661478743d1ab2060768657",
+      "size": 5789,
+      "sha256": "6c140aefe88ed23f35e2d2ed2252e31fd88c1ff2692ba3eddf0b43dac6457035"
+    },
+    {
+      "path": "hardware/analog-source/tools/check_netlists.py",
+      "mode": "100644",
+      "blob": "c239f51492dbdb2d201d259889b9a0a0ac8c258e",
+      "size": 2192,
+      "sha256": "67a3e6c48c9167b56f25a1300e33398bc34b763fd3b97649e91cdb369b32cff2"
+    },
+    {
+      "path": "hardware/analog-source/tools/generate_diagrams.py",
+      "mode": "100644",
+      "blob": "a351afe403531e667725feae35190fbfda5c13c5",
+      "size": 4914,
+      "sha256": "f5af9a5ff19c5a9c27075149c8b93dc8a9a2f2b5fcea3e83365c2d8f55bebdb3"
+    },
+    {
+      "path": "hardware/analog-source/tools/generate_schematics.py",
+      "mode": "100644",
+      "blob": "40597a68c84a68de79fd1c795e122d60e56f294e",
+      "size": 12754,
+      "sha256": "20459290490ba86196f22fa091ea30b7effcda14837456356b2ce759f618b815"
+    },
+    {
+      "path": "hardware/analog-source/tools/verify.py",
+      "mode": "100644",
+      "blob": "9dd3cdbf1b0845e66786136c89333117d854ee5a",
+      "size": 6446,
+      "sha256": "db5a5d375fea02b31d9141437d8865ab5f0ff7f8c3348c4879db27d0c9c9d036"
+    },
+    {
+      "path": "hardware/analog-source/tools/verify.sh",
+      "mode": "100644",
+      "blob": "de66bce1f551a33b0c81f0b69c4adb40bea01ab0",
+      "size": 121,
+      "sha256": "5df2ecaa8447e5a2886e2de506685ece258037074027ceb73048e8b67a3ff54a"
+    },
+    {
+      "path": "host/.gitignore",
+      "mode": "100644",
+      "blob": "309336f51bea7953365188e7a0aa2916131cf9e4",
+      "size": 55,
+      "sha256": "c876de662f1d7a05dd8f15757b5f72218909efb5e3bfb205eb2d775208400df9"
+    },
+    {
+      "path": "host/CHECKPOINT.md",
+      "mode": "100644",
+      "blob": "43731fddcb23d1a545bd08f2bf5f3b7dd84c51ec",
+      "size": 4199,
+      "sha256": "685f7225044ce557f78bfe217922fbaf623d416a58a5d47a571f5a303fd3d011"
+    },
+    {
+      "path": "host/README.md",
+      "mode": "100644",
+      "blob": "d96d285c541100c4e55b578f634c95567db98f93",
+      "size": 15499,
+      "sha256": "3f25d3be5d14ad2eb37ce954b39f1f59bcf8c028ebf49c823efe0d3f5a9c9df5"
+    },
+    {
+      "path": "host/docs/acquisition-bridge.md",
+      "mode": "100644",
+      "blob": "3975db2b6259942e467a10a059b677d7bcdc36c3",
+      "size": 11903,
+      "sha256": "6b7aba5856a34abae4bf391e7719795fe6ad227867ccde2dd6f7ef6712fff138"
+    },
+    {
+      "path": "host/docs/acquisition-integration.md",
+      "mode": "100644",
+      "blob": "0a7f727f05f74e28a66e7e6bb8b9473f5e9f6f28",
+      "size": 21645,
+      "sha256": "d2e5f511ac18df1a0da1cf8ebf802ef6be31a0a9374b0e2eebcca7f6115d7845"
+    },
+    {
+      "path": "host/docs/current-delivery-sources.json",
+      "mode": "100644",
+      "blob": "224801a8b7094822809dad54d0468741dddf6813",
+      "size": 2078,
+      "sha256": "3d4a7ba42a0c96d46dfeb5920bbc46356c23e9413d630d1f7f92f4a1ca37f242"
+    },
+    {
+      "path": "host/docs/current-delivery.md",
+      "mode": "100644",
+      "blob": "51f583673f2b220ff91bb5fc7ba3bdf4106c0e52",
+      "size": 9526,
+      "sha256": "ac0345576d36ea033aa351e259642e73ee92ed3c3d3786ede4a3b5516d779e2d"
+    },
+    {
+      "path": "host/docs/device-emulator.md",
+      "mode": "100644",
+      "blob": "cf0bd80f740e6f5426b5152d7a0d095014034c76",
+      "size": 27604,
+      "sha256": "9fc9c462fec0012f7394fb41541ed75fb6946ac8e553b4ff6a790f842463e9b9"
+    },
+    {
+      "path": "host/docs/early-release-parity.md",
+      "mode": "100644",
+      "blob": "53eddccc87f8ae4e4e4f8a3bc322a2d81e52b70f",
+      "size": 12953,
+      "sha256": "b387da8a7d7ea518a1a23ddd60c147dbd446121622b90e3b558edcd08f0674fa"
+    },
+    {
+      "path": "host/docs/format-v1.md",
+      "mode": "100644",
+      "blob": "a88127892d09799d3ce537a8567a70efc014c35d",
+      "size": 10216,
+      "sha256": "648a7826ef294602dfa8015a286ac88c4add436b2476c786b17e66aac2acef88"
+    },
+    {
+      "path": "host/docs/help.md",
+      "mode": "100644",
+      "blob": "c520bd5d77626c05bea97cbd54ef47b2ac3c715c",
+      "size": 13302,
+      "sha256": "637fef01f174d244a7bcbe1fb4b6bbcb1062f2473e75cde4c198eb4e3a063b72"
+    },
+    {
+      "path": "host/docs/integration-sources.md",
+      "mode": "100644",
+      "blob": "dd287d9ba222c82c8fbdd6f82d1abde25318389b",
+      "size": 3653,
+      "sha256": "78bde8e5bbb109dc40376d79fc03115ad03a8e79a78d3d7a5009fed55b196e91"
+    },
+    {
+      "path": "host/docs/lv-collector.md",
+      "mode": "100644",
+      "blob": "637061cf8cd8499a558c907d28889ee89e4f80d1",
+      "size": 23570,
+      "sha256": "dff16fdf2f593a9d7068470ca928457e6c4233f0d64ddb2123e621ad168a5359"
+    },
+    {
+      "path": "host/docs/mvp-union.md",
+      "mode": "100644",
+      "blob": "ed0d6ae0e22356e2cdab87623d76d1fd65316324",
+      "size": 9375,
+      "sha256": "fb0f87ddb52fb597a1e30b76f80ae1a033f15ca667cfe6c05fe671c0e4cfb677"
+    },
+    {
+      "path": "host/docs/runtime.md",
+      "mode": "100644",
+      "blob": "3bc1c95b3c97657e3ece4e01aa65e50a1cda50a6",
+      "size": 11225,
+      "sha256": "4196384700ff0d2c7e0fef8f6bf0ac557cda21fb8904c65ad87e6c59a9113b8d"
+    },
+    {
+      "path": "host/docs/serial-packaging.md",
+      "mode": "100644",
+      "blob": "de021988e4948f9a28c2f1276d27a98b1a87ccef",
+      "size": 11223,
+      "sha256": "e35f412f1d8bb913e65373be6ae71218db47a638cb55d15ada8ed6549d732f1b"
+    },
+    {
+      "path": "host/docs/session-controller.md",
+      "mode": "100644",
+      "blob": "083d9e91812c3efc6c090b815fc7d353fb11cd3e",
+      "size": 36380,
+      "sha256": "2384ed46c63b36c156b0bd06ea43f54b5d433ad435671de9502460f7b616e39b"
+    },
+    {
+      "path": "host/docs/stack.md",
+      "mode": "100644",
+      "blob": "2239af5f2d4ce9d8553fac6a2cfbe76e58dc9db3",
+      "size": 6673,
+      "sha256": "db28d4817ced4cc56d0178c1a4bd9a342cc2bd36b467f3b9db1c8ade418c661d"
+    },
+    {
+      "path": "host/docs/transport.md",
+      "mode": "100644",
+      "blob": "c3da82ffc306842d125c40cde161018427b74b7c",
+      "size": 19343,
+      "sha256": "0f418e79063408a61995ba5ddbaf77a9cb5b46461b92dd73781fcd87b94f9cb7"
+    },
+    {
+      "path": "host/docs/union-source-manifest.json",
+      "mode": "100644",
+      "blob": "8f9a13f72eaa410ff76bcdfbbedc3efcaceddae1",
+      "size": 7608,
+      "sha256": "82b114f2ed93450927da7132f2984c4b468414aef8ac98dac0a86f22bdbf157e"
+    },
+    {
+      "path": "host/docs/window-receive.md",
+      "mode": "100644",
+      "blob": "61b91c88e0aadc4ae6688e212f064c3a5824a8d1",
+      "size": 21163,
+      "sha256": "e14376dc127f06b9389439c099b84f680440388dd8485bbaa47c1d507fd8350a"
+    },
+    {
+      "path": "host/docs/windows-smoke.md",
+      "mode": "100644",
+      "blob": "c4369ab94b88c0a32566e22897dc8efb3c1582f3",
+      "size": 19384,
+      "sha256": "35a11af6e6c7b62b0b58b9798e3ae1d368b7850bfe3e271f12d41258adb66d24"
+    },
+    {
+      "path": "host/docs/wire-adapter.md",
+      "mode": "100644",
+      "blob": "725da1d0d7437335782409e3af07237183e88382",
+      "size": 14991,
+      "sha256": "8719b8227e59ad0be6fab125e65ec5ad1e25333f024cb2d8640eb4d89ecb2838"
+    },
+    {
+      "path": "host/docs/wire-demo.md",
+      "mode": "100644",
+      "blob": "582579e5a0224afe6eaeb856a590a4ea63f901dc",
+      "size": 5926,
+      "sha256": "0edb69080d5bf2de5daba5afab2bf2db46697cb20dc184a0217eb8cf432351ee"
+    },
+    {
+      "path": "host/evidence/README.md",
+      "mode": "100644",
+      "blob": "2644eaad0954e36da4a768833294691c04e46ab5",
+      "size": 2356,
+      "sha256": "9f2491d12dc211cc80769afe310c54adb64a33b3dbf63f6f9187221d6fd3f695"
+    },
+    {
+      "path": "host/evidence/control-synthetic.mtcap",
+      "mode": "100644",
+      "blob": "187bd38d559d139726517be6e86e8d9465355500",
+      "size": 682,
+      "sha256": "69be281108d55ce71237b6185a84740fa7d17f1e9ea9856cf9a3204ace951327"
+    },
+    {
+      "path": "host/evidence/host-001-linux-offscreen.png",
+      "mode": "100644",
+      "blob": "2a9f6d13d217f5bccb542bf329ed38fced1e3b6f",
+      "size": 121674,
+      "sha256": "77200e946f441863283f42f0086427e43c064a03203a7aa6801cc7189e7a2215"
+    },
+    {
+      "path": "host/evidence/host-001-tests-linux.log",
+      "mode": "100644",
+      "blob": "dee3360daaf9f4a7beed016cfe6177cbde1c1415",
+      "size": 12034,
+      "sha256": "f049b9c8d865e55bd774f873b7f2b9c4a05a0cda062a62fd5a22cdac6f5e7008"
+    },
+    {
+      "path": "host/evidence/window-synthetic.mtcap",
+      "mode": "100644",
+      "blob": "50c3b27fddd9a6cf9ae6492d7be523137ef99dbd",
+      "size": 4795,
+      "sha256": "d1cb1403b3b9cb322b1d23d00f2496642346bd8398edcff6dcbb78800c60f3f7"
+    },
+    {
+      "path": "host/evidence/windows-wheel-resolution.log",
+      "mode": "100644",
+      "blob": "7f16a38e81ebe9e0013fecd94b4739568088dca1",
+      "size": 4507,
+      "sha256": "d692f048395b9cf73e547d7f076ef4f2788da333c60a6227e818a872e070d048"
+    },
+    {
+      "path": "host/motortester/__init__.py",
+      "mode": "100644",
+      "blob": "d28c127dfa54012834ff6d15c3e13e11b3a35ada",
+      "size": 87,
+      "sha256": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645"
+    },
+    {
+      "path": "host/motortester/__main__.py",
+      "mode": "100644",
+      "blob": "7c1c4b886a432e93b67d1776a403d92de0b6da75",
+      "size": 1651,
+      "sha256": "e4872c82c89809b28285bd0ce5444eeae73e4b1600d897d61f9f237e4f67a86f"
+    },
+    {
+      "path": "host/motortester/acquisition.py",
+      "mode": "100644",
+      "blob": "8b2714ba79fc2d77196ac48bf4dd6da90f3099f2",
+      "size": 28391,
+      "sha256": "2e384f09ce82f951ee01c782b7389f2c08e0ca900182b039c30114451428e1b4"
+    },
+    {
+      "path": "host/motortester/device_emulator.py",
+      "mode": "100644",
+      "blob": "86085965123362dabf4e3bb719a4e68041d01e55",
+      "size": 23797,
+      "sha256": "f733ab0fad14a443402a26f437a399fe69499ef1a68a8fa793a64d8d630daef5"
+    },
+    {
+      "path": "host/motortester/emulator.py",
+      "mode": "100644",
+      "blob": "957c6a855fb7e89790e322fb0d5b48e5091faafe",
+      "size": 1624,
+      "sha256": "d44aa6e164a28efcdef1c49719af6b0344f202a8be2626e893b876a07d729b43"
+    },
+    {
+      "path": "host/motortester/gui.py",
+      "mode": "100644",
+      "blob": "3a02e347818063377524bcd1aa61acf775ca9eac",
+      "size": 44793,
+      "sha256": "9182eff057ffcc02d8e0ce5269752ed70048dd415873b9165178f01684b61847"
+    },
+    {
+      "path": "host/motortester/gui_acquisition.py",
+      "mode": "100644",
+      "blob": "0b875799e6018c310f3534bfcc63e88e5ff0f16d",
+      "size": 14018,
+      "sha256": "99173d60c071f0bbd45733a0ab887f961b4ec8fc1bea17c7295de52a95fa17f8"
+    },
+    {
+      "path": "host/motortester/lv_collector.py",
+      "mode": "100644",
+      "blob": "e67a5afefeaf1d8ee9995d5b72e4d00542cfc488",
+      "size": 48389,
+      "sha256": "53dc0b7c0ff442001d6c64d3d48d2af53fe064b248cfdf7917295f02d96b9b04"
+    },
+    {
+      "path": "host/motortester/model.py",
+      "mode": "100644",
+      "blob": "b5b586cfcf239e188753496515fb868777372c9f",
+      "size": 6447,
+      "sha256": "c4f86b6b59b7230823d45c55bca3714250a1c60ce0974e00f0ead65b9a7a834b"
+    },
+    {
+      "path": "host/motortester/plotting.py",
+      "mode": "100644",
+      "blob": "ae04f1e63be4ad93dfcd76edce559351f00d8b7c",
+      "size": 3636,
+      "sha256": "66503e6c6d0e7b5e2e953a057c28dd50d3f96b85b7acfc56385ecd6a8e10115c"
+    },
+    {
+      "path": "host/motortester/recording.py",
+      "mode": "100644",
+      "blob": "9b25d626a94e561aed98524a95745b70f3e1fa48",
+      "size": 5789,
+      "sha256": "4383bec4ecba4899f5ec814553bad1d9fc099ed711fd66c7ea1352d69aed6cb4"
+    },
+    {
+      "path": "host/motortester/runtime.py",
+      "mode": "100644",
+      "blob": "12ce43948a30947b28c4b96ae59b2ee215f426a6",
+      "size": 13240,
+      "sha256": "7745eb4392add340a1352a2760ab8e3b2470090c7ddf9c000006c71c92246843"
+    },
+    {
+      "path": "host/motortester/session.py",
+      "mode": "100644",
+      "blob": "081d53869df9fce78be0809cec311dbd95d32874",
+      "size": 33994,
+      "sha256": "0bf21924f22971d895fc1ec0b7bcc4c4d041d475a0461a650c0b785078905ca9"
+    },
+    {
+      "path": "host/motortester/transport.py",
+      "mode": "100644",
+      "blob": "62b4977b0225ff0b9136263aaaf44afd05bb81f2",
+      "size": 9025,
+      "sha256": "34d2428e2505321cb894181e8e19bc8492ea2093eee0544d3e935e31960b2a86"
+    },
+    {
+      "path": "host/motortester/window.py",
+      "mode": "100644",
+      "blob": "af262e1a605408cfd79c958fade4657f82f3366e",
+      "size": 16034,
+      "sha256": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273"
+    },
+    {
+      "path": "host/motortester/wire.py",
+      "mode": "100644",
+      "blob": "15f45c3902826f9025d3ffdcdb28b706d7e4836d",
+      "size": 11580,
+      "sha256": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230"
+    },
+    {
+      "path": "host/motortester/wire_demo.py",
+      "mode": "100644",
+      "blob": "9404edb6f8c1368a0990b44a5fbfd7a655102a39",
+      "size": 8243,
+      "sha256": "c79f83b68703477c46dc5c6881091b373b6280a4204d5f26ac2c4f0adb0f48ce"
+    },
+    {
+      "path": "host/packaging/LICENSE-REVIEW.md",
+      "mode": "100644",
+      "blob": "cbb513af9dd25d44d4f3a7725be343cc64aa87c8",
+      "size": 6125,
+      "sha256": "95c62df4c39a09e50bfea3c26e7d93fff1c340634d3ca081da8366b6b8ce2de7"
+    },
+    {
+      "path": "host/packaging/build_windows.py",
+      "mode": "100644",
+      "blob": "503a9f4aec1cd7293770226caaaa5369c16b3cca",
+      "size": 9819,
+      "sha256": "df444d48f86529f50951b1734ae87cd2df3fc8b57c66b9af6dbfd602e92b77b0"
+    },
+    {
+      "path": "host/packaging/collect_licenses.py",
+      "mode": "100644",
+      "blob": "53d501546755d37dafbb1767352f8dffbb9b574d",
+      "size": 4079,
+      "sha256": "51a354c8c4d43e05e927db11d32e29c755a51b6b1f71ecaa2401ac30f2e629e6"
+    },
+    {
+      "path": "host/packaging/launch_gui.py",
+      "mode": "100644",
+      "blob": "47d416206536bff6944c4d8fe1c7de16d3b573b5",
+      "size": 9038,
+      "sha256": "b7164f0b75d32f7dde91200b8fe98ace3c8c28393814d60e3f28256a4288f2f0"
+    },
+    {
+      "path": "host/packaging/licenses/pyserial-3.5-LICENSE.txt",
+      "mode": "100644",
+      "blob": "8920d4ee89b8e7ad5ea54eb91d48e33473c3a9a1",
+      "size": 1885,
+      "sha256": "f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3"
+    },
+    {
+      "path": "host/packaging/motortester.spec",
+      "mode": "100644",
+      "blob": "8e25cbc1959f63cfa43b448196631a88be058f5d",
+      "size": 1281,
+      "sha256": "d4489eec950ee410e00e530bf870f47ca6d8cb9eb96d68aadd242087edd4e4c5"
+    },
+    {
+      "path": "host/packaging/requirements-win-x64.lock",
+      "mode": "100644",
+      "blob": "256a8005b4f7de19651c9b9bdd70419b5b52af3d",
+      "size": 2211,
+      "sha256": "05a7bb68dbb5247f76a585443d4d613fd7ecbcb0d6602e0a928f35e1ab933909"
+    },
+    {
+      "path": "host/packaging/serial_import_smoke.py",
+      "mode": "100644",
+      "blob": "a059628cd26db6d5547a49ab67ddf2d726598d89",
+      "size": 5766,
+      "sha256": "4c9dba2b0a52c349a32f12c89ef275e8c2c8664dde7f84072110361e82d09c29"
+    },
+    {
+      "path": "host/requirements-gui.txt",
+      "mode": "100644",
+      "blob": "efa7dd2c900c546f38a36fa3e50ff30658ed67d3",
+      "size": 359,
+      "sha256": "71ab87c948e3f592831a7c462f1e31a10bd8a8b4c46e7310717d0e6e8ee1a889"
+    },
+    {
+      "path": "host/reviews/HOST-001-acceptance-checklist.md",
+      "mode": "100644",
+      "blob": "bb2c4ee9474352d3fcb2ca7702bf080c6de457a8",
+      "size": 20475,
+      "sha256": "f37c15dfcb0ab8b84890a43d958f28e066c57b3fcd2395338b8b085a87301ffd"
+    },
+    {
+      "path": "host/scripts/check_first_path.py",
+      "mode": "100644",
+      "blob": "14c095817e95677ff8a4f40b7d8099c94eecd21d",
+      "size": 2411,
+      "sha256": "578523b6089a976581fd015ba211417c1193b0375cdcfd542532702862eace3e"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_integration/README.md",
+      "mode": "100644",
+      "blob": "08f481950166adde58809b1123a07251719d6f40",
+      "size": 1029,
+      "sha256": "f5e2f4406c0728ed5ee36d0d6f76046853e6b6549a7442d9c00198e1136964cd"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/README.md",
+      "mode": "100644",
+      "blob": "29cc1d3f31ce04488d15c1c2da9d42036f28a61d",
+      "size": 8739,
+      "sha256": "d66afcfd664ac1e31188656ef88887b7041c8001d8fe13ebd245c1891d99bab2"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/author-frozen-v1.json",
+      "mode": "100644",
+      "blob": "0bbe555b3ee3ce82139dcc270a52ce47500d2739",
+      "size": 742,
+      "sha256": "fc90e9c43cb9ad42cb34a2ac4aa72696afbf6ab5b519a19a488bd3449892d2a2"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/dependency-before.json",
+      "mode": "100644",
+      "blob": "bc75bbdf81e5f2b062d5b9212130beebb79aa86e",
+      "size": 20614,
+      "sha256": "d583828f7521fbbb09a97b24132e529c78db7c45a0518da1de3a27205b83c641"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/RESULTS.md",
+      "mode": "100644",
+      "blob": "8c626c8bc273d84cab769f74d63ce7a018893fdb",
+      "size": 5509,
+      "sha256": "9aab664386c1f3c10cd8d0eea6827f40efd728091f26df588806eb22d7975e87"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/author-intermediate-full-normal.log",
+      "mode": "100644",
+      "blob": "07f7e67a329732166fc0a2dcb682a310912c58ed",
+      "size": 75302,
+      "sha256": "d20c2b62203f191c027206d31614669017205705d5e4b6a4c30857e6ea0654ce"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/author-intermediate-optimized.log",
+      "mode": "100644",
+      "blob": "28b6781660cf9ebd5ed59f108de729b4de47df98",
+      "size": 3367,
+      "sha256": "ce6d08ddd917142daa0c4111fab09c1941f5bcb917f48a7795f6a02873cb134e"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/corrected-expanded-focused.log",
+      "mode": "100644",
+      "blob": "f248289eac2aa25701262b37f1fc387cb0a3a2dd",
+      "size": 5928,
+      "sha256": "e7bb0410961fe3622b35f53bede29f56006456b4d48aaf987122ecc49437a66a"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/delivery-manifest.json",
+      "mode": "100644",
+      "blob": "983e639e1a0299d3955cea220a81e5be2d93f1be",
+      "size": 3949,
+      "sha256": "f70776b2812c265a0714a3eccf89c3563ab047edd25ae99f60c4694cab02848a"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/diagnoses.md",
+      "mode": "100644",
+      "blob": "ade7f2dca6593f0993f2c164c4072d34d3e02e3c",
+      "size": 2920,
+      "sha256": "b2ed2ae1f1e921e4c07a192064cc227095fb61881efa7139ccd0d3f1238263bf"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/expanded-focused.log",
+      "mode": "100644",
+      "blob": "de95ebf35345bbab6dacaca96f4596bc208997ad",
+      "size": 6383,
+      "sha256": "f7aad92749a4ef6be356b476b192d7b77abf9e2c224b78c3ff2eab774bd05b5a"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/final-v1/captures/captures.json",
+      "mode": "100644",
+      "blob": "c0d76e5bd4749e049f95fff0d2bbb223f1662719",
+      "size": 2419,
+      "sha256": "1b4a10e70c07f1499d4b1fd4adc871aa57b12f0a8152a801213b1fbab4b56657"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/final-v1/captures/mode-0-device.bin",
+      "mode": "100644",
+      "blob": "19c5f1b4a3536d4e81f121a99ee883475aabd10a",
+      "size": 48148,
+      "sha256": "dd5898d02b64a0bdeeba34850c560dc99db359b842e82c68ffe23c2054288aa6"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/final-v1/captures/mode-0-host.bin",
+      "mode": "100644",
+      "blob": "e764376384cf74238dbc0db9ed4d6ed5937981de",
+      "size": 568,
+      "sha256": "654fe2764d927bc34c426c0fd2cf1fd65b2b626e3ac0f613e8ec078e4c574dcc"
+    },
+    {
+      "path": "host/tests/fixtures/acquisition_modes/evidence/final-v1/captures/mode-2-device.bin",
+      "mode": "100644",
+      "blob": "2c7d283a9f91cd35032452ab6ad39f03a7487912",
+      "size": 48976,

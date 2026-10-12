@@ -1,0 +1,6 @@
+tree 131f11ec4ee21d5c281cae220baebee03906724b
+parent 3bc7a251cd36714b1fec350c99e0e5b43ffc4950
+author Dot B <dot-b@local.invalid> 1791811621 +0500
+committer Dot B <dot-b@local.invalid> 1791811621 +0500
+
+Wrap native acquisition control labels at semantic boundaries

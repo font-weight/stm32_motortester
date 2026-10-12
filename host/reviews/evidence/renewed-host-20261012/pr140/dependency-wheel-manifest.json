@@ -1,0 +1,56 @@
+[
+  {
+    "name": "colorama",
+    "version": "0.4.6",
+    "file": "colorama-0.4.6-py2.py3-none-any.whl",
+    "size": 25335,
+    "sha256": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6",
+    "official_url": "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl",
+    "metadata_url": "https://pypi.org/pypi/colorama/0.4.6/json"
+  },
+  {
+    "name": "numpy",
+    "version": "2.5.3",
+    "file": "numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "size": 16717410,
+    "sha256": "b7e18c623bb5c95acb3b3328861272816ba199fb531921c5d6d0b675f1fde9e3",
+    "official_url": "https://files.pythonhosted.org/packages/65/af/aa78d1a88805456e212b65461354cd943197fb9acecc4c90fd12295123a3/numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "metadata_url": "https://pypi.org/pypi/numpy/2.5.3/json"
+  },
+  {
+    "name": "pyqtgraph",
+    "version": "0.14.0",
+    "file": "pyqtgraph-0.14.0-py3-none-any.whl",
+    "size": 1924755,
+    "sha256": "7abb7c3e17362add64f8711b474dffac5e7b0e9245abdf992e9a44119b7aa4f5",
+    "official_url": "https://files.pythonhosted.org/packages/32/36/4c242f81fdcbfa4fb62a5645f6af79191f4097a0577bd5460c24f19cc4ef/pyqtgraph-0.14.0-py3-none-any.whl",
+    "metadata_url": "https://pypi.org/pypi/pyqtgraph/0.14.0/json"
+  },
+  {
+    "name": "pyserial",
+    "version": "3.5",
+    "file": "pyserial-3.5-py2.py3-none-any.whl",
+    "size": 90585,
+    "sha256": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0",
+    "official_url": "https://files.pythonhosted.org/packages/07/bc/587a445451b253b285629263eb51c2d8e9bcea4fc97826266d186f96f558/pyserial-3.5-py2.py3-none-any.whl",
+    "metadata_url": "https://pypi.org/pypi/pyserial/3.5/json"
+  },
+  {
+    "name": "PySide6_Essentials",
+    "version": "6.12.0",
+    "file": "pyside6_essentials-6.12.0-cp310-abi3-manylinux_2_34_x86_64.whl",
+    "size": 84346433,
+    "sha256": "16f4b5e41daf49235ae048458243da9efe5f3d8040f9cc5aa454ce69893d3bd9",
+    "official_url": "https://files.pythonhosted.org/packages/7b/3c/7597d8dcb36aa8315427635ec6ec9d850ffbad4ce78b9118ac854889f2d3/pyside6_essentials-6.12.0-cp310-abi3-manylinux_2_34_x86_64.whl",
+    "metadata_url": "https://pypi.org/pypi/PySide6_Essentials/6.12.0/json"
+  },
+  {
+    "name": "shiboken6",
+    "version": "6.12.0",
+    "file": "shiboken6-6.12.0-cp310-abi3-manylinux_2_34_x86_64.whl",
+    "size": 279268,
+    "sha256": "3bde565bb0890044b5c7f63808adddede5abc241e9395a2bfed61919884d6240",
+    "official_url": "https://files.pythonhosted.org/packages/49/c2/a04fa003b4360e99d8e3fc2829abacf37396ace63ea1cd616402209ec7c6/shiboken6-6.12.0-cp310-abi3-manylinux_2_34_x86_64.whl",
+    "metadata_url": "https://pypi.org/pypi/shiboken6/6.12.0/json"
+  }
+]

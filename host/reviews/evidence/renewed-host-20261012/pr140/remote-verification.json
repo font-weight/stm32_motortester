@@ -1,0 +1,15 @@
+{
+  "remote_head": "7e317224ea802d64b4686274cd76c3603e760321",
+  "tree": "131f11ec4ee21d5c281cae220baebee03906724b",
+  "remote_parent": "3bc7a251cd36714b1fec350c99e0e5b43ffc4950",
+  "local_head": "3a718eda6587b623b6ea3d06fd293f2068a351b5",
+  "bound_entries": 1657,
+  "bound_files": 1387,
+  "actual_remote_bodies_sha256": {
+    "host/docs/acquisition-integration.md": "d2e5f511ac18df1a0da1cf8ebf802ef6be31a0a9374b0e2eebcca7f6115d7845",
+    "host/motortester/gui_acquisition.py": "99173d60c071f0bbd45733a0ab887f961b4ec8fc1bea17c7295de52a95fa17f8",
+    "host/tests/test_gui_acquisition.py": "2113bb7c7580f58a5bda6b9ce0689473a718fd36d92c86f738aa52fb1176d617"
+  },
+  "draft": true,
+  "exact_source_binding": true
+}
