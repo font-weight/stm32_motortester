@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "a_commit": "c4d4dc2966656b324518c8d0061811d1241870a3",
-  "b_commit": "f0784ae6ac85565b32bc2e564974d500eaa6a32f",
+  "b_commit": "dbbff7812a9d811d6764dfb80ad83001c8f10bdb",
   "a": [
     {
       "path": "firmware/acquisition/acquisition.c",
@@ -132,8 +132,8 @@
     },
     {
       "path": "motortester/recording_bridge.py",
-      "bytes": 18261,
-      "sha256": "bd330ff9b3f8eee2077abff22faa2d86b3ea608a64ae203af70d70393eb29f64"
+      "bytes": 18847,
+      "sha256": "4cfd9ed64c2d825ddcb31de0975e20fbfe26e9f0f8f30103a7dc03c9ede47170"
     },
     {
       "path": "motortester/runtime.py",
@@ -164,13 +164,14 @@
   "probe": [
     {
       "path": "probe.py",
-      "bytes": 14497,
-      "sha256": "578cc7a251458740e56caa03c34127da83f213a1b6094219a73b9d60a29e2d8e"
+      "bytes": 21041,
+      "sha256": "2c550acd43c887a35aba400f04cd6de62578752151d14e25ce351da0243719b6"
     },
     {
       "path": "readback.py",
-      "bytes": 1458,
-      "sha256": "07402492756d79ed657054568e5b4080339f334d9818a3e139feb0496a4aba3d"
+      "bytes": 1459,
+      "sha256": "f13447b297087139a114c53b73d2a74175160573a749cde928881be9ae1260cc"
     }
-  ]
+  ],
+  "b_tree": "412176cadae21859d677d08d130a654cbeb19643"
 }

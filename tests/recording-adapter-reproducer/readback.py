@@ -19,5 +19,5 @@ for expected_path in sorted(a.out.glob('*/expected-*.json')):
         data=archive.read_segment(ordinal)
         if len(data)!=item['bytes'] or hashlib.sha256(data).hexdigest()!=item['sha256']:raise ValueError('member changed')
     count+=1
-if count!=5:raise ValueError('expected five finalized archives')
+if count!=8:raise ValueError('expected eight finalized archives')
 print(json.dumps(dict(status='PASS',archives=count)))

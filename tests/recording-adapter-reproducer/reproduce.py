@@ -9,7 +9,7 @@ import signal
 import subprocess
 import sys
 
-MANIFEST = '39235596e9a791b113d87788ded0e2c3163d524e8215208c076b962e293dac90'
+MANIFEST = 'ebdc48cc89a34b0df2f741160d2a42fd716d41f345a37d0494a6794bacfe7325'
 HERE = Path(__file__).resolve().parent
 
 def sha(path):
