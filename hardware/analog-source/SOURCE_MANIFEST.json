@@ -2,9 +2,9 @@
   "scope": "draft-source-only-delivery",
   "hardware_validated": false,
   "files": {
-    "MEASUREMENTS_RU.md": "e24d3cd16247417c46592c4edd1326539b7b58e43eb8e1987942da85394929b2",
-    "PROVENANCE_RU.md": "77cd3870230f673f2a4da532e3ea7eaef45a894ad0dc259265e7677098da381c",
-    "README_RU.md": "8688e88a13dac7a220b6833238b97486165bf4de125c3e7113d03f73a1c19304",
+    "MEASUREMENTS_RU.md": "88ece053b8e0aa16b1e26af098783652955f58bd69d224b74e9974cae21012ea",
+    "PROVENANCE_RU.md": "208106ecbe4ef23b30b3dfe6f7893a3fbb8b3b6ae830ed69075c34393e2ec5c3",
+    "README_RU.md": "fbbdc591ef389254e1d12f30273bba08005653800425fd95e35aeaf2fbc2fdcc",
     "SOURCES.md": "242fa4b97d33b6cc2cbb6aa67a97ad7e2e9507662864fb07c0d759bc60a52ac5",
     "option-a-dc-bom.csv": "007a9ce608cdf2b0b51f9e80add621cecaef77c96a1d28022ca969e821d0126b",
     "option-b-ac-bom.csv": "2a5d5743e4c051890e40e7c55be4d0df1fc9ef82050d86de6a011e517da436ff",
