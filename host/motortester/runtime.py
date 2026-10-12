@@ -9,7 +9,7 @@ from uuid import UUID
 from .model import Capture
 from .session import (SessionController, WindowReceipt, Phase, EventKind,
                       FaultCode, MAX_TIME_MS)
-from .wire import StreamDecoder
+from .wire import DiagnosticCode, StreamDecoder
 from .window import ExpectedContext, WindowReceiver, WindowCode
 
 
@@ -256,7 +256,11 @@ class AcquisitionRuntime:
             return tuple(output)
         batch = self._decoder.feed(data, self._now)
         if batch.diagnostics:
-            output.extend(self._dispatch(self._controller.protocol_fault(FaultCode.DECODE, self._now)))
+            # VERSION is emitted only after length and CRC validation. Keep
+            # mixed/corrupt batches generic: diagnostic/frame order is unknown.
+            fault = (FaultCode.VERSION if all(item.code is DiagnosticCode.VERSION
+                     for item in batch.diagnostics) else FaultCode.DECODE)
+            output.extend(self._dispatch(self._controller.protocol_fault(fault, self._now)))
             return tuple(output)
         for frame in batch.frames:
             output.extend(self._dispatch(self._controller.receive(frame, self._now)))

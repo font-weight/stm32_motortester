@@ -301,7 +301,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
                 bridge.shutdown()
                 self.wait(lambda: bridge._closed)
 
-    def test_wire_version_diagnostic_currently_reaches_gui_as_decode_fault(self):
+    def test_wire_version_diagnostic_reaches_gui_without_becoming_decode_fault(self):
         bridge = self.serial()
         panel = self.dialog(bridge)
         self.connect(bridge, "device")
@@ -313,8 +313,8 @@ class AcquisitionBridgeTests(unittest.TestCase):
         self.controls["read_bytes_once"] = encoded
         self.wait(lambda: not bridge.state.connected and bool(bridge.errors))
         self.assertIn("ошибка протокола [PROTOCOL_FAULT]", panel.status.text())
-        self.assertIn("повреждённый кадр [DECODE]", panel.status.text())
-        self.assertNotIn("[VERSION]", panel.status.text())
+        self.assertIn("несовместимая версия протокола [VERSION]", panel.status.text())
+        self.assertNotIn("[DECODE]", panel.status.text())
         self.assertIn("CAPS не подтверждены", panel.device_details.text())
         self.assertEqual(self.controls["backend"].kinds, [1, 2])
 
