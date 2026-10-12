@@ -1,0 +1,15 @@
+{
+  "scope": "project-functional-diagram-E2",
+  "hardware_validated": false,
+  "files": {
+    ".gitignore": "2a7a5df7911636e16c1be532ef385181d7ed33161bf0ccc58cbd7dbc3aaacb83",
+    "assets/OpenGOST_LICENSE.txt": "6233a6e979c5e000cd8117ab7a33bbfb50212585521f9c1a4f04d8a9fe838ca2",
+    "assets/OpenGOSTtypeB-Regular.ttf": "8307a636e921a3be10d36034581caafd8cf36cb85909b8add21d22f71fcde1f8",
+    "build_description.py": "a5483b6edd0739876afc86eebfef3290a75b7f4cde8a9be94a60031016591659",
+    "build_scheme.py": "91f0923bd8b802feb0213c19fe7dd00295601527bbd1e45d7032b6ccbaea00ad",
+    "output/Мотортестер_функциональная_схема_Э2.pdf": "fc3d6d6e6763ddb04761d6b28a68ce49ecce8e618a23c34846e06bcd11619fd5",
+    "output/Мотортестер_функциональная_схема_Э2.svg": "79fde837d0d9dd86c24e0e10dbea3bc75a6ffae5b884797ec3f0272d3b965127",
+    "output/Описание_функциональной_схемы_мотортестера.docx": "7597c1e3890005fef78a79ee2fcfbe679a6de8f0ece147d682e33fa8b33ce910",
+    "requirements.txt": "9f3b9f9d20a6fa5b7beb6246daf14dd2cb7657d4750f953875e271911eb43226"
+  }
+}
