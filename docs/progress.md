@@ -767,3 +767,14 @@ Guarded runtime:29 сценариев × две операции,58 strict и58 
 не менялся. Image/reference/stack pins намеренно не перенесены: новый
 ELF/BIN/HEX и whole-system приёмка остаются BLOCKED_EVIDENCE. Это
 отдельное расширение требует собственного независимого exact-SHA ревью.
+
+
+### Уменьшение вложенного reply frame, отдельный черновик
+
+После проверки реального ARM объекта общий start_capture переведён на
+существующий workspace вызывающего receive. Локальные одновременные
+frames теперь648+40 вместо648+584байт; это экономия544байта на данном
+пути, не новый whole-stack bound. Native suites и штатные33objects
+повторены автором успешно; combined.o93f9d1fb… (полный hash в build README).
+Нужен новый независимый exact-SHA review; image/IRQ/paired/hardware gates
+не меняются. Ни одно старое доказательство не переписано.

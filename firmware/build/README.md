@@ -143,7 +143,7 @@ ADC-исходников обновлённые image/reference проверки
 открытой общей приёмкой A/B. Прошивка не разрешена.
 
 
-## 12.10.2026 — object pins native wire0.2 кандидата
+## 12.10.2026 — предыдущая object-проверка native wire0.2 (0dd0e4e)
 
 Production-код соответствует native-кандидату6af7a110bfd64f4cfe1d1a945f5a9a2e6cb21a0d
 (опубликован как PR144/7eea520b). Отдельное расширение обновляет ровно шесть
@@ -171,3 +171,36 @@ Image flow должен отказать до выпуска образа. Не�
 границу3064байта, code/literal ranges и layout на новые объекты. Требуется
 новое применимое image/stack/IRQ доказательство, затем paired B/host/file
 и физические проверки. Ни ELF/BIN/HEX, ни разрешение прошивки здесь не получены.
+
+
+## Следующий черновик: повторное использование reply workspace
+
+На базе0dd0e4e обнаружено реальное увеличение локального стека: ARM
+compiler оставлял648байт в mt_control_receive и ещё584байта в общем
+start_capture. Это не доказательство переполнения и не полный bound.
+
+Теперь start_capture использует существующий локальный mt_wire_message
+вызывающего receive. Очередь TX копирует сообщение по значению до запуска
+захвата; порядок preflight → ACK admission → link → hardware не изменён.
+Новый target .su: receive648, start_capture40байт. Дизассемблирование
+и независимая проверка должны подтвердить этот локальный результат.
+Сумма двух одновременных frames уменьшается с1232 до688байт, на544байта;
+это не максимальная глубина всего прибора.
+
+Автор заново выполнил штатную33-object сборку, native controller/link/RX/ADC,
+Stop-barrier,35+35vectors и58+58guarded-runtime проверки. Все прошли.
+Изменился только3-mt_control.o относительно предыдущей object-проверки:
+
+- control object SHA-256:
+  ea5fd6bb4f4d7f209d4609485a2658b737ec796df3d0044229da65f57d535196;
+- combined.o SHA-256:
+  93f9d1fbdbf58320c5302a816c5906551ea9c558eefe88bc36571d46beb25a54;
+- inputs.json SHA-256:
+  4ea0967189485c04f6f6af381849d7f755dc5fde61f8eb7b1924ef0f1b9cdafc;
+- build_objects.py SHA-256:
+  f1996fc6d4c03e32db412df1e35155664c12ec0830e7ceee2c4ddd5fc4889d1b.
+
+Relocatable размеры остались text33672/data122/bss12238байт. Проверяется
+отдельный exact-SHA вердикт; прежние оценки не переносятся автоматически.
+Image helpers/reference не менялись и остаются fail-closed. Полный
+stack/IRQ/image proof и общая paired/hardware приёмка по-прежнему открыты.

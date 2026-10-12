@@ -6,7 +6,7 @@
     "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
     "firmware/app/mt_capture_link.c": "f4593e25720e4bd6aeaf14bde4e310d77e959f006fb971c926d187d31d0e42ee",
     "firmware/app/mt_capture_link.h": "15251b4ee06521e153de67f396f50e3c229fc778dc300dcb76a73c98e3fe9770",
-    "firmware/app/mt_control.c": "be9e941aaea2e9971d82bbcff8b098677f8759c2370d53bc155825a78e3d4c58",
+    "firmware/app/mt_control.c": "85c93cddd6e44fcaea6b9d30b7b83e02ccc4b4231b168279487cac10a840205a",
     "firmware/app/mt_control.h": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172",
     "firmware/app/mt_control_rx.c": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322",
     "firmware/app/mt_control_rx.h": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943",
@@ -270,7 +270,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "511ef8e6d6beb1ea834d9b8b95806ff82ef6336ac508079bf3ce8099712bd781"
+      "expected_object_sha256": "ea5fd6bb4f4d7f209d4609485a2658b737ec796df3d0044229da65f57d535196"
     },
     {
       "source": "firmware/app/mt_control_rx.c",

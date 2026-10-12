@@ -146,10 +146,10 @@ static mt_control_result configure(mt_control *c, const mt_wire_message *input,
         return mt_control_recover(c);
     return MT_CONTROL_OK;
 }
+/* Reuse receive-owned scratch; TX copies the reply before acquisition starts. */
 static mt_control_result start_capture(mt_control *c, const mt_wire_message *input,
                                        uint32_t config_id, uint32_t now,
-                                       int immediate) {
-    mt_wire_message m;
+                                       int immediate, mt_wire_message *reply) {
     mt_link_result started;
     const mt_acq_config_t *config = &c->link.acquisition.config;
     if (!idle(c)) return error(c, input->type, 2, input->request, now);
@@ -159,9 +159,9 @@ static mt_control_result start_capture(mt_control *c, const mt_wire_message *inp
                       config->pretrigger_samples != 0u || config->auto_timeout_ms != 0u))
         return error(c, input->type, 1, input->request, now);
     if (!c->io.profile_ready(c->io.context)) return mt_control_recover(c);
-    message(&m, 132, 8, input->request);
-    put32(m.payload, input->request); put32(m.payload + 4, config_id);
-    if (!enqueue(c, &m, now)) return MT_CONTROL_RECOVERY;
+    message(reply, 132, 8, input->request);
+    put32(reply->payload, input->request); put32(reply->payload + 4, config_id);
+    if (!enqueue(c, reply, now)) return MT_CONTROL_RECOVERY;
     started = immediate ? mt_capture_link_record_now(&c->link, config_id, input->request, now) :
                           mt_capture_link_arm(&c->link, config_id, input->request, now);
     if (started != MT_LINK_OK)
@@ -211,8 +211,8 @@ mt_control_result mt_control_receive(mt_control *c,
         put16(m.payload + 26, 512); put16(m.payload + 28, 1024);
         return enqueue(c, &m, now) ? MT_CONTROL_OK : MT_CONTROL_RECOVERY;
     case MT_CMD_CONFIG: return configure(c, input, &command.value.config, now);
-    case MT_CMD_ARM: return start_capture(c, input, command.value.config_id, now, 0);
-    case MT_CMD_RECORD_NOW: return start_capture(c, input, command.value.config_id, now, 1);
+    case MT_CMD_ARM: return start_capture(c, input, command.value.config_id, now, 0, &m);
+    case MT_CMD_RECORD_NOW: return start_capture(c, input, command.value.config_id, now, 1, &m);
     case MT_CMD_STOP:
         if (command.value.generation != c->link.generation)
             return error(c, input->type, 4, input->request, now);
