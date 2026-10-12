@@ -132,9 +132,68 @@ static void test_stale_and_driver_fault(void) {
     assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
     assert(hw.write_count == writes && control.hardware_running);
     *slot(&hw, D_ISR) = 8;
-    assert(mt_adc_control_service(&binding) == MT_CONTROL_RECOVERY);
-    assert(!control.ready && !control.hardware_running);
+    assert(mt_adc_control_service(&binding) == MT_CONTROL_OK);
+    assert(control.ready && !control.hardware_running);
+    assert(control.link.phase == MT_LINK_ACQ_ERROR && control.link.error_reason == 1u);
     assert(!driver.owns_peripherals);
+}
+static void test_reported_fault(unsigned capturing, unsigned deadline, unsigned stop_first) {
+    unsigned aborts = 0, errors = 0, stop_acks = 0;
+    size_t first = 0, position;
+    mt_wire_message m;
+    uint32_t dropped;
+    uint8_t reason = deadline ? 2u : 1u;
+    connect_and_arm(1000, 1);
+    if (capturing) deliver_block(0);
+    assert(control.link.active_window == capturing);
+    dropped = control.link.dropped_windows;
+    if (deadline) hw.tick += 3000u;
+    else *slot(&hw, D_ISR) = 8;
+    assert(mt_adc_control_service(&binding) == MT_CONTROL_OK);
+    assert(control.ready && !control.hardware_running && !driver.owns_peripherals);
+    assert(control.link.phase == MT_LINK_ACQ_ERROR && !control.link.armed);
+    assert(control.link.error_reason == reason);
+    assert(control.link.dropped_windows == dropped + capturing);
+    assert(mt_adc_control_service(&binding) == MT_CONTROL_IGNORED);
+    if (stop_first) {
+        m = cmd(5, 4); le32(m.payload, control.link.generation);
+        assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
+        assert(control.link.dropped_windows == dropped + capturing);
+    }
+    tx_drain();
+    for (position = 0; position < output_used; ++position) {
+        if (output_bytes[position]) continue;
+        assert(mt_wire_decode(output_bytes + first, position - first, &m) == MT_WIRE_OK);
+        first = position + 1u;
+        assert(m.type != 144u && m.type != 145u && m.type != 146u);
+        if (m.type == 147u) {
+            ++aborts; assert(errors == 0 && stop_acks == 0);
+            assert(m.payload[8] == (uint8_t)(reason + 1u));
+        }
+        if (m.type == 134u && m.payload[0] == 5u) {
+            ++errors; assert(m.payload[1] == reason && aborts == capturing);
+            assert(m.payload[20] == capturing);
+        }
+        if (m.type == 133u) { ++stop_acks; assert(aborts == capturing); }
+    }
+    assert(first == output_used && aborts == capturing);
+    assert(errors == (stop_first ? 0u : 1u));
+    assert(stop_acks == stop_first && control.link.dropped_windows == dropped + capturing);
+    if (stop_first) assert(control.link.phase == MT_LINK_IDLE);
+    else {
+        output_used = 0;
+        m = cmd(6, 0);
+        assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
+        tx_drain();
+        assert(mt_wire_decode(output_bytes, output_used - 1u, &m) == MT_WIRE_OK);
+        assert(m.type == 134u && m.request != 0u && m.payload[0] == 5u && m.payload[1] == reason);
+        output_used = 0;
+        m = cmd(5, 4); le32(m.payload, control.link.generation);
+        assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
+        tx_drain();
+        assert(control.link.phase == MT_LINK_IDLE && !control.link.armed);
+        assert(control.link.dropped_windows == dropped + capturing);
+    }
 }
 static uint32_t correlation_gap;
 static uint32_t delayed_millis(void *context) {
@@ -173,6 +232,10 @@ int main(void) {
     test_window_and_time(1000, 1);
     test_window_and_time(UINT32_MAX - 1000u, UINT32_MAX - 20u);
     test_stale_and_driver_fault();
+    for (unsigned capturing = 0; capturing < 2u; ++capturing)
+        for (unsigned deadline = 0; deadline < 2u; ++deadline)
+            for (unsigned stop_first = 0; stop_first < 2u; ++stop_first)
+                test_reported_fault(capturing, deadline, stop_first);
     puts("ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed");
     return 0;
 }

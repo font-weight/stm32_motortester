@@ -11,7 +11,7 @@ typedef enum {
 typedef enum {
     MT_LINK_IDLE = 0, MT_LINK_BEGIN, MT_LINK_DATA, MT_LINK_END,
     MT_LINK_END_QUEUED, MT_LINK_WAIT_RELEASE, MT_LINK_STOPPING, MT_LINK_FAILED,
-    MT_LINK_RELEASE_EXPIRED
+    MT_LINK_RELEASE_EXPIRED, MT_LINK_ACQ_ERROR
 } mt_link_phase;
 
 /* One foreground owner. tx is external, initialized/negotiated by dispatcher.
@@ -29,6 +29,7 @@ typedef struct {
     uint32_t crc_running, window_crc, release_since_ms;
     uint32_t tomb_generation, tomb_window, tomb_crc;
     uint16_t offset;
+    uint8_t error_reason, cancellation_counted;
     unsigned armed, have_tombstone;
     mt_link_phase phase;
 } mt_capture_link;
@@ -50,6 +51,12 @@ mt_link_result mt_capture_link_arm(mt_capture_link *link, uint32_t config_id,
  * may be inferred from a failed/incomplete capture. */
 mt_link_result mt_capture_link_sample(mt_capture_link *link, uint16_t code,
                                       uint32_t sample_ms);
+/* Only an armed, actively acquiring IDLE phase can report reason1 (DMA) or
+ * reason2 (deadline). Caller has confirmed hardware Stop and live transport.
+ * Cancel an allocated window exactly once, queue ABORT before ERROR STATUS,
+ * retain IDs/raw storage and disable rearm. Other phases fail closed. */
+mt_link_result mt_capture_link_acquisition_fault(mt_capture_link *link,
+                                                uint8_t reason, uint32_t now_ms);
 /* Advance only the completed-END hold deadline. Expiry stops continuation but
  * retains IDs/tombstone and prevents buffer reuse; TX remains serviceable.
  * Acquisition-window read API readiness is not retained in the ERROR state.

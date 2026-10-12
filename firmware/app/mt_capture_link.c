@@ -69,6 +69,7 @@ mt_link_result mt_capture_link_sample(mt_capture_link *l, uint16_t code,
     if (r == MT_ACQ_TRIGGERED) {
         if (l->last_window >= UINT32_MAX - 1u) return fail(l);
         l->active_window = ++l->last_window;
+        l->cancellation_counted = 0;
         return MT_LINK_TRIGGERED;
     }
     if (r == MT_ACQ_WINDOW_READY) {
@@ -134,6 +135,35 @@ static mt_link_result queue_bulk(mt_capture_link *l, uint32_t now) {
     } else l->phase = MT_LINK_END_QUEUED;
     return MT_LINK_OK;
 }
+mt_link_result mt_capture_link_acquisition_fault(mt_capture_link *l,
+                                                uint8_t reason, uint32_t now) {
+    mt_wire_message abort_message, status;
+    unsigned cancelled;
+    if (!valid(l) || (reason != 1u && reason != 2u)) return MT_LINK_ARGUMENT;
+    if (!l->session || l->session != l->tx->session || !l->armed ||
+        l->phase != MT_LINK_IDLE ||
+        mt_tx_terminal_committed(l->tx, l->generation, l->active_window) != 0u)
+        return fail(l);
+    cancelled = l->active_window != 0u && !l->cancellation_counted;
+    if (cancelled && l->dropped_windows >= UINT32_MAX - 1u) return fail(l);
+    init_message(&abort_message, 147, 12, 0);
+    put32(abort_message.payload, l->generation);
+    put32(abort_message.payload + 4, l->active_window);
+    put16(abort_message.payload + 8, (uint16_t)(reason + 1u));
+    init_message(&status, 134, 24, 0);
+    status.payload[0] = 5; status.payload[1] = reason;
+    put32(status.payload + 4, l->generation);
+    put32(status.payload + 8, l->last_window);
+    put32(status.payload + 20, l->dropped_windows + cancelled);
+    if (mt_tx_acquisition_fault(l->tx, l->generation, l->active_window,
+            &abort_message, &status, now) != MT_TX_OK) return fail(l);
+    (void)mt_acq_stop(&l->acquisition);
+    l->armed = 0;
+    l->dropped_windows += cancelled;
+    if (cancelled) l->cancellation_counted = 1;
+    l->error_reason = reason; l->phase = MT_LINK_ACQ_ERROR;
+    return MT_LINK_OK;
+}
 int mt_capture_link_expire_release(mt_capture_link *l, uint32_t now) {
     if (!valid(l) || !l->session || l->session != l->tx->session ||
         l->phase != MT_LINK_WAIT_RELEASE ||
@@ -192,7 +222,7 @@ mt_link_result mt_capture_link_stop(mt_capture_link *l, uint32_t generation,
     if (!l->session || l->session != l->tx->session) return fail(l);
     if (generation != l->generation) return MT_LINK_STALE;
     if (l->phase == MT_LINK_STOPPING) return MT_LINK_BUSY;
-    cancelled = l->active_window != 0u &&
+    cancelled = l->active_window != 0u && !l->cancellation_counted &&
         mt_tx_terminal_committed(l->tx, generation, l->active_window) == 0u;
     if (cancelled && l->dropped_windows >= UINT32_MAX - 1u) return fail(l);
     init_message(&abort_message, 147, 12, 0);
@@ -211,6 +241,7 @@ mt_link_result mt_capture_link_stop(mt_capture_link *l, uint32_t generation,
                    &abort_message, &ack, &status, now);
     if (r != MT_TX_OK) return fail(l);
     l->dropped_windows += cancelled;
+    if (cancelled) l->cancellation_counted = 1;
     l->phase = MT_LINK_STOPPING;
     return MT_LINK_OK;
 }

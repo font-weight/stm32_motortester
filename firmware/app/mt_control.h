@@ -46,6 +46,11 @@ mt_control_result mt_control_sample(mt_control *control, uint16_t code,
                                     uint32_t sample_ms);
 mt_control_result mt_control_poll(mt_control *control, uint32_t now_ms,
                                   mt_tx_write_fn write, void *context);
+/* Genuine active ADC TRANSFER/DEADLINE only, mapped to reason1/2. Confirms
+ * Stop again before entering serviceable ERROR; failed Stop/admission falls
+ * back to recovery. Caller/runtime owns live time/transport validation. */
+mt_control_result mt_control_acquisition_fault(mt_control *control,
+                                               uint8_t reason, uint32_t now_ms);
 /* Stops sampling and disables ordinary commands/output until a fresh HELLO.
  * Does not discard a partially accepted frame; HELLO drains it via mt_tx. */
 mt_control_result mt_control_recover(mt_control *control);

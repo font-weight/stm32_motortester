@@ -73,6 +73,13 @@ mt_control_result mt_adc_control_service(mt_adc_control *b) {
         return MT_CONTROL_IGNORED;
     result = mt_adc_dma_read_block(b->driver, &block);
     if (result == MT_ADC_DMA_EMPTY) return MT_CONTROL_OK;
+    if (result == MT_ADC_DMA_ERROR &&
+        (b->driver->fault == MT_ADC_DMA_FAULT_TRANSFER ||
+         b->driver->fault == MT_ADC_DMA_FAULT_DEADLINE)) {
+        uint8_t reason = b->driver->fault == MT_ADC_DMA_FAULT_TRANSFER ? 1u : 2u;
+        return mt_control_acquisition_fault(b->control, reason,
+                                             b->now_ms(b->clock_context));
+    }
     if (result != MT_ADC_DMA_BLOCK || !block.samples ||
         block.count != MT_ADC_DMA_BLOCK_SAMPLES ||
         block.nominal_rate_hz != MT_ADC_DMA_RATE_HZ ||

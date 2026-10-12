@@ -113,6 +113,19 @@ mt_tx_result mt_tx_stop(mt_tx *tx, uint32_t generation, uint32_t active_window,
                        const mt_wire_message *ack,
                        const mt_wire_message *stopped_status, uint32_t now_ms);
 
+/* Confirmed acquisition failure on a live transport. Same bounded terminal
+ * pruning/order as Stop, but appends only optional ABORT then ERROR STATUS;
+ * no ACK or Stop barrier. A retained original reply head keeps its timer;
+ * a new head after pruning starts its own timer. Earlier replies/partial frame
+ * and the original queued ABORT reason survive. A committed END is rejected.
+ * status is type134/request0/payload24, state5, reason1/2, matching generation
+ * and active window (or caller-owned last window when no active window).
+ * Caller proves the current window allocation and hardware quiescence. */
+mt_tx_result mt_tx_acquisition_fault(mt_tx *tx, uint32_t generation,
+                       uint32_t active_window,
+                       const mt_wire_message *abort_message,
+                       const mt_wire_message *error_status, uint32_t now_ms);
+
 /* At most one write of <=64 bytes; no busy wait. event changes only on PROGRESS.
  * Call in monotonic wrapping uint32 milliseconds, gaps <2^31 ms, including when
  * USB is blocked. Check >=1000 ms since last progress, >=3000 ms per head frame,

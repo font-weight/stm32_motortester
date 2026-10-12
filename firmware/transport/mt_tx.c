@@ -107,23 +107,23 @@ mt_tx_window_phase mt_tx_window_status(const mt_tx *t, uint32_t gen,
     }
     return MT_TX_WINDOW_NO_TX;
 }
-mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
+/* Shared bounded terminal compaction. Public callers validate message shapes.
+ * A NULL ACK denotes a serviceable acquisition fault, not a Stop barrier. */
+static mt_tx_result finish_acquisition(mt_tx *t, uint32_t gen, uint32_t win,
                        const mt_wire_message *abort_message,
                        const mt_wire_message *ack,
                        const mt_wire_message *status, uint32_t now) {
     size_t i, kept = 0;
-    int terminal_needed;
+    int terminal_needed, preserve_head_clock;
     uint8_t retained_abort[12];
     int has_retained_abort = 0;
     const mt_wire_message *terminal = abort_message;
-    if (!t || (win != 0u && gen == 0u) || !shape(ack, 133, 12, 1) || !shape(status, 134, 24, 0) ||
-        read32(ack->payload) != gen || status->payload[0] != 0u ||
-        status->payload[1] != 0u || read32(status->payload + 4) != gen ||
-        read32(status->payload + 8) != read32(ack->payload + 4) ||
-        (win != 0u && read32(ack->payload + 4) != win)) return MT_TX_ARGUMENT;
     if (t->fault != MT_TX_OK) return MT_TX_FAULT;
     if (t->session == 0u) return MT_TX_NOT_NEGOTIATED;
     if (t->stopping) return MT_TX_DRAINING;
+    /* Fault admission must not grant a stalled mandatory head a new deadline.
+     * Stop retains its pre-existing timer policy. Partial heads never reset. */
+    preserve_head_clock = !ack && t->count != 0u && t->slots[0].reply;
     terminal_needed = win != 0u && mt_tx_terminal_committed(t, gen, win) == 0u;
     /* Preserve a pre-existing failure reason; move its unstarted ABORT behind
      * prior replies. A partially started ABORT is already terminal-committed. */
@@ -146,7 +146,7 @@ mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
     /* Preflight preserves atomicity even if queue layout changes in future. */
     for (i = 0; i < t->count; ++i)
         if ((i == 0u && t->offset != 0u) || t->slots[i].reply) ++kept;
-    if (kept + 2u + (size_t)terminal_needed > MT_TX_CAPACITY)
+    if (kept + 1u + (size_t)(ack != NULL) + (size_t)terminal_needed > MT_TX_CAPACITY)
         return MT_TX_FULL;
     kept = 0;
     for (i = 0; i < t->count; ++i)
@@ -155,7 +155,7 @@ mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
     t->count = kept;
     if (t->offset == 0u) {
         t->length = 0;
-        head_timer(t, now);
+        if (!preserve_head_clock) head_timer(t, now);
     }
     if (terminal_needed) {
         if (has_retained_abort) {
@@ -170,11 +170,34 @@ mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
             slot->reply = 0;
         } else append(t, terminal);
     }
-    append(t, ack);
+    if (ack) append(t, ack);
     append(t, status);
-    t->stopping = 1;
-    t->stop_ms = now;
+    if (ack) { t->stopping = 1; t->stop_ms = now; }
     return MT_TX_OK;
+}
+mt_tx_result mt_tx_stop(mt_tx *t, uint32_t gen, uint32_t win,
+                       const mt_wire_message *abort_message,
+                       const mt_wire_message *ack,
+                       const mt_wire_message *status, uint32_t now) {
+    if (!t || (win != 0u && gen == 0u) || !shape(ack, 133, 12, 1) ||
+        !shape(status, 134, 24, 0) || read32(ack->payload) != gen ||
+        status->payload[0] != 0u || status->payload[1] != 0u ||
+        read32(status->payload + 4) != gen ||
+        read32(status->payload + 8) != read32(ack->payload + 4) ||
+        (win != 0u && read32(ack->payload + 4) != win)) return MT_TX_ARGUMENT;
+    return finish_acquisition(t, gen, win, abort_message, ack, status, now);
+}
+mt_tx_result mt_tx_acquisition_fault(mt_tx *t, uint32_t gen, uint32_t win,
+                       const mt_wire_message *abort_message,
+                       const mt_wire_message *status, uint32_t now) {
+    if (!t || gen == 0u || !shape(status, 134, 24, 0) ||
+        status->payload[0] != 5u ||
+        (status->payload[1] != 1u && status->payload[1] != 2u) ||
+        read32(status->payload + 4) != gen ||
+        (win != 0u && read32(status->payload + 8) != win) ||
+        mt_tx_terminal_committed(t, gen, win) == 146u)
+        return MT_TX_ARGUMENT;
+    return finish_acquisition(t, gen, win, abort_message, NULL, status, now);
 }
 mt_tx_result mt_tx_poll(mt_tx *t, uint32_t now, mt_tx_write_fn write,
                        void *context, mt_tx_event *event) {
