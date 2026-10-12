@@ -18,9 +18,9 @@ Python3.12.14 и GCC14.2.0. Установка пакетов и сеть не �
 Репозиторий приложения должен быть чистым; запуск не открывает serial/USB.
 
 ```sh
-python3 -I -B /absolute/probe/reproduce.py \
-  --a-root /absolute/checkout-A \
-  --host-root /absolute/checkout-B/host \
+python3 -I -B "/absolute/probe/reproduce.py" \
+  --a-root "/absolute/checkout-A" \
+  --host-root "/absolute/checkout-B/host" \
   --output '/absolute/existing parent/new collector evidence'
 ```
 
