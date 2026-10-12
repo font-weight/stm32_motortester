@@ -5,7 +5,7 @@
 enum { MT_USB_EPOCH_QUEUE_LOSS = 1u, MT_USB_EPOCH_SUBMIT_FAILED = 2u,
        MT_USB_EPOCH_COMPLETION_FAILED = 4u, MT_USB_EPOCH_DECONFIGURED = 8u,
        MT_USB_EPOCH_DISCONNECTED = 16u, MT_USB_EPOCH_SOFT_EXHAUSTED = 32u,
-       MT_USB_EPOCH_EXHAUSTED = 64u };
+       MT_USB_EPOCH_EXHAUSTED = 64u, MT_USB_EPOCH_PMA_OVERRUN = 128u };
 typedef struct {
     uint32_t current, queued_reset, processed_reset, cleaned, configured;
     uint32_t soft_serial, pending_soft, faults;
@@ -40,7 +40,7 @@ int mt_usb_epoch_configured(mt_usb_epoch *s, uint32_t token);
  * until its DCD call; check and action require the caller's same guard. */
 int mt_usb_epoch_core_io(const mt_usb_epoch *s, uint32_t token);
 int mt_usb_epoch_app_io(const mt_usb_epoch *s, uint32_t token);
-/* Only the three supplied current-epoch fault categories are accepted here. */
+/* Only the four supplied current-epoch fault categories are accepted here. */
 int mt_usb_epoch_fail(mt_usb_epoch *s, uint32_t token, uint32_t reason);
 /* Soft loss does not advance hard epoch. Matching serial prevents a late ack
  * from clearing a newer suspend. Explicit ack does not prove physical resume. */

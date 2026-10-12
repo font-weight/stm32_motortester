@@ -73,7 +73,8 @@ int mt_usb_epoch_fail(mt_usb_epoch *s, uint32_t token, uint32_t reason) {
     if (!current(s, token) ||
         (reason != MT_USB_EPOCH_SUBMIT_FAILED &&
          reason != MT_USB_EPOCH_COMPLETION_FAILED &&
-         reason != MT_USB_EPOCH_DECONFIGURED)) return 0;
+         reason != MT_USB_EPOCH_DECONFIGURED &&
+         reason != MT_USB_EPOCH_PMA_OVERRUN)) return 0;
     if (reason != MT_USB_EPOCH_DECONFIGURED) increment(&s->io_failures);
     s->faults |= reason;
     return 1;

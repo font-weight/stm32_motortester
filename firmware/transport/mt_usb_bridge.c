@@ -35,6 +35,12 @@ uint32_t mt_usb_bridge_ingress(const dcd_event_t *event) {
         (void)mt_usb_epoch_fail(&state, token, MT_USB_EPOCH_COMPLETION_FAILED);
     return token;
 }
+void mt_usb_bridge_pma_overrun(void) {
+    uint32_t key = mt_usb_bridge_lock();
+    if (lock_fn && unlock_fn)
+        (void)mt_usb_epoch_fail(&state, state.current, MT_USB_EPOCH_PMA_OVERRUN);
+    mt_usb_bridge_unlock(key);
+}
 void mt_usb_bridge_enqueued(uint32_t token, unsigned reset, unsigned accepted) {
     (void)mt_usb_epoch_enqueued(&state, token, reset, accepted);
 }

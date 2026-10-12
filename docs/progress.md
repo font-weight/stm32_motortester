@@ -431,3 +431,20 @@ STATUS(ERROR) принадлежит controller и проверяется отд
 Первичный обновлённый app run прошёл strict и ASan/UBSan. Итоговая проверка
 и независимый вердикт этой версии фиксируются в issue/PR; старые PASS не
 переносятся автоматически. Общая приёмка PR79 и аппаратные проверки открыты.
+
+
+# 12.10.2026: PMA overrun quarantine draft
+
+Issue88: на прежнем дереве наблюдаемый enabled PMAOVR очищался без epoch fault,
+и modeled capture продолжался до END. Root добавил явную sticky причину
+PMA_OVERRUN, guarded bridge ingress и overlay-проверку до CTR. PMAOVR не продвигает эпоху; disconnect может её продвинуть, сохраняя
+блокировку. Только физический BUS_RESET начинает снятие poison; same-snapshot RESET/PMAOVR
+очищаются до её продвижения. ISR не выполняет Stop: существующий foreground
+runtime сначала подтверждает остановку, затем cleanup.
+
+Ранний supporting strict-run проверил active/idle, заполненную очередь,
+совпадение CTR/reset и частичный IN; это ещё не итоговый независимый вердикт.
+Данные уже поданные в PMA отозвать нельзя. Canonical vendor, host и wire layout
+не меняются. Все прежние ARM/object/image/stack свидетельства сохраняются,
+но не считаются автоматически действительными для новой композиции. Старые
+build pins оставлены fail-closed до отдельной revalidation. Аппаратура не проверена.

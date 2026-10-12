@@ -19,7 +19,33 @@ static uint32_t reset_ready(mt_usb_epoch *s) {
     assert(mt_usb_epoch_app_io(s, e));
     return e;
 }
+static void pma_quarantine(void) {
+    mt_usb_epoch s;
+    uint32_t e, old;
+    mt_usb_epoch_init(&s);
+    assert(!mt_usb_epoch_fail(&s, 0, MT_USB_EPOCH_PMA_OVERRUN));
+    e = reset_ready(&s);
+    assert(!mt_usb_epoch_fail(&s, e,
+           MT_USB_EPOCH_PMA_OVERRUN | MT_USB_EPOCH_SUBMIT_FAILED));
+    assert(mt_usb_epoch_fail(&s, e, MT_USB_EPOCH_PMA_OVERRUN));
+    assert(s.current == e && s.faults == MT_USB_EPOCH_PMA_OVERRUN);
+    assert(s.io_failures == 1u && s.queue_losses == 0u);
+    assert(!mt_usb_epoch_core_io(&s, e) && !mt_usb_epoch_app_io(&s, e));
+    assert(mt_usb_epoch_cleaned(&s, e));
+    assert(!mt_usb_epoch_configured(&s, e));
+    assert(!mt_usb_epoch_enqueued(&s, e, 0, 1));
+    assert(!mt_usb_epoch_resume(&s, e, 1));
+    assert(!mt_usb_epoch_reset_done(&s, e));
+    old = e; e = reset_ready(&s);
+    assert(e != old && s.faults == 0u);
+    assert(!mt_usb_epoch_fail(&s, old, MT_USB_EPOCH_PMA_OVERRUN));
+    assert(mt_usb_epoch_app_io(&s, e) && s.io_failures == 1u);
+    s.io_failures = UINT32_MAX; /* Saturating accounting, modeled limit only. */
+    assert(mt_usb_epoch_fail(&s, e, MT_USB_EPOCH_PMA_OVERRUN));
+    assert(s.io_failures == UINT32_MAX && !mt_usb_epoch_app_io(&s, e));
+}
 int main(void) {
+    pma_quarantine();
     mt_usb_epoch s;
     uint32_t e, old, a, b;
     mt_usb_epoch_init(&s);
