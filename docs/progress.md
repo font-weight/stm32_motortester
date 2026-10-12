@@ -431,3 +431,21 @@ STATUS(ERROR) принадлежит controller и проверяется отд
 Первичный обновлённый app run прошёл strict и ASan/UBSan. Итоговая проверка
 и независимый вердикт этой версии фиксируются в issue/PR; старые PASS не
 переносятся автоматически. Общая приёмка PR79 и аппаратные проверки открыты.
+
+
+# 12.10.2026: synthetic static-image replay для нового checkout
+
+Issue84: только документация и один искусственный board JSON. Программные
+источники, manifests, compiler flags и image/stack checkers не меняются.
+Добавлен exact исторический fixture с all-false attestations и названием
+SYNTHETIC_NEVER_FLASH. В build README указан existing manifest точных Debian
+пакетов и Linux amd64/host-library prerequisites; URL не выдаются за вновь
+проверенную доступность. Инструменты не скачивались и не устанавливались.
+
+Root выполнил полный object → static image flow на новом экспортированном
+checkout, с новыми output-каталогами и явными 3024/0: оба exit0,
+PASS_RELOCATABLE_ONLY и CONDITIONAL_STATIC_LINK_CHECKS_PASS. Все 33 объекта,
+BOOT, ELF/map и BIN/HEX проверены существующими неизменными средствами.
+hardware_verified=false, flash_approved=false. M=0 не является запасом
+реальной платы. Новый текст и fixture подлежат отдельному независимому ревью;
+прежний scoped PASS image recipe не заменяет этот вердикт.

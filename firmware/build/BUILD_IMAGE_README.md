@@ -1,8 +1,10 @@
 # Черновой static-link recipe
 
-Новая WAIT_RELEASE-редакция — выполняемый локальный черновик с открытым
-exact review. Историческая export-ревизия проверена отдельно; новый reference
-и recipe требуют повторной проверки, включая BIN/HEX шаги. Формальная
+WAIT_RELEASE reference/recipe в PR81 получил отдельное независимое
+[scoped-ревью](https://github.com/font-weight/stm32_motortester/pull/81#issuecomment-6106806930)
+на exact head dacc0c37cab54c69dc1852c6b357fe69b018ac94. Изменения после этой
+версии требуют своей проверки; документированный ниже fixture не расширяет
+область прежнего вердикта. Формальная
 приёмка проекта остаётся BLOCKED_EVIDENCE, score:null.
 После всех проверок результат — `CONDITIONAL_STATIC_LINK_CHECKS_PASS`:
 условная оценка 3024 B связывается с конкретным ELF. Это локальный draft
@@ -106,3 +108,46 @@ Manifest прежнего object builder не менялся. В result сохр
 обоих экспортов и канонического адресного набора. Синтетические BIN/HEX
 сохраняют TEST_ONLY_NEVER_FLASH в имени. Наличие файла не означает допуска
 к физической прошивке.
+
+
+## Синтетическое воспроизведение без платы
+
+Цель — проверить рецепт на поставленных исходниках, не подготовить прошивку
+вашего экземпляра. Используйте только уже проверенный набор инструментов
+из [object README](README.md#откуда-взять-именно-закреплённые-инструменты).
+[Fixture](examples/SYNTHETIC_NEVER_FLASH.json) имеет `input_kind=synthetic_fixture`
+и все шесть attestations=false. HSE 4,5 МГц, VID/PID 1/0, ток 2 мА и остальные
+значения намеренно искусственные. Это не USB identity для использования,
+не паспорт платы и не параметры подключения.
+
+Из корня checkout замените три пути на канонические абсолютные пути.
+`RUNS` — отдельный уже существующий каталог вне checkout и toolchain;
+его дочерние `objects` и `image` должны отсутствовать. При повторе выберите
+новый `RUNS`, чтобы сохранить прежние результаты, включая неудачные.
+
+```sh
+set -eu
+ROOT=$(pwd -P)
+TOOLCHAIN="/absolute/toolchain-root/usr"
+RUNS="/absolute/existing-parent/fresh-run-parent"
+# Создайте RUNS заранее; objects и image пока не создавайте.
+python3 -I -B "$ROOT/firmware/build/build_objects.py" \
+  --toolchain "$TOOLCHAIN" --out "$RUNS/objects"
+python3 -I -B "$ROOT/firmware/build/build_image.py" \
+  --objects "$RUNS/objects" \
+  --board "$ROOT/firmware/build/examples/SYNTHETIC_NEVER_FLASH.json" \
+  --toolchain "$TOOLCHAIN" --stack-bytes 3024 --stack-margin-bytes 0 \
+  --out "$RUNS/image"
+```
+
+Ожидайте `PASS_RELOCATABLE_ONLY` в object RESULTS.json и
+`CONDITIONAL_STATIC_LINK_CHECKS_PASS` в image RESULTS.json, а также
+`hardware_verified=false`, `flash_approved=false`. Выходы с именами
+TEST_ONLY_NEVER_FLASH нельзя исполнять на плате или прошивать. `3024/0`
+проверяет текущую условную границу без инженерного запаса; для реального
+экземпляра эти числа автоматически не выбираются. Полный рецепт сам
+проверяет BOOT, карту, ELF и равенство BIN/HEX. Любой ненулевой exit или
+FAILED требует разбора сохранённого журнала, а не обхода проверки.
+
+Проверка этого документа и fixture не является приёмкой общего wire-контракта,
+Windows-пакета, питания, USB-развязки, АЦП или временных характеристик.
