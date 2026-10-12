@@ -1,4 +1,4 @@
-name: Windows viewport diagnostic
+name: Windows viewport and axis diagnostic
 on:
   pull_request:
     branches: [main]
@@ -23,7 +23,8 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: '3bc7a251cd36714b1fec350c99e0e5b43ffc4950'
+      SOURCE_SHA: 'db86d2247f02dbc6f770a674654f5c5bf9d92f99'
+      SOURCE_TREE: 'b9d7ac81a2f36da0573d208f1d61cdb94a37cdbc'
       PYTHONNOUSERSITE: '1'
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
@@ -39,7 +40,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: '3bc7a251cd36714b1fec350c99e0e5b43ffc4950'
+          ref: 'db86d2247f02dbc6f770a674654f5c5bf9d92f99'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
@@ -49,10 +50,14 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $head = (git rev-parse HEAD).Trim()
           if ($LASTEXITCODE -ne 0 -or $head -cne $env:SOURCE_SHA) { throw 'Unexpected source SHA' }
+          $tree = (git rev-parse 'HEAD^{tree}').Trim()
+          if ($LASTEXITCODE -ne 0 -or $tree -cne $env:SOURCE_TREE) { throw 'Unexpected source tree' }
           $dirty = git status --porcelain --untracked-files=all
           if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Dirty source' }
           $recipe = (git rev-parse HEAD:host/packaging/build_windows.py).Trim()
           if ($LASTEXITCODE -ne 0 -or $recipe -cne '503a9f4aec1cd7293770226caaaa5369c16b3cca') { throw 'Unexpected recipe' }
+          $lock = (git rev-parse HEAD:host/packaging/requirements-win-x64.lock).Trim()
+          if ($LASTEXITCODE -ne 0 -or $lock -cne '256a8005b4f7de19651c9b9bdd70419b5b52af3d') { throw 'Unexpected dependency lock' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
           git config --show-origin --get core.autocrlf
           if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
@@ -93,7 +98,7 @@ jobs:
           '@
           python -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
-      - name: Observe unchanged viewport assertions only
+      - name: Execute viewport and real axis-event assertions without skips
         run: |
           $ErrorActionPreference = 'Stop'
           $check = @'
@@ -110,7 +115,7 @@ jobs:
           output.mkdir(parents=True, exist_ok=False)
           log = output / 'viewport-diagnostic.log'
           env = os.environ.copy()
-          for variable in ('PYTHONPATH', 'PYTHONHOME', 'QT_PLUGIN_PATH', 'QML2_IMPORT_PATH', 'QT_QPA_PLATFORM'):
+          for variable in ('PYTHONPATH', 'PYTHONHOME', 'QT_PLUGIN_PATH', 'QML2_IMPORT_PATH', 'QT_QPA_PLATFORM', 'QT_SCALE_FACTOR', 'QT_FONT_DPI', 'QT_SCREEN_SCALE_FACTORS'):
               env.pop(variable, None)
           env.update(PYTHONNOUSERSITE='1', PYTHONUTF8='1', PYQTGRAPH_QT_LIB='PySide6', PYTHONHASHSEED='0')
           def run(*command, extra_env=None, timeout=300):
@@ -124,7 +129,43 @@ jobs:
               run(python, '-m', 'pip', '--isolated', 'install', '--no-index', '--find-links', wheels, '--require-hashes', '--only-binary=:all:', '-r', lock)
               run(python, '-m', 'pip', 'check')
               run(python, '-m', 'pip', 'list', '--format=json')
-              run(python, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_gui_acquisition.py', '-v', extra_env={'QT_QPA_PLATFORM': 'offscreen'}, timeout=300)
+              suite = output / 'source-gui-suite.py'
+              suite.write_text("\n".join([
+                  "import json, os, sys, unittest",
+                  "from pathlib import Path",
+                  "sys.path.insert(0, str(Path.cwd()))",
+                  "import PySide6, pyqtgraph",
+                  "from PySide6 import QtCore, QtGui, QtWidgets",
+                  "app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])",
+                  "font = QtGui.QFontInfo(app.font())",
+                  "print('QT_ENV', json.dumps(dict(python=sys.version, qt=QtCore.qVersion(), pyside=PySide6.__version__, pyqtgraph=pyqtgraph.__version__, platform=app.platformName(), scale=os.environ.get('QT_SCALE_FACTOR', 'native'), requested_font=app.font().family(), resolved_font=font.family(), pixel_size=font.pixelSize(), optimized=not __debug__)), flush=True)",
+                  "loader = unittest.TestLoader()",
+                  "acquisition = loader.discover('tests', pattern='test_gui_acquisition.py')",
+                  "axis = loader.discover('tests', pattern='test_axis_zoom.py')",
+                  "bridge = loader.discover('tests', pattern='test_acquisition_bridge.py')",
+                  "gui = loader.discover('tests', pattern='test_gui.py')",
+                  "png = loader.discover('tests', pattern='test_png_export.py')",
+                  "if loader.errors: raise RuntimeError(str(loader.errors))",
+                  "if (acquisition.countTestCases(), axis.countTestCases(), bridge.countTestCases(), gui.countTestCases(), png.countTestCases()) != (28, 11, 36, 23, 7): raise RuntimeError('Unexpected test inventory')",
+                  "result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([acquisition, axis, bridge, gui, png]))",
+                  "print('SOURCE_GUI_RESULT', json.dumps(dict(run=result.testsRun, skips=len(result.skipped), failures=len(result.failures), errors=len(result.errors), expected_failures=len(result.expectedFailures), unexpected_successes=len(result.unexpectedSuccesses))), flush=True)",
+                  "sys.exit(0 if result.wasSuccessful() and result.testsRun == 105 and not result.skipped and not result.expectedFailures else 1)",
+              ]) + "\n", encoding='utf-8')
+              failures = []
+              for scale in (None, '1.25', '1.5', '2'):
+                  for optimized in (False, True):
+                      label = f"scale={scale or 'native'} optimized={optimized}"
+                      print('SOURCE_GUI_PROFILE', label, flush=True)
+                      profile_env = {'QT_QPA_PLATFORM': 'offscreen'}
+                      if scale is not None:
+                          profile_env['QT_SCALE_FACTOR'] = scale
+                      try:
+                          run(python, *(['-O'] if optimized else []), suite,
+                              extra_env=profile_env, timeout=300)
+                      except subprocess.CalledProcessError as error:
+                          failures.append(label + ': ' + str(error))
+              if failures:
+                  raise RuntimeError('Source GUI profiles failed: ' + '; '.join(failures))
           finally:
               dirty = subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'], text=True)
               print('SOURCE_DIRTY:', repr(dirty))
@@ -148,6 +189,7 @@ jobs:
           }
           @"
           Diagnostic-only source: $env:SOURCE_SHA
-          Original assertion result is preserved; this is not Windows product acceptance.
+          105 source tests per profile; normal/optimized at native/125/150/200 percent. No skips accepted.
+          Original assertion results are preserved; this is not Windows product acceptance.
           No PyInstaller, frozen smoke, archive construction, upload or release was attempted.
           "@ | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
