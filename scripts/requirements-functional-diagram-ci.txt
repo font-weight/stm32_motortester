@@ -1,0 +1,7 @@
+-r ../hardware/functional-diagram/requirements.txt
+pypdf==6.10.0
+PyMuPDF==1.26.6
+pillow==12.3.0
+charset-normalizer==3.5.1
+lxml==6.1.1
+typing-extensions==4.16.0
