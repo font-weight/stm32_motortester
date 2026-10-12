@@ -1,6 +1,7 @@
 """Pinned-format fixtures only; these tests do not build/run a Windows candidate."""
 import ast
 import contextlib
+import copy
 import hashlib
 import importlib.util
 import io
@@ -24,6 +25,29 @@ spec.loader.exec_module(p)
 SOURCE = 'db86d2247f02dbc6f770a674654f5c5bf9d92f99'
 INSPECTOR = 'a' * 40
 MAGIC = importlib.util.MAGIC_NUMBER
+TEST_RECORDING_SOURCE_FILES = ('motortester/__init__.py',
+ 'motortester/__main__.py',
+ 'motortester/acquisition.py',
+ 'motortester/device_emulator.py',
+ 'motortester/emulator.py',
+ 'motortester/gui.py',
+ 'motortester/gui_acquisition.py',
+ 'motortester/lv_collector.py',
+ 'motortester/model.py',
+ 'motortester/plotting.py',
+ 'motortester/recording.py',
+ 'motortester/recording_bridge.py',
+ 'motortester/recording_controller.py',
+ 'motortester/runtime.py',
+ 'motortester/session.py',
+ 'motortester/session_archive.py',
+ 'motortester/transport.py',
+ 'motortester/window.py',
+ 'motortester/wire.py',
+ 'motortester/wire_demo.py',
+ 'packaging/launch_gui.py',
+ 'packaging/recording_smoke.py',
+ 'packaging/build_windows.py')
 
 
 def pyz(entries=None, toc=None):
@@ -158,11 +182,382 @@ class Fixture:
             return p.inspect_candidate(**args)
 
 
+class RecordingFixture(Fixture):
+    """Opaque artifact bytes and fake-native receipt; no Windows/archive execution."""
+    def __init__(self, root, kinds=('capture', 'capture')):
+        super().__init__(root)
+        self.recording_path = self.build / 'frozen-recording.json'
+        self.recording_work = self.build / 'frozen-recording.json.work'
+        self.recording_work.mkdir()
+        spool = 'recording-00000000000040008000000000000002.mtspool'
+        self.put(self.recording_work / 'recording.mtrec', b'opaque generated archive fixture')
+        self.put(self.recording_work / spool, b'opaque generated spool fixture')
+        segments = []
+        for i, kind in enumerate(kinds):
+            provenance = dict(generation=3 + 3 * i, config_id=1, acquisition_mode=1, auto_timeout_ms=0,
+                host_elapsed_ms=i * 100, wire_version='0.1', start_operation='arm', wire_session_nonce=123,
+                config_payload_hex='01000100000000080000000000000000', begin_request_id=0,
+                begin_sequence=10 + 20 * i, terminal_request_id=0, terminal_sequence=20 + 20 * i,
+                terminal_kind='end' if kind == 'capture' else 'abort',
+                end_samples_crc32=123 if kind == 'capture' else None,
+                abort_reason_code=None if kind == 'capture' else 1,
+                unavailable_reason='no_begin' if kind == 'abort' else None)
+            if kind == 'abort': provenance.update(begin_request_id=None, begin_sequence=None)
+            segments.append(dict(ordinal=i, kind=kind, sequence=i + 1,
+                sample_count=2048 if kind == 'capture' else 0 if kind == 'abort' else 17,
+                raw_sha256='a' * 64, samples_sha256='b' * 64, provenance=provenance))
+        self.recording = dict(schema_version=1, status='passed', scope='frozen-windows-recording',
+            phase='complete', error=None, output='frozen-recording.json', workdir='frozen-recording.json.work',
+            phases=[dict(name=v, utc=f'2026-10-12T00:00:{i:02d}+00:00') for i, v in enumerate(
+                ('entry', 'gui', 'connect', 'record', 'stop', 'save', 'open', 'navigation', 'shutdown', 'complete'))],
+            runtime=dict(platform='win32', os_name='nt', os_release='10', os_version='10.0.fixture',
+                machine='AMD64', python='3.13.16', implementation='CPython', python_bits=64,
+                qt='6.12.0', pyside='6.12.0', qt_platform='windows', frozen=True, optimize=0, application='0.1.0'),
+            imports=['motortester.gui', 'motortester.gui_acquisition', 'motortester.acquisition',
+                'motortester.recording_bridge', 'motortester.recording_controller', 'motortester.session_archive',
+                'motortester.device_emulator', 'motortester.runtime', 'motortester.session', 'motortester.wire',
+                'motortester.window', 'motortester.recording', 'motortester.model'],
+            checks=dict(synthetic=True, device_io_performed=False, physical_stop_verified=False,
+                coverage='segmented', intersegment_device_gap='unknown', time_basis='per_segment_nominal_unverified',
+                source_binding='external-clean-build-manifest', observed_bytes_and_provenance_match=True,
+                independent_pattern_match=True, fresh_gui_open_and_selection=True),
+            identity=dict(recording_id='00000000-0000-4000-8000-000000000001',
+                session_id='00000000-0000-0000-0000-00000000007b', origin='simulator',
+                firmware_version='fixture', protocol_version='0.1', application_version='0.1.0'),
+            stop=dict(request_id=3 * len(kinds) + 2, ack_request_id=3 * len(kinds) + 2,
+                wire_session_nonce=123, generation=3 * len(kinds) + 1, last_window=len(kinds), status=0,
+                termination_reason='user_stop', evidence='stop_ack'), segments=segments,
+            artifacts={key: dict(name=name, bytes=(self.recording_work / name).stat().st_size,
+                                  sha256=p.digest((self.recording_work / name).read_bytes()))
+                for key, name in [('archive', 'recording.mtrec'), ('spool', spool)]},
+            executable=dict(bytes=len(self.exe), sha256=p.digest(self.exe)),
+            cleanup=dict(acquisition_native_joined=True, writer_stopped=True, windows_closed=True,
+                pending_io=False, finalization_invalidated=False))
+        self.manifest['recording_smoke'] = dict(report='frozen-recording.json', sha256='0' * 64,
+            source_binding='external clean checkout; not binary-to-source attestation',
+            source_files={key: 'c' * 64 for key in TEST_RECORDING_SOURCE_FILES})
+        self.save_recording()
+
+    def save_recording(self, raw=None, bind_result=True, bind_hash=True):
+        raw = json.dumps(self.recording).encode() if raw is None else raw
+        self.recording_path.write_bytes(raw)
+        extension = self.manifest['recording_smoke']
+        if bind_hash: extension['sha256'] = p.digest(raw)
+        if bind_result: extension['result'] = copy.deepcopy(self.recording)
+        self.save_manifest()
+
+
 class ProvenanceTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+
+    def test_recording_variant_binds_bytes_and_reports_only_qualified_summary(self):
+        f = RecordingFixture(self.root / 'new')
+        before = {x.relative_to(f.root).as_posix(): p.digest(x.read_bytes()) for x in f.root.rglob('*') if x.is_file()}
+        report = f.inspect()
+        after = {x.relative_to(f.root).as_posix(): p.digest(x.read_bytes()) for x in f.root.rglob('*') if x.is_file()}
+        self.assertEqual(before, after)
+        summary = report['recording_smoke']
+        self.assertEqual(summary['receipt_sha256'], p.digest(f.recording_path.read_bytes()))
+        self.assertEqual(summary['receipt_bytes'], f.recording_path.stat().st_size)
+        self.assertEqual(summary['segment_count'], 2)
+        self.assertEqual(summary['full_segment_count'], 2)
+        self.assertEqual(summary['source_files'], f.manifest['recording_smoke']['source_files'])
+        for key in ('runtime_execution_observed_by_inspector', 'archive_contents_validated',
+                    'timing_budgets_verified_by_inspector', 'device_io_performed', 'physical_stop_verified'):
+            self.assertIs(summary[key], False)
+        self.assertEqual(report['native_unknown_count'], 1)
+        self.assertEqual(report['inventory_status'], 'complete_with_unknown_origins')
+        for key in ('legal_clearance', 'corresponding_source_verified', 'replacement_verified'):
+            self.assertIs(report[key], False)
+        legacy = Fixture(self.root / 'old').inspect()
+        self.assertNotIn('recording_smoke', legacy)
+        self.assertEqual(set(report) - {'recording_smoke'}, set(legacy))
+
+    def test_recording_partial_abort_and_independent_spool_uuid(self):
+        f = RecordingFixture(self.root, ('capture', 'capture', 'partial', 'abort'))
+        self.assertNotEqual(f.recording['identity']['recording_id'].replace('-', ''),
+                            f.recording['artifacts']['spool']['name'][10:-8])
+        self.assertEqual(f.inspect()['recording_smoke']['segment_count'], 4)
+        for count in (0, 2048):
+            changed = copy.deepcopy(f.recording); changed['segments'][2]['sample_count'] = count
+            self.assertEqual(p.recording_structure(changed), 2)
+        for case in ('partial-reason', 'abort-begin', 'abort-count', 'capture-crc', 'partial-crc', 'abort-reason'):
+            changed = copy.deepcopy(f.recording)
+            if case == 'partial-reason': changed['segments'][2]['provenance']['unavailable_reason'] = 'unknown'
+            if case == 'abort-begin': changed['segments'][3]['provenance']['begin_sequence'] = 1
+            if case == 'abort-count': changed['segments'][3]['sample_count'] = 1
+            if case == 'capture-crc': changed['segments'][0]['provenance']['end_samples_crc32'] = None
+            if case == 'partial-crc': changed['segments'][2]['provenance']['end_samples_crc32'] = 0
+            if case == 'abort-reason': changed['segments'][3]['provenance']['abort_reason_code'] = 7
+            with self.subTest(case=case), self.assertRaises(p.Invalid): p.recording_structure(changed)
+
+    def test_recording_exact_manifest_extension_and_external_source_keys(self):
+        f = RecordingFixture(self.root)
+        original = copy.deepcopy(f.manifest)
+        mutations = [('extra-root', lambda m: m.update(other_smoke={})),
+                     ('extra-extension', lambda m: m['recording_smoke'].update(other='x')),
+                     ('wrong-report', lambda m: m['recording_smoke'].update(report='../private.json')),
+                     ('wrong-binding', lambda m: m['recording_smoke'].update(source_binding='embedded')),
+                     ('unknown-source', lambda m: m['recording_smoke']['source_files'].update({'/private/secret': 'c' * 64})),
+                     ('missing-source', lambda m: m['recording_smoke']['source_files'].pop(TEST_RECORDING_SOURCE_FILES[0])),
+                     ('wrong-source-hash', lambda m: m['recording_smoke']['source_files'].update({TEST_RECORDING_SOURCE_FILES[0]: True}))]
+        for key in original['recording_smoke']:
+            mutations.append(('missing-' + key, lambda m, key=key: m['recording_smoke'].pop(key)))
+        for label, mutate in mutations:
+            f.manifest = copy.deepcopy(original); mutate(f.manifest); f.save_manifest()
+            with self.subTest(label=label), self.assertRaises(p.Invalid): f.inspect()
+
+    def test_recording_all_nested_key_sets_reject_missing_and_extra(self):
+        good = RecordingFixture(self.root).recording
+        objects = []
+        def visit(value, path=()):
+            if type(value) is dict:
+                objects.append(path)
+                for key, item in value.items(): visit(item, path + (key,))
+            elif type(value) is list:
+                for i, item in enumerate(value): visit(item, path + (i,))
+        visit(good)
+        for path in objects:
+            node = good
+            for key in path: node = node[key]
+            for key in list(node) + ['UNEXPECTED']:
+                changed = copy.deepcopy(good); target = changed
+                for part in path: target = target[part]
+                if key == 'UNEXPECTED': target[key] = None
+                else: target.pop(key)
+                with self.subTest(path=path, key=key), self.assertRaises(p.Invalid):
+                    p.recording_structure(changed)
+
+    def test_recording_recursive_types_reject_bool_numeric_and_null_substitutions(self):
+        good = RecordingFixture(self.root).recording
+        values = []
+        def visit(value, path=()):
+            if type(value) is dict:
+                for key, item in value.items(): visit(item, path + (key,))
+            elif type(value) is list:
+                for i, item in enumerate(value): visit(item, path + (i,))
+            else: values.append((path, value))
+        visit(good)
+        for path, value in values:
+            replacements = ([True, float(value), float('inf')] if type(value) is int else
+                            [int(value)] if type(value) is bool else ['null'] if value is None else [None])
+            for replacement in replacements:
+                changed = copy.deepcopy(good); node = changed
+                for key in path[:-1]: node = node[key]
+                node[path[-1]] = replacement
+                with self.subTest(path=path, replacement=replacement), self.assertRaises((p.Invalid, ValueError)):
+                    p.recording_structure(changed)
+        self.assertFalse(p.same_json({'x': [True]}, {'x': [1]}))
+        self.assertFalse(p.same_json({'x': [1]}, {'x': [1.0]}))
+
+    def test_recording_source_or_non_native_receipt_cannot_be_success(self):
+        f = RecordingFixture(self.root)
+        cases = [('scope', 'source-or-nonnative-development'), ('platform', 'linux'),
+                 ('os_name', 'posix'), ('frozen', False), ('qt_platform', 'offscreen'),
+                 ('python', '3.12.14'), ('qt', '6.11.0'), ('pyside', '6.11.0'),
+                 ('machine', 'ARM64'), ('optimize', 1), ('implementation', 'PyPy')]
+        for key, value in cases:
+            changed = copy.deepcopy(f.recording)
+            (changed if key == 'scope' else changed['runtime'])[key] = value
+            with self.subTest(key=key), self.assertRaises(p.Invalid): p.recording_structure(changed)
+
+    def test_recording_stop_segment_chronology_and_nullable_semantics(self):
+        good = RecordingFixture(self.root).recording
+        changes = [(('stop', 'ack_request_id'), 1), (('stop', 'request_id'), 1),
+                   (('stop', 'wire_session_nonce'), 124), (('stop', 'generation'), 5),
+                   (('stop', 'last_window'), 1), (('stop', 'status'), 1),
+                   (('segments', 1, 'sequence'), 1), (('segments', 1, 'ordinal'), 0),
+                   (('segments', 1, 'provenance', 'generation'), 3),
+                   (('segments', 0, 'provenance', 'generation'), 1),
+                   (('segments', 0, 'provenance', 'terminal_sequence'), 10),
+                   (('segments', 0, 'provenance', 'wire_session_nonce'), 124),
+                   (('segments', 0, 'provenance', 'begin_request_id'), 1),
+                   (('segments', 0, 'provenance', 'terminal_request_id'), 1),
+                   (('segments', 0, 'provenance', 'config_payload_hex'), '00' * 16),
+                   (('segments', 0, 'sample_count'), 2047)]
+        for path, value in changes:
+            changed = copy.deepcopy(good); node = changed
+            for key in path[:-1]: node = node[key]
+            node[path[-1]] = value
+            with self.subTest(path=path), self.assertRaises(p.Invalid): p.recording_structure(changed)
+        # A later final Stop generation is valid; it need not equal the last segment.
+        changed = copy.deepcopy(good); changed['stop'].update(generation=20, request_id=21, ack_request_id=21)
+        self.assertEqual(p.recording_structure(changed), 2)
+
+    def test_recording_phase_order_is_not_monotonic_deadline_proof(self):
+        good = RecordingFixture(self.root).recording
+        changed = copy.deepcopy(good); changed['phases'][-1]['utc'] = '2050-01-01T00:00:00+00:00'
+        self.assertEqual(p.recording_structure(changed), 2)
+        for value in ('bad', '2026-10-12T00:00:00', '2026-10-12T00:00:00+02:00',
+                      '2025-10-12T00:00:00+00:00'):
+            changed = copy.deepcopy(good); changed['phases'][-1]['utc'] = value
+            with self.subTest(value=value), self.assertRaises((p.Invalid, ValueError)):
+                p.recording_structure(changed)
+        changed = copy.deepcopy(good); changed['phases'][0]['name'] = 'complete'
+        with self.assertRaises(p.Invalid): p.recording_structure(changed)
+
+    def test_recording_original_receipt_bytes_not_nested_json_substitute(self):
+        f = RecordingFixture(self.root)
+        original = f.recording_path.read_bytes()
+        f.save_recording(raw=original + b' ', bind_hash=False)
+        with self.assertRaisesRegex(p.Invalid, 'recording_receipt_hash'): f.inspect()
+        f.save_recording(raw=original + b' ')
+        self.assertEqual(f.inspect()['recording_smoke']['receipt_bytes'], len(original) + 1)
+        f.manifest['recording_smoke']['result']['runtime']['os_version'] = 'different'
+        f.save_manifest()
+        with self.assertRaisesRegex(p.Invalid, 'recording_receipt_result'): f.inspect()
+        f.recording_path.unlink()
+        with self.assertRaises(OSError): f.inspect()
+
+    def test_recording_duplicate_nonfinite_deep_and_oversized_json_rejected(self):
+        f = RecordingFixture(self.root)
+        original = f.recording_path.read_bytes()
+        malformed = [b'', b'{', b'\xff', b'{"schema_version":1,' + original[1:],
+                     original.replace(b'"schema_version": 1', b'"schema_version": NaN'),
+                     original.replace(b'"schema_version": 1', b'"schema_version": 1e999'),
+                     b'[' * 10 + b'0' + b']' * 10, b' ' * 65537]
+        for raw in malformed:
+            f.save_recording(raw=raw)
+            with self.subTest(raw=raw[:30]), self.assertRaises((ValueError, p.Invalid)): f.inspect()
+        # Duplicate keys inside the embedded result are rejected by manifest decoding too.
+        f.save_recording()
+        f.raw_manifest = f.raw_manifest.replace(b'"recording_smoke": {', b'"recording_smoke": {"report":"x",')
+        (f.bundle / 'build-manifest.json').write_bytes(f.raw_manifest)
+        with self.assertRaisesRegex(p.Invalid, 'duplicate_json_key'): f.inspect()
+
+    def test_recording_hash_size_and_exact_artifact_name_bindings(self):
+        f = RecordingFixture(self.root)
+        original = copy.deepcopy(f.recording)
+        mutations = [(('executable', 'sha256'), 'd' * 64), (('executable', 'bytes'), len(f.exe) + 1),
+                     (('artifacts', 'archive', 'sha256'), 'd' * 64),
+                     (('artifacts', 'spool', 'bytes'), 1),
+                     (('artifacts', 'archive', 'name'), '../recording.mtrec'),
+                     (('artifacts', 'spool', 'name'), 'recording-' + 'A' * 32 + '.mtspool'),
+                     (('artifacts', 'spool', 'name'), '/private/secret.mtspool')]
+        for path, value in mutations:
+            f.recording = copy.deepcopy(original); node = f.recording
+            for key in path[:-1]: node = node[key]
+            node[path[-1]] = value; f.save_recording()
+            with self.subTest(path=path, value=value), self.assertRaises(p.Invalid): f.inspect()
+        f.recording = original; f.save_recording()
+        target = f.recording_work / 'recording.mtrec'; target.write_bytes(b'changed')
+        with self.assertRaisesRegex(p.Invalid, 'recording_artifact_hash'): f.inspect()
+
+    def test_recording_extra_case_and_directory_artifacts_rejected(self):
+        for label in ('extra.bin', 'RECORDING.MTREC', 'recording-' + 'f' * 32 + '.mtspool', 'directory'):
+            f = RecordingFixture(self.root / str(len(list(self.root.iterdir()))))
+            extra = f.recording_work / label
+            if label == 'directory': extra.mkdir()
+            else: extra.write_bytes(b'not permitted')
+            with self.subTest(label=label), self.assertRaises(p.Invalid): f.inspect()
+
+    def test_recording_receipt_work_and_artifact_redirects_rejected(self):
+        for kind in ('receipt', 'work', 'artifact'):
+            f = RecordingFixture(self.root / kind)
+            target = f.recording_path if kind == 'receipt' else f.recording_work if kind == 'work' else f.recording_work / 'recording.mtrec'
+            moved = target.with_name(target.name + '.moved'); target.rename(moved)
+            target.symlink_to(moved, target_is_directory=kind == 'work')
+            with self.subTest(kind=kind), self.assertRaisesRegex(p.Invalid, 'redirected_path'): f.inspect()
+
+    def test_recording_receipt_and_artifact_mutations_rechecked_before_output(self):
+        for kind in ('receipt', 'archive', 'spool', 'extra', 'ancestor'):
+            f = RecordingFixture(self.root / kind); original = p.Reads.read; changed = False
+            def mutate(reader, path, *args, **kwargs):
+                nonlocal changed
+                result = original(reader, path, *args, **kwargs)
+                if Path(path) == f.module_path and not changed:
+                    changed = True
+                    if kind == 'extra': (f.recording_work / 'extra').write_bytes(b'bad')
+                    elif kind == 'ancestor':
+                        moved = f.recording_work.with_name('moved'); f.recording_work.rename(moved)
+                        f.recording_work.symlink_to(moved, target_is_directory=True)
+                    else:
+                        target = f.recording_path if kind == 'receipt' else f.recording_work / f.recording['artifacts'][kind]['name']
+                        target.write_bytes(target.read_bytes() + b'changed')
+                return result
+            with self.subTest(kind=kind), mock.patch.object(p.Reads, 'read', mutate), self.assertRaises(p.Invalid):
+                f.inspect()
+
+    def test_recording_receipt_text_never_leaks_and_output_remains_exclusive(self):
+        f = RecordingFixture(self.root / 'input')
+        f.recording['runtime']['os_version'] = '/private/SENTINEL'
+        f.recording['identity']['firmware_version'] = '/private/SENTINEL'
+        f.save_recording(); report = f.inspect()
+        self.assertNotIn('SENTINEL', json.dumps(report))
+        self.assertNotIn(str(f.root), json.dumps(report))
+        output = self.root / 'inventory.json'; p.write_report(output, report, f.build)
+        first = output.read_bytes()
+        with self.assertRaises(FileExistsError): p.write_report(output, report, f.build)
+        self.assertEqual(output.read_bytes(), first)
+        with self.assertRaises(p.Invalid): p.write_report(f.recording_path, report, f.build)
+
+    def test_recording_limits_boundaries_and_existing_stricter_exe_cap(self):
+        f = RecordingFixture(self.root / 'two')
+        self.assertEqual(p.recording_structure(f.recording), 2)
+        g = RecordingFixture(self.root / 'sixteen', ('capture',) * 16)
+        self.assertEqual(p.recording_structure(g.recording), 16)
+        for segments in (f.recording['segments'][:1], g.recording['segments'] + [g.recording['segments'][-1]]):
+            changed = copy.deepcopy(f.recording); changed['segments'] = segments
+            with self.assertRaises(p.Invalid): p.recording_structure(changed)
+        for path, maximum in [(('executable', 'bytes'), p.MAX_ARCHIVE),
+                              (('artifacts', 'archive', 'bytes'), 2 * p.MIB),
+                              (('segments', 0, 'provenance', 'host_elapsed_ms'), 45000)]:
+            changed = copy.deepcopy(f.recording); node = changed
+            for key in path[:-1]: node = node[key]
+            node[path[-1]] = maximum; p.recording_structure(changed)
+            node[path[-1]] = maximum + 1
+            with self.subTest(path=path), self.assertRaises(p.Invalid): p.recording_structure(changed)
+        raw = json.dumps(f.recording).encode(); raw += b' ' * (65536 - len(raw))
+        f.save_recording(raw=raw); self.assertEqual(f.inspect()['recording_smoke']['receipt_bytes'], 65536)
+        f.save_recording(raw=raw + b' ')
+        with self.assertRaises(p.Invalid): f.inspect()
+
+    def test_recording_artifact_actual_size_boundary_and_reparse_metadata(self):
+        f = RecordingFixture(self.root)
+        artifact = f.recording_work / 'recording.mtrec'
+        artifact.write_bytes(b'x' * (2 * p.MIB))
+        f.recording['artifacts']['archive'].update(bytes=2 * p.MIB, sha256=p.digest(artifact.read_bytes()))
+        f.save_recording()
+        self.assertEqual(f.inspect()['recording_smoke']['artifacts']['archive']['bytes'], 2 * p.MIB)
+        artifact.write_bytes(b'x' * (2 * p.MIB + 1))
+        # Even a declaration within the cap cannot authorize an oversized actual read.
+        with self.assertRaises(p.Invalid): f.inspect()
+        actual = Path.lstat
+        def reparse(path, *args, **kwargs):
+            info = actual(path, *args, **kwargs)
+            if path == f.recording_path:
+                return SimpleNamespace(st_mode=info.st_mode, st_file_attributes=0x400)
+            return info
+        with mock.patch.object(Path, 'lstat', reparse), self.assertRaisesRegex(p.Invalid, 'redirected_path'):
+            f.inspect()
+
+    def test_recording_integer_uuid_digest_and_import_boundaries(self):
+        f = RecordingFixture(self.root)
+        for nonce in (1, 0xFFFFFFFFFFFFFFFF):
+            changed = copy.deepcopy(f.recording)
+            raw = f'{nonce:032x}'
+            changed['identity']['session_id'] = f'{raw[:8]}-{raw[8:12]}-{raw[12:16]}-{raw[16:20]}-{raw[20:]}'
+            changed['stop']['wire_session_nonce'] = nonce
+            for row in changed['segments']: row['provenance']['wire_session_nonce'] = nonce
+            self.assertEqual(p.recording_structure(changed), 2)
+        for key, value in [('generation', 1), ('request_id', 0xFFFFFFFF), ('wire_session_nonce', 2**64)]:
+            changed = copy.deepcopy(f.recording); changed['stop'][key] = value
+            with self.subTest(key=key), self.assertRaises(p.Invalid): p.recording_structure(changed)
+        for path, value in [(('identity', 'recording_id'), 'A' * 36),
+                            (('segments', 0, 'raw_sha256'), 'A' * 64),
+                            (('segments', 0, 'provenance', 'end_samples_crc32'), 2**32),
+                            (('segments', 0, 'provenance', 'config_id'), 0)]:
+            changed = copy.deepcopy(f.recording); node = changed
+            for key in path[:-1]: node = node[key]
+            node[path[-1]] = value
+            with self.subTest(path=path), self.assertRaises(p.Invalid): p.recording_structure(changed)
+        for imports in (f.recording['imports'][:-1], f.recording['imports'][::-1],
+                        f.recording['imports'] + ['motortester.extra']):
+            changed = copy.deepcopy(f.recording); changed['imports'] = imports
+            with self.assertRaises(p.Invalid): p.recording_structure(changed)
 
     def test_full_generated_candidate_is_read_only_unknown_and_qualified(self):
         f = Fixture(self.root)

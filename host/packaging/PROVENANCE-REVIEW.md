@@ -192,6 +192,68 @@ privileged races. A must run against a quiescent completed build. Run15's origin
 `input_changed` log did not identify the actual file/field, so this established
 portability defect is not claimed as a proved attribution of that run's failure.
 
+## Explicit recording manifest variant
+
+The legacy manifest keeps its exact original key set and behavior. One additional
+strict variant permits only `recording_smoke`, with exactly `report`, `sha256`,
+`result`, `source_binding` and `source_files`. No arbitrary extension keys are
+accepted. This is a companion-schema change, not a change to the selected
+application source or permission to build/run a different application.
+
+The selected structural contract SHA256 is
+`17bbfe476ec34a93fc4f3424366bb5f659ff9461828a3a9d47bcdb1fa447bbd1`, with semantic
+addendum SHA256
+`4e13b432fe884befc23d8b835942599fa08d84ce72e93d1402c2cdd8346db117`.
+The earlier author contract is retained as history, not an alternative schema.
+
+The extra readable inputs are fixed:
+
+- `<build-root>/frozen-recording.json`, at most 65,536 original bytes;
+- `<build-root>/frozen-recording.json.work/recording.mtrec`;
+- exactly the receipt-named `recording-[0-9a-f]{32}.mtspool` in that same work
+  directory. Its UUID is independent of the recording identity.
+
+Only those two ordinary work files are accepted; extra names, directories, case
+aliases and redirected ancestors/files fail. Each artifact is nonempty and at
+most 2 MiB. Every input uses the existing bounded, stable `Reads` implementation,
+including final byte rehashes and same-API Windows timestamp guards. The original
+64 MiB EXE limit remains stricter than the recording producer's 128 MiB allowance;
+no inspector size, depth, entry, aggregate-read or report limit is raised.
+
+The original receipt byte hash must match the manifest SHA256. Its strictly
+parsed value must match `result` recursively with exact types, so booleans cannot
+substitute for integers. Nested JSON alone cannot replace missing original bytes.
+Unknown/missing/duplicate keys, nonfinite values, malformed identifiers/hashes,
+wrong native scope/platform/imports, unverified checks/cleanup flags and invalid
+Stop/segment relationships fail. The validator enforces 2–16 segments, at least
+two full 2,048-sample captures, exact Normal/config constants, strict sequence and
+generation chronology and the distinct full/partial/no-BEGIN nullable fields.
+A later final Stop generation is permitted; its last-window value must identify
+the final recorded segment. The source/nonnative-development scope never passes.
+
+Phase names/order and timezone-aware nondecreasing UTC timestamps are checked.
+The 12-second wait, 45-second body, 8-second cleanup and 60+5-second outer child/reap
+budgets belong to the producer/build execution. UTC fields are not evidence of
+those monotonic controls, and shutdown is recorded after cleanup. The inspector
+therefore does not infer elapsed-time enforcement from phase timestamps.
+
+EXE and whole archive/spool sizes/hashes are independently joined to actual bytes.
+The companion does not unpack `.mtrec`, recompute samples, run Qt/the application
+or repeat cleanup. Pattern/archive-member/runtime assertions are producer receipt
+claims. The sanitized `recording_smoke` summary explicitly keeps runtime execution,
+archive-content validation and timing-budget verification false. It emits fixed
+qualifications, verified byte identities/counts and safe fixed/UUID-relative paths,
+not arbitrary receipt strings or absolute paths.
+
+Exactly 23 `source_files` keys from the selected contract and lowercase SHA256
+values are required. They remain **external source assertions**: this inspector
+does not open the selected source or source ZIP and does not infer source-to-binary
+correspondence. A owns their source-ZIP comparison and the exact eight-entry
+SHA256SUMS inventory, including the receipt-bound dynamic spool path. Neither
+A's checker nor the application's source, recipe, dependencies or CI is modified
+by this companion. Unknown native origins and all existing false legal,
+corresponding-source and replacement flags remain unchanged.
+
 ## Acceptance and remaining evidence
 
 Focused tests generate the pinned formats and exercise positive/negative cases

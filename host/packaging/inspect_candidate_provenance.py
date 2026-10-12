@@ -2,6 +2,7 @@
 import argparse
 import ast
 import csv
+from datetime import datetime
 import email.parser
 import hashlib
 import io
@@ -45,6 +46,153 @@ COOKIE_MAGIC = b'MEI\014\013\012\013\016'
 COOKIE = struct.Struct('!8sIIII64s')
 ENTRY = struct.Struct('!IIIIBc')
 NATIVE = ('.dll', '.pyd', '.exe')
+
+# Exact structural contract 17bbfe476ec34a93fc4f3424366bb5f659ff9461828a3a9d47bcdb1fa447bbd1.
+# Independent source/archive/checksum validation remains outside this companion.
+MAX_RECORDING_RECEIPT = 65536
+MAX_RECORDING_ARTIFACT = 2 * MIB
+RECORDING_REPORT = 'frozen-recording.json'
+RECORDING_WORK = RECORDING_REPORT + '.work'
+RECORDING_SOURCE_FILES = ('motortester/__init__.py',
+ 'motortester/__main__.py',
+ 'motortester/acquisition.py',
+ 'motortester/device_emulator.py',
+ 'motortester/emulator.py',
+ 'motortester/gui.py',
+ 'motortester/gui_acquisition.py',
+ 'motortester/lv_collector.py',
+ 'motortester/model.py',
+ 'motortester/plotting.py',
+ 'motortester/recording.py',
+ 'motortester/recording_bridge.py',
+ 'motortester/recording_controller.py',
+ 'motortester/runtime.py',
+ 'motortester/session.py',
+ 'motortester/session_archive.py',
+ 'motortester/transport.py',
+ 'motortester/window.py',
+ 'motortester/wire.py',
+ 'motortester/wire_demo.py',
+ 'packaging/launch_gui.py',
+ 'packaging/recording_smoke.py',
+ 'packaging/build_windows.py')
+RECORDING_KEYS = {'runtime': ('application',
+             'frozen',
+             'implementation',
+             'machine',
+             'optimize',
+             'os_name',
+             'os_release',
+             'os_version',
+             'platform',
+             'pyside',
+             'python',
+             'python_bits',
+             'qt',
+             'qt_platform'),
+ 'checks': ('coverage',
+            'device_io_performed',
+            'fresh_gui_open_and_selection',
+            'independent_pattern_match',
+            'intersegment_device_gap',
+            'observed_bytes_and_provenance_match',
+            'physical_stop_verified',
+            'source_binding',
+            'synthetic',
+            'time_basis'),
+ 'identity': ('application_version',
+              'firmware_version',
+              'origin',
+              'protocol_version',
+              'recording_id',
+              'session_id'),
+ 'stop': ('ack_request_id',
+          'evidence',
+          'generation',
+          'last_window',
+          'request_id',
+          'status',
+          'termination_reason',
+          'wire_session_nonce'),
+ 'artifacts': ('archive', 'spool'),
+ 'executable': ('bytes', 'sha256'),
+ 'cleanup': ('acquisition_native_joined',
+             'finalization_invalidated',
+             'pending_io',
+             'windows_closed',
+             'writer_stopped'),
+ 'top_level': ('artifacts',
+               'checks',
+               'cleanup',
+               'error',
+               'executable',
+               'identity',
+               'imports',
+               'output',
+               'phase',
+               'phases',
+               'runtime',
+               'schema_version',
+               'scope',
+               'segments',
+               'status',
+               'stop',
+               'workdir'),
+ 'phase_entry': ('name', 'utc'),
+ 'segment_entry': ('kind',
+                   'ordinal',
+                   'provenance',
+                   'raw_sha256',
+                   'sample_count',
+                   'samples_sha256',
+                   'sequence'),
+ 'segment_provenance': ('abort_reason_code',
+                        'acquisition_mode',
+                        'auto_timeout_ms',
+                        'begin_request_id',
+                        'begin_sequence',
+                        'config_id',
+                        'config_payload_hex',
+                        'end_samples_crc32',
+                        'generation',
+                        'host_elapsed_ms',
+                        'start_operation',
+                        'terminal_kind',
+                        'terminal_request_id',
+                        'terminal_sequence',
+                        'unavailable_reason',
+                        'wire_session_nonce',
+                        'wire_version'),
+ 'artifact_entry': ('bytes', 'name', 'sha256')}
+RECORDING_IMPORTS = ['motortester.gui',
+ 'motortester.gui_acquisition',
+ 'motortester.acquisition',
+ 'motortester.recording_bridge',
+ 'motortester.recording_controller',
+ 'motortester.session_archive',
+ 'motortester.device_emulator',
+ 'motortester.runtime',
+ 'motortester.session',
+ 'motortester.wire',
+ 'motortester.window',
+ 'motortester.recording',
+ 'motortester.model']
+RECORDING_PHASES = ['entry', 'gui', 'connect', 'record', 'stop', 'save', 'open', 'navigation', 'shutdown', 'complete']
+RECORDING_CHECKS = {'synthetic': True,
+ 'device_io_performed': False,
+ 'physical_stop_verified': False,
+ 'coverage': 'segmented',
+ 'intersegment_device_gap': 'unknown',
+ 'time_basis': 'per_segment_nominal_unverified',
+ 'source_binding': 'external-clean-build-manifest',
+ 'observed_bytes_and_provenance_match': True,
+ 'independent_pattern_match': True,
+ 'fresh_gui_open_and_selection': True}
+RECORDING_CLEANUP = {'acquisition_native_joined': True,
+ 'writer_stopped': True,
+ 'windows_closed': True,
+ 'pending_io': False,
+ 'finalization_invalidated': False}
 
 
 class Invalid(ValueError):
@@ -624,6 +772,204 @@ def runtime_guard(build):
     require(no_redirect(sys.executable) == child(build, 'venv/Scripts/python.exe'), 'wrong_environment_python')
 
 
+def recording_keys(value, label):
+    require(type(value) is dict and set(value) == set(RECORDING_KEYS[label]), 'recording_shape')
+
+
+def recording_integer(value, low, high):
+    require(type(value) is int and low <= value <= high, 'recording_integer')
+
+
+def recording_text(value, maximum=128):
+    name(value)
+    require(len(value) <= maximum, 'recording_text')
+
+
+def recording_exact(value, expected):
+    require(type(value) is type(expected) and value == expected, 'recording_value')
+
+
+def recording_uuid(value):
+    recording_text(value, 36)
+    require(re.fullmatch(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}', value) is not None,
+            'recording_uuid')
+    return int(value.replace('-', ''), 16)
+
+
+def same_json(left, right):
+    """Type-aware value equality after both bounded JSON trees are validated."""
+    if type(left) is not type(right):
+        return False
+    if type(left) is dict:
+        return set(left) == set(right) and all(same_json(left[k], right[k]) for k in left)
+    if type(left) is list:
+        return len(left) == len(right) and all(same_json(a, b) for a, b in zip(left, right))
+    return left == right
+
+
+def recording_structure(report):
+    """Validate receipt assertions; no imports, archive extraction or execution."""
+    recording_keys(report, 'top_level')
+    for key, expected in {'schema_version': 1, 'status': 'passed', 'scope': 'frozen-windows-recording',
+                          'phase': 'complete', 'error': None, 'output': RECORDING_REPORT,
+                          'workdir': RECORDING_WORK, 'imports': RECORDING_IMPORTS}.items():
+        recording_exact(report[key], expected)
+    for key, expected in (('checks', RECORDING_CHECKS), ('cleanup', RECORDING_CLEANUP)):
+        recording_keys(report[key], key)
+        for field, value in expected.items():
+            recording_exact(report[key][field], value)
+    runtime = report['runtime']
+    recording_keys(runtime, 'runtime')
+    for key in set(runtime) - {'python_bits', 'optimize', 'frozen'}:
+        recording_text(runtime[key], 256)
+    for key, expected in {'platform': 'win32', 'os_name': 'nt', 'frozen': True,
+                          'python': '3.13.16', 'implementation': 'CPython', 'python_bits': 64,
+                          'qt': '6.12.0', 'pyside': '6.12.0', 'qt_platform': 'windows', 'optimize': 0}.items():
+        recording_exact(runtime[key], expected)
+    require(runtime['machine'].upper() in ('AMD64', 'X86_64'), 'recording_runtime')
+    phases = report['phases']
+    require(type(phases) is list and len(phases) == len(RECORDING_PHASES), 'recording_phases')
+    previous = None
+    for entry, expected in zip(phases, RECORDING_PHASES):
+        recording_keys(entry, 'phase_entry')
+        recording_exact(entry['name'], expected)
+        recording_text(entry['utc'], 64)
+        stamp = datetime.fromisoformat(entry['utc'])
+        require(stamp.utcoffset() is not None and stamp.utcoffset().total_seconds() == 0
+                and (previous is None or stamp >= previous), 'recording_timestamp')
+        previous = stamp
+    # UTC order is metadata only. Monotonic wait/child deadlines are not inferred.
+    identity = report['identity']
+    recording_keys(identity, 'identity')
+    recording_uuid(identity['recording_id'])
+    nonce = recording_uuid(identity['session_id'])
+    recording_exact(identity['origin'], 'simulator')
+    recording_exact(identity['application_version'], runtime['application'])
+    for key in ('firmware_version', 'protocol_version'):
+        recording_text(identity[key])
+    stop = report['stop']
+    recording_keys(stop, 'stop')
+    for key in ('request_id', 'ack_request_id', 'last_window'):
+        recording_integer(stop[key], 1, 0xFFFFFFFE)
+    recording_integer(stop['generation'], 2, 0xFFFFFFFE)
+    recording_integer(stop['wire_session_nonce'], 1, 0xFFFFFFFFFFFFFFFF)
+    require(nonce == stop['wire_session_nonce'] and stop['request_id'] == stop['ack_request_id']
+            and stop['request_id'] > stop['generation'], 'recording_stop')
+    for key, expected in {'status': 0, 'termination_reason': 'user_stop', 'evidence': 'stop_ack'}.items():
+        recording_exact(stop[key], expected)
+    segments = report['segments']
+    require(type(segments) is list and 2 <= len(segments) <= 16, 'recording_segments')
+    full, last_sequence, last_generation = 0, 0, 0
+    for ordinal, entry in enumerate(segments):
+        recording_keys(entry, 'segment_entry')
+        recording_exact(entry['ordinal'], ordinal)
+        require(entry['kind'] in ('capture', 'partial', 'abort'), 'recording_segment_kind')
+        recording_integer(entry['sequence'], 1, 0xFFFFFFFE)
+        recording_integer(entry['sample_count'], 0, 2048)
+        hex_id(entry['raw_sha256']); hex_id(entry['samples_sha256'])
+        provenance = entry['provenance']
+        recording_keys(provenance, 'segment_provenance')
+        recording_integer(provenance['generation'], 2, 0xFFFFFFFE)
+        recording_integer(provenance['config_id'], 1, 0xFFFFFFFE)
+        recording_integer(provenance['host_elapsed_ms'], 0, 45000)
+        require(entry['sequence'] > last_sequence
+                and last_generation < provenance['generation'] <= stop['generation'], 'recording_chronology')
+        last_sequence, last_generation = entry['sequence'], provenance['generation']
+        for key, expected in {'wire_session_nonce': nonce, 'acquisition_mode': 1, 'auto_timeout_ms': 0,
+                              'wire_version': '0.1', 'start_operation': 'arm',
+                              'config_payload_hex': '01000100000000080000000000000000',
+                              'terminal_request_id': 0}.items():
+            recording_exact(provenance[key], expected)
+        recording_integer(provenance['terminal_sequence'], 1, 0xFFFFFFFE)
+        if entry['kind'] == 'abort':
+            for key, expected in {'begin_request_id': None, 'begin_sequence': None,
+                                  'unavailable_reason': 'no_begin'}.items():
+                recording_exact(provenance[key], expected)
+            recording_exact(entry['sample_count'], 0)
+        else:
+            recording_exact(provenance['begin_request_id'], 0)
+            recording_integer(provenance['begin_sequence'], 1, 0xFFFFFFFE)
+            require(provenance['terminal_sequence'] > provenance['begin_sequence'], 'recording_chronology')
+            recording_exact(provenance['unavailable_reason'], None)
+        if entry['kind'] == 'capture':
+            full += 1
+            recording_exact(entry['sample_count'], 2048)
+            recording_exact(provenance['terminal_kind'], 'end')
+            recording_exact(provenance['abort_reason_code'], None)
+            recording_integer(provenance['end_samples_crc32'], 0, 0xFFFFFFFF)
+        else:
+            recording_exact(provenance['terminal_kind'], 'abort')
+            recording_exact(provenance['end_samples_crc32'], None)
+            recording_integer(provenance['abort_reason_code'], 1, 6)
+    require(full >= 2 and stop['last_window'] == last_sequence, 'recording_stop_window')
+    recording_keys(report['executable'], 'executable')
+    recording_integer(report['executable']['bytes'], 1, min(MAX_ARCHIVE, MAX_FILE, 128 * MIB))
+    hex_id(report['executable']['sha256'])
+    recording_keys(report['artifacts'], 'artifacts')
+    for key, item in report['artifacts'].items():
+        recording_keys(item, 'artifact_entry')
+        recording_integer(item['bytes'], 1, min(MAX_FILE, MAX_RECORDING_ARTIFACT))
+        hex_id(item['sha256'])
+        relative(item['name'])
+        require(item['name'] == 'recording.mtrec' if key == 'archive' else
+                re.fullmatch(r'recording-[0-9a-f]{32}\.mtspool', item['name']) is not None,
+                'recording_artifact_name')
+    return full
+
+
+def recording_work_files(work, expected):
+    """Only two immediate, ordinary artifacts; no recursive/arbitrary scan."""
+    names = set()
+    with os.scandir(no_redirect(work)) as entries:
+        for entry in entries:
+            require(len(names) < 2, 'recording_extra_artifact')
+            label = relative(entry.name)
+            require(label in expected and label not in names, 'recording_extra_artifact')
+            require(stat.S_ISREG(no_redirect(Path(entry.path)).stat().st_mode), 'recording_artifact_type')
+            names.add(label)
+    require(names == expected, 'recording_artifact_set')
+
+
+def recording_correspondence(extension, build, reads, exe_size, exe_hash):
+    require(type(extension) is dict and set(extension) ==
+            {'report', 'sha256', 'result', 'source_binding', 'source_files'}, 'recording_extension')
+    recording_exact(extension['report'], RECORDING_REPORT)
+    recording_exact(extension['source_binding'], 'external clean checkout; not binary-to-source attestation')
+    hex_id(extension['sha256'])
+    sources = extension['source_files']
+    require(type(sources) is dict and set(sources) == set(RECORDING_SOURCE_FILES), 'recording_source_files')
+    for value in sources.values():
+        hex_id(value)
+    path = child(build, RECORDING_REPORT)
+    cap = min(MAX_META, MAX_RECORDING_RECEIPT)
+    raw = reads.read(path, cap)
+    require(digest(raw) == extension['sha256'], 'recording_receipt_hash')
+    receipt = manifest_json(raw)
+    full = recording_structure(receipt)
+    recording_structure(extension['result'])
+    require(same_json(receipt, extension['result']), 'recording_receipt_result')
+    require(receipt['executable'] == {'bytes': exe_size, 'sha256': exe_hash}, 'recording_executable')
+    work = child(build, RECORDING_WORK)
+    expected = {item['name'] for item in receipt['artifacts'].values()}
+    recording_work_files(work, expected)
+    rechecks, artifacts = [(path, cap)], {}
+    for key, item in receipt['artifacts'].items():
+        target = child(work, item['name'])
+        cap = min(MAX_FILE, MAX_RECORDING_ARTIFACT)
+        size, hashed = reads.read(target, cap, keep=False)
+        require(size == item['bytes'] and hashed == item['sha256'], 'recording_artifact_hash')
+        rechecks.append((target, cap))
+        artifacts[key] = dict(path=RECORDING_WORK + '/' + item['name'], bytes=size, sha256=hashed)
+    summary = dict(scope='recording-receipt-and-artifact-byte-correspondence',
+                   receipt_sha256=digest(raw), receipt_bytes=len(raw), native_success_receipt=True,
+                   runtime_execution_observed_by_inspector=False, archive_contents_validated=False,
+                   timing_budgets_verified_by_inspector=False,
+                   source_files_binding='externally asserted; not checked against source.zip', source_files=sources,
+                   segment_count=len(receipt['segments']), full_segment_count=full, artifacts=artifacts,
+                   synthetic=True, device_io_performed=False, physical_stop_verified=False)
+    return summary, rechecks, work, expected
+
+
 def inspect_candidate(build, source_sha, manifest_sha, inspector_commit, inspector_sha):
     hex_id(source_sha, 40); hex_id(manifest_sha); hex_id(inspector_commit, 40); hex_id(inspector_sha)
     build = no_redirect(build)
@@ -638,9 +984,10 @@ def inspect_candidate(build, source_sha, manifest_sha, inspector_commit, inspect
     require(digest(raw_manifest) == manifest_sha, 'manifest_hash')
     manifest = manifest_json(raw_manifest)
     require(type(manifest) is dict and manifest.get('source_commit') == source_sha, 'source_identity')
-    require(set(manifest) == {'status', 'source_commit', 'build_time_utc', 'python', 'platform',
-                             'machine', 'packages', 'windows_10_manual_acceptance', 'usb_verified',
-                             'frozen_gui_smoke', 'serial_import_smoke', 'license_review', 'files'}, 'manifest_shape')
+    old_keys = {'status', 'source_commit', 'build_time_utc', 'python', 'platform',
+                'machine', 'packages', 'windows_10_manual_acceptance', 'usb_verified',
+                'frozen_gui_smoke', 'serial_import_smoke', 'license_review', 'files'}
+    require(set(manifest) in (old_keys, old_keys | {'recording_smoke'}), 'manifest_shape')
     require(type(manifest['build_time_utc']) is str and type(manifest['windows_10_manual_acceptance']) is str
             and manifest['usb_verified'] is False and type(manifest['frozen_gui_smoke']) is dict
             and type(manifest['serial_import_smoke']) is dict
@@ -678,6 +1025,10 @@ def inspect_candidate(build, source_sha, manifest_sha, inspector_commit, inspect
     # This stdlib constant is read without importing any package/candidate module.
     from importlib.util import MAGIC_NUMBER
     archive, options, pyz, modules = archive_inventory(exe, MAGIC_NUMBER)
+    recording, recording_rechecks, recording_work, recording_names = None, [], None, set()
+    if 'recording_smoke' in manifest:
+        recording, recording_rechecks, recording_work, recording_names = recording_correspondence(
+            manifest['recording_smoke'], build, reads, len(exe), digest(exe))
     require(reads.read(pyz_path, MAX_ARCHIVE) == pyz, 'work_pyz_mismatch')
     pure = pure_map(raw_pure, pyz_path)
     embedded_names = {row['name'] for row in modules}
@@ -719,10 +1070,15 @@ def inspect_candidate(build, source_sha, manifest_sha, inspector_commit, inspect
                                'Build-table source associations are not source-to-bytecode proof.',
                                'Origin hashes do not establish upstream build/source provenance or rights.',
                                'Inventory does not test recipient replacement, source access or delivery.'])
+    if recording is not None:
+        report['recording_smoke'] = recording
     # Detect replacement/mutation before output, including critical byte rechecks.
     for path, cap in ((manifest_path, MAX_META), (exe_path, MAX_ARCHIVE),
-                      (collect_path, MAX_META), (pure_path, MAX_META), (pyz_path, MAX_ARCHIVE)):
+                      (collect_path, MAX_META), (pure_path, MAX_META), (pyz_path, MAX_ARCHIVE),
+                      *recording_rechecks):
         reads.read(path, cap, keep=False)
+    if recording is not None:
+        recording_work_files(recording_work, recording_names)
     reads.unchanged()
     require(candidate_files(bundle) == set(files) | {'build-manifest.json'}, 'candidate_file_set')
     return report
