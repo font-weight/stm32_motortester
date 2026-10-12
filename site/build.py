@@ -13,6 +13,50 @@ import subprocess
 import sys
 from urllib.parse import quote, unquote, urlsplit
 
+EXPORT_ROOT = "hardware/analog-exports/"
+EXPORT_FILES = {EXPORT_ROOT + "exports/" + stem + ext
+                for stem in ("option-a-dc", "option-b-ac", "structural", "functional")
+                for ext in (".pdf", ".svg")}
+EXPORT_META = {EXPORT_ROOT + "MANIFEST.json", EXPORT_ROOT + "evidence/EXPORT_OBSERVATION.json",
+               EXPORT_ROOT + "evidence/PDF_DERIVATION.json"}
+
+
+def reject_original_link(value):
+    decoded = value
+    for _ in range(4):
+        newer = unquote(decoded)
+        if newer == decoded:
+            break
+        decoded = newer
+    if "original-kicad-pdf" in decoded.replace("\\", "/").lower():
+        raise ValueError("Original JavaScript PDF links are excluded from this site")
+
+
+def verify_export_inputs(manifest, data, page_sources, downloads):
+    binding = manifest["asset_manifest"]
+    manifest_path = EXPORT_ROOT + "MANIFEST.json"
+    if not isinstance(binding, dict) or set(binding) != {"path", "sha256"} or binding["path"] != manifest_path:
+        raise ValueError("Invalid export-manifest binding")
+    if not isinstance(binding["sha256"], str) or not re.fullmatch(r"[0-9a-f]{64}", binding["sha256"]):
+        raise ValueError("Invalid export-manifest digest")
+    selected = {name for name in page_sources + downloads if name.startswith(EXPORT_ROOT)}
+    expected = EXPORT_FILES | EXPORT_META | {EXPORT_ROOT + "README_RU.md"}
+    if selected != expected or not EXPORT_FILES.issubset(downloads) or EXPORT_ROOT + "README_RU.md" not in page_sources:
+        raise ValueError("Unexpected or missing analog export selection")
+    if sha(data[manifest_path]) != binding["sha256"]:
+        raise ValueError("Export manifest differs from its reviewed pin")
+    package = json.loads(data[manifest_path])
+    if package.get("scope") != "draft analog generated delivery; hardware_validated=false" or not isinstance(package.get("files"), dict):
+        raise ValueError("Unexpected export manifest format")
+    for name in selected - {manifest_path}:
+        record = package["files"].get(name[len(EXPORT_ROOT):])
+        if record != {"bytes": len(data[name]), "sha256": sha(data[name])}:
+            raise ValueError("Selected export differs from reviewed manifest: " + name)
+    originals = {record["sha256"] for name, record in package["files"].items()
+                 if name.startswith("evidence/original-kicad-pdf/")}
+    if len(originals) != 2 or any(sha(value) in originals for value in data.values()):
+        raise ValueError("Original PDF bytes may not be copied into the site")
+
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
@@ -66,6 +110,7 @@ class Links(HTMLParser):
             self.ids.add(attrs["id"])
         for key in ("href", "src"):
             if key in attrs:
+                reject_original_link(attrs[key])
                 self.links.append(attrs[key])
         if tag in ("script", "iframe", "object", "embed"):
             raise ValueError("Active/embedded content is outside this delivery")
@@ -110,7 +155,7 @@ def build(args):
     if not version.startswith("pandoc 3."):
         raise ValueError("This builder requires Pandoc 3; tested version is documented")
     manifest = json.loads(source_file(root, "site/pages.json").read_bytes())
-    if set(manifest) != {"schema", "external_reference", "pages", "downloads"} or manifest["schema"] != 1:
+    if set(manifest) != {"schema", "external_reference", "pages", "downloads", "asset_manifest"} or manifest["schema"] != 2:
         raise ValueError("Unsupported source manifest")
     ref = manifest["external_reference"]
     if not re.fullmatch(r"[0-9a-f]{40}", ref):
@@ -123,6 +168,7 @@ def build(args):
         raise ValueError("Only explicit A-owned Markdown pages are rendered")
     names = [*page_sources, *downloads, "site/pages.json", "site/style.css", "site/build.py"]
     data = {name: source_file(root, name).read_bytes() for name in names}
+    verify_export_inputs(manifest, data, page_sources, downloads)
     inputs = {name: sha(value) for name, value in sorted(data.items())}
     identity = sha(json.dumps(inputs, ensure_ascii=False, sort_keys=True).encode())
     outputs = {name: "index.html" if name == "site/README.md" else "pages/" + name[:-3] + ".html" for name in page_sources}
@@ -159,6 +205,7 @@ def build(args):
             node["c"][1].insert(0, {"t": "Str", "c": "Изображение (ссылка): "})
         if node.get("t") == "Link":
             attr, label, target = node["c"]
+            reject_original_link(target[0])
             url = urlsplit(target[0])
             external = bool(url.scheme or url.netloc)
             if external:
@@ -191,11 +238,13 @@ def build(args):
     for name in trees:
         trees[name] = rewrite(trees[name], name)
     out.mkdir()
-    receipt = {"schema": 1, "status": "RUNNING", "documentation_draft": True,
+    receipt = {"schema": 2, "status": "RUNNING", "documentation_draft": True,
                "source_content_sha256": identity, "external_reference_commit": ref,
                "inputs": inputs, "python_version": sys.version, "renderer_version": version, "renderer_sha256": sha(renderer.read_bytes()),
-               "commands": commands, "physical_verified": False, "pdf_included": False,
-               "schematic_exports_included": False, "host_help_included": False}
+               "commands": commands, "physical_verified": False, "pdf_included": True,
+               "schematic_exports_included": True, "explanatory_pdf_included": False, "host_help_included": False,
+               "asset_manifest": manifest["asset_manifest"],
+               "included_downloads": {name: {"path": raw[name], "bytes": len(data[name]), "sha256": sha(data[name])} for name in downloads}}
     (out / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     try:
         (out / "style.css").write_bytes(data["site/style.css"])
@@ -216,7 +265,7 @@ def build(args):
                     '<p class="warning">' + warning + '</p></header><div class="layout"><aside><details open><summary>Разделы</summary><nav aria-label="Документы"><ul>' + nav + '</ul></nav></details></aside>'
                     '<main id="document-content"><article>' + body + '</article><footer><p><a href="' + relative(raw[name], page) + '">Исходный Markdown</a></p>'
                     '<p>Набор входных байтов SHA256: <code>' + identity + '</code></p><p>Внешние исходники: <code>' + ref + '</code>. Ссылки «↗ онлайн» требуют сети; в автономный комплект они не входят.</p>'
-                    '<p>PDF и графические экспорты схем не включены. Справка приложения B — отдельный материал.</p></footer></main></div></body></html>')
+                    '<p>Включены четыре PDF и четыре SVG низковольтных кандидатов; это не полная схема проверенного прибора. Пояснительный PDF и справка приложения B не включены.</p></footer></main></div></body></html>')
             dest = out / page
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(text, encoding="utf-8")

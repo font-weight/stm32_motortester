@@ -1,6 +1,6 @@
 {
-  "schema": 1,
-  "external_reference": "a855ef341bb5eb8906a16af67f4d6b328f08f02f",
+  "schema": 2,
+  "external_reference": "192fbb2ef9369bb1c32e11f97263094fca52763f",
   "pages": [
     "README.md",
     "requirements.md",
@@ -33,11 +33,28 @@
     "hardware/analog-source/MEASUREMENTS_RU.md",
     "hardware/analog-source/SOURCES.md",
     "hardware/analog-source/PROVENANCE_RU.md",
-    "protocol/wire-v0.1.md"
+    "protocol/wire-v0.1.md",
+    "tests/lv-collector-reproducer/README.md",
+    "hardware/analog-exports/README_RU.md"
   ],
   "downloads": [
     "firmware/build/examples/SYNTHETIC_NEVER_FLASH.json",
     "firmware/third_party/usb/evidence/toolchain-recovery/package-download-manifest.json",
-    "protocol/vectors-v0.1.json"
-  ]
+    "protocol/vectors-v0.1.json",
+    "hardware/analog-exports/MANIFEST.json",
+    "hardware/analog-exports/evidence/EXPORT_OBSERVATION.json",
+    "hardware/analog-exports/evidence/PDF_DERIVATION.json",
+    "hardware/analog-exports/exports/option-a-dc.pdf",
+    "hardware/analog-exports/exports/option-a-dc.svg",
+    "hardware/analog-exports/exports/option-b-ac.pdf",
+    "hardware/analog-exports/exports/option-b-ac.svg",
+    "hardware/analog-exports/exports/structural.pdf",
+    "hardware/analog-exports/exports/structural.svg",
+    "hardware/analog-exports/exports/functional.pdf",
+    "hardware/analog-exports/exports/functional.svg"
+  ],
+  "asset_manifest": {
+    "path": "hardware/analog-exports/MANIFEST.json",
+    "sha256": "3b86ce7ce613ff59ff99aef997757729cd23bf9f7162f8a9360072d24e83fd7c"
+  }
 }
