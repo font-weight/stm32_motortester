@@ -15,12 +15,12 @@ OBJCOPY_SHA = 'b0f417cb958a1205aa5061b7bedcc05f16335dd718802d5265e8b7b0b5d78c88'
 
 PINS = {
     'image_exports.py':'738b116c45de81a9435090abf9748c1959355c387624ecc8efd05459c890412d',
-    'build_objects.py':'13be0819d0d6308c666f984cbb47fc07e3076806e7db4b2dfb394ae7ca73af79',
+    'build_objects.py':'50cf15d75140d7c80f61d1375ce04fe00bbe4e0c038f0a952465ce6fcee74ac2',
     'board_config.py':'0b5d6ba56603e908d7f0b079e3319863f1f7733c97324644377a3e46244f9f27',
     'board_object.py':'c8cce02a89bead37f59bff5c49572a08c55637d85a8fdf4f8f234ec89924dc9e',
-    'image_equivalence.py':'e8946892d81c04fed179a3be8db7c931ae667ea4c10ccad1c48740ca81792f2e',
-    'stack_reference.json':'0facf8258f391eec1b166bd464dc8ce709d04eaf0ecc7044ea6181a7257b77c3',
-    'inputs.json':'797a004bfb4084220460d9d36c185aeaad395a8d9ae78d982762d0c0f4028eff',
+    'image_equivalence.py':'a8981ba3a28c484935378bd04d4348842dfb0383c0334d7e9204325185ecf731',
+    'stack_reference.json':'dcc6bd0274411a406b293be342d72eaf90ed10bdcc45f4c0bc81c3993ae5ee24',
+    'inputs.json':'92c2e4bc02781ce90ce2385f19e00bb4c9c8ecfb8808d78f7605458d62ba36c1',
     'toolchain.json':'22f0c2204b8b381a26af3b910851b43b04f34549b6677cdb5b76f304c4e37b43',
     'board-input.schema.json':'f4f020ecc3466112353a3d449a18200ea36adf040bc38bdf60634d0d4c4dc000',
 }

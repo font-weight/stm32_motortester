@@ -1,12 +1,12 @@
 # Черновой static-link recipe
 
-Новая WAIT_RELEASE-редакция — выполняемый локальный черновик с открытым
+Новая PMA-редакция — выполняемый локальный черновик с открытым
 exact review. Историческая export-ревизия проверена отдельно; новый reference
 и recipe требуют повторной проверки, включая BIN/HEX шаги. Формальная
 приёмка проекта остаётся BLOCKED_EVIDENCE, score:null.
 После всех проверок результат — `CONDITIONAL_STATIC_LINK_CHECKS_PASS`:
 условная оценка 3024 B связывается с конкретным ELF. Это локальный draft
-с независимым вердиктом только для данного условного статического scope. BIN/HEX создаются только после всех gate; разрешение
+с отдельно проверенным исходным PMA proof; вердикт нового recipe ещё открыт. BIN/HEX создаются только после всех gate; разрешение
 прошивки не выдаётся. Старый provisional run без map binding сохранён.
 
 ```sh
@@ -46,7 +46,7 @@ board.o с явным Cortex-M3/Thumb/full-enum ABI; зависимости из
 3. Прямая static link: no GC, fatal warnings, orphan errors, исходный linker
    script и явный stack symbol.
 4. Исходный BOOT final ELF audit и узкий byte/layout equivalence checker.
-5. Связка всех 364 непустых text input ranges с фактическими секциями
+5. Связка всех 365 непустых text input ranges с фактическими секциями
    исходных объектов, точными path/ordinal, VMA/size frozen reference,
    file bytes и PT_LOAD конечного ELF; точный LOAD order, без пропусков
    пустых executable inputs и без discarded code.
@@ -102,7 +102,8 @@ EOF последний; LF/CRLF и один необязательный termina
 
 Objcopy из уже восстановленного официального Debian пакета закреплён
 отдельным SHA b0f417cb958a1205aa5061b7bedcc05f16335dd718802d5265e8b7b0b5d78c88.
-Manifest прежнего object builder не менялся. В result сохранены hashes
+Object manifest связан с PMA-рецептом PR93; прежние WAIT_RELEASE pins
+не применяются к этой композиции. Новые ADC-изменения сюда не входят. В result сохранены hashes
 обоих экспортов и канонического адресного набора. Синтетические BIN/HEX
 сохраняют TEST_ONLY_NEVER_FLASH в имени. Наличие файла не означает допуска
 к физической прошивке.

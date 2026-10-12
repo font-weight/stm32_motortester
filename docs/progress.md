@@ -457,3 +457,29 @@ full33 supporting наблюдением. Перед обновлением со
 остальные 30 объектов не изменены. Независимый replay/негативные проверки
 и вердикт требуются отдельно; stack/reference/image пока прежние и
 не применимы к этой композиции.
+
+
+# 12.10.2026: PMA conditional image/reference draft
+
+Scope до правок: issue88 comment6117787363; база PR93
+`7282cd1b7ead44af844ea73507b96f093d8e1cca`, tree
+`be51c5ff2080961971f0c0aebc1dd8332a03a1cb`. Root обновляет только
+reference, четыре адресные привязки checker, четыре pins полного recipe
+и два пояснения. Прошивка, инструменты и board parser не меняются.
+
+Новый PMA machine/profile proof рассмотрен отдельно: foreground2648, USB264,
+entry36, terminal total3020, align8=3024. Численное совпадение со старым
+WAIT_RELEASE не служит доказательством переноса. Reference закрепляет
+365 executable ranges,412 function symbols,1057 immutable symbols;
+entry0x08007e89, reset literal0x08007ee0, board0x08007f60, строки0x08007f90.
+Фактическая data LMA учитывает padded строки конкретного board JSON.
+Исходный invalid-zero-board ELF e4dd2100075c6a3b095451919c1a66a4e5a3510058ebb5562f96cb24ade620f4
+не исполнялся. r2 receipt сохранён; r3 header-dependent objects пересобраны
+отдельно и совпадают. Пути/hashes proof сохраняют происхождение,
+но не означают наличие всего proof-пакета внутри checkout.
+
+SRAM geometry8104 и формула N=align8(3024+M) остаются условными;
+M=0 для synthetic проверки не выбирает запас реальной платы.
+Свежий image replay, негативные проверки и независимый вердикт этой
+редакции recipe фиксируются отдельно до её приёмки. ADC-ветка, совместная
+приёмка контракта и аппаратные испытания не закрываются этой работой.
