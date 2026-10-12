@@ -105,7 +105,7 @@ static void setup(void) {
     assert(f.hardware.stops == 0u);
     new_hello(42);
     assert(decode() == 1u && replies[0].type == 129u);
-    assert(get32(replies[0].payload + 12) == 61u);
+    assert(get32(replies[0].payload + 12) == 113u);
     f.used = 0;
 }
 static void configure(uint8_t mode) {
@@ -133,7 +133,7 @@ static void test_preflight(void) {
     mt_wire_message m;
     unsigned stops, starts;
     uint32_t generation;
-    setup(); configure(1); generation = arm_capture();
+    setup(); configure(2); generation = arm_capture();
     stops = f.hardware.stops; starts = f.hardware.starts;
     m = command(5, 4); put32(m.payload, generation - 1u);
     assert(receive(&m) == MT_CONTROL_OK); drain();
@@ -153,7 +153,7 @@ static void test_preflight(void) {
 static void test_twenty_windows(void) {
     uint32_t generation;
     unsigned window, i;
-    setup(); configure(1); generation = arm_capture();
+    setup(); configure(2); generation = arm_capture();
     for (window = 1; window <= 20u; ++window) {
         uint8_t raw[4096];
         mt_wire_message release;
@@ -186,18 +186,19 @@ static void test_twenty_windows(void) {
         put32(release.payload, generation); put32(release.payload + 4, window);
         put32(release.payload + 8, mt_wire_crc32(raw, sizeof raw));
         assert(receive(&release) == MT_CONTROL_OK); drain();
-        assert(f.hardware.starts == starts + 1u && f.control.hardware_running);
+        assert(f.hardware.starts == starts && !f.control.hardware_running);
         f.used = 0;
         release.sequence = f.sequence++; release.request = f.request++;
         assert(receive(&release) == MT_CONTROL_OK); drain();
-        assert(f.hardware.starts == starts + 1u);
+        assert(f.hardware.starts == starts);
         f.used = 0;
+        if (window < 20u) generation = arm_capture();
     }
 }
 static void test_failed_hardware(void) {
     mt_wire_message m;
     size_t bytes;
-    setup(); configure(1);
+    setup(); configure(2);
     f.hardware.start_ok = 0;
     m = command(4, 4); put32(m.payload, 1);
     assert(receive(&m) == MT_CONTROL_RECOVERY);
@@ -207,7 +208,7 @@ static void test_failed_hardware(void) {
     assert(f.used == bytes);
     f.hardware.start_ok = 1; new_hello(43);
     assert(decode() == 1u && replies[0].type == 129u);
-    f.used = 0; configure(1);
+    f.used = 0; configure(2);
     (void)arm_capture();
     m = command(5, 4); put32(m.payload, f.control.link.generation);
     f.hardware.stop_ok = 0;

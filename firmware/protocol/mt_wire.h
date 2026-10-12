@@ -2,9 +2,9 @@
 #define MT_WIRE_H
 #include <stddef.h>
 #include <stdint.h>
-/* DRAFT v0.1: unreviewed and uncompiled. No USB or session state here. */
+/* DRAFT v0.2 candidate. No USB or session state in this byte codec. */
 #define MT_WIRE_MAJOR 0u
-#define MT_WIRE_MINOR 1u
+#define MT_WIRE_MINOR 2u
 #define MT_WIRE_HEADER 24u
 #define MT_WIRE_PAYLOAD_MAX 512u
 #define MT_WIRE_RAW_MAX (MT_WIRE_HEADER + MT_WIRE_PAYLOAD_MAX + 4u)

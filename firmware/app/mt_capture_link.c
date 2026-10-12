@@ -58,6 +58,22 @@ mt_link_result mt_capture_link_arm(mt_capture_link *l, uint32_t config_id,
     l->generation = generation; l->armed = 1;
     return MT_LINK_OK;
 }
+mt_link_result mt_capture_link_record_now(mt_capture_link *l, uint32_t config_id,
+                                         uint32_t generation, uint32_t now) {
+    mt_acq_result_t result;
+    if (!valid(l) || generation == 0u || generation == UINT32_MAX)
+        return MT_LINK_ARGUMENT;
+    if (l->phase == MT_LINK_FAILED) return MT_LINK_RECOVERY;
+    if (!l->session || l->session != l->tx->session) return fail(l);
+    if (config_id == 0u || config_id != l->config_id) return MT_LINK_STALE;
+    if (l->armed || l->active_window || l->phase != MT_LINK_IDLE)
+        return MT_LINK_BUSY;
+    result = mt_acq_record_now(&l->acquisition, now);
+    if (result == MT_ACQ_INVALID_CONFIG) return MT_LINK_ARGUMENT;
+    if (result != MT_ACQ_OK) return MT_LINK_BUSY;
+    l->generation = generation; l->armed = 1;
+    return MT_LINK_OK;
+}
 mt_link_result mt_capture_link_sample(mt_capture_link *l, uint16_t code,
                                       uint32_t time_ms) {
     mt_acq_result_t r;

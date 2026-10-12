@@ -4,6 +4,7 @@
 #undef main
 #include "../../firmware/app/mt_adc_control.h"
 
+static uint8_t start_operation = MT_CMD_ARM;
 static mt_control control;
 static mt_adc_control binding;
 static uint32_t clock_origin_us, clock_origin_ms, sequence, request;
@@ -50,10 +51,10 @@ static void connect_and_arm(uint32_t origin_us, uint32_t origin_ms) {
     m.type = 1; m.request = m.sequence = 1; m.payload_length = 8; m.payload[0] = 99;
     assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
     tx_drain(); output_used = 0;
-    m = cmd(3, 16); le16(m.payload, 1); m.payload[2] = 1; le16(m.payload + 6, 2048);
+    m = cmd(3, 16); le16(m.payload, 1); m.payload[2] = 2; le16(m.payload + 6, 2048);
     assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
     tx_drain(); output_used = 0;
-    m = cmd(4, 4); le32(m.payload, 1);
+    m = cmd(start_operation, 4); le32(m.payload, 1);
     assert(mt_control_receive(&control, &m, millis(&hw)) == MT_CONTROL_OK);
     assert(control.hardware_running && driver.state == MT_ADC_DMA_RUNNING);
     tx_drain(); output_used = 0;
@@ -91,22 +92,24 @@ static void test_profile_no_writes(void) {
 }
 static void test_window_and_time(uint32_t origin_us, uint32_t origin_ms) {
     unsigned i;
+    const unsigned immediate = start_operation == MT_CMD_RECORD_NOW;
+    const uint32_t last_index = immediate ? 2047u : 2048u;
     size_t first = 0, position, count = 0;
     uint8_t raw[4096];
     uint32_t expected_time;
     mt_wire_message m;
     connect_and_arm(origin_us, origin_ms);
-    for (i = 0; i < 17u; ++i) deliver_block(i);
+    for (i = 0; i < (immediate ? 16u : 17u); ++i) deliver_block(i);
     assert(control.link.phase == MT_LINK_BEGIN && !control.hardware_running);
     assert(driver.state == MT_ADC_DMA_STOPPED && !driver.owns_peripherals);
     assert(control.link.acquisition.retained_count == 2048u);
-    expected_time = binding.epoch_ms + binding.first_sample_delay_us / 1000u + 2048u / 50u +
-        ((binding.first_sample_delay_us % 1000u + (2048u % 50u) * 20u) / 1000u);
+    expected_time = binding.epoch_ms + binding.first_sample_delay_us / 1000u + last_index / 50u +
+        ((binding.first_sample_delay_us % 1000u + (last_index % 50u) * 20u) / 1000u);
     assert(control.link.acquisition.last_sample_ms == expected_time);
     /* Drain time is later than the sample timestamp, including a partial final block. */
     assert((uint32_t)(millis(&hw) - expected_time) <= 3u);
     tx_drain();
-    for (i = 0; i < 2048u; ++i) le16(raw + i * 2u, sample_code(i + 1u));
+    for (i = 0; i < 2048u; ++i) le16(raw + i * 2u, sample_code(i + (immediate ? 0u : 1u)));
     for (position = 0; position < output_used; ++position) {
         if (output_bytes[position] != 0u) continue;
         assert(mt_wire_decode(output_bytes + first, position - first, &m) == MT_WIRE_OK);
@@ -229,6 +232,8 @@ int main(void) {
     assert(platform_regression_main() == 0);
     test_profile_no_writes();
     test_clock_correlation();
+    for (unsigned operation = 0; operation < 2u; ++operation) {
+    start_operation = operation ? MT_CMD_RECORD_NOW : MT_CMD_ARM;
     test_window_and_time(1000, 1);
     test_window_and_time(UINT32_MAX - 1000u, UINT32_MAX - 20u);
     test_stale_and_driver_fault();
@@ -236,6 +241,7 @@ int main(void) {
         for (unsigned deadline = 0; deadline < 2u; ++deadline)
             for (unsigned stop_first = 0; stop_first < 2u; ++stop_first)
                 test_reported_fault(capturing, deadline, stop_first);
+    }
     puts("ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed");
     return 0;
 }

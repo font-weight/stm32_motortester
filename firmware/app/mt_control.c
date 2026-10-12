@@ -113,10 +113,11 @@ static mt_control_result hello(mt_control *c, uint32_t now) {
         return mt_control_recover(c);
     c->hardware_running = 0;
     message(&m, 129, 16, 1);
-    m.payload[1] = 1; m.payload[2] = 1; m.payload[3] = 12;
+    m.payload[0] = MT_WIRE_MAJOR; m.payload[1] = MT_WIRE_MINOR;
+    m.payload[2] = 1; m.payload[3] = 12;
     put16(m.payload + 4, 512); put16(m.payload + 6, 2048);
     put32(m.payload + 8, c->io.firmware_build);
-    put32(m.payload + 12, 61); /* analog, Auto, Normal, Single, pretrigger */
+    put32(m.payload + 12, 113); /* analog, Single, pretrigger, record-now */
     if (mt_tx_hello(&c->tx, c->session.nonce, &m, now) != MT_TX_OK)
         return mt_control_recover(c);
     mt_capture_link_init(&c->link, &c->tx);
@@ -125,7 +126,7 @@ static mt_control_result hello(mt_control *c, uint32_t now) {
 }
 static mt_control_result configure(mt_control *c, const mt_wire_message *input,
                                    const mt_config *config, uint32_t now) {
-    const mt_command_support support = {7, 1, 3, 1};
+    const mt_command_support support = {4, 1, 3, 1};
     mt_acq_config_t acq = {0};
     mt_wire_message m;
     uint32_t id = c->link.config_id + 1u;
@@ -145,17 +146,25 @@ static mt_control_result configure(mt_control *c, const mt_wire_message *input,
         return mt_control_recover(c);
     return MT_CONTROL_OK;
 }
-static mt_control_result arm(mt_control *c, const mt_wire_message *input,
-                             uint32_t config_id, uint32_t now) {
+static mt_control_result start_capture(mt_control *c, const mt_wire_message *input,
+                                       uint32_t config_id, uint32_t now,
+                                       int immediate) {
     mt_wire_message m;
+    mt_link_result started;
+    const mt_acq_config_t *config = &c->link.acquisition.config;
     if (!idle(c)) return error(c, input->type, 2, input->request, now);
     if (!config_id || config_id != c->link.config_id)
         return error(c, input->type, 3, input->request, now);
+    if (immediate && (config->mode != MT_ACQ_SINGLE || config->source != 0u ||
+                      config->pretrigger_samples != 0u || config->auto_timeout_ms != 0u))
+        return error(c, input->type, 1, input->request, now);
     if (!c->io.profile_ready(c->io.context)) return mt_control_recover(c);
     message(&m, 132, 8, input->request);
     put32(m.payload, input->request); put32(m.payload + 4, config_id);
     if (!enqueue(c, &m, now)) return MT_CONTROL_RECOVERY;
-    if (mt_capture_link_arm(&c->link, config_id, input->request, now) != MT_LINK_OK)
+    started = immediate ? mt_capture_link_record_now(&c->link, config_id, input->request, now) :
+                          mt_capture_link_arm(&c->link, config_id, input->request, now);
+    if (started != MT_LINK_OK)
         return mt_control_recover(c);
     if (!c->io.start(c->io.context, now)) return mt_control_recover(c);
     c->hardware_running = 1;
@@ -197,12 +206,13 @@ mt_control_result mt_control_receive(mt_control *c,
         put32(m.payload + 4, 72000000); put16(m.payload + 8, 71);
         put16(m.payload + 10, 19); put32(m.payload + 12, 12000000);
         put16(m.payload + 16, 143); put16(m.payload + 18, 2048);
-        m.payload[20] = 3; m.payload[21] = 7;
+        m.payload[20] = 3; m.payload[21] = 4;
         m.payload[22] = 1; m.payload[23] = 3;
         put16(m.payload + 26, 512); put16(m.payload + 28, 1024);
         return enqueue(c, &m, now) ? MT_CONTROL_OK : MT_CONTROL_RECOVERY;
     case MT_CMD_CONFIG: return configure(c, input, &command.value.config, now);
-    case MT_CMD_ARM: return arm(c, input, command.value.config_id, now);
+    case MT_CMD_ARM: return start_capture(c, input, command.value.config_id, now, 0);
+    case MT_CMD_RECORD_NOW: return start_capture(c, input, command.value.config_id, now, 1);
     case MT_CMD_STOP:
         if (command.value.generation != c->link.generation)
             return error(c, input->type, 4, input->request, now);

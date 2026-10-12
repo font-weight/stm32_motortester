@@ -35,7 +35,7 @@ mt_command_result mt_command_parse(const mt_wire_message *m, mt_command *out) {
     case MT_CMD_HELLO: expected = 8; break;
     case MT_CMD_GET_CAPS: case MT_CMD_GET_STATUS: expected = 0; break;
     case MT_CMD_CONFIG: expected = 16; break;
-    case MT_CMD_ARM: case MT_CMD_STOP: expected = 4; break;
+    case MT_CMD_ARM: case MT_CMD_STOP: case MT_CMD_RECORD_NOW: expected = 4; break;
     case MT_CMD_RELEASE_WINDOW: expected = 12; break;
     default: return MT_COMMAND_UNKNOWN_TYPE;
     }
@@ -57,7 +57,7 @@ mt_command_result mt_command_parse(const mt_wire_message *m, mt_command *out) {
         candidate.value.config.pretrigger_samples = read16(p + 8);
         candidate.value.config.auto_timeout_ms = read32(p + 12);
         break;
-    case MT_CMD_ARM:
+    case MT_CMD_ARM: case MT_CMD_RECORD_NOW:
         candidate.value.config_id = read32(p);
         break;
     case MT_CMD_STOP:

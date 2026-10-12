@@ -46,6 +46,10 @@ mt_link_result mt_capture_link_configure(mt_capture_link *link,
                                          uint32_t config_id);
 mt_link_result mt_capture_link_arm(mt_capture_link *link, uint32_t config_id,
                                    uint32_t generation, uint32_t now_ms);
+/* Draft wire0.2 path: Single/pre0; the first valid sample allocates the window.
+ * No ACK, synthetic sample, or hardware access is performed by this call. */
+mt_link_result mt_capture_link_record_now(mt_capture_link *link, uint32_t config_id,
+                                         uint32_t generation, uint32_t now_ms);
 /* On WINDOW_READY the driver must stop further acquisition before continuing.
  * On RECOVERY stop peripherals and recover transport/session; no full window
  * may be inferred from a failed/incomplete capture. */
