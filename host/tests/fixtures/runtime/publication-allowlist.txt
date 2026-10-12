@@ -1,0 +1,12 @@
+host/tests/test_runtime_conformance.py
+host/tests/fixtures/runtime/README.md
+host/tests/fixtures/runtime/draft-findings.md
+host/tests/fixtures/runtime/run_evidence.py
+host/tests/fixtures/runtime/publication-allowlist.txt
+host/tests/fixtures/runtime/evidence-20261012/conformance-normal.log
+host/tests/fixtures/runtime/evidence-20261012/conformance-optimized.log
+host/tests/fixtures/runtime/evidence-20261012/full-normal.log
+host/tests/fixtures/runtime/evidence-20261012/full-optimized.log
+host/tests/fixtures/runtime/evidence-20261012/source-pre.json
+host/tests/fixtures/runtime/evidence-20261012/source-post.json
+host/tests/fixtures/runtime/evidence-20261012/summary.json

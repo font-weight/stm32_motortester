@@ -1,0 +1,104 @@
+{
+  "base_sha": "45ef38792b8e824e2109e7bacc1c9dc605917d06",
+  "frozen_files": {
+    "host/docs/runtime.md": "ef2c07517b2766940ffa2924d54bc1c25b54c364e8f0ac3733eaa98beb1099dd",
+    "host/docs/transport.md": "0f418e79063408a61995ba5ddbaf77a9cb5b46461b92dd73781fcd87b94f9cb7",
+    "host/motortester/runtime.py": "902e26df36523113aa1e1e5bc9aa9ca92513945424ec65f58b16fe956686abb7",
+    "host/motortester/transport.py": "34d2428e2505321cb894181e8e19bc8492ea2093eee0544d3e935e31960b2a86",
+    "host/tests/test_runtime.py": "a9b282a62d94ec29bdea64e464fbb3f8b28ec9bc4b91c27d394cebc3fbafa2d9",
+    "host/tests/test_transport.py": "a70c8aa54720dda420547eeeeb68c91864f3c8615bd2727b63f8e97228119527"
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-p",
+        "test_runtime_conformance.py",
+        "-v"
+      ],
+      "duration_seconds": 0.853,
+      "ended_utc": "2026-10-12T03:25:10.999002+00:00",
+      "log_sha256": "5c7218f0401efcaf195e19ad08f514d4d8e42319cd64bc6c38a67078cc4486d7",
+      "name": "conformance-normal",
+      "pass_without_skips": true,
+      "returncode": 0,
+      "skips_found": false,
+      "started_utc": "2026-10-12T03:25:10.038274+00:00",
+      "tests": 37
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-p",
+        "test_runtime_conformance.py",
+        "-v"
+      ],
+      "duration_seconds": 0.787,
+      "ended_utc": "2026-10-12T03:25:12.057196+00:00",
+      "log_sha256": "d7e02d264c10faf7d6980a35a5694bd1f4def857baef2a7d1e51942d46c86359",
+      "name": "conformance-optimized",
+      "pass_without_skips": true,
+      "returncode": 0,
+      "skips_found": false,
+      "started_utc": "2026-10-12T03:25:10.999474+00:00",
+      "tests": 37
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-v"
+      ],
+      "duration_seconds": 29.853,
+      "ended_utc": "2026-10-12T03:25:42.477908+00:00",
+      "log_sha256": "7e948fedafbbd9b16ae7b744fd285b1bb1020a459e3ecbff744fa14a8a379a54",
+      "name": "full-normal",
+      "pass_without_skips": true,
+      "returncode": 0,
+      "skips_found": false,
+      "started_utc": "2026-10-12T03:25:12.057434+00:00",
+      "tests": 499
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-v"
+      ],
+      "duration_seconds": 29.133,
+      "ended_utc": "2026-10-12T03:26:12.735313+00:00",
+      "log_sha256": "176f193f894cc07fdc9c60851c33ba475564d87bcf5b4fd2a786cd8ce87e84d2",
+      "name": "full-optimized",
+      "pass_without_skips": true,
+      "returncode": 0,
+      "skips_found": false,
+      "started_utc": "2026-10-12T03:25:42.479011+00:00",
+      "tests": 499
+    }
+  ],
+  "scope": "Linux synthetic software only; no Windows, USB or physical validation",
+  "source_unchanged": true,
+  "transport_source_sha": "ec11d01a42e0cbdc06039ddf274121a4db7202ed"
+}
