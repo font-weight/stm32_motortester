@@ -1,0 +1,1 @@
+(sym_lib_table (version 7) (lib (name "AnalogDraft") (type "KiCad") (uri "${KIPRJMOD}/AnalogDraft.kicad_sym") (options "") (descr "Local candidate primitives; no PCB release")))
