@@ -789,8 +789,14 @@ def screenshot(path: Path) -> int:
             raise OSError(f"Не удалось сохранить снимок: {path}")
         window.close()
         app.processEvents()
-    print(f"Снимок Qt после повторного открытия синтетической записи: {path}")
-    print("Проверка ОС Windows 10 и реального прибора не выполнялась.")
+    # The PNG is already saved. Optional console text must not turn a valid
+    # screenshot into failure on a windowed/legacy-encoding Windows stdout.
+    if sys.stdout is not None:
+        try:
+            print(f"Снимок Qt после повторного открытия синтетической записи: {path}")
+            print("Проверка ОС Windows 10 и реального прибора не выполнялась.")
+        except (UnicodeEncodeError, OSError):
+            pass
     return 0
 
 

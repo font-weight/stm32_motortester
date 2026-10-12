@@ -201,6 +201,87 @@ class LauncherSmokeTests(unittest.TestCase):
         self.assertGreater(launcher.validate_smoke_result(self.png, require_frozen_windows=False)["png"]["bytes"], 1000)
 
 
+class ScreenshotConsoleRegressionTests(unittest.TestCase):
+    """Exercise the real screenshot body under windowed/legacy console states."""
+    def run_screenshot(self, console, failure=None):
+        with tempfile.TemporaryDirectory(prefix="console проверка ") as temp:
+            output = Path(temp) / "снимок с пробелами.png"
+            code = r"""import io, runpy, sys
+from contextlib import ExitStack
+from pathlib import Path
+from unittest.mock import patch
+console, failure, entry, output = sys.argv[1:]
+if console == 'cp1252':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='cp1252', errors='strict', write_through=True)
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='cp1252', errors='strict', write_through=True)
+elif console == 'none':
+    sys.stdout = sys.stderr = None
+elif console == 'io_error':
+    class FailedConsole(io.TextIOBase):
+        def write(self, text):
+            raise OSError('controlled console I/O failure')
+    sys.stdout = FailedConsole()
+sys.argv = [entry, '--screenshot', output]
+from motortester import gui
+with ExitStack() as stack:
+    if failure == 'render':
+        stack.enter_context(patch.object(gui.MainWindow, 'grab', side_effect=OSError('controlled render failure')))
+    elif failure == 'save':
+        original_grab = gui.MainWindow.grab
+        class SaveFailure:
+            def save(self, path):
+                return False
+        def grab_then_fail_save(window):
+            original_grab(window)  # Render the real window before the controlled encoder failure.
+            return SaveFailure()
+        stack.enter_context(patch.object(gui.MainWindow, 'grab', grab_then_fail_save))
+    elif failure == 'receipt':
+        original_open = Path.open
+        def receipt_open(path, mode='r', *args, **kwargs):
+            if path.name.endswith('.smoke.json') and mode == 'x+b':
+                raise OSError('controlled receipt write failure')
+            return original_open(path, mode, *args, **kwargs)
+        stack.enter_context(patch.object(Path, 'open', receipt_open))
+    runpy.run_path(entry, run_name='__main__')
+"""
+            env = os.environ | {"QT_QPA_PLATFORM":"offscreen", "PYTHONDONTWRITEBYTECODE":"1"}
+            command = [sys.executable, "-c", code, console, failure or "none",
+                       str(PACKAGING / "launch_gui.py"), str(output)]
+            process = subprocess.run(command, env=env, capture_output=True, timeout=15)
+            receipt = launcher.receipt_path(output)
+            if failure is None:
+                self.assertEqual(process.returncode, 0, process.stderr.decode(errors="replace"))
+                report = launcher.validate_smoke_result(output, require_frozen_windows=False)
+                self.assertEqual(report["status"], "passed")
+                self.assertGreater(report["png"]["bytes"], 1000)
+                self.assertIn(output.name.encode("utf-8"), receipt.read_bytes())
+                self.assertFalse(report["frozen"])
+            else:
+                self.assertNotEqual(process.returncode, 0)
+                if failure == "receipt":
+                    self.assertFalse(receipt.exists())
+                else:
+                    report = json.loads(receipt.read_text(encoding="utf-8"))
+                    self.assertEqual(report["status"], "failed")
+                    self.assertEqual(report["error"]["type"], "OSError")
+                with self.assertRaises((OSError, ValueError)):
+                    launcher.validate_smoke_result(output, require_frozen_windows=False)
+
+    def test_real_screenshot_succeeds_with_strict_cp1252_console(self):
+        self.run_screenshot("cp1252")
+
+    def test_real_screenshot_succeeds_without_console(self):
+        self.run_screenshot("none")
+
+    def test_optional_console_io_failure_does_not_invalidate_png(self):
+        self.run_screenshot("io_error")
+
+    def test_real_screenshot_render_save_and_receipt_failures_still_fail_closed(self):
+        for failure in ("render", "save", "receipt"):
+            with self.subTest(failure=failure):
+                self.run_screenshot("cp1252", failure)
+
+
 class RunnerTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="runner тест ")
