@@ -35,6 +35,7 @@ typedef enum {
 typedef enum {
     MT_ACQ_TRIGGER_ANALOG = 0,
     MT_ACQ_TRIGGER_AUTO_TIMEOUT = 2,
+    MT_ACQ_TRIGGER_SOFTWARE = 3, /* Core-only; not yet a negotiated wire value. */
     MT_ACQ_TRIGGER_NONE = 255
 } mt_acq_trigger_t;
 
@@ -104,6 +105,15 @@ typedef struct {
 mt_acq_result_t mt_acq_init(mt_acq_t *acq);
 mt_acq_result_t mt_acq_configure(mt_acq_t *acq, const mt_acq_config_t *config);
 mt_acq_result_t mt_acq_arm(mt_acq_t *acq, uint32_t now_ms);
+
+/* Core-only immediate one-window capture. Requires stopped, configured Single
+ * with pretrigger=0. Records the next 2048 valid samples without level/edge
+ * waiting; the first push returns TRIGGERED for normal window-ID allocation.
+ * No physical trigger index is fabricated. The caller must first
+ * establish a fresh timer/DMA epoch, as for arm. Not exposed by wire v0.1.
+ * A failed request does not alter the context. Existing arm semantics remain.
+ */
+mt_acq_result_t mt_acq_record_now(mt_acq_t *acq, uint32_t now_ms);
 
 /* sample_ms is the sample's acquisition time, not its later DMA-drain time.
  * It uses the same monotonic modulo-2^32 ms clock as arm/release. Equal times

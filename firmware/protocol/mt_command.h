@@ -5,7 +5,7 @@
 enum {
     MT_CMD_HELLO = 1, MT_CMD_GET_CAPS = 2, MT_CMD_CONFIG = 3,
     MT_CMD_ARM = 4, MT_CMD_STOP = 5, MT_CMD_GET_STATUS = 6,
-    MT_CMD_RELEASE_WINDOW = 7
+    MT_CMD_RELEASE_WINDOW = 7, MT_CMD_RECORD_NOW = 8
 };
 
 typedef struct {

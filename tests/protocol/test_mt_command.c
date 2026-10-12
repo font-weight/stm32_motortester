@@ -24,7 +24,7 @@ static void expect_failure(const mt_wire_message *m, mt_command_result want) {
 }
 
 static void test_lengths_and_direction(void) {
-    static const uint16_t lengths[] = {0, 8, 0, 16, 4, 4, 0, 12};
+    static const uint16_t lengths[] = {0, 8, 0, 16, 4, 4, 0, 12, 4};
     static const uint8_t device_types[] = {
         129, 130, 131, 132, 133, 134, 135, 144, 145, 146, 147, 255
     };
@@ -32,7 +32,7 @@ static void test_lengths_and_direction(void) {
     mt_command out;
     unsigned type;
     size_t i;
-    for (type = 1; type <= 7u; ++type) {
+    for (type = 1; type <= 8u; ++type) {
         init_message(&m, (uint8_t)type, (uint16_t)(lengths[type] + 1u));
         expect_failure(&m, MT_COMMAND_LENGTH);
         if (lengths[type] != 0u) {
@@ -85,6 +85,10 @@ static void test_payloads(void) {
     expect_failure(&m, MT_COMMAND_RESERVED);
 
     init_message(&m, MT_CMD_ARM, 4);
+    set32(m.payload, UINT32_C(0x78563412));
+    assert(mt_command_parse(&m, &out) == MT_COMMAND_OK);
+    assert(out.value.config_id == UINT32_C(0x78563412));
+    init_message(&m, MT_CMD_RECORD_NOW, 4);
     set32(m.payload, UINT32_C(0x78563412));
     assert(mt_command_parse(&m, &out) == MT_COMMAND_OK);
     assert(out.value.config_id == UINT32_C(0x78563412));

@@ -740,3 +740,41 @@ Issue127: из неизменённых 19 файлов hardware/analog-source �
 данной публикации. Полная схема прибора, реальные HW/LV, защита, питание,
 распиновка платы и приёмка MVP остаются открытыми. Источники, host,
 прошивка и электрическое содержание этой итерацией не менялись.
+
+## 12.10.2026 — отдельный native-кандидат записи сейчас, wire 0.2
+
+По уточнению владельца и черновому предложению PR #141 добавлен отдельный
+путь RECORD_NOW/type8 через parser, link и controller; публичный профиль
+кандидата Single-only. Первый допустимый новый sample входит в окно.
+Исторический wire0.1 не переопределён: это несовместимая явная версия0.2,
+без принятого общего контракта и без изменений host/**.
+
+Реальные авторские native проверки и происхождение fixtures приведены в
+[tests/record-now-native/README_RU.md](../tests/record-now-native/README_RU.md).
+Guarded runtime:29 сценариев × две операции,58 strict и58 ASan/UBSan;
+фиксированные векторы:35 strict и35 UBSan. Полные массивы и терминальные
+границы проверены отдельно. Это draft; target/source/object/image pins не
+обновлены, новый ARM/ELF/stack proof и paired B/Windows/file evidence
+отсутствуют. Статус приёмки остаётся BLOCKED_EVIDENCE, score:null.
+
+
+### Отдельное object-расширение native wire0.2
+
+После native6af7a11 обновлены шесть source pins и четыре object pins,
+с сохранением всех compiler/BOOT/toolchain правил. Штатный авторский
+прогон дал33objects, PASS_RELOCATABLE_ONLY; combined.o7f40a023…
+(полный hash и команды в firmware/build/README.md). Production-код
+не менялся. Image/reference/stack pins намеренно не перенесены: новый
+ELF/BIN/HEX и whole-system приёмка остаются BLOCKED_EVIDENCE. Это
+отдельное расширение требует собственного независимого exact-SHA ревью.
+
+
+### Уменьшение вложенного reply frame, отдельный черновик
+
+После проверки реального ARM объекта общий start_capture переведён на
+существующий workspace вызывающего receive. Локальные одновременные
+frames теперь648+40 вместо648+584байт; это экономия544байта на данном
+пути, не новый whole-stack bound. Native suites и штатные33objects
+повторены автором успешно; combined.o93f9d1fb… (полный hash в build README).
+Нужен новый независимый exact-SHA review; image/IRQ/paired/hardware gates
+не меняются. Ни одно старое доказательство не переписано.

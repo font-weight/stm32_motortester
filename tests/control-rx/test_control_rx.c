@@ -38,7 +38,7 @@ static void test_config_splits_and_stop(void) {
         mt_wire_message m;
         size_t n;
         fresh();
-        m = command(3, 16); put16(m.payload, 1); m.payload[2] = 1;
+        m = command(3, 16); put16(m.payload, 1); m.payload[2] = 2;
         put16(m.payload + 6, 2048); n = encode_at(&m, 0);
         assert(n == 46u);
         feed_exact(wire, split, 0); feed_exact(wire + split, n - split, 0);
@@ -55,7 +55,7 @@ static void test_rejected_and_timeouts(void) {
     uint8_t bad[] = {2, 1, 0};
     uint8_t nonzero[64];
     unsigned i;
-    fresh(); configure(1); (void)arm_capture();
+    fresh(); configure(2); (void)arm_capture();
     before = f.control;
     feed_exact(bad, sizeof bad, 0);
     assert(rx.rejected_frames == 1 && memcmp(&before, &f.control, sizeof before) == 0);
