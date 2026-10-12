@@ -763,3 +763,29 @@ no-BEGIN, Single, сегментные Auto/Normal, fragmented Stop ACK, реа�
 началом авторского draft; независимый вердикт ещё не получен. Это draft
 программной интеграции, не приёмка общей записи, GUI, USB/платы, физического
 Stop, непрерывности, полного разряда или стойкости к потере питания.
+
+## 12.10.2026 — draft native-проверки настоящего recording adapter PR154
+
+Добавлен отдельный `tests/recording-adapter-reproducer` для неизменённых
+production A `c4d4dc2966656b324518c8d0061811d1241870a3` и B
+`f0784ae6ac85565b32bc2e564974d500eaa6a32f`. Используются настоящий
+RecordingSessionAdapter, дисковый поток, runtime accessor и Save B.
+Нативная оснастка PR153 переиспользована без изменения. Код host, firmware,
+wire и приостановленные runtime/MMIO/proof-исследования не затронуты.
+
+Авторская r4: strict/ASan+UBSan × обычный/optimized Python, по три
+последовательности, 20 архивов перечитаны свежими процессами; все 11 команд
+завершились с кодом 0, host/device wire совпал между четырьмя вариантами.
+Receipt SHA256: `1e9be6bd5b1806fe6cf4fc2b62abbdf7ef9f4ec945f0616eedcb75b175a4b85f`.
+Проверены full → partial → no-BEGIN в разных поколениях одного adapter,
+три Auto-окна, Single, настоящий writer barrier на 5400 модельных мс,
+Stop-fence, exact/foreign/stale source, реальные BEGIN/terminal identities,
+END CRC, сырые фрагменты, nominal Fs и host_elapsed_ms. Oracle самостоятельно
+декодирует wire, затем сравнивает Save и повторное открытие.
+
+Ограничение PR153 с непереданными custom adapter метаданными явно сохранено
+в новом README. Ошибки ранней авторской оснастки r1/r2 не скрыты. r3/r4 —
+авторские программные результаты, не независимая оценка. Критерии Critic-A
+определены до реализации этого derivative; независимый вердикт ожидается.
+GUI, физическая плата/USB, полный runtime, непрерывность, полный разряд,
+Windows и power-loss durability этой проверкой не подтверждаются.
