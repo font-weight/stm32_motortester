@@ -1,0 +1,11 @@
+{
+  "scope": "Независимые синтетические conformance-проверки ограниченного LV-001 collector; не физическая приёмка",
+  "local_base_commit": "33696f8a41d70196d7870a92b24d01def44a1eb2",
+  "published_base_commit": "1af7c7c27e7eaa6559138b055ed40c7e3114abb1",
+  "base_tree": "2ed75f6d5d9993af47a79cbfa0eb1e6b3568b2e9",
+  "proposal_commit": "db09c263c022c27723fd9de9e4a79905097767c6",
+  "proposal_status": "Не принят совместно; источник требований и происхождения",
+  "proposal_wire_sha256": "c283560183594e17afc0a41d515a7090ab35726e898cabf8358582441df57dc4",
+  "proposal_validation_sha256": "801f86a652091a0da15880b37df4870c3b20e526bac48c9988fdf0612977331d",
+  "oracle": "reference.py не импортирует production-код. CRC-32 проверяется стандартным check 123456789; COBS, framing и ожидаемые bytes строятся независимо. Рецепт samples — заявленная синтетика существующего DeviceEmulator."
+}
