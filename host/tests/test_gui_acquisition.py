@@ -7,7 +7,7 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6 import QtCore, QtGui, QtTest, QtWidgets
 from motortester.gui import MainWindow
 from motortester.gui_acquisition import AcquisitionDialog
 from motortester.emulator import demo_message, from_message
@@ -22,6 +22,39 @@ def advertised_caps(**changes):
         adc_clock_hz=12000000, adc_sample_cycles_x2=143,
         window_samples=2048, pretrigger_samples=(0, 512, 1024),
         mode_bits=7, source_bits=3, edge_bits=3), **changes)
+
+
+def button_text_geometry(widget):
+    option = QtWidgets.QStyleOptionButton()
+    widget.initStyleOption(option)
+    element = (QtWidgets.QStyle.SubElement.SE_CheckBoxContents
+               if isinstance(widget, QtWidgets.QCheckBox)
+               else QtWidgets.QStyle.SubElement.SE_PushButtonContents)
+    contents = widget.style().subElementRect(element, option, widget)
+    # Both the checkbox style and the application's button stylesheet align
+    # text left/vertically centered. Do not use TextSingleLine for native labels.
+    flags = int(QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter
+                | QtCore.Qt.TextFlag.TextShowMnemonic)
+    # Measure the complete glyph layout. itemTextRect adds a legacy Windows
+    # disabled-text shadow outside this rectangle (SH_EtchDisabledText).
+    text = widget.fontMetrics().boundingRect(contents, flags, widget.text())
+    return contents, text
+
+
+def apply_run11_horizontal_metrics(dialog):
+    """Synthetic width model, not Windows font/height/rendering emulation.
+
+    Run11 measured 13px per character on these three labels. Use actual Qt
+    text metrics and spacing, never forced minimum widths or custom size hints.
+    """
+    for widget in (dialog.connect_button, dialog.reset, dialog.simulate):
+        widget.setStyleSheet("font-family: 'DejaVu Sans Mono';")
+        widget.ensurePolished()
+        font = widget.font()
+        font.setLetterSpacing(QtGui.QFont.SpacingType.AbsoluteSpacing, 0)
+        font.setLetterSpacing(QtGui.QFont.SpacingType.AbsoluteSpacing,
+                              13 - QtGui.QFontMetricsF(font).horizontalAdvance("M"))
+        widget.setFont(font)
 
 
 def panel_geometry(app, dialog, scroll):
@@ -63,6 +96,10 @@ def panel_geometry(app, dialog, scroll):
         if isinstance(widget, QtWidgets.QLabel):
             entry["word_wrap"] = widget.wordWrap()
             entry["height_for_width"] = widget.heightForWidth(widget.width())
+        if isinstance(widget, (QtWidgets.QPushButton, QtWidgets.QCheckBox)):
+            contents, text = button_text_geometry(widget)
+            entry["text_contents"] = rect(contents)
+            entry["text_rect"] = rect(text)
         if isinstance(widget, QtWidgets.QComboBox):
             entry["native_minimum_hint"] = size(QtWidgets.QComboBox.minimumSizeHint(widget))
             option = QtWidgets.QStyleOptionComboBox()
@@ -524,6 +561,11 @@ class AcquisitionGuiTests(unittest.TestCase):
                     self.assertGreaterEqual(widget.height(), widget.heightForWidth(widget.width()), diagnostic)
                 else:
                     self.assertGreaterEqual(widget.height(), widget.minimumSizeHint().height(), diagnostic)
+                if isinstance(widget, (QtWidgets.QPushButton, QtWidgets.QCheckBox)):
+                    contents, text = button_text_geometry(widget)
+                    self.assertTrue(widget.rect().contains(contents), diagnostic)
+                    self.assertTrue(contents.contains(text), diagnostic)
+                    self.assertGreaterEqual(text.height(), widget.fontMetrics().height(), diagnostic)
                 if isinstance(widget, QtWidgets.QComboBox):
                     option = QtWidgets.QStyleOptionComboBox()
                     widget.initStyleOption(option)
@@ -580,4 +622,132 @@ class AcquisitionGuiTests(unittest.TestCase):
                             self.app.processEvents()
         finally:
             self.app.setFont(original_font)
+            self.app.setStyle(original_style)
+
+    def test_small_panel_fits_run11_horizontal_text_metrics(self):
+        original_style = self.app.style().objectName()
+        try:
+            for style in ("Fusion", "Windows"):
+                if style not in QtWidgets.QStyleFactory.keys():
+                    continue
+                self.app.setStyle(style)
+                apply_run11_horizontal_metrics(self.dialog)
+                self.bridge.emit_state(Phase.READY, capabilities=advertised_caps())
+                for size in (QtCore.QSize(420, 360), QtCore.QSize(360, 300)):
+                    with self.subTest(style=style, size=size):
+                        self.assert_panel_reachable(self.dialog, size)
+                self.assertEqual(self.bridge.calls, [])
+        finally:
+            self.app.setStyle(original_style)
+
+    def test_run11_metric_model_rejects_each_original_single_line_constraint(self):
+        original_style = self.app.style().objectName()
+        try:
+            for style in ("Fusion", "Windows"):
+                if style not in QtWidgets.QStyleFactory.keys():
+                    continue
+                self.app.setStyle(style)
+                apply_run11_horizontal_metrics(self.dialog)
+                self.bridge.emit_state(Phase.READY, capabilities=advertised_caps())
+                for widget, measured_width in ((self.dialog.connect_button, 442),
+                                               (self.dialog.reset, 390),
+                                               (self.dialog.simulate, 377)):
+                    original = widget.text()
+                    try:
+                        widget.setText(original.replace("\n", " "))
+                        # Windows style adds one pixel to the checkbox. Allow
+                        # that native-style difference, not arbitrary pressure.
+                        self.assertAlmostEqual(widget.sizeHint().width(), measured_width, delta=1)
+                        for size in (QtCore.QSize(420, 360), QtCore.QSize(360, 300)):
+                            with self.subTest(style=style, text=widget.text(), size=size):
+                                with self.assertRaises(AssertionError):
+                                    self.assert_panel_reachable(self.dialog, size)
+                                scroll = self.dialog.findChild(QtWidgets.QScrollArea)
+                                self.assertGreater(scroll.horizontalScrollBar().maximum(), 0)
+                    finally:
+                        widget.setText(original)
+                self.assertEqual(self.bridge.calls, [])
+        finally:
+            self.app.setStyle(original_style)
+
+    def test_multiline_controls_keep_native_click_keyboard_and_accessible_meaning(self):
+        original_style = self.app.style().objectName()
+        try:
+            for style in ("Fusion", "Windows"):
+                if style not in QtWidgets.QStyleFactory.keys():
+                    continue
+                self.app.setStyle(style)
+                for metric_model in (False, True):
+                    for size in (QtCore.QSize(420, 360), QtCore.QSize(360, 300)):
+                        with self.subTest(style=style, metric_model=metric_model, size=size):
+                            bridge = FakeBridge(self.window)
+                            dialog = AcquisitionDialog(self.window, bridge)
+                            try:
+                                dialog.show()
+                                dialog.activateWindow()
+                                if metric_model:
+                                    apply_run11_horizontal_metrics(dialog)
+                                self.assert_panel_reachable(dialog, size)
+                                scroll = dialog.findChild(QtWidgets.QScrollArea)
+                                for widget, sentence, source in (
+                                        (dialog.reset, "Подтверждаю физический сброс", "device"),
+                                        (dialog.simulate, "Событие запуска в эмуляторе", "emulator")):
+                                    self.assertIs(type(widget), QtWidgets.QCheckBox)
+                                    self.assertEqual(" ".join(widget.text().split()), sentence)
+                                    self.assertEqual(len(widget.text().splitlines()), 2)
+                                    interface = QtGui.QAccessible.queryAccessibleInterface(widget)
+                                    self.assertIsNotNone(interface)
+                                    self.assertEqual(interface.role(), QtGui.QAccessible.Role.CheckBox)
+                                    self.assertEqual(" ".join(interface.text(QtGui.QAccessible.Text.Name).split()), sentence)
+                                    dialog.source.setCurrentIndex(dialog.source.findData(source))
+                                    self.assertTrue(widget.isEnabled())
+                                    widget.setChecked(False)
+                                    toggles = QtTest.QSignalSpy(widget.toggled)
+                                    scroll.ensureWidgetVisible(widget)
+                                    self.app.processEvents()
+                                    _, text = button_text_geometry(widget)
+                                    for line, words in enumerate(widget.text().splitlines()):
+                                        point = QtCore.QPoint(
+                                            text.left() + widget.fontMetrics().horizontalAdvance(words) // 2,
+                                            text.top() + (2 * line + 1) * text.height() // 4)
+                                        self.assertTrue(text.contains(point))
+                                        self.assertTrue(scroll.viewport().rect().contains(
+                                            widget.mapTo(scroll.viewport(), point)))
+                                        QtTest.QTest.mouseClick(widget, QtCore.Qt.MouseButton.LeftButton, pos=point)
+                                        self.assertEqual(toggles.count(), line + 1)
+                                        self.assertEqual(widget.isChecked(), line == 0)
+                                    self.assertNotEqual(widget.focusPolicy(), QtCore.Qt.FocusPolicy.NoFocus)
+                                    widget.setFocus()
+                                    self.app.processEvents()
+                                    self.assertTrue(widget.hasFocus())
+                                    QtTest.QTest.keyClick(widget, QtCore.Qt.Key.Key_Space)
+                                    self.assertEqual(toggles.count(), 3)
+                                    self.assertTrue(widget.isChecked())
+                                self.assertEqual(bridge.calls, [])
+                                button = dialog.connect_button
+                                self.assertIs(type(button), QtWidgets.QPushButton)
+                                sentence = "Подключить · без запуска захвата"
+                                self.assertEqual(" ".join(button.text().split()), sentence)
+                                interface = QtGui.QAccessible.queryAccessibleInterface(button)
+                                self.assertEqual(interface.role(), QtGui.QAccessible.Role.Button)
+                                self.assertEqual(" ".join(interface.text(QtGui.QAccessible.Text.Name).split()), sentence)
+                                dialog.source.setCurrentIndex(dialog.source.findData("device"))
+                                dialog.port.setText("COM7")
+                                scroll.ensureWidgetVisible(button)
+                                self.app.processEvents()
+                                _, text = button_text_geometry(button)
+                                point = QtCore.QPoint(text.center().x(), text.top() + 3 * text.height() // 4)
+                                self.assertTrue(scroll.viewport().rect().contains(
+                                    button.mapTo(scroll.viewport(), point)))
+                                QtTest.QTest.mouseClick(button, QtCore.Qt.MouseButton.LeftButton, pos=point)
+                                self.assertEqual(bridge.calls, [("connect", "device", {"port": "COM7", "reset_confirmed": True})])
+                                self.assertFalse(dialog.reset.isChecked())
+                                self.assertFalse(button.isEnabled())
+                            finally:
+                                self.window._acq_requested = False
+                                dialog.close()
+                                dialog.deleteLater()
+                                bridge.deleteLater()
+                                self.app.processEvents()
+        finally:
             self.app.setStyle(original_style)

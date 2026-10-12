@@ -57,7 +57,9 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.source.addItem("Прибор (COM-порт)", "device")
         self.port = QtWidgets.QLineEdit()
         self.port.setPlaceholderText("Например, COM3; автоматического поиска нет")
-        self.reset = QtWidgets.QCheckBox("Подтверждаю физический сброс")
+        # Native multiline labels keep every word readable without imposing the
+        # entire sentence's width on a small, vertically scrollable panel.
+        self.reset = QtWidgets.QCheckBox("Подтверждаю\nфизический сброс")
         self.reset.setToolTip("Открытие COM-порта не подтверждает сброс прибора.")
         self.mode = _ContentSizedComboBox()
         for title, value in (("Auto", 0), ("Normal", 1), ("Single", 2)):
@@ -73,7 +75,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.timeout.setRange(100, 60000)
         self.timeout.setValue(1000)
         self.timeout.setSuffix(" мс")
-        self.simulate = QtWidgets.QCheckBox("Событие запуска в эмуляторе")
+        self.simulate = QtWidgets.QCheckBox("Событие запуска\nв эмуляторе")
         self.simulate.setChecked(True)
         for title, widget in (("Источник", self.source), ("COM-порт", self.port), ("Режим", self.mode), ("Фронт", self.edge), ("Уровень · код АЦП", self.level), ("Ожидание Auto", self.timeout)):
             form.addRow(title, widget)
@@ -91,7 +93,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.device_details.setWordWrap(True)
         self.device_details.setTextFormat(QtCore.Qt.TextFormat.PlainText)
         self.device_details.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
-        self.connect_button = QtWidgets.QPushButton("Подключить · без запуска захвата")
+        self.connect_button = QtWidgets.QPushButton("Подключить ·\nбез запуска захвата")
         self.start_button = QtWidgets.QPushButton("Старт")
         self.stop_button = QtWidgets.QPushButton("Стоп")
         self.disconnect_button = QtWidgets.QPushButton("Отключить")
