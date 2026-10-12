@@ -10,6 +10,8 @@ try:
     from motortester.gui import MainWindow
 except ModuleNotFoundError as exc:
     raise unittest.SkipTest(f"GUI dependencies unavailable: {exc}") from exc
+
+from qt_test_support import pump_events
 from motortester.model import CaptureError
 
 
@@ -29,7 +31,7 @@ class PngExportTests(unittest.TestCase):
     def settle(self):
         end = time.monotonic() + 5
         while self.window.busy and time.monotonic() < end:
-            QtTest.QTest.qWait(10)
+            pump_events(10)
         self.assertFalse(self.window.busy)
         self.app.processEvents()
 

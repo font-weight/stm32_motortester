@@ -15,6 +15,8 @@ try:
 except ModuleNotFoundError as exc:
     raise unittest.SkipTest(f"Qt dependencies unavailable: {exc}") from exc
 
+from qt_test_support import pump_events
+
 from motortester.device_emulator import DeviceEmulator, WAITING
 from motortester.session import Config, Event, EventKind, FaultCode, Phase, RecoveryReason
 from motortester.transport import SerialTransport
@@ -169,14 +171,22 @@ class AcquisitionBridgeTests(unittest.TestCase):
             if (time.monotonic() - start) * 1000 > timeout:
                 states = [(b.state, b.errors) for b in self.bridges]
                 self.fail(f"Qt deadline; current states: {states}")
-            # QTest.qWait holds the GIL in PySide6 6.12, starving Python worker
-            # slots. Keep its event/deferred-delete pump
-            # and 5 ms cadence, but use bindings that release the GIL.
-            step_end = time.monotonic() + 0.005
-            self.app.processEvents(QtCore.QEventLoop.ProcessEventsFlag.AllEvents, 5)
-            QtCore.QCoreApplication.sendPostedEvents(None, QtCore.QEvent.Type.DeferredDelete)
-            time.sleep(max(0, step_end - time.monotonic()))
+            pump_events(5)
         self.app.processEvents()
+
+    def test_shared_qt_pump_preserves_duration_events_and_deferred_deletes(self):
+        for milliseconds in (0, 5, 100, 200):
+            with self.subTest(milliseconds=milliseconds):
+                events, deleted = [], []
+                deferred = QtCore.QObject()
+                deferred.destroyed.connect(lambda: deleted.append(True))
+                deferred.deleteLater()
+                QtCore.QTimer.singleShot(0, lambda: events.append(True))
+                started = time.monotonic()
+                pump_events(milliseconds)
+                self.assertGreaterEqual(time.monotonic() - started, milliseconds / 1000)
+                self.assertEqual(events, [True])
+                self.assertEqual(deleted, [True])
 
     def test_wait_pumps_events_without_starving_python_worker_slots(self):
         ready = threading.Event()
@@ -273,7 +283,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         self.assertFalse(bridge.connect_source("default"))
         self.assertFalse(bridge.connect_source("device", port=""))
         self.connect(bridge, "device")
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertEqual(self.controls["backend"].kinds, [1, 2])
         self.assertEqual(bridge.state.snapshot.generation, 0)
         self.assertIsNone(bridge.state.snapshot.config)
@@ -297,7 +307,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
                          "wire 0.1 (draft)", "0x1d/0x7/0x1/0x3",
                          "Auto, Normal, Single", "предыстория: 0"):
             self.assertIn(expected, text)
-        QtTest.QTest.qWait(80)
+        pump_events(80)
         self.assertIsNone(bridge.state.snapshot.config)
         self.assertEqual(bridge.state.snapshot.generation, 0)
         self.assertEqual(bridge.captures, [])
@@ -433,7 +443,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
                     self.assertIn("прибор сообщил об ошибке [DEVICE_ERROR]", panel.status.text())
                 self.assertIn("CAPS не подтверждены", panel.device_details.text())
                 self.assertFalse(panel.start_button.isEnabled())
-                QtTest.QTest.qWait(60)
+                pump_events(60)
                 self.assertEqual(self.controls["backend"].kinds, expected_commands)
                 if capture is not None:
                     self.assertIs(bridge.captures[-1], capture)
@@ -517,11 +527,11 @@ class AcquisitionBridgeTests(unittest.TestCase):
         self.connect(bridge)
         self.assertTrue(bridge.start(Config(), simulate_edge=False))
         self.wait(lambda: bridge.state.snapshot.phase is Phase.ARMED)
-        QtTest.QTest.qWait(200)
+        pump_events(200)
         self.assertEqual(bridge.captures, [])
         self.assertTrue(bridge.stop())
         self.wait(lambda: self.ready(bridge))
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertEqual(bridge.captures, [])
         self.assertIs(bridge.state.snapshot.phase, Phase.READY)
 
@@ -536,7 +546,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         with self.assertRaises(FrozenInstanceError):
             capture.sequence = 999
         self.assertFalse(bridge.acknowledge(replace(capture)))
-        QtTest.QTest.qWait(200)
+        pump_events(200)
         self.assertEqual(len(bridge.captures), 1)
         self.assertIs(bridge.pending_capture, capture)
         self.assertTrue(bridge.acknowledge(capture))
@@ -553,7 +563,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         first_generation = bridge.state.snapshot.generation
         self.assertTrue(bridge.acknowledge(capture))
         self.wait(lambda: self.ready(bridge) and not bridge.state.has_capture)
-        QtTest.QTest.qWait(150)
+        pump_events(150)
         self.assertEqual(len(bridge.captures), 1)
         self.capture(bridge, Config(mode=2))
         self.assertGreater(bridge.state.snapshot.generation, first_generation)
@@ -564,7 +574,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         capture = self.capture(bridge)
         generation = bridge.state.snapshot.generation
         for count in range(1, 4):
-            QtTest.QTest.qWait(40)
+            pump_events(40)
             self.assertEqual(len(bridge.captures), count)
             self.assertEqual(bridge.state.snapshot.generation, generation)
             expected = [(73 * i + 19 * count + 7 * generation) & 4095 for i in range(2048)]
@@ -610,7 +620,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         kinds = self.controls["backend"].kinds
         self.assertEqual(kinds.count(3), 1)
         self.assertEqual(kinds.count(4), 1)
-        QtTest.QTest.qWait(60)
+        pump_events(60)
         self.assertEqual(len(bridge.captures), 1)
 
     def test_priority_actions_cancel_start_queued_during_idle_read(self):
@@ -672,7 +682,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         kinds = self.controls["backend"].kinds
         self.assertIn(5, kinds)
         self.assertNotIn(7, kinds)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertEqual(len(bridge.captures), 1)
 
     def test_slow_open_gui_responsive_commands_bounded_and_shutdown_async(self):
@@ -821,7 +831,7 @@ class AcquisitionBridgeTests(unittest.TestCase):
         self.assertTrue(bridge.running)
         self.assertEqual(finished, [])
         before = sum(name == "close" for name, _ in self.calls)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertEqual(sum(name == "close" for name, _ in self.calls), before)
         self.controls["close_fail"] = False
         retry_states = []

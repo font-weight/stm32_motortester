@@ -20,6 +20,8 @@ try:
 except ModuleNotFoundError as exc:
     raise unittest.SkipTest(f"GUI dependencies unavailable: {exc}") from exc
 
+from qt_test_support import pump_events
+
 from motortester.emulator import demo_message, from_message
 from motortester.model import MAX_SAMPLES
 from motortester import recording
@@ -54,7 +56,7 @@ class ViewerTests(unittest.TestCase):
         while not predicate():
             if (time.monotonic() - start) * 1000 > timeout:
                 self.fail("Qt operation did not complete before test timeout")
-            QtTest.QTest.qWait(10)
+            pump_events(10)
         self.app.processEvents()
 
     def settle(self):
@@ -270,7 +272,7 @@ class ViewerTests(unittest.TestCase):
         self.generate()
         self.window.cursor_toggle.setChecked(True)
         self.window.resize(1000, 710)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
         self.assertLess(self.window.trigger_label.geometry().bottom(), self.window.cursor_label.geometry().top())
 
@@ -282,7 +284,7 @@ class ViewerTests(unittest.TestCase):
             with self.subTest(font_pixels=pixels):
                 self.window.setStyleSheet(original_style.replace("font-size: 13px", f"font-size: {pixels}px"))
                 self.window.resize(1000, 710)
-                QtTest.QTest.qWait(100)
+                pump_events(100)
                 self.assertEqual(self.window.size(), QtCore.QSize(1000, 710))
                 self.assertGreaterEqual(self.window.plot.height(), 100)
                 self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
@@ -299,7 +301,7 @@ class ViewerTests(unittest.TestCase):
                     self.assertTrue(scroll.viewport().rect().contains(label.mapTo(scroll.viewport(), point)))
         self.window.setStyleSheet(original_style)
         self.window.resize(1240, 900)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertEqual(self.window.plot_scroll.verticalScrollBar().maximum(), 0)
 
     def test_annotation_taller_than_viewport_is_fully_reachable_by_scrolling(self):
@@ -309,7 +311,7 @@ class ViewerTests(unittest.TestCase):
         scroll.setFixedHeight(100)
         label = self.window.cursor_label
         label.setMinimumHeight(180)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertGreater(label.height(), scroll.viewport().height())
         self.assertLess(self.window.plot.geometry().bottom(), self.window.trigger_label.geometry().top())
         self.assertLess(self.window.trigger_label.geometry().bottom(), label.geometry().top())
@@ -326,7 +328,7 @@ class ViewerTests(unittest.TestCase):
             with self.subTest(font_pixels=pixels):
                 self.window.setStyleSheet(original_style.replace("font-size: 13px", f"font-size: {pixels}px"))
                 self.window.resize(1000, 710)
-                QtTest.QTest.qWait(100)
+                pump_events(100)
                 sidebar = self.window.findChild(QtWidgets.QFrame, "sidebar")
                 for label in sidebar.findChildren(QtWidgets.QLabel):
                     self.assertGreaterEqual(label.height(), label.heightForWidth(label.width()), label.text())
@@ -343,7 +345,7 @@ class ViewerTests(unittest.TestCase):
                 self.assertEqual(self.window.size(), QtCore.QSize(1000, 710))
         self.window.setStyleSheet(original_style)
         self.window.resize(1240, 900)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertEqual(self.window.sidebar_scroll.verticalScrollBar().maximum(), 0)
         # A fixed-width sidebar can legitimately need horizontal scrolling with
         # wider platform fonts. Restoring the font must restore the same layout
@@ -354,7 +356,7 @@ class ViewerTests(unittest.TestCase):
             fresh.resize(1240, 900)
             fresh.show()
             fresh.generate_demo()
-            QtTest.QTest.qWait(100)
+            pump_events(100)
             old_side = self.window.sidebar_scroll.widget()
             new_side = fresh.sidebar_scroll.widget()
             details = {
@@ -390,7 +392,7 @@ class ViewerTests(unittest.TestCase):
         scroll = self.window.sidebar_scroll
         # Deterministic intrinsic-width pressure, independent of OS font names.
         self.window.png_button.setMinimumWidth(scroll.width() + 49)
-        QtTest.QTest.qWait(100)
+        pump_events(100)
         self.assertGreater(scroll.horizontalScrollBar().maximum(), 0)
         self.assertEqual(self.window.size(), QtCore.QSize(1240, 900))
         self._assert_sidebar_action_edges_reachable()

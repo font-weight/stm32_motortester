@@ -18,6 +18,8 @@ try:
 except ModuleNotFoundError as exc:
     raise unittest.SkipTest(f"GUI dependencies unavailable: {exc}") from exc
 
+from qt_test_support import pump_events
+
 from motortester import recording
 from motortester.emulator import demo_message, from_message
 from motortester.model import MAX_SAMPLES
@@ -51,7 +53,7 @@ class AxisZoomTests(unittest.TestCase):
         while not predicate():
             if time.monotonic() > deadline:
                 self.fail("Qt operation did not complete")
-            QtTest.QTest.qWait(5)
+            pump_events(5)
         self.app.processEvents()
 
     def show_capture(self, capture=None):
@@ -88,7 +90,7 @@ class AxisZoomTests(unittest.TestCase):
                 QtCore.Qt.MouseButton.NoButton, QtCore.Qt.MouseButton.LeftButton,
                 QtCore.Qt.KeyboardModifier.NoModifier)
             self.app.sendEvent(self.viewport, event)
-            QtTest.QTest.qWait(20)
+            pump_events(20)
         QtTest.QTest.mouseRelease(self.viewport, QtCore.Qt.MouseButton.LeftButton,
                                  pos=point + QtCore.QPoint(dx, dy))
         self.app.processEvents()
@@ -346,7 +348,7 @@ class AxisZoomTests(unittest.TestCase):
             with self.subTest(font_pixels=pixels):
                 self.window.setStyleSheet(style.replace("font-size: 13px", f"font-size: {pixels}px"))
                 self.window.resize(1000, 710)
-                QtTest.QTest.qWait(60)
+                pump_events(60)
                 label = self.window.zoom_help
                 self.assertTrue(label.wordWrap())
                 self.assertGreaterEqual(label.height(), label.heightForWidth(label.width()))
