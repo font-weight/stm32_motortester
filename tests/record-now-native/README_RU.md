@@ -80,8 +80,11 @@ USB core/CDC/FIFO и controller; MMIO, часы, IRQ masking и DCD модели
 35+35 fixed vectors и58+58 guarded-runtime запусков прошли 12.10.2026.
 Независимый вердикт должен ссылаться на итоговый SHA, а не на эту запись.
 
-Source/object/image pins намеренно не обновлены и остаются fail-closed.
-Ранее полученные ARM objects, ELF/RAM/Flash/stack/IRQ proofs не переносятся
+На исходном native-кандидате6af7a11 source/object/image pins оставались
+неизменными и fail-closed. В последующем отдельном object-расширении
+обновлены только source/object pins и выполнен штатный33-object рецепт;
+см. [актуальный object-статус](../../firmware/build/README.md). Image/reference
+по-прежнему fail-closed. Старые ELF/RAM/Flash/stack/IRQ proofs не переносятся
 на этот кандидат. Нужны новая target-сборка и применимые доказательства,
 независимые Critic-A/Critic-B и действительный paired host/file replay.
 Не запускались плата, физический USB/ADC, Windows-приложение с0.2 или

@@ -756,3 +756,14 @@ Guarded runtime:29 сценариев × две операции,58 strict и58 
 границы проверены отдельно. Это draft; target/source/object/image pins не
 обновлены, новый ARM/ELF/stack proof и paired B/Windows/file evidence
 отсутствуют. Статус приёмки остаётся BLOCKED_EVIDENCE, score:null.
+
+
+### Отдельное object-расширение native wire0.2
+
+После native6af7a11 обновлены шесть source pins и четыре object pins,
+с сохранением всех compiler/BOOT/toolchain правил. Штатный авторский
+прогон дал33objects, PASS_RELOCATABLE_ONLY; combined.o7f40a023…
+(полный hash и команды в firmware/build/README.md). Production-код
+не менялся. Image/reference/stack pins намеренно не перенесены: новый
+ELF/BIN/HEX и whole-system приёмка остаются BLOCKED_EVIDENCE. Это
+отдельное расширение требует собственного независимого exact-SHA ревью.

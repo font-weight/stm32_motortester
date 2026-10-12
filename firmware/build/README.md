@@ -69,8 +69,10 @@ Windows-приложение остаётся отдельным продукт�
 pinned input и фактические support tools; полный image flow дополнительно
 сверяет objcopy. Успешная распаковка ещё не означает успешную сборку.
 
-Готовая последовательность object → synthetic ELF/BIN/HEX без реальной платы:
+Историческая последовательность object → synthetic ELF/BIN/HEX без реальной платы:
 [тестовое воспроизведение](BUILD_IMAGE_README.md#синтетическое-воспроизведение-без-платы).
+Для текущего wire0.2 кандидата этот image flow заблокирован старыми pins и
+reference; успешная object-сборка его не разрешает.
 
 ## Что проверяет рецепт
 
@@ -130,7 +132,7 @@ manifest: три PMA-объекта и четыре ADC/control/capture/TX. Ос
 26 объектов совпадают с исходной базой, 29 — с новым PMA snapshot.
 Команды, флаги и toolchain не меняются.
 
-Ожидаемый combined SHA256 после строгого повторения build_objects.py:
+Историческое ожидание combined SHA256 для указанной выше ADC/PMA итерации:
 886e24f6af5e3c07ceffa6dbfe11451a6cabe2a8b0b25cbbff8ef3dc7129d8a6.
 Это фиксированное ожидание, не заранее объявленный успешный запуск.
 `PASS_RELOCATABLE_ONLY` подтверждает только объектную сборку. Для этих
@@ -139,3 +141,33 @@ ADC-исходников обновлённые image/reference проверки
 их условная граница — 3064 байта. Новый интеграционный снимок требует своего
 повторения полного рецепта. Семантика Issue91 остаётся предложением с
 открытой общей приёмкой A/B. Прошивка не разрешена.
+
+
+## 12.10.2026 — object pins native wire0.2 кандидата
+
+Production-код соответствует native-кандидату6af7a110bfd64f4cfe1d1a945f5a9a2e6cb21a0d
+(опубликован как PR144/7eea520b). Отдельное расширение обновляет ровно шесть
+source hashes и четыре object hashes в inputs.json, затем INPUT_SHA в
+build_objects.py. Compiler flags, компоненты, toolchain, patches и BOOT
+checks не изменены. Автор заново выполнил штатный рецепт:33objects,
+PASS_RELOCATABLE_ONLY. Независимый вердикт относится к exact итоговому SHA.
+
+- Текущий combined.o SHA-256:
+  7f40a02337cdabebadce6b477d298607c0ab729f0a9c163cdb27318cda8c1364.
+- Предыдущая object-база3d32073:
+  6e234f6396ac24d817f9e1e6e2197b2a912dcefe0d74d224b36f60be4c9af2ec.
+- Изменились capture_link, control, wire, command; остальные29objects
+  побайтно совпадают. Relocatable text33672 (+289), data122, bss12238байт.
+- Undefined после ld-r: mt_board и прежние шесть linker symbols; новых
+  compiler helpers нет. Это не финальная разметка ресурсов.
+
+inputs.json SHA-256:
+3cb2115e52ec22ac8b1246d03d63776e3f89ac1743193e4e3d0a1a574f0596f9.
+build_objects.py SHA-256:
+9770fd2bdda6746240797a71beb5ecd4ceeac7750fa74326640f295f9c7f8954.
+
+build_image.py, image_equivalence.py и stack_reference.json не обновлены.
+Image flow должен отказать до выпуска образа. Нельзя переносить старую
+границу3064байта, code/literal ranges и layout на новые объекты. Требуется
+новое применимое image/stack/IRQ доказательство, затем paired B/host/file
+и физические проверки. Ни ELF/BIN/HEX, ни разрешение прошивки здесь не получены.
