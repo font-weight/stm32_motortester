@@ -535,23 +535,33 @@ class StopAndAdmission(Checks):
                 self.contiguous(p.collector.frames)
 
     def test_stop_ack_final_byte_is_barrier_boundary(self):
-        p = self.peer().armed()
-        request, sequence = p.request, p.device.snapshot().next_tx_sequence
-        p.command(5, ref.uint(4, 4))
-        expected = ref.packet(133, sequence=sequence, request=request,
-                              payload=ref.uint(4, 4) + ref.uint(0, 4) + b"\0" * 4)
-        self.assertEqual(p.pull(len(expected) - 1), expected[:-1])
-        self.assertTrue(p.device.snapshot().stop_barrier)
-        self.assertEqual(p.device.snapshot().state, 4)
-        p.command(4, ref.uint(1, 4))
-        self.assertEqual(p.pull(1), expected[-1:])
-        self.assertFalse(p.device.snapshot().stop_barrier)
-        self.assertEqual(p.device.snapshot().state, 0)
-        self.expect_error(p.drain(), 4, 2, 4)
-        generation = p.request
-        p.command(4, ref.uint(1, 4))
-        self.assertEqual(choose(p.drain(), 132)[0].payload[:4], ref.uint(generation, 4))
-        self.assertEqual(p.device.snapshot().state, 2)
+        for early in (True, False):
+            with self.subTest(early=early):
+                p = self.peer().armed()
+                request, sequence = p.request, p.device.snapshot().next_tx_sequence
+                p.command(5, ref.uint(4, 4))
+                expected = ref.packet(133, sequence=sequence, request=request,
+                                      payload=ref.uint(4, 4) + ref.uint(0, 4) + b"\0" * 4)
+                self.assertEqual(p.pull(len(expected) - 1), expected[:-1])
+                self.assertTrue(p.device.snapshot().stop_barrier)
+                if not early:
+                    self.assertEqual(p.pull(1), expected[-1:])
+                    self.assertEqual(p.device.snapshot().control_descriptors, 1)
+                generation = p.request
+                p.command(4, ref.uint(1, 4))
+                if early:
+                    self.assertFalse(p.device.snapshot().negotiated)
+                    self.assertEqual((p.device.snapshot().state, p.device.snapshot().reason), (5, 4))
+                    self.assertEqual(p.pull(1), expected[-1:])
+                    self.assertEqual(p.drain(), [])
+                    self.assertEqual(p.device.snapshot().generation, 4)
+                    self.assertFalse(p.device.trigger(0))
+                else:
+                    frames = p.drain()
+                    self.assertEqual(choose(frames, 132)[0].payload[:4], ref.uint(generation, 4))
+                    self.assertEqual(p.device.snapshot().state, 2)
+                    self.assertTrue(p.device.snapshot().negotiated)
+                self.assertFalse(p.device.snapshot().stop_barrier)
 
     def test_prior_arm_reply_then_single_abort_then_stop_ack(self):
         p = self.peer().ready()
@@ -1341,15 +1351,18 @@ class RemainingDeclaredBoundaries(Checks):
                 if count:
                     self.assertEqual(p.pull(count), expected[:count])
                 p.command(5, ref.uint(4, 4))
+                self.assertFalse(p.device.snapshot().negotiated)
+                self.assertEqual((p.device.snapshot().state, p.device.snapshot().reason), (5, 4))
                 p.drain(1)
-                self.assertEqual(len(choose(p.collector.frames, 147)), 1)
+                self.assertEqual(len(choose(p.collector.frames, 147)), int(bool(count)))
                 self.assertFalse(choose(p.collector.frames, 146))
-                replies = [(f.kind, f.request) for f in p.collector.frames if f.kind == 133]
-                self.assertEqual(replies, [(133, 5), (133, 6)])
-                abort_index = p.collector.frames.index(choose(p.collector.frames, 147)[0])
-                self.assertTrue(all(p.collector.frames.index(f) > abort_index for f in choose(p.collector.frames, 133)))
-                self.assertEqual(p.device.snapshot().state, 0)
+                self.assertFalse(choose(p.collector.frames, 133))
+                self.assertFalse(choose(p.collector.frames, 255))
+                self.assertEqual(p.device.snapshot().dropped_windows, 1)
+                self.assertEqual(p.device.snapshot().state, 5)
                 self.assertFalse(p.device.snapshot().stop_barrier)
+                self.assertFalse(p.device.snapshot().held_samples)
+                self.assertFalse(p.device.trigger(0))
                 self.contiguous(p.collector.frames)
 
     def test_new_hello_during_partial_abort_cancels_old_stop_completion(self):

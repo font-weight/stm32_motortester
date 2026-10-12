@@ -222,36 +222,56 @@ class DeviceEmulatorTests(unittest.TestCase):
                     self.assertFalse(p.d.snapshot().held_samples)
 
     def test_early_abort_prior_arm_reply_and_repeated_stop(self):
-        p = Peer().arm()
-        p.stop()
-        p.drain()
-        p.send(4, struct.pack("<I", 1))
-        self.assertTrue(p.d.trigger(0))
-        p.stop()
-        p.stop()
-        frames = p.drain()
-        self.assertEqual([f.message_type for f in frames], [132, 147, 133, 133, 134])
-        self.assertEqual(p.d.snapshot().dropped_windows, 1)
+        # c54 допускал два ещё не подтверждённых Stop: [132,147,133,133,134].
+        # Явная миграция PR52: новый Stop разрешён только после первого ACK.
+        for premature in (False, True):
+            with self.subTest(premature=premature):
+                p = Peer().arm()
+                p.stop()
+                p.drain()
+                p.send(4, struct.pack("<I", 1))
+                self.assertTrue(p.d.trigger(0))
+                p.stop()
+                if premature:
+                    p.stop()
+                    self.assertEqual(p.drain(), [])
+                    self.assertFalse(p.d.snapshot().negotiated)
+                    self.assertEqual(p.d.snapshot().state, ERROR)
+                    self.assertIsNone(p.d.snapshot().terminal)
+                else:
+                    frames = p.drain()
+                    self.assertEqual([f.message_type for f in frames], [132, 147, 133, 134])
+                    p.stop()
+                    self.assertEqual([f.message_type for f in p.drain()], [133, 134])
+                self.assertEqual(p.d.snapshot().dropped_windows, 1)
 
     def test_stop_ack_last_byte_is_drain_barrier(self):
-        p = Peer().arm()
-        p.stop()
-        prefix = p.d.read(1, 0)
-        remaining = p.d.snapshot().tx_size - 1
-        prefix += p.d.read(remaining - 1, 0)
-        self.assertTrue(p.d.snapshot().stop_barrier)
-        self.assertEqual(p.d.snapshot().state, TRANSFERRING)
-        p.send(4, struct.pack("<I", 1))
-        prefix += p.d.read(1, 0)
-        self.assertEqual(decode_frame(prefix[:-1]).message_type, 133)
-        self.assertFalse(p.d.snapshot().stop_barrier)
-        self.assertEqual(p.d.snapshot().state, STOPPED)
-        frames = p.drain()
-        self.assertEqual(frames[0].message_type, 255)
-        self.assertEqual(frames[0].payload[1], 2)
-        p.send(4, struct.pack("<I", 1))
-        p.drain()
-        self.assertEqual(p.d.snapshot().state, WAITING)
+        # c54 отвечал BUSY на ранний ARM; PR52 требует восстановления без ERROR.
+        for premature in (False, True):
+            with self.subTest(premature=premature):
+                p = Peer().arm()
+                p.stop()
+                prefix = p.d.read(1, 0)
+                remaining = p.d.snapshot().tx_size - 1
+                prefix += p.d.read(remaining - 1, 0)
+                self.assertTrue(p.d.snapshot().stop_barrier)
+                self.assertEqual(p.d.snapshot().state, TRANSFERRING)
+                if premature:
+                    p.send(4, struct.pack("<I", 1))
+                prefix += p.d.read(1, 0)
+                self.assertEqual(decode_frame(prefix[:-1]).message_type, 133)
+                self.assertFalse(p.d.snapshot().stop_barrier)
+                if premature:
+                    self.assertFalse(p.d.snapshot().negotiated)
+                    self.assertEqual(p.d.snapshot().state, ERROR)
+                    self.assertEqual(p.drain(), [])
+                    self.assertFalse(p.d.trigger(0))
+                else:
+                    self.assertEqual(p.d.snapshot().state, STOPPED)
+                    self.assertEqual(p.d.snapshot().control_descriptors, 1)
+                    p.send(4, struct.pack("<I", 1))
+                    self.assertEqual([f.message_type for f in p.drain()], [132, 134])
+                    self.assertEqual(p.d.snapshot().state, WAITING)
 
     def test_release_rearms_only_on_final_ack_byte_and_tombstone_replacement(self):
         p = Peer().arm()

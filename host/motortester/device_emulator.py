@@ -1,6 +1,7 @@
 """HOST-007: ограниченный синтетический byte-peer, не прошивка и не USB.
 
-Основание — непринятый draft SOURCE_SHA. Срок удержания окна PROVISIONAL:
+Основание — непринятый draft SOURCE_SHA; отдельная миграция барьера Stop
+привязана к STOP_BARRIER_POLICY_SHA. Срок удержания окна PROVISIONAL:
 5000 мс от последнего принятого байта END, без второго terminal outcome.
 """
 from dataclasses import dataclass
@@ -11,6 +12,7 @@ import zlib
 from .wire import Frame, StreamDecoder, encode_frame
 
 SOURCE_SHA = "c54bd955aaf3cb863ef3df043ea237ea62e74ad4"
+STOP_BARRIER_POLICY_SHA = "2017576dbe104f4c43d8d9feac28436589191fd1"
 MAX_CHUNK_SIZE = 4096
 MAX_CONTROL_DESCRIPTORS = 8
 SAMPLE_COUNT = 2048
@@ -55,6 +57,7 @@ class Provenance:
     timeout_interpretation: str = (
         "PROVISIONAL: 5000 мс от последнего принятого байта END; "
         "ERROR/TRANSFER_TIMEOUT сохраняет END и tombstone без второго терминала")
+    stop_barrier_policy_sha: str = STOP_BARRIER_POLICY_SHA
 
 
 PROVENANCE = Provenance()
@@ -345,6 +348,12 @@ class DeviceEmulator:
         self._next_rx = frame.sequence + 1
         self._last_request = frame.request_id
         self._last_rx = frame
+        # Барьер относится к ещё не допереданному STOP_ACK, не ко всему
+        # TRANSFERRING. Восстановление приоритетнее ошибок тела команды.
+        if self._stop_acks:
+            self._recover()
+            self._add(counts, "PROTOCOL_RECOVERY")
+            return
         self._command(frame)
 
     def _error(self, frame, code):

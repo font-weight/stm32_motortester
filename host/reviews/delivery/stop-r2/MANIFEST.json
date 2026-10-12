@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "kind": "stop",
+  "wrapper_is_not_original_commit": true,
+  "original_commit": "a60a05c0e0b0ce9db0c907843a5be97be73e64e1",
+  "original_tree": "7e0dda7ac222c8a5902cbb5ec9a216f6ed846b7d",
+  "original_parent": "c44bae42b19ec8208c2ebee4a3e662ce1b7ff240",
+  "bundle_bytes": 175541,
+  "bundle_sha256": "415f8e39dba18261970c6f31da427fb0ce3b4e11f06c245ebc25caa17a3b4cfd",
+  "bundle_format": "git bundle v2; chunks are independently padded base64, decode each separately in listed order",
+  "chunks": [
+    {
+      "path": "host/reviews/delivery/stop-r2/checkpoint.part000.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "915667042bb9edd4e75ee82bbcfba5e6ef8bb53e95008d39bb937cf99741b075",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "c673095bdb2a1ac89a54a43e20976d39354c2aef2d26682ff58789dde8c50bfa"
+    },
+    {
+      "path": "host/reviews/delivery/stop-r2/checkpoint.part001.b64",
+      "encoded_bytes": 112001,
+      "encoded_sha256": "45e3922ad813ef3555e7757fcafbff3b194615c4aa93397f7e8cc2d160bb85ca",
+      "decoded_bytes": 84000,
+      "decoded_sha256": "afec118bdf8ff81b3ed020f6b1d565530b01fced7a9ab6dd663e7c45ec1e8521"
+    },
+    {
+      "path": "host/reviews/delivery/stop-r2/checkpoint.part002.b64",
+      "encoded_bytes": 10057,
+      "encoded_sha256": "53c3a047048f02efa17226db0e951930d5ba822a6604a872003315ed34ad655b",
+      "decoded_bytes": 7541,
+      "decoded_sha256": "2fb00816d617a91a41b55acb48cafb6b162c4e099c641ab6dcd1a719e344e379"
+    }
+  ],
+  "source_paths": {
+    "host/motortester/device_emulator.py": {
+      "sha256": "e79887e3d047feda419b3106cccc474d28fc9c232e74f6dbfd22463d910ea411",
+      "git_blob": "a17f427c7f14b0f0ced1fd02aa9e5d99150c45a2",
+      "bytes": 23337
+    },
+    "host/docs/device-emulator.md": {
+      "sha256": "9fc9c462fec0012f7394fb41541ed75fb6946ac8e553b4ff6a790f842463e9b9",
+      "git_blob": "cf0bd80f740e6f5426b5152d7a0d095014034c76",
+      "bytes": 27604
+    },
+    "host/tests/test_device_emulator.py": {
+      "sha256": "27b3f2277919ab36e8c35bbf97463051e2e7e90d35a0ab08d050ae5bfdae3e9d",
+      "git_blob": "5e8c1751668a87a1334d3d1287fc35c6fbae8208",
+      "bytes": 24414
+    },
+    "host/tests/test_stop_barrier.py": {
+      "sha256": "3e798e210bc60239d4fe279c6da71c6a92901b47646d6791355417e3f03c4dd1",
+      "git_blob": "32a4c9bd966db6e63bade6e16ad59cc959cd9b45",
+      "bytes": 19990
+    },
+    "host/tests/test_stop_barrier_conformance.py": {
+      "sha256": "d3e66b5c7743f40e39b3ab63a561a94d675a2e2f0b26771db6541cfff1f6971f",
+      "git_blob": "9be3fbf29d31f365e200b177695f62239d597876",
+      "bytes": 28273
+    },
+    "host/tests/test_device_emulator_conformance.py": {
+      "sha256": "7d7c669ccd0e40a636060bfbe3a02854172aca024f90908d357734040da976c5",
+      "git_blob": "01d7ebd6475b12fdbd584a58acfb4bf85b22c8e5",
+      "bytes": 69163
+    },
+    "host/tests/fixtures/stop_barrier_r2/raw_peer.py": {
+      "sha256": "6d58f4074dc8c13a10a49fef3f95722baac94580c029f519972094314a75d519",
+      "git_blob": "6f89b809da9d91e88b22d9c07ad4dd97a012657f",
+      "bytes": 5576
+    },
+    "host/tests/fixtures/stop_barrier_r2/run_suite.py": {
+      "sha256": "1d2cb4b841937c6e975cfa428d2a060bff9e144c0d496a627611890e8a23044f",
+      "git_blob": "0fab06daaea90aff9498e629f44978772870de84",
+      "bytes": 2750
+    },
+    "host/tests/fixtures/stop_barrier_r2/run_matrix_evidence.py": {
+      "sha256": "90b731f86120551bc1767475c1867702c7f0cbdce275afa41e4807e8a67b0a0d",
+      "git_blob": "205b153a9737b21adc562897159ef0c7d105808c",
+      "bytes": 6688
+    },
+    "host/tests/fixtures/stop_barrier_r2/README.md": {
+      "sha256": "4990fdbd99fb679ff4927840cde9bb3cc00c2c3fbebd5197b796409b070b3567",
+      "git_blob": "4d7b2868fb2983394024cbc9977e403d3baecda7",
+      "bytes": 7226
+    }
+  },
+  "historical_delta": {
+    "host/docs/device-emulator.md": {
+      "mode": "100644",
+      "sha": "cf0bd80f740e6f5426b5152d7a0d095014034c76"
+    },
+    "host/motortester/device_emulator.py": {
+      "mode": "100644",
+      "sha": "a17f427c7f14b0f0ced1fd02aa9e5d99150c45a2"
+    },
+    "host/tests/fixtures/stop_barrier_r2/README.md": {
+      "mode": "100644",
+      "sha": "4d7b2868fb2983394024cbc9977e403d3baecda7"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/c44-matrix-traces-final.json": {
+      "mode": "100644",
+      "sha": "77e44353febf7e5d5fa14991715a0f3f1aa04c88"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/c44-matrix-traces.json": {
+      "mode": "100644",
+      "sha": "a104a5097205b18ac602c9a9fd3f0a737a58cff3"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/c44-negative-baseline-final.log": {
+      "mode": "100644",
+      "sha": "98a574435cb843be79e5b10354344f29ec347d91"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/c44-negative-baseline.log": {
+      "mode": "100644",
+      "sha": "15dc71b33935df43cda4789db7d01092becd950c"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/candidate-matrix-traces.json": {
+      "mode": "100644",
+      "sha": "0e77e1be2eb9fab77d103d8cc9a05506cd078b24"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/candidate-matrix-traces.log": {
+      "mode": "100644",
+      "sha": "6ad18d8a7e206232b9d38dc6a61971a32fa93963"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/commands.json": {
+      "mode": "100644",
+      "sha": "e469190ce716b35c4d4c06eeccc7919432e5c83c"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/empty-pattern-rejected.log": {
+      "mode": "100644",
+      "sha": "7e07b41ea7c907cda61953d0366911190d763a9a"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-c44-matrix-traces.json": {
+      "mode": "100644",
+      "sha": "9aa8c94a9eb07904df658ce1039f627f7a892595"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-c44-negative-baseline.log": {
+      "mode": "100644",
+      "sha": "caf3c7efdc79c9705d6adf1a9db4004017f2e856"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-candidate-matrix-traces.json": {
+      "mode": "100644",
+      "sha": "5b29c26405cad7e37568e918c13b7f03194e804e"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-candidate-matrix-traces.log": {
+      "mode": "100644",
+      "sha": "2e4d6a2b58e3bdf02d18b091626aaa9c87301522"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-commands.json": {
+      "mode": "100644",
+      "sha": "65f3c1039bf88c60859d9a48f7b43f87a2d9e972"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-diff-check.log": {
+      "mode": "100644",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-empty-pattern-rejected.log": {
+      "mode": "100644",
+      "sha": "d156a3914461137fe4ee85dcc83e1935ec2a8537"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-environment.log": {
+      "mode": "100644",
+      "sha": "6b003d752778755e4f6869b3f8caf7288a79975b"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-full-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "3de7f970aa73fb442c6a6b2323087eab3b0688f3"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-full-normal.log": {
+      "mode": "100644",
+      "sha": "416515623e26658ff20c9ea941b269c47a744842"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-full-optimized-inventory.json": {
+      "mode": "100644",
+      "sha": "126b0717cd54582b70cdec4c78d9592663ab32e2"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-full-optimized.log": {
+      "mode": "100644",
+      "sha": "04bb64cbfa523843e5ec52224ccfac4f8d8c34c6"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-handoff.md": {
+      "mode": "100644",
+      "sha": "8e6ec7972e5e4b8c604ef4d91289de6afbbf450c"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-manifest.json": {
+      "mode": "100644",
+      "sha": "f85d91b3b5e92873c8dd0dc11d4cf7a36873a940"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-mixed-empty-pattern-rejected.log": {
+      "mode": "100644",
+      "sha": "5b68c55d434f5d3956bde90a86db57597b47b29d"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-new-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "ee3ffe78899f9cdaa42d0da23312837a3c3aaa77"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-new-normal.log": {
+      "mode": "100644",
+      "sha": "24aa33db959721cc59288348d86478be5276b75e"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-new-optimized-inventory.json": {
+      "mode": "100644",
+      "sha": "7e4667720984cec3c22618910342bcd0e94494f5"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-new-optimized.log": {
+      "mode": "100644",
+      "sha": "197d9a4cc4d0f078f2cca896911d722e440754d5"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-scope-check.json": {
+      "mode": "100644",
+      "sha": "cd4242409f2a84e802451dd842c5d721e07def2e"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-scope-verification.log": {
+      "mode": "100644",
+      "sha": "112a2357e0e0eb12858d4e5dd5cbc5920f7b91f3"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/final-verification.json": {
+      "mode": "100644",
+      "sha": "951062c0801b6c8d4c413b486a5ee11822b2275a"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/frozen-source-manifest.json": {
+      "mode": "100644",
+      "sha": "2a6a93c663e669caddbda83cc509895b4d921a1b"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/full-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "fd679a35f000f8bed98273b6f7397d3b16e871ad"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/full-normal.log": {
+      "mode": "100644",
+      "sha": "ccced01c4d589ab41ccdd4696939b07356bdacbb"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/full-optimized-inventory.json": {
+      "mode": "100644",
+      "sha": "1865dc7c5f7de373b028a477f8591e7c71cf52e0"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/full-optimized.log": {
+      "mode": "100644",
+      "sha": "264490d3d0b0cbdf0855882992f48babd3fbc6ae"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/initial-new-normal.log": {
+      "mode": "100644",
+      "sha": "95df8ee86bf2868207a35b0a839c12dce445e80a"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/initial-source-manifest.json": {
+      "mode": "100644",
+      "sha": "eacd684d82500bc5973be749f440999dace79d6e"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/new-normal-inventory.json": {
+      "mode": "100644",
+      "sha": "1bfc3a95d33b76d3ac76474fb7f6fc5324aadceb"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/new-normal.log": {
+      "mode": "100644",
+      "sha": "b2f6e805ada4f4a0089b3ec9d1bf7653dfe2b66b"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/new-optimized-inventory.json": {
+      "mode": "100644",
+      "sha": "a7ce5cd14e7e9fd2a217fa3d83fe5044067d5db3"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/new-optimized.log": {
+      "mode": "100644",
+      "sha": "629f86fad1ac9b07f40d4892bed48d35255b381f"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/source-inputs.json": {
+      "mode": "100644",
+      "sha": "d59723a17dbe0bf41de8b052f8ac288e70898a4f"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/source-publication.json": {
+      "mode": "100644",
+      "sha": "63c6ed1d404995e939d6a0852ea94c9c2b380519"
+    },
+    "host/tests/fixtures/stop_barrier_r2/evidence/verify_scope.py": {
+      "mode": "100644",
+      "sha": "3c4386c2a8322bfeff20228697573f65568fea0a"
+    },
+    "host/tests/fixtures/stop_barrier_r2/raw_peer.py": {
+      "mode": "100644",
+      "sha": "6f89b809da9d91e88b22d9c07ad4dd97a012657f"
+    },
+    "host/tests/fixtures/stop_barrier_r2/run_matrix_evidence.py": {
+      "mode": "100644",
+      "sha": "205b153a9737b21adc562897159ef0c7d105808c"
+    },
+    "host/tests/fixtures/stop_barrier_r2/run_suite.py": {
+      "mode": "100644",
+      "sha": "0fab06daaea90aff9498e629f44978772870de84"
+    },
+    "host/tests/fixtures/stop_barrier_r2/source/session-guard-pr52.md": {
+      "mode": "100644",
+      "sha": "bcb96e1ed80d43d61c8b5089c82918f95d6f8f2e"
+    },
+    "host/tests/fixtures/stop_barrier_r2/source/wire-v0.1-pr52.md": {
+      "mode": "100644",
+      "sha": "6d8bcec0bedc3bce2d1844f44fef7642dd5b2dd3"
+    },
+    "host/tests/test_device_emulator.py": {
+      "mode": "100644",
+      "sha": "5e8c1751668a87a1334d3d1287fc35c6fbae8208"
+    },
+    "host/tests/test_device_emulator_conformance.py": {
+      "mode": "100644",
+      "sha": "01d7ebd6475b12fdbd584a58acfb4bf85b22c8e5"
+    },
+    "host/tests/test_stop_barrier.py": {
+      "mode": "100644",
+      "sha": "32a4c9bd966db6e63bade6e16ad59cc959cd9b45"
+    },
+    "host/tests/test_stop_barrier_conformance.py": {
+      "mode": "100644",
+      "sha": "9be3fbf29d31f365e200b177695f62239d597876"
+    }
+  },
+  "prerequisite": "Fetch original parent c44bae42 from the repository first.",
+  "acceptance": "New remote wrapper needs the same independent critic to verify source bytes and reconstruct this exact historical commit/tree. Historical evidence and failed runs remain unchanged. No Windows, physical or common protocol acceptance implied."
+}
