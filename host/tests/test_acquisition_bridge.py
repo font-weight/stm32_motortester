@@ -782,16 +782,20 @@ class AcquisitionBridgeTests(unittest.TestCase):
         self.assertIs(bridge.captures[-1], capture)
 
     def test_unacknowledged_hold_timeout_preserves_capture_until_consumer_accepts(self):
-        now = [0]
-        bridge = self.make(clock_ms=lambda: now[0], edge_delay_ms=20)
+        started = time.monotonic()
+        override = [None]
+        def clock_ms():
+            return (int((time.monotonic() - started) * 1000)
+                    if override[0] is None else override[0])
+        bridge = self.make(clock_ms=clock_ms, edge_delay_ms=20)
         self.connect(bridge)
         self.assertTrue(bridge.start(Config()))
         self.wait(lambda: bridge.state.snapshot.phase is Phase.ARMED)
-        QtTest.QTest.qWait(30)
-        now[0] = 50
+        # Keep time moving until the worker actually observes WAITING and
+        # produces a capture; wall-clock sleep cannot prove that observation.
         self.wait(lambda: bool(bridge.captures))
         capture = bridge.captures[-1]
-        now[0] = 6000
+        override[0] = clock_ms() + 6000
         self.wait(lambda: bridge.state.snapshot.phase is Phase.RECOVERY and not bridge.state.connected)
         self.assertIs(bridge.pending_capture, capture)
         self.assertTrue(bridge.state.has_capture)
