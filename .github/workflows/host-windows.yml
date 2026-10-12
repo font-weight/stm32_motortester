@@ -23,7 +23,7 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: 'fd9291541c7b5ebcee0957cf0478ff99fd763c8a'
+      SOURCE_SHA: '2d436f65a4d8ab458caff322f2916d9c5757488c'
       PYTHONNOUSERSITE: '1'
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: 'fd9291541c7b5ebcee0957cf0478ff99fd763c8a'
+          ref: '2d436f65a4d8ab458caff322f2916d9c5757488c'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
@@ -52,7 +52,7 @@ jobs:
           $dirty = git status --porcelain --untracked-files=all
           if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Dirty source' }
           $recipe = (git rev-parse HEAD:host/packaging/build_windows.py).Trim()
-          if ($LASTEXITCODE -ne 0 -or $recipe -cne '23dac801a223c05fd9fce9669f55e9d11c5cf287') { throw 'Unexpected recipe' }
+          if ($LASTEXITCODE -ne 0 -or $recipe -cne '503a9f4aec1cd7293770226caaaa5369c16b3cca') { throw 'Unexpected recipe' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
           git config --show-origin --get core.autocrlf
           if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
@@ -100,11 +100,185 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Build failed: $LASTEXITCODE" }
           $dirty = git status --porcelain --untracked-files=all
           if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Source mutated during build' }
+      - name: Verify completed archives against source and manifest
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          """Read-only archive/content observation; no upload, extraction or release approval."""
+          import hashlib
+          import json
+          import os
+          from pathlib import Path, PurePosixPath
+          import re
+          import stat
+          import subprocess
+          import sys
+          import zipfile
+          
+          MIB = 1024 * 1024
+          EXPECTED = {"Motortester-windows-x64-candidate.zip", "source.zip", "frozen-window.png",
+                      "frozen-window.png.smoke.json", "frozen-serial-import.json"}
+          
+          def digest(path):
+              value = hashlib.sha256()
+              with path.open("rb") as stream:
+                  for block in iter(lambda: stream.read(MIB), b""):
+                      value.update(block)
+              return value.hexdigest()
+          
+          def unique(pairs):
+              result = {}
+              for key, value in pairs:
+                  if key in result:
+                      raise ValueError("Duplicate JSON key")
+                  result[key] = value
+              return result
+          
+          def bounded(path, maximum):
+              if path.is_symlink() or not path.is_file() or not 0 < path.stat().st_size <= maximum:
+                  raise ValueError("Missing, aliased or oversized artifact: " + path.name)
+              return path
+          
+          def safe_name(name):
+              path = PurePosixPath(name)
+              if not name or "\\" in name or ":" in name or name.startswith("/") or any(ord(c) < 32 or ord(c) == 127 for c in name) or path.as_posix() != name.rstrip("/") or any(p in (".", "..") for p in path.parts):
+                  raise ValueError("Unsafe archive path")
+              for part in path.parts:
+                  if (part.endswith((".", " ")) or any(c in '<>"|?*' for c in part)
+                          or re.fullmatch(r"(?i:CON|PRN|AUX|NUL|CLOCK\$|CONIN\$|CONOUT\$|COM[0-9¹²³]|LPT[0-9¹²³])", part.split(".", 1)[0].rstrip(" "))):
+                      raise ValueError("Unsafe Windows archive component")
+              return name
+          
+          def inventory(archive, prefix):
+              infos = archive.infolist()
+              if not 0 < len(infos) <= 10000 or sum(i.file_size for i in infos) > 1024 * MIB:
+                  raise ValueError("Archive expanded-size or count limit")
+              files, seen = {}, set()
+              file_keys, required_directories = set(), set()
+              for info in infos:
+                  name = safe_name(info.filename)
+                  key = name.rstrip("/").casefold()
+                  mode = stat.S_IFMT(info.external_attr >> 16)
+                  if info.orig_filename != name or key in seen or info.flag_bits & 1 or info.file_size > 256 * MIB:
+                      raise ValueError("Duplicate/encrypted/oversized archive entry")
+                  if not (name == prefix + "/" or name.startswith(prefix + "/")):
+                      raise ValueError("Unexpected archive root")
+                  if (mode not in (0, stat.S_IFREG, stat.S_IFDIR)
+                          or (mode == stat.S_IFDIR and not info.is_dir())
+                          or (mode == stat.S_IFREG and info.is_dir())
+                          or (info.is_dir() and info.file_size)):
+                      raise ValueError("Unsupported archive entry type")
+                  ancestors = {p.as_posix().casefold() for p in PurePosixPath(name.rstrip("/")).parents if p.as_posix() != "."}
+                  if ancestors & file_keys or (not info.is_dir() and key in required_directories):
+                      raise ValueError("Archive file/directory path collision")
+                  required_directories.update(ancestors)
+                  seen.add(key)
+                  if not info.is_dir():
+                      file_keys.add(key)
+                      files[name] = info
+              return files
+          
+          def archive_hash(archive, info, git_blob=False):
+              value = hashlib.sha1() if git_blob else hashlib.sha256()
+              if git_blob:
+                  value.update(b"blob " + str(info.file_size).encode() + b"\0")
+              with archive.open(info) as stream:
+                  for block in iter(lambda: stream.read(MIB), b""):
+                      value.update(block)
+              return value.hexdigest()
+          
+          def verify(root, output, source):
+              if not re.fullmatch(r"[0-9a-f]{40}", source):
+                  raise ValueError("Invalid source SHA")
+              sums_path = bounded(output / "SHA256SUMS.txt", MIB)
+              sums = {}
+              for line in sums_path.read_text(encoding="ascii").splitlines():
+                  match = re.fullmatch(r"([0-9a-f]{64})  ([A-Za-z0-9_.-]+)", line)
+                  if not match or match[2] in sums:
+                      raise ValueError("Invalid or duplicate checksum entry")
+                  sums[match[2]] = match[1]
+              if set(sums) != EXPECTED:
+                  raise ValueError("Incomplete or extra checksum inventory")
+              for name, expected in sums.items():
+                  cap = 200 * MIB if name == "Motortester-windows-x64-candidate.zip" else 20 * MIB if name == "source.zip" else 2 * MIB if name.endswith(".png") else MIB
+                  if digest(bounded(output / name, cap)) != expected:
+                      raise ValueError("Checksum mismatch: " + name)
+              sys.path.insert(0, str(root / "host" / "packaging"))
+              from launch_gui import validate_smoke_result
+              from serial_import_smoke import validate_report
+              gui = validate_smoke_result(output / "frozen-window.png")
+              serial = validate_report(output / "frozen-serial-import.json")
+              manifest_path = bounded(output / "dist" / "Motortester" / "build-manifest.json", 4 * MIB)
+              manifest_bytes = manifest_path.read_bytes()
+              manifest = json.loads(manifest_bytes, object_pairs_hook=unique)
+              if (manifest.get("source_commit") != source or manifest.get("status") != "candidate-not-release-approved"
+                      or manifest.get("usb_verified") is not False
+                      or manifest.get("windows_10_manual_acceptance") != "not performed by this script"
+                      or manifest.get("license_review") != "required; see LICENSE-REVIEW.md"):
+                  raise ValueError("Wrong source or candidate qualification")
+              if manifest.get("frozen_gui_smoke") != gui or manifest.get("serial_import_smoke") != {"report": "frozen-serial-import.json", "sha256": sums["frozen-serial-import.json"], "result": serial}:
+                  raise ValueError("Smoke receipt/manifest mismatch")
+              records = manifest.get("files")
+              if not isinstance(records, dict) or not records or any(safe_name(k).endswith("/") or not re.fullmatch(r"[0-9a-f]{64}", v) for k, v in records.items()):
+                  raise ValueError("Invalid binary inventory")
+              with zipfile.ZipFile(output / "Motortester-windows-x64-candidate.zip") as archive:
+                  files = inventory(archive, "Motortester")
+                  manifest_member = "Motortester/build-manifest.json"
+                  if set(files) != {"Motortester/" + name for name in records} | {manifest_member}:
+                      raise ValueError("Binary ZIP/manifest inventory mismatch")
+                  if files[manifest_member].file_size != len(manifest_bytes) or archive.read(files[manifest_member]) != manifest_bytes:
+                      raise ValueError("Embedded and external manifests differ")
+                  for name, expected in records.items():
+                      if archive_hash(archive, files["Motortester/" + name]) != expected:
+                          raise ValueError("Binary member mismatch: " + name)
+              entries = subprocess.check_output(["git", "-C", str(root), "ls-tree", "-rz", "--full-tree", source, "--", "host"], timeout=60)
+              expected_source = {}
+              for entry in filter(None, entries.split(b"\0")):
+                  metadata, name = entry.split(b"\t", 1)
+                  mode, kind, blob = metadata.split()
+                  name = name.decode("utf-8")
+                  if kind != b"blob" or mode not in (b"100644", b"100755") or not name.startswith("host/"):
+                      raise ValueError("Unsupported committed host entry")
+                  expected_source[name] = blob.decode("ascii")
+              if not expected_source:
+                  raise ValueError("No committed host source")
+              with zipfile.ZipFile(output / "source.zip") as archive:
+                  files = inventory(archive, "host")
+                  if archive.comment != source.encode("ascii") or set(files) != set(expected_source):
+                      raise ValueError("Wrong source ZIP commit or paths")
+                  for name, expected in expected_source.items():
+                      if archive_hash(archive, files[name], git_blob=True) != expected:
+                          raise ValueError("Source ZIP blob mismatch: " + name)
+              return {"source_sha": source, "source_files": len(expected_source), "binary_files": len(records),
+                      "artifacts_sha256": sums, "build_manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+                      "checksum_file_sha256": digest(sums_path), "bytes_delivered": False,
+                      "license_review": manifest.get("license_review"), "hardware_verified": False}
+          
+          def main():
+              root, output = Path.cwd(), Path(os.environ["BUILD_DIR"])
+              path = output / "archive-verification.json"
+              receipt = {"status": "RUNNING", "scope": "on-runner-archive-content-only"}
+              with path.open("x", encoding="utf-8") as stream:
+                  stream.write(json.dumps(receipt) + "\n")
+              try:
+                  receipt.update(verify(root, output, os.environ["SOURCE_SHA"]), status="PASS")
+              except Exception as error:
+                  receipt.update(status="FAILED", error=f"{type(error).__name__}: {error}")
+                  raise
+              finally:
+                  path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+                  print(json.dumps(receipt))
+          
+          if __name__ == "__main__":
+              main()
+          '@
+          python -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Archive content verification failed' }
       - name: Preserve evidence in job logs only
         if: ${{ always() }}
         run: |
           $ErrorActionPreference = 'Stop'
-          foreach ($relative in @('build.log', 'frozen-serial-import.json', 'frozen-window.png.smoke.json', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json')) {
+          foreach ($relative in @('build.log', 'frozen-serial-import.json', 'frozen-window.png.smoke.json', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json', 'archive-verification.json')) {
             $path = Join-Path $env:BUILD_DIR $relative
             if (Test-Path -LiteralPath $path) {
               Write-Output "--- $relative ---"
