@@ -345,7 +345,55 @@ class ViewerTests(unittest.TestCase):
         self.window.resize(1240, 900)
         QtTest.QTest.qWait(100)
         self.assertEqual(self.window.sidebar_scroll.verticalScrollBar().maximum(), 0)
-        self.assertEqual(self.window.sidebar_scroll.horizontalScrollBar().maximum(), 0)
+        # A fixed-width sidebar can legitimately need horizontal scrolling with
+        # wider platform fonts. Restoring the font must restore the same layout
+        # as a fresh window, rather than satisfy a Linux-specific zero range.
+        fresh = MainWindow()
+        try:
+            fresh.setStyleSheet(original_style)
+            fresh.resize(1240, 900)
+            fresh.show()
+            fresh.generate_demo()
+            QtTest.QTest.qWait(100)
+            old_side = self.window.sidebar_scroll.widget()
+            new_side = fresh.sidebar_scroll.widget()
+            details = {
+                "restored_minimum": old_side.minimumSizeHint().width(),
+                "fresh_minimum": new_side.minimumSizeHint().width(),
+                "restored_range": self.window.sidebar_scroll.horizontalScrollBar().maximum(),
+                "fresh_range": fresh.sidebar_scroll.horizontalScrollBar().maximum(),
+                "font": QtGui.QFontInfo(self.window.png_button.font()).family(),
+                "button_minimum": self.window.png_button.minimumSizeHint().width(),
+            }
+            self.assertEqual(details["restored_minimum"], details["fresh_minimum"], details)
+            self.assertEqual(details["restored_range"], details["fresh_range"], details)
+            self._assert_sidebar_action_edges_reachable()
+        finally:
+            fresh.close()
+            fresh.deleteLater()
+            self.app.processEvents()
+
+    def _assert_sidebar_action_edges_reachable(self):
+        scroll = self.window.sidebar_scroll
+        for button in scroll.widget().findChildren(QtWidgets.QPushButton):
+            self.assertGreaterEqual(button.width(), button.minimumSizeHint().width(), button.text())
+            self.assertGreaterEqual(button.height(), button.minimumSizeHint().height(), button.text())
+            for point in (button.rect().topLeft(), button.rect().bottomRight()):
+                target = button.mapTo(scroll.widget(), point)
+                scroll.ensureVisible(target.x(), target.y(), 1, 1)
+                self.app.processEvents()
+                self.assertTrue(scroll.viewport().rect().contains(button.mapTo(scroll.viewport(), point)), button.text())
+
+    def test_sidebar_wide_action_is_reachable_without_expanding_window(self):
+        self.generate()
+        self.window.resize(1240, 900)
+        scroll = self.window.sidebar_scroll
+        # Deterministic intrinsic-width pressure, independent of OS font names.
+        self.window.png_button.setMinimumWidth(scroll.width() + 49)
+        QtTest.QTest.qWait(100)
+        self.assertGreater(scroll.horizontalScrollBar().maximum(), 0)
+        self.assertEqual(self.window.size(), QtCore.QSize(1240, 900))
+        self._assert_sidebar_action_edges_reachable()
 
     def test_long_quality_flags_are_scrollable_and_do_not_resize_window(self):
         capture = replace(self.generate(), quality_flags=tuple(f"флаг_{i}_" + "я" * 55 for i in range(16)))
