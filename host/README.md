@@ -83,7 +83,7 @@ py -3.13 packaging\build_windows.py --output build\windows-x64-candidate-2
 
 Это воспроизводимая процедура с закреплёнными входами, а не обещание побитно одинаковых EXE/ZIP: время сборки и особенности платформы сохраняются в manifest. PyInstaller не делает Windows-сборку из Linux. Подробности лицензирования: [LICENSE-REVIEW.md](packaging/LICENSE-REVIEW.md).
 
-Состав этой объединённой ветки и границы доказательств: [integration-sources.md](docs/integration-sources.md).
+Текущий состав объединённого кандидата и границы доказательств: [mvp-union.md](docs/mvp-union.md). [integration-sources.md](docs/integration-sources.md) сохраняет историю более раннего просмотрщика до подключения GUI-захвата; его ограничения и результаты относятся только к указанным там версиям.
 
 ## Матрица проверки
 
