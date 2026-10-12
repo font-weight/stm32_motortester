@@ -1,0 +1,152 @@
+[
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting-reproduction/original",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_legal_ep0_buffers.c",
+      "-o",
+      "/workspace/shared/usb004-legal-ep0-portable/original-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-legal-ep0-portable/original-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS legal buffer-only EP0: fixed=0 direction=RX events=1 PMA_reads=1\nPASS legal buffer-only EP0: fixed=0 direction=TX events=1 PMA_reads=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting-reproduction/original",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_legal_ep0_buffers.c",
+      "-o",
+      "/workspace/shared/usb004-legal-ep0-portable/original-san"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-legal-ep0-portable/original-san"
+    ],
+    "returncode": 0,
+    "stdout": "PASS legal buffer-only EP0: fixed=0 direction=RX events=1 PMA_reads=1\nPASS legal buffer-only EP0: fixed=0 direction=TX events=1 PMA_reads=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting-reproduction/candidate",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_legal_ep0_buffers.c",
+      "-o",
+      "/workspace/shared/usb004-legal-ep0-portable/candidate-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-legal-ep0-portable/candidate-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS legal buffer-only EP0: fixed=1 direction=RX events=0 PMA_reads=0\nPASS legal buffer-only EP0: fixed=1 direction=TX events=0 PMA_reads=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting-reproduction/candidate",
+      "-I",
+      "/workspace/shared/critic-a-fsdev-reset-review/supporting/src",
+      "/workspace/shared/critic-a-fsdev-reset-review/test_legal_ep0_buffers.c",
+      "-o",
+      "/workspace/shared/usb004-legal-ep0-portable/candidate-san"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/usb004-legal-ep0-portable/candidate-san"
+    ],
+    "returncode": 0,
+    "stdout": "PASS legal buffer-only EP0: fixed=1 direction=RX events=0 PMA_reads=0\nPASS legal buffer-only EP0: fixed=1 direction=TX events=0 PMA_reads=0\n",
+    "stderr": ""
+  }
+]

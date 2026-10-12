@@ -1,0 +1,85 @@
+{
+  "base": "7a721f82b98676d6fd9ab1b58a1d9b7d617b47a5",
+  "files": [
+    {
+      "path": "source-snapshot/firmware/transport/mt_usb_bridge.c",
+      "sha256": "7cbbc13e481aa398b28f713f2b3067f27e622c99cd8c1eed833237b04cf59d7e",
+      "bytes": 6495
+    },
+    {
+      "path": "source-snapshot/firmware/transport/mt_usb_cdc.h",
+      "sha256": "4f7d054f5ec14c4b04b6b28240c93af2e9894e16c72db7a369f2d3221800563b",
+      "bytes": 2328
+    },
+    {
+      "path": "source-snapshot/firmware/transport/mt_usb_cdc.c",
+      "sha256": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f",
+      "bytes": 5827
+    },
+    {
+      "path": "source-snapshot/firmware/transport/mt_usb_bridge.h",
+      "sha256": "5894b781971f5e5b3179f612d909f4299905fb997132008aa33225e9f2e35866",
+      "bytes": 2449
+    },
+    {
+      "path": "source-snapshot/firmware/third_party/usb/patches/apply_usb_bridge_patch.py",
+      "sha256": "73e25167eacff7b9ec5faf0d006fd37e5509eafe657ceec3b539fdb1f036d2a8",
+      "bytes": 2123
+    },
+    {
+      "path": "source-snapshot/firmware/third_party/usb/patches/usb005-patches.json",
+      "sha256": "26f1c175578e3960b9805bd0d80370d1fdafcdae99b9321662ad6e0ed7f8181c",
+      "bytes": 817
+    },
+    {
+      "path": "source-snapshot/firmware/third_party/usb/patches/0003-usb005-fsdev.patch",
+      "sha256": "336e23e852d3998aa49ce374ff77bf92270cc38d01b2ee56df33a59364c4ff3d",
+      "bytes": 497
+    },
+    {
+      "path": "source-snapshot/firmware/third_party/usb/patches/0003-usb005-core.patch",
+      "sha256": "4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf",
+      "bytes": 13237
+    },
+    {
+      "path": "source-snapshot/build/usbd.c",
+      "sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+      "bytes": 63930
+    },
+    {
+      "path": "source-snapshot/build/dcd_stm32_fsdev.c",
+      "sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8",
+      "bytes": 30868
+    },
+    {
+      "path": "source-snapshot/tests/usb-bridge/README.md",
+      "sha256": "03ef3a66a04230e66890ecff65b054feeb28904476fee98da4258abfff6d5e2f",
+      "bytes": 6116
+    },
+    {
+      "path": "CRITIC_A_USB005_REVIEW.md",
+      "sha256": "b0ee11c7939dfad7157c04d85f3452b94323e4d067776b19c9b3aced6199e5bc",
+      "bytes": 14562
+    },
+    {
+      "path": "test_extra.c",
+      "sha256": "356068d1a750a36b1cc4f1fa545e50bb0ec65a395092e98425b9ed9641216a2c",
+      "bytes": 2557
+    },
+    {
+      "path": "run_extra.py",
+      "sha256": "019586525a7365799a433e720ea333c04dd30d51b770668072bb2f36dd407ec1",
+      "bytes": 2354
+    },
+    {
+      "path": "test_patch_tool.py",
+      "sha256": "76613e410aea70b4ba8545b488ae2949e3e04771408fe53bf45e95ef4d95cce5",
+      "bytes": 3954
+    },
+    {
+      "path": "test_arm_output_separation.py",
+      "sha256": "3f1ade1487ce8e1231cf71ac5b155c867e0e302c940340d26ed0fd6650eb545e",
+      "bytes": 1594
+    }
+  ]
+}

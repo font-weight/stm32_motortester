@@ -1,0 +1,1 @@
+Verified 25 frozen text inputs by SHA256.

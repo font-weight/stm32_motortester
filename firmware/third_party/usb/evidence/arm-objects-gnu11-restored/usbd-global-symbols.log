@@ -1,0 +1,88 @@
+_usbd_qdef D 0 14
+_usbd_qdef_buf B 0 c0
+cdcd_control_xfer_cb U         
+cdcd_deinit U         
+cdcd_init U         
+cdcd_open U         
+cdcd_reset U         
+cdcd_xfer_cb U         
+dcd_configure W 0 4
+dcd_connect W 0 2
+dcd_dcache_clean W 0 4
+dcd_dcache_clean_invalidate W 0 4
+dcd_dcache_invalidate W 0 4
+dcd_deinit W 0 4
+dcd_disconnect W 0 2
+dcd_edpt0_status_complete W 0 2
+dcd_edpt_clear_stall U         
+dcd_edpt_close_all U         
+dcd_edpt_iso_activate U         
+dcd_edpt_iso_alloc U         
+dcd_edpt_open U         
+dcd_edpt_stall U         
+dcd_edpt_xfer U         
+dcd_edpt_xfer_fifo W 0 4
+dcd_event_handler T 0 224
+dcd_init U         
+dcd_int_disable U         
+dcd_int_enable U         
+dcd_remote_wakeup U         
+dcd_set_address U         
+dcd_sof_enable U         
+memcpy U         
+memset U         
+tu_bind_driver_to_ep_itf U         
+tu_edpt_claim U         
+tu_edpt_release U         
+tu_fifo_clear U         
+tu_fifo_read_n_access_mode U         
+tu_fifo_write_n_access_mode U         
+tud_configure T 0 8
+tud_connect T 0 14
+tud_connected T 0 10
+tud_control_status T 0 28
+tud_control_xfer T 0 4c
+tud_deinit T 0 a8
+tud_descriptor_bos_cb W 0 4
+tud_descriptor_configuration_cb U         
+tud_descriptor_device_cb U         
+tud_descriptor_device_qualifier_cb W 0 4
+tud_descriptor_other_speed_configuration_cb W 0 4
+tud_descriptor_string_cb U         
+tud_disconnect T 0 14
+tud_event_hook_cb W 0 2
+tud_inited T 0 10
+tud_mount_cb W 0 2
+tud_mounted T 0 10
+tud_remote_wakeup T 0 28
+tud_resume_cb W 0 2
+tud_rhport_init T 0 d0
+tud_sof_cb W 0 2
+tud_sof_cb_enable T 0 10
+tud_speed_get T 0 c
+tud_suspend_cb W 0 2
+tud_suspended T 0 10
+tud_task_event_ready T 0 28
+tud_task_ext T 0 5f8
+tud_umount_cb W 0 2
+tud_vendor_control_xfer_cb W 0 4
+usbd_app_driver_get_cb W 0 8
+usbd_defer_func T 0 5c
+usbd_edpt_busy T 0 1c
+usbd_edpt_claim T 0 1c
+usbd_edpt_clear_stall T 0 30
+usbd_edpt_close T 0 2
+usbd_edpt_iso_activate T 0 48
+usbd_edpt_iso_alloc T 0 28
+usbd_edpt_open T 0 34
+usbd_edpt_release T 0 1c
+usbd_edpt_stall T 0 30
+usbd_edpt_stalled T 0 1c
+usbd_edpt_xfer T 0 60
+usbd_edpt_xfer_fifo T 0 60
+usbd_get_ctrl_buf T 0 8
+usbd_int_set T 0 14
+usbd_open_edpt_pair T 0 5c
+usbd_sof_enable T 0 50
+usbd_spin_lock T 0 1c
+usbd_spin_unlock T 0 1c

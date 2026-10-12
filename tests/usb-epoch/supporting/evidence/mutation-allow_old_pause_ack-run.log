@@ -1,0 +1,4 @@
+$ /workspace/shared/usb-epoch-independent/evidence/mutants/allow_old_pause_ack --directed
+FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:162 (soft serial prevents stale acknowledgment): !mt_usb_epoch_resume(&s, e, p)
+
+exit=1

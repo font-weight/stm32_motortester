@@ -1,0 +1,98 @@
+[
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_qdef_buf",
+    "bytes": 192,
+    "kind": "B"
+  },
+  {
+    "object": "cdc_device.o",
+    "symbol": "_cdcd_itf",
+    "bytes": 188,
+    "kind": "b"
+  },
+  {
+    "object": "dcd_stm32_fsdev.o",
+    "symbol": "xfer_status",
+    "bytes": 96,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_ctrl_epbuf",
+    "bytes": 64,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_dev",
+    "bytes": 44,
+    "kind": "b"
+  },
+  {
+    "object": "dcd_stm32_fsdev.o",
+    "symbol": "ep_alloc_status",
+    "bytes": 32,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_qdef",
+    "bytes": 20,
+    "kind": "D"
+  },
+  {
+    "object": "tusb.o",
+    "symbol": "_tusb_rhport_role",
+    "bytes": 8,
+    "kind": "B"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_spin",
+    "bytes": 8,
+    "kind": "d"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_app_driver",
+    "bytes": 4,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_q",
+    "bytes": 4,
+    "kind": "b"
+  },
+  {
+    "object": "dcd_stm32_fsdev.o",
+    "symbol": "ep_buf_ptr",
+    "bytes": 2,
+    "kind": "b"
+  },
+  {
+    "object": "dcd_stm32_fsdev.o",
+    "symbol": "remoteWakeCountdown",
+    "bytes": 1,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_app_driver_count",
+    "bytes": 1,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_queued_setup",
+    "bytes": 1,
+    "kind": "b"
+  },
+  {
+    "object": "usbd.o",
+    "symbol": "_usbd_rhport",
+    "bytes": 1,
+    "kind": "d"
+  }
+]

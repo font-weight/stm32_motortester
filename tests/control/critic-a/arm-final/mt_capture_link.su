@@ -1,0 +1,10 @@
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:7:13:put32	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:22:12:valid	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:83:23:queue_bulk	600	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:28:6:mt_capture_link_init	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:34:16:mt_capture_link_configure	24	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:48:16:mt_capture_link_arm	24	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:61:16:mt_capture_link_sample	24	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:137:16:mt_capture_link_poll	80	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:177:16:mt_capture_link_stop	1696	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/app/mt_capture_link.c:210:16:mt_capture_link_release	576	static

@@ -1,0 +1,8 @@
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:14:12:valid	0	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:17:12:usable	16	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:46:5:mt_usb_cdc_write	16	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:21:19:mt_usb_cdc_init	24	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:31:19:mt_usb_cdc_open_epoch	16	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:54:19:mt_usb_cdc_step	40	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:79:19:mt_usb_cdc_soft_pause	8	static
+/workspace/shared/usb-bridge-arm-evidence/run-03/snapshot/bridge/firmware/transport/mt_usb_cdc.c:91:19:mt_usb_cdc_hard_loss	16	static

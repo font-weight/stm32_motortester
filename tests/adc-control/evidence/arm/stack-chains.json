@@ -1,0 +1,3362 @@
+{
+  "method": "Sum compiler static self-frames along disassembly call graph; include tail-jump frames conservatively. Inlined code already belongs to containing frame. Callback edges use bound adapter and native-MMIO assumptions. Unknown runtime and external callback frames are excluded, not zero-cost.",
+  "all_frames_static": true,
+  "functions_with_frames": 77,
+  "known_graph_acyclic": true,
+  "entry_chains": [
+    {
+      "root": "mt_control_receive",
+      "conservative_known_frame_sum_bytes": 2944,
+      "chain": [
+        {
+          "unit": "mt_control",
+          "function": "mt_control_receive",
+          "self_frame_bytes": 640,
+          "excluded": false
+        },
+        {
+          "unit": "mt_capture_link",
+          "function": "mt_capture_link_stop",
+          "self_frame_bytes": 1696,
+          "excluded": false
+        },
+        {
+          "unit": "mt_tx",
+          "function": "mt_tx_stop",
+          "self_frame_bytes": 592,
+          "excluded": false
+        },
+        {
+          "unit": "mt_tx",
+          "function": "shape",
+          "self_frame_bytes": 16,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_control_poll",
+      "conservative_known_frame_sum_bytes": 1340,
+      "chain": [
+        {
+          "unit": "mt_control",
+          "function": "mt_control_poll",
+          "self_frame_bytes": 576,
+          "excluded": false
+        },
+        {
+          "unit": "mt_capture_link",
+          "function": "mt_capture_link_poll",
+          "self_frame_bytes": 80,
+          "excluded": false
+        },
+        {
+          "unit": "mt_tx",
+          "function": "mt_tx_poll",
+          "self_frame_bytes": 96,
+          "excluded": false
+        },
+        {
+          "unit": "mt_wire",
+          "function": "mt_wire_encode",
+          "self_frame_bytes": 576,
+          "excluded": false
+        },
+        {
+          "unit": "mt_wire",
+          "function": "mt_wire_crc32",
+          "self_frame_bytes": 12,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_control_sample",
+      "conservative_known_frame_sum_bytes": 112,
+      "chain": [
+        {
+          "unit": "mt_control",
+          "function": "mt_control_sample",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "mt_control",
+          "function": "remember_state",
+          "self_frame_bytes": 24,
+          "excluded": false
+        },
+        {
+          "unit": "mt_control",
+          "function": "mt_control_recover",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "mt_adc_control",
+          "function": "stop",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "mt_adc_dma_stop",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "quiesce",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "wait_clear",
+          "self_frame_bytes": 24,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_control_recover",
+      "conservative_known_frame_sum_bytes": 72,
+      "chain": [
+        {
+          "unit": "mt_control",
+          "function": "mt_control_recover",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "mt_adc_control",
+          "function": "stop",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "mt_adc_dma_stop",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "quiesce",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "wait_clear",
+          "self_frame_bytes": 24,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_adc_control_init",
+      "conservative_known_frame_sum_bytes": 72,
+      "chain": [
+        {
+          "unit": "mt_adc_control",
+          "function": "mt_adc_control_init",
+          "self_frame_bytes": 32,
+          "excluded": false
+        },
+        {
+          "unit": "mt_control",
+          "function": "mt_control_init",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "mt_capture_link",
+          "function": "mt_capture_link_init",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "acquisition",
+          "function": "mt_acq_init",
+          "self_frame_bytes": 8,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_adc_control_service",
+      "conservative_known_frame_sum_bytes": 168,
+      "chain": [
+        {
+          "unit": "mt_adc_control",
+          "function": "mt_adc_control_service",
+          "self_frame_bytes": 56,
+          "excluded": false
+        },
+        {
+          "unit": "mt_control",
+          "function": "mt_control_sample",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "mt_control",
+          "function": "remember_state",
+          "self_frame_bytes": 24,
+          "excluded": false
+        },
+        {
+          "unit": "mt_control",
+          "function": "mt_control_recover",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "mt_adc_control",
+          "function": "stop",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "mt_adc_dma_stop",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "quiesce",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "wait_clear",
+          "self_frame_bytes": 24,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_adc_dma_start",
+      "conservative_known_frame_sum_bytes": 64,
+      "chain": [
+        {
+          "unit": "adc_timer_dma",
+          "function": "mt_adc_dma_start",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "fail.isra.0",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "quiesce",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "wait_clear",
+          "self_frame_bytes": 24,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_adc_dma_read_block",
+      "conservative_known_frame_sum_bytes": 88,
+      "chain": [
+        {
+          "unit": "adc_timer_dma",
+          "function": "mt_adc_dma_read_block",
+          "self_frame_bytes": 40,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "fail.isra.0",
+          "self_frame_bytes": 8,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "quiesce",
+          "self_frame_bytes": 16,
+          "excluded": false
+        },
+        {
+          "unit": "adc_timer_dma",
+          "function": "wait_clear",
+          "self_frame_bytes": 24,
+          "excluded": false
+        }
+      ]
+    },
+    {
+      "root": "mt_stream_feed",
+      "conservative_known_frame_sum_bytes": 604,
+      "chain": [
+        {
+          "unit": "mt_stream",
+          "function": "mt_stream_feed",
+          "self_frame_bytes": 24,
+          "excluded": false
+        },
+        {
+          "unit": "mt_wire",
+          "function": "mt_wire_decode",
+          "self_frame_bytes": 568,
+          "excluded": false
+        },
+        {
+          "unit": "mt_wire",
+          "function": "mt_wire_crc32",
+          "self_frame_bytes": 12,
+          "excluded": false
+        }
+      ]
+    }
+  ],
+  "max_known_frame_sum_bytes": 2944,
+  "maximum_chain_direct_non_tail_edges_verified": true,
+  "verified_stop_chain": [
+    {
+      "unit": "mt_control",
+      "function": "mt_control_receive",
+      "self_frame_bytes": 640
+    },
+    {
+      "unit": "mt_capture_link",
+      "function": "mt_capture_link_stop",
+      "self_frame_bytes": 1696
+    },
+    {
+      "unit": "mt_tx",
+      "function": "mt_tx_stop",
+      "self_frame_bytes": 592
+    },
+    {
+      "unit": "mt_tx",
+      "function": "append",
+      "self_frame_bytes": 16
+    }
+  ],
+  "maximum_chain_frames_live_together": "Prologues allocate 640,1696,592,16 B; inspected direct call sites occur before matching epilogues.",
+  "indirect_calls": [
+    {
+      "caller": [
+        "mt_adc_control",
+        "start"
+      ],
+      "kind": "blx",
+      "evidence": "mt_adc_control.disassembly.txt: c:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "start"
+      ],
+      "kind": "blx",
+      "evidence": "mt_adc_control.disassembly.txt: 14:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "start"
+      ],
+      "kind": "blx",
+      "evidence": "mt_adc_control.disassembly.txt: 1c:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_poll"
+      ],
+      "kind": "blx",
+      "evidence": "mt_tx.disassembly.txt: c0:\t47b0      \tblx\tr6"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_recover"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 2a:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 2c:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 46:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 2ce:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 33a:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 384:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 484:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_sample"
+      ],
+      "kind": "blx",
+      "evidence": "mt_control.disassembly.txt: 28:\t4798      \tblx\tr3"
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "rd"
+      ],
+      "kind": "bx",
+      "evidence": "adc_timer_dma.disassembly.txt: 8:\t4718      \tbx\tr3"
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "wr"
+      ],
+      "kind": "bx",
+      "evidence": "adc_timer_dma.disassembly.txt: 8:\t4718      \tbx\tr3"
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "now"
+      ],
+      "kind": "bx",
+      "evidence": "adc_timer_dma.disassembly.txt: 4:\t4718      \tbx\tr3"
+    }
+  ],
+  "bound_callback_edges": [
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "targets": [
+        [
+          "mt_adc_control",
+          "start"
+        ],
+        [
+          "mt_adc_control",
+          "stop"
+        ],
+        [
+          "mt_adc_control",
+          "profile"
+        ]
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_sample"
+      ],
+      "targets": [
+        [
+          "mt_adc_control",
+          "stop"
+        ]
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_recover"
+      ],
+      "targets": [
+        [
+          "mt_adc_control",
+          "stop"
+        ]
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "rd"
+      ],
+      "targets": [
+        [
+          "adc_timer_dma",
+          "mt_adc_dma_mmio_read32"
+        ]
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "wr"
+      ],
+      "targets": [
+        [
+          "adc_timer_dma",
+          "mt_adc_dma_mmio_write32"
+        ]
+      ]
+    }
+  ],
+  "excluded_unknown_callbacks": [
+    "mt_adc_control.start: now_ms(clock_context), driver.io.now_us(user)",
+    "adc_timer_dma.now: driver.io.now_us(user)",
+    "mt_tx_poll: USB write(context,bytes,length)",
+    "Any other supplied read32/write32 implementation instead of native helpers"
+  ],
+  "exclusions": [
+    "libc memcmp/memcpy/memmove/memset call frames",
+    "foreground caller/main/stream-to-control dispatch frame",
+    "USB service glue and USB stack",
+    "IRQ entry hardware stacking, handlers and nesting",
+    "linker veneers",
+    "RTOS/task stack switching, if later added",
+    "recursive/reentrant callbacks prohibited by model"
+  ],
+  "call_graph": [
+    {
+      "caller": [
+        "acquisition",
+        "mt_acq_arm"
+      ],
+      "edges": [
+        {
+          "target": [
+            "acquisition",
+            "reset_capture"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 12: R_ARM_THM_CALL\treset_capture"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "acquisition",
+        "mt_acq_fail"
+      ],
+      "edges": [
+        {
+          "target": [
+            "acquisition",
+            "reset_capture"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: c: R_ARM_THM_CALL\treset_capture"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "acquisition",
+        "mt_acq_init"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: c: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "acquisition",
+            "reset_capture"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 12: R_ARM_THM_CALL\treset_capture"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "acquisition",
+        "mt_acq_push"
+      ],
+      "edges": [
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_fail"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 1e: R_ARM_THM_CALL\tmt_acq_fail"
+        },
+        {
+          "target": [
+            "acquisition",
+            "append_sample"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 84: R_ARM_THM_CALL\tappend_sample"
+        },
+        {
+          "target": [
+            "acquisition",
+            "append_sample"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 9e: R_ARM_THM_CALL\tappend_sample"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "acquisition",
+        "mt_acq_release"
+      ],
+      "edges": [
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "JUMP24",
+          "evidence": "acquisition.disassembly.txt: 18: R_ARM_THM_JUMP24\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "acquisition",
+            "reset_capture"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 1c: R_ARM_THM_CALL\treset_capture"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "acquisition",
+        "mt_acq_stop"
+      ],
+      "edges": [
+        {
+          "target": [
+            "acquisition",
+            "reset_capture"
+          ],
+          "kind": "CALL",
+          "evidence": "acquisition.disassembly.txt: 6: R_ARM_THM_CALL\treset_capture"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "clock_plan"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: a: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 14: R_ARM_THM_CALL\trd"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "fail.isra.0"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "quiesce"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: a: R_ARM_THM_CALL\tquiesce"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "gates_enabled"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 6: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 16: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 28: R_ARM_THM_CALL\trd"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "mt_adc_dma_init"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 22: R_ARM_THM_CALL\tmemset"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "mt_adc_dma_profile1_ready"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "clock_plan"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 24: R_ARM_THM_CALL\tclock_plan"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 54: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 60: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 6c: R_ARM_THM_CALL\trd"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "mt_adc_dma_read_block"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 28: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "fail.isra.0"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 3e: R_ARM_THM_CALL\tfail.isra.0"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "clock_plan"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 4e: R_ARM_THM_CALL\tclock_plan"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "gates_enabled"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 5a: R_ARM_THM_CALL\tgates_enabled"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 66: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 7a: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 86: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 92: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: b2: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 12e: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 138: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 144: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 196: R_ARM_THM_CALL\twr"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "mt_adc_dma_start"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "clock_plan"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 38: R_ARM_THM_CALL\tclock_plan"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "fail.isra.0"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 42: R_ARM_THM_CALL\tfail.isra.0"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 50: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 5c: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 68: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 74: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 80: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 88: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 94: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 9c: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: a8: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: b0: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "gates_enabled"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: ba: R_ARM_THM_CALL\tgates_enabled"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: ce: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: d8: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: e2: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wait_clear"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: ec: R_ARM_THM_CALL\twait_clear"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: fa: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 106: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 110: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 11a: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 124: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 12e: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 138: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 142: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 14c: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 156: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 160: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 16a: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 176: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 182: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 18c: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 196: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1a0: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1aa: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1b4: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1ba: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1c6: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1e6: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wait_clear"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1f0: R_ARM_THM_CALL\twait_clear"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 1fe: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 208: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 212: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 21c: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 226: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 232: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 23e: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 266: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 270: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "clock_plan"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 278: R_ARM_THM_CALL\tclock_plan"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "gates_enabled"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 284: R_ARM_THM_CALL\tgates_enabled"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 290: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 29e: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 2a4: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 2ba: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 2ca: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 2da: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 300: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wait_clear"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 30a: R_ARM_THM_CALL\twait_clear"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "mt_adc_dma_stop"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "quiesce"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: c: R_ARM_THM_CALL\tquiesce"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "quiesce"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "gates_enabled"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: c: R_ARM_THM_CALL\tgates_enabled"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 18: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 22: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 2a: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 36: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wait_clear"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 40: R_ARM_THM_CALL\twait_clear"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "gates_enabled"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 54: R_ARM_THM_CALL\tgates_enabled"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 60: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 6c: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 7c: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 86: R_ARM_THM_CALL\twr"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "wr"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 90: R_ARM_THM_CALL\twr"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "rd"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_mmio_read32"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "wait_clear"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: a: R_ARM_THM_CALL\tnow"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "rd"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 18: R_ARM_THM_CALL\trd"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "now"
+          ],
+          "kind": "CALL",
+          "evidence": "adc_timer_dma.disassembly.txt: 24: R_ARM_THM_CALL\tnow"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "adc_timer_dma",
+        "wr"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_mmio_write32"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "mt_adc_control_init"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_control",
+            "mt_control_init"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 3a: R_ARM_THM_CALL\tmt_control_init"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "mt_adc_control_service"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_read_block"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 34: R_ARM_THM_CALL\tmt_adc_dma_read_block"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 64: R_ARM_THM_CALL\tmt_control_recover"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_sample"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 98: R_ARM_THM_CALL\tmt_control_sample"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "profile"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_profile1_ready"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_adc_control.disassembly.txt: 2: R_ARM_THM_JUMP24\tmt_adc_dma_profile1_ready"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "start"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_start"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 32: R_ARM_THM_CALL\tmt_adc_dma_start"
+        },
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 6a: R_ARM_THM_CALL\tmt_adc_dma_stop"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_adc_control",
+        "stop"
+      ],
+      "edges": [
+        {
+          "target": [
+            "adc_timer_dma",
+            "mt_adc_dma_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_adc_control.disassembly.txt: 4: R_ARM_THM_CALL\tmt_adc_dma_stop"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_arm"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: c: R_ARM_THM_CALL\tvalid"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 48: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_arm"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 7a: R_ARM_THM_CALL\tmt_acq_arm"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_configure"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 6: R_ARM_THM_CALL\tvalid"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 4e: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_configure"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 6a: R_ARM_THM_CALL\tmt_acq_configure"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_init"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: e: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_init"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_capture_link.disassembly.txt: 30: R_ARM_THM_JUMP24\tmt_acq_init"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_poll"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: e: R_ARM_THM_CALL\tvalid"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 52: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "queue_bulk"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 76: R_ARM_THM_CALL\tqueue_bulk"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_poll"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 8c: R_ARM_THM_CALL\tmt_tx_poll"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_release"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 12: R_ARM_THM_CALL\tvalid"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 50: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: b2: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: cc: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: d6: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: e0: R_ARM_THM_CALL\tmt_tx_enqueue"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_release"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: f2: R_ARM_THM_CALL\tmt_acq_release"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_sample"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 4: R_ARM_THM_CALL\tvalid"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 3a: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_push"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 56: R_ARM_THM_CALL\tmt_acq_push"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "mt_capture_link_stop"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 10: R_ARM_THM_CALL\tvalid"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 5a: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_terminal_committed"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 7e: R_ARM_THM_CALL\tmt_tx_terminal_committed"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 98: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: bc: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: c6: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: d6: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: f2: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: fc: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 108: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 122: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 12c: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 138: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 13e: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 156: R_ARM_THM_CALL\tmt_tx_stop"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_capture_link",
+        "queue_bulk"
+      ],
+      "edges": [
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_window"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 20: R_ARM_THM_CALL\tmt_acq_window"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 2a: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 4c: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 66: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 70: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 7a: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: b0: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: e6: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: fe: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 108: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 130: R_ARM_THM_CALL\tmt_tx_enqueue"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_read"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 15a: R_ARM_THM_CALL\tmt_acq_read"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 1b4: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 1ce: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 1d8: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_capture_link.disassembly.txt: 1ea: R_ARM_THM_CALL\tput32"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_command",
+        "mt_command_parse"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_command.disassembly.txt: e: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_command",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_command.disassembly.txt: d6: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_command",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_command.disassembly.txt: f4: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_command",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_command.disassembly.txt: fe: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_command",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_command.disassembly.txt: 108: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_command",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_command.disassembly.txt: 112: R_ARM_THM_CALL\tread32"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "enqueue"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_control",
+            "flush_states"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 1c: R_ARM_THM_CALL\tflush_states"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 24: R_ARM_THM_CALL\tmt_control_recover"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 34: R_ARM_THM_CALL\tmt_tx_enqueue"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "error"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 18: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 40: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 4a: R_ARM_THM_CALL\tenqueue"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "fill_status"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: e: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 2a: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 34: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: 42: R_ARM_THM_JUMP24\tput32"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "flush_states"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_control",
+            "fill_status"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 24: R_ARM_THM_CALL\tfill_status"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 30: R_ARM_THM_CALL\tmt_tx_enqueue"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 3c: R_ARM_THM_CALL\tmt_control_recover"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memmove"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 5c: R_ARM_THM_CALL\tmemmove"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_init"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 22: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_session",
+            "mt_session_init"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 34: R_ARM_THM_CALL\tmt_session_init"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_init"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 3a: R_ARM_THM_CALL\tmt_tx_init"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_init"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 46: R_ARM_THM_CALL\tmt_capture_link_init"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_poll"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_control",
+            "fill_status"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 40: R_ARM_THM_CALL\tfill_status"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 4c: R_ARM_THM_CALL\tmt_tx_enqueue"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memmove"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 66: R_ARM_THM_CALL\tmemmove"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_poll"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 76: R_ARM_THM_CALL\tmt_capture_link_poll"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: 8a: R_ARM_THM_JUMP24\tmt_control_recover"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 94: R_ARM_THM_CALL\tmt_control_recover"
+        },
+        {
+          "target": [
+            "mt_control",
+            "remember_state"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: b2: R_ARM_THM_JUMP24\tremember_state"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_receive"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_session",
+            "mt_session_receive"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 1a: R_ARM_THM_CALL\tmt_session_receive"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: 3a: R_ARM_THM_JUMP24\tmt_control_recover"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 5a: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 88: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 92: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_hello"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: a0: R_ARM_THM_CALL\tmt_tx_hello"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: aa: R_ARM_THM_CALL\tmt_control_recover"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_init"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: b8: R_ARM_THM_CALL\tmt_capture_link_init"
+        },
+        {
+          "target": [
+            "mt_command",
+            "mt_command_parse"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: f2: R_ARM_THM_CALL\tmt_command_parse"
+        },
+        {
+          "target": [
+            "mt_control",
+            "error"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 108: R_ARM_THM_CALL\terror"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 140: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 162: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 178: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 198: R_ARM_THM_CALL\tenqueue"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 1b2: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_command",
+            "mt_command_config_valid"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 1e0: R_ARM_THM_CALL\tmt_command_config_valid"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 234: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 252: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 25e: R_ARM_THM_CALL\tmemcpy"
+        },
+        {
+          "target": [
+            "mt_control",
+            "enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 268: R_ARM_THM_CALL\tenqueue"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_configure"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 27a: R_ARM_THM_CALL\tmt_capture_link_configure"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 2e6: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 300: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 30a: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_control",
+            "enqueue"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 314: R_ARM_THM_CALL\tenqueue"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_arm"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 326: R_ARM_THM_CALL\tmt_capture_link_arm"
+        },
+        {
+          "target": [
+            "mt_control",
+            "remember_state"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 34a: R_ARM_THM_CALL\tremember_state"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 3a0: R_ARM_THM_CALL\tmt_capture_link_stop"
+        },
+        {
+          "target": [
+            "mt_control",
+            "state"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 3b8: R_ARM_THM_CALL\tstate"
+        },
+        {
+          "target": [
+            "mt_control",
+            "fill_status"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 3e0: R_ARM_THM_CALL\tfill_status"
+        },
+        {
+          "target": [
+            "mt_control",
+            "flush_states"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 41e: R_ARM_THM_CALL\tflush_states"
+        },
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_release"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 43e: R_ARM_THM_CALL\tmt_capture_link_release"
+        },
+        {
+          "target": [
+            "mt_adc_control",
+            "start"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        },
+        {
+          "target": [
+            "mt_adc_control",
+            "stop"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        },
+        {
+          "target": [
+            "mt_adc_control",
+            "profile"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_recover"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_session",
+            "mt_session_require_hello"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 10: R_ARM_THM_CALL\tmt_session_require_hello"
+        },
+        {
+          "target": [
+            "acquisition",
+            "mt_acq_stop"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 1a: R_ARM_THM_CALL\tmt_acq_stop"
+        },
+        {
+          "target": [
+            "mt_adc_control",
+            "stop"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "mt_control_sample"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_capture_link",
+            "mt_capture_link_sample"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 1c: R_ARM_THM_CALL\tmt_capture_link_sample"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: 32: R_ARM_THM_JUMP24\tmt_control_recover"
+        },
+        {
+          "target": [
+            "mt_control",
+            "remember_state"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: 42: R_ARM_THM_JUMP24\tremember_state"
+        },
+        {
+          "target": [
+            "mt_adc_control",
+            "stop"
+          ],
+          "kind": "BOUND_INDIRECT_ASSUMPTION",
+          "evidence": "mt_adc_control_init assigns control callbacks; rd/wr assume supplied native MMIO helpers"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_control",
+        "remember_state"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_control",
+            "state"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_control.disassembly.txt: 4: R_ARM_THM_CALL\tstate"
+        },
+        {
+          "target": [
+            "mt_control",
+            "mt_control_recover"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_control.disassembly.txt: 2a: R_ARM_THM_JUMP24\tmt_control_recover"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_session",
+        "mt_session_receive"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_command",
+            "mt_command_parse"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_session.disassembly.txt: 22: R_ARM_THM_CALL\tmt_command_parse"
+        },
+        {
+          "target": [
+            "mt_session",
+            "mt_session_require_hello"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_session.disassembly.txt: 2e: R_ARM_THM_CALL\tmt_session_require_hello"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcmp"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_session.disassembly.txt: ca: R_ARM_THM_CALL\tmemcmp"
+        },
+        {
+          "target": [
+            "mt_session",
+            "mt_session_require_hello"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_session.disassembly.txt: e0: R_ARM_THM_CALL\tmt_session_require_hello"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_session.disassembly.txt: 10e: R_ARM_THM_CALL\tmemcpy"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_stream",
+        "mt_stream_feed"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_stream",
+            "mt_stream_poll"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_stream.disassembly.txt: 12: R_ARM_THM_CALL\tmt_stream_poll"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "mt_wire_decode"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_stream.disassembly.txt: 3a: R_ARM_THM_CALL\tmt_wire_decode"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "append"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 1e: R_ARM_THM_CALL\tmemcpy"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_enqueue"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 34: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 3e: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "shape"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: b6: R_ARM_THM_CALL\tshape"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "append"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 10a: R_ARM_THM_CALL\tappend"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_hello"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_tx",
+            "shape"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 32: R_ARM_THM_CALL\tshape"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "append"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 78: R_ARM_THM_CALL\tappend"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_init"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "JUMP24",
+          "evidence": "mt_tx.disassembly.txt: 8: R_ARM_THM_JUMP24\tmemset"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_poll"
+      ],
+      "edges": [
+        {
+          "target": [
+            "EXTERNAL",
+            "memset"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 14: R_ARM_THM_CALL\tmemset"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "mt_wire_encode"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 96: R_ARM_THM_CALL\tmt_wire_encode"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: f4: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: fe: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memmove"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 15a: R_ARM_THM_CALL\tmemmove"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_stop"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_tx",
+            "shape"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 2c: R_ARM_THM_CALL\tshape"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "shape"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 3c: R_ARM_THM_CALL\tshape"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 4a: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 60: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 6c: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 78: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_terminal_committed"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: ba: R_ARM_THM_CALL\tmt_tx_terminal_committed"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: e0: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: ec: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 102: R_ARM_THM_CALL\tmemcpy"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "shape"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 11c: R_ARM_THM_CALL\tshape"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 12c: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 13a: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "append"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 192: R_ARM_THM_CALL\tappend"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "append"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 19a: R_ARM_THM_CALL\tappend"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "append"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 1a2: R_ARM_THM_CALL\tappend"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 1f2: R_ARM_THM_CALL\tmemcpy"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_tx",
+        "mt_tx_window_status"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_tx",
+            "mt_tx_terminal_committed"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: e: R_ARM_THM_CALL\tmt_tx_terminal_committed"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 4c: R_ARM_THM_CALL\tread32"
+        },
+        {
+          "target": [
+            "mt_tx",
+            "read32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_tx.disassembly.txt: 58: R_ARM_THM_CALL\tread32"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_wire",
+        "mt_wire_decode"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_wire",
+            "mt_wire_crc32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: a4: R_ARM_THM_CALL\tmt_wire_crc32"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "get32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: ae: R_ARM_THM_CALL\tget32"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "get32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 102: R_ARM_THM_CALL\tget32"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "get32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 10a: R_ARM_THM_CALL\tget32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 11a: R_ARM_THM_CALL\tmemcpy"
+        }
+      ]
+    },
+    {
+      "caller": [
+        "mt_wire",
+        "mt_wire_encode"
+      ],
+      "edges": [
+        {
+          "target": [
+            "mt_wire",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 70: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 78: R_ARM_THM_CALL\tput32"
+        },
+        {
+          "target": [
+            "EXTERNAL",
+            "memcpy"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 82: R_ARM_THM_CALL\tmemcpy"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "mt_wire_crc32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 90: R_ARM_THM_CALL\tmt_wire_crc32"
+        },
+        {
+          "target": [
+            "mt_wire",
+            "put32"
+          ],
+          "kind": "CALL",
+          "evidence": "mt_wire.disassembly.txt: 9a: R_ARM_THM_CALL\tput32"
+        }
+      ]
+    }
+  ],
+  "actual_hardware_stack_high_water_measured": false,
+  "complete_stack_upper_bound_proven": false
+}

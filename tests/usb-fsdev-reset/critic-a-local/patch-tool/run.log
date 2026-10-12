@@ -1,0 +1,1 @@
+PASS: 11 patch-tool invocations; original/source/patch/manifests preserved; exclusive output race rejected

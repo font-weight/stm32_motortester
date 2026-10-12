@@ -1,0 +1,1 @@
+Independent RX wrapper: 147442 scenarios passed; every split of every payload length0..512, all chunk sizes1..64, coalescing/recovery prefix, rejection/deadline/overflow/transport reset

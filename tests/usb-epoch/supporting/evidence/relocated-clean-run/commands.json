@@ -1,0 +1,733 @@
+[
+  {
+    "name": "native-toolchain",
+    "argv": [
+      "gcc",
+      "--version"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0038,
+    "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "stderr": ""
+  },
+  {
+    "name": "strict-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-g",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/inputs/mt_usb_epoch.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/test-strict"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3816,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "strict-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/test-strict"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.1686,
+    "stdout": "directed: PASS (12 contract scenario groups)\nexhaustive: PASS (1627235 transitions, all length <= 5 sequences over 15 actions from 2 origins)\nrandom: PASS (1001250 transitions; seed 0x6d6f746f72757362; 1000 walks; boundary-injected origins labeled)\nreference totals: transitions=2628485 permitted_app_queries=24098 denied_app_queries=13118332\nPASS checks=86740537 state_size=48\n",
+    "stderr": ""
+  },
+  {
+    "name": "sanitizer-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-fno-sanitize-recover=all",
+      "-no-pie",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/inputs/mt_usb_epoch.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/test-sanitize"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.4998,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "sanitizer-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/test-sanitize"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.5587,
+    "stdout": "directed: PASS (12 contract scenario groups)\nexhaustive: PASS (1627235 transitions, all length <= 5 sequences over 15 actions from 2 origins)\nrandom: PASS (1001250 transitions; seed 0x6d6f746f72757362; 1000 walks; boundary-injected origins labeled)\nreference totals: transitions=2628485 permitted_app_queries=24098 denied_app_queries=13118332\nPASS checks=86740537 state_size=48\n",
+    "stderr": ""
+  },
+  {
+    "name": "coverage-source-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O0",
+      "-g",
+      "--coverage",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "-c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/inputs/mt_usb_epoch.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage/mt_usb_epoch.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage",
+    "exit_code": 0,
+    "seconds": 0.0304,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "coverage-test-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O0",
+      "-g",
+      "--coverage",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage/mt_usb_epoch.o",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage/test-coverage"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage",
+    "exit_code": 0,
+    "seconds": 0.1124,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "coverage-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage/test-coverage"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage",
+    "exit_code": 0,
+    "seconds": 0.6811,
+    "stdout": "directed: PASS (12 contract scenario groups)\nexhaustive: PASS (1627235 transitions, all length <= 5 sequences over 15 actions from 2 origins)\nrandom: PASS (1001250 transitions; seed 0x6d6f746f72757362; 1000 walks; boundary-injected origins labeled)\nreference totals: transitions=2628485 permitted_app_queries=24098 denied_app_queries=13118332\nPASS checks=86740537 state_size=48\n",
+    "stderr": ""
+  },
+  {
+    "name": "coverage-gcov",
+    "argv": [
+      "gcov",
+      "-b",
+      "-c",
+      "mt_usb_epoch.gcno"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence/coverage",
+    "exit_code": 0,
+    "seconds": 0.002,
+    "stdout": "File '/workspace/shared/usb-epoch-independent-relocated-check/inputs/mt_usb_epoch.c'\nLines executed:100.00% of 74\nBranches executed:100.00% of 88\nTaken at least once:100.00% of 88\nCalls executed:100.00% of 14\nCreating 'mt_usb_epoch.c.gcov'\n\nLines executed:100.00% of 74\n",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-ignore_stale_identity-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_stale_identity.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_stale_identity"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3206,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-ignore_stale_identity-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_stale_identity",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.0011,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:32 (lost current enqueue poisons even after configuration): !mt_usb_epoch_enqueued(s, old, 1, 1)\n"
+  },
+  {
+    "name": "mutation-ignore_cleanup-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_cleanup.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_cleanup"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3266,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-ignore_cleanup-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_cleanup",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.001,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:79 (cleanup required before reset dispatch): !mt_usb_epoch_dispatch(&s, e, 1)\n"
+  },
+  {
+    "name": "mutation-ignore_queue_loss-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_queue_loss.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_queue_loss"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3157,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-ignore_queue_loss-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/ignore_queue_loss",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.0008,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:98 (lost current enqueue poisons even after configuration): s.faults == MT_USB_EPOCH_QUEUE_LOSS\n"
+  },
+  {
+    "name": "mutation-skip_processed_receipt-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_processed_receipt.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_processed_receipt"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.2943,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-skip_processed_receipt-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_processed_receipt",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.0011,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:68 (initial and reset-before-enqueue): !mt_usb_epoch_dispatch(&s, e, 0)\n"
+  },
+  {
+    "name": "mutation-skip_config_receipt-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_config_receipt.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_config_receipt"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3217,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-skip_config_receipt-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_config_receipt",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.001,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:72 (initial and reset-before-enqueue): !mt_usb_epoch_app_io(&s, e)\n"
+  },
+  {
+    "name": "mutation-allow_old_pause_ack-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_old_pause_ack.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_old_pause_ack"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3238,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-allow_old_pause_ack-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_old_pause_ack",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.0009,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:162 (soft serial prevents stale acknowledgment): !mt_usb_epoch_resume(&s, e, p)\n"
+  },
+  {
+    "name": "mutation-allow_hard_wrap-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_hard_wrap.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_hard_wrap"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3215,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-allow_hard_wrap-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_hard_wrap",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.0008,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:222 (hard max token is valid once, then permanent shutdown): s.current == UINT32_MAX\n"
+  },
+  {
+    "name": "mutation-allow_diagnostic_wrap-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_diagnostic_wrap.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_diagnostic_wrap"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.3119,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-allow_diagnostic_wrap-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/allow_diagnostic_wrap",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.001,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:209 (diagnostics saturate, including repeated notifications): s.queue_losses == UINT32_MAX\n"
+  },
+  {
+    "name": "mutation-dispatch_during_pause-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/dispatch_during_pause.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/dispatch_during_pause"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.2966,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-dispatch_during_pause-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/dispatch_during_pause",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.001,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:27 (soft serial prevents stale acknowledgment): !mt_usb_epoch_core_io(s, e)\n"
+  },
+  {
+    "name": "mutation-skip_enqueue_receipt-build",
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-O2",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_enqueue_receipt.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_enqueue_receipt"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.2902,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "mutation-skip_enqueue_receipt-run",
+    "argv": [
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mutants/skip_enqueue_receipt",
+      "--directed"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 1,
+    "seconds": 0.0008,
+    "stdout": "",
+    "stderr": "FAIL /workspace/shared/usb-epoch-independent-relocated-check/tests/epoch_independent.c:63 (initial and reset-before-enqueue): !mt_usb_epoch_reset_done(&s, e)\n"
+  },
+  {
+    "name": "arm-toolchain",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "--version"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0012,
+    "stdout": "arm-none-eabi-gcc (15:14.2.rel1-1) 14.2.1 20241119\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-source-build",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-O2",
+      "-ffreestanding",
+      "-fno-common",
+      "-fno-lto",
+      "-fstack-usage",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/inputs/mt_usb_epoch.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0624,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "arm-abi-build",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-mcpu=cortex-m3",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-O2",
+      "-ffreestanding",
+      "-fno-common",
+      "-fno-lto",
+      "-fstack-usage",
+      "-I/workspace/shared/usb-epoch-independent-relocated-check/inputs",
+      "-isystem",
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/include/newlib",
+      "-c",
+      "/workspace/shared/usb-epoch-independent-relocated-check/tests/abi_probe.c",
+      "-o",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/abi_probe.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0112,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "arm-attributes",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-readelf",
+      "-h",
+      "-A",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0012,
+    "stdout": "ELF Header:\n  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 \n  Class:                             ELF32\n  Data:                              2's complement, little endian\n  Version:                           1 (current)\n  OS/ABI:                            UNIX - System V\n  ABI Version:                       0\n  Type:                              REL (Relocatable file)\n  Machine:                           ARM\n  Version:                           0x1\n  Entry point address:               0x0\n  Start of program headers:          0 (bytes into file)\n  Start of section headers:          1580 (bytes into file)\n  Flags:                             0x5000000, Version5 EABI\n  Size of this header:               52 (bytes)\n  Size of program headers:           0 (bytes)\n  Number of program headers:         0\n  Size of section headers:           40 (bytes)\n  Number of section headers:         10\n  Section header string table index: 9\nAttribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-M\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Microcontroller\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_align_preserved: 8-byte, except leaf SP\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-disassembly",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-objdump",
+      "-dr",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0017,
+    "stdout": "\n/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00000000 <mt_usb_epoch_init>:\n   0:\tb128      \tcbz\tr0, e <mt_usb_epoch_init+0xe>\n   2:\tb508      \tpush\t{r3, lr}\n   4:\t2230      \tmovs\tr2, #48\t@ 0x30\n   6:\t2100      \tmovs\tr1, #0\n   8:\tf7ff fffe \tbl\t0 <memset>\n\t\t\t8: R_ARM_THM_CALL\tmemset\n   c:\tbd08      \tpop\t{r3, pc}\n   e:\t4770      \tbx\tlr\n\n00000010 <mt_usb_epoch_reset>:\n  10:\t4603      \tmov\tr3, r0\n  12:\tb1b0      \tcbz\tr0, 42 <mt_usb_epoch_reset+0x32>\n  14:\t6ac2      \tldr\tr2, [r0, #44]\t@ 0x2c\n  16:\tb9a2      \tcbnz\tr2, 42 <mt_usb_epoch_reset+0x32>\n  18:\t6800      \tldr\tr0, [r0, #0]\n  1a:\t2101      \tmovs\tr1, #1\n  1c:\tf1b0 3fff \tcmp.w\tr0, #4294967295\t@ 0xffffffff\n  20:\td00a      \tbeq.n\t38 <mt_usb_epoch_reset+0x28>\n  22:\t4408      \tadd\tr0, r1\n  24:\te9c3 2203 \tstrd\tr2, r2, [r3, #12]\n  28:\te9c3 2201 \tstrd\tr2, r2, [r3, #4]\n  2c:\te9c3 2205 \tstrd\tr2, r2, [r3, #20]\n  30:\t6018      \tstr\tr0, [r3, #0]\n  32:\t61da      \tstr\tr2, [r3, #28]\n  34:\t6299      \tstr\tr1, [r3, #40]\t@ 0x28\n  36:\t4770      \tbx\tlr\n  38:\t69da      \tldr\tr2, [r3, #28]\n  3a:\t62d9      \tstr\tr1, [r3, #44]\t@ 0x2c\n  3c:\tf042 0240 \torr.w\tr2, r2, #64\t@ 0x40\n  40:\t61da      \tstr\tr2, [r3, #28]\n  42:\t2000      \tmovs\tr0, #0\n  44:\t4770      \tbx\tlr\n  46:\tbf00      \tnop\n\n00000048 <mt_usb_epoch_disconnect>:\n  48:\t4603      \tmov\tr3, r0\n  4a:\tb1b0      \tcbz\tr0, 7a <mt_usb_epoch_disconnect+0x32>\n  4c:\t6ac2      \tldr\tr2, [r0, #44]\t@ 0x2c\n  4e:\tb9a2      \tcbnz\tr2, 7a <mt_usb_epoch_disconnect+0x32>\n  50:\t6800      \tldr\tr0, [r0, #0]\n  52:\t1c41      \tadds\tr1, r0, #1\n  54:\td00b      \tbeq.n\t6e <mt_usb_epoch_disconnect+0x26>\n  56:\t2110      \tmovs\tr1, #16\n  58:\t3001      \tadds\tr0, #1\n  5a:\te9c3 2203 \tstrd\tr2, r2, [r3, #12]\n  5e:\te9c3 2201 \tstrd\tr2, r2, [r3, #4]\n  62:\te9c3 2205 \tstrd\tr2, r2, [r3, #20]\n  66:\t6018      \tstr\tr0, [r3, #0]\n  68:\t629a      \tstr\tr2, [r3, #40]\t@ 0x28\n  6a:\t61d9      \tstr\tr1, [r3, #28]\n  6c:\t4770      \tbx\tlr\n  6e:\t2101      \tmovs\tr1, #1\n  70:\t69da      \tldr\tr2, [r3, #28]\n  72:\t62d9      \tstr\tr1, [r3, #44]\t@ 0x2c\n  74:\tf042 0240 \torr.w\tr2, r2, #64\t@ 0x40\n  78:\t61da      \tstr\tr2, [r3, #28]\n  7a:\t2000      \tmovs\tr0, #0\n  7c:\t4770      \tbx\tlr\n  7e:\tbf00      \tnop\n\n00000080 <mt_usb_epoch_enqueued>:\n  80:\tb138      \tcbz\tr0, 92 <mt_usb_epoch_enqueued+0x12>\n  82:\tb131      \tcbz\tr1, 92 <mt_usb_epoch_enqueued+0x12>\n  84:\tb410      \tpush\t{r4}\n  86:\t6804      \tldr\tr4, [r0, #0]\n  88:\t42a1      \tcmp\tr1, r4\n  8a:\td004      \tbeq.n\t96 <mt_usb_epoch_enqueued+0x16>\n  8c:\t2000      \tmovs\tr0, #0\n  8e:\tbc10      \tpop\t{r4}\n  90:\t4770      \tbx\tlr\n  92:\t2000      \tmovs\tr0, #0\n  94:\t4770      \tbx\tlr\n  96:\t6ac4      \tldr\tr4, [r0, #44]\t@ 0x2c\n  98:\t2c00      \tcmp\tr4, #0\n  9a:\td1f7      \tbne.n\t8c <mt_usb_epoch_enqueued+0xc>\n  9c:\tea42 0c03 \torr.w\tip, r2, r3\n  a0:\tf1bc 0f01 \tcmp.w\tip, #1\n  a4:\td8f2      \tbhi.n\t8c <mt_usb_epoch_enqueued+0xc>\n  a6:\t69c4      \tldr\tr4, [r0, #28]\n  a8:\tb123      \tcbz\tr3, b4 <mt_usb_epoch_enqueued+0x34>\n  aa:\t2c00      \tcmp\tr4, #0\n  ac:\td1ee      \tbne.n\t8c <mt_usb_epoch_enqueued+0xc>\n  ae:\tb952      \tcbnz\tr2, c6 <mt_usb_epoch_enqueued+0x46>\n  b0:\t2001      \tmovs\tr0, #1\n  b2:\te7ec      \tb.n\t8e <mt_usb_epoch_enqueued+0xe>\n  b4:\t6a03      \tldr\tr3, [r0, #32]\n  b6:\tf044 0401 \torr.w\tr4, r4, #1\n  ba:\t1c5a      \tadds\tr2, r3, #1\n  bc:\tbf1c      \titt\tne\n  be:\t3301      \taddne\tr3, #1\n  c0:\t6203      \tstrne\tr3, [r0, #32]\n  c2:\t61c4      \tstr\tr4, [r0, #28]\n  c4:\te7e2      \tb.n\t8c <mt_usb_epoch_enqueued+0xc>\n  c6:\t6a83      \tldr\tr3, [r0, #40]\t@ 0x28\n  c8:\t2b00      \tcmp\tr3, #0\n  ca:\td0df      \tbeq.n\t8c <mt_usb_epoch_enqueued+0xc>\n  cc:\t6041      \tstr\tr1, [r0, #4]\n  ce:\te7ef      \tb.n\tb0 <mt_usb_epoch_enqueued+0x30>\n\n000000d0 <mt_usb_epoch_cleaned>:\n  d0:\t4603      \tmov\tr3, r0\n  d2:\tb118      \tcbz\tr0, dc <mt_usb_epoch_cleaned+0xc>\n  d4:\tb111      \tcbz\tr1, dc <mt_usb_epoch_cleaned+0xc>\n  d6:\t6802      \tldr\tr2, [r0, #0]\n  d8:\t4291      \tcmp\tr1, r2\n  da:\td001      \tbeq.n\te0 <mt_usb_epoch_cleaned+0x10>\n  dc:\t2000      \tmovs\tr0, #0\n  de:\t4770      \tbx\tlr\n  e0:\t6ac2      \tldr\tr2, [r0, #44]\t@ 0x2c\n  e2:\t2a00      \tcmp\tr2, #0\n  e4:\td1fa      \tbne.n\tdc <mt_usb_epoch_cleaned+0xc>\n  e6:\t2001      \tmovs\tr0, #1\n  e8:\t60d9      \tstr\tr1, [r3, #12]\n  ea:\t4770      \tbx\tlr\n\n000000ec <mt_usb_epoch_dispatch>:\n  ec:\tb128      \tcbz\tr0, fa <mt_usb_epoch_dispatch+0xe>\n  ee:\tb111      \tcbz\tr1, f6 <mt_usb_epoch_dispatch+0xa>\n  f0:\t6803      \tldr\tr3, [r0, #0]\n  f2:\t4299      \tcmp\tr1, r3\n  f4:\td002      \tbeq.n\tfc <mt_usb_epoch_dispatch+0x10>\n  f6:\t2000      \tmovs\tr0, #0\n  f8:\t4770      \tbx\tlr\n  fa:\t4770      \tbx\tlr\n  fc:\t6ac3      \tldr\tr3, [r0, #44]\t@ 0x2c\n  fe:\t2b00      \tcmp\tr3, #0\n 100:\td1f9      \tbne.n\tf6 <mt_usb_epoch_dispatch+0xa>\n 102:\tb410      \tpush\t{r4}\n 104:\t69c4      \tldr\tr4, [r0, #28]\n 106:\tb954      \tcbnz\tr4, 11e <mt_usb_epoch_dispatch+0x32>\n 108:\t2a01      \tcmp\tr2, #1\n 10a:\td808      \tbhi.n\t11e <mt_usb_epoch_dispatch+0x32>\n 10c:\t68c3      \tldr\tr3, [r0, #12]\n 10e:\t428b      \tcmp\tr3, r1\n 110:\td105      \tbne.n\t11e <mt_usb_epoch_dispatch+0x32>\n 112:\tb93a      \tcbnz\tr2, 124 <mt_usb_epoch_dispatch+0x38>\n 114:\t6881      \tldr\tr1, [r0, #8]\n 116:\t4299      \tcmp\tr1, r3\n 118:\td00f      \tbeq.n\t13a <mt_usb_epoch_dispatch+0x4e>\n 11a:\t4610      \tmov\tr0, r2\n 11c:\te000      \tb.n\t120 <mt_usb_epoch_dispatch+0x34>\n 11e:\t2000      \tmovs\tr0, #0\n 120:\tbc10      \tpop\t{r4}\n 122:\t4770      \tbx\tlr\n 124:\t6a83      \tldr\tr3, [r0, #40]\t@ 0x28\n 126:\t2b00      \tcmp\tr3, #0\n 128:\td0f9      \tbeq.n\t11e <mt_usb_epoch_dispatch+0x32>\n 12a:\t6843      \tldr\tr3, [r0, #4]\n 12c:\t428b      \tcmp\tr3, r1\n 12e:\td1f6      \tbne.n\t11e <mt_usb_epoch_dispatch+0x32>\n 130:\t6880      \tldr\tr0, [r0, #8]\n 132:\t1a40      \tsubs\tr0, r0, r1\n 134:\tbf18      \tit\tne\n 136:\t2001      \tmovne\tr0, #1\n 138:\te7f2      \tb.n\t120 <mt_usb_epoch_dispatch+0x34>\n 13a:\t6980      \tldr\tr0, [r0, #24]\n 13c:\tfab0 f080 \tclz\tr0, r0\n 140:\t0940      \tlsrs\tr0, r0, #5\n 142:\te7ed      \tb.n\t120 <mt_usb_epoch_dispatch+0x34>\n\n00000144 <mt_usb_epoch_reset_done>:\n 144:\t4603      \tmov\tr3, r0\n 146:\tb118      \tcbz\tr0, 150 <mt_usb_epoch_reset_done+0xc>\n 148:\tb111      \tcbz\tr1, 150 <mt_usb_epoch_reset_done+0xc>\n 14a:\t6802      \tldr\tr2, [r0, #0]\n 14c:\t4291      \tcmp\tr1, r2\n 14e:\td001      \tbeq.n\t154 <mt_usb_epoch_reset_done+0x10>\n 150:\t2000      \tmovs\tr0, #0\n 152:\t4770      \tbx\tlr\n 154:\t6ac0      \tldr\tr0, [r0, #44]\t@ 0x2c\n 156:\t2800      \tcmp\tr0, #0\n 158:\td1fa      \tbne.n\t150 <mt_usb_epoch_reset_done+0xc>\n 15a:\t69da      \tldr\tr2, [r3, #28]\n 15c:\tb942      \tcbnz\tr2, 170 <mt_usb_epoch_reset_done+0x2c>\n 15e:\t68d8      \tldr\tr0, [r3, #12]\n 160:\t4281      \tcmp\tr1, r0\n 162:\td104      \tbne.n\t16e <mt_usb_epoch_reset_done+0x2a>\n 164:\t6a98      \tldr\tr0, [r3, #40]\t@ 0x28\n 166:\tb118      \tcbz\tr0, 170 <mt_usb_epoch_reset_done+0x2c>\n 168:\t6858      \tldr\tr0, [r3, #4]\n 16a:\t4281      \tcmp\tr1, r0\n 16c:\td001      \tbeq.n\t172 <mt_usb_epoch_reset_done+0x2e>\n 16e:\t4610      \tmov\tr0, r2\n 170:\t4770      \tbx\tlr\n 172:\t6898      \tldr\tr0, [r3, #8]\n 174:\t4281      \tcmp\tr1, r0\n 176:\td0fa      \tbeq.n\t16e <mt_usb_epoch_reset_done+0x2a>\n 178:\t2001      \tmovs\tr0, #1\n 17a:\t6099      \tstr\tr1, [r3, #8]\n 17c:\t4770      \tbx\tlr\n 17e:\tbf00      \tnop\n\n00000180 <mt_usb_epoch_core_io>:\n 180:\tb190      \tcbz\tr0, 1a8 <mt_usb_epoch_core_io+0x28>\n 182:\tb111      \tcbz\tr1, 18a <mt_usb_epoch_core_io+0xa>\n 184:\t6803      \tldr\tr3, [r0, #0]\n 186:\t4299      \tcmp\tr1, r3\n 188:\td001      \tbeq.n\t18e <mt_usb_epoch_core_io+0xe>\n 18a:\t2000      \tmovs\tr0, #0\n 18c:\t4770      \tbx\tlr\n 18e:\t6ac3      \tldr\tr3, [r0, #44]\t@ 0x2c\n 190:\t2b00      \tcmp\tr3, #0\n 192:\td1fa      \tbne.n\t18a <mt_usb_epoch_core_io+0xa>\n 194:\t69c2      \tldr\tr2, [r0, #28]\n 196:\t2a00      \tcmp\tr2, #0\n 198:\td1f7      \tbne.n\t18a <mt_usb_epoch_core_io+0xa>\n 19a:\t68c3      \tldr\tr3, [r0, #12]\n 19c:\t4299      \tcmp\tr1, r3\n 19e:\td102      \tbne.n\t1a6 <mt_usb_epoch_core_io+0x26>\n 1a0:\t6883      \tldr\tr3, [r0, #8]\n 1a2:\t4299      \tcmp\tr1, r3\n 1a4:\td001      \tbeq.n\t1aa <mt_usb_epoch_core_io+0x2a>\n 1a6:\t4610      \tmov\tr0, r2\n 1a8:\t4770      \tbx\tlr\n 1aa:\t6980      \tldr\tr0, [r0, #24]\n 1ac:\tfab0 f080 \tclz\tr0, r0\n 1b0:\t0940      \tlsrs\tr0, r0, #5\n 1b2:\t4770      \tbx\tlr\n\n000001b4 <mt_usb_epoch_configured>:\n 1b4:\t4603      \tmov\tr3, r0\n 1b6:\tb118      \tcbz\tr0, 1c0 <mt_usb_epoch_configured+0xc>\n 1b8:\tb111      \tcbz\tr1, 1c0 <mt_usb_epoch_configured+0xc>\n 1ba:\t6802      \tldr\tr2, [r0, #0]\n 1bc:\t4291      \tcmp\tr1, r2\n 1be:\td001      \tbeq.n\t1c4 <mt_usb_epoch_configured+0x10>\n 1c0:\t2000      \tmovs\tr0, #0\n 1c2:\t4770      \tbx\tlr\n 1c4:\t6ac0      \tldr\tr0, [r0, #44]\t@ 0x2c\n 1c6:\t2800      \tcmp\tr0, #0\n 1c8:\td1fa      \tbne.n\t1c0 <mt_usb_epoch_configured+0xc>\n 1ca:\t69da      \tldr\tr2, [r3, #28]\n 1cc:\tb932      \tcbnz\tr2, 1dc <mt_usb_epoch_configured+0x28>\n 1ce:\t68d8      \tldr\tr0, [r3, #12]\n 1d0:\t4281      \tcmp\tr1, r0\n 1d2:\td102      \tbne.n\t1da <mt_usb_epoch_configured+0x26>\n 1d4:\t6898      \tldr\tr0, [r3, #8]\n 1d6:\t4281      \tcmp\tr1, r0\n 1d8:\td001      \tbeq.n\t1de <mt_usb_epoch_configured+0x2a>\n 1da:\t4610      \tmov\tr0, r2\n 1dc:\t4770      \tbx\tlr\n 1de:\t6998      \tldr\tr0, [r3, #24]\n 1e0:\t2800      \tcmp\tr0, #0\n 1e2:\td1fa      \tbne.n\t1da <mt_usb_epoch_configured+0x26>\n 1e4:\t2001      \tmovs\tr0, #1\n 1e6:\t6119      \tstr\tr1, [r3, #16]\n 1e8:\t4770      \tbx\tlr\n 1ea:\tbf00      \tnop\n\n000001ec <mt_usb_epoch_app_io>:\n 1ec:\tb190      \tcbz\tr0, 214 <mt_usb_epoch_app_io+0x28>\n 1ee:\tb111      \tcbz\tr1, 1f6 <mt_usb_epoch_app_io+0xa>\n 1f0:\t6803      \tldr\tr3, [r0, #0]\n 1f2:\t4299      \tcmp\tr1, r3\n 1f4:\td001      \tbeq.n\t1fa <mt_usb_epoch_app_io+0xe>\n 1f6:\t2000      \tmovs\tr0, #0\n 1f8:\t4770      \tbx\tlr\n 1fa:\t6ac3      \tldr\tr3, [r0, #44]\t@ 0x2c\n 1fc:\t2b00      \tcmp\tr3, #0\n 1fe:\td1fa      \tbne.n\t1f6 <mt_usb_epoch_app_io+0xa>\n 200:\t69c2      \tldr\tr2, [r0, #28]\n 202:\t2a00      \tcmp\tr2, #0\n 204:\td1f7      \tbne.n\t1f6 <mt_usb_epoch_app_io+0xa>\n 206:\t68c3      \tldr\tr3, [r0, #12]\n 208:\t4299      \tcmp\tr1, r3\n 20a:\td102      \tbne.n\t212 <mt_usb_epoch_app_io+0x26>\n 20c:\t6883      \tldr\tr3, [r0, #8]\n 20e:\t4299      \tcmp\tr1, r3\n 210:\td001      \tbeq.n\t216 <mt_usb_epoch_app_io+0x2a>\n 212:\t4610      \tmov\tr0, r2\n 214:\t4770      \tbx\tlr\n 216:\t6983      \tldr\tr3, [r0, #24]\n 218:\t2b00      \tcmp\tr3, #0\n 21a:\td1fa      \tbne.n\t212 <mt_usb_epoch_app_io+0x26>\n 21c:\t6900      \tldr\tr0, [r0, #16]\n 21e:\t1a40      \tsubs\tr0, r0, r1\n 220:\tfab0 f080 \tclz\tr0, r0\n 224:\t0940      \tlsrs\tr0, r0, #5\n 226:\t4770      \tbx\tlr\n\n00000228 <mt_usb_epoch_fail>:\n 228:\t4603      \tmov\tr3, r0\n 22a:\tb100      \tcbz\tr0, 22e <mt_usb_epoch_fail+0x6>\n 22c:\tb909      \tcbnz\tr1, 232 <mt_usb_epoch_fail+0xa>\n 22e:\t2000      \tmovs\tr0, #0\n 230:\t4770      \tbx\tlr\n 232:\t6800      \tldr\tr0, [r0, #0]\n 234:\t4281      \tcmp\tr1, r0\n 236:\td1fa      \tbne.n\t22e <mt_usb_epoch_fail+0x6>\n 238:\t6ad8      \tldr\tr0, [r3, #44]\t@ 0x2c\n 23a:\t2800      \tcmp\tr0, #0\n 23c:\td1f7      \tbne.n\t22e <mt_usb_epoch_fail+0x6>\n 23e:\t2a02      \tcmp\tr2, #2\n 240:\td008      \tbeq.n\t254 <mt_usb_epoch_fail+0x2c>\n 242:\t2a04      \tcmp\tr2, #4\n 244:\td006      \tbeq.n\t254 <mt_usb_epoch_fail+0x2c>\n 246:\t2a08      \tcmp\tr2, #8\n 248:\td1f2      \tbne.n\t230 <mt_usb_epoch_fail+0x8>\n 24a:\t69d9      \tldr\tr1, [r3, #28]\n 24c:\t2001      \tmovs\tr0, #1\n 24e:\t4311      \torrs\tr1, r2\n 250:\t61d9      \tstr\tr1, [r3, #28]\n 252:\t4770      \tbx\tlr\n 254:\t6a59      \tldr\tr1, [r3, #36]\t@ 0x24\n 256:\t1c48      \tadds\tr0, r1, #1\n 258:\tbf1c      \titt\tne\n 25a:\t3101      \taddne\tr1, #1\n 25c:\t6259      \tstrne\tr1, [r3, #36]\t@ 0x24\n 25e:\te7f4      \tb.n\t24a <mt_usb_epoch_fail+0x22>\n\n00000260 <mt_usb_epoch_suspend>:\n 260:\t4603      \tmov\tr3, r0\n 262:\tb118      \tcbz\tr0, 26c <mt_usb_epoch_suspend+0xc>\n 264:\tb111      \tcbz\tr1, 26c <mt_usb_epoch_suspend+0xc>\n 266:\t6802      \tldr\tr2, [r0, #0]\n 268:\t4291      \tcmp\tr1, r2\n 26a:\td001      \tbeq.n\t270 <mt_usb_epoch_suspend+0x10>\n 26c:\t2000      \tmovs\tr0, #0\n 26e:\t4770      \tbx\tlr\n 270:\t6ac2      \tldr\tr2, [r0, #44]\t@ 0x2c\n 272:\t2a00      \tcmp\tr2, #0\n 274:\td1fa      \tbne.n\t26c <mt_usb_epoch_suspend+0xc>\n 276:\t69c2      \tldr\tr2, [r0, #28]\n 278:\t2a00      \tcmp\tr2, #0\n 27a:\td1f7      \tbne.n\t26c <mt_usb_epoch_suspend+0xc>\n 27c:\t6940      \tldr\tr0, [r0, #20]\n 27e:\t1c42      \tadds\tr2, r0, #1\n 280:\td003      \tbeq.n\t28a <mt_usb_epoch_suspend+0x2a>\n 282:\t3001      \tadds\tr0, #1\n 284:\te9c3 0005 \tstrd\tr0, r0, [r3, #20]\n 288:\t4770      \tbx\tlr\n 28a:\t2220      \tmovs\tr2, #32\n 28c:\t61da      \tstr\tr2, [r3, #28]\n 28e:\te7ed      \tb.n\t26c <mt_usb_epoch_suspend+0xc>\n\n00000290 <mt_usb_epoch_resume>:\n 290:\t4603      \tmov\tr3, r0\n 292:\tb118      \tcbz\tr0, 29c <mt_usb_epoch_resume+0xc>\n 294:\tb111      \tcbz\tr1, 29c <mt_usb_epoch_resume+0xc>\n 296:\t6800      \tldr\tr0, [r0, #0]\n 298:\t4281      \tcmp\tr1, r0\n 29a:\td001      \tbeq.n\t2a0 <mt_usb_epoch_resume+0x10>\n 29c:\t2000      \tmovs\tr0, #0\n 29e:\t4770      \tbx\tlr\n 2a0:\t6ad8      \tldr\tr0, [r3, #44]\t@ 0x2c\n 2a2:\t2800      \tcmp\tr0, #0\n 2a4:\td1fa      \tbne.n\t29c <mt_usb_epoch_resume+0xc>\n 2a6:\tb410      \tpush\t{r4}\n 2a8:\t69dc      \tldr\tr4, [r3, #28]\n 2aa:\tb92c      \tcbnz\tr4, 2b8 <mt_usb_epoch_resume+0x28>\n 2ac:\tb132      \tcbz\tr2, 2bc <mt_usb_epoch_resume+0x2c>\n 2ae:\t6999      \tldr\tr1, [r3, #24]\n 2b0:\t4291      \tcmp\tr1, r2\n 2b2:\td105      \tbne.n\t2c0 <mt_usb_epoch_resume+0x30>\n 2b4:\t2001      \tmovs\tr0, #1\n 2b6:\t619c      \tstr\tr4, [r3, #24]\n 2b8:\tbc10      \tpop\t{r4}\n 2ba:\t4770      \tbx\tlr\n 2bc:\t4610      \tmov\tr0, r2\n 2be:\te7fb      \tb.n\t2b8 <mt_usb_epoch_resume+0x28>\n 2c0:\t4620      \tmov\tr0, r4\n 2c2:\te7f9      \tb.n\t2b8 <mt_usb_epoch_resume+0x28>\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-size",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-size",
+      "-A",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0013,
+    "stdout": "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o  :\nsection           size   addr\n.text              708      0\n.data                0      0\n.bss                 0      0\n.comment            39      0\n.ARM.attributes     45      0\nTotal              792\n\n\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-symbols",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-S",
+      "--size-sort",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0012,
+    "stdout": "00000000 00000010 T mt_usb_epoch_init\n000000d0 0000001c T mt_usb_epoch_cleaned\n00000260 00000030 T mt_usb_epoch_suspend\n00000180 00000034 T mt_usb_epoch_core_io\n00000290 00000034 T mt_usb_epoch_resume\n000001b4 00000036 T mt_usb_epoch_configured\n00000048 00000036 T mt_usb_epoch_disconnect\n00000010 00000036 T mt_usb_epoch_reset\n00000228 00000038 T mt_usb_epoch_fail\n00000144 0000003a T mt_usb_epoch_reset_done\n000001ec 0000003c T mt_usb_epoch_app_io\n00000080 00000050 T mt_usb_epoch_enqueued\n000000ec 00000058 T mt_usb_epoch_dispatch\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-undefined",
+    "argv": [
+      "/workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm",
+      "-u",
+      "/workspace/shared/usb-epoch-independent-relocated-check/evidence/mt_usb_epoch.arm.o"
+    ],
+    "cwd": "/workspace/shared/usb-epoch-independent-relocated-check/evidence",
+    "exit_code": 0,
+    "seconds": 0.0015,
+    "stdout": "         U memset\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-package-hashes",
+    "argv": [
+      "sha256sum",
+      "-c",
+      "/workspace/shared/arm-resource-evidence/toolchain/SHA256SUMS.packages"
+    ],
+    "cwd": "/workspace/shared/arm-resource-evidence/toolchain/packages",
+    "exit_code": 0,
+    "seconds": 0.0471,
+    "stdout": "gcc-arm-none-eabi_14.2.rel1-1_amd64.deb: OK\nlibnewlib-dev_4.5.0.20241231-1_all.deb: OK\nbinutils-arm-none-eabi_2.44-3+23+b1_amd64.deb: OK\n",
+    "stderr": ""
+  }
+]

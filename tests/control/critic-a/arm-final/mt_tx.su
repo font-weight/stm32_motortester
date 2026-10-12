@@ -1,0 +1,10 @@
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:4:17:read32	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:40:13:append	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:12:12:shape	16	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:54:6:mt_tx_init	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:57:14:mt_tx_hello	32	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:76:14:mt_tx_enqueue	24	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:88:9:mt_tx_terminal_committed	0	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:93:20:mt_tx_window_status	32	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:110:14:mt_tx_stop	592	static
+/workspace/shared/critic-a-control-review/final-candidate/firmware/transport/mt_tx.c:165:14:mt_tx_poll	96	static

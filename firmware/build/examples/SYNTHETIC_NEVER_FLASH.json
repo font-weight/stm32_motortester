@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "input_kind": "synthetic_fixture",
+  "board": {
+    "verified_hse_hz": 4500000,
+    "clock_poll_budget": 1,
+    "usb_irq_priority": 0,
+    "firmware_build": 0,
+    "hse_mode": "crystal",
+    "require_dtr": 0,
+    "verified_fixed_pullup": 1,
+    "usb": {
+      "vid": 1,
+      "pid": 0,
+      "bcd_device": 0,
+      "bus_power_ma": 2,
+      "manufacturer": "TEST ONLY \" \\",
+      "product": "SYNTHETIC DO NOT FLASH",
+      "serial": "TESTONLY0"
+    }
+  },
+  "caller_attestations": {
+    "physical_mcu_and_memory": false,
+    "hse_frequency_and_mode": false,
+    "fixed_pullup_topology": false,
+    "usb_bus_power_budget": false,
+    "usb_vid_pid_authorized": false,
+    "stable_unique_physical_serial": false
+  }
+}

@@ -1,0 +1,4 @@
+$ /workspace/shared/usb-epoch-independent/evidence/mutants/skip_enqueue_receipt --directed
+FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:63 (initial and reset-before-enqueue): !mt_usb_epoch_reset_done(&s, e)
+
+exit=1

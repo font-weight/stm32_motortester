@@ -1,0 +1,695 @@
+
+/workspace/shared/usb-bridge-arm-evidence/run-03/bridge-on.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.permitted:
+
+00000000 <permitted>:
+   0:	b508      	push	{r3, lr}
+   2:	4b07      	ldr	r3, [pc, #28]	@ (20 <permitted+0x20>)
+   4:	6818      	ldr	r0, [r3, #0]
+   6:	b150      	cbz	r0, 1e <permitted+0x1e>
+   8:	4b06      	ldr	r3, [pc, #24]	@ (24 <permitted+0x24>)
+   a:	6818      	ldr	r0, [r3, #0]
+   c:	b138      	cbz	r0, 1e <permitted+0x1e>
+   e:	4b06      	ldr	r3, [pc, #24]	@ (28 <permitted+0x28>)
+  10:	4806      	ldr	r0, [pc, #24]	@ (2c <permitted+0x2c>)
+  12:	6819      	ldr	r1, [r3, #0]
+  14:	f7ff fffe 	bl	0 <mt_usb_epoch_core_io>
+			14: R_ARM_THM_CALL	mt_usb_epoch_core_io
+  18:	3800      	subs	r0, #0
+  1a:	bf18      	it	ne
+  1c:	2001      	movne	r0, #1
+  1e:	bd08      	pop	{r3, pc}
+	...
+			20: R_ARM_ABS32	.bss.lock_fn
+			24: R_ARM_ABS32	.bss.unlock_fn
+			28: R_ARM_ABS32	.bss.actor
+			2c: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.result.part.0:
+
+00000000 <result.part.0>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <result.part.0+0xc>)
+   2:	2202      	movs	r2, #2
+   4:	6819      	ldr	r1, [r3, #0]
+   6:	4802      	ldr	r0, [pc, #8]	@ (10 <result.part.0+0x10>)
+   8:	f7ff bffe 	b.w	0 <mt_usb_epoch_fail>
+			8: R_ARM_THM_JUMP24	mt_usb_epoch_fail
+	...
+			c: R_ARM_ABS32	.bss.actor
+			10: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_init:
+
+00000000 <mt_usb_bridge_init>:
+   0:	b508      	push	{r3, lr}
+   2:	b198      	cbz	r0, 2c <mt_usb_bridge_init+0x2c>
+   4:	2900      	cmp	r1, #0
+   6:	bf08      	it	eq
+   8:	2000      	moveq	r0, #0
+   a:	4b09      	ldr	r3, [pc, #36]	@ (30 <mt_usb_bridge_init+0x30>)
+   c:	6018      	str	r0, [r3, #0]
+   e:	4b09      	ldr	r3, [pc, #36]	@ (34 <mt_usb_bridge_init+0x34>)
+  10:	4809      	ldr	r0, [pc, #36]	@ (38 <mt_usb_bridge_init+0x38>)
+  12:	6019      	str	r1, [r3, #0]
+  14:	f7ff fffe 	bl	0 <mt_usb_epoch_init>
+			14: R_ARM_THM_CALL	mt_usb_epoch_init
+  18:	2300      	movs	r3, #0
+  1a:	4a08      	ldr	r2, [pc, #32]	@ (3c <mt_usb_bridge_init+0x3c>)
+  1c:	6013      	str	r3, [r2, #0]
+  1e:	4a08      	ldr	r2, [pc, #32]	@ (40 <mt_usb_bridge_init+0x40>)
+  20:	6013      	str	r3, [r2, #0]
+  22:	4a08      	ldr	r2, [pc, #32]	@ (44 <mt_usb_bridge_init+0x44>)
+  24:	6013      	str	r3, [r2, #0]
+  26:	4a08      	ldr	r2, [pc, #32]	@ (48 <mt_usb_bridge_init+0x48>)
+  28:	6013      	str	r3, [r2, #0]
+  2a:	bd08      	pop	{r3, pc}
+  2c:	4601      	mov	r1, r0
+  2e:	e7ec      	b.n	a <mt_usb_bridge_init+0xa>
+	...
+			30: R_ARM_ABS32	.bss.lock_fn
+			34: R_ARM_ABS32	.bss.unlock_fn
+			38: R_ARM_ABS32	.bss.state
+			3c: R_ARM_ABS32	.bss.actor
+			40: R_ARM_ABS32	.bss.address_accepted
+			44: R_ARM_ABS32	.bss.address_seen
+			48: R_ARM_ABS32	.bss.address_pending
+
+Disassembly of section .text.mt_usb_bridge_lock:
+
+00000000 <mt_usb_bridge_lock>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <mt_usb_bridge_lock+0xc>)
+   2:	6818      	ldr	r0, [r3, #0]
+   4:	b100      	cbz	r0, 8 <mt_usb_bridge_lock+0x8>
+   6:	4700      	bx	r0
+   8:	4770      	bx	lr
+   a:	bf00      	nop
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss.lock_fn
+
+Disassembly of section .text.mt_usb_bridge_unlock:
+
+00000000 <mt_usb_bridge_unlock>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <mt_usb_bridge_unlock+0xc>)
+   2:	681b      	ldr	r3, [r3, #0]
+   4:	b103      	cbz	r3, 8 <mt_usb_bridge_unlock+0x8>
+   6:	4718      	bx	r3
+   8:	4770      	bx	lr
+   a:	bf00      	nop
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss.unlock_fn
+
+Disassembly of section .text.mt_usb_bridge_ingress:
+
+00000000 <mt_usb_bridge_ingress>:
+   0:	b510      	push	{r4, lr}
+   2:	7843      	ldrb	r3, [r0, #1]
+   4:	4a14      	ldr	r2, [pc, #80]	@ (58 <mt_usb_bridge_ingress+0x58>)
+   6:	3b01      	subs	r3, #1
+   8:	6814      	ldr	r4, [r2, #0]
+   a:	2b06      	cmp	r3, #6
+   c:	d813      	bhi.n	36 <mt_usb_bridge_ingress+0x36>
+   e:	e8df f003 	tbb	[pc, r3]
+  12:	0904      	.short	0x0904
+  14:	12140e14 	.word	0x12140e14
+  18:	1a          	.byte	0x1a
+  19:	00          	.byte	0x00
+  1a:	480f      	ldr	r0, [pc, #60]	@ (58 <mt_usb_bridge_ingress+0x58>)
+  1c:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
+  20:	f7ff bffe 	b.w	0 <mt_usb_epoch_reset>
+			20: R_ARM_THM_JUMP24	mt_usb_epoch_reset
+  24:	480c      	ldr	r0, [pc, #48]	@ (58 <mt_usb_bridge_ingress+0x58>)
+  26:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
+  2a:	f7ff bffe 	b.w	0 <mt_usb_epoch_disconnect>
+			2a: R_ARM_THM_JUMP24	mt_usb_epoch_disconnect
+  2e:	4621      	mov	r1, r4
+  30:	4809      	ldr	r0, [pc, #36]	@ (58 <mt_usb_bridge_ingress+0x58>)
+  32:	f7ff fffe 	bl	0 <mt_usb_epoch_suspend>
+			32: R_ARM_THM_CALL	mt_usb_epoch_suspend
+  36:	4620      	mov	r0, r4
+  38:	bd10      	pop	{r4, pc}
+  3a:	4621      	mov	r1, r4
+  3c:	6992      	ldr	r2, [r2, #24]
+  3e:	4806      	ldr	r0, [pc, #24]	@ (58 <mt_usb_bridge_ingress+0x58>)
+  40:	f7ff fffe 	bl	0 <mt_usb_epoch_resume>
+			40: R_ARM_THM_CALL	mt_usb_epoch_resume
+  44:	e7f7      	b.n	36 <mt_usb_bridge_ingress+0x36>
+  46:	7943      	ldrb	r3, [r0, #5]
+  48:	2b00      	cmp	r3, #0
+  4a:	d0f4      	beq.n	36 <mt_usb_bridge_ingress+0x36>
+  4c:	2204      	movs	r2, #4
+  4e:	4621      	mov	r1, r4
+  50:	4801      	ldr	r0, [pc, #4]	@ (58 <mt_usb_bridge_ingress+0x58>)
+  52:	f7ff fffe 	bl	0 <mt_usb_epoch_fail>
+			52: R_ARM_THM_CALL	mt_usb_epoch_fail
+  56:	e7ee      	b.n	36 <mt_usb_bridge_ingress+0x36>
+  58:	00000000 	.word	0x00000000
+			58: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_enqueued:
+
+00000000 <mt_usb_bridge_enqueued>:
+   0:	4613      	mov	r3, r2
+   2:	460a      	mov	r2, r1
+   4:	4601      	mov	r1, r0
+   6:	4801      	ldr	r0, [pc, #4]	@ (c <mt_usb_bridge_enqueued+0xc>)
+   8:	f7ff bffe 	b.w	0 <mt_usb_epoch_enqueued>
+			8: R_ARM_THM_JUMP24	mt_usb_epoch_enqueued
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_actor:
+
+00000000 <mt_usb_bridge_actor>:
+   0:	4b01      	ldr	r3, [pc, #4]	@ (8 <mt_usb_bridge_actor+0x8>)
+   2:	6818      	ldr	r0, [r3, #0]
+   4:	4770      	bx	lr
+   6:	bf00      	nop
+   8:	00000000 	.word	0x00000000
+			8: R_ARM_ABS32	.bss.actor
+
+Disassembly of section .text.mt_usb_bridge_snapshot:
+
+00000000 <mt_usb_bridge_snapshot>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	4606      	mov	r6, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_snapshot>
+			4: R_ARM_THM_CALL	mt_usb_bridge_lock
+   8:	4634      	mov	r4, r6
+   a:	4607      	mov	r7, r0
+   c:	4d06      	ldr	r5, [pc, #24]	@ (28 <mt_usb_bridge_snapshot+0x28>)
+   e:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  10:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  12:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  14:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  16:	e895 000f 	ldmia.w	r5, {r0, r1, r2, r3}
+  1a:	e884 000f 	stmia.w	r4, {r0, r1, r2, r3}
+  1e:	4638      	mov	r0, r7
+  20:	f7ff fffe 	bl	0 <mt_usb_bridge_snapshot>
+			20: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  24:	4630      	mov	r0, r6
+  26:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+  28:	00000000 	.word	0x00000000
+			28: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_cleaned:
+
+00000000 <mt_usb_bridge_cleaned>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4605      	mov	r5, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_cleaned>
+			4: R_ARM_THM_CALL	mt_usb_bridge_lock
+   8:	4604      	mov	r4, r0
+   a:	4629      	mov	r1, r5
+   c:	4803      	ldr	r0, [pc, #12]	@ (1c <mt_usb_bridge_cleaned+0x1c>)
+   e:	f7ff fffe 	bl	0 <mt_usb_epoch_cleaned>
+			e: R_ARM_THM_CALL	mt_usb_epoch_cleaned
+  12:	4620      	mov	r0, r4
+  14:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+  18:	f7ff bffe 	b.w	0 <mt_usb_bridge_cleaned>
+			18: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+  1c:	00000000 	.word	0x00000000
+			1c: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_dispatch:
+
+00000000 <mt_usb_bridge_dispatch>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4615      	mov	r5, r2
+   6:	4604      	mov	r4, r0
+   8:	460e      	mov	r6, r1
+   a:	f7ff fffe 	bl	0 <mt_usb_bridge_dispatch>
+			a: R_ARM_THM_CALL	mt_usb_bridge_lock
+   e:	2300      	movs	r3, #0
+  10:	e9c5 3300 	strd	r3, r3, [r5]
+  14:	4b1a      	ldr	r3, [pc, #104]	@ (80 <mt_usb_bridge_dispatch+0x80>)
+  16:	4607      	mov	r7, r0
+  18:	681b      	ldr	r3, [r3, #0]
+  1a:	b933      	cbnz	r3, 2a <mt_usb_bridge_dispatch+0x2a>
+  1c:	2400      	movs	r4, #0
+  1e:	4638      	mov	r0, r7
+  20:	f7ff fffe 	bl	0 <mt_usb_bridge_dispatch>
+			20: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  24:	4620      	mov	r0, r4
+  26:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  2a:	4b16      	ldr	r3, [pc, #88]	@ (84 <mt_usb_bridge_dispatch+0x84>)
+  2c:	681b      	ldr	r3, [r3, #0]
+  2e:	2b00      	cmp	r3, #0
+  30:	d0f4      	beq.n	1c <mt_usb_bridge_dispatch+0x1c>
+  32:	2c00      	cmp	r4, #0
+  34:	d0f2      	beq.n	1c <mt_usb_bridge_dispatch+0x1c>
+  36:	4b14      	ldr	r3, [pc, #80]	@ (88 <mt_usb_bridge_dispatch+0x88>)
+  38:	6818      	ldr	r0, [r3, #0]
+  3a:	42a0      	cmp	r0, r4
+  3c:	d1ee      	bne.n	1c <mt_usb_bridge_dispatch+0x1c>
+  3e:	f8df 804c 	ldr.w	r8, [pc, #76]	@ 8c <mt_usb_bridge_dispatch+0x8c>
+  42:	6ad9      	ldr	r1, [r3, #44]	@ 0x2c
+  44:	f8d8 2000 	ldr.w	r2, [r8]
+  48:	430a      	orrs	r2, r1
+  4a:	69d9      	ldr	r1, [r3, #28]
+  4c:	430a      	orrs	r2, r1
+  4e:	d1e5      	bne.n	1c <mt_usb_bridge_dispatch+0x1c>
+  50:	68da      	ldr	r2, [r3, #12]
+  52:	4282      	cmp	r2, r0
+  54:	d112      	bne.n	7c <mt_usb_bridge_dispatch+0x7c>
+  56:	b90e      	cbnz	r6, 5c <mt_usb_bridge_dispatch+0x5c>
+  58:	699b      	ldr	r3, [r3, #24]
+  5a:	b97b      	cbnz	r3, 7c <mt_usb_bridge_dispatch+0x7c>
+  5c:	4632      	mov	r2, r6
+  5e:	4621      	mov	r1, r4
+  60:	4809      	ldr	r0, [pc, #36]	@ (88 <mt_usb_bridge_dispatch+0x88>)
+  62:	f7ff fffe 	bl	0 <mt_usb_epoch_dispatch>
+			62: R_ARM_THM_CALL	mt_usb_epoch_dispatch
+  66:	2800      	cmp	r0, #0
+  68:	d0d8      	beq.n	1c <mt_usb_bridge_dispatch+0x1c>
+  6a:	f8d8 3000 	ldr.w	r3, [r8]
+  6e:	f8c8 4000 	str.w	r4, [r8]
+  72:	602b      	str	r3, [r5, #0]
+  74:	2301      	movs	r3, #1
+  76:	2402      	movs	r4, #2
+  78:	606b      	str	r3, [r5, #4]
+  7a:	e7d0      	b.n	1e <mt_usb_bridge_dispatch+0x1e>
+  7c:	2401      	movs	r4, #1
+  7e:	e7ce      	b.n	1e <mt_usb_bridge_dispatch+0x1e>
+	...
+			80: R_ARM_ABS32	.bss.lock_fn
+			84: R_ARM_ABS32	.bss.unlock_fn
+			88: R_ARM_ABS32	.bss.state
+			8c: R_ARM_ABS32	.bss.actor
+
+Disassembly of section .text.mt_usb_bridge_app_enter:
+
+00000000 <mt_usb_bridge_app_enter>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			4: R_ARM_THM_CALL	mt_usb_bridge_lock
+   8:	4f0e      	ldr	r7, [pc, #56]	@ (44 <mt_usb_bridge_app_enter+0x44>)
+   a:	4606      	mov	r6, r0
+   c:	683d      	ldr	r5, [r7, #0]
+   e:	b90d      	cbnz	r5, 14 <mt_usb_bridge_app_enter+0x14>
+  10:	4b0d      	ldr	r3, [pc, #52]	@ (48 <mt_usb_bridge_app_enter+0x48>)
+  12:	681d      	ldr	r5, [r3, #0]
+  14:	2300      	movs	r3, #0
+  16:	e9c4 3300 	strd	r3, r3, [r4]
+  1a:	4b0c      	ldr	r3, [pc, #48]	@ (4c <mt_usb_bridge_app_enter+0x4c>)
+  1c:	681b      	ldr	r3, [r3, #0]
+  1e:	b163      	cbz	r3, 3a <mt_usb_bridge_app_enter+0x3a>
+  20:	4b0b      	ldr	r3, [pc, #44]	@ (50 <mt_usb_bridge_app_enter+0x50>)
+  22:	681b      	ldr	r3, [r3, #0]
+  24:	b14b      	cbz	r3, 3a <mt_usb_bridge_app_enter+0x3a>
+  26:	4629      	mov	r1, r5
+  28:	4807      	ldr	r0, [pc, #28]	@ (48 <mt_usb_bridge_app_enter+0x48>)
+  2a:	f7ff fffe 	bl	0 <mt_usb_epoch_app_io>
+			2a: R_ARM_THM_CALL	mt_usb_epoch_app_io
+  2e:	b120      	cbz	r0, 3a <mt_usb_bridge_app_enter+0x3a>
+  30:	683b      	ldr	r3, [r7, #0]
+  32:	603d      	str	r5, [r7, #0]
+  34:	6023      	str	r3, [r4, #0]
+  36:	2301      	movs	r3, #1
+  38:	6063      	str	r3, [r4, #4]
+  3a:	4630      	mov	r0, r6
+  3c:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			3c: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  40:	6860      	ldr	r0, [r4, #4]
+  42:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+	...
+			44: R_ARM_ABS32	.bss.actor
+			48: R_ARM_ABS32	.bss.state
+			4c: R_ARM_ABS32	.bss.lock_fn
+			50: R_ARM_ABS32	.bss.unlock_fn
+
+Disassembly of section .text.mt_usb_bridge_leave:
+
+00000000 <mt_usb_bridge_leave>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			4: R_ARM_THM_CALL	mt_usb_bridge_lock
+   8:	6863      	ldr	r3, [r4, #4]
+   a:	b123      	cbz	r3, 16 <mt_usb_bridge_leave+0x16>
+   c:	4b04      	ldr	r3, [pc, #16]	@ (20 <mt_usb_bridge_leave+0x20>)
+   e:	6822      	ldr	r2, [r4, #0]
+  10:	601a      	str	r2, [r3, #0]
+  12:	2300      	movs	r3, #0
+  14:	6063      	str	r3, [r4, #4]
+  16:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
+  1a:	f7ff bffe 	b.w	0 <mt_usb_bridge_leave>
+			1a: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+  1e:	bf00      	nop
+  20:	00000000 	.word	0x00000000
+			20: R_ARM_ABS32	.bss.actor
+
+Disassembly of section .text.mt_usb_bridge_reset_done:
+
+00000000 <mt_usb_bridge_reset_done>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4605      	mov	r5, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_reset_done>
+			4: R_ARM_THM_CALL	mt_usb_bridge_lock
+   8:	4b06      	ldr	r3, [pc, #24]	@ (24 <mt_usb_bridge_reset_done+0x24>)
+   a:	4604      	mov	r4, r0
+   c:	6819      	ldr	r1, [r3, #0]
+   e:	42a9      	cmp	r1, r5
+  10:	d102      	bne.n	18 <mt_usb_bridge_reset_done+0x18>
+  12:	4805      	ldr	r0, [pc, #20]	@ (28 <mt_usb_bridge_reset_done+0x28>)
+  14:	f7ff fffe 	bl	0 <mt_usb_epoch_reset_done>
+			14: R_ARM_THM_CALL	mt_usb_epoch_reset_done
+  18:	4620      	mov	r0, r4
+  1a:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+  1e:	f7ff bffe 	b.w	0 <mt_usb_bridge_reset_done>
+			1e: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+  22:	bf00      	nop
+	...
+			24: R_ARM_ABS32	.bss.actor
+			28: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_config_begin:
+
+00000000 <mt_usb_bridge_config_begin>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	460f      	mov	r7, r1
+   4:	4606      	mov	r6, r0
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_config_begin>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4605      	mov	r5, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_config_begin>
+			c: R_ARM_THM_CALL	permitted
+  10:	4604      	mov	r4, r0
+  12:	b148      	cbz	r0, 28 <mt_usb_bridge_config_begin+0x28>
+  14:	2f01      	cmp	r7, #1
+  16:	d101      	bne.n	1c <mt_usb_bridge_config_begin+0x1c>
+  18:	2e01      	cmp	r6, #1
+  1a:	d906      	bls.n	2a <mt_usb_bridge_config_begin+0x2a>
+  1c:	4b05      	ldr	r3, [pc, #20]	@ (34 <mt_usb_bridge_config_begin+0x34>)
+  1e:	2208      	movs	r2, #8
+  20:	6819      	ldr	r1, [r3, #0]
+  22:	4805      	ldr	r0, [pc, #20]	@ (38 <mt_usb_bridge_config_begin+0x38>)
+  24:	f7ff fffe 	bl	0 <mt_usb_epoch_fail>
+			24: R_ARM_THM_CALL	mt_usb_epoch_fail
+  28:	2400      	movs	r4, #0
+  2a:	4628      	mov	r0, r5
+  2c:	f7ff fffe 	bl	0 <mt_usb_bridge_config_begin>
+			2c: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  30:	4620      	mov	r0, r4
+  32:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+	...
+			34: R_ARM_ABS32	.bss.actor
+			38: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_config_done:
+
+00000000 <mt_usb_bridge_config_done>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4606      	mov	r6, r0
+   4:	460d      	mov	r5, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_config_done>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4604      	mov	r4, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_config_done>
+			c: R_ARM_THM_CALL	permitted
+  10:	b138      	cbz	r0, 22 <mt_usb_bridge_config_done+0x22>
+  12:	2e01      	cmp	r6, #1
+  14:	d10a      	bne.n	2c <mt_usb_bridge_config_done+0x2c>
+  16:	b14d      	cbz	r5, 2c <mt_usb_bridge_config_done+0x2c>
+  18:	4b06      	ldr	r3, [pc, #24]	@ (34 <mt_usb_bridge_config_done+0x34>)
+  1a:	4807      	ldr	r0, [pc, #28]	@ (38 <mt_usb_bridge_config_done+0x38>)
+  1c:	6819      	ldr	r1, [r3, #0]
+  1e:	f7ff fffe 	bl	0 <mt_usb_epoch_configured>
+			1e: R_ARM_THM_CALL	mt_usb_epoch_configured
+  22:	4620      	mov	r0, r4
+  24:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  28:	f7ff bffe 	b.w	0 <mt_usb_bridge_config_done>
+			28: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+  2c:	f7ff fffe 	bl	0 <mt_usb_bridge_config_done>
+			2c: R_ARM_THM_CALL	result.part.0
+  30:	e7f7      	b.n	22 <mt_usb_bridge_config_done+0x22>
+  32:	bf00      	nop
+	...
+			34: R_ARM_ABS32	.bss.actor
+			38: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_bridge_xfer:
+
+00000000 <mt_usb_bridge_xfer>:
+   0:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	460e      	mov	r6, r1
+   8:	4617      	mov	r7, r2
+   a:	4698      	mov	r8, r3
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_xfer>
+			c: R_ARM_THM_CALL	mt_usb_bridge_lock
+  10:	4605      	mov	r5, r0
+  12:	f7ff fffe 	bl	0 <mt_usb_bridge_xfer>
+			12: R_ARM_THM_CALL	permitted
+  16:	b938      	cbnz	r0, 28 <mt_usb_bridge_xfer+0x28>
+  18:	2400      	movs	r4, #0
+  1a:	4628      	mov	r0, r5
+  1c:	f7ff fffe 	bl	0 <mt_usb_bridge_xfer>
+			1c: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  20:	4620      	mov	r0, r4
+  22:	b002      	add	sp, #8
+  24:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  28:	f89d 3020 	ldrb.w	r3, [sp, #32]
+  2c:	4620      	mov	r0, r4
+  2e:	9300      	str	r3, [sp, #0]
+  30:	463a      	mov	r2, r7
+  32:	4643      	mov	r3, r8
+  34:	4631      	mov	r1, r6
+  36:	f7ff fffe 	bl	0 <dcd_edpt_xfer>
+			36: R_ARM_THM_CALL	dcd_edpt_xfer
+  3a:	4604      	mov	r4, r0
+  3c:	2800      	cmp	r0, #0
+  3e:	d1ec      	bne.n	1a <mt_usb_bridge_xfer+0x1a>
+  40:	f7ff fffe 	bl	0 <mt_usb_bridge_xfer>
+			40: R_ARM_THM_CALL	result.part.0
+  44:	e7e8      	b.n	18 <mt_usb_bridge_xfer+0x18>
+
+Disassembly of section .text.mt_usb_bridge_fifo:
+
+00000000 <mt_usb_bridge_fifo>:
+   0:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	460e      	mov	r6, r1
+   8:	4617      	mov	r7, r2
+   a:	4698      	mov	r8, r3
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_fifo>
+			c: R_ARM_THM_CALL	mt_usb_bridge_lock
+  10:	4605      	mov	r5, r0
+  12:	f7ff fffe 	bl	0 <mt_usb_bridge_fifo>
+			12: R_ARM_THM_CALL	permitted
+  16:	b938      	cbnz	r0, 28 <mt_usb_bridge_fifo+0x28>
+  18:	2400      	movs	r4, #0
+  1a:	4628      	mov	r0, r5
+  1c:	f7ff fffe 	bl	0 <mt_usb_bridge_fifo>
+			1c: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  20:	4620      	mov	r0, r4
+  22:	b002      	add	sp, #8
+  24:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  28:	f89d 3020 	ldrb.w	r3, [sp, #32]
+  2c:	4620      	mov	r0, r4
+  2e:	9300      	str	r3, [sp, #0]
+  30:	463a      	mov	r2, r7
+  32:	4643      	mov	r3, r8
+  34:	4631      	mov	r1, r6
+  36:	f7ff fffe 	bl	0 <dcd_edpt_xfer_fifo>
+			36: R_ARM_THM_CALL	dcd_edpt_xfer_fifo
+  3a:	4604      	mov	r4, r0
+  3c:	2800      	cmp	r0, #0
+  3e:	d1ec      	bne.n	1a <mt_usb_bridge_fifo+0x1a>
+  40:	f7ff fffe 	bl	0 <mt_usb_bridge_fifo>
+			40: R_ARM_THM_CALL	result.part.0
+  44:	e7e8      	b.n	18 <mt_usb_bridge_fifo+0x18>
+
+Disassembly of section .text.mt_usb_bridge_open:
+
+00000000 <mt_usb_bridge_open>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+   4:	460e      	mov	r6, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_open>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4605      	mov	r5, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_open>
+			c: R_ARM_THM_CALL	permitted
+  10:	b928      	cbnz	r0, 1e <mt_usb_bridge_open+0x1e>
+  12:	2400      	movs	r4, #0
+  14:	4628      	mov	r0, r5
+  16:	f7ff fffe 	bl	0 <mt_usb_bridge_open>
+			16: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  1a:	4620      	mov	r0, r4
+  1c:	bd70      	pop	{r4, r5, r6, pc}
+  1e:	4620      	mov	r0, r4
+  20:	4631      	mov	r1, r6
+  22:	f7ff fffe 	bl	0 <dcd_edpt_open>
+			22: R_ARM_THM_CALL	dcd_edpt_open
+  26:	4604      	mov	r4, r0
+  28:	2800      	cmp	r0, #0
+  2a:	d1f3      	bne.n	14 <mt_usb_bridge_open+0x14>
+  2c:	f7ff fffe 	bl	0 <mt_usb_bridge_open>
+			2c: R_ARM_THM_CALL	result.part.0
+  30:	e7ef      	b.n	12 <mt_usb_bridge_open+0x12>
+
+Disassembly of section .text.mt_usb_bridge_stall:
+
+00000000 <mt_usb_bridge_stall>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460e      	mov	r6, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_stall>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4604      	mov	r4, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_stall>
+			c: R_ARM_THM_CALL	permitted
+  10:	b118      	cbz	r0, 1a <mt_usb_bridge_stall+0x1a>
+  12:	4631      	mov	r1, r6
+  14:	4628      	mov	r0, r5
+  16:	f7ff fffe 	bl	0 <dcd_edpt_stall>
+			16: R_ARM_THM_CALL	dcd_edpt_stall
+  1a:	4620      	mov	r0, r4
+  1c:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  20:	f7ff bffe 	b.w	0 <mt_usb_bridge_stall>
+			20: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+
+Disassembly of section .text.mt_usb_bridge_clear_stall:
+
+00000000 <mt_usb_bridge_clear_stall>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460e      	mov	r6, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_clear_stall>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4604      	mov	r4, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_clear_stall>
+			c: R_ARM_THM_CALL	permitted
+  10:	b118      	cbz	r0, 1a <mt_usb_bridge_clear_stall+0x1a>
+  12:	4631      	mov	r1, r6
+  14:	4628      	mov	r0, r5
+  16:	f7ff fffe 	bl	0 <dcd_edpt_clear_stall>
+			16: R_ARM_THM_CALL	dcd_edpt_clear_stall
+  1a:	4620      	mov	r0, r4
+  1c:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  20:	f7ff bffe 	b.w	0 <mt_usb_bridge_clear_stall>
+			20: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+
+Disassembly of section .text.mt_usb_bridge_status:
+
+00000000 <mt_usb_bridge_status>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460e      	mov	r6, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_status>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4604      	mov	r4, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_status>
+			c: R_ARM_THM_CALL	permitted
+  10:	b118      	cbz	r0, 1a <mt_usb_bridge_status+0x1a>
+  12:	4631      	mov	r1, r6
+  14:	4628      	mov	r0, r5
+  16:	f7ff fffe 	bl	0 <dcd_edpt0_status_complete>
+			16: R_ARM_THM_CALL	dcd_edpt0_status_complete
+  1a:	4620      	mov	r0, r4
+  1c:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  20:	f7ff bffe 	b.w	0 <mt_usb_bridge_status>
+			20: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+
+Disassembly of section .text.mt_usb_bridge_sof:
+
+00000000 <mt_usb_bridge_sof>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	460e      	mov	r6, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_sof>
+			6: R_ARM_THM_CALL	mt_usb_bridge_lock
+   a:	4604      	mov	r4, r0
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_sof>
+			c: R_ARM_THM_CALL	permitted
+  10:	b118      	cbz	r0, 1a <mt_usb_bridge_sof+0x1a>
+  12:	4631      	mov	r1, r6
+  14:	4628      	mov	r0, r5
+  16:	f7ff fffe 	bl	0 <dcd_sof_enable>
+			16: R_ARM_THM_CALL	dcd_sof_enable
+  1a:	4620      	mov	r0, r4
+  1c:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  20:	f7ff bffe 	b.w	0 <mt_usb_bridge_sof>
+			20: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+
+Disassembly of section .text.mt_usb_bridge_close_all:
+
+00000000 <mt_usb_bridge_close_all>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4605      	mov	r5, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_close_all>
+			4: R_ARM_THM_CALL	mt_usb_bridge_lock
+   8:	4604      	mov	r4, r0
+   a:	f7ff fffe 	bl	0 <mt_usb_bridge_close_all>
+			a: R_ARM_THM_CALL	permitted
+   e:	b110      	cbz	r0, 16 <mt_usb_bridge_close_all+0x16>
+  10:	4628      	mov	r0, r5
+  12:	f7ff fffe 	bl	0 <dcd_edpt_close_all>
+			12: R_ARM_THM_CALL	dcd_edpt_close_all
+  16:	4620      	mov	r0, r4
+  18:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+  1c:	f7ff bffe 	b.w	0 <mt_usb_bridge_close_all>
+			1c: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+
+Disassembly of section .text.mt_usb_bridge_address:
+
+00000000 <mt_usb_bridge_address>:
+   0:	e92d 4ff8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4607      	mov	r7, r0
+   6:	4688      	mov	r8, r1
+   8:	f7ff fffe 	bl	0 <mt_usb_bridge_address>
+			8: R_ARM_THM_CALL	mt_usb_bridge_lock
+   c:	4683      	mov	fp, r0
+   e:	f7ff fffe 	bl	0 <mt_usb_bridge_address>
+			e: R_ARM_THM_CALL	permitted
+  12:	b1c0      	cbz	r0, 46 <mt_usb_bridge_address+0x46>
+  14:	2600      	movs	r6, #0
+  16:	2401      	movs	r4, #1
+  18:	4d0e      	ldr	r5, [pc, #56]	@ (54 <mt_usb_bridge_address+0x54>)
+  1a:	f8df a03c 	ldr.w	sl, [pc, #60]	@ 58 <mt_usb_bridge_address+0x58>
+  1e:	f8df 903c 	ldr.w	r9, [pc, #60]	@ 5c <mt_usb_bridge_address+0x5c>
+  22:	4641      	mov	r1, r8
+  24:	4638      	mov	r0, r7
+  26:	602c      	str	r4, [r5, #0]
+  28:	f8c9 6000 	str.w	r6, [r9]
+  2c:	f8ca 6000 	str.w	r6, [sl]
+  30:	f7ff fffe 	bl	0 <dcd_set_address>
+			30: R_ARM_THM_CALL	dcd_set_address
+  34:	f8da 3000 	ldr.w	r3, [sl]
+  38:	602e      	str	r6, [r5, #0]
+  3a:	b113      	cbz	r3, 42 <mt_usb_bridge_address+0x42>
+  3c:	f8d9 3000 	ldr.w	r3, [r9]
+  40:	b913      	cbnz	r3, 48 <mt_usb_bridge_address+0x48>
+  42:	f7ff fffe 	bl	0 <mt_usb_bridge_address>
+			42: R_ARM_THM_CALL	result.part.0
+  46:	2400      	movs	r4, #0
+  48:	4658      	mov	r0, fp
+  4a:	f7ff fffe 	bl	0 <mt_usb_bridge_address>
+			4a: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  4e:	4620      	mov	r0, r4
+  50:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+	...
+			54: R_ARM_ABS32	.bss.address_pending
+			58: R_ARM_ABS32	.bss.address_seen
+			5c: R_ARM_ABS32	.bss.address_accepted
+
+Disassembly of section .text.mt_usb_bridge_address_result:
+
+00000000 <mt_usb_bridge_address_result>:
+   0:	4b04      	ldr	r3, [pc, #16]	@ (14 <mt_usb_bridge_address_result+0x14>)
+   2:	681b      	ldr	r3, [r3, #0]
+   4:	b123      	cbz	r3, 10 <mt_usb_bridge_address_result+0x10>
+   6:	2201      	movs	r2, #1
+   8:	4b03      	ldr	r3, [pc, #12]	@ (18 <mt_usb_bridge_address_result+0x18>)
+   a:	601a      	str	r2, [r3, #0]
+   c:	4b03      	ldr	r3, [pc, #12]	@ (1c <mt_usb_bridge_address_result+0x1c>)
+   e:	6018      	str	r0, [r3, #0]
+  10:	4770      	bx	lr
+  12:	bf00      	nop
+	...
+			14: R_ARM_ABS32	.bss.address_pending
+			18: R_ARM_ABS32	.bss.address_seen
+			1c: R_ARM_ABS32	.bss.address_accepted

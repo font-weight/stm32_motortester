@@ -1,0 +1,1 @@
+PASS: author RX and RX/ADC, supporting RX, original and adapted controller, unchanged Stop reproducers, Critic-A wrapper oracle.

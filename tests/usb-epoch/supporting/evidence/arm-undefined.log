@@ -1,0 +1,4 @@
+$ /workspace/shared/arm-resource-evidence/toolchain/root/usr/bin/arm-none-eabi-nm -u /workspace/shared/usb-epoch-independent/evidence/mt_usb_epoch.arm.o
+         U memset
+
+exit=0

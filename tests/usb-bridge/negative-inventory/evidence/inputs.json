@@ -1,0 +1,11 @@
+{
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.c": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_fifo.c": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac",
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.c": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc_device.c": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840",
+  "/workspace/shared/usb-cdc-tests/fake_dcd.c": "fa91bed60b415d7c09e1b4aa1c3865f127d29232113c7dc1e1344e8469c595da",
+  "/workspace/shared/usb-dcd-guard-inventory/probes/core_probe.c": "b5dea943378facd9bf6908f9a6ea982bb14991f4e6b152b96ca848902536b9a7",
+  "/workspace/shared/usb-cdc-tests/config-buffered/tusb_config.h": "ef6f720feda7e9e5e427ee0d2b90f2430402b5f6d7076911b4e3757855ee3dfc",
+  "/workspace/shared/usb-cdc-tests/config-f1/tusb_config.h": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a",
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f"
+}

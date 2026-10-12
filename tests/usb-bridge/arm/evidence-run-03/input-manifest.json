@@ -1,0 +1,306 @@
+{
+  "/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include/cmsis_compiler.h": {
+    "sha256": "b51963d271c1571ca3463654c76aa7ea50c4eac5d0a2710df10414ac64d9e0f8",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/cmsis_compiler.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h": {
+    "sha256": "43bfd1fe69fbbc2ca70aaf7d43cc3e20f16e0c7f66e1bdef9b51af6dc14b2617",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include/cmsis_version.h": {
+    "sha256": "184c19fd3ee73632edf35a0b4d49cd48be75fbf49e6ccb19d9db05fa83bea4b3",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/cmsis_version.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h": {
+    "sha256": "c9937781259a8897adf514445441c68570087d6a72a558d8a4afe75cdb62dbd2",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-core/LICENSE.txt": {
+    "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-core/LICENSE.txt"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include/stm32f103xb.h": {
+    "sha256": "d9c7c613d9fea74220892b4fbc3e80617493acad82a04bafadab2b4a7198399c",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-device-f1/Include/stm32f103xb.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include/stm32f1xx.h": {
+    "sha256": "05e93fa3ddefb2e83d762b9ca4de36e3bba9cd8e9690400fe9f2c11fc0a3cef5",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-device-f1/Include/stm32f1xx.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/Include/system_stm32f1xx.h": {
+    "sha256": "a54dfbb3480c672f532d472a6e84bcf34df6551771d2e9966c5a3503c676b6ab",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-device-f1/Include/system_stm32f1xx.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/cmsis-device-f1/License.md": {
+    "sha256": "b645e89bbfb6accf914cf7adca011712bf90055391fdd55f2af6439d98aa36d4",
+    "snapshot": "snapshot/dependencies/vendor/cmsis-device-f1/License.md"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/LICENSE": {
+    "sha256": "f878d62e47e693ea64160218edb1b9b4755f4839a3179e5bef4a6b0359399431",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/LICENSE"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc.h": {
+    "sha256": "40bfcfda287a7556d31e0a6ea607b9b4340be32436c3af0099b08ece6e853312",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/class/cdc/cdc.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc_device.c": {
+    "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/class/cdc/cdc_device.c"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc_device.h": {
+    "sha256": "1d9b3f42642e668d0bb8f82c494ffe971f387ffda2b03dc4ca78b4a6f09f13cc",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/class/cdc/cdc_device.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_common.h": {
+    "sha256": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_common.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_compiler.h": {
+    "sha256": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_compiler.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_debug.h": {
+    "sha256": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_debug.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_fifo.c": {
+    "sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_fifo.c"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_fifo.h": {
+    "sha256": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_fifo.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_mcu.h": {
+    "sha256": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_mcu.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_private.h": {
+    "sha256": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_private.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_types.h": {
+    "sha256": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_types.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_verify.h": {
+    "sha256": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/common/tusb_verify.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/dcd.h": {
+    "sha256": "baf785f2d5d8e3f74bd6d6a04559fc606d341983aad35aa08e168b452c2750db",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/device/dcd.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.c": {
+    "sha256": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/device/usbd.c"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.h": {
+    "sha256": "48040a0ea812b5f099bab557c81aa83fb9386d7eb2dfd814b1eba9aa2468b298",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/device/usbd.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd_pvt.h": {
+    "sha256": "3d3bae6a54ac6d677a2fdae156665c760a7f22f7651b34cfaa4460a585964db9",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/device/usbd_pvt.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/osal/osal.h": {
+    "sha256": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/osal/osal.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/osal/osal_none.h": {
+    "sha256": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/osal/osal_none.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c": {
+    "sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c": {
+    "sha256": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h": {
+    "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h": {
+    "sha256": "8ad617f61884ef9acc137fed9eab34264af79ef75df916cef1126f3106fdeabe",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.c": {
+    "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/tusb.c"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.h": {
+    "sha256": "115100fbffe8984964a321e477720a5586db7776ac832ca81749c89cc08183bb",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/tusb.h"
+  },
+  "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb_option.h": {
+    "sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f",
+    "snapshot": "snapshot/dependencies/vendor/tinyusb/src/tusb_option.h"
+  },
+  "/workspace/shared/usb-dependencies/evidence/config/tusb_config.h": {
+    "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a",
+    "snapshot": "snapshot/dependencies/evidence/config/tusb_config.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/acquisition/acquisition.c": {
+    "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+    "snapshot": "snapshot/adapter/firmware/acquisition/acquisition.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/acquisition/acquisition.h": {
+    "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+    "snapshot": "snapshot/adapter/firmware/acquisition/acquisition.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/app/mt_capture_link.c": {
+    "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+    "snapshot": "snapshot/adapter/firmware/app/mt_capture_link.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/app/mt_capture_link.h": {
+    "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+    "snapshot": "snapshot/adapter/firmware/app/mt_capture_link.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/app/mt_control.c": {
+    "sha256": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+    "snapshot": "snapshot/adapter/firmware/app/mt_control.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/app/mt_control.h": {
+    "sha256": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+    "snapshot": "snapshot/adapter/firmware/app/mt_control.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/app/mt_control_rx.c": {
+    "sha256": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322",
+    "snapshot": "snapshot/adapter/firmware/app/mt_control_rx.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/app/mt_control_rx.h": {
+    "sha256": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943",
+    "snapshot": "snapshot/adapter/firmware/app/mt_control_rx.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_command.c": {
+    "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_command.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_command.h": {
+    "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_command.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_session.c": {
+    "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_session.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_session.h": {
+    "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_session.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_stream.c": {
+    "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_stream.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_stream.h": {
+    "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_stream.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_wire.c": {
+    "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_wire.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/protocol/mt_wire.h": {
+    "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+    "snapshot": "snapshot/adapter/firmware/protocol/mt_wire.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/transport/USB_CDC_README.md": {
+    "sha256": "648129e5b403840f0a17ade59e605422d50dd8c242a7cf4a03d117af16b126b2",
+    "snapshot": "snapshot/adapter/firmware/transport/USB_CDC_README.md"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/transport/mt_tx.c": {
+    "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+    "snapshot": "snapshot/adapter/firmware/transport/mt_tx.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/transport/mt_tx.h": {
+    "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+    "snapshot": "snapshot/adapter/firmware/transport/mt_tx.h"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/transport/mt_usb_cdc.c": {
+    "sha256": "4127541694a00521f0eddce314bbce8383da892b2a5adbb0e5bace6576d0193f",
+    "snapshot": "snapshot/adapter/firmware/transport/mt_usb_cdc.c"
+  },
+  "/workspace/shared/usb-adapter-draft/firmware/transport/mt_usb_cdc.h": {
+    "sha256": "9ab7a12dcfb1d0d3282d151f0c07884d8b30fcee3cd4e4ef893b6bc13a78f7b4",
+    "snapshot": "snapshot/adapter/firmware/transport/mt_usb_cdc.h"
+  },
+  "/workspace/shared/usb-epoch-draft/firmware/transport/USB_EPOCH_README.md": {
+    "sha256": "5d17b747b40dacde3e07369fa3c2fa550c6c513883b2ccc09d32513b3f585a1c",
+    "snapshot": "snapshot/epoch/firmware/transport/USB_EPOCH_README.md"
+  },
+  "/workspace/shared/usb-epoch-draft/firmware/transport/mt_usb_epoch.c": {
+    "sha256": "c3f70c9937359d263cc78c668bd2a9cd91f8d384d82d958d6587a777b6947159",
+    "snapshot": "snapshot/epoch/firmware/transport/mt_usb_epoch.c"
+  },
+  "/workspace/shared/usb-epoch-draft/firmware/transport/mt_usb_epoch.h": {
+    "sha256": "0846781e5688642fc7ffb59910d3acc2492b3dd9afbef406a4b4671dc2d8be0b",
+    "snapshot": "snapshot/epoch/firmware/transport/mt_usb_epoch.h"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/third_party/usb/patches/0003-usb005-core.patch": {
+    "sha256": "4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf",
+    "snapshot": "snapshot/bridge/firmware/third_party/usb/patches/0003-usb005-core.patch"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/third_party/usb/patches/0003-usb005-fsdev.patch": {
+    "sha256": "336e23e852d3998aa49ce374ff77bf92270cc38d01b2ee56df33a59364c4ff3d",
+    "snapshot": "snapshot/bridge/firmware/third_party/usb/patches/0003-usb005-fsdev.patch"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/third_party/usb/patches/apply_usb_bridge_patch.py": {
+    "sha256": "73e25167eacff7b9ec5faf0d006fd37e5509eafe657ceec3b539fdb1f036d2a8",
+    "snapshot": "snapshot/bridge/firmware/third_party/usb/patches/apply_usb_bridge_patch.py"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/third_party/usb/patches/usb005-patches.json": {
+    "sha256": "26f1c175578e3960b9805bd0d80370d1fdafcdae99b9321662ad6e0ed7f8181c",
+    "snapshot": "snapshot/bridge/firmware/third_party/usb/patches/usb005-patches.json"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/transport/mt_usb_bridge.c": {
+    "sha256": "7cbbc13e481aa398b28f713f2b3067f27e622c99cd8c1eed833237b04cf59d7e",
+    "snapshot": "snapshot/bridge/firmware/transport/mt_usb_bridge.c"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/transport/mt_usb_bridge.h": {
+    "sha256": "5894b781971f5e5b3179f612d909f4299905fb997132008aa33225e9f2e35866",
+    "snapshot": "snapshot/bridge/firmware/transport/mt_usb_bridge.h"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/transport/mt_usb_cdc.c": {
+    "sha256": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f",
+    "snapshot": "snapshot/bridge/firmware/transport/mt_usb_cdc.c"
+  },
+  "/workspace/shared/usb-bridge-draft/firmware/transport/mt_usb_cdc.h": {
+    "sha256": "4f7d054f5ec14c4b04b6b28240c93af2e9894e16c72db7a369f2d3221800563b",
+    "snapshot": "snapshot/bridge/firmware/transport/mt_usb_cdc.h"
+  },
+  "/workspace/shared/usb-bridge-draft/build/usbd.c": {
+    "sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+    "snapshot": "snapshot/bridge/build/usbd.c"
+  },
+  "/workspace/shared/usb-bridge-draft/build/dcd_stm32_fsdev.c": {
+    "sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8",
+    "snapshot": "snapshot/bridge/build/dcd_stm32_fsdev.c"
+  },
+  "/workspace/shared/usb-bridge-draft/build/core.patch": {
+    "sha256": "4901339a1570322e4e320c38196f8d4bfa97a688a74de6e08d527076c5f5c0bf",
+    "snapshot": "snapshot/bridge/build/core.patch"
+  },
+  "/workspace/shared/usb-bridge-draft/build/dcd.patch": {
+    "sha256": "336e23e852d3998aa49ce374ff77bf92270cc38d01b2ee56df33a59364c4ff3d",
+    "snapshot": "snapshot/bridge/build/dcd.patch"
+  },
+  "/workspace/shared/usb-bridge-draft/tools/build_core_patch.py": {
+    "sha256": "1029d9a4c03ccf2251595d35fa68f371b39214c47133b721e08cecec6ef2bb12",
+    "snapshot": "snapshot/bridge/tools/build_core_patch.py"
+  },
+  "/workspace/shared/usb-bridge-draft/tests/usb-bridge/README.md": {
+    "sha256": "5c7f1fef06f86610705ae1873913a75fb3a74e56e3fbdf08dbeb019bc533873b",
+    "snapshot": "snapshot/bridge/tests/usb-bridge/README.md"
+  },
+  "/workspace/shared/usb-setup-draft/build/usbd.c": {
+    "sha256": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0",
+    "snapshot": "snapshot/setup/build/usbd.c"
+  },
+  "/workspace/shared/usb-fsdev-reset-draft/build/dcd_stm32_fsdev.c": {
+    "sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97",
+    "snapshot": "snapshot/reset/build/dcd_stm32_fsdev.c"
+  }
+}

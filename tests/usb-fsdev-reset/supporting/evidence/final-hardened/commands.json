@@ -1,0 +1,958 @@
+[
+  {
+    "argv": [
+      "gcc",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=3 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=2114\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=3 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=2114\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=8",
+      "-DEXPECT_FIXED=0",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep8-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep8-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=8 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=3254\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=8",
+      "-DEXPECT_FIXED=0",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep8-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/original/ep8-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=8 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=3254\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=candidate logical_endpoints=3 physical_slots=8 reset_cases=78 fresh_cycles=4 retained_negative_cases=0 assertions=8129\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=candidate logical_endpoints=3 physical_slots=8 reset_cases=78 fresh_cycles=4 retained_negative_cases=0 assertions=8129\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=8",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep8-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep8-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=candidate logical_endpoints=8 physical_slots=8 reset_cases=78 fresh_cycles=4 retained_negative_cases=0 assertions=8909\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=8",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep8-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/candidate/ep8-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=candidate logical_endpoints=8 physical_slots=8 reset_cases=78 fresh_cycles=4 retained_negative_cases=0 assertions=8909\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=3 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=2114\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=3 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=2114\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=8",
+      "-DEXPECT_FIXED=0",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep8-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep8-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=8 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=3254\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=8",
+      "-DEXPECT_FIXED=0",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep8-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/guard_disabled/ep8-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=8 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=3254\n",
+    "stderr": "",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_missing_sweep",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_missing_sweep/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_missing_sweep/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:78: write_seen[i]>0\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_rx_only",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_rx_only/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_rx_only/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:17: (registers.ep[i].reg&(U_EP_CTR_RX|U_EP_CTR_TX))==0\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_tx_only",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_tx_only/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_tx_only/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:17: (registers.ep[i].reg&(U_EP_CTR_RX|U_EP_CTR_TX))==0\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_logical_count",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_logical_count/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_logical_count/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:18: ep_alloc_status[i].ep_num==0xff && ep_alloc_status[i].ep_type==0xff\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_skip_slot7",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_skip_slot7/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_skip_slot7/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:18: ep_alloc_status[i].ep_num==0xff && ep_alloc_status[i].ep_type==0xff\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_missing_ownership_clear",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_missing_ownership_clear/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_missing_ownership_clear/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:14: !dirty\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_partial_ownership_clear",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_partial_ownership_clear/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_partial_ownership_clear/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:14: !dirty\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_function_enabled",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_function_enabled/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_function_enabled/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/preamble.h:103: (registers.DADDR&U_DADDR_EF)==0\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_no_function_enable",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_no_function_enable/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_no_function_enable/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:64: registers.DADDR==U_DADDR_EF\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_clobber_ep0",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_clobber_ep0/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_clobber_ep0/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:75: xfer_status[0][d].max_packet_size==64&&xfer_status[0][d].ep_idx==0\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=1",
+      "-DSTM32F103xB=1",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_late_clear",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_late_clear/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/final-hardened/mut_late_clear/ep3-strict"
+    ],
+    "returncode": 70,
+    "stdout": "",
+    "stderr": "FAIL [direct reset helper entry, cold and stale ownership] /workspace/shared/fsdev-reset-cleanup-tests/src/tests.c:75: xfer_status[0][d].max_packet_size==64&&xfer_status[0][d].ep_idx==0\n",
+    "instrumentation_env": {
+      "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "purpose": "Historical integration-boundary reference; not linked or executed by the metadata tests.",
+  "snapshots": [
+    {
+      "path": "inputs/reset-barrier-REPORT_RU.md",
+      "title": "USB: защёлка reset и барьер очереди, ограниченное предложение",
+      "source": "/workspace/shared/usb-reset-barrier-analysis/REPORT_RU.md",
+      "sha256": "509312fadf462dfb7f6c49bc4296f7f437ac2317787316ec0edb7541a7c9b4ed",
+      "captured_date": "2026-10-10"
+    },
+    {
+      "path": "inputs/issue54.json",
+      "source": "https://github.com/font-weight/stm32_motortester/issues/54",
+      "sha256": "acc1700b4a7f80a04600b08354871df38aa92d9f6bab74c27aec720776a133a6",
+      "captured_date": "2026-10-10"
+    }
+  ],
+  "reproduction": "Source locators record provenance only. The runner hashes package-local snapshots and does not need these original locations or a prior evidence directory."
+}

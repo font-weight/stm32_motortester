@@ -1,0 +1,3 @@
+$ gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wconversion -Wsign-conversion -Wshadow -Wstrict-prototypes -Wmissing-prototypes -O0 -g --coverage -I/workspace/shared/usb-epoch-independent/inputs -c /workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c -o /workspace/shared/usb-epoch-independent/evidence/coverage/mt_usb_epoch.o
+
+exit=0

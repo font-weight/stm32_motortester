@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Draft proposal, not accepted firmware configuration. No defaults. Strict parser must also reject duplicate keys, non-integer numeric tokens, NaN/Infinity, oversized input, unsupported depth and all BCD nibbles >9. Scalar integers must not accept booleans. See BOARD_CONFIG_README.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "input_kind",
+    "board",
+    "caller_attestations"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "input_kind": {
+      "type": "string",
+      "enum": [
+        "caller_board",
+        "synthetic_fixture"
+      ]
+    },
+    "board": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified_hse_hz",
+        "clock_poll_budget",
+        "usb_irq_priority",
+        "firmware_build",
+        "hse_mode",
+        "require_dtr",
+        "verified_fixed_pullup",
+        "usb"
+      ],
+      "properties": {
+        "verified_hse_hz": {
+          "type": "integer",
+          "enum": [
+            4500000,
+            4800000,
+            6000000,
+            7200000,
+            8000000,
+            9000000,
+            9600000,
+            12000000,
+            14400000,
+            16000000
+          ]
+        },
+        "clock_poll_budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "usb_irq_priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        "firmware_build": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "hse_mode": {
+          "type": "string",
+          "enum": [
+            "crystal",
+            "bypass"
+          ]
+        },
+        "require_dtr": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "verified_fixed_pullup": {
+          "type": "integer",
+          "const": 1
+        },
+        "usb": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "vid",
+            "pid",
+            "bcd_device",
+            "bus_power_ma",
+            "manufacturer",
+            "product",
+            "serial"
+          ],
+          "properties": {
+            "vid": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65534
+            },
+            "pid": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 65535
+            },
+            "bcd_device": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 39321,
+              "$comment": "Mandatory semantic check: each of four hexadecimal nibbles must be <= 9. JSON Schema shape validation alone is insufficient."
+            },
+            "bus_power_ma": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 500,
+              "multipleOf": 2
+            },
+            "manufacturer": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 31,
+              "pattern": "^[ -~]+$",
+              "not": {
+                "pattern": "[^ -~]"
+              }
+            },
+            "product": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 31,
+              "pattern": "^[ -~]+$",
+              "not": {
+                "pattern": "[^ -~]"
+              }
+            },
+            "serial": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 31,
+              "pattern": "^[A-Za-z0-9]+$",
+              "not": {
+                "pattern": "[^A-Za-z0-9]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "caller_attestations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "physical_mcu_and_memory",
+        "hse_frequency_and_mode",
+        "fixed_pullup_topology",
+        "usb_bus_power_budget",
+        "usb_vid_pid_authorized",
+        "stable_unique_physical_serial"
+      ],
+      "properties": {
+        "physical_mcu_and_memory": {
+          "type": "boolean"
+        },
+        "hse_frequency_and_mode": {
+          "type": "boolean"
+        },
+        "fixed_pullup_topology": {
+          "type": "boolean"
+        },
+        "usb_bus_power_budget": {
+          "type": "boolean"
+        },
+        "usb_vid_pid_authorized": {
+          "type": "boolean"
+        },
+        "stable_unique_physical_serial": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "input_kind": {
+            "const": "caller_board"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "caller_attestations": {
+            "properties": {
+              "physical_mcu_and_memory": {
+                "const": true
+              },
+              "hse_frequency_and_mode": {
+                "const": true
+              },
+              "fixed_pullup_topology": {
+                "const": true
+              },
+              "usb_bus_power_budget": {
+                "const": true
+              },
+              "usb_vid_pid_authorized": {
+                "const": true
+              },
+              "stable_unique_physical_serial": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "input_kind": {
+            "const": "synthetic_fixture"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "caller_attestations": {
+            "properties": {
+              "physical_mcu_and_memory": {
+                "const": false
+              },
+              "hse_frequency_and_mode": {
+                "const": false
+              },
+              "fixed_pullup_topology": {
+                "const": false
+              },
+              "usb_bus_power_budget": {
+                "const": false
+              },
+              "usb_vid_pid_authorized": {
+                "const": false
+              },
+              "stable_unique_physical_serial": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

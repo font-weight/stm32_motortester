@@ -1,0 +1,85 @@
+[
+  {
+    "argv": [
+      "gcc",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-strict"
+    ],
+    "returncode": 0,
+    "stdout": "PASS mode=original-negative logical_endpoints=3 physical_slots=8 reset_cases=38 fresh_cycles=0 retained_negative_cases=24 assertions=2114\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-no-pie",
+      "-DMODEL_ENDPOINTS=3",
+      "-DEXPECT_FIXED=0",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original",
+      "-I",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src",
+      "/workspace/shared/fsdev-reset-cleanup-tests/src/translation.c",
+      "-o",
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-asan-ubsan"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/fsdev-reset-cleanup-tests/evidence/iteration3/original/ep3-asan-ubsan"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "==19==LeakSanitizer has encountered a fatal error.\n==19==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==19==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n"
+  }
+]

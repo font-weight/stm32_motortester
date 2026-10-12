@@ -1,0 +1,719 @@
+[
+  {
+    "argv": [
+      "gcc",
+      "--version"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  {
+    "argv": [
+      "ld",
+      "--version"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "GNU ld (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "argv": [
+      "sha256sum",
+      "-c",
+      "SHA256SUMS.sources"
+    ],
+    "cwd": "/workspace/shared/usb-dependencies",
+    "exit_code": 0,
+    "output": "vendor/cmsis-core/CMSIS/Core/Include/cmsis_compiler.h: OK\nvendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h: OK\nvendor/cmsis-core/CMSIS/Core/Include/cmsis_version.h: OK\nvendor/cmsis-core/CMSIS/Core/Include/core_cm3.h: OK\nvendor/cmsis-core/LICENSE.txt: OK\nvendor/cmsis-device-f1/Include/stm32f103xb.h: OK\nvendor/cmsis-device-f1/Include/stm32f1xx.h: OK\nvendor/cmsis-device-f1/Include/system_stm32f1xx.h: OK\nvendor/cmsis-device-f1/License.md: OK\nvendor/tinyusb/LICENSE: OK\nvendor/tinyusb/src/class/cdc/cdc.h: OK\nvendor/tinyusb/src/class/cdc/cdc_device.c: OK\nvendor/tinyusb/src/class/cdc/cdc_device.h: OK\nvendor/tinyusb/src/common/tusb_common.h: OK\nvendor/tinyusb/src/common/tusb_compiler.h: OK\nvendor/tinyusb/src/common/tusb_debug.h: OK\nvendor/tinyusb/src/common/tusb_fifo.c: OK\nvendor/tinyusb/src/common/tusb_fifo.h: OK\nvendor/tinyusb/src/common/tusb_mcu.h: OK\nvendor/tinyusb/src/common/tusb_private.h: OK\nvendor/tinyusb/src/common/tusb_types.h: OK\nvendor/tinyusb/src/common/tusb_verify.h: OK\nvendor/tinyusb/src/device/dcd.h: OK\nvendor/tinyusb/src/device/usbd.c: OK\nvendor/tinyusb/src/device/usbd.h: OK\nvendor/tinyusb/src/device/usbd_pvt.h: OK\nvendor/tinyusb/src/osal/osal.h: OK\nvendor/tinyusb/src/osal/osal_none.h: OK\nvendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c: OK\nvendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c: OK\nvendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h: OK\nvendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h: OK\nvendor/tinyusb/src/tusb.c: OK\nvendor/tinyusb/src/tusb.h: OK\nvendor/tinyusb/src/tusb_option.h: OK\n"
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/0_tusb.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_fifo.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/1_tusb_fifo.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/2_usbd.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/3_cdc_device.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Werror",
+      "-isystem",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-cdc-tests/fake_dcd.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/4_fake_dcd.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Werror",
+      "-isystem",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/critic-a-usb-setup-review/supporting/test_setup_queue.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/5_test_setup_queue.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/0_tusb.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/1_tusb_fifo.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/2_usbd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/3_cdc_device.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/4_fake_dcd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/5_test_setup_queue.o",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_1"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_1 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_255"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_255 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_256"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=rejected_256 HWFIFO=0 queue=16 event_budget=1\nPASS rejected_256\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_257"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_257 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_511"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_511 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_512"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=rejected_512 HWFIFO=0 queue=16 event_budget=1\nPASS rejected_512\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_513"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_513 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "rejected_1025"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_1025 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "supersession"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=supersession HWFIFO=0 queue=16 event_budget=1\nPASS supersession\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "capacity_supersession"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=capacity_supersession HWFIFO=0 queue=16 event_budget=1\nPASS capacity_supersession\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "mixed_1"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=mixed_1 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "mixed_256"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=mixed_256 HWFIFO=0 queue=16 event_budget=1\nPASS mixed_256\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "mixed_257"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=mixed_257 HWFIFO=0 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_setup_queue",
+      "reset_queued_setups"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=reset_queued_setups HWFIFO=0 queue=16 event_budget=1\nPASS reset_queued_setups\n"
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-buffered",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Werror",
+      "-isystem",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-cdc-tests/test_core.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/6_test_core.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/0_tusb.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/1_tusb_fifo.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/2_usbd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/3_cdc_device.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/4_fake_dcd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/6_test_core.o",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_core"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/buffered/test_core"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO TinyUSB native dedicated-HWFIFO=0\nPASS real TinyUSB core EP0 device/config descriptors, SET_ADDRESS, SET_CONFIGURATION/CDC line-state + bulk IN/OUT FIFO backpressure; fake DCD only\n"
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/0_tusb.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_fifo.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/1_tusb_fifo.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/device/usbd.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/2_usbd.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=gnu11",
+      "-I/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/3_cdc_device.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Werror",
+      "-isystem",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-cdc-tests/fake_dcd.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/4_fake_dcd.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Werror",
+      "-isystem",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/critic-a-usb-setup-review/supporting/test_setup_queue.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/5_test_setup_queue.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/0_tusb.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/1_tusb_fifo.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/2_usbd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/3_cdc_device.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/4_fake_dcd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/5_test_setup_queue.o",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_1"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_1 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_255"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_255 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_256"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=rejected_256 HWFIFO=1 queue=16 event_budget=1\nPASS rejected_256\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_257"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_257 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_511"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_511 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_512"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=rejected_512 HWFIFO=1 queue=16 event_budget=1\nPASS rejected_512\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_513"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_513 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "rejected_1025"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=rejected_1025 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "supersession"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=supersession HWFIFO=1 queue=16 event_budget=1\nPASS supersession\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "capacity_supersession"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=capacity_supersession HWFIFO=1 queue=16 event_budget=1\nPASS capacity_supersession\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "mixed_1"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=mixed_1 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "mixed_256"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=mixed_256 HWFIFO=1 queue=16 event_budget=1\nPASS mixed_256\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "mixed_257"
+    ],
+    "cwd": null,
+    "exit_code": 1,
+    "output": "INFO scenario=mixed_257 HWFIFO=1 queue=16 event_budget=1\nTEST_FAIL EP0_RESPONSE_MISSING line=56 expression=fake_ep[0x80].pending\n"
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_setup_queue",
+      "reset_queued_setups"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO scenario=reset_queued_setups HWFIFO=1 queue=16 event_budget=1\nPASS reset_queued_setups\n"
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "-I/workspace/shared/usb-cdc-tests/config-f1",
+      "-I/workspace/shared/usb-cdc-tests",
+      "-DSTM32F103xB",
+      "-std=c11",
+      "-pedantic-errors",
+      "-Werror",
+      "-isystem",
+      "/workspace/shared/usb-dependencies/vendor/tinyusb/src",
+      "-c",
+      "/workspace/shared/usb-cdc-tests/test_core.c",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/6_test_core.o"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-g",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-fno-omit-frame-pointer",
+      "-fno-lto",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/0_tusb.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/1_tusb_fifo.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/2_usbd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/3_cdc_device.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/4_fake_dcd.o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/6_test_core.o",
+      "-o",
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_core"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "/workspace/shared/critic-a-usb-setup-review/evidence-upstream-native/f1/test_core"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "output": "INFO TinyUSB native dedicated-HWFIFO=1\nPASS real TinyUSB core EP0 device/config descriptors, SET_ADDRESS, SET_CONFIGURATION/CDC line-state + bulk IN/OUT FIFO backpressure; fake DCD only\n"
+  }
+]
