@@ -1,0 +1,66 @@
+[
+  {
+    "path": "firmware/app/ADC_CONTROL_README.md",
+    "sha256": "5946c39a000952e0739e14c8934ca93e0773028def161554a01c240cf86713f6"
+  },
+  {
+    "path": "firmware/app/CONTROL_RX_README.md",
+    "sha256": "6826701b9c8df36d183a0516c39dc180f74c89cfe8f8c7b858f6e3ad368f817c"
+  },
+  {
+    "path": "firmware/app/mt_adc_control.c",
+    "sha256": "f316523483171195d8f60bee38a3f716f3d887e506074f1038aafc14a99e64ce"
+  },
+  {
+    "path": "firmware/app/mt_adc_control.h",
+    "sha256": "85110d0698c322919ef2b8006a81e166b00cd11eea3a9b4cd972f550d244fbc7"
+  },
+  {
+    "path": "firmware/platform/README.md",
+    "sha256": "caa52a4a0dafe3072cea0c009f4762ec67f01bfbac57711c9c6f1b93fe825d3b"
+  },
+  {
+    "path": "firmware/platform/adc_timer_dma.c",
+    "sha256": "91906d403ffc787d1b7e6541302226347bf299f58b2949be47742d9768240d43"
+  },
+  {
+    "path": "firmware/platform/adc_timer_dma.h",
+    "sha256": "3c1c175c5372a3a1a6ce3c00b97f674802a61b04a716097e105b947e7494a008"
+  },
+  {
+    "path": "tests/adc-control/test_adc_control.c",
+    "sha256": "dbf9dacf5287c3ef7a587602a3e46038a74da297a4da7f370c418ca659dae458"
+  },
+  {
+    "path": "tests/control-rx/arm-check.sh",
+    "sha256": "8ab40e39cbb34d364c8a481cfd8cc7cdf6c2c1c46f3edd3e18b18e6173c2fe27"
+  },
+  {
+    "path": "tests/control-rx/arm_probe.c",
+    "sha256": "314c5e99fbcf0be6d6e70019aeb358aeb5912249e205c49f53b91a2173652b3a"
+  },
+  {
+    "path": "tests/control-rx/evidence/arm/native.log",
+    "sha256": "c0262366a66ccb076b5b504373c39720776fc101a136d3fc4e277777176f000d"
+  },
+  {
+    "path": "tests/control-rx/evidence/native.log",
+    "sha256": "a19be02099268d4fed38e6b02dc1ad86a21b18d7873b782be457cc203245ee87"
+  },
+  {
+    "path": "tests/control-rx/run.sh",
+    "sha256": "dbaf79cde68cfe6324542925fa51115ba80c1816f276b66cc7d34ef4e0f82b18"
+  },
+  {
+    "path": "tests/control-rx/test_control_rx.c",
+    "sha256": "927381250f514e9f7795a69f1b823b15f312f814ab85793da9ca4d4c8b60a471"
+  },
+  {
+    "path": "tests/control-rx/test_rx_io.c",
+    "sha256": "f75bb4d5ee5c052139758fa11165e7b472ec09d76d963e795f7a3d3be8fba287"
+  },
+  {
+    "path": "tests/platform/test_adc_timer_dma.c",
+    "sha256": "38a0d038f85bc659f2663322b00e91c71c568bb3cc9952e3c57691b983c173b9"
+  }
+]

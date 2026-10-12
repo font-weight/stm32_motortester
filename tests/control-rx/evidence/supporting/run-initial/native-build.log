@@ -1,0 +1,22 @@
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c: In function ‘test_overflow’:
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:182:5: error: this ‘for’ clause does not guard... [-Werror=misleading-indentation]
+  182 |     for(unsigned i=0;i<20u;i++)CHECK(bytes(b,64,64)==MT_CONTROL_OK);CHECK(f.rx.overflows==1);
+      |     ^~~
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:9:18: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+    9 | #define CHECK(x) do { ++checks; if (!(x)) { fprintf(stderr,"FAIL %s:%d: %s\n",current,__LINE__,#x); longjmp(failed,1); } } while (0)
+      |                  ^~
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:182:69: note: in expansion of macro ‘CHECK’
+  182 |     for(unsigned i=0;i<20u;i++)CHECK(bytes(b,64,64)==MT_CONTROL_OK);CHECK(f.rx.overflows==1);
+      |                                                                     ^~~~~
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c: In function ‘test_independent_codec_oracle’:
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:277:9: error: this ‘for’ clause does not guard... [-Werror=misleading-indentation]
+  277 |         for(unsigned i=0;i<length;i++)m.payload[i]=(uint8_t)(i*17u);size_t n=encode(&m,b);CHECK(n<=MT_WIRE_FRAME_MAX);CHECK(mt_wire_decode(b,n-1u,&decoded)==MT_WIRE_OK);CHECK(decoded.type==m.type&&decoded.session==m.session&&decoded.sequence==m.sequence&&decoded.request==m.request&&decoded.payload_length==m.payload_length);CHECK(memcmp(decoded.payload,m.payload,length)==0);
+      |         ^~~
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:277:69: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+  277 |         for(unsigned i=0;i<length;i++)m.payload[i]=(uint8_t)(i*17u);size_t n=encode(&m,b);CHECK(n<=MT_WIRE_FRAME_MAX);CHECK(mt_wire_decode(b,n-1u,&decoded)==MT_WIRE_OK);CHECK(decoded.type==m.type&&decoded.session==m.session&&decoded.sequence==m.sequence&&decoded.request==m.request&&decoded.payload_length==m.payload_length);CHECK(memcmp(decoded.payload,m.payload,length)==0);
+      |                                                                     ^~~~~~
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c: At top level:
+/workspace/shared/control-rx-independent-tests/test_rx_independent.c:30:17: error: ‘u32’ defined but not used [-Werror=unused-function]
+   30 | static uint32_t u32(const uint8_t *p) {return p[0]|((uint32_t)p[1]<<8)|((uint32_t)p[2]<<16)|((uint32_t)p[3]<<24);}
+      |                 ^~~
+cc1: all warnings being treated as errors

@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-10-10T16:18:42.904220+00:00",
+  "repository": "font-weight/stm32_motortester",
+  "pr": 59,
+  "pr_url": "https://github.com/font-weight/stm32_motortester/pull/59",
+  "draft": true,
+  "state": "open",
+  "branch": "dot-a/usb003-setup-accounting-draft",
+  "commit": "f31d011d7727279c7356ff9700949bc7a116ab90",
+  "tree": "339597e0208fe33e65c2232f2159a8635bf167d0",
+  "blob_count": 741,
+  "truncated": false,
+  "verification": "Fresh authenticated GitHub PR/ref/git-commit/recursive-tree GET readbacks; every inherited blob/mode must remain unchanged."
+}

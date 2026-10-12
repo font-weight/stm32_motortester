@@ -1,0 +1,64 @@
+{
+  "scope": "supporting native tests only",
+  "runner_tooling_cases": 12,
+  "runs": [
+    {
+      "directory": "/workspace/shared/usb-bridge-test-runs/r2-final-adapter",
+      "result": "PASS",
+      "cases": 45,
+      "inputs_unchanged": true,
+      "input_count": 80,
+      "core_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    {
+      "directory": "/workspace/shared/usb-bridge-test-runs/r2-final-adapter-sanitize",
+      "result": "PASS",
+      "cases": 45,
+      "inputs_unchanged": true,
+      "input_count": 80,
+      "core_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    {
+      "directory": "/workspace/shared/usb-bridge-test-runs/r2-final-integration",
+      "result": "PASS",
+      "cases": 40,
+      "inputs_unchanged": true,
+      "input_count": 59,
+      "core_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    {
+      "directory": "/workspace/shared/usb-bridge-test-runs/r2-final-integration-sanitize",
+      "result": "PASS",
+      "cases": 40,
+      "inputs_unchanged": true,
+      "input_count": 59,
+      "core_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    {
+      "directory": "/workspace/shared/usb-bridge-test-runs/r2-final-shims",
+      "result": "PASS",
+      "cases": 47,
+      "inputs_unchanged": true,
+      "input_count": 55,
+      "core_sha256": null
+    },
+    {
+      "directory": "/workspace/shared/usb-bridge-test-runs/r2-final-shims-sanitize",
+      "result": "PASS",
+      "cases": 47,
+      "inputs_unchanged": true,
+      "input_count": 55,
+      "core_sha256": null
+    }
+  ],
+  "sources": {
+    "README.md": "bf609a9d85f031f885daca4511d1df962f0ed37c25936540b0d847d4a25841e7",
+    "run.py": "1cd9834901f15af1226c2a9d79c240a7b6316d82f006d6eb36eba1ac5077d2fb",
+    "run-r1.py": "7805fc75a6e195d0a4a7ce42974095224bcea55fabd881ca369b0f063123c88f",
+    "instrument_fake.py": "4a8a1c21d3a0ec27011f5efdabf738aba7cd64940576129567725f4ce0e72c97",
+    "test_runner.py": "1bf95df000573a2ebdf8bf98a81b1d99962acd3c03a162855f2ec529ad20cc39",
+    "test_shims.c": "7e05428bb5398b45b66b8d3c6eb65e91f32ff96031b009c48d2242bb4188a021",
+    "test_integration.c": "99e11b0d3cb6e5cf76898af96c55c8793d097241fc128d63979064f95a164993",
+    "test_integration.h": "f1d5f320b075324670b36e0351453308c121a7f595eb2cc6afec66ef658babd9"
+  }
+}

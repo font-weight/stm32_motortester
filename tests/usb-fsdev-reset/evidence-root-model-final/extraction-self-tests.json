@@ -1,0 +1,5 @@
+{
+  "duplicate_missing_unterminated_rejected": true,
+  "out_of_scope_changes_rejected": true,
+  "comment_string_braces_handled": true
+}

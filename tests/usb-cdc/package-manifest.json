@@ -1,0 +1,1643 @@
+{
+  "schema": 1,
+  "base_commit": "06178f31be79c3e7dbc5b46281a67a5c1d1da7f0",
+  "base_tree": "715cbef3b3e45c7a869dc24a2948ade0e2481a93",
+  "inherited_base_blob_count": 348,
+  "scope": "Draft-only USB001 text additions; not acceptance, merge or hardware evidence",
+  "files": [
+    {
+      "path": "firmware/third_party/usb/PACKAGING.md",
+      "mode": "100644",
+      "size_bytes": 3592,
+      "sha256": "b4ec7df24f16e4bf8c965a136c7ea88ecf6b16bb211231527e1c7d2e6bc3dbb0",
+      "git_blob_sha": "c95f5aa524185f99157a36b57851019939fed6c2"
+    },
+    {
+      "path": "firmware/third_party/usb/PROVENANCE_RU.md",
+      "mode": "100644",
+      "size_bytes": 9035,
+      "sha256": "748c764069c0cd576bd4cd9d04e54672fe2295661a04d2076a606ad41a3361a7",
+      "git_blob_sha": "e07c2e65a86750e3eeef35a9d52e54a0bc8147de"
+    },
+    {
+      "path": "firmware/third_party/usb/SHA256SUMS.sources",
+      "mode": "100644",
+      "size_bytes": 3733,
+      "sha256": "72aa8488d9bbfb917c7b6af0dda15f0b782961d077adc330add3fbcd15a4a5a4",
+      "git_blob_sha": "df54e203a9c79b7fe11f58aa26108e6829dd3b91"
+    },
+    {
+      "path": "firmware/third_party/usb/SOURCES.list",
+      "mode": "100644",
+      "size_bytes": 258,
+      "sha256": "de5418dfe04c8e53494d149473eb2e0f6c67303acc04bbe8f8f141ee945496dc",
+      "git_blob_sha": "8a9496eee137f3cbfcb3d406c75d30d3d5f711b5"
+    },
+    {
+      "path": "firmware/third_party/usb/THIRD_PARTY_FILE_NOTICES.txt",
+      "mode": "100644",
+      "size_bytes": 36044,
+      "sha256": "e8e9f0bd6d7b867e521fc35a3a3ae227bb678a39f93aba42daa561e5d5ba0f95",
+      "git_blob_sha": "521825573c41e92886321d74dbbb84e4f4112f74"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/assembler-version.log",
+      "mode": "100644",
+      "size_bytes": 313,
+      "sha256": "abdc186e619e73531e727a047213d95b9b104791041b0c494c3498e71e1d4fc2",
+      "git_blob_sha": "7f8e5c41c9b1f60f8a71223da806c7189a51d1d3"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/cdc_device-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/commands.json",
+      "mode": "100644",
+      "size_bytes": 15255,
+      "sha256": "105ce210b17e187fa8a039ff3784a2d821096d70bc6be348ece747bdf5dd7c2a",
+      "git_blob_sha": "614e910b0a32159e8902f2a91d7dba82fc8e795c"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/compiler-version.log",
+      "mode": "100644",
+      "size_bytes": 253,
+      "sha256": "a24b8af1f922555c6996da666c05ac377382428a81e4ead6ac5e7b6a421daf33",
+      "git_blob_sha": "3dd875223d52c3d2f7c95cb346175f17da124ef9"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/dcd_stm32_fsdev-compile.log",
+      "mode": "100644",
+      "size_bytes": 2097,
+      "sha256": "031261b1f2beefd788a88fb41bafdbdf59569f0dc80fededcaa99d3b90f84b2a",
+      "git_blob_sha": "f78019dd5a2124aad7a3faad003021d82b6c7189"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/fsdev_common-compile.log",
+      "mode": "100644",
+      "size_bytes": 1221,
+      "sha256": "d21170ae2111880dacb6e07417a1860267a59f6222d9468c8ac09ef621052376",
+      "git_blob_sha": "cc21705a20e8ef4c254433923a97a890a39c88af"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/summary.json",
+      "mode": "100644",
+      "size_bytes": 2246,
+      "sha256": "c8255276c20513b0adf0e93f6fc0b7cec3b17fd6026b3b46451c0d46e32e1fef",
+      "git_blob_sha": "bd261a3c836e5f15f678c18a03cc52ecbe3ef5c6"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/tusb-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/tusb_fifo-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-c11-restored-probe/usbd-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/assembler-version.log",
+      "mode": "100644",
+      "size_bytes": 313,
+      "sha256": "abdc186e619e73531e727a047213d95b9b104791041b0c494c3498e71e1d4fc2",
+      "git_blob_sha": "7f8e5c41c9b1f60f8a71223da806c7189a51d1d3"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-global-symbols.log",
+      "mode": "100644",
+      "size_bytes": 1236,
+      "sha256": "d1a86d9a81a0de2bc1aa58c7ebdab9becc0ae9723f881c6d7abddd2c37817d2b",
+      "git_blob_sha": "8689cef452bb0b6378c30b8a13e24b57b09777de"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-size.log",
+      "mode": "100644",
+      "size_bytes": 1680,
+      "sha256": "6d59af135545da90c9e1212553b7226cd889cee7c0b897fcef6b31355fe1d64b",
+      "git_blob_sha": "72dc32772d59e26b4546c3c2a114f450a0c51674"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-symbols.log",
+      "mode": "100644",
+      "size_bytes": 2699,
+      "sha256": "5a3c2c9b905796fad43b0d890ed1d97b3c8c46104a3e5956ea7f5c9099bd2756",
+      "git_blob_sha": "4c6d3feac4486d53d649189175c12dc9625ac199"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device-unresolved.log",
+      "mode": "100644",
+      "size_bytes": 562,
+      "sha256": "b5e3cbffbee6c9a5c04f392ea0dd21c00facaf1a51375455f1b8b0f80481b5f4",
+      "git_blob_sha": "8918b9edd0fce8c44cafea9eae840cdf8d61e389"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device.d",
+      "mode": "100644",
+      "size_bytes": 1366,
+      "sha256": "cf6a37ae935e4ad622b9d58bb9005f7d13cdb769f9d6f191b35a5f1d4ded6810",
+      "git_blob_sha": "c1158e3e2476f13c12dc1fde5830f2e29dfee004"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/cdc_device.su",
+      "mode": "100644",
+      "size_bytes": 2903,
+      "sha256": "0a9b1631f8e973928cb43c6cf5b29f82422ce10b2cb35a9183022ec2af7197d3",
+      "git_blob_sha": "7058c50680580d8f3264485eebcd5b97c6d1eae0"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/commands.json",
+      "mode": "100644",
+      "size_bytes": 16593,
+      "sha256": "d7a830680c7aba7270e4e855d5f940c3547476238199cadde0d9ec8ce921db22",
+      "git_blob_sha": "913327593fb6b017efea2bea36bf5ce25be66c67"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/compiler-version.log",
+      "mode": "100644",
+      "size_bytes": 253,
+      "sha256": "a24b8af1f922555c6996da666c05ac377382428a81e4ead6ac5e7b6a421daf33",
+      "git_blob_sha": "3dd875223d52c3d2f7c95cb346175f17da124ef9"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-compile.log",
+      "mode": "100644",
+      "size_bytes": 2097,
+      "sha256": "031261b1f2beefd788a88fb41bafdbdf59569f0dc80fededcaa99d3b90f84b2a",
+      "git_blob_sha": "f78019dd5a2124aad7a3faad003021d82b6c7189"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-global-symbols.log",
+      "mode": "100644",
+      "size_bytes": 722,
+      "sha256": "a20cdb50d6137cf7994f628acefe0e47bd2cbf3eccff17d3d2d07c93ec999f2c",
+      "git_blob_sha": "19c36a7364b8914d8320fc7d3244b4caec038d25"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-size.log",
+      "mode": "100644",
+      "size_bytes": 1697,
+      "sha256": "6974c4b99dc3620ad79f2f22d63c21345bb0e191291e58b53a0d6c7cb18508bb",
+      "git_blob_sha": "a6181ad5935d3256e9f75637b3f04b0fcdde1674"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-symbols.log",
+      "mode": "100644",
+      "size_bytes": 2434,
+      "sha256": "0106a5fbdcabc7d072507706385188e2e16c51164399a23049e53b7b4b9ce8d8",
+      "git_blob_sha": "dece7a23618d98c060e04d0215506d80b63658a6"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev-unresolved.log",
+      "mode": "100644",
+      "size_bytes": 318,
+      "sha256": "7a616b7d1393e9bfa916f5e429830cad6b8c6a6abb4252d18b03af1070d9da23",
+      "git_blob_sha": "0015aecf04c170225ea8f70305939d45d6c3539b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.d",
+      "mode": "100644",
+      "size_bytes": 1881,
+      "sha256": "4d622063442aea905140722c3f7642fb46939aab61a92ff9d57f86112b6dd7ba",
+      "git_blob_sha": "c15afc8a8a6d764d30800c2332e953b927a3b976"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/dcd_stm32_fsdev.su",
+      "mode": "100644",
+      "size_bytes": 3076,
+      "sha256": "af5b923e45350ea599c8d597ca6ed6e891fe628e6c4a60c408eba5c4da4db5c8",
+      "git_blob_sha": "08caed8865c2f2ba992b8e409804692c57f3adf6"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-compile.log",
+      "mode": "100644",
+      "size_bytes": 1002,
+      "sha256": "cf2ce5ef283f68bd63d9297d3250baedce83f5d9f30ff1c21a19d190ea6fb400",
+      "git_blob_sha": "a092a57308151492ca115d1f90926920b0d29e51"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-global-symbols.log",
+      "mode": "100644",
+      "size_bytes": 102,
+      "sha256": "d89c7a967ef9b27cd179dbd66e9e9f285fd56926e8eb30a9299b34715c218db1",
+      "git_blob_sha": "23ed6526a1fc7085e4f82045ae01605fc2828946"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-size.log",
+      "mode": "100644",
+      "size_bytes": 546,
+      "sha256": "2562e24233cd0707ae6944bcb193142f2effcfbfe68cea15507ea5c60a34d8e4",
+      "git_blob_sha": "fb5d8c052a5ca346dc48700f92cf12a536e5f176"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-symbols.log",
+      "mode": "100644",
+      "size_bytes": 419,
+      "sha256": "7aca9c45a7185b8d23bafbd6cf0f3ce646fd5b5b1adce4628634f57d411bb08d",
+      "git_blob_sha": "e1d252fc5dbb42911f0305d1410d7a1e8f2e1d0e"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common-unresolved.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common.d",
+      "mode": "100644",
+      "size_bytes": 1875,
+      "sha256": "e7dc3d41dc3a02c3156a56c47059ae4ad0cb069b717dcbc863b0422b223ae779",
+      "git_blob_sha": "773b9eba26537603129859cd9888806ef76d2d36"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/fsdev_common.su",
+      "mode": "100644",
+      "size_bytes": 504,
+      "sha256": "e6a9091e67a230be3043e1f1e08270432b128c86b2dcbae97f1ee48e88f5a180",
+      "git_blob_sha": "b144e9707c9a618cc0d1dda65706086e73fd7da4"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/summary.json",
+      "mode": "100644",
+      "size_bytes": 2398,
+      "sha256": "5806c9b2cfbc06b526fd8c89a092ab5d233b5d445a9c6cceab96952e91cc5713",
+      "git_blob_sha": "42f42b5f8f3d73805c858f1467d8dff2fb82071b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-global-symbols.log",
+      "mode": "100644",
+      "size_bytes": 906,
+      "sha256": "30b2980998e5ebf753e625c2f8b54e384e139ced779b0395b23a7db568118e75",
+      "git_blob_sha": "8338d1c0835cbfa46d9ca0924db6c4191a5b76fa"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-size.log",
+      "mode": "100644",
+      "size_bytes": 1781,
+      "sha256": "7b55bcf14b0de573b79524270b1cfc35f3d2f62446856663e393e0300af77158",
+      "git_blob_sha": "94e8ebb22665f673a3c1eeaa3ab68aeec7593791"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-symbols.log",
+      "mode": "100644",
+      "size_bytes": 2276,
+      "sha256": "c1b5dd869142e484048cf632e4ce33a7e5f291546c85803a80ebc684336cd106",
+      "git_blob_sha": "8fc6d8a7479233a10fde8693d8a093e38cea013d"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb-unresolved.log",
+      "mode": "100644",
+      "size_bytes": 346,
+      "sha256": "d94d29a1ffc008c56085d76236233319d220a3e9e7a5cfcdb40faede6852f90e",
+      "git_blob_sha": "b77014403ea362721e383715a466dfd3f755a479"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb.d",
+      "mode": "100644",
+      "size_bytes": 1710,
+      "sha256": "8ee8abd76b27d793af068d313445afbf27c2c4c2f8cf3f3601208cd974458132",
+      "git_blob_sha": "48a3095dca1c030ae57e419dd9f746bcb56a14ae"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb.su",
+      "mode": "100644",
+      "size_bytes": 2213,
+      "sha256": "ff45edc2461a0815f537f18b548b929471e498240b63de6c678dedae4d8f9807",
+      "git_blob_sha": "15405fd1dccff5b846b65b8d3836693a0d422454"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-global-symbols.log",
+      "mode": "100644",
+      "size_bytes": 516,
+      "sha256": "2ad92c96477e01e8c7b7e16656cbfb371fb07048478a6852df5125719716fc1f",
+      "git_blob_sha": "534eefe9f1d839591e159ebfecb9ce9828cc9e8d"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-size.log",
+      "mode": "100644",
+      "size_bytes": 1431,
+      "sha256": "d5718ddc34df9815446b780432c3d59a33daf4cd63842c65558268d7e0ff0b4b",
+      "git_blob_sha": "71ba16a7e1734800e8b0faf2003bf6f2ce76a7a4"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-symbols.log",
+      "mode": "100644",
+      "size_bytes": 1680,
+      "sha256": "34789b5f1ce68556410709a127829fd482d559e7cd2cab2285e51ac3255ceff1",
+      "git_blob_sha": "a235bb78fc0cacf3e3636bee756b04cf98e401a7"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo-unresolved.log",
+      "mode": "100644",
+      "size_bytes": 18,
+      "sha256": "5d2792dcceb414c9e62f027ee69b602ab848e9d238d4ac34157d643a864678fd",
+      "git_blob_sha": "9f3e824188285d6da19132cd53e5a2f354cf9d38"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo.d",
+      "mode": "100644",
+      "size_bytes": 1059,
+      "sha256": "de6fa2f1824c27b267b9bd440743efb259eb14a87e60f449d8d3d229d9180cb8",
+      "git_blob_sha": "68b882dd725b07769d4592fd2020a768c5c8f818"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/tusb_fifo.su",
+      "mode": "100644",
+      "size_bytes": 2175,
+      "sha256": "540c02e0f5eeb52674b53cd26a8e3cf78aae24a178e63537d496bb95ac3ada50",
+      "git_blob_sha": "906c2567608ed5a6a505598609ad3818fc88ebc9"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-global-symbols.log",
+      "mode": "100644",
+      "size_bytes": 2236,
+      "sha256": "ee78a418e460a348ef63c0dc3af9c90b5278ec0132021187589d37287053a46d",
+      "git_blob_sha": "89329ce95bd4f9470ab28a1f7f37200d4255c2bb"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-size.log",
+      "mode": "100644",
+      "size_bytes": 5004,
+      "sha256": "af02127ef6bd36c755bc96c90c5a8f8b9f5b61fa205d4d59505ad26c254dc2f5",
+      "git_blob_sha": "add811edd1ce26ca2402bb33562451fa11cf59fa"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-symbols.log",
+      "mode": "100644",
+      "size_bytes": 5948,
+      "sha256": "98bd1dedb525bac0bd1263cd1f3fd14d09b356c2229810c0e34f80c60a212e04",
+      "git_blob_sha": "0183742c8f921d894842c55b37a9a4b26974e67b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd-unresolved.log",
+      "mode": "100644",
+      "size_bytes": 840,
+      "sha256": "e430eded515f0b533d851f6a2adda8d29192dc5e434c071c4b0efde5ddcf9deb",
+      "git_blob_sha": "cdd5419b68c19a11224032f634c33a1f061d2fe1"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd.d",
+      "mode": "100644",
+      "size_bytes": 1779,
+      "sha256": "3731779e7a67a4f6506497c40fa0244561ae36df44d5300a75fa02fddde7309b",
+      "git_blob_sha": "5977c940a31f1ea5bc8488aa5fe73abf24c4b96e"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored/usbd.su",
+      "mode": "100644",
+      "size_bytes": 5999,
+      "sha256": "6d11fac5bd763a12d8d1ab27896dcb349ad6c3845c7bbcf1f6cc0b5e9604f23c",
+      "git_blob_sha": "71f537c664f739ebb5d2b1fc53304e489705e45f"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/assembler-version.log",
+      "mode": "100644",
+      "size_bytes": 313,
+      "sha256": "abdc186e619e73531e727a047213d95b9b104791041b0c494c3498e71e1d4fc2",
+      "git_blob_sha": "7f8e5c41c9b1f60f8a71223da806c7189a51d1d3"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/cdc_device-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/commands.json",
+      "mode": "100644",
+      "size_bytes": 16887,
+      "sha256": "d2d54e8f15a76bc693bc50c7cee0e3bde79736e2665d3576b01f863eceda1d65",
+      "git_blob_sha": "3022815b9963e1141550860278d32443e0c2df30"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/compiler-version.log",
+      "mode": "100644",
+      "size_bytes": 253,
+      "sha256": "a24b8af1f922555c6996da666c05ac377382428a81e4ead6ac5e7b6a421daf33",
+      "git_blob_sha": "3dd875223d52c3d2f7c95cb346175f17da124ef9"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/dcd_stm32_fsdev-compile.log",
+      "mode": "100644",
+      "size_bytes": 2097,
+      "sha256": "031261b1f2beefd788a88fb41bafdbdf59569f0dc80fededcaa99d3b90f84b2a",
+      "git_blob_sha": "f78019dd5a2124aad7a3faad003021d82b6c7189"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/fsdev_common-compile.log",
+      "mode": "100644",
+      "size_bytes": 1002,
+      "sha256": "cf2ce5ef283f68bd63d9297d3250baedce83f5d9f30ff1c21a19d190ea6fb400",
+      "git_blob_sha": "a092a57308151492ca115d1f90926920b0d29e51"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/summary.json",
+      "mode": "100644",
+      "size_bytes": 2398,
+      "sha256": "5806c9b2cfbc06b526fd8c89a092ab5d233b5d445a9c6cceab96952e91cc5713",
+      "git_blob_sha": "42f42b5f8f3d73805c858f1467d8dff2fb82071b"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/tusb-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/tusb_fifo-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-objects-gnu11-restored-repeat/usbd-compile.log",
+      "mode": "100644",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/arm-summary.json",
+      "mode": "100644",
+      "size_bytes": 2785,
+      "sha256": "f2b00049b5abf3c451f171bb65d7a6513f7cee39a2a77d1ac3c60b87ee4f63b9",
+      "git_blob_sha": "ed1fb8a922b496b51bb60cae3e6694bf24e084f4"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/config/tusb_config.h",
+      "mode": "100644",
+      "size_bytes": 1345,
+      "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a",
+      "git_blob_sha": "b78f1974211531a8f841c25e326486cb56ab870d"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/external-symbols.json",
+      "mode": "100644",
+      "size_bytes": 573,
+      "sha256": "e61d41cbd41fea28dfc3a626de3768f1c0cbd8d9ccdde145aad2f1da379ec375",
+      "git_blob_sha": "f589639e36266212a4b99a9bfab825ff1674b5a4"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/reproduction.json",
+      "mode": "100644",
+      "size_bytes": 1389,
+      "sha256": "0c5de424b7095715f5601246bf340382b32354c9bf98dc4663cb2a3eca7280ac",
+      "git_blob_sha": "8fc23ba457a233e26ca24da8445002c472d8bd27"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/stack-frames.json",
+      "mode": "100644",
+      "size_bytes": 28210,
+      "sha256": "3665b35df5140af6c2013125c006f2237290eafbd5db63e25a4fb902b5ad5ebb",
+      "git_blob_sha": "12c5f6e2f61683b6e11181bf9b4c27f5ab39dd83"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/static-storage-symbols.json",
+      "mode": "100644",
+      "size_bytes": 1590,
+      "sha256": "21b409a7c2cf1237529ccc8e2f70f2dd5bb1f3ad3e87132036e55d8c557babc1",
+      "git_blob_sha": "74f6a332f5888d09d79e7253d92d2c867311c765"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/RECOVERY_RU.md",
+      "mode": "100644",
+      "size_bytes": 2069,
+      "sha256": "2e72afc2b9da679be63b6cb92ff1b5664a3fa0819e6d957325a9842b80080787",
+      "git_blob_sha": "a8f9534e669e168c0c16da8173e44ceb6d7a914d"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/package-download-manifest.json",
+      "mode": "100644",
+      "size_bytes": 1527,
+      "sha256": "e2a43f3855626a0e717f8f9b6fe7ccbbc0b3cf92e36556b83d6bde05a7092e80",
+      "git_blob_sha": "354c099ff5bbf84f14c440b0a1049c8cfcad4c89"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/toolchain-binaries.json",
+      "mode": "100644",
+      "size_bytes": 1692,
+      "sha256": "3fb178f2f8176a7dd82e7f42f73e3604feb7888d6735a46d7c666f06466ab5cf",
+      "git_blob_sha": "82701f546d11eb99aa237793cf30dbc7cf2179a3"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/toolchain-binary-check-new.json",
+      "mode": "100644",
+      "size_bytes": 2516,
+      "sha256": "5cbe54b95e6cec5be5ee9fe221a04c2698d630f0f7dfdc3dc063ea8c1e80a951",
+      "git_blob_sha": "68014dd905988d704a128839d2adb94f71765fed"
+    },
+    {
+      "path": "firmware/third_party/usb/evidence/toolchain-recovery/toolchain-package-SHA256SUMS",
+      "mode": "100644",
+      "size_bytes": 323,
+      "sha256": "3efc3d2aecf8a79f10aaaded27a345706fda945d26c591e95527f2d4e06036b8",
+      "git_blob_sha": "1ed894fbbbf657db8e0d14ad27e869f1577a7153"
+    },
+    {
+      "path": "firmware/third_party/usb/omitted-archive.json",
+      "mode": "100644",
+      "size_bytes": 25713,
+      "sha256": "2500fe5a9787b416b44ee1b696a3a4a40c19040d0be46bbcab53989b2b967c43",
+      "git_blob_sha": "5f507cdd015e59d24e949998471171127fae8a9d"
+    },
+    {
+      "path": "firmware/third_party/usb/source-manifest.json",
+      "mode": "100644",
+      "size_bytes": 31236,
+      "sha256": "2c60508bafdf17d393fc2a11c54866c78fc10c04f377ea3c7bfe54de13a94d85",
+      "git_blob_sha": "9e1acfebf5068dc83e16ad5f2b76776958a54360"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_compiler.h",
+      "mode": "100644",
+      "size_bytes": 9481,
+      "sha256": "b51963d271c1571ca3463654c76aa7ea50c4eac5d0a2710df10414ac64d9e0f8",
+      "git_blob_sha": "adbf296f15a47a93e5058abddad6742bb4b9854d"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_gcc.h",
+      "mode": "100644",
+      "size_bytes": 63374,
+      "sha256": "43bfd1fe69fbbc2ca70aaf7d43cc3e20f16e0c7f66e1bdef9b51af6dc14b2617",
+      "git_blob_sha": "67bda4ef3c38dadc4471129d39eb4e870dc08fc7"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/cmsis_version.h",
+      "mode": "100644",
+      "size_bytes": 1680,
+      "sha256": "184c19fd3ee73632edf35a0b4d49cd48be75fbf49e6ccb19d9db05fa83bea4b3",
+      "git_blob_sha": "8b4765f186efe577be5245b59c610056d3c54cbc"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h",
+      "mode": "100644",
+      "size_bytes": 109529,
+      "sha256": "c9937781259a8897adf514445441c68570087d6a72a558d8a4afe75cdb62dbd2",
+      "git_blob_sha": "74fb87e5c561f39588388d3bf1d5a560ee1a63f4"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-core/LICENSE.txt",
+      "mode": "100644",
+      "size_bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "git_blob_sha": "8dada3edaf50dbc082c9a125058f25def75e625a"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/stm32f103xb.h",
+      "mode": "100644",
+      "size_bytes": 842883,
+      "sha256": "d9c7c613d9fea74220892b4fbc3e80617493acad82a04bafadab2b4a7198399c",
+      "git_blob_sha": "82df4b00ab785323b004838664d90dc868b70eb1"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/stm32f1xx.h",
+      "mode": "100644",
+      "size_bytes": 10110,
+      "sha256": "05e93fa3ddefb2e83d762b9ca4de36e3bba9cd8e9690400fe9f2c11fc0a3cef5",
+      "git_blob_sha": "0f32778fef45a006ad2aded658a4cfcca1f32e7b"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/Include/system_stm32f1xx.h",
+      "mode": "100644",
+      "size_bytes": 1758,
+      "sha256": "a54dfbb3480c672f532d472a6e84bcf34df6551771d2e9966c5a3503c676b6ab",
+      "git_blob_sha": "f8c5304cc509b67b46215ad2f15a7f46ee4e7434"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/cmsis-device-f1/License.md",
+      "mode": "100644",
+      "size_bytes": 11357,
+      "sha256": "b645e89bbfb6accf914cf7adca011712bf90055391fdd55f2af6439d98aa36d4",
+      "git_blob_sha": "7733a496798048b4339d794446c8543be67a49ac"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/LICENSE",
+      "mode": "100644",
+      "size_bytes": 1094,
+      "sha256": "f878d62e47e693ea64160218edb1b9b4755f4839a3179e5bef4a6b0359399431",
+      "git_blob_sha": "0680c2f055bf770cad5a44321db41ed0f8fb0f36"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc.h",
+      "mode": "100644",
+      "size_bytes": 26136,
+      "sha256": "40bfcfda287a7556d31e0a6ea607b9b4340be32436c3af0099b08ece6e853312",
+      "git_blob_sha": "679723ba65dc5277997464844681c98034cb5dc0"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "mode": "100644",
+      "size_bytes": 18200,
+      "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840",
+      "git_blob_sha": "c499756b9e43213adb902633c9b4abb035df1923"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.h",
+      "mode": "100644",
+      "size_bytes": 11258,
+      "sha256": "1d9b3f42642e668d0bb8f82c494ffe971f387ffda2b03dc4ca78b4a6f09f13cc",
+      "git_blob_sha": "9ac6bc58aca28cb0fd9c6905fafdf7954db6b994"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_common.h",
+      "mode": "100644",
+      "size_bytes": 16313,
+      "sha256": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1",
+      "git_blob_sha": "6ac1405f33746afb31a56c94cac35ad6ea37940e"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_compiler.h",
+      "mode": "100644",
+      "size_bytes": 13258,
+      "sha256": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc",
+      "git_blob_sha": "a8971c3dfe03ce808ef771d35f3cd17c455b4d93"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_debug.h",
+      "mode": "100644",
+      "size_bytes": 5290,
+      "sha256": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be",
+      "git_blob_sha": "ba5b4afd1b0a77ba2318611d0fc8cb26107f4582"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.c",
+      "mode": "100644",
+      "size_bytes": 28389,
+      "sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac",
+      "git_blob_sha": "a8ac99fd2935b35530c236462075ffbc8e2dc505"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.h",
+      "mode": "100644",
+      "size_bytes": 13787,
+      "sha256": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166",
+      "git_blob_sha": "b31a0802e87902cb51a7331be26e89095707636e"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_mcu.h",
+      "mode": "100644",
+      "size_bytes": 25894,
+      "sha256": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953",
+      "git_blob_sha": "35de47030809d6615297822a2653d1fa97b7a476"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_private.h",
+      "mode": "100644",
+      "size_bytes": 6936,
+      "sha256": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97",
+      "git_blob_sha": "a31bf7b03a0b0d73dbfbe9022f165a427cf94020"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_types.h",
+      "mode": "100644",
+      "size_bytes": 23210,
+      "sha256": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4",
+      "git_blob_sha": "cb06b89bba9bdee84db4fde66d1bc6f39428f6f4"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/common/tusb_verify.h",
+      "mode": "100644",
+      "size_bytes": 5875,
+      "sha256": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514",
+      "git_blob_sha": "c0e4d0883dfa85ea9e43f448488242f87c4bb18e"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/dcd.h",
+      "mode": "100644",
+      "size_bytes": 9178,
+      "sha256": "baf785f2d5d8e3f74bd6d6a04559fc606d341983aad35aa08e168b452c2750db",
+      "git_blob_sha": "f861eb2589cea42abcc87f9aa11f07f22bfecabf"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd.c",
+      "mode": "100644",
+      "size_bytes": 58890,
+      "sha256": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
+      "git_blob_sha": "c4c418cb5e03a76deeab566ddac318eb903dba66"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd.h",
+      "mode": "100644",
+      "size_bytes": 64062,
+      "sha256": "48040a0ea812b5f099bab557c81aa83fb9386d7eb2dfd814b1eba9aa2468b298",
+      "git_blob_sha": "abce5a887813a2fd9cbd542525f40396b1da9d04"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/device/usbd_pvt.h",
+      "mode": "100644",
+      "size_bytes": 5549,
+      "sha256": "3d3bae6a54ac6d677a2fdae156665c760a7f22f7651b34cfaa4460a585964db9",
+      "git_blob_sha": "be778f9af916656a235981f1a35c193a859a6206"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/osal/osal.h",
+      "mode": "100644",
+      "size_bytes": 4115,
+      "sha256": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9",
+      "git_blob_sha": "2114c0a61422fdf56257a8c08aea3715f5eb3680"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/osal/osal_none.h",
+      "mode": "100644",
+      "size_bytes": 8014,
+      "sha256": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f",
+      "git_blob_sha": "49439cef09db153d0fdbcca877688075f8936a3c"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
+      "mode": "100644",
+      "size_bytes": 30229,
+      "sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f",
+      "git_blob_sha": "f5a8beb65dbdcef6304748553284cea5c063c0d8"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c",
+      "mode": "100644",
+      "size_bytes": 3894,
+      "sha256": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f",
+      "git_blob_sha": "7c4572a1e524a305ea5cc0deb58c8fce83b52282"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h",
+      "mode": "100644",
+      "size_bytes": 16549,
+      "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb",
+      "git_blob_sha": "af84b8b97c2adab841165bf234e131a6f283ad18"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h",
+      "mode": "100644",
+      "size_bytes": 12083,
+      "sha256": "8ad617f61884ef9acc137fed9eab34264af79ef75df916cef1126f3106fdeabe",
+      "git_blob_sha": "93cdac808f10d78db02c6963f3a66141b5de3eb1"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "mode": "100644",
+      "size_bytes": 16704,
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+      "git_blob_sha": "634cbc10b9b4439f7189b53f535ad3993ea6010a"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb.h",
+      "mode": "100644",
+      "size_bytes": 5026,
+      "sha256": "115100fbffe8984964a321e477720a5586db7776ac832ca81749c89cc08183bb",
+      "git_blob_sha": "aa6b461e5f930072c7a9c7cd4a8bdc140ce0d549"
+    },
+    {
+      "path": "firmware/third_party/usb/vendor/tinyusb/src/tusb_option.h",
+      "mode": "100644",
+      "size_bytes": 30475,
+      "sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f",
+      "git_blob_sha": "b23b374673765121a4b43d05fadc035076f014b9"
+    },
+    {
+      "path": "firmware/transport/USB_CDC_README.md",
+      "mode": "100644",
+      "size_bytes": 10925,
+      "sha256": "648129e5b403840f0a17ade59e605422d50dd8c242a7cf4a03d117af16b126b2",
+      "git_blob_sha": "e72a909589b0ff3cb6bbf92403bbff20285ef5c5"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.c",
+      "mode": "100644",
+      "size_bytes": 4228,
+      "sha256": "4127541694a00521f0eddce314bbce8383da892b2a5adbb0e5bace6576d0193f",
+      "git_blob_sha": "e5dc83985257603ecd2c932fbe4a1a1395fa9071"
+    },
+    {
+      "path": "firmware/transport/mt_usb_cdc.h",
+      "mode": "100644",
+      "size_bytes": 2244,
+      "sha256": "9ab7a12dcfb1d0d3282d151f0c07884d8b30fcee3cd4e4ef893b6bc13a78f7b4",
+      "git_blob_sha": "622717697aa3a68a9d3e9f066adae78b047737cd"
+    },
+    {
+      "path": "tests/usb-cdc/README.md",
+      "mode": "100644",
+      "size_bytes": 6677,
+      "sha256": "78fb807eb2ff5654a7a87e70f6f49987fb3c8fa072386ea23cb578bc86f6d14a",
+      "git_blob_sha": "46e9d1f29c8ddbf8b41071bcf85ffa59554a920a"
+    },
+    {
+      "path": "tests/usb-cdc/arm-check.sh",
+      "mode": "100644",
+      "size_bytes": 1064,
+      "sha256": "417980dc4344a9d1704aa942aa5d63b6a50eeaacc8b3ade7a3399f248c6308dd",
+      "git_blob_sha": "ffe332ed232643682d0f5d658db5b6ef84276a5f"
+    },
+    {
+      "path": "tests/usb-cdc/arm_probe.c",
+      "mode": "100644",
+      "size_bytes": 229,
+      "sha256": "6f21d67b0760da541b370e0bebfba5b098779b38f997ed92bd4a746c39b4899c",
+      "git_blob_sha": "0409b8745bfafe84b3cdcbeddeafc32710667324"
+    },
+    {
+      "path": "tests/usb-cdc/critic/CRITIC_A_USB_CDC_REVIEW.md",
+      "mode": "100644",
+      "size_bytes": 9855,
+      "sha256": "b1252795510cd593fa51d24b9beb0412210ef21fc73a010762d6734dafc8f7a4",
+      "git_blob_sha": "3de49e1b7a4daa40bdb072f4773789468b6d854e"
+    },
+    {
+      "path": "tests/usb-cdc/critic/REVIEW_SHA256SUMS",
+      "mode": "100644",
+      "size_bytes": 852,
+      "sha256": "4903ea1c0a143fadd0fbcd757cb3b0f908fff289929e847559411cc7df48b3ca",
+      "git_blob_sha": "e3542176460483d3573498af3c53c24004f0fe0f"
+    },
+    {
+      "path": "tests/usb-cdc/critic/arm.log",
+      "mode": "100644",
+      "size_bytes": 1705,
+      "sha256": "37f949eab04e76fa24c8b06b19535e7df5b2b3a3c092cb4ec7b7479a4da541b4",
+      "git_blob_sha": "356079d23e59c7f73b44fc32c8f076764227a41f"
+    },
+    {
+      "path": "tests/usb-cdc/critic/call-order.log",
+      "mode": "100644",
+      "size_bytes": 780,
+      "sha256": "65948c76883a984a6837872b5bb6d4a160391892dad342eb63903929709049eb",
+      "git_blob_sha": "8b9ad04e9d074aa4ae24bcfcbb025bc728740495"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/cdc0/build.log",
+      "mode": "100644",
+      "size_bytes": 3819,
+      "sha256": "883757f07a5f00c32272138162b41178e3a863de8d53d77a7aa2710fcd61a127",
+      "git_blob_sha": "8eeeeb16f60ad37492b779f62b6006f49743cc2c"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/cdc2/build.log",
+      "mode": "100644",
+      "size_bytes": 858,
+      "sha256": "37a1c1856a880a0423f38ac2017531dd03375c6bf2fd76924a992aa22cf28e87",
+      "git_blob_sha": "97e80755388ca6b167aaae73e481a21272cad837"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/overwrite/build.log",
+      "mode": "100644",
+      "size_bytes": 868,
+      "sha256": "63376361be5498b65134fe2cfd3ab7316819f190218ecbbf0daa2b7a50b5f8f0",
+      "git_blob_sha": "23a632f1dc70fe42d1fcb421f273c2fa9cda11df"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/results.json",
+      "mode": "100644",
+      "size_bytes": 6723,
+      "sha256": "e6dcff94c068a83bbfdc5d421566beaa184c0e0aa91ba36f893a50fe325b84bb",
+      "git_blob_sha": "ffab3d832c57f6500f9a59a5c279793206438d03"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/rx_persistent/build.log",
+      "mode": "100644",
+      "size_bytes": 876,
+      "sha256": "d78d96523649ccdfbe4d2d26699959295df5a1588e63b802474a423dcabbb284",
+      "git_blob_sha": "cc569f66daa9a2a43e09ff7a53d2aa76ce6f1e96"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/tx_persistent/build.log",
+      "mode": "100644",
+      "size_bytes": 876,
+      "sha256": "44b6e349c3942bcfa522673bfac669f9ed318d111a996ec3a19c0d8a03e95e10",
+      "git_blob_sha": "a90b61d1d65a97f7d6c3ab9eebcbd083435c75f7"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build/valid/build.log",
+      "mode": "100644",
+      "size_bytes": 586,
+      "sha256": "7d4919ccae42dbfb7dce83dc75e3e4b2e5a7ed312921ec1e46f02df2ed529c75",
+      "git_blob_sha": "544caa87165fd6f80ecb7b02595364a2d6c8af6f"
+    },
+    {
+      "path": "tests/usb-cdc/critic/guard-build.log",
+      "mode": "100644",
+      "size_bytes": 109,
+      "sha256": "5bdc7eba834d02d2e7d65f0876ca0d6222a1b87f27aada8d9eebb966cdb96374",
+      "git_blob_sha": "578a358b41e198a75b9203269e200478918ed9bc"
+    },
+    {
+      "path": "tests/usb-cdc/critic/initial-harness-build.log",
+      "mode": "100644",
+      "size_bytes": 774,
+      "sha256": "abd7278c9e395df5a36eb8d744cd92e3329ff7ed28a2df768900f94ee0968eb8",
+      "git_blob_sha": "826c7ee401755851a4bc53a6dc261dd2434ce7f3"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-buffered-adapter-native.log",
+      "mode": "100644",
+      "size_bytes": 11698,
+      "sha256": "32baca90d6a1baf94547db248602f1c1a8f2f781cb61bc172d62bcab9d695fc7",
+      "git_blob_sha": "981cb736fd5ae171a010f533f13c3e3b6f1772b5"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-buffered-adapter-sanitized.log",
+      "mode": "100644",
+      "size_bytes": 12497,
+      "sha256": "69454f853daf3fe6d429392a80427c8ec9ef3fc9be187034c8ceda317609128f",
+      "git_blob_sha": "2868d6436f13cd28e26561079d855c1ef24f5e1a"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-buffered-core-native.log",
+      "mode": "100644",
+      "size_bytes": 4002,
+      "sha256": "d751330af902da6f96bf001a2420a23014359a3e8df1875bc851326619f06210",
+      "git_blob_sha": "c3cb13f8b19e876a4fd0e24050bf87ed3372649b"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-buffered-core-sanitized.log",
+      "mode": "100644",
+      "size_bytes": 4331,
+      "sha256": "e7ec81d504e35b9aac0a80bb41084ae3ac016f62a9ea7542d3106fa9d8a269f0",
+      "git_blob_sha": "e47b314dad44f9e1bbfbedf197dc8d31943978e5"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-capture-equality.json",
+      "mode": "100644",
+      "size_bytes": 555,
+      "sha256": "d88575552c9c4429d06b0d9690f8c7ef6d619975bb6c6c2ab04a7136a8eebec6",
+      "git_blob_sha": "15cb5fb6510cea4061c0f5cae96ed99a51dd8f59"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-hwfifo-adapter-native.log",
+      "mode": "100644",
+      "size_bytes": 11928,
+      "sha256": "e967e222a0ae76d2535336db37cafe383be7675ccab096ba714b515d8195d053",
+      "git_blob_sha": "233051bd696d6ec55feb4979f3972ad803c970e0"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-hwfifo-adapter-sanitized.log",
+      "mode": "100644",
+      "size_bytes": 12727,
+      "sha256": "5e7f3cabef8a16a4737b71ac7e50d211816c739195773719956055fb10dcf8c1",
+      "git_blob_sha": "bcafbea299b86074390677ce2d4fbd21d39b0816"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-hwfifo-core-native.log",
+      "mode": "100644",
+      "size_bytes": 4092,
+      "sha256": "74d808254ad2454277a898ff87ebd80b76505ecec0e9bc66cfae7b183c4680fb",
+      "git_blob_sha": "7b057d01c74fe3dabaf5c5e2c3c9dd135389c36c"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-hwfifo-core-sanitized.log",
+      "mode": "100644",
+      "size_bytes": 4421,
+      "sha256": "b9206eb331150dc6a9b6f9f3e9b44effa57929632805e8acb5f6343741623cc4",
+      "git_blob_sha": "b7c5bc141e5f76e8f24520c2ff96997239b755c7"
+    },
+    {
+      "path": "tests/usb-cdc/critic/real-manifest-check.log",
+      "mode": "100644",
+      "size_bytes": 1761,
+      "sha256": "c248c82ac68db7fcab9fb8a5c3553dbf0700bc08ac61ef145a9fc57abf6d9d60",
+      "git_blob_sha": "6b626afc6e83b6183378a6012924165934ae3cda"
+    },
+    {
+      "path": "tests/usb-cdc/critic/run_call_order.sh",
+      "mode": "100644",
+      "size_bytes": 567,
+      "sha256": "d865d19345654dfdf965c97141d28485efdce9af1f5c5f542e75cbd191260676",
+      "git_blob_sha": "6350f8dbbb1bf26e466a5ff281e5aecfb515321c"
+    },
+    {
+      "path": "tests/usb-cdc/critic/source-manifest.json",
+      "mode": "100644",
+      "size_bytes": 5303,
+      "sha256": "6a87d444c119ce7f15013151ae09230f7d911c02bf7c8b653773d4adf567865e",
+      "git_blob_sha": "2fd67dbd267b33c4b78ec52acf0eb3647d780992"
+    },
+    {
+      "path": "tests/usb-cdc/critic/stubs/tusb.h",
+      "mode": "100644",
+      "size_bytes": 590,
+      "sha256": "34050e1923815b5ad1c2a2121382206c614aa6e7385a1bb5ff6c7b0cefea58e7",
+      "git_blob_sha": "6dd0cb643883a29209cfb8406c9688a83eef45d6"
+    },
+    {
+      "path": "tests/usb-cdc/critic/test_call_order.c",
+      "mode": "100644",
+      "size_bytes": 7784,
+      "sha256": "bd34275c4a4954847c1cc9fb81e719d3dc75ddca9b2b761bfba38e471b025c61",
+      "git_blob_sha": "cc2868bb95cd089a4af6985787abcd0a399abf09"
+    },
+    {
+      "path": "tests/usb-cdc/critic/test_configuration_guards.py",
+      "mode": "100644",
+      "size_bytes": 2440,
+      "sha256": "c324411e85c6ca5372f6edaa0b07a158bc9d3426144eef446e7b403a3981ea65",
+      "git_blob_sha": "732e448ccabdc150c6e1716ea3d664d3168369a9"
+    },
+    {
+      "path": "tests/usb-cdc/evidence/root-f1-sanitized.log",
+      "mode": "100644",
+      "size_bytes": 12169,
+      "sha256": "6949432301ab35efa5a7c328f30ffb87ab341a9c672014d858e03a5a4209e382",
+      "git_blob_sha": "906508810ea9721be4130f060622b84bd6a5045b"
+    },
+    {
+      "path": "tests/usb-cdc/reproduce.py",
+      "mode": "100644",
+      "size_bytes": 7770,
+      "sha256": "9515dc11b45504e5711740ed0e71013c2b5f79774fde3c33a07916ea79ea2342",
+      "git_blob_sha": "2f4283f0b35d32f5d9edea7d9a9bdf8004d4d1d8"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/.gitignore",
+      "mode": "100644",
+      "size_bytes": 56,
+      "sha256": "d1b044535ac908f1ce69366787f4e13a18afc19362bd856f63dd948cd76041db",
+      "git_blob_sha": "488c41ae285ab34349a35dee9064bb5b631210b3"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/README.md",
+      "mode": "100644",
+      "size_bytes": 8251,
+      "sha256": "1267ad36c3910249744724303064391a59d3613f28f0f145c025ad3bb87449e8",
+      "git_blob_sha": "1cf51d6c675f6009de83ea5c857ee9dd581dcb76"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/SHA256SUMS.harness",
+      "mode": "100644",
+      "size_bytes": 4427,
+      "sha256": "5bd2eb51d6a6c2e7d0e4fb126fe7c0a9d4d76311481796fe2e5abb6ea50edc21",
+      "git_blob_sha": "98dc0adb777110993ef97f9a76959fd6a2667b3c"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/build.py",
+      "mode": "100644",
+      "size_bytes": 4175,
+      "sha256": "0c5750b8cb6a44386ad715ea778179ecee811c2f7f54cf5e407fef671067be4e",
+      "git_blob_sha": "e77a8a370723e61d8c933a01fe5524306e515e34"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/config-buffered/tusb_config.h",
+      "mode": "100644",
+      "size_bytes": 1373,
+      "sha256": "ef6f720feda7e9e5e427ee0d2b90f2430402b5f6d7076911b4e3757855ee3dfc",
+      "git_blob_sha": "7afbd3b8369be976107d58be96eb306dfc1f4377"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/config-f1/tusb_config.h",
+      "mode": "100644",
+      "size_bytes": 1345,
+      "sha256": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a",
+      "git_blob_sha": "b78f1974211531a8f841c25e326486cb56ab870d"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/adapter-receipt.json",
+      "mode": "100644",
+      "size_bytes": 15919,
+      "sha256": "1b91002efe8cc11ac06b02fe5b1d6a5425ed36aca79d91ee508f3538fde05d40",
+      "git_blob_sha": "20e65d442c44dc1d541b9d4e273cf8a5f2b24219"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/adapter.log",
+      "mode": "100644",
+      "size_bytes": 9372,
+      "sha256": "428c0b5fd3ec991e11333a1c23b2ce3af798c256a7c2d4ad62658ec5568219ff",
+      "git_blob_sha": "7d0a927ec97a1b9ee5ec0f493916eaac19922b67"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/core-receipt.json",
+      "mode": "100644",
+      "size_bytes": 6019,
+      "sha256": "bc2408ff13858c31e19c7d2a98a976a4836198239c6858f2460f9a68d64579e4",
+      "git_blob_sha": "1d31749f38c95029d994a5ec0d66789f42b6bdb3"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/core.log",
+      "mode": "100644",
+      "size_bytes": 3096,
+      "sha256": "832d9bddb2380b78dc7960cfdb41c490fe7bf047e20d7e18c0b767299f024e4a",
+      "git_blob_sha": "63dd2931ea9d6071ff7c6218e849d1226a4c5bd8"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-host-completed.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-positive.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-submissions.csv",
+      "mode": "100644",
+      "size_bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+      "git_blob_sha": "4b52ac156386be1d0d8970992114cdd703d71adb"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-normal/prefix-submitted.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/adapter-receipt.json",
+      "mode": "100644",
+      "size_bytes": 16930,
+      "sha256": "b262b4ed335f3385c453d92aea675d553c78746f11ddc0931f5a208f08584ce5",
+      "git_blob_sha": "ce92b94eda9ff2b5ccd3f7927e7b6c4bcadcb9dd"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/adapter.log",
+      "mode": "100644",
+      "size_bytes": 10171,
+      "sha256": "2b93c5a1481f4d6095a86405e7a7c68533a1a4b57bc6a87c253ab502fa20f08e",
+      "git_blob_sha": "14678df3c7f1653e4fc7c463ac0a4c33b23d9b83"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/core-receipt.json",
+      "mode": "100644",
+      "size_bytes": 6470,
+      "sha256": "2281c7f8c044a2b5153ddaba3c5e30a40be55afe245af7be8a3296f37bf8ba2d",
+      "git_blob_sha": "b6a955fa4654d6dd7afebc84fd7570bee41ed13f"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/core.log",
+      "mode": "100644",
+      "size_bytes": 3425,
+      "sha256": "669a1f622c612a09e9ceef24de2a62b13464253e49a1d8debee15e34aa0d34d5",
+      "git_blob_sha": "ec08b58501ffee81d0caa87e7888501d0a6a0c9a"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-host-completed.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-positive.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-submissions.csv",
+      "mode": "100644",
+      "size_bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+      "git_blob_sha": "4b52ac156386be1d0d8970992114cdd703d71adb"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/buffered-sanitize/prefix-submitted.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/adapter-receipt.json",
+      "mode": "100644",
+      "size_bytes": 16286,
+      "sha256": "d5d4b54df60e53a495cfdcc3457424f6a7354088333b668a9728764f6a34eb74",
+      "git_blob_sha": "3981de66fced727821b1c61b85d82f7db37f188e"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/adapter.log",
+      "mode": "100644",
+      "size_bytes": 9602,
+      "sha256": "e8812e7e7d6e55e54a0e43fc374c89cec81883ee2a834577ab62621bf2af0e69",
+      "git_blob_sha": "a4559c807728fdbf51685d7884c20f9c436f3c96"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/core-receipt.json",
+      "mode": "100644",
+      "size_bytes": 6156,
+      "sha256": "18bd2734777827c2699c974d2c60bd9500b958f03204f6836b0561497698b934",
+      "git_blob_sha": "b54bc88f1add22697ba049dd256baa106be2309d"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/core.log",
+      "mode": "100644",
+      "size_bytes": 3186,
+      "sha256": "db9eea79a79046ce0c3b65fdfc8a4dd2eaafcb1900d5ae4a19dec8b7c13144d4",
+      "git_blob_sha": "bbe70d97f252efe8caca6e29ed3045c61bab0a47"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-host-completed.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-positive.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-submissions.csv",
+      "mode": "100644",
+      "size_bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+      "git_blob_sha": "4b52ac156386be1d0d8970992114cdd703d71adb"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-normal/prefix-submitted.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/adapter-receipt.json",
+      "mode": "100644",
+      "size_bytes": 17297,
+      "sha256": "e3a9150d6b95bd8d54859adc5dc766b946c9b580d6569b920dd489c44cf39803",
+      "git_blob_sha": "f324ff809d233150935ba18356223e036a30bc29"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/adapter.log",
+      "mode": "100644",
+      "size_bytes": 10401,
+      "sha256": "9232451da2fa0e38cb70359d555b24401eeb4b51079cf4f02b01cabf62bfc1d5",
+      "git_blob_sha": "a22d7f72769c00204057da6ba67f59f3e471724e"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/core-receipt.json",
+      "mode": "100644",
+      "size_bytes": 6607,
+      "sha256": "3f0c2a0761d19d4f4efdf96659afb7a12e80d356e459c42ca9c21edcbffea586",
+      "git_blob_sha": "ccecfbcf0b5529f9ec0f2a4debb2bc35df46f1c6"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/core.log",
+      "mode": "100644",
+      "size_bytes": 3515,
+      "sha256": "e1cf2f531dbe33833255259aab3e749f38d9064f3cf6811f0c44d7c09be7a215",
+      "git_blob_sha": "77874582ae2b50cc1b736657abd4b7522bcee86e"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-host-completed.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-positive.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-submissions.csv",
+      "mode": "100644",
+      "size_bytes": 4293,
+      "sha256": "b2d021d3dee56ef820ba1eb71163c1f449282802b87ebf294fddce9063c9ac5e",
+      "git_blob_sha": "4b52ac156386be1d0d8970992114cdd703d71adb"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/hwfifo-sanitize/prefix-submitted.bin.hex",
+      "mode": "100644",
+      "size_bytes": 23400,
+      "sha256": "9016cdf8dc06f1cb120e6ba84796bc1fa51d76a6cac6b7cabf83bd524a8f571b",
+      "git_blob_sha": "bc6d4a4cedf2381841fc2e312351eeb51d042d52"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/matrix.json",
+      "mode": "100644",
+      "size_bytes": 8961,
+      "sha256": "03644315d69d550d2c02a738c4b3af8c1a4a5c01f3166385a0dd15eb84cad0fb",
+      "git_blob_sha": "29d91842b112746032d03ffb4e31999b84b503d2"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/evidence/upstream-sha256-check.log",
+      "mode": "100644",
+      "size_bytes": 1563,
+      "sha256": "4cd49a05b9d5e26e265ccdbcff88dffd0591b6823ff761f5261a5ff98b473e80",
+      "git_blob_sha": "5d0e3d1d4378ebc1c2280eeab5cffc9cd452ad70"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/fake_dcd.c",
+      "mode": "100644",
+      "size_bytes": 10339,
+      "sha256": "fa91bed60b415d7c09e1b4aa1c3865f127d29232113c7dc1e1344e8469c595da",
+      "git_blob_sha": "cce9d34659ede792bc18c0c8bd140f244e41ebfb"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/fake_dcd.h",
+      "mode": "100644",
+      "size_bytes": 1443,
+      "sha256": "60651a7dfc9c81158108c293185a4add62f044aac484333660ea826999af0f57",
+      "git_blob_sha": "2c7ddecacbb8ae4b9adaeef38aa28907eb2325e5"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/test_adapter.c",
+      "mode": "100644",
+      "size_bytes": 28714,
+      "sha256": "30d45f6160a7f90d8db7f079417cc079da2ca784dff2d434b30af75a75fca16e",
+      "git_blob_sha": "6152f7c6f840bb8fee65e8f7d998e23dc9796303"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/test_core.c",
+      "mode": "100644",
+      "size_bytes": 1374,
+      "sha256": "84d802925f8c83c0313928beced3ef2df5629921b1fac2ab5af91bba062f0517",
+      "git_blob_sha": "28c698343c3ce37af8ebdeafe89eefdca8d2f289"
+    },
+    {
+      "path": "tests/usb-cdc/supporting/text-encoding.json",
+      "mode": "100644",
+      "size_bytes": 3963,
+      "sha256": "ad5a538b8b3055e15a206f10f3f86a732ac982b51ba24243ccc95cdedcf34396",
+      "git_blob_sha": "a8caf1646e806ae0dfc27799ccc5b038946a39ee"
+    },
+    {
+      "path": "tests/usb-cdc/verify-package.py",
+      "mode": "100644",
+      "size_bytes": 3808,
+      "sha256": "fac0f0904441f448412e0e6dbe3a8849afdd9c70a3677ccf6b395b6bf0341de2",
+      "git_blob_sha": "23e93bb88821e34837a60d88ef1be3a497a4c965"
+    }
+  ],
+  "base_firmware_inputs": [
+    {
+      "path": "firmware/acquisition/README.md",
+      "mode": "100644",
+      "size_bytes": 15886,
+      "sha256": "3b2e37174c88d5a33748b9c8c09cf9cc7d5ec0dd1bee97e1634f3bb5b920f33b",
+      "git_blob_sha": "b708c90ce9e5db61e5f0a1ca406c9cf15b1fb70c"
+    },
+    {
+      "path": "firmware/acquisition/acquisition.c",
+      "mode": "100644",
+      "size_bytes": 8272,
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+      "git_blob_sha": "99dbb52a932735c45e35af840545cf788362eba4"
+    },
+    {
+      "path": "firmware/acquisition/acquisition.h",
+      "mode": "100644",
+      "size_bytes": 4481,
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+      "git_blob_sha": "3e10c7cd58d9e335e6e49db18123ca4278d7bdfa"
+    },
+    {
+      "path": "firmware/app/ADC_CONTROL_README.md",
+      "mode": "100644",
+      "size_bytes": 11833,
+      "sha256": "5946c39a000952e0739e14c8934ca93e0773028def161554a01c240cf86713f6",
+      "git_blob_sha": "2107054d9c1d384349fc370e4fa9eb5a811110bf"
+    },
+    {
+      "path": "firmware/app/CONTROL_README.md",
+      "mode": "100644",
+      "size_bytes": 7096,
+      "sha256": "826731188e4c26b7d54efc61f87d20e8536bb110ada24bdd0f1dedf15a3f0a82",
+      "git_blob_sha": "e34c50ed632c947d2b2ad8653d0919f69599e4d3"
+    },
+    {
+      "path": "firmware/app/CONTROL_RX_README.md",
+      "mode": "100644",
+      "size_bytes": 10349,
+      "sha256": "6826701b9c8df36d183a0516c39dc180f74c89cfe8f8c7b858f6e3ad368f817c",
+      "git_blob_sha": "2173f52c2349b247b9f2319f4a48a0474527e327"
+    },
+    {
+      "path": "firmware/app/README.md",
+      "mode": "100644",
+      "size_bytes": 6908,
+      "sha256": "b7d180aec6e8b695f16db2c96cadc4431278bd3ea39d83bbe9730e46e604e7f8",
+      "git_blob_sha": "d3d86087fc898bd89b43ef5d5d3953f9488756b1"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.c",
+      "mode": "100644",
+      "size_bytes": 3312,
+      "sha256": "f316523483171195d8f60bee38a3f716f3d887e506074f1038aafc14a99e64ce",
+      "git_blob_sha": "e7b68968af1426f16bbd3ddd6183af63c8e16df3"
+    },
+    {
+      "path": "firmware/app/mt_adc_control.h",
+      "mode": "100644",
+      "size_bytes": 1603,
+      "sha256": "85110d0698c322919ef2b8006a81e166b00cd11eea3a9b4cd972f550d244fbc7",
+      "git_blob_sha": "a7459bc71c27664c6d0c04d712201461c403ee77"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.c",
+      "mode": "100644",
+      "size_bytes": 10807,
+      "sha256": "f01beedd3c77e4373a7e6778b5551e8e82f4b70b378ae0ec70991c75dda272bd",
+      "git_blob_sha": "5e78945f514d7c12f3fa4996144ac104bd940c00"
+    },
+    {
+      "path": "firmware/app/mt_capture_link.h",
+      "mode": "100644",
+      "size_bytes": 4030,
+      "sha256": "df48006feed3e470dc09a06c57d1c56db90fdcd08ef3f3a7b4996b33a3a97ccf",
+      "git_blob_sha": "15fb2b6726fb0c6c72c2df54b3930e66c12e21e5"
+    },
+    {
+      "path": "firmware/app/mt_control.c",
+      "mode": "100644",
+      "size_bytes": 12173,
+      "sha256": "0ef2f27441c41817867bd91336964aa65daa10732c7203fa85d97650253622ed",
+      "git_blob_sha": "d268cf74d72d157c6e65b59e3a9471929ac4f9d2"
+    },
+    {
+      "path": "firmware/app/mt_control.h",
+      "mode": "100644",
+      "size_bytes": 2284,
+      "sha256": "ce45cf1fa34e4c82d256c8873fee0f2901256714c91a49cca83a90c0a4868574",
+      "git_blob_sha": "da26b83d3f038189f95a39f405c07d7ae21060fa"
+    },
+    {
+      "path": "firmware/app/mt_control_rx.c",
+      "mode": "100644",
+      "size_bytes": 1995,
+      "sha256": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322",
+      "git_blob_sha": "7bc3ba7896a7dd30d832f3e2c5aca0a6bd1d7d93"
+    },
+    {
+      "path": "firmware/app/mt_control_rx.h",
+      "mode": "100644",
+      "size_bytes": 1831,
+      "sha256": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943",
+      "git_blob_sha": "9bbf3d445355c9a23097014b9927b8f741ab2247"
+    },
+    {
+      "path": "firmware/platform/README.md",
+      "mode": "100644",
+      "size_bytes": 15228,
+      "sha256": "caa52a4a0dafe3072cea0c009f4762ec67f01bfbac57711c9c6f1b93fe825d3b",
+      "git_blob_sha": "df25d6bcd7b2eb6a84b9a70f65976993fcc9a042"
+    },
+    {
+      "path": "firmware/platform/TIMEBASE_README.md",
+      "mode": "100644",
+      "size_bytes": 12041,
+      "sha256": "ee9339a69044cfa609ded6f081ebec17e1705d24663a1fc2b4614d4d3492ee4d",
+      "git_blob_sha": "fc5ab00b1910d20495f11f770dd64f09b0f1030f"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.c",
+      "mode": "100644",
+      "size_bytes": 15805,
+      "sha256": "91906d403ffc787d1b7e6541302226347bf299f58b2949be47742d9768240d43",
+      "git_blob_sha": "cd0d9b7d78409bc271a181e23aafb991c460bdee"
+    },
+    {
+      "path": "firmware/platform/adc_timer_dma.h",
+      "mode": "100644",
+      "size_bytes": 5508,
+      "sha256": "3c1c175c5372a3a1a6ce3c00b97f674802a61b04a716097e105b947e7494a008",
+      "git_blob_sha": "fccedad863fb43b883d180759aa92c10f8350e64"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.c",
+      "mode": "100644",
+      "size_bytes": 5149,
+      "sha256": "b403cc8f5e60cc2568b59d9fc5de6cf2cf1f116c03291876e7a05a5dc19f2740",
+      "git_blob_sha": "bbe5f5389eb5cc3b30aab39665ce9895ed157f2e"
+    },
+    {
+      "path": "firmware/platform/mt_timebase.h",
+      "mode": "100644",
+      "size_bytes": 2490,
+      "sha256": "613135965695f6e1eb4e24edea9e2873a33b60ee4b44865a5db1ef1730b5b3d2",
+      "git_blob_sha": "dc72b5f9757337ce35269b4f99ac4d0c0e47237c"
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "mode": "100644",
+      "size_bytes": 3566,
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+      "git_blob_sha": "ab15501f0afe68a01a3b371338619230cbd90d91"
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "mode": "100644",
+      "size_bytes": 2397,
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+      "git_blob_sha": "14cb3f737d6d333cf0d78a8bcd0e1c5050cb9340"
+    },
+    {
+      "path": "firmware/protocol/mt_session.c",
+      "mode": "100644",
+      "size_bytes": 2855,
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+      "git_blob_sha": "f44099ebba52f99c5146ed719be2db5be6b0f71d"
+    },
+    {
+      "path": "firmware/protocol/mt_session.h",
+      "mode": "100644",
+      "size_bytes": 2253,
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+      "git_blob_sha": "646c6fd11f151d3d8a02fc49264f17b76d4204e4"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.c",
+      "mode": "100644",
+      "size_bytes": 1470,
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+      "git_blob_sha": "419e78a74548387db990296357c4fd16d03556a4"
+    },
+    {
+      "path": "firmware/protocol/mt_stream.h",
+      "mode": "100644",
+      "size_bytes": 1921,
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+      "git_blob_sha": "6e54d061b3185e5d68b54ec07e7f1b923c4e5f76"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "mode": "100644",
+      "size_bytes": 4102,
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+      "git_blob_sha": "3d76b7f6725615f3fad4305575312997e72152f9"
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "mode": "100644",
+      "size_bytes": 1679,
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+      "git_blob_sha": "dcd14d8507f2812d488e4ad9264c3875b4f368d6"
+    },
+    {
+      "path": "firmware/transport/README.md",
+      "mode": "100644",
+      "size_bytes": 21522,
+      "sha256": "4ff12db3688ccae7564f48c61451ebd6ea89105bdaaffdd91f7e69c5375f7319",
+      "git_blob_sha": "b45f49a7ade85dc7ff8d29af47917eeca47d691c"
+    },
+    {
+      "path": "firmware/transport/mt_tx.c",
+      "mode": "100644",
+      "size_bytes": 8984,
+      "sha256": "e5b38052c5fef29cb178b15ca589a2414047b51f473046571f04ab29800fa79e",
+      "git_blob_sha": "617dafd44ecb03c34620201f8d2dc1a378326fc8"
+    },
+    {
+      "path": "firmware/transport/mt_tx.h",
+      "mode": "100644",
+      "size_bytes": 6194,
+      "sha256": "68f013a8ffb6e946e9cd92f3e760bf593746afdc7097d11d837a101c5ab83dd9",
+      "git_blob_sha": "c86ba738a76d86f9b97740a3e67ff1b55a12cd88"
+    }
+  ],
+  "manifest_self_excluded": true
+}

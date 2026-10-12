@@ -1,0 +1,132 @@
+{
+  "result": "PASS",
+  "invocations": 11,
+  "source_sha256": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
+  "result_sha256": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0",
+  "scope": "Patch applicator filesystem/hash behavior only; no TinyUSB lifecycle or hardware claim",
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/new output.c"
+      ],
+      "returncode": 0,
+      "stdout": "patching file /tmp/usb-setup-patch-665vw1_m/usbd.c (read from /workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c)\n{\"patch_sha256\": \"51492cd96f4f9f8dd0699fe915f8c157c866f04cdc129e4c7c734e21f49b0f37\", \"result_sha256\": \"187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0\", \"source_sha256\": \"38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/new output.c"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/output-symlink"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/dangling-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/existing-directory"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: output already exists; choose a new build path\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/bad-source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/rejected-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: source hash differs from the pinned upstream file\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/rejected-output"
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: patch hash differs from the manifest\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/rejected-output"
+      ],
+      "returncode": 2,
+      "stdout": "patching file /tmp/usb-setup-patch-7a6ieqx1/usbd.c (read from /workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c)\n",
+      "stderr": "usage: apply_setup_patch.py [-h] source output\napply_setup_patch.py: error: patched output differs from the pinned result\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-c",
+        "import subprocess,sys,runpy\nfrom pathlib import Path\nscript,source,out=sys.argv[1:]\nreal=subprocess.run\ndef during(*a,**kw):\n r=real(*a,**kw)\n Path(out).write_text(\"concurrent sentinel\")\n return r\nsubprocess.run=during\nsys.argv=[script,source,out]\nrunpy.run_path(script,run_name=\"__main__\")\n",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/raced-output"
+      ],
+      "returncode": 1,
+      "stdout": "patching file /tmp/usb-setup-patch-3hq6k8r4/usbd.c (read from /workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c)\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 11, in <module>\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py\", line 47, in <module>\n    main()\n  File \"/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py\", line 39, in main\n    with args.output.open(\"xb\") as output:\n         ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileExistsError: [Errno 17] File exists: '/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/raced-output'\n"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c",
+        "/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/uncreated/result.c"
+      ],
+      "returncode": 1,
+      "stdout": "patching file /tmp/usb-setup-patch-busqfch2/usbd.c (read from /workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/upstream source.c)\n",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py\", line 47, in <module>\n    main()\n  File \"/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/apply_setup_patch.py\", line 39, in main\n    with args.output.open(\"xb\") as output:\n         ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/workspace/shared/usb-setup-critic-relocated-1/critic-usb-setup-_8kkgyrs/uncreated/result.c'\n"
+    }
+  ]
+}

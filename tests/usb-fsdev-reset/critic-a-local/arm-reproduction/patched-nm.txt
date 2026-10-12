@@ -1,0 +1,12 @@
+         U btable_set_rx_bufsize
+         U dcd_connect
+         U dcd_event_handler
+         U fsdev_core_reset
+         U fsdev_deinit
+         U memcpy
+         U memset
+         U pma_align_buffer_size
+         U tu_fifo_read_n_access_mode
+         U tu_fifo_write_n_access_mode
+         U tu_hwfifo_read
+         U tu_hwfifo_write

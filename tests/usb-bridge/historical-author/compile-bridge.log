@@ -1,0 +1,13 @@
+In file included from /workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb_option.h:272,
+                 from /workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_common.h:82,
+                 from /workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb.h:37,
+                 from firmware/transport/mt_usb_bridge.h:4,
+                 from firmware/transport/mt_usb_bridge.c:1:
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_mcu.h:236:6: error: #error "Unsupported STM32F1 mcu"
+  236 |     #error "Unsupported STM32F1 mcu"
+      |      ^~~~~
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_mcu.h:749:4: error: #warning before C23 is a GCC extension
+  749 |   #warning "TUP_DCD_ENDPOINT_MAX is not defined for this MCU, default to 8"
+      |    ^~~~~~~
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_mcu.h:749:4: error: #warning "TUP_DCD_ENDPOINT_MAX is not defined for this MCU, default to 8" [-Werror=cpp]
+cc1: all warnings being treated as errors

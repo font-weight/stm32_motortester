@@ -1,0 +1,12 @@
+firmware/platform/mt_timebase.c:21:17:read_reg	0	static
+firmware/platform/mt_timebase.c:24:13:write_reg	0	static
+firmware/platform/mt_timebase.c:27:12:valid	0	static
+firmware/platform/mt_timebase.c:35:12:accessible	8	static
+firmware/platform/mt_timebase.c:38:12:clock_matches	8	static
+firmware/platform/mt_timebase.c:43:12:timer_matches	8	static
+firmware/platform/mt_timebase.c:78:5:mt_timebase_update	16	static
+firmware/platform/mt_timebase.c:50:5:mt_timebase_init	16	static
+firmware/platform/mt_timebase.c:96:5:mt_timebase_healthy	8	static
+firmware/platform/mt_timebase.c:99:10:mt_timebase_now_us	8	static
+firmware/platform/mt_timebase.c:105:10:mt_timebase_now_ms	8	static
+firmware/platform/mt_timebase.c:111:5:mt_timebase_stop	16	static

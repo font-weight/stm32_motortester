@@ -1,0 +1,1692 @@
+{
+  "date_utc": "2026-10-10T16:47:49.680382+00:00",
+  "scope": "Relocatable ARM Cortex-M3 objects only; no target execution, PRIMASK/vector proof, final link, complete firmware resource use, or acceptance grade.",
+  "objects": {
+    "bridge-on": {
+      "source": "snapshot/bridge/firmware/transport/mt_usb_bridge.c",
+      "source_sha256": "7cbbc13e481aa398b28f713f2b3067f27e622c99cd8c1eed833237b04cf59d7e",
+      "object_sha256": "898746106678d1a020d9b443fb63b9562ee11f0be15e254a6ab24de002ce67f4",
+      "preprocessed_sha256": "b21985a881ff5a87f9cc51e3b52f5bb8b6685bdfa03c7ac1de256e22a32184e5",
+      "text": 1294,
+      "data": 0,
+      "bss": 72,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 40,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:19:12:permitted",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:22:13:result.part.0",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:10:6:mt_usb_bridge_init",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:17:10:mt_usb_bridge_lock",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:18:6:mt_usb_bridge_unlock",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:26:10:mt_usb_bridge_ingress",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:38:6:mt_usb_bridge_enqueued",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:41:10:mt_usb_bridge_actor",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:42:14:mt_usb_bridge_snapshot",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:47:6:mt_usb_bridge_cleaned",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:52:10:mt_usb_bridge_dispatch",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:66:5:mt_usb_bridge_app_enter",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:75:6:mt_usb_bridge_leave",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:80:6:mt_usb_bridge_reset_done",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:85:5:mt_usb_bridge_config_begin",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:96:6:mt_usb_bridge_config_done",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:104:6:mt_usb_bridge_xfer",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:109:6:mt_usb_bridge_fifo",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:114:6:mt_usb_bridge_open",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:121:6:mt_usb_bridge_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:122:6:mt_usb_bridge_clear_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:123:6:mt_usb_bridge_status",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:126:6:mt_usb_bridge_sof",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:127:6:mt_usb_bridge_close_all",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:128:6:mt_usb_bridge_address",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_bridge.c:138:6:mt_usb_bridge_address_result",
+          "bytes": 0,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "core-on": {
+      "source": "snapshot/bridge/build/usbd.c",
+      "source_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+      "object_sha256": "d95561051ae31a69fef406c3286186663a5d8ae6da7ba0ac514d3a6263f9c8f7",
+      "preprocessed_sha256": "d3a6811471b1bf00c4215cd7610a323d9c551f3a16fcc52ad576a31b91c648c3",
+      "text": 4216,
+      "data": 29,
+      "bss": 391,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 96,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:128:19:tud_vendor_control_xfer_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:722:13:configuration_reset",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1644:6:usbd_int_set",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1076:13:invoke_class_control.constprop.isra",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:94:19:tud_event_hook_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:484:13:queue_event_epoch.isra",
+          "bytes": 48,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:98:19:tud_sof_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:102:29:tud_descriptor_bos_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:106:29:tud_descriptor_device_qualifier_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:110:29:tud_descriptor_other_speed_configuration_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:115:19:tud_mount_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:118:19:tud_umount_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:121:19:tud_suspend_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:125:19:tud_resume_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:133:19:dcd_deinit",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:138:19:dcd_connect",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:142:19:dcd_disconnect",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:146:19:dcd_dcache_clean",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:151:19:dcd_dcache_invalidate",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:156:19:dcd_dcache_clean_invalidate",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:523:41:usbd_app_driver_get_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:528:19:dcd_edpt_xfer_fifo",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:533:19:dcd_configure",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:559:14:tud_speed_get",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:563:6:tud_connected",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:567:6:tud_mounted",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:571:6:tud_suspended",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:575:6:tud_remote_wakeup",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:582:6:tud_disconnect",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:587:6:tud_connect",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:596:6:tud_inited",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:600:6:tud_configure",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:604:6:tud_rhport_init",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:676:6:tud_deinit",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:738:6:tud_task_event_ready",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:946:19:dcd_edpt0_status_complete",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:951:10:usbd_get_ctrl_buf",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1521:24:dcd_event_handler",
+          "bytes": 48,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1652:6:usbd_spin_lock",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1655:6:usbd_spin_unlock",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1681:6:usbd_defer_func",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1703:6:usbd_edpt_open",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1660:6:usbd_open_edpt_pair",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1712:6:usbd_edpt_claim",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1723:6:usbd_edpt_release",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1731:6:usbd_edpt_xfer",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:985:6:tud_control_status",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:969:13:data_stage_xact",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:992:6:tud_control_xfer",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1769:6:usbd_edpt_xfer_fifo",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1805:6:usbd_edpt_busy",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1814:6:usbd_edpt_stall",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1826:6:usbd_edpt_clear_stall",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1838:6:usbd_edpt_stalled",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:907:6:tud_task_ext",
+          "bytes": 96,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1851:6:usbd_edpt_close",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1870:6:usbd_sof_enable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:592:6:tud_sof_cb_enable",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1887:6:usbd_edpt_iso_alloc",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1899:6:usbd_edpt_iso_activate",
+          "bytes": 0,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "dcd-on": {
+      "source": "snapshot/bridge/build/dcd_stm32_fsdev.c",
+      "source_sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8",
+      "object_sha256": "e17309dc7228f94f02a2f9a934dc76f4c71015abb9715d0cee5d45be3a333bf0",
+      "preprocessed_sha256": "c944d8bfcf3b578dc193db881b083cb6b9bad0eb28ed127aae126b41c8f37d00",
+      "text": 2808,
+      "data": 0,
+      "bss": 131,
+      "warning_count": 5,
+      "warnings": "In file included from /workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:101:\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h: In function 'btable_set_count':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]\n  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);\n      |                  ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:219:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]\n  219 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c: In function 'dcd_int_handler':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:426:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]\n  426 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:427:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]\n  427 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:448:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]\n  448 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;\n      |                          ^\n",
+      "maximum_local_stack_bytes": 72,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h:1508:22:__NVIC_EnableIRQ",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h:1546:22:__NVIC_DisableIRQ",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:531:16:dcd_ep_alloc",
+          "bytes": 20,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:731:13:dcd_transmit_packet",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:508:17:dcd_pma_alloc.constprop",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:768:13:edpt_xfer.isra",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:246:13:handle_bus_reset.isra",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:181:6:dcd_init",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:205:6:dcd_deinit",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:213:6:dcd_sof_enable",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:239:6:dcd_remote_wakeup",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:408:6:dcd_int_handler",
+          "bytes": 72,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:493:6:dcd_edpt0_status_complete",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:597:6:dcd_edpt_open",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:665:6:dcd_edpt_iso_alloc",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:694:6:dcd_edpt_iso_activate",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:813:6:dcd_edpt_xfer",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:224:6:dcd_set_address",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:827:6:dcd_edpt_xfer_fifo",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:841:6:dcd_edpt_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:863:6:dcd_edpt_clear_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:881:6:dcd_int_enable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:885:6:dcd_int_disable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:646:6:dcd_edpt_close_all",
+          "bytes": 16,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "adapter-on": {
+      "source": "snapshot/bridge/firmware/transport/mt_usb_cdc.c",
+      "source_sha256": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f",
+      "object_sha256": "ff73d60b3a272f133341ab9f814554593863af5c2054ee7d0157d839dd172d49",
+      "preprocessed_sha256": "0d5705024a3a2ce8b0d6a52226a8c017adafc14d13f7fbdf3b89da8a8fe67d2c",
+      "text": 778,
+      "data": 0,
+      "bss": 0,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 40,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:14:12:valid",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:17:12:usable",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:46:5:mt_usb_cdc_write_impl",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:21:19:mt_usb_cdc_init",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:31:19:mt_usb_cdc_open_epoch_impl",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:54:19:mt_usb_cdc_step_impl",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:79:19:mt_usb_cdc_soft_pause",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:91:19:mt_usb_cdc_hard_loss",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:112:19:mt_usb_cdc_open_epoch",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:124:5:mt_usb_cdc_write",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:132:19:mt_usb_cdc_step",
+          "bytes": 24,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "core-off": {
+      "source": "snapshot/bridge/build/usbd.c",
+      "source_sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+      "object_sha256": "da467c706a64bd3463194649346ce1ca4060f11e4cde4174fbb5e7b03be28d2d",
+      "preprocessed_sha256": "c79219bab33a4af2ca17aa51bbbcd223a2921d870f86552aef1ec51b159cd0dd",
+      "text": 4088,
+      "data": 29,
+      "bss": 310,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 72,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:128:19:tud_vendor_control_xfer_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:722:13:configuration_reset",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1644:6:usbd_int_set",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1076:13:invoke_class_control.constprop.isra",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:94:19:tud_event_hook_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:98:19:tud_sof_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:102:29:tud_descriptor_bos_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:106:29:tud_descriptor_device_qualifier_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:110:29:tud_descriptor_other_speed_configuration_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:115:19:tud_mount_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:118:19:tud_umount_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:121:19:tud_suspend_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:125:19:tud_resume_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:133:19:dcd_deinit",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:138:19:dcd_connect",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:142:19:dcd_disconnect",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:146:19:dcd_dcache_clean",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:151:19:dcd_dcache_invalidate",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:156:19:dcd_dcache_clean_invalidate",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:523:41:usbd_app_driver_get_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:528:19:dcd_edpt_xfer_fifo",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:533:19:dcd_configure",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:559:14:tud_speed_get",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:563:6:tud_connected",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:567:6:tud_mounted",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:571:6:tud_suspended",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:575:6:tud_remote_wakeup",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:582:6:tud_disconnect",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:587:6:tud_connect",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:596:6:tud_inited",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:600:6:tud_configure",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:604:6:tud_rhport_init",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:676:6:tud_deinit",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:738:6:tud_task_event_ready",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:946:19:dcd_edpt0_status_complete",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:951:10:usbd_get_ctrl_buf",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1521:24:dcd_event_handler",
+          "bytes": 48,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1652:6:usbd_spin_lock",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1655:6:usbd_spin_unlock",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1681:6:usbd_defer_func",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1703:6:usbd_edpt_open",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1660:6:usbd_open_edpt_pair",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1712:6:usbd_edpt_claim",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1723:6:usbd_edpt_release",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1731:6:usbd_edpt_xfer",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:985:6:tud_control_status",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:969:13:data_stage_xact",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:992:6:tud_control_xfer",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1769:6:usbd_edpt_xfer_fifo",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1805:6:usbd_edpt_busy",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1814:6:usbd_edpt_stall",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1826:6:usbd_edpt_clear_stall",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1838:6:usbd_edpt_stalled",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:767:6:tud_task_ext",
+          "bytes": 72,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1851:6:usbd_edpt_close",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1870:6:usbd_sof_enable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:592:6:tud_sof_cb_enable",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1887:6:usbd_edpt_iso_alloc",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/usbd.c:1899:6:usbd_edpt_iso_activate",
+          "bytes": 0,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "dcd-off": {
+      "source": "snapshot/bridge/build/dcd_stm32_fsdev.c",
+      "source_sha256": "d46344c2dea3c7eceaa4a1042bd179ef3eda0e835efdf3ae3763f18db44961d8",
+      "object_sha256": "c5f5f547e9cb1a46703b69fee6aac91875733639a39bbdb44773a8d0380453b3",
+      "preprocessed_sha256": "c03f543902ae9cde5a96743e7585329b589002f328c791f7636c7702695506a2",
+      "text": 2802,
+      "data": 0,
+      "bss": 131,
+      "warning_count": 5,
+      "warnings": "In file included from /workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:101:\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h: In function 'btable_set_count':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]\n  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);\n      |                  ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:219:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]\n  219 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c: In function 'dcd_int_handler':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:426:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]\n  426 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:427:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]\n  427 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:448:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]\n  448 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;\n      |                          ^\n",
+      "maximum_local_stack_bytes": 72,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h:1508:22:__NVIC_EnableIRQ",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h:1546:22:__NVIC_DisableIRQ",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:531:16:dcd_ep_alloc",
+          "bytes": 20,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:731:13:dcd_transmit_packet",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:508:17:dcd_pma_alloc.constprop",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:768:13:edpt_xfer.isra",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:246:13:handle_bus_reset.isra",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:181:6:dcd_init",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:205:6:dcd_deinit",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:213:6:dcd_sof_enable",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:239:6:dcd_remote_wakeup",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:408:6:dcd_int_handler",
+          "bytes": 72,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:493:6:dcd_edpt0_status_complete",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:597:6:dcd_edpt_open",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:665:6:dcd_edpt_iso_alloc",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:694:6:dcd_edpt_iso_activate",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:813:6:dcd_edpt_xfer",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:224:6:dcd_set_address",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:827:6:dcd_edpt_xfer_fifo",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:841:6:dcd_edpt_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:863:6:dcd_edpt_clear_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:881:6:dcd_int_enable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:885:6:dcd_int_disable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/build/dcd_stm32_fsdev.c:646:6:dcd_edpt_close_all",
+          "bytes": 16,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "adapter-off": {
+      "source": "snapshot/bridge/firmware/transport/mt_usb_cdc.c",
+      "source_sha256": "d262e01072dca405be71af32db4263373c100eb9e618959f1be25e1b7ca3cf9f",
+      "object_sha256": "7b438c4e53ab6386c7d7070a70b0c637f21dfa39e062ad78dc59a0a50316f064",
+      "preprocessed_sha256": "cfff175f295d4fc4db236f0c03c2889553b17192964b37a10ea6b4d57f70f28a",
+      "text": 588,
+      "data": 0,
+      "bss": 0,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 40,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:14:12:valid",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:17:12:usable",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:46:5:mt_usb_cdc_write",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:21:19:mt_usb_cdc_init",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:31:19:mt_usb_cdc_open_epoch",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:54:19:mt_usb_cdc_step",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:79:19:mt_usb_cdc_soft_pause",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/bridge/firmware/transport/mt_usb_cdc.c:91:19:mt_usb_cdc_hard_loss",
+          "bytes": 16,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "core-base": {
+      "source": "snapshot/setup/build/usbd.c",
+      "source_sha256": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0",
+      "object_sha256": "da467c706a64bd3463194649346ce1ca4060f11e4cde4174fbb5e7b03be28d2d",
+      "preprocessed_sha256": "c79219bab33a4af2ca17aa51bbbcd223a2921d870f86552aef1ec51b159cd0dd",
+      "text": 4088,
+      "data": 29,
+      "bss": 310,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 72,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:82:19:tud_vendor_control_xfer_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:650:13:configuration_reset",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1494:6:usbd_int_set",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:960:13:invoke_class_control.constprop.isra",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:48:19:tud_event_hook_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:52:19:tud_sof_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:56:29:tud_descriptor_bos_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:60:29:tud_descriptor_device_qualifier_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:64:29:tud_descriptor_other_speed_configuration_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:69:19:tud_mount_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:72:19:tud_umount_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:75:19:tud_suspend_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:79:19:tud_resume_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:87:19:dcd_deinit",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:92:19:dcd_connect",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:96:19:dcd_disconnect",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:100:19:dcd_dcache_clean",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:105:19:dcd_dcache_invalidate",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:110:19:dcd_dcache_clean_invalidate",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:457:41:usbd_app_driver_get_cb",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:462:19:dcd_edpt_xfer_fifo",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:467:19:dcd_configure",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:493:14:tud_speed_get",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:497:6:tud_connected",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:501:6:tud_mounted",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:505:6:tud_suspended",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:509:6:tud_remote_wakeup",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:516:6:tud_disconnect",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:521:6:tud_connect",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:530:6:tud_inited",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:534:6:tud_configure",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:538:6:tud_rhport_init",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:604:6:tud_deinit",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:666:6:tud_task_event_ready",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:830:19:dcd_edpt0_status_complete",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:835:10:usbd_get_ctrl_buf",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1391:24:dcd_event_handler",
+          "bytes": 48,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1502:6:usbd_spin_lock",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1505:6:usbd_spin_unlock",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1531:6:usbd_defer_func",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1546:6:usbd_edpt_open",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1510:6:usbd_open_edpt_pair",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1555:6:usbd_edpt_claim",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1566:6:usbd_edpt_release",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1574:6:usbd_edpt_xfer",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:869:6:tud_control_status",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:853:13:data_stage_xact",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:876:6:tud_control_xfer",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1612:6:usbd_edpt_xfer_fifo",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1648:6:usbd_edpt_busy",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1657:6:usbd_edpt_stall",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1669:6:usbd_edpt_clear_stall",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1681:6:usbd_edpt_stalled",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:688:6:tud_task_ext",
+          "bytes": 72,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1694:6:usbd_edpt_close",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1713:6:usbd_sof_enable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:526:6:tud_sof_cb_enable",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1730:6:usbd_edpt_iso_alloc",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/setup/build/usbd.c:1742:6:usbd_edpt_iso_activate",
+          "bytes": 0,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "dcd-base": {
+      "source": "snapshot/reset/build/dcd_stm32_fsdev.c",
+      "source_sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97",
+      "object_sha256": "c5f5f547e9cb1a46703b69fee6aac91875733639a39bbdb44773a8d0380453b3",
+      "preprocessed_sha256": "c03f543902ae9cde5a96743e7585329b589002f328c791f7636c7702695506a2",
+      "text": 2802,
+      "data": 0,
+      "bss": 131,
+      "warning_count": 5,
+      "warnings": "In file included from /workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:101:\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h: In function 'btable_set_count':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]\n  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);\n      |                  ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:219:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]\n  219 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c: In function 'dcd_int_handler':\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:421:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]\n  421 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:422:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]\n  422 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;\n      |                        ^\n/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:443:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]\n  443 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;\n      |                          ^\n",
+      "maximum_local_stack_bytes": 72,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h:1508:22:__NVIC_EnableIRQ",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/dependencies/vendor/cmsis-core/CMSIS/Core/Include/core_cm3.h:1546:22:__NVIC_DisableIRQ",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:526:16:dcd_ep_alloc",
+          "bytes": 20,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:726:13:dcd_transmit_packet",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:503:17:dcd_pma_alloc.constprop",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:763:13:edpt_xfer.isra",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:241:13:handle_bus_reset.isra",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:181:6:dcd_init",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:205:6:dcd_deinit",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:213:6:dcd_sof_enable",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:234:6:dcd_remote_wakeup",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:403:6:dcd_int_handler",
+          "bytes": 72,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:488:6:dcd_edpt0_status_complete",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:592:6:dcd_edpt_open",
+          "bytes": 32,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:660:6:dcd_edpt_iso_alloc",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:689:6:dcd_edpt_iso_activate",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:808:6:dcd_edpt_xfer",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:224:6:dcd_set_address",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:822:6:dcd_edpt_xfer_fifo",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:836:6:dcd_edpt_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:858:6:dcd_edpt_clear_stall",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:876:6:dcd_int_enable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:880:6:dcd_int_disable",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/reset/build/dcd_stm32_fsdev.c:641:6:dcd_edpt_close_all",
+          "bytes": 16,
+          "qualifier": "static"
+        }
+      ]
+    },
+    "adapter-base": {
+      "source": "snapshot/adapter/firmware/transport/mt_usb_cdc.c",
+      "source_sha256": "4127541694a00521f0eddce314bbce8383da892b2a5adbb0e5bace6576d0193f",
+      "object_sha256": "ea361a6379ef1432b6cad25756317257daa2da3d162d028cd15171bdad75f4e3",
+      "preprocessed_sha256": "6cd1ec0315a4befef2d2134f6f03134998440c7f5f3cc846c0728d620836708d",
+      "text": 604,
+      "data": 0,
+      "bss": 0,
+      "warning_count": 0,
+      "warnings": "",
+      "maximum_local_stack_bytes": 40,
+      "stack_entries": [
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:8:12:valid",
+          "bytes": 0,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:11:12:usable",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:40:5:mt_usb_cdc_write",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:15:19:mt_usb_cdc_init",
+          "bytes": 24,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:25:19:mt_usb_cdc_open_epoch",
+          "bytes": 16,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:48:19:mt_usb_cdc_step",
+          "bytes": 40,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:73:19:mt_usb_cdc_soft_pause",
+          "bytes": 8,
+          "qualifier": "static"
+        },
+        {
+          "location": "/workspace/shared/usb-bridge-arm-evidence/run-04-path-isolation-fixed/snapshot/adapter/firmware/transport/mt_usb_cdc.c:85:19:mt_usb_cdc_hard_loss",
+          "bytes": 16,
+          "qualifier": "static"
+        }
+      ]
+    }
+  },
+  "optout_comparisons": {
+    "core": {
+      "preprocessed_identical": true,
+      "object_identical": true,
+      "off_minus_base": {
+        "text": 0,
+        "data": 0,
+        "bss": 0
+      }
+    },
+    "dcd": {
+      "preprocessed_identical": true,
+      "object_identical": true,
+      "off_minus_base": {
+        "text": 0,
+        "data": 0,
+        "bss": 0
+      }
+    },
+    "adapter": {
+      "preprocessed_identical": false,
+      "object_identical": false,
+      "off_minus_base": {
+        "text": -16,
+        "data": 0,
+        "bss": 0
+      }
+    }
+  },
+  "original_inputs_changed_during_run": {},
+  "runner_sha256": "e04248ce32792c6be88280cfdbe9ea463870edaba86897675a1da6e18b6c7f95"
+}

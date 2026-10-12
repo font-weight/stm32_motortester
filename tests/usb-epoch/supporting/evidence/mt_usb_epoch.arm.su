@@ -1,0 +1,13 @@
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:10:6:mt_usb_epoch_init	8	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:26:10:mt_usb_epoch_reset	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:27:10:mt_usb_epoch_disconnect	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:28:5:mt_usb_epoch_enqueued	4	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:43:5:mt_usb_epoch_cleaned	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:48:5:mt_usb_epoch_dispatch	4	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:56:5:mt_usb_epoch_reset_done	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:61:5:mt_usb_epoch_core_io	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:64:5:mt_usb_epoch_configured	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:69:5:mt_usb_epoch_app_io	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:72:5:mt_usb_epoch_fail	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:81:10:mt_usb_epoch_suspend	0	static
+/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c:90:5:mt_usb_epoch_resume	4	static

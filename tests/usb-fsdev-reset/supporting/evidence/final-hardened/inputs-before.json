@@ -1,0 +1,15 @@
+{
+  "inputs_sha256": {
+    "src/preamble.h": "e2df1faf918068c769d819c0cac17f6a9292fdaed931c74dfc290d9c4dbc2f07",
+    "src/tests.c": "e296d2a1378096e27d88feeef4616caa027102d4d45b07abff178483bac8b953",
+    "src/translation.c": "0d105e7838429f0fa58e7a7ea819acaf556712c3d9969695c977e5857a7e277c",
+    "tools/extract.py": "a6e5a7dd8f1ca5e3b7564be2988f0a3ac992f0813deb8bfa67b0c4254402b321",
+    "tools/run.py": "f7f01c7d86bf26b3c29dcc385de0717a0dfc657096497ec41a1ef6123c436f6e",
+    "tools/test_runner.py": "242519e147a5dc719c6f8ea403bf0fac42610e9cea7ca8779ac72f27de8691a4",
+    "inputs/dcd_stm32_fsdev.c": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f",
+    "inputs/fsdev_common.c": "6ffeaa1f64fcdeaf0e7db1c932696bcc962cdd546032599ebccc41fe2b7e990f",
+    "inputs/fsdev_common.h": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb",
+    "inputs/tusb_config.h": "97af938155e2e854e8bdf45a3fee51d306cda084a006499ea0fc68e107d0184a"
+  },
+  "candidate_sha256": "1326ac072ff0f687f6589e5045184c77d578687f13e58b85b1e783aa2946fe97"
+}

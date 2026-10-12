@@ -1,0 +1,4 @@
+$ /workspace/shared/usb-epoch-independent/evidence/mutants/ignore_queue_loss --directed
+FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:98 (lost current enqueue poisons even after configuration): s.faults == MT_USB_EPOCH_QUEUE_LOSS
+
+exit=1

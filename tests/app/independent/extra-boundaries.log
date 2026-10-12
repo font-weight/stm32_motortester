@@ -1,0 +1,15 @@
+test_late_release_cannot_bypass_timeout (__main__.Release.test_late_release_cannot_bypass_timeout) ... FAIL
+test_old_end_with_reused_ids_is_ignored (__main__.Sessions.test_old_end_with_reused_ids_is_ignored) ... ok
+
+======================================================================
+FAIL: test_late_release_cannot_bypass_timeout (__main__.Release.test_late_release_cannot_bypass_timeout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/capture-link-independent-tests/test_link.py", line 222, in test_late_release_cannot_bypass_timeout
+    self.assertEqual(lib.release_link(11,1,crc,12,self.now),RECOVERY,
+AssertionError: 0 != 8 : release at deadline must not bypass timeout by arriving before poll
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.009s
+
+FAILED (failures=1)

@@ -1,0 +1,6 @@
+$ sha256sum -c /workspace/shared/arm-resource-evidence/toolchain/SHA256SUMS.packages
+gcc-arm-none-eabi_14.2.rel1-1_amd64.deb: OK
+libnewlib-dev_4.5.0.20241231-1_all.deb: OK
+binutils-arm-none-eabi_2.44-3+23+b1_amd64.deb: OK
+
+exit=0

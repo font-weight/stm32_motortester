@@ -1,0 +1,9 @@
+In file included from /workspace/shared/usb-dependencies/vendor/tinyusb/src/tusb_option.h:272,
+                 from build/usbd.c:27:
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_mcu.h:236:6: error: #error "Unsupported STM32F1 mcu"
+  236 |     #error "Unsupported STM32F1 mcu"
+      |      ^~~~~
+/workspace/shared/usb-dependencies/vendor/tinyusb/src/common/tusb_mcu.h:749:4: error: #warning "TUP_DCD_ENDPOINT_MAX is not defined for this MCU, default to 8" [-Werror=cpp]
+  749 |   #warning "TUP_DCD_ENDPOINT_MAX is not defined for this MCU, default to 8"
+      |    ^~~~~~~
+cc1: all warnings being treated as errors

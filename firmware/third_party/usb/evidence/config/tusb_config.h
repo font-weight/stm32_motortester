@@ -1,0 +1,41 @@
+/* TEST-ONLY: object compilation evidence, not an application or board configuration.
+ * No USB descriptors, device VID/PID, clock, vectors, startup or linker are supplied.
+ */
+#ifndef USB_DEPENDENCIES_TEST_ONLY_TUSB_CONFIG_H
+#define USB_DEPENDENCIES_TEST_ONLY_TUSB_CONFIG_H
+#define CFG_TUSB_MCU OPT_MCU_STM32F1
+#define CFG_TUSB_OS OPT_OS_NONE
+#define CFG_TUSB_DEBUG 0
+#define CFG_TUSB_RHPORT0_MODE (OPT_MODE_DEVICE | OPT_MODE_FULL_SPEED)
+#define CFG_TUD_ENABLED 1
+#define CFG_TUH_ENABLED 0
+#define CFG_TUD_ENDPOINT0_SIZE 64
+#define CFG_TUD_INTERFACE_MAX 2
+#define CFG_TUD_ENDPPOINT_MAX 3
+#define CFG_TUD_TASK_QUEUE_SZ 16
+#define CFG_TUD_TASK_EVENTS_PER_RUN 1
+#define CFG_TUD_CDC 1
+#define CFG_TUD_CDC_RX_BUFSIZE 64
+#define CFG_TUD_CDC_TX_BUFSIZE 64
+#define CFG_TUD_CDC_RX_EPSIZE 64
+#define CFG_TUD_CDC_TX_EPSIZE 64
+#define CFG_TUD_CDC_TX_OVERWRITABLE_IF_NOT_CONNECTED 0
+#define CFG_TUD_CDC_RX_PERSISTENT 0
+#define CFG_TUD_CDC_TX_PERSISTENT 0
+#define CFG_TUD_CDC_RX_NEED_ZLP 0
+#define CFG_TUD_MSC 0
+#define CFG_TUD_MTP 0
+#define CFG_TUD_HID 0
+#define CFG_TUD_AUDIO 0
+#define CFG_TUD_VIDEO 0
+#define CFG_TUD_MIDI 0
+#define CFG_TUD_MIDI2 0
+#define CFG_TUD_VENDOR 0
+#define CFG_TUD_USBTMC 0
+#define CFG_TUD_DFU_RUNTIME 0
+#define CFG_TUD_DFU 0
+#define CFG_TUD_ECM_RNDIS 0
+#define CFG_TUD_NCM 0
+#define CFG_TUD_BTH 0
+#define CFG_TUD_PRINTER 0
+#endif

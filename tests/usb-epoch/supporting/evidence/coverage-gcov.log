@@ -1,0 +1,11 @@
+$ gcov -b -c mt_usb_epoch.gcno
+File '/workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c'
+Lines executed:100.00% of 74
+Branches executed:100.00% of 88
+Taken at least once:100.00% of 88
+Calls executed:100.00% of 14
+Creating 'mt_usb_epoch.c.gcov'
+
+Lines executed:100.00% of 74
+
+exit=0

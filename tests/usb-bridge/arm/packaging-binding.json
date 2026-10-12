@@ -1,0 +1,10 @@
+{
+  "original_fixed_runner_sha256": "e04248ce32792c6be88280cfdbe9ea463870edaba86897675a1da6e18b6c7f95",
+  "packaged_runner_sha256": "dc4db5f2d2e1b4a27575e632308afaad9861700b7b9144f22daeb1446c9908bb",
+  "original_path_tests_sha256": "f613700e5424d0e1e755fb7a79b39d20b8ca7e4df69637341885e8dcde90166a",
+  "packaged_path_tests_sha256": "70e27fb7801c3813e8d371e67492a8c2625ceb6ab778a9a13ed86c942a23269d",
+  "original_case_count": 61,
+  "packaged_case_count": 58,
+  "omitted_original_results_sha256": "368689e8f5ca9973683aa721ed9cb120039e19b8190981b02f43f3b5dd9d9f58",
+  "removed_cases": "Only missing-singleton checks for three intentionally omitted unused snapshot inputs: core.patch, dcd.patch and tools/build_core_patch.py. All remaining rejection/success expectations are unchanged."
+}

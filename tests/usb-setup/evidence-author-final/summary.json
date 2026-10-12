@@ -1,0 +1,12 @@
+{
+  "hashes": {
+    "original_usbd": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
+    "patched_usbd": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0",
+    "arm_object": "da467c706a64bd3463194649346ce1ca4060f11e4cde4174fbb5e7b03be28d2d",
+    "runner": "06b9b9237295786ddbdc152e2040a42e57e9fc6632685dbdfe00698e2483d57b",
+    "apply_tool": "28b1672b247a71d149b47d631659df9e09c9d761ea413bbedbf1c571658bb189"
+  },
+  "existing_usb_executions": 8,
+  "patch_rejection_checks": 3,
+  "scope": "native core/adapter tests and ARM object only; no target runtime, IRQ or hardware proof"
+}

@@ -1,0 +1,24 @@
+{
+  "status": "DRAFT, generated with separate JS reference arithmetic; C codec not executed; independent conformance review pending",
+  "crc_check": {
+    "ascii": "123456789",
+    "hex": "cbf43926"
+  },
+  "vectors": [
+    {
+      "name": "opaque_type_codec_only",
+      "decoded_hex": "00017f0006000000010203040506070801000000020000000001feff007e9ac2711a",
+      "frame_hex": "0103017f020601010a010203040506070801010102020101010401feff067e9ac2711a00",
+      "expected": {
+        "major": 0,
+        "minor": 1,
+        "type": 127,
+        "session_hex": "0807060504030201",
+        "sequence": 1,
+        "request": 2,
+        "payload_hex": "0001feff007e"
+      },
+      "note": "Type127 is not an accepted command; dispatch must reject it. This tests byte codec only."
+    }
+  ]
+}

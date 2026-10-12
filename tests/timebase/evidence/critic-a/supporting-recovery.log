@@ -1,0 +1,70 @@
+RECOVERY RUN after environment reset, 2026-10-10: fresh TIME001 independent host model evidence; no hardware/critic approval.
+
+--- Host tools ---
+Linux x86_64
+cc (Debian 14.2.0-19) 14.2.0
+
+--- Frozen source SHA256 ---
+b403cc8f5e60cc2568b59d9fc5de6cf2cf1f116c03291876e7a05a5dc19f2740  subject/mt_timebase.c
+613135965695f6e1eb4e24edea9e2873a33b60ee4b44865a5db1ef1730b5b3d2  subject/mt_timebase.h
+630b3e6b002b22fd8bfcf616d08421a5224b911dd8f745143f3076e53db230af  test_timebase_independent.c
+
+--- Strict GCC C11 ---
++ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -Wconversion -Wsign-conversion -Wshadow -Wstrict-prototypes -Wmissing-prototypes -O2 -Isubject subject/mt_timebase.c test_timebase_independent.c -o test-strict
++ ./test-strict
+PASS 01 init order, preload/UG, write whitelist
+PASS 02 invalid arguments and objects
+PASS 03 active CEN / every DIER bit refused without writes
+PASS 04 initial clock profile and caller frequency trust
+PASS 05 delta/remainder arithmetic and 150000-step us wrap
+PASS 06 exact independent us32/ms32 rollovers
+PASS 07 100000 callback intervals with shared epoch
+PASS 08 only us / only ms callbacks independently cross us32 wrap
+PASS 09 counter wrap during post-snapshot checks
+PASS 10 observed service threshold and sticky values
+  register bit-injection scenarios: 646
+PASS 11 all monitored register bits before/during CNT read
+PASS 12 latched health and unrelated register changes
+PASS 13 missed wraps, transient, stuck counter limitations
+PASS 14 initialization failure retains ownership
+PASS 15 Stop/retry and owned/live reinit rejection
+PASS 16 gate/reset races during Stop preserve ownership
+PASS all 16 independent host test groups
++ set +x
+
+--- GCC ASan + UBSan; leak detection disabled ---
++ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -Wconversion -Wsign-conversion -Wshadow -Wstrict-prototypes -Wmissing-prototypes -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined -Isubject subject/mt_timebase.c test_timebase_independent.c -o test-sanitized
++ ASAN_OPTIONS=detect_leaks=0:halt_on_error=1
++ UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1
++ ./test-sanitized
+PASS 01 init order, preload/UG, write whitelist
+PASS 02 invalid arguments and objects
+PASS 03 active CEN / every DIER bit refused without writes
+PASS 04 initial clock profile and caller frequency trust
+PASS 05 delta/remainder arithmetic and 150000-step us wrap
+PASS 06 exact independent us32/ms32 rollovers
+PASS 07 100000 callback intervals with shared epoch
+PASS 08 only us / only ms callbacks independently cross us32 wrap
+PASS 09 counter wrap during post-snapshot checks
+PASS 10 observed service threshold and sticky values
+  register bit-injection scenarios: 646
+PASS 11 all monitored register bits before/during CNT read
+PASS 12 latched health and unrelated register changes
+PASS 13 missed wraps, transient, stuck counter limitations
+PASS 14 initialization failure retains ownership
+PASS 15 Stop/retry and owned/live reinit rejection
+PASS 16 gate/reset races during Stop preserve ownership
+PASS all 16 independent host test groups
++ set +x
+
+--- GCC static analyzer ---
++ cc -std=c11 -Wall -Wextra -Wpedantic -Werror -Wconversion -Wsign-conversion -Wshadow -Wstrict-prototypes -Wmissing-prototypes -O0 -fanalyzer -Isubject -c subject/mt_timebase.c -o timebase-analyzed.o
++ set +x
+
+--- Source still matches recovered frozen subject ---
+Both C/H byte-identical to recovered frozen subject at verification.
+
+--- Binary SHA256 ---
+f4b1b04d89a675711916d96fff844949fc0fee8e7e2851ab0975ca336bc529e5  test-strict
+22d878c83557189ab89399bbeb99700bdb222bb64e55f9e651020079e7e14eed  test-sanitized
+264034f2b1f563310590b71745853311075e63cbca3cfd93d8b9401a5d8b1c3e  timebase-analyzed.o
