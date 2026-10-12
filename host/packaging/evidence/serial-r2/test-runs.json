@@ -1,0 +1,78 @@
+{
+  "scope": "Linux CPython source tests; fake-backed frozen-gate logic; no Windows/PyInstaller/USB execution",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "runs": [
+    {
+      "name": "focused-normal",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-p",
+        "test_serial_packaging.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-12T03:27:31.126318+00:00",
+      "ended_at_utc": "2026-10-12T03:27:31.259233+00:00",
+      "exit_code": 0,
+      "log": "focused-normal.log"
+    },
+    {
+      "name": "focused-optimized",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-p",
+        "test_serial_packaging.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-12T03:27:31.259431+00:00",
+      "ended_at_utc": "2026-10-12T03:27:31.702879+00:00",
+      "exit_code": 0,
+      "log": "focused-optimized.log"
+    },
+    {
+      "name": "full-normal",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-12T03:27:31.703064+00:00",
+      "ended_at_utc": "2026-10-12T03:27:42.989541+00:00",
+      "exit_code": 0,
+      "log": "full-normal.log"
+    },
+    {
+      "name": "full-optimized",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "host/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-12T03:27:42.989893+00:00",
+      "ended_at_utc": "2026-10-12T03:27:54.668649+00:00",
+      "exit_code": 0,
+      "log": "full-optimized.log"
+    }
+  ],
+  "source_unchanged": true
+}

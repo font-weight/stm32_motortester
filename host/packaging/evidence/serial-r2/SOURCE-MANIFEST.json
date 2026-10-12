@@ -1,0 +1,65 @@
+{
+  "regenerated_candidate": "serial-r2",
+  "base_commit": "ec11d01a42e0cbdc06039ddf274121a4db7202ed",
+  "frozen_at_utc": "2026-10-12T03:29:18.776111+00:00",
+  "status": "source-frozen-for-independent-review; not accepted or published",
+  "source_files": [
+    {
+      "path": "host/requirements-gui.txt",
+      "bytes": 359,
+      "sha256": "71ab87c948e3f592831a7c462f1e31a10bd8a8b4c46e7310717d0e6e8ee1a889"
+    },
+    {
+      "path": "host/packaging/requirements-win-x64.lock",
+      "bytes": 2211,
+      "sha256": "05a7bb68dbb5247f76a585443d4d613fd7ecbcb0d6602e0a928f35e1ab933909"
+    },
+    {
+      "path": "host/packaging/motortester.spec",
+      "bytes": 1281,
+      "sha256": "d4489eec950ee410e00e530bf870f47ca6d8cb9eb96d68aadd242087edd4e4c5"
+    },
+    {
+      "path": "host/packaging/build_windows.py",
+      "bytes": 8113,
+      "sha256": "9a3f03a09d6173953ce546408ea42798519f7969b7bbd63b11b8e03f3818e5d9"
+    },
+    {
+      "path": "host/packaging/launch_gui.py",
+      "bytes": 627,
+      "sha256": "3a47909048a23c03c8615b4443882ca39ca778534a5f00925d30a5ee9ee8e5d7"
+    },
+    {
+      "path": "host/packaging/LICENSE-REVIEW.md",
+      "bytes": 6125,
+      "sha256": "95c62df4c39a09e50bfea3c26e7d93fff1c340634d3ca081da8366b6b8ce2de7"
+    },
+    {
+      "path": "host/packaging/collect_licenses.py",
+      "bytes": 4079,
+      "sha256": "51a354c8c4d43e05e927db11d32e29c755a51b6b1f71ecaa2401ac30f2e629e6"
+    },
+    {
+      "path": "host/packaging/serial_import_smoke.py",
+      "bytes": 5766,
+      "sha256": "4c9dba2b0a52c349a32f12c89ef275e8c2c8664dde7f84072110361e82d09c29"
+    },
+    {
+      "path": "host/packaging/licenses/pyserial-3.5-LICENSE.txt",
+      "bytes": 1885,
+      "sha256": "f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3"
+    },
+    {
+      "path": "host/tests/test_serial_packaging.py",
+      "bytes": 24283,
+      "sha256": "0916758297ff673ee97fba3ab16b424e71894fe7a43aa55cdbb4bcb12820f8da"
+    },
+    {
+      "path": "host/docs/serial-packaging.md",
+      "bytes": 11223,
+      "sha256": "e35f412f1d8bb913e65373be6ae71218db47a638cb55d15ada8ed6549d732f1b"
+    }
+  ],
+  "publication": "Root owns Git/index/ref changes and publication; source-first list is exactly these eleven files",
+  "remaining_evidence": "14-wheel official-PyPI resolver retry pending authorization after cancelled tool review; actual Windows execution remains A-owned pending"
+}

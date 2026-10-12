@@ -1,0 +1,8 @@
+started_at_utc=2026-10-12T03:28:04.402323+00:00
+command=['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python', 'host/packaging/build_windows.py', '--output', '/tmp/serial-r2-should-never-build']
+usage: build_windows.py [-h] [--output OUTPUT]
+build_windows.py: error: Use regular CPython 3.13.16 x64 on Windows; cross-compilation is unsupported
+
+ended_at_utc=2026-10-12T03:28:04.434371+00:00
+exit_code=2
+expected_exit_code=2

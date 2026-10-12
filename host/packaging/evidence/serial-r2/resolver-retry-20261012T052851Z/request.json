@@ -1,0 +1,41 @@
+{
+  "started_at_utc": "2026-10-12T05:28:51.859710+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "pip",
+    "download",
+    "--isolated",
+    "--index-url",
+    "https://pypi.org/simple",
+    "--require-hashes",
+    "--only-binary=:all:",
+    "--platform",
+    "win_amd64",
+    "--python-version",
+    "3.13.16",
+    "--implementation",
+    "cp",
+    "--abi",
+    "cp313",
+    "--dest",
+    "/tmp/motortester-serial-r2-wheels-20261012T052851Z",
+    "-r",
+    "host/packaging/requirements-win-x64.lock"
+  ],
+  "cwd": "/tmp/motortester-host-serial-package-r2",
+  "wheelhouse": "/tmp/motortester-serial-r2-wheels-20261012T052851Z",
+  "scope": "download only, hash-locked wheels targeting Windows CPython 3.13.16; no install or Windows execution",
+  "prior_poll": {
+    "tool": "tools.write_stdin",
+    "arguments": {
+      "session_id": 33789,
+      "chars": "",
+      "yield_time_ms": 1000,
+      "max_output_tokens": 2000
+    },
+    "result": "Unknown process id 33789",
+    "retried_once": true
+  },
+  "source_manifest_sha256": "0ea3d9055ba8ad8434cc89ff9c67c84f8bbadea1bb149840f4f2d7167ce9a945"
+}

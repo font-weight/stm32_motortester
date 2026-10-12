@@ -1,0 +1,43 @@
+{
+  "recorded_at_utc": "2026-10-12T03:30:54.899058+00:00",
+  "status": "BLOCKED",
+  "required_acceptance": "Resolve all 14 pinned Windows CPython3.13.16/cp313/win_amd64 wheels with binary-only and require-hashes from official PyPI",
+  "cancelled_tool": "tools.write_stdin",
+  "cancelled_arguments": {
+    "session_id": 33789,
+    "chars": "",
+    "yield_time_ms": 1000,
+    "max_output_tokens": 2000
+  },
+  "tool_error": "Unified exec process failed: automatic approval review was cancelled",
+  "intended_download_argv": [
+    "python",
+    "-m",
+    "pip",
+    "download",
+    "--isolated",
+    "--index-url",
+    "https://pypi.org/simple",
+    "--require-hashes",
+    "--only-binary=:all:",
+    "--platform",
+    "win_amd64",
+    "--python-version",
+    "3.13.16",
+    "--implementation",
+    "cp",
+    "--abi",
+    "cp313",
+    "--dest",
+    "/tmp/motortester-serial-r2-wheelhouse",
+    "-r",
+    "host/packaging/requirements-win-x64.lock"
+  ],
+  "cwd": "/tmp/motortester-host-serial-package-r2",
+  "download_log": "windows-resolver.log",
+  "observed_wheel_count": 0,
+  "retry_performed": false,
+  "coordinator_instruction": "Do not retry or substitute a route pending authorization evidence. Resume same worker after approval; retain cancelled log and use fresh retry evidence.",
+  "warning": "Original exec_command also edited sources and installed pyserial locally. Do not repeat that combined command or alter frozen source.",
+  "actual_windows_status": "NOT RUN; A-owned Windows/PyInstaller/Win10/USB checks remain pending"
+}

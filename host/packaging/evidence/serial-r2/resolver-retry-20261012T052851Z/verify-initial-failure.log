@@ -1,0 +1,9 @@
+started_at_utc=2026-10-12T05:30:26.934942+00:00
+command=python /tmp/verify-serial-r2-wheels.py
+Traceback (most recent call last):
+  File "/tmp/verify-serial-r2-wheels.py", line 71, in <module>
+    raise RuntimeError('Ambiguous wheel metadata')
+RuntimeError: Ambiguous wheel metadata
+
+ended_at_utc=2026-10-12T05:30:27.141803+00:00
+exit_code=1
