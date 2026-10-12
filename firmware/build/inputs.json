@@ -1,7 +1,7 @@
 {
   "files": {
-    "firmware/acquisition/acquisition.c": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
-    "firmware/acquisition/acquisition.h": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+    "firmware/acquisition/acquisition.c": "6b0b86993da4341c44701cc2af469e85fb2b1ecc75c2a6a59b9c614e059c36c8",
+    "firmware/acquisition/acquisition.h": "352ad9ef06d4bcd07ea0a9f45130a6450139b4dba063f1da897450242c565dad",
     "firmware/app/mt_adc_control.c": "005c8e325a1abf875b9e2978937d88d5340d2a95568e2478c14ecc39d2a13376",
     "firmware/app/mt_adc_control.h": "a69143a2b432ac7403fe2125066bbd4e999e768d0d109c469a1739ed8b4c0200",
     "firmware/app/mt_capture_link.c": "7c78f0962c404af847b8e815034290f6938183917050290bc5eb7f9e7f304451",
@@ -189,7 +189,7 @@
         "-Werror",
         "-pedantic-errors"
       ],
-      "expected_object_sha256": "67062f96ea7871a2163aea23fce7e4dfd91dc8d8f918f7a984481e26a2bf7a01"
+      "expected_object_sha256": "22ca8129dd56128fbbea3bf43ee98672c806f9a5ee887f3dca5847dc60ddb987"
     },
     {
       "source": "firmware/app/mt_capture_link.c",
