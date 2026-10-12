@@ -475,3 +475,30 @@ Root обновил только 13 source pins и семь ожидаемых o
 этого точного состава. Алгоритм сборки, флаги, инструменты и firmware
 не изменяются этой итерацией. Старые образ/stack reference ещё неприменимы;
 shared приёмка ошибок захвата, Windows и аппаратные доказательства открыты.
+
+
+# 12.10.2026: ADC conditional image/reference draft
+
+Scope до правок: issue91 comment6117901713; база PR98
+`c3223ecff474cc5056faf0aebfaff088726c645d`, tree
+`4bbfb17b78fe15730b1da64c553bf7fd9c3e7895`. Root обновляет только
+reference, адресные/геометрические привязки checker, pins/лимиты recipe
+и пояснения. Прошивка и board parser этой итерацией не меняются.
+
+Свежий ADC r6 machine/ABI/profile proof независимо воспроизведён: startup288,
+foreground2688, USB264, entry36, terminal total3060, align8=3064 байта.
+Reference закрепляет 369 executable ranges,416 function symbols,1065
+immutable symbols; entry0x08008155, reset literal0x080081ac,
+board0x0800822c, строки0x0800825c. Actual data LMA учитывает padded строки
+конкретного board JSON. Invalid-zero-board ELF
+5a9e2b2c42f0daaf688fc584b980a1c94a3e4bf6158e0103705e2cc7a654f5e9
+не исполнялся. Все33 объекта отдельно воспроизведены PR98-рецептом.
+Пути/hashes доказательств сохраняют происхождение и не обещают весь
+proof-пакет внутри checkout.
+
+Геометрия SRAM8104 не изменилась; N=align8(3064+M),0≤M≤5040.
+Старые3024 здесь недостаточны по принятой условной модели и отклоняются.
+M=0 остаётся только синтетическим тестом, запас реальной платы не выбран.
+Новый image replay, негативные controls и независимый вердикт переноса
+фиксируются отдельно; совместная ADC-политика с B, физические измерения
+и допуск прошивки не следуют из этого черновика.

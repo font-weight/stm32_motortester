@@ -15,12 +15,12 @@ OBJCOPY_SHA = 'b0f417cb958a1205aa5061b7bedcc05f16335dd718802d5265e8b7b0b5d78c88'
 
 PINS = {
     'image_exports.py':'738b116c45de81a9435090abf9748c1959355c387624ecc8efd05459c890412d',
-    'build_objects.py':'13be0819d0d6308c666f984cbb47fc07e3076806e7db4b2dfb394ae7ca73af79',
+    'build_objects.py':'82823aeb97393a619c87bc83910c552c46b7b17f51d3c679fa814adbb6843db1',
     'board_config.py':'0b5d6ba56603e908d7f0b079e3319863f1f7733c97324644377a3e46244f9f27',
     'board_object.py':'c8cce02a89bead37f59bff5c49572a08c55637d85a8fdf4f8f234ec89924dc9e',
-    'image_equivalence.py':'e8946892d81c04fed179a3be8db7c931ae667ea4c10ccad1c48740ca81792f2e',
-    'stack_reference.json':'0facf8258f391eec1b166bd464dc8ce709d04eaf0ecc7044ea6181a7257b77c3',
-    'inputs.json':'797a004bfb4084220460d9d36c185aeaad395a8d9ae78d982762d0c0f4028eff',
+    'image_equivalence.py':'effda2504cac9e034ed30cd02b03dd5634e688fec655848d612da2fb6ff31cd0',
+    'stack_reference.json':'e720fcf41cd06a4eb77c47bf579d8289b0c13e44143fc2b4e3322aaaeddf923d',
+    'inputs.json':'3f0ae85dc02578332f2fff32142a84bd02b27be72083f5762564cc5282d72eec',
     'toolchain.json':'22f0c2204b8b381a26af3b910851b43b04f34549b6677cdb5b76f304c4e37b43',
     'board-input.schema.json':'f4f020ecc3466112353a3d449a18200ea36adf040bc38bdf60634d0d4c4dc000',
 }
@@ -186,10 +186,10 @@ def main():
     objdir = strict(args.objects, 'dir')
     board_input = strict(args.board)
     python = strict(Path(sys.executable).resolve(), executable=True)
-    require(3024 <= args.stack_bytes <= 8104 and args.stack_bytes % 8 == 0,
+    require(3064 <= args.stack_bytes <= 8104 and args.stack_bytes % 8 == 0,
             'stack reservation outside aligned conditional SRAM geometry')
-    require(0 <= args.stack_margin_bytes <= 5080 and
-            args.stack_bytes == ((3024 + args.stack_margin_bytes + 7)//8)*8,
+    require(0 <= args.stack_margin_bytes <= 5040 and
+            args.stack_bytes == ((3064 + args.stack_margin_bytes + 7)//8)*8,
             'explicit margin does not match reservation')
     require(not any(c in args.out for c in '\n\r:#$\\"\''), 'unsupported output path character')
     out = Path(args.out)
@@ -237,7 +237,7 @@ def main():
     result = {'status':'RUNNING','scope':'Draft static ELF; no flash or hardware acceptance',
               'hardware_verified':False,'flash_approved':False,'stack_bound_transferred':False,
               'stack_bytes':args.stack_bytes,'explicit_margin_bytes':args.stack_margin_bytes,
-              'alignment_slack_bytes':args.stack_bytes-3024-args.stack_margin_bytes,
+              'alignment_slack_bytes':args.stack_bytes-3064-args.stack_margin_bytes,
               'input_kind':data['input_kind'],'caller_attestations':data['caller_attestations'],
               'inputs_before':inputs,'commands':[],'generated':{}}
     def run(label,argv):
@@ -311,7 +311,7 @@ def main():
         result['exports_check'] = export_check.validate_exports(elf_reader.ELF(elf),binary.read_bytes(),ihex.read_bytes())
         result['status'] = 'CONDITIONAL_STATIC_LINK_CHECKS_PASS'
         result['stack_bound_transferred'] = True
-        result['conditional_stack_bound_bytes'] = 3024
+        result['conditional_stack_bound_bytes'] = 3064
         result['assumptions'] = ['Privileged reset-only MSP execution with STKALIGN',
             'Only equal-priority USB IRQ19/20 with original handlers',
             'Terminal default HardFault/NMI handlers and exception allowance',
