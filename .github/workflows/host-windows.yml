@@ -32,6 +32,10 @@ jobs:
       - name: Prepare temporary output location
         run: |
           "BUILD_DIR=$env:RUNNER_TEMP/motortester-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Preserve Git blob line endings in hosted checkout
+        run: |
+          git config --global core.autocrlf false
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot disable checkout newline conversion' }
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -50,6 +54,8 @@ jobs:
           $recipe = (git rev-parse HEAD:host/packaging/build_windows.py).Trim()
           if ($LASTEXITCODE -ne 0 -or $recipe -cne '23dac801a223c05fd9fce9669f55e9d11c5cf287') { throw 'Unexpected recipe' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
+          git config --show-origin --get core.autocrlf
+          if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
           Write-Output 'Windows Server build/synthetic smoke only; Windows 10 and USB acceptance remain open.'
       - name: Set up regular CPython 3.13.16 x64
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -59,6 +65,34 @@ jobs:
           freethreaded: false
           allow-prereleases: false
           check-latest: false
+      - name: Verify every tracked worktree file against its raw Git blob
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          entries = subprocess.check_output(['git', 'ls-tree', '-rz', '--full-tree', 'HEAD']).split(b'\0')
+          checked = 0
+          mismatches = []
+          for entry in filter(None, entries):
+              metadata, name = entry.split(b'\t', 1)
+              mode, kind, expected = metadata.split()
+              if kind != b'blob' or mode not in (b'100644', b'100755'):
+                  raise RuntimeError('Unsupported tracked entry: ' + os.fsdecode(name))
+              data = Path(os.fsdecode(name)).read_bytes()
+              actual = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              if actual != expected.decode():
+                  mismatches.append(os.fsdecode(name))
+                  print('RAW_BLOB_MISMATCH', os.fsdecode(name), expected.decode(), actual)
+              checked += 1
+          print('Raw Git blob verification:', checked, 'files;', len(mismatches), 'mismatches')
+          sys.exit(bool(mismatches))
+          '@
+          python -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
       - name: Build and exercise unchanged host recipe
         run: |
           $ErrorActionPreference = 'Stop'
