@@ -1,12 +1,14 @@
 # Проверка Windows-сборки, без публикации пакета
 
 Черновая задача общей CI команды A. host/** и сама build_windows.py остаются
-областью Dot B. Проверяется точный commit PR71
-f0822f7b336b0cab0e01632eee33f0f9a24473cc, не движущаяся ветка и не PR merge tree.
-Это reviewed viewer integration на родителе PR45
-bd58245ecf64f08dcfe6d6fec3981e26fd7ff0ed с исправленным тестом scroll reachability;
-Auto/Single и новые runtime-ветки в этот запуск не включены.
-Recipe blob остаётся 4a1b5d7184253a11d342ba1db909879a2515a184.
+областью Dot B. Текущий проверяемый источник — PR117
+7bc2732358d855f0871ca4080d64db7b2b3a9979, tree
+e083f317996d6b86f4286fe8c5758430291b6301, на родителе
+e9df6f0adf64d9bbd177307abe0d47f73f14edb9. Это композиция текущего
+приложения с serial import-only и ограниченным GUI screenshot smoke.
+Recipe blob: 23dac801a223c05fd9fce9669f55e9d11c5cf287, SHA256
+9898dcbfcce4845ea99d16f386ef653cbbfd50d73b884a4c0603165a7ceefbec.
+Оба source pin и проверка recipe меняются согласованно.
 Workflow хранит собственный SHA отдельно от SHA проверяемого приложения.
 
 Запуск: pull_request в main только при изменении host-windows.yml или вручную
@@ -23,10 +25,23 @@ GitHub API 10.10.2026 подтвердил public для font-weight/stm32_motor
 
 Artifact storage имеет отдельные квоты, свободный остаток аккаунта не проверен.
 Поэтому workflow не использует upload-artifact, remote cache и публикацию release.
-Диагностика, manifest и SHA256SUMS выводятся в журнал задачи; по документации GitHub
-логи и job summary не расходуют квоту artifact storage. ZIP и PNG существуют только
-во временной среде проверки и не являются доставленным или сохранённым пакетом.
-Для передачи пользователю пакета нужен отдельный разрешённый путь сохранения.
+Диагностика build.log, frozen-serial-import.json, frozen-window.png.smoke.json,
+manifest и SHA256SUMS
+выводятся в журнал даже после ошибки сборки, если соответствующие файлы созданы.
+Отсутствующие файлы обозначаются MISSING. По документации GitHub логи и job
+summary не расходуют квоту artifact storage. ZIP остаётся только во временной
+среде; отдельного разрешённого пути доставки пакета эта проверка не создаёт.
+
+Изменение области относительно предыдущего workflow: байты синтетического PNG
+теперь сохраняются в публичном job log как base64, если прочитанный снимок
+не превышает 2 MiB. Размер, SHA256 и base64 относятся к одному ограниченному
+снимку байтов; считывается не более 2 MiB + 1. Для большего файла содержимое
+не выводится, ограничение указывается явно. Блок ограничен строками BEGIN/END,
+base64 разбита на строки не длиннее 4096 символов. Это сохранение изображения
+в логах, хотя upload-artifact не используется. Оно касается только демо,
+созданного закреплённым кодом, без пользовательских фотографий и измерений.
+Отсутствующий END, усечённый лог или несовпадение SHA256 не дают восстановленного
+изображения. Частичный PNG после отказа является диагностикой, а не успешным smoke.
 
 Точная обычная CPython3.13.16 x64, существующий hash-locked набор B, тесты, PyInstaller
 и запуск полученного EXE выполняются неизменной build_windows.py. Сборка Windows
@@ -38,6 +53,18 @@ Server и синтетический снимок приложения не за
 как исторический результат. Новая версия source не считается прошедшей Windows до
 отдельного успешного run и проверки его точного source/workflow SHA.
 
-Независимая исходная привязка кандидата: [Critic-B PR71](https://github.com/font-weight/stm32_motortester/pull/71#issuecomment-6101161842).
-Просьба Dot B о repin: [PR34](https://github.com/font-weight/stm32_motortester/pull/34#issuecomment-6101128395).
-Эти локальные/synthetic результаты не подменяют предстоящий Windows run.
+Следующий run38208738974 для b896 прошёл 290 source-тестов, синтетические окна
+и сборку EXE, но не подтвердил завершение frozen screenshot до отмены задания.
+Причина остаётся UNKNOWN. Рецепт PR117 пишет фазы заранее, ограничивает ожидание
+прямого frozen-процесса 60 секундами и cleanup 5 секундами. Ошибка не должна
+создавать успешный manifest/ZIP. Новый запуск отдельно проверяет 1091 source-тест, serial import-only
+с ограничением 30 секунд и сам frozen GUI smoke; прежние Windows результаты на него не переносятся.
+
+[Независимый исходный вердикт Critic-B PR117](https://github.com/font-weight/stm32_motortester/pull/117#issuecomment-6119467951).
+[Передача одного ограниченного повтора](https://github.com/font-weight/stm32_motortester/pull/34#issuecomment-6119484927).
+[Заранее объявленная область workflow](https://github.com/font-weight/stm32_motortester/pull/34#issuecomment-6119363056).
+Эти source/synthetic результаты не подменяют предстоящий Windows run.
+
+До запуска выбран интегрированный PR117 вместо узкого PR116. Подготовленные
+workflow-кандидаты PR116 не запускались; это один следующий Windows run,
+а не два последовательных повтора. [Выбор и область](https://github.com/font-weight/stm32_motortester/pull/34#issuecomment-6119542056).

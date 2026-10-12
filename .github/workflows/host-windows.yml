@@ -23,7 +23,7 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: 'b8966df26bd49c53fdc089eae622f69f18f40253'
+      SOURCE_SHA: '7bc2732358d855f0871ca4080d64db7b2b3a9979'
       PYTHONNOUSERSITE: '1'
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: 'b8966df26bd49c53fdc089eae622f69f18f40253'
+          ref: '7bc2732358d855f0871ca4080d64db7b2b3a9979'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
@@ -48,7 +48,7 @@ jobs:
           $dirty = git status --porcelain --untracked-files=all
           if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Dirty source' }
           $recipe = (git rev-parse HEAD:host/packaging/build_windows.py).Trim()
-          if ($LASTEXITCODE -ne 0 -or $recipe -cne '4a1b5d7184253a11d342ba1db909879a2515a184') { throw 'Unexpected recipe' }
+          if ($LASTEXITCODE -ne 0 -or $recipe -cne '23dac801a223c05fd9fce9669f55e9d11c5cf287') { throw 'Unexpected recipe' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
           Write-Output 'Windows Server build/synthetic smoke only; Windows 10 and USB acceptance remain open.'
       - name: Set up regular CPython 3.13.16 x64
@@ -70,16 +70,52 @@ jobs:
         if: ${{ always() }}
         run: |
           $ErrorActionPreference = 'Stop'
-          foreach ($relative in @('build.log', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json')) {
+          foreach ($relative in @('build.log', 'frozen-serial-import.json', 'frozen-window.png.smoke.json', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json')) {
             $path = Join-Path $env:BUILD_DIR $relative
             if (Test-Path -LiteralPath $path) {
               Write-Output "--- $relative ---"
               Get-Content -LiteralPath $path
+            } else {
+              Write-Output "MISSING: $relative"
             }
+          }
+          $png = Join-Path $env:BUILD_DIR 'frozen-window.png'
+          if (Test-Path -LiteralPath $png -PathType Leaf) {
+            $bytes = [byte[]]::new(2097153)
+            $size = 0
+            $stream = [IO.File]::OpenRead($png)
+            try {
+              while ($size -lt $bytes.Length) {
+                $read = $stream.Read($bytes, $size, $bytes.Length - $size)
+                if ($read -eq 0) { break }
+                $size += $read
+              }
+            } finally {
+              $stream.Dispose()
+            }
+            if ($size -le 2097152) {
+              $sha = [Security.Cryptography.SHA256]::Create()
+              try {
+                $hash = [BitConverter]::ToString($sha.ComputeHash($bytes, 0, $size)).Replace('-', '').ToLowerInvariant()
+              } finally {
+                $sha.Dispose()
+              }
+              Write-Output "PNG snapshot bytes=$size sha256=$hash"
+              $encoded = [Convert]::ToBase64String($bytes, 0, $size)
+              Write-Output 'BEGIN frozen-window.png BASE64'
+              for ($offset = 0; $offset -lt $encoded.Length; $offset += 4096) {
+                Write-Output $encoded.Substring($offset, [Math]::Min(4096, $encoded.Length - $offset))
+              }
+              Write-Output 'END frozen-window.png BASE64'
+            } else {
+              Write-Output 'PNG content not retained: exceeds 2 MiB job-log bound.'
+            }
+          } else {
+            Write-Output 'MISSING: frozen-window.png'
           }
           @"
           Source SHA: $env:SOURCE_SHA
-          No ZIP/screenshot artifact was retained; this job validates the build only.
-          Logs and job summary retain diagnostics without Actions artifact storage.
+          No ZIP artifact retained. Synthetic PNG is encoded in logs only when present and <= 2 MiB.
+          Logs retain build/smoke diagnostics without Actions artifact storage; missing or oversized PNG is explicit.
           Windows 10 manual, license, USB and independent acceptance remain open.
           "@ | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
