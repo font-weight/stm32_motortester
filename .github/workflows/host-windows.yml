@@ -25,6 +25,9 @@ jobs:
     env:
       SOURCE_SHA: 'db86d2247f02dbc6f770a674654f5c5bf9d92f99'
       SOURCE_TREE: 'b9d7ac81a2f36da0573d208f1d61cdb94a37cdbc'
+      INSPECTOR_SHA: 'fd80f0aff693f451f37d417f00f045b0aca1e708'
+      INSPECTOR_TREE: 'a1d72cc6a94ef3305dfc302ed4ad14dde89cad03'
+      INSPECTOR_FILE_SHA256: 'f5e28d467f9bb79bb2c70366c698ef907424193a7520c66882434fd514f1c1eb'
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
@@ -34,6 +37,8 @@ jobs:
       - name: Prepare temporary output location
         run: |
           "BUILD_DIR=$env:RUNNER_TEMP/motortester-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "INSPECTOR_PATH=$env:RUNNER_TEMP/inspector-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PROVENANCE_PATH=$env:RUNNER_TEMP/provenance-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Preserve Git blob line endings in hosted checkout
         run: |
           git config --global core.autocrlf false
@@ -101,6 +106,36 @@ jobs:
           '@
           python -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
+      - name: Bind separate reviewed inspector without changing application
+        timeout-minutes: 3
+        run: |
+          $ErrorActionPreference = 'Stop'
+          git fetch --no-tags --depth=1 origin $env:INSPECTOR_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'Inspector fetch failed' }
+          $check = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          sha = os.environ['INSPECTOR_SHA']
+          def git(*args):
+              return subprocess.check_output(['git', *args], timeout=60)
+          commit = git('cat-file', '-p', sha).decode('utf-8').split('\n\n', 1)[0].splitlines()
+          if [x[7:] for x in commit if x.startswith('parent ')] != [os.environ['SOURCE_SHA']]:
+              raise RuntimeError('Inspector parent differs from application pin')
+          if [x[5:] for x in commit if x.startswith('tree ')] != [os.environ['INSPECTOR_TREE']]:
+              raise RuntimeError('Inspector tree mismatch')
+          raw = git('show', sha + ':host/packaging/inspect_candidate_provenance.py')
+          if not 0 < len(raw) <= 2097152 or hashlib.sha256(raw).hexdigest() != os.environ['INSPECTOR_FILE_SHA256']:
+              raise RuntimeError('Inspector bytes mismatch')
+          with Path(os.environ['INSPECTOR_PATH']).open('xb') as stream:
+              stream.write(raw)
+          if git('rev-parse', 'HEAD').decode().strip() != os.environ['SOURCE_SHA']:
+              raise RuntimeError('Application checkout changed')
+          print('INSPECTOR_BOUND', sha, os.environ['INSPECTOR_TREE'], hashlib.sha256(raw).hexdigest(), len(raw))
+          '@
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Inspector binding failed' }
       - name: Build and exercise unchanged host recipe
         run: |
           $ErrorActionPreference = 'Stop'
@@ -282,6 +317,43 @@ jobs:
           '@
           python -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Archive content verification failed' }
+      - name: Inspect completed candidate with separate reviewed companion
+        timeout-minutes: 6
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          build = Path(os.environ['BUILD_DIR'])
+          manifest = build / 'dist' / 'Motortester' / 'build-manifest.json'
+          if manifest.is_symlink() or not manifest.is_file() or not 0 < manifest.stat().st_size <= 2097152:
+              raise RuntimeError('Manifest input invalid')
+          with manifest.open('rb') as stream:
+              raw = stream.read(2097153)
+          if len(raw) > 2097152:
+              raise RuntimeError('Manifest grew beyond limit')
+          manifest_hash = hashlib.sha256(raw).hexdigest()
+          command = [str(build / 'venv' / 'Scripts' / 'python.exe'), '-I', '-S', '-B', os.environ['INSPECTOR_PATH'],
+              '--build-root', str(build), '--expected-source-sha', os.environ['SOURCE_SHA'],
+              '--expected-manifest-sha256', manifest_hash, '--inspector-commit', os.environ['INSPECTOR_SHA'],
+              '--expected-inspector-sha256', os.environ['INSPECTOR_FILE_SHA256'], '--output', os.environ['PROVENANCE_PATH']]
+          print('PROVENANCE_INPUT', os.environ['SOURCE_SHA'], os.environ['INSPECTOR_SHA'], manifest_hash, flush=True)
+          try:
+              subprocess.run(command, check=True, timeout=300)
+              output = Path(os.environ['PROVENANCE_PATH'])
+              if output.is_symlink() or not output.is_file() or not 0 < output.stat().st_size <= 8388608:
+                  raise RuntimeError('Missing or oversized provenance report')
+          finally:
+              dirty = subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'], timeout=60)
+              print('PROVENANCE_SOURCE_DIRTY', repr(dirty), flush=True)
+              if dirty:
+                  raise RuntimeError('Application source changed during observation')
+          '@
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Provenance observation incomplete' }
       - name: Preserve evidence in job logs only
         if: ${{ always() }}
         run: |
@@ -295,6 +367,16 @@ jobs:
             } else {
               Write-Output "MISSING: $relative"
             }
+          }
+          if (Test-Path -LiteralPath $env:PROVENANCE_PATH -PathType Leaf) {
+            $size = (Get-Item -LiteralPath $env:PROVENANCE_PATH).Length
+            if ($size -gt 8388608) { throw 'Provenance receipt exceeds 8 MiB; evidence incomplete' }
+            Write-Output "PROVENANCE_RECEIPT bytes=$size sha256=$((Get-FileHash -LiteralPath $env:PROVENANCE_PATH -Algorithm SHA256).Hash.ToLowerInvariant())"
+            Write-Output 'BEGIN provenance.json'
+            Get-Content -LiteralPath $env:PROVENANCE_PATH -Encoding utf8
+            Write-Output 'END provenance.json'
+          } else {
+            Write-Output 'MISSING: provenance.json'
           }
           $png = Join-Path $env:BUILD_DIR 'frozen-window.png'
           if (Test-Path -LiteralPath $png -PathType Leaf) {
