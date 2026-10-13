@@ -1,0 +1,661 @@
+name: Windows packaging verification
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/host-windows.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: windows-packaging-verification
+  cancel-in-progress: false
+jobs:
+  verify:
+    # Standard public-repository runner only. No artifact/cache upload or purchase.
+    if: >-
+      github.repository == 'font-weight/stm32_motortester' &&
+      github.event.repository.private == false &&
+      (github.event_name == 'workflow_dispatch' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: windows-2022
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      SOURCE_SHA: '1930f75b976be17a3df51da079b6d8ba275e3f73'
+      SOURCE_TREE: 'c92973b11fbdf31e43bd8d709e20a4a1a03a9f62'
+      INSPECTOR_SHA: '54d63be3fdd8eba858bafafbf6cec33c4ed989b8'
+      INSPECTOR_PARENT_SHA: 'd10e83578718d49f971f034a58e0a77af10ff855'
+      INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
+      INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
+      PYTHONNOUSERSITE: '1'
+      PYTHONOPTIMIZE: '0'
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_NO_CACHE_DIR: '1'
+    steps:
+      - name: Prepare temporary output location
+        run: |
+          "BUILD_DIR=$env:RUNNER_TEMP/motortester-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "INSPECTOR_PATH=$env:RUNNER_TEMP/inspector-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PROVENANCE_PATH=$env:RUNNER_TEMP/provenance-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Preserve Git blob line endings in hosted checkout
+        run: |
+          git config --global core.autocrlf false
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot disable checkout newline conversion' }
+      - name: Checkout immutable host candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: '1930f75b976be17a3df51da079b6d8ba275e3f73'
+          fetch-depth: 1
+          persist-credentials: false
+          submodules: false
+          lfs: false
+      - name: Verify clean source and record provenance
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $head = (git rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $head -cne $env:SOURCE_SHA) { throw 'Unexpected source SHA' }
+          $tree = (git rev-parse 'HEAD^{tree}').Trim()
+          if ($LASTEXITCODE -ne 0 -or $tree -cne $env:SOURCE_TREE) { throw 'Unexpected source tree' }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Dirty source' }
+          $recipe = (git rev-parse HEAD:host/packaging/build_windows.py).Trim()
+          if ($LASTEXITCODE -ne 0 -or $recipe -cne 'be9c0f648681f60a20ee14ce19c65cab5c8a465d') { throw 'Unexpected recipe' }
+          $lock = (git rev-parse HEAD:host/packaging/requirements-win-x64.lock).Trim()
+          if ($LASTEXITCODE -ne 0 -or $lock -cne '256a8005b4f7de19651c9b9bdd70419b5b52af3d') { throw 'Unexpected dependency lock' }
+          $collector = (git rev-parse HEAD:host/packaging/collect_licenses.py).Trim()
+          if ($LASTEXITCODE -ne 0 -or $collector -cne 'fed7af5c94a658324b6940021d169417dab05c1e') { throw 'Unexpected notice collector' }
+          Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
+          git config --show-origin --get core.autocrlf
+          if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
+          Write-Output 'Windows Server build/synthetic smoke only; Windows 10 and USB acceptance remain open.'
+      - name: Set up regular CPython 3.13.16 x64
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13.16'
+          architecture: x64
+          freethreaded: false
+          allow-prereleases: false
+          check-latest: false
+      - name: Verify every tracked worktree file against its raw Git blob
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          entries = subprocess.check_output(['git', 'ls-tree', '-rz', '--full-tree', 'HEAD']).split(b'\0')
+          checked = 0
+          mismatches = []
+          for entry in filter(None, entries):
+              metadata, name = entry.split(b'\t', 1)
+              mode, kind, expected = metadata.split()
+              if kind != b'blob' or mode not in (b'100644', b'100755'):
+                  raise RuntimeError('Unsupported tracked entry: ' + os.fsdecode(name))
+              data = Path(os.fsdecode(name)).read_bytes()
+              actual = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              if actual != expected.decode():
+                  mismatches.append(os.fsdecode(name))
+                  print('RAW_BLOB_MISMATCH', os.fsdecode(name), expected.decode(), actual)
+              checked += 1
+          print('Raw Git blob verification:', checked, 'files;', len(mismatches), 'mismatches')
+          sys.exit(bool(mismatches))
+          '@
+          python -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
+      - name: Bind separate reviewed inspector without changing application
+        timeout-minutes: 3
+        run: |
+          $ErrorActionPreference = 'Stop'
+          git fetch --no-tags --depth=1 origin $env:INSPECTOR_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'Inspector fetch failed' }
+          $check = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          sha = os.environ['INSPECTOR_SHA']
+          def git(*args):
+              return subprocess.check_output(['git', *args], timeout=60)
+          commit = git('cat-file', '-p', sha).decode('utf-8').split('\n\n', 1)[0].splitlines()
+          if [x[7:] for x in commit if x.startswith('parent ')] != [os.environ['INSPECTOR_PARENT_SHA']]:
+              raise RuntimeError('Inspector parent differs from separate ancestry pin')
+          if [x[5:] for x in commit if x.startswith('tree ')] != [os.environ['INSPECTOR_TREE']]:
+              raise RuntimeError('Inspector tree mismatch')
+          raw = git('show', sha + ':host/packaging/inspect_candidate_provenance.py')
+          if not 0 < len(raw) <= 2097152 or hashlib.sha256(raw).hexdigest() != os.environ['INSPECTOR_FILE_SHA256']:
+              raise RuntimeError('Inspector bytes mismatch')
+          with Path(os.environ['INSPECTOR_PATH']).open('xb') as stream:
+              stream.write(raw)
+          if git('rev-parse', 'HEAD').decode().strip() != os.environ['SOURCE_SHA']:
+              raise RuntimeError('Application checkout changed')
+          print('INSPECTOR_BOUND', sha, os.environ['INSPECTOR_TREE'], hashlib.sha256(raw).hexdigest(), len(raw))
+          '@
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Inspector binding failed' }
+      - name: Build and exercise unchanged host recipe
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python host/packaging/build_windows.py --output "$env:BUILD_DIR"
+          if ($LASTEXITCODE -ne 0) { throw "Build failed: $LASTEXITCODE" }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Source mutated during build' }
+      - name: Verify completed archives against source and manifest
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          """Read-only archive/content observation; no upload, extraction or release approval."""
+          import hashlib
+          import json
+          import os
+          from pathlib import Path, PurePosixPath
+          import re
+          import stat
+          import subprocess
+          import sys
+          import zipfile
+
+          MIB = 1024 * 1024
+          EXPECTED = {"Motortester-windows-x64-candidate.zip", "source.zip", "frozen-window.png",
+                      "frozen-window.png.smoke.json", "frozen-serial-import.json"}
+          RECORDING_REPORT = "frozen-recording.json"
+          RECORDING_WORK = RECORDING_REPORT + ".work"
+          SOURCE_BINDING = "external clean checkout; not binary-to-source attestation"
+          RECORDING_SOURCES = {"motortester/" + name + ".py" for name in (
+              "__init__", "__main__", "acquisition", "device_emulator", "emulator", "gui",
+              "gui_acquisition", "lv_collector", "model", "plotting", "recording",
+              "recording_bridge", "recording_controller", "runtime", "session",
+              "session_archive", "transport", "window", "wire", "wire_demo")}
+          RECORDING_SOURCES |= {"packaging/" + name + ".py" for name in (
+              "launch_gui", "recording_smoke", "build_windows")}
+
+          def no_redirect(path):
+              path = path.absolute()
+              for part in (*reversed(path.parents), path):
+                  info = part.lstat()
+                  if stat.S_ISLNK(info.st_mode) or getattr(info, "st_file_attributes", 0) & 0x400:
+                      raise ValueError("Redirected artifact path")
+                  if part != path and not stat.S_ISDIR(info.st_mode):
+                      raise ValueError("Non-directory artifact ancestor")
+              return path
+
+          def digest(path):
+              path = no_redirect(path)
+              before = path.stat()
+              if not stat.S_ISREG(before.st_mode):
+                  raise ValueError("Not an ordinary artifact")
+              value, total = hashlib.sha256(), 0
+              with path.open("rb") as stream:
+                  opened = os.fstat(stream.fileno())
+                  if (opened.st_dev, opened.st_ino, opened.st_size) != (before.st_dev, before.st_ino, before.st_size):
+                      raise ValueError("Artifact replaced before hash")
+                  while True:
+                      block = stream.read(min(MIB, before.st_size - total + 1))
+                      if not block:
+                          break
+                      total += len(block)
+                      if total > before.st_size:
+                          raise ValueError("Artifact grew during hash")
+                      value.update(block)
+                  after = os.fstat(stream.fileno())
+              final = no_redirect(path).stat()
+              identity = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns)
+              if total != before.st_size or identity(before) != identity(after) or identity(after) != identity(final):
+                  raise ValueError("Artifact changed during hash")
+              return value.hexdigest()
+
+          def json_value(raw):
+              def invalid(value):
+                  raise ValueError("Nonfinite JSON")
+              return json.loads(raw, object_pairs_hook=unique, parse_constant=invalid)
+
+          def same_json(left, right):
+              # JSON equality must preserve bool/int types, not Python's True == 1.
+              return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(right, sort_keys=True, allow_nan=False)
+
+          def unique(pairs):
+              result = {}
+              for key, value in pairs:
+                  if key in result:
+                      raise ValueError("Duplicate JSON key")
+                  result[key] = value
+              return result
+
+          def bounded(path, maximum):
+              path = no_redirect(path)
+              info = path.stat()
+              if not stat.S_ISREG(info.st_mode) or not 0 < info.st_size <= maximum:
+                  raise ValueError("Missing, aliased or oversized artifact: " + path.name)
+              return path
+
+          def read_bounded(path, maximum):
+              path = bounded(path, maximum)
+              before = digest(path)
+              with path.open("rb") as stream:
+                  raw = stream.read(maximum + 1)
+              if not 0 < len(raw) <= maximum or hashlib.sha256(raw).hexdigest() != before or digest(path) != before:
+                  raise ValueError("Artifact changed during bounded read")
+              return raw
+
+          def safe_name(name):
+              path = PurePosixPath(name)
+              if not name or "\\" in name or ":" in name or name.startswith("/") or any(ord(c) < 32 or ord(c) == 127 for c in name) or path.as_posix() != name.rstrip("/") or any(p in (".", "..") for p in path.parts):
+                  raise ValueError("Unsafe archive path")
+              for part in path.parts:
+                  if (part.endswith((".", " ")) or any(c in '<>"|?*' for c in part)
+                          or re.fullmatch(r"(?i:CON|PRN|AUX|NUL|CLOCK\$|CONIN\$|CONOUT\$|COM[0-9¹²³]|LPT[0-9¹²³])", part.split(".", 1)[0].rstrip(" "))):
+                      raise ValueError("Unsafe Windows archive component")
+              return name
+
+          def inventory(archive, prefix):
+              infos = archive.infolist()
+              if not 0 < len(infos) <= 10000 or sum(i.file_size for i in infos) > 1024 * MIB:
+                  raise ValueError("Archive expanded-size or count limit")
+              files, seen = {}, set()
+              file_keys, required_directories = set(), set()
+              for info in infos:
+                  name = safe_name(info.filename)
+                  key = name.rstrip("/").casefold()
+                  mode = stat.S_IFMT(info.external_attr >> 16)
+                  if info.orig_filename != name or key in seen or info.flag_bits & 1 or info.file_size > 256 * MIB:
+                      raise ValueError("Duplicate/encrypted/oversized archive entry")
+                  if not (name == prefix + "/" or name.startswith(prefix + "/")):
+                      raise ValueError("Unexpected archive root")
+                  if (mode not in (0, stat.S_IFREG, stat.S_IFDIR)
+                          or (mode == stat.S_IFDIR and not info.is_dir())
+                          or (mode == stat.S_IFREG and info.is_dir())
+                          or (info.is_dir() and info.file_size)):
+                      raise ValueError("Unsupported archive entry type")
+                  ancestors = {p.as_posix().casefold() for p in PurePosixPath(name.rstrip("/")).parents if p.as_posix() != "."}
+                  if ancestors & file_keys or (not info.is_dir() and key in required_directories):
+                      raise ValueError("Archive file/directory path collision")
+                  required_directories.update(ancestors)
+                  seen.add(key)
+                  if not info.is_dir():
+                      file_keys.add(key)
+                      files[name] = info
+              return files
+
+          def archive_hash(archive, info, git_blob=False):
+              value = hashlib.sha1() if git_blob else hashlib.sha256()
+              if git_blob:
+                  value.update(b"blob " + str(info.file_size).encode() + b"\0")
+              with archive.open(info) as stream:
+                  for block in iter(lambda: stream.read(MIB), b""):
+                      value.update(block)
+              return value.hexdigest()
+
+          def verify(root, output, source, *, require_recording=False):
+              if not re.fullmatch(r"[0-9a-f]{40}", source):
+                  raise ValueError("Invalid source SHA")
+              no_redirect(output)
+              sys.path.insert(0, str(root / "host" / "packaging"))
+              recording, recording_raw = None, None
+              expected_names = set(EXPECTED)
+              if require_recording:
+                  from recording_smoke import validate_report as validate_recording
+                  recording_path = output / RECORDING_REPORT
+                  recording_raw = read_bounded(recording_path, 65536)
+                  no_redirect(output / RECORDING_WORK)
+                  bounded(output / "dist" / "Motortester" / "Motortester.exe", 64 * MIB)
+                  recording = validate_recording(recording_path, executable=output / "dist" / "Motortester" / "Motortester.exe")
+                  if not same_json(json_value(recording_raw), recording) or read_bounded(recording_path, 65536) != recording_raw:
+                      raise ValueError("Original recording receipt changed")
+                  work = no_redirect(output / RECORDING_WORK)
+                  artifact_names = {item["name"] for item in recording["artifacts"].values()}
+                  if {p.name for p in work.iterdir()} != artifact_names:
+                      raise ValueError("Recording work inventory mismatch")
+                  for name in artifact_names:
+                      bounded(work / name, 2 * MIB)
+                  expected_names |= {RECORDING_REPORT} | {RECORDING_WORK + "/" + name for name in artifact_names}
+              sums_path = bounded(output / "SHA256SUMS.txt", MIB)
+              sums, folded = {}, set()
+              for line in read_bounded(sums_path, MIB).decode("ascii").splitlines():
+                  match = re.fullmatch(r"([0-9a-f]{64})  (.+)", line)
+                  if not match or match[2] not in expected_names or match[2].casefold() in folded:
+                      raise ValueError("Invalid, unexpected or duplicate checksum entry")
+                  safe_name(match[2])
+                  sums[match[2]] = match[1]
+                  folded.add(match[2].casefold())
+              if set(sums) != expected_names:
+                  raise ValueError("Incomplete or extra checksum inventory")
+              for name, expected in sums.items():
+                  cap = (200 * MIB if name == "Motortester-windows-x64-candidate.zip" else 20 * MIB if name == "source.zip"
+                         else 65536 if name == RECORDING_REPORT else 2 * MIB if name.endswith(".png") or name.startswith(RECORDING_WORK + "/") else MIB)
+                  if digest(bounded(output / name, cap)) != expected:
+                      raise ValueError("Checksum mismatch: " + name)
+              sys.path.insert(0, str(root / "host" / "packaging"))
+              from launch_gui import validate_smoke_result
+              from serial_import_smoke import validate_report
+              gui = validate_smoke_result(output / "frozen-window.png")
+              serial = validate_report(output / "frozen-serial-import.json")
+              manifest_path = bounded(output / "dist" / "Motortester" / "build-manifest.json", 4 * MIB)
+              manifest_bytes = read_bounded(manifest_path, 4 * MIB)
+              manifest = json_value(manifest_bytes)
+              if (manifest.get("source_commit") != source or manifest.get("status") != "candidate-not-release-approved"
+                      or manifest.get("usb_verified") is not False
+                      or manifest.get("windows_10_manual_acceptance") != "not performed by this script"
+                      or manifest.get("license_review") != "required; see LICENSE-REVIEW.md"):
+                  raise ValueError("Wrong source or candidate qualification")
+              if manifest.get("frozen_gui_smoke") != gui or manifest.get("serial_import_smoke") != {"report": "frozen-serial-import.json", "sha256": sums["frozen-serial-import.json"], "result": serial}:
+                  raise ValueError("Smoke receipt/manifest mismatch")
+              extension = manifest.get("recording_smoke")
+              if require_recording:
+                  if (type(extension) is not dict or set(extension) != {"report", "sha256", "result", "source_binding", "source_files"}
+                          or extension["report"] != RECORDING_REPORT or extension["sha256"] != sums[RECORDING_REPORT]
+                          or extension["source_binding"] != SOURCE_BINDING or not same_json(extension["result"], recording)):
+                      raise ValueError("Recording manifest/receipt mismatch")
+                  sources = extension["source_files"]
+                  if (type(sources) is not dict or set(sources) != RECORDING_SOURCES
+                          or any(type(v) is not str or not re.fullmatch(r"[0-9a-f]{64}", v) for v in sources.values())):
+                      raise ValueError("Recording source assertions mismatch")
+                  for item in recording["artifacts"].values():
+                      name = RECORDING_WORK + "/" + item["name"]
+                      if sums[name] != item["sha256"] or (output / name).stat().st_size != item["bytes"]:
+                          raise ValueError("Recording artifact identity mismatch")
+              elif extension is not None:
+                  raise ValueError("Recording manifest requires explicit recording selection")
+              records = manifest.get("files")
+              if not isinstance(records, dict) or not records or any(safe_name(k).endswith("/") or not re.fullmatch(r"[0-9a-f]{64}", v) for k, v in records.items()):
+                  raise ValueError("Invalid binary inventory")
+              if require_recording and records.get("Motortester.exe") != recording["executable"]["sha256"]:
+                  raise ValueError("Recording executable/manifest mismatch")
+              with zipfile.ZipFile(output / "Motortester-windows-x64-candidate.zip") as archive:
+                  files = inventory(archive, "Motortester")
+                  manifest_member = "Motortester/build-manifest.json"
+                  if set(files) != {"Motortester/" + name for name in records} | {manifest_member}:
+                      raise ValueError("Binary ZIP/manifest inventory mismatch")
+                  if files[manifest_member].file_size != len(manifest_bytes) or archive.read(files[manifest_member]) != manifest_bytes:
+                      raise ValueError("Embedded and external manifests differ")
+                  for name, expected in records.items():
+                      if archive_hash(archive, files["Motortester/" + name]) != expected:
+                          raise ValueError("Binary member mismatch: " + name)
+              entries = subprocess.check_output(["git", "-C", str(root), "ls-tree", "-rz", "--full-tree", source, "--", "host"], timeout=60)
+              expected_source = {}
+              for entry in filter(None, entries.split(b"\0")):
+                  metadata, name = entry.split(b"\t", 1)
+                  mode, kind, blob = metadata.split()
+                  name = name.decode("utf-8")
+                  if kind != b"blob" or mode not in (b"100644", b"100755") or not name.startswith("host/"):
+                      raise ValueError("Unsupported committed host entry")
+                  expected_source[name] = blob.decode("ascii")
+              if not expected_source:
+                  raise ValueError("No committed host source")
+              with zipfile.ZipFile(output / "source.zip") as archive:
+                  files = inventory(archive, "host")
+                  if archive.comment != source.encode("ascii") or set(files) != set(expected_source):
+                      raise ValueError("Wrong source ZIP commit or paths")
+                  for name, expected in expected_source.items():
+                      if archive_hash(archive, files[name], git_blob=True) != expected:
+                          raise ValueError("Source ZIP blob mismatch: " + name)
+                  if require_recording:
+                      for name, expected in sources.items():
+                          if archive_hash(archive, files["host/" + name]) != expected:
+                              raise ValueError("Recording source ZIP assertion mismatch: " + name)
+              recording_summary = None
+              if require_recording:
+                  # Recheck original bytes/artifacts after all inventory reads.
+                  if read_bounded(output / RECORDING_REPORT, 65536) != recording_raw:
+                      raise ValueError("Recording receipt changed after verification")
+                  for item in recording["artifacts"].values():
+                      if digest(bounded(output / RECORDING_WORK / item["name"], 2 * MIB)) != item["sha256"]:
+                          raise ValueError("Recording artifact changed after verification")
+                  recording_summary = {
+                      "scope": "recording-receipt-and-artifact-byte-correspondence",
+                      "receipt_sha256": hashlib.sha256(recording_raw).hexdigest(), "receipt_bytes": len(recording_raw),
+                      "native_success_receipt": True, "runtime_execution_observed_by_inspector": False,
+                      "archive_contents_validated": False, "timing_budgets_verified_by_inspector": False,
+                      "source_files_binding": "externally asserted; not checked against source.zip", "source_files": sources,
+                      "segment_count": len(recording["segments"]),
+                      "full_segment_count": sum(item["kind"] == "capture" for item in recording["segments"]),
+                      "artifacts": {key: {"path": RECORDING_WORK + "/" + item["name"], "bytes": item["bytes"], "sha256": item["sha256"]}
+                                    for key, item in recording["artifacts"].items()},
+                      "synthetic": True, "device_io_performed": False, "physical_stop_verified": False}
+              return {"source_sha": source, "source_files": len(expected_source), "binary_files": len(records),
+                      "recording_required": require_recording, "expected_inspector_recording": recording_summary,
+                      "recording_source_zip_hashes_verified": len(sources) if require_recording else 0,
+                      "artifact_bytes": {name: (output / name).stat().st_size for name in sums},
+                      "artifacts_sha256": sums, "build_manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
+                      "checksum_file_sha256": digest(sums_path), "bytes_delivered": False,
+                      "license_review": manifest.get("license_review"), "hardware_verified": False}
+
+          def main():
+              root, output = Path.cwd(), Path(os.environ["BUILD_DIR"])
+              path = output / "archive-verification.json"
+              receipt = {"status": "RUNNING", "scope": "on-runner-archive-content-only"}
+              with path.open("x", encoding="utf-8") as stream:
+                  stream.write(json.dumps(receipt) + "\n")
+              try:
+                  receipt.update(verify(root, output, os.environ["SOURCE_SHA"], require_recording=True), status="PASS")
+              except Exception as error:
+                  receipt.update(status="FAILED", error=f"{type(error).__name__}: {error}")
+                  raise
+              finally:
+                  path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+                  print(json.dumps(receipt))
+
+          if __name__ == "__main__":
+              main()
+          '@
+          python -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Archive content verification failed' }
+      - name: Inspect completed candidate with separate reviewed companion
+        timeout-minutes: 6
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import stat
+          import subprocess
+          import sys
+          def unique(pairs):
+              result = {}
+              for key, value in pairs:
+                  if key in result:
+                      raise ValueError('Duplicate JSON key')
+                  result[key] = value
+              return result
+          def checked_info(path):
+              path = path.absolute()
+              for part in (*reversed(path.parents), path):
+                  info = part.lstat()
+                  if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                      raise RuntimeError('Redirected evidence path')
+                  if part != path and not stat.S_ISDIR(info.st_mode):
+                      raise RuntimeError('Non-directory evidence ancestor')
+              if not stat.S_ISREG(info.st_mode):
+                  raise RuntimeError('Nonregular evidence file')
+              return info
+          def strict_read(path, cap):
+              before = checked_info(path)
+              if not 0 < before.st_size <= cap:
+                  raise RuntimeError('Invalid evidence size/type')
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(cap + 1)
+                  after = os.fstat(stream.fileno())
+              identity = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns)
+              final = checked_info(path)
+              if (not 0 < len(raw) <= cap or len(raw) != before.st_size or
+                      any(not stat.S_ISREG(x.st_mode) or identity(x) != identity(before) for x in (opened, after, final))):
+                  raise RuntimeError('Evidence changed during read')
+              return raw
+          def decode(raw):
+              def invalid(value):
+                  raise ValueError('Nonfinite JSON')
+              return json.loads(raw, object_pairs_hook=unique, parse_constant=invalid)
+          def same_json(left, right):
+              return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(right, sort_keys=True, allow_nan=False)
+          def verify_recording_postcondition(report, archive, receipt_raw, manifest, manifest_hash):
+              expected = archive.get('expected_inspector_recording')
+              if (archive.get('status') != 'PASS' or archive.get('recording_required') is not True
+                      or type(archive.get('recording_source_zip_hashes_verified')) is not int
+                      or archive['recording_source_zip_hashes_verified'] != 23 or type(expected) is not dict
+                      or not same_json(report.get('recording_smoke'), expected)):
+                  raise RuntimeError('Recording-required inspector summary mismatch')
+              if (archive.get('source_sha') != os.environ['SOURCE_SHA']
+                      or report.get('source_commit') != os.environ['SOURCE_SHA']
+                      or report.get('inspector_commit') != os.environ['INSPECTOR_SHA']
+                      or report.get('inspector_sha256') != os.environ['INSPECTOR_FILE_SHA256']
+                      or archive.get('build_manifest_sha256') != manifest_hash
+                      or report.get('build_manifest_sha256') != manifest_hash
+                      or any(report.get(k) is not False for k in ('legal_clearance', 'corresponding_source_verified', 'replacement_verified'))):
+                  raise RuntimeError('Inspector identity or qualification mismatch')
+              extension = manifest.get('recording_smoke')
+              receipt_hash = hashlib.sha256(receipt_raw).hexdigest()
+              if (type(extension) is not dict or extension.get('sha256') != receipt_hash
+                      or expected.get('receipt_sha256') != receipt_hash
+                      or type(expected.get('receipt_bytes')) is not int or expected['receipt_bytes'] != len(receipt_raw)
+                      or not same_json(extension.get('result'), decode(receipt_raw))
+                      or not same_json(extension.get('source_files'), expected.get('source_files'))):
+                  raise RuntimeError('Inspector original receipt/source join mismatch')
+          build = Path(os.environ['BUILD_DIR'])
+          manifest = build / 'dist' / 'Motortester' / 'build-manifest.json'
+          raw = strict_read(manifest, 2097152)
+          manifest_hash = hashlib.sha256(raw).hexdigest()
+          command = [str(build / 'venv' / 'Scripts' / 'python.exe'), '-I', '-S', '-B', os.environ['INSPECTOR_PATH'],
+              '--build-root', str(build), '--expected-source-sha', os.environ['SOURCE_SHA'],
+              '--expected-manifest-sha256', manifest_hash, '--inspector-commit', os.environ['INSPECTOR_SHA'],
+              '--expected-inspector-sha256', os.environ['INSPECTOR_FILE_SHA256'], '--output', os.environ['PROVENANCE_PATH']]
+          print('PROVENANCE_INPUT', os.environ['SOURCE_SHA'], os.environ['INSPECTOR_SHA'], manifest_hash, flush=True)
+          try:
+              subprocess.run(command, check=True, timeout=300)
+              output = Path(os.environ['PROVENANCE_PATH'])
+              report = decode(strict_read(output, 8388608))
+              archive = decode(strict_read(build / 'archive-verification.json', 1048576))
+              original = strict_read(build / 'frozen-recording.json', 65536)
+              if strict_read(manifest, 2097152) != raw:
+                  raise RuntimeError('Manifest changed after inspector')
+              verify_recording_postcondition(report, archive, original, decode(raw), manifest_hash)
+              print('RECORDING_INSPECTOR_JOIN_PASS', hashlib.sha256(original).hexdigest(), len(original), flush=True)
+          finally:
+              dirty = subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'], timeout=60)
+              print('PROVENANCE_SOURCE_DIRTY', repr(dirty), flush=True)
+              if dirty:
+                  raise RuntimeError('Application source changed during observation')
+          '@
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Provenance observation incomplete' }
+      - name: Preserve evidence in job logs only
+        if: ${{ always() }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($relative in @('build.log', 'frozen-serial-import.json', 'frozen-window.png.smoke.json', 'SHA256SUMS.txt', 'dist/Motortester/build-manifest.json', 'archive-verification.json', 'dist/Motortester/licenses/inventory.json')) {
+            $path = Join-Path $env:BUILD_DIR $relative
+            if (Test-Path -LiteralPath $path -PathType Leaf) {
+              if ((Get-Item -LiteralPath $path).Length -gt 4194304) { throw 'Evidence file exceeds 4 MiB; retention incomplete' }
+              Write-Output "--- $relative ---"
+              Get-Content -LiteralPath $path
+            } else {
+              Write-Output "MISSING: $relative"
+            }
+          }
+          if (Test-Path -LiteralPath $env:PROVENANCE_PATH -PathType Leaf) {
+            $size = (Get-Item -LiteralPath $env:PROVENANCE_PATH).Length
+            if ($size -gt 8388608) { throw 'Provenance receipt exceeds 8 MiB; evidence incomplete' }
+            Write-Output "PROVENANCE_RECEIPT bytes=$size sha256=$((Get-FileHash -LiteralPath $env:PROVENANCE_PATH -Algorithm SHA256).Hash.ToLowerInvariant())"
+            Write-Output 'BEGIN provenance.json'
+            Get-Content -LiteralPath $env:PROVENANCE_PATH -Encoding utf8
+            Write-Output 'END provenance.json'
+          } else {
+            Write-Output 'MISSING: provenance.json'
+          }
+          $png = Join-Path $env:BUILD_DIR 'frozen-window.png'
+          if (Test-Path -LiteralPath $png -PathType Leaf) {
+            $bytes = [byte[]]::new(2097153)
+            $size = 0
+            $stream = [IO.File]::OpenRead($png)
+            try {
+              while ($size -lt $bytes.Length) {
+                $read = $stream.Read($bytes, $size, $bytes.Length - $size)
+                if ($read -eq 0) { break }
+                $size += $read
+              }
+            } finally {
+              $stream.Dispose()
+            }
+            if ($size -le 2097152) {
+              $sha = [Security.Cryptography.SHA256]::Create()
+              try {
+                $hash = [BitConverter]::ToString($sha.ComputeHash($bytes, 0, $size)).Replace('-', '').ToLowerInvariant()
+              } finally {
+                $sha.Dispose()
+              }
+              Write-Output "PNG snapshot bytes=$size sha256=$hash"
+              $encoded = [Convert]::ToBase64String($bytes, 0, $size)
+              Write-Output 'BEGIN frozen-window.png BASE64'
+              for ($offset = 0; $offset -lt $encoded.Length; $offset += 4096) {
+                Write-Output $encoded.Substring($offset, [Math]::Min(4096, $encoded.Length - $offset))
+              }
+              Write-Output 'END frozen-window.png BASE64'
+            } else {
+              Write-Output 'PNG content not retained: exceeds 2 MiB job-log bound.'
+            }
+          } else {
+            Write-Output 'MISSING: frozen-window.png'
+          }
+          @"
+          Source SHA: $env:SOURCE_SHA
+          No ZIP artifact retained. Synthetic PNG is encoded in logs only when present and <= 2 MiB.
+          Original recording JSON has its own always-run bounded byte-retention step.
+          Logs retain build/smoke diagnostics without Actions artifact storage; missing or oversized PNG is explicit.
+          Windows 10 manual, license, USB and independent acceptance remain open.
+          "@ | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
+      - name: Preserve original recording receipt independently
+        if: ${{ always() }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $recordingBytes = @'
+          import base64
+          import hashlib
+          import os
+          from pathlib import Path
+          import stat
+          path = Path(os.environ['BUILD_DIR']).absolute() / 'frozen-recording.json'
+          def checked_info(path, allow_missing=False):
+              for part in reversed(path.parents):
+                  info = part.lstat()
+                  if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                      raise RuntimeError('Redirected original recording receipt')
+                  if not stat.S_ISDIR(info.st_mode):
+                      raise RuntimeError('Non-directory receipt ancestor')
+              try:
+                  info = path.lstat()
+              except FileNotFoundError:
+                  if allow_missing:
+                      return None
+                  raise
+              if not stat.S_ISREG(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                  raise RuntimeError('Nonregular or redirected original recording receipt')
+              return info
+          before = checked_info(path, allow_missing=True)
+          if before is None:
+              print('MISSING: original frozen-recording.json; recording evidence incomplete')
+          else:
+              if not 0 < before.st_size <= 65536:
+                  raise RuntimeError('Original recording receipt exceeds 64 KiB or is not an ordinary nonempty file')
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(65537)
+                  after = os.fstat(stream.fileno())
+              identity = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns)
+              final = checked_info(path)
+              if (not 0 < len(raw) <= 65536 or len(raw) != before.st_size
+                      or any(not stat.S_ISREG(x.st_mode) or identity(x) != identity(before) for x in (opened, after, final))):
+                  raise RuntimeError('Original recording receipt changed during retention')
+              print('RECORDING_RECEIPT bytes=' + str(len(raw)) + ' sha256=' + hashlib.sha256(raw).hexdigest())
+              print('BEGIN frozen-recording.json BASE64')
+              encoded = base64.b64encode(raw).decode('ascii')
+              for offset in range(0, len(encoded), 4096):
+                  print(encoded[offset:offset + 4096])
+              print('END frozen-recording.json BASE64')
+          '@
+          python -I -S -B -c $recordingBytes
+          if ($LASTEXITCODE -ne 0) { throw 'Original recording receipt retention incomplete' }
