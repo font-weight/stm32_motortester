@@ -1,0 +1,16 @@
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=host:/tmp/motortester-deps QT_QPA_PLATFORM=offscreen /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python host/tests/fixtures/device_emulator/suite.py provisional
+SCOPE=provisional; optimized=0; expected_tests=7
+PROVISIONAL / UNACCEPTED hold-timeout interpretation only; not shared-contract acceptance
+test_provisional_anchor_is_final_end_byte_not_trigger_or_first_byte (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_anchor_is_final_end_byte_not_trigger_or_first_byte) ... ok
+test_provisional_deadline_arithmetic_near_uint64_maximum_does_not_wrap (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_deadline_arithmetic_near_uint64_maximum_does_not_wrap) ... ok
+test_provisional_deadline_just_before_exact_and_after_preserves_end (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_deadline_just_before_exact_and_after_preserves_end) ... ok
+test_provisional_partial_release_crossing_deadline_cannot_continue (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_partial_release_crossing_deadline_cannot_continue) ... ok
+test_provisional_release_at_or_after_deadline_acks_without_rearm (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_release_at_or_after_deadline_acks_without_rearm) ... ok
+test_provisional_release_before_deadline_ack_after_deadline_rearms (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_release_before_deadline_ack_after_deadline_rearms) ... ok
+test_provisional_stop_before_exact_after_deadline_has_one_terminal (test_device_emulator_conformance.ProvisionalHoldTimeout.test_provisional_stop_before_exact_after_deadline_has_one_terminal) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.265s
+
+OK
+RESULT tests=7 failures=0 errors=0 skips=0
