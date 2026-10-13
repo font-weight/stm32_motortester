@@ -29,6 +29,8 @@ jobs:
       INSPECTOR_PARENT_SHA: 'd10e83578718d49f971f034a58e0a77af10ff855'
       INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
+      OBSERVER_WORKFLOW_SHA: ${{ github.workflow_sha }}
+      OBSERVER_FILE_SHA256: ac9e391664132755d33773dad6336daa27039773e489a8eea943874672dce3ad
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
@@ -40,6 +42,9 @@ jobs:
           "BUILD_DIR=$env:RUNNER_TEMP/motortester-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "INSPECTOR_PATH=$env:RUNNER_TEMP/inspector-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "PROVENANCE_PATH=$env:RUNNER_TEMP/provenance-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "OBSERVER_PATH=$env:RUNNER_TEMP/native-observer-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "OBSERVER_BASELINE=$env:RUNNER_TEMP/native-baseline-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "OBSERVER_REPORT=$env:RUNNER_TEMP/native-observation-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Preserve Git blob line endings in hosted checkout
         run: |
           git config --global core.autocrlf false
@@ -137,6 +142,38 @@ jobs:
           '@
           python -I -S -B -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Inspector binding failed' }
+      - name: Bind separate metadata-only supplement from evaluated workflow
+        id: bind_native_observer
+        timeout-minutes: 3
+        run: |
+          $ErrorActionPreference = 'Stop'
+          git fetch --no-tags --depth=1 origin $env:OBSERVER_WORKFLOW_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'Observer source fetch failed' }
+          $bind = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          sha = os.environ['OBSERVER_WORKFLOW_SHA']
+          if re.fullmatch('[0-9a-f]{40}', sha) is None:
+              raise RuntimeError('Invalid evaluated workflow SHA')
+          inputs = [
+              ('scripts/ci/observe_native_origins.py', 'OBSERVER_PATH', os.environ['OBSERVER_FILE_SHA256']),
+              ('scripts/ci/run17-native-baseline.json', 'OBSERVER_BASELINE',
+               'fb864aa52ccf4db813478a41ba256b9f6bc64c711403884d9ef0b8603926a8df')]
+          for relative, destination, expected in inputs:
+              raw = subprocess.check_output(['git', 'show', sha + ':' + relative], timeout=60)
+              if not 0 < len(raw) <= 65536 or hashlib.sha256(raw).hexdigest() != expected:
+                  raise RuntimeError('Observer input does not match reviewed bytes')
+              with Path(os.environ[destination]).open('xb') as stream:
+                  stream.write(raw)
+              print('OBSERVER_INPUT', sha, relative, len(raw), hashlib.sha256(raw).hexdigest())
+          if subprocess.check_output(['git', 'rev-parse', 'HEAD'], timeout=60).decode().strip() != os.environ['SOURCE_SHA']:
+              raise RuntimeError('Application checkout changed while binding observer')
+          '@
+          python -I -S -B -c $bind
+          if ($LASTEXITCODE -ne 0) { throw 'Observer binding failed' }
       - name: Build and exercise unchanged host recipe
         run: |
           $ErrorActionPreference = 'Stop'
@@ -543,6 +580,135 @@ jobs:
           '@
           python -I -S -B -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Provenance observation incomplete' }
+      - name: Observe bounded native metadata and original CPython notice
+        if: ${{ always() && steps.bind_native_observer.outcome == 'success' }}
+        timeout-minutes: 6
+        env:
+          OBSERVER_PRIOR_JOB_STATUS: ${{ job.status }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $observe = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import stat
+          import subprocess
+          import sys
+          script = Path(os.environ['OBSERVER_PATH'])
+          def checked(path):
+              for ancestor in reversed(path.parents):
+                  info = ancestor.lstat()
+                  if not stat.S_ISDIR(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                      raise RuntimeError('Observer source ancestor is redirected')
+              info = path.lstat()
+              if not stat.S_ISREG(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                  raise RuntimeError('Observer source is redirected')
+              return info
+          before = checked(script)
+          with script.open('rb') as stream:
+              opened = os.fstat(stream.fileno())
+              if not stat.S_ISREG(opened.st_mode) or getattr(opened, 'st_file_attributes', 0) & 0x400:
+                  raise RuntimeError('Nonregular observer source handle')
+              raw = stream.read(65537)
+              after = os.fstat(stream.fileno())
+          final = checked(script)
+          identity = lambda x: (x.st_dev, x.st_ino, x.st_size)
+          if (not 0 < len(raw) <= 65536 or len(raw) != before.st_size
+                  or any(not stat.S_ISREG(x.st_mode) or getattr(x, 'st_file_attributes', 0) & 0x400
+                         for x in (before, opened, after, final))
+                  or any(identity(x) != identity(before) for x in (opened, after, final))
+                  or before.st_mtime_ns != final.st_mtime_ns or opened.st_mtime_ns != after.st_mtime_ns
+                  or hashlib.sha256(raw).hexdigest() != os.environ['OBSERVER_FILE_SHA256']):
+              raise RuntimeError('Observer executable source differs')
+          command = [sys.executable, '-I', '-S', '-B', str(script),
+              '--build-root', os.environ['BUILD_DIR'], '--baseline', os.environ['OBSERVER_BASELINE'],
+              '--output', os.environ['OBSERVER_REPORT']]
+          try:
+              subprocess.run(command, check=True, timeout=300)
+          finally:
+              dirty = subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'], timeout=60)
+              if dirty:
+                  raise RuntimeError('Application source changed during supplemental observation')
+              checked(script)
+              with script.open('rb') as stream:
+                  final_opened = os.fstat(stream.fileno())
+                  if not stat.S_ISREG(final_opened.st_mode) or getattr(final_opened, 'st_file_attributes', 0) & 0x400:
+                      raise RuntimeError('Nonregular final observer source handle')
+                  final_raw = stream.read(65537)
+                  final_after = os.fstat(stream.fileno())
+              final_info = checked(script)
+              if (final_raw != raw or any(not stat.S_ISREG(x.st_mode)
+                      or getattr(x, 'st_file_attributes', 0) & 0x400 for x in (final_opened, final_after, final_info))
+                      or any(identity(x) != identity(before) for x in (final_opened, final_after, final_info))):
+                  raise RuntimeError('Observer executable source changed during observation')
+          '@
+          python -I -S -B -c $observe
+          if ($LASTEXITCODE -ne 0) { throw 'Supplemental origin observation incomplete or baseline drifted' }
+      - name: Preserve bounded supplemental receipt independently
+        if: ${{ always() }}
+        timeout-minutes: 2
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $retain = @'
+          import base64
+          import hashlib
+          import os
+          from pathlib import Path
+          import re
+          import stat
+          run, attempt = os.environ['GITHUB_RUN_ID'], os.environ['GITHUB_RUN_ATTEMPT']
+          if re.fullmatch('[0-9]{1,20}', run) is None or re.fullmatch('[0-9]{1,4}', attempt) is None:
+              raise RuntimeError('Invalid retention identity')
+          temp = Path(os.environ['RUNNER_TEMP'])
+          report = temp / ('native-observation-' + run + '-' + attempt + '.json')
+          if Path(os.environ['OBSERVER_REPORT']) != report:
+              raise RuntimeError('Unexpected supplemental report path')
+          def checked(path):
+              for ancestor in reversed(path.parents):
+                  info = ancestor.lstat()
+                  if not stat.S_ISDIR(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                      raise RuntimeError('Redirected supplemental receipt ancestor')
+              info = path.lstat()
+              if not stat.S_ISREG(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                  raise RuntimeError('Redirected supplemental receipt')
+              return info
+          def retain(path, cap, label):
+              before = checked(path)
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  if not stat.S_ISREG(opened.st_mode) or getattr(opened, 'st_file_attributes', 0) & 0x400:
+                      raise RuntimeError('Nonregular retained evidence handle')
+                  raw = stream.read(cap + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked(path)
+              identity = lambda x: (x.st_dev, x.st_ino, x.st_size)
+              if (not 0 < len(raw) <= cap or len(raw) != before.st_size
+                      or any(not stat.S_ISREG(x.st_mode) or getattr(x, 'st_file_attributes', 0) & 0x400
+                             for x in (before, opened, after, final))
+                      or any(identity(x) != identity(before) for x in (opened, after, final))
+                      or before.st_mtime_ns != final.st_mtime_ns or opened.st_mtime_ns != after.st_mtime_ns):
+                  raise RuntimeError('Supplemental evidence bounds/identity mismatch')
+              print('NATIVE_EVIDENCE ' + label + ' bytes=' + str(len(raw)) + ' sha256=' + hashlib.sha256(raw).hexdigest())
+              print('BEGIN ' + label + ' BASE64')
+              encoded = base64.b64encode(raw).decode('ascii')
+              for offset in range(0, len(encoded), 4096):
+                  print(encoded[offset:offset + 4096])
+              print('END ' + label + ' BASE64')
+          items = [(report, 2097152, 'native-observation.json')]
+          items += [(temp / ('native-notice-' + side + '-' + run + '-' + attempt + '.bin'),
+                     1048576, 'native-notice-' + side + '.bin') for side in ('source', 'copy')]
+          errors = 0
+          for path, cap, label in items:
+              try:
+                  retain(path, cap, label)
+              except (OSError, ValueError, RuntimeError) as exc:
+                  errors += 1
+                  print('INCOMPLETE ' + label + ': ' + type(exc).__name__)
+          if errors:
+              raise SystemExit(1)
+          '@
+          python -I -S -B -c $retain
+          if ($LASTEXITCODE -ne 0) { throw 'Supplemental receipt was not completely retained' }
       - name: Preserve evidence in job logs only
         if: ${{ always() }}
         run: |
