@@ -1,10 +1,22 @@
 {
   "input_files": [
     {
+      "bytes": 697,
+      "path": "notices/17735774592e0a6db3b0223f15a724a0339d831636d2997560fc697dedc9d57a",
+      "sha256": "17735774592e0a6db3b0223f15a724a0339d831636d2997560fc697dedc9d57a",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4/md4.cpp"
+    },
+    {
       "bytes": 4011,
       "path": "notices/197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
       "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
       "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENCE.md"
+    },
+    {
+      "bytes": 1815,
+      "path": "notices/1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+      "sha256": "1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/ijg-license.txt"
     },
     {
       "bytes": 1664,
@@ -115,6 +127,12 @@
       "source_path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/LICENSE.txt"
     },
     {
+      "bytes": 144,
+      "path": "notices/65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+      "sha256": "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+      "source_path": "qtbase-everywhere-src-6.12.0/LICENSES/LicenseRef-SHA1-Public-Domain.txt"
+    },
+    {
       "bytes": 2218,
       "path": "notices/6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
       "sha256": "6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
@@ -133,16 +151,34 @@
       "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/rfc6234/LICENSE"
     },
     {
+      "bytes": 1995,
+      "path": "notices/80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+      "sha256": "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+      "source_path": "qtbase-everywhere-src-6.12.0/LICENSES/Unicode-3.0.txt"
+    },
+    {
       "bytes": 1099,
       "path": "notices/846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
       "sha256": "846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
       "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/VulkanMemoryAllocator/LICENSE.txt"
     },
     {
+      "bytes": 909,
+      "path": "notices/8cca510c6ce7a6258aece5d76b74ab603255a0fe6422b51d9e60877206a1043a",
+      "sha256": "8cca510c6ce7a6258aece5d76b74ab603255a0fe6422b51d9e60877206a1043a",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md5/md5.cpp"
+    },
+    {
       "bytes": 1505,
       "path": "notices/92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
       "sha256": "92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
       "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/easing/LICENSE"
+    },
+    {
+      "bytes": 320,
+      "path": "notices/95f5989bea13d1dff8cd565ec13feebe8023e7f556e8f57e0f8907b9f1c5b511",
+      "sha256": "95f5989bea13d1dff8cd565ec13feebe8023e7f556e8f57e0f8907b9f1c5b511",
+      "source_path": "NOTICE.txt"
     },
     {
       "bytes": 1062,
@@ -163,6 +199,18 @@
       "source_path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.XCONSORTIUM.txt"
     },
     {
+      "bytes": 355,
+      "path": "notices/b9463116b1a1c8052d732ec2ce1a71a28200346730961b3a8a17a4c1bc2ca10d",
+      "sha256": "b9463116b1a1c8052d732ec2ce1a71a28200346730961b3a8a17a4c1bc2ca10d",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/wintab/pktdef.h"
+    },
+    {
+      "bytes": 6077,
+      "path": "notices/ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+      "sha256": "ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/LICENSE"
+    },
+    {
       "bytes": 1971,
       "path": "notices/ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
       "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
@@ -179,6 +227,12 @@
       "path": "notices/bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
       "sha256": "bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
       "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/LICENSE.txt"
+    },
+    {
+      "bytes": 161,
+      "path": "notices/c93c71014650c84672ca10f7d44609f3dcaa30b06856cd0f465734437b72311c",
+      "sha256": "c93c71014650c84672ca10f7d44609f3dcaa30b06856cd0f465734437b72311c",
+      "source_path": "NOTICE.txt"
     },
     {
       "bytes": 1338,
@@ -221,6 +275,12 @@
       "path": "notices/e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
       "sha256": "e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
       "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/BDF-LICENSE.txt"
+    },
+    {
+      "bytes": 606,
+      "path": "notices/e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+      "sha256": "e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/COPYRIGHT.txt"
     },
     {
       "bytes": 2445,
@@ -2611,10 +2671,744 @@
     "candidate_index_sha256": "fd5b7abc37c9d68dc2a1104c08cb2b3590384f470020d31f717aafefb875faae",
     "fresh_llvm_provenance_sha256": "00ef8d59b94c3da5a2ad7ff3ac9be6094c0d1c7b886e14a4ad00efe14a02b91d",
     "qualification": "Technical source/notice associations, not permission to distribute or proof of complete corresponding source. No source or binary archive is embedded in this manifest.",
+    "reconciliation_base_commit": "60c3d262b5597794869b32e0aa27d6981b28e38b",
     "source_closure_report_sha256": "ddb6b384ddd54f90a1676243a742b142b8545bf784c0aa16daa029f1b367415e"
   },
   "qt_version": "6.12.0",
-  "schema_version": 1,
+  "reconciliation": {
+    "additional_bodies": [
+      {
+        "bytes": 697,
+        "context": "Preserve the actual public-domain/no-warranty declaration; do not relabel it as a new CC0 grant.",
+        "name": "md4-public-domain-header.txt",
+        "saved": "bodies/17735774592e0a6db3b0223f15a724a0339d831636d2997560fc697dedc9d57a",
+        "selection": "exact original contiguous byte slice; no rewriting",
+        "sha256": "17735774592e0a6db3b0223f15a724a0339d831636d2997560fc697dedc9d57a",
+        "source": {
+          "bytes": 6594,
+          "git_blob": "ec74958d690a3ed1935352cf36e186ebe8e4f212",
+          "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4/md4.cpp",
+          "saved": "bodies/221066e5a6849d49126e54afc8c0fd2d9375a4d5b08bafd2a8e3194d0ba55c4d",
+          "sha256": "221066e5a6849d49126e54afc8c0fd2d9375a4d5b08bafd2a8e3194d0ba55c4d",
+          "supplier_source_association": [
+            "lf_to_crlf_only_matches"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          697
+        ]
+      },
+      {
+        "bytes": 909,
+        "context": "Preserve the actual no-copyright/public-domain declaration and Ian Jackson modification attribution.",
+        "name": "md5-public-domain-header.txt",
+        "saved": "bodies/8cca510c6ce7a6258aece5d76b74ab603255a0fe6422b51d9e60877206a1043a",
+        "selection": "exact original contiguous byte slice; no rewriting",
+        "sha256": "8cca510c6ce7a6258aece5d76b74ab603255a0fe6422b51d9e60877206a1043a",
+        "source": {
+          "bytes": 7716,
+          "git_blob": "f9e04a93e3ff186c192470f0ffadb092979e2669",
+          "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md5/md5.cpp",
+          "saved": "bodies/ecc3a072d271c96291fa55689d617b31bdabb44a93694e5ff11aa00e41ac118c",
+          "sha256": "ecc3a072d271c96291fa55689d617b31bdabb44a93694e5ff11aa00e41ac118c",
+          "supplier_source_association": [
+            "lf_to_crlf_only_matches"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          909
+        ]
+      },
+      {
+        "bytes": 144,
+        "context": "Pair with the already-preserved Dominik Reichl and Qt copyright metadata.",
+        "name": "sha1-public-domain.txt",
+        "saved": "bodies/65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+        "selection": "entire original file",
+        "sha256": "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+        "source": {
+          "bytes": 144,
+          "git_blob": "2ebbf9a78ad592c705e5b6e22e20cfb8f1d11abf",
+          "path": "qtbase-everywhere-src-6.12.0/LICENSES/LicenseRef-SHA1-Public-Domain.txt",
+          "saved": "bodies/65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+          "sha256": "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+          "supplier_source_association": [
+            "source_archive_only"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          144
+        ]
+      },
+      {
+        "bytes": 1995,
+        "context": "One literal shared body for UCD and CLDR; preserve existing component-specific attribution years separately.",
+        "name": "Unicode-3.0.txt",
+        "saved": "bodies/80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+        "selection": "entire original file",
+        "sha256": "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+        "source": {
+          "bytes": 1995,
+          "git_blob": "739715c45cf49d00f3b3832cb353f8ffd385eb22",
+          "path": "qtbase-everywhere-src-6.12.0/LICENSES/Unicode-3.0.txt",
+          "saved": "bodies/80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+          "sha256": "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+          "supplier_source_association": [
+            "source_archive_only"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          1995
+        ]
+      },
+      {
+        "bytes": 355,
+        "context": "The same permission/copyright block occurs in wintab.h. No standalone Wintab runtime is inferred.",
+        "name": "wintab-copyright-permission.txt",
+        "saved": "bodies/b9463116b1a1c8052d732ec2ce1a71a28200346730961b3a8a17a4c1bc2ca10d",
+        "selection": "exact original contiguous byte slice; no rewriting",
+        "sha256": "b9463116b1a1c8052d732ec2ce1a71a28200346730961b3a8a17a4c1bc2ca10d",
+        "source": {
+          "bytes": 6376,
+          "git_blob": "b8695f0ecd9db4631878b15f24f895e1e0054406",
+          "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/wintab/pktdef.h",
+          "saved": "bodies/11f53ac5568c0efcf06e1aaa18e9ac16cfe1b51060d063762c8ba809bbb894df",
+          "sha256": "11f53ac5568c0efcf06e1aaa18e9ac16cfe1b51060d063762c8ba809bbb894df",
+          "supplier_source_association": [
+            "lf_to_crlf_only_matches"
+          ]
+        },
+        "source_byte_range_half_open": [
+          118,
+          473
+        ]
+      },
+      {
+        "bytes": 6077,
+        "context": "Explicit plural LicenseFiles or CopyrightFile from row47 upstream metadata.",
+        "name": "libjpeg-LICENSE",
+        "saved": "bodies/ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+        "selection": "entire original file",
+        "sha256": "ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+        "source": {
+          "bytes": 6077,
+          "git_blob": "37a489b245eeb16c9ad8fae217b54f07ca00a65c",
+          "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/LICENSE",
+          "saved": "bodies/ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+          "sha256": "ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+          "supplier_source_association": [
+            "source_archive_only"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          6077
+        ]
+      },
+      {
+        "bytes": 1815,
+        "context": "Explicit plural LicenseFiles or CopyrightFile from row47 upstream metadata.",
+        "name": "libjpeg-ijg-license.txt",
+        "saved": "bodies/1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+        "selection": "entire original file",
+        "sha256": "1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+        "source": {
+          "bytes": 1815,
+          "git_blob": "eec5341d1c4e9ded532479684d061ffe3f6915b2",
+          "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/ijg-license.txt",
+          "saved": "bodies/1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+          "sha256": "1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+          "supplier_source_association": [
+            "lf_to_crlf_only_matches"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          1815
+        ]
+      },
+      {
+        "bytes": 606,
+        "context": "Explicit plural LicenseFiles or CopyrightFile from row47 upstream metadata.",
+        "name": "libjpeg-COPYRIGHT.txt",
+        "saved": "bodies/e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+        "selection": "entire original file",
+        "sha256": "e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+        "source": {
+          "bytes": 606,
+          "git_blob": "5085059192a96782d65492b0a6964a7beac69a33",
+          "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/COPYRIGHT.txt",
+          "saved": "bodies/e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+          "sha256": "e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+          "supplier_source_association": [
+            "lf_to_crlf_only_matches"
+          ]
+        },
+        "source_byte_range_half_open": [
+          0,
+          606
+        ]
+      },
+      {
+        "bytes": 161,
+        "context": "General Apache Tika/ASF copyright and attribution. Preserve 2021 as upstream says; do not silently change it to metadata year2026.",
+        "name": "tika-ASF-NOTICE.txt",
+        "saved": "bodies/c93c71014650c84672ca10f7d44609f3dcaa30b06856cd0f465734437b72311c",
+        "selection": "exact original contiguous NOTICE paragraph(s); no rewriting",
+        "sha256": "c93c71014650c84672ca10f7d44609f3dcaa30b06856cd0f465734437b72311c",
+        "source": {
+          "bytes": 80600,
+          "commit": "c29724782854bb5a319f4a1940d0828a58ace3f9",
+          "git_blob": "e4713574c826602f94419e2c7c01c6cd0d971288",
+          "path": "NOTICE.txt",
+          "repo": "apache/tika",
+          "requested_url": "https://api.github.com/repos/apache/tika/contents/NOTICE.txt?ref=c29724782854bb5a319f4a1940d0828a58ace3f9",
+          "saved": "bodies/4cd09bac8d81bd34decf6b95fb23d42fc9b3d6b653ec4be8ef44674b692c97cd",
+          "scope": "entire project notice; only applicable MIME-data portions selected separately",
+          "sha256": "4cd09bac8d81bd34decf6b95fb23d42fc9b3d6b653ec4be8ef44674b692c97cd",
+          "tree_listing_git_blob_equal": true
+        },
+        "source_byte_range_half_open": [
+          0,
+          161
+        ]
+      },
+      {
+        "bytes": 320,
+        "context": "MIME-data-specific attribution and OGL3 link; excludes unrelated Tika Java/server component terms.",
+        "name": "tika-PRONOM-NOTICE.txt",
+        "saved": "bodies/95f5989bea13d1dff8cd565ec13feebe8023e7f556e8f57e0f8907b9f1c5b511",
+        "selection": "exact original contiguous NOTICE paragraph(s); no rewriting",
+        "sha256": "95f5989bea13d1dff8cd565ec13feebe8023e7f556e8f57e0f8907b9f1c5b511",
+        "source": {
+          "bytes": 80600,
+          "commit": "c29724782854bb5a319f4a1940d0828a58ace3f9",
+          "git_blob": "e4713574c826602f94419e2c7c01c6cd0d971288",
+          "path": "NOTICE.txt",
+          "repo": "apache/tika",
+          "requested_url": "https://api.github.com/repos/apache/tika/contents/NOTICE.txt?ref=c29724782854bb5a319f4a1940d0828a58ace3f9",
+          "saved": "bodies/4cd09bac8d81bd34decf6b95fb23d42fc9b3d6b653ec4be8ef44674b692c97cd",
+          "scope": "entire project notice; only applicable MIME-data portions selected separately",
+          "sha256": "4cd09bac8d81bd34decf6b95fb23d42fc9b3d6b653ec4be8ef44674b692c97cd",
+          "tree_listing_git_blob_equal": true
+        },
+        "source_byte_range_half_open": [
+          743,
+          1063
+        ]
+      }
+    ],
+    "additional_bytes": 13079,
+    "ledger": {
+      "bytes": 34814,
+      "name": "ELEVEN-ROW-CLOSURE.json",
+      "sha256": "5e73b2607fc1c67d3d9712237c1de114785e433be455f9bde87ae622e27906d7"
+    },
+    "notice_file_metadata_keys": [
+      "LicenseFile",
+      "LicenseFiles",
+      "CopyrightFile"
+    ],
+    "previous_manifest_sha256": "7166c136548231e009b028caaa8b32f57967cebe05c8899e6669726e1785c084",
+    "qualification": "Authored text-input reconciliation of eleven historical singular-key scan rows. Source rows/body provenance retain the sealed audit wording; saved paths refer to retained evidence, not additional packaged files. No automatic compliance or release approval.",
+    "remaining_text_review": {
+      "id": "tika-mimetypes",
+      "observed_at": "2026-10-13T18:07:54Z",
+      "observed_read_status": "403 Forbidden",
+      "qualification": "Exact ASF/PRONOM NOTICE excerpts retained. The full OGL3 text is not supplied or independently reviewed; source/build/replacement/distribution gates remain.",
+      "record_index": 14,
+      "status": "unresolved",
+      "subject": "PRONOM/Open Government Licence v3.0 terms and attribution review",
+      "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    "rows": [
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Source explicitly dedicates code to public domain and disclaims warranty. Retain the original declaration for precise provenance; absence of a separate LicenseFile is not evidence of a missing mandatory license text.",
+        "id": "md4",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4/qt_attribution.json",
+        "metadata_sha256": "34bda63a2fcc23c83f2e5364ccd394553b4baa505b1f79ded9cc2161c56a9b4c",
+        "proposed_new_bodies": [
+          "17735774592e0a6db3b0223f15a724a0339d831636d2997560fc697dedc9d57a"
+        ],
+        "record_index": 7,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-md4-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 6594,
+            "git_blob": "ec74958d690a3ed1935352cf36e186ebe8e4f212",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4/md4.cpp",
+            "saved": "bodies/221066e5a6849d49126e54afc8c0fd2d9375a4d5b08bafd2a8e3194d0ba55c4d",
+            "sha256": "221066e5a6849d49126e54afc8c0fd2d9375a4d5b08bafd2a8e3194d0ba55c4d",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 725,
+            "git_blob": "69c3419faf1741fc9ee6cc0f850c2041bd2530e5",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4/md4.h",
+            "saved": "bodies/8174fd6527ca22ffe22862d414d82283efd454972d4ccad43a752d2aa1d0071c",
+            "sha256": "8174fd6527ca22ffe22862d414d82283efd454972d4ccad43a752d2aa1d0071c",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          }
+        ],
+        "status": "add_source_declaration"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Source says no copyright is claimed and code remains public domain. Retain the exact declaration, including modification attribution; no additional carry-notice obligation was established by this text.",
+        "id": "md5",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md5/qt_attribution.json",
+        "metadata_sha256": "20b0f1b17ccd1bd5e8d763b1cdca4b095b8f0c037644b5ee18154536b7d8425e",
+        "proposed_new_bodies": [
+          "8cca510c6ce7a6258aece5d76b74ab603255a0fe6422b51d9e60877206a1043a"
+        ],
+        "record_index": 8,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-md5-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 7716,
+            "git_blob": "f9e04a93e3ff186c192470f0ffadb092979e2669",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md5/md5.cpp",
+            "saved": "bodies/ecc3a072d271c96291fa55689d617b31bdabb44a93694e5ff11aa00e41ac118c",
+            "sha256": "ecc3a072d271c96291fa55689d617b31bdabb44a93694e5ff11aa00e41ac118c",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 1480,
+            "git_blob": "181ad467330d1f08164897d7c8621e238ebb04d2",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md5/md5.h",
+            "saved": "bodies/33ea94be23d4decdfb64a9c76fad2698b387dab2f991d9f6f8741f5a1737a79d",
+            "sha256": "33ea94be23d4decdfb64a9c76fad2698b387dab2f991d9f6f8741f5a1737a79d",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          }
+        ],
+        "status": "add_source_declaration"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Custom LicenseRef text is available in the same archive. Existing component metadata supplies the copyright context; reference name alone was incomplete text coverage.",
+        "id": "sha1",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha1/qt_attribution.json",
+        "metadata_sha256": "53cab2c771f7f7ffbf6a58ff759e5846b746e91d98dfe467d5145edf8cd7d306",
+        "proposed_new_bodies": [
+          "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305"
+        ],
+        "record_index": 10,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-sha1-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 8590,
+            "git_blob": "6dd25e3c15cb58f3f3b67a2b4456ba1b9ffff725",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha1/sha1.cpp",
+            "saved": "bodies/cf0635f5a0be705bfbd22037b818700e6a67c9cd9290e659c4443cd5f454a8f3",
+            "sha256": "cf0635f5a0be705bfbd22037b818700e6a67c9cd9290e659c4443cd5f454a8f3",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 144,
+            "git_blob": "2ebbf9a78ad592c705e5b6e22e20cfb8f1d11abf",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/LicenseRef-SHA1-Public-Domain.txt",
+            "saved": "bodies/65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+            "sha256": "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "add_exact_retained_text"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "The existing SHA3 CC0 body equals the complete canonical CC0 body after omitting only its title and collapsing whitespace. SipHash source header and existing metadata supply the named copyright context.",
+        "id": "siphash",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/siphash/qt_attribution.json",
+        "metadata_sha256": "8614947dfc0ca1d21aad2f88b4400598262ab8c08aa87c4f7acc0c2de6e5619e",
+        "proposed_new_bodies": [],
+        "record_index": 13,
+        "reuse_existing_bodies": [
+          {
+            "bytes": 7013,
+            "path": "notices/1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+            "sha256": "1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+            "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/CC0_LICENSE"
+          }
+        ],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-siphash-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 8457,
+            "git_blob": "63002c788a1dd2b7cc4c9813befe608f9e4f96d4",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/siphash/siphash.cpp",
+            "saved": "bodies/e95eebf552c26d49d75a6b1ca937b0826ece531d88c0b5f52f2509076af53c06",
+            "sha256": "e95eebf552c26d49d75a6b1ca937b0826ece531d88c0b5f52f2509076af53c06",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 7048,
+            "git_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/CC0-1.0.txt",
+            "saved": "bodies/a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+            "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "reuse_existing_literal"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Apache2 text is already complete. Exact upstream NOTICE provides applicable ASF/PRONOM paragraphs. Full OGL3 read returned403; scope-specific OGL3 review remains open. No unrelated Tika server/Java GPL/CDDL conclusion follows.",
+        "id": "tika-mimetypes",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/mimetypes/3rdparty/qt_attribution.json",
+        "metadata_sha256": "329652c93e6b47663115543cfd746cb56b96a98d774d540d58e64614bd9739eb",
+        "proposed_new_bodies": [
+          "c93c71014650c84672ca10f7d44609f3dcaa30b06856cd0f465734437b72311c",
+          "95f5989bea13d1dff8cd565ec13feebe8023e7f556e8f57e0f8907b9f1c5b511"
+        ],
+        "record_index": 14,
+        "reuse_existing_bodies": [
+          {
+            "bytes": 17914,
+            "path": "notices/4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+            "sha256": "4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+            "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/blake2/COPYING"
+          },
+          {
+            "bytes": 11473,
+            "path": "notices/5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+            "sha256": "5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+            "source_path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/LICENSE.txt"
+          }
+        ],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-tika-mimetypes-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 317942,
+            "git_blob": "323934e5d8ae314c1d11a4fee17b152735fcd167",
+            "path": "qtbase-everywhere-src-6.12.0/src/corelib/mimetypes/3rdparty/tika-mimetypes.xml",
+            "saved": "bodies/58ada2813536ab2b8c69dd8f4579c1113326cc1cd3e39485d5d26ca117611a6c",
+            "sha256": "58ada2813536ab2b8c69dd8f4579c1113326cc1cd3e39485d5d26ca117611a6c",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 10398,
+            "git_blob": "136d90045663ab0acaeff2a3ecf0013c968de8c9",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/Apache-2.0.txt",
+            "saved": "bodies/e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+            "sha256": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "partially_resolved_remaining_OGL_review"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Existing complete CC0 body plus preserved Sy Brand waiver covers the identified text input. The source header expressly refers to CC0 and supplies 2017 attribution; retain its source evidence.",
+        "id": "tlexpected",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/global/qt_attribution.json",
+        "metadata_sha256": "64698063a65a1502b986bd61163b5eb9c6bde87f93feb28e4eab43ff07a4f10a",
+        "proposed_new_bodies": [],
+        "record_index": 16,
+        "reuse_existing_bodies": [
+          {
+            "bytes": 7013,
+            "path": "notices/1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+            "sha256": "1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+            "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/CC0_LICENSE"
+          }
+        ],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-tlexpected-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 96231,
+            "git_blob": "e9600ba9333b9364af4331c87130169ee234a13c",
+            "path": "qtbase-everywhere-src-6.12.0/src/corelib/global/qexpected_p.h",
+            "saved": "bodies/61cf7e096fef0f3dc61a184561fabd9935a7e3a5f68510fb764514fdadf36014",
+            "sha256": "61cf7e096fef0f3dc61a184561fabd9935a7e3a5f68510fb764514fdadf36014",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 7048,
+            "git_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/CC0-1.0.txt",
+            "saved": "bodies/a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+            "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "reuse_existing_literal"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Source uses Unicode-3.0 and generated tables identify Unicode17.0. Metadata version36 is UCD revision numbering, not an unexplained binary version mismatch. Preserve component copyright and exact shared Unicode text.",
+        "id": "unicode-character-database",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qt_attribution.json",
+        "metadata_sha256": "4e23736600be956e4214849ad8baaa955441656db7324713fab6353c1163b4f5",
+        "proposed_new_bodies": [
+          "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634"
+        ],
+        "record_index": 17,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-unicode-character-database-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 1111937,
+            "git_blob": "f1e27ef9503c837ff90b1f0b9f1f04d038f37a35",
+            "path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qunicodetables.cpp",
+            "saved": "bodies/038c3683f7f94406e8793612b6ee36a0497d9386bfd43262a6b11d9d155a5e50",
+            "sha256": "038c3683f7f94406e8793612b6ee36a0497d9386bfd43262a6b11d9d155a5e50",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 6076,
+            "git_blob": "a9c64c3ab82b49efc0e0209db9259c6f9a2cd8e5",
+            "path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qunicodetables_p.h",
+            "saved": "bodies/a296d1585e6307e7cf86574e5a06b54bb756936c2370a69f8f6e7974047449d4",
+            "sha256": "a296d1585e6307e7cf86574e5a06b54bb756936c2370a69f8f6e7974047449d4",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 1995,
+            "git_blob": "739715c45cf49d00f3b3832cb353f8ffd385eb22",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/Unicode-3.0.txt",
+            "saved": "bodies/80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+            "sha256": "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "add_exact_retained_text"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Generated locale data explicitly says CLDRv48.2. Add the same shared Unicode3 body and keep existing CLDR copyright fields; do not edit upstream license years.",
+        "id": "unicode-cldr",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qt_attribution.json",
+        "metadata_sha256": "4e23736600be956e4214849ad8baaa955441656db7324713fab6353c1163b4f5",
+        "proposed_new_bodies": [
+          "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634"
+        ],
+        "record_index": 18,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-unicode-cldr-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 809443,
+            "git_blob": "667488322fa3d1556743f28c239dcde6d53dda17",
+            "path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qlocale_data_p.h",
+            "saved": "bodies/f0d5886ccbf22c277686dcacb7e126f8bc42b10d6f9957133cca6f77fe23d35b",
+            "sha256": "f0d5886ccbf22c277686dcacb7e126f8bc42b10d6f9957133cca6f77fe23d35b",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 1995,
+            "git_blob": "739715c45cf49d00f3b3832cb353f8ffd385eb22",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/Unicode-3.0.txt",
+            "saved": "bodies/80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+            "sha256": "80bb6294022d8764adb36a9d65ebb6bd94efb1865918a71e31e6c247607d7634",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "add_exact_retained_text"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Existing bodies contain the entire canonical Apache2 text after whitespace normalization. Google2019 copyright is in both the source header and existing metadata. No separate NOTICE or reference to one appears in this retained component directory.",
+        "id": "emoji-segmenter",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/emoji-segmenter/qt_attribution.json",
+        "metadata_sha256": "9a980fc0f9e478d2a7e9a571d4cd234c259aaf8e2ea3fb60a0a7cf02cc3c3700",
+        "proposed_new_bodies": [],
+        "record_index": 21,
+        "reuse_existing_bodies": [
+          {
+            "bytes": 17914,
+            "path": "notices/4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+            "sha256": "4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+            "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/blake2/COPYING"
+          },
+          {
+            "bytes": 11473,
+            "path": "notices/5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+            "sha256": "5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+            "source_path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/LICENSE.txt"
+          }
+        ],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-emoji-segmenter-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 5723,
+            "git_blob": "00b7700a9a4b16d23f1149acaa6df0197292d040",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/emoji-segmenter/emoji_presentation_scanner.c",
+            "saved": "bodies/c4ac2e9b1b7ac4df87854729d64036347adc80f6183f8bec9603a3ac7471cf7c",
+            "sha256": "c4ac2e9b1b7ac4df87854729d64036347adc80f6183f8bec9603a3ac7471cf7c",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 10398,
+            "git_blob": "136d90045663ab0acaeff2a3ecf0013c968de8c9",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/Apache-2.0.txt",
+            "saved": "bodies/e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+            "sha256": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "reuse_existing_literal"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Both headers contain the same unrestricted-use clause and LCS/Telegraphics copyright. Preserve that complete literal block. A missing LicenseFile key was not a finding that Wintab requires additional restrictions.",
+        "id": "wintab",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/wintab/qt_attribution.json",
+        "metadata_sha256": "b879ea91b719531d45e1cfe33d2241d060a9260200bd91a09ada074b16063f9c",
+        "proposed_new_bodies": [
+          "b9463116b1a1c8052d732ec2ce1a71a28200346730961b3a8a17a4c1bc2ca10d"
+        ],
+        "record_index": 40,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-QWindowsIntegrationPlugin-Attribution-wintab-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 6376,
+            "git_blob": "b8695f0ecd9db4631878b15f24f895e1e0054406",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/wintab/pktdef.h",
+            "saved": "bodies/11f53ac5568c0efcf06e1aaa18e9ac16cfe1b51060d063762c8ba809bbb894df",
+            "sha256": "11f53ac5568c0efcf06e1aaa18e9ac16cfe1b51060d063762c8ba809bbb894df",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 21351,
+            "git_blob": "0571d724e6b3211ddf8624e970d822f346ac0fa3",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/wintab/wintab.h",
+            "saved": "bodies/27a8d66f8c9db27e7de52b233e3d13ee5b8cf92bed800f21491fdd229a31c0da",
+            "sha256": "27a8d66f8c9db27e7de52b233e3d13ee5b8cf92bed800f21491fdd229a31c0da",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 139,
+            "git_blob": "6c03ad2aff71b8e39a282376bbd20179f5befbc5",
+            "path": "qtbase-everywhere-src-6.12.0/LICENSES/LicenseRef-Lcs-Telegraphics.txt",
+            "saved": "bodies/c10225ebbd5191bfdd761b0d7752c785f2453ab665d6c454473fb12d254668aa",
+            "sha256": "c10225ebbd5191bfdd761b0d7752c785f2453ab665d6c454473fb12d254668aa",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          }
+        ],
+        "status": "add_source_declaration"
+      },
+      {
+        "compiled_inclusion": "unchanged, not proved by this text review",
+        "finding": "Metadata uses LicenseFiles plural plus CopyrightFile. Add all three named files. Product documentation should include the explicit IJG acknowledgement identified in ijg-license.txt; source delivery must retain README.ijg and modification records. No generic SPDX label replaces these.",
+        "id": "libjpeg",
+        "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/qt_attribution.json",
+        "metadata_sha256": "ed7cb7abdd9124f664acd26cf552ba821c8cf236c4cd34a6737f202215bd41bc",
+        "proposed_new_bodies": [
+          "ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+          "1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+          "e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0"
+        ],
+        "record_index": 47,
+        "reuse_existing_bodies": [],
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledLibjpeg-b62004158ac8",
+        "source_inputs": [
+          {
+            "bytes": 6077,
+            "git_blob": "37a489b245eeb16c9ad8fae217b54f07ca00a65c",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/LICENSE",
+            "saved": "bodies/ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+            "sha256": "ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579",
+            "supplier_source_association": [
+              "source_archive_only"
+            ]
+          },
+          {
+            "bytes": 1815,
+            "git_blob": "eec5341d1c4e9ded532479684d061ffe3f6915b2",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/ijg-license.txt",
+            "saved": "bodies/1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+            "sha256": "1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 606,
+            "git_blob": "5085059192a96782d65492b0a6964a7beac69a33",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/COPYRIGHT.txt",
+            "saved": "bodies/e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+            "sha256": "e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          },
+          {
+            "bytes": 12799,
+            "git_blob": "dbf8070cac812bcfd7eb4d407062919f69c777c8",
+            "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/README.ijg",
+            "saved": "bodies/75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6",
+            "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6",
+            "supplier_source_association": [
+              "lf_to_crlf_only_matches"
+            ]
+          }
+        ],
+        "status": "add_explicit_plural_license_inputs"
+      }
+    ],
+    "source_archive_sha256": "a951bd163c7b80fc6b8c88d7668fb56abf91c152373e13c10666763238131307",
+    "target_commit": "60c3d262b5597794869b32e0aa27d6981b28e38b",
+    "target_tree": "b276c2300a539876b0283ec3c515bd4ec4a5f398",
+    "text_reuse_checks": {
+      "cc0_same_except_title_and_whitespace": true,
+      "full_apache2_existing_matches": 2
+    }
+  },
+  "schema_version": 2,
   "source_archives": [
     {
       "bytes": 51220268,
@@ -2672,9 +3466,21 @@
       40,
       47
     ],
-    "missing_license_file_status": "unresolved: upstream attribution/copyright preserved; applicable notice/source-file coverage still requires review",
+    "missing_license_file_status": "historical metadata-key observation only; not proof of a legal omission",
+    "records_without_notice_file_fields": [
+      7,
+      8,
+      10,
+      13,
+      14,
+      16,
+      17,
+      18,
+      21,
+      40
+    ],
     "remaining_gates": [
-      "copyright/notice text for attribution records without LicenseFile",
+      "Tika PRONOM/OGL3 terms and attribution review remains unresolved; other text associations do not prove final packaged scope",
       "review source-file-specific Mesa/LLVM notices for actually linked code",
       "review exact QtSvg/imageformats/PySide build correspondence",
       "document prominent LGPL use notice and recipient source/replacement access",
@@ -2682,6 +3488,9 @@
       "recipient corresponding-source access and distribution terms",
       "modified native library, PYZ module and native-embedded support-code replacement evidence on Windows",
       "Microsoft, external OpenSSL and CPython review outside this supplement"
+    ],
+    "remaining_text_review_record_indices": [
+      14
     ]
   }
 }

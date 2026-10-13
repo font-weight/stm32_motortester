@@ -21,9 +21,9 @@ licenses = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(licenses)
 
 # Independent evidence pins, not derived from the collector constants.
-MANIFEST_SHA256 = "7166c136548231e009b028caaa8b32f57967cebe05c8899e6669726e1785c084"
+MANIFEST_SHA256 = "dde5677a4f9cce86a3e81c20892b7266f89ddc3c609bd7d52a8d9bce4768644b"
 PROPOSAL_SHA256 = "486c978af0fa92eb5b63eee9e03c30a82d40abdb841efd3e2e9e97303e20385b"
-GUIDE_SHA256 = "f0f4ef563eec85e3757e44e19099ce144377864d332eb0e3659f3948a0d4b026"
+GUIDE_SHA256 = "36923624c9723995ed4b2905e198c7e0cd4d2d4ed9b60e5ca5f6602a594a3307"
 MISSING_IDS = {"md4", "md5", "sha1", "siphash", "tika-mimetypes", "tlexpected",
                "unicode-character-database", "unicode-cldr", "emoji-segmenter", "wintab", "libjpeg"}
 ARCHIVES = {
@@ -90,13 +90,13 @@ class DependencyNoticeTests(unittest.TestCase):
 
     def test_exact_immutable_manifest_and_all_literal_bytes(self):
         raw = (ROOT / "manifest.json").read_bytes()
-        self.assertEqual(len(raw), 142332)
+        self.assertEqual(len(raw), 182368)
         self.assertEqual(hashlib.sha256(raw).hexdigest(), MANIFEST_SHA256)
         self.assertEqual(raw, canonical(self.manifest))
         self.assertEqual(licenses.DEPENDENCY_MANIFEST_SHA256, MANIFEST_SHA256)
         files = self.manifest["input_files"]
-        self.assertEqual(len(files), 41)
-        self.assertEqual(sum(row["bytes"] for row in files), 163526)
+        self.assertEqual(len(files), 51)
+        self.assertEqual(sum(row["bytes"] for row in files), 176605)
         self.assertEqual({p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*") if p.is_file()},
                          {"manifest.json", *(r["path"] for r in files)})
         for row in files:
@@ -104,7 +104,7 @@ class DependencyNoticeTests(unittest.TestCase):
             self.assertEqual(len(data), row["bytes"])
             self.assertEqual(hashlib.sha256(data).hexdigest(), row["sha256"])
         guide = (PACKAGING.parent / "docs/dependency-sources.md").read_bytes()
-        self.assertEqual(len(guide), 16721)
+        self.assertEqual(len(guide), 22049)
         self.assertEqual(hashlib.sha256(guide).hexdigest(), GUIDE_SHA256)
 
     def test_all_source_attributions_and_unresolved_rows_are_preserved(self):
@@ -118,7 +118,9 @@ class DependencyNoticeTests(unittest.TestCase):
         self.assertEqual(len(missing), 11)
         self.assertEqual({proposal["components"][i]["source"]["component"]["Id"] for i in missing}, MISSING_IDS)
         self.assertEqual(self.manifest["unresolved_coverage"]["missing_license_file_record_indices"], missing)
-        self.assertTrue(self.manifest["unresolved_coverage"]["missing_license_file_status"].startswith("unresolved:"))
+        self.assertEqual(self.manifest["unresolved_coverage"]["missing_license_file_status"],
+                         "historical metadata-key observation only; not proof of a legal omission")
+        self.assertEqual(self.manifest["unresolved_coverage"]["remaining_text_review_record_indices"], [14])
         self.assertTrue(all(c["source"]["compiled_into_candidate"] == "unverified" for c in proposal["components"]))
         self.assertEqual([c["source"]["component"]["Id"] for c in proposal["components"]
                           if "Copyright" not in c["source"]["component"]], ["libjpeg"])
@@ -152,9 +154,9 @@ class DependencyNoticeTests(unittest.TestCase):
         output = self.destination / "dependency-6.12.0"
         self.assertEqual({p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()}, expected_files)
         for row in qt:
-            self.assertEqual(len(row["vendored_notices"]), 46)
+            self.assertEqual(len(row["vendored_notices"]), 56)
             notices = [n for n in row["vendored_notices"] if n["path"].startswith("dependency-6.12.0/")]
-            self.assertEqual(len(notices), 43)
+            self.assertEqual(len(notices), 53)
             for n in notices:
                 self.assertIn(n["path"], row["copied_notices"])
                 data = (self.destination / n["path"]).read_bytes()
@@ -287,7 +289,7 @@ class DependencyNoticeTests(unittest.TestCase):
                 self.rejected()
 
     def test_strict_schema_types_counts_versions_and_coverage_fail(self):
-        mutations = [lambda d: d.update(schema_version=True), lambda d: d.update(schema_version=2),
+        mutations = [lambda d: d.update(schema_version=True), lambda d: d.update(schema_version=3),
                      lambda d: d.update(qt_version="6.12.1"), lambda d: d.update(extra=True),
                      lambda d: d.pop("provenance"), lambda d: d.update(input_files={}),
                      lambda d: d["input_files"].pop(),
@@ -361,6 +363,188 @@ class DependencyNoticeTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "only cover"):
                 self.collect(ds)
             self.assertFalse((self.destination / "inventory.json").exists())
+
+
+    def test_reconciliation_preserves_sealed_rows_and_selected_body_provenance(self):
+        rec = self.manifest["reconciliation"]
+        compact = lambda v: json.dumps(v, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+        self.assertEqual(hashlib.sha256(compact(rec["rows"])).hexdigest(),
+                         "378b85ddbfb30dcf3e907b34aa266b775ba9b9c78deafb30dea873756a381bd4")
+        self.assertEqual(hashlib.sha256(compact(rec["additional_bodies"])).hexdigest(),
+                         "c3ce22cf3dca131d26d841bbe29d67a7357e6a87ddfb9ca264b7db99f3a00c3e")
+        self.assertEqual(rec["ledger"]["sha256"], "5e73b2607fc1c67d3d9712237c1de114785e433be455f9bde87ae622e27906d7")
+        self.assertEqual(rec["target_commit"], "60c3d262b5597794869b32e0aa27d6981b28e38b")
+        self.assertEqual(rec["target_tree"], "b276c2300a539876b0283ec3c515bd4ec4a5f398")
+        self.assertEqual(len(rec["additional_bodies"]), 10)
+        self.assertEqual(sum(b["bytes"] for b in rec["additional_bodies"]), 13079)
+        old = {r["sha256"]: r for r in self.manifest["proposal"]["literal_files"]}
+        current = {r["sha256"]: r for r in self.manifest["input_files"]}
+        for sha, row in old.items():
+            self.assertEqual(current[sha], {"path": "notices/" + sha, "sha256": sha,
+                                           "bytes": row["bytes"], "source_path": row["path"]})
+        self.assertEqual({r["record_index"] for r in rec["rows"] if r["status"] == "reuse_existing_literal"},
+                         {13, 16, 21})
+        for row in rec["rows"]:
+            for reused in row["reuse_existing_bodies"]:
+                self.assertEqual(reused, current[reused["sha256"]])
+        self.assertEqual(rec["remaining_text_review"]["record_index"], 14)
+        self.assertEqual(rec["remaining_text_review"]["status"], "unresolved")
+
+    def test_plural_license_and_copyright_keys_map_without_rewriting_original(self):
+        source = self.manifest["proposal"]["components"][47]["source"]
+        self.assertNotIn("LicenseFile", source["component"])
+        self.assertNotIn("Copyright", source["component"])
+        self.assertEqual(source["component"]["LicenseFiles"], ["LICENSE", "ijg-license.txt"])
+        self.assertEqual(source["component"]["CopyrightFile"], "COPYRIGHT.txt")
+        paths = licenses._metadata_notice_paths(source)
+        prefix = "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/"
+        self.assertEqual(paths, [prefix + f for f in ("LICENSE", "ijg-license.txt", "COPYRIGHT.txt")])
+        bodies = self.manifest["reconciliation"]["additional_bodies"]
+        jpeg = [b for b in bodies if b["source"]["path"] in paths]
+        self.assertEqual(len(jpeg), 3)
+        self.assertEqual(sum(b["bytes"] for b in jpeg), 8498)
+        self.assertTrue(all(b["selection"] == "entire original file" for b in jpeg))
+        self.assertIn(47, self.manifest["unresolved_coverage"]["missing_license_file_record_indices"])
+        self.assertNotIn(47, self.manifest["unresolved_coverage"]["records_without_notice_file_fields"])
+        guide = licenses.DEPENDENCY_GUIDE.read_text(encoding="utf-8")
+        self.assertIn("This software is based in part on the work of the Independent JPEG Group.", guide)
+
+    def test_header_declarations_and_tika_excerpt_boundaries_are_explicit(self):
+        bodies = {b["name"]: b for b in self.manifest["reconciliation"]["additional_bodies"]}
+        self.assertEqual(bodies["md4-public-domain-header.txt"]["source_byte_range_half_open"], [0, 697])
+        self.assertEqual(bodies["md5-public-domain-header.txt"]["source_byte_range_half_open"], [0, 909])
+        self.assertEqual(bodies["wintab-copyright-permission.txt"]["source_byte_range_half_open"], [118, 473])
+        self.assertEqual(bodies["tika-ASF-NOTICE.txt"]["source_byte_range_half_open"], [0, 161])
+        self.assertEqual(bodies["tika-PRONOM-NOTICE.txt"]["source_byte_range_half_open"], [743, 1063])
+        self.assertIn("not relabel", bodies["md4-public-domain-header.txt"]["context"])
+        for name in ("tika-ASF-NOTICE.txt", "tika-PRONOM-NOTICE.txt"):
+            self.assertEqual(bodies[name]["source"]["sha256"],
+                             "4cd09bac8d81bd34decf6b95fb23d42fc9b3d6b653ec4be8ef44674b692c97cd")
+            self.assertEqual(bodies[name]["source"]["bytes"], 80600)
+        inventory = self.collect()
+        record = next(r for r in inventory if r["name"] == "PySide6_Essentials")
+        for name in ("tika-ASF-NOTICE.txt", "tika-PRONOM-NOTICE.txt"):
+            body = bodies[name]
+            notice = next(n for n in record["vendored_notices"] if n["sha256"] == body["sha256"])
+            self.assertEqual(notice["source_url"], body["source"]["requested_url"])
+            self.assertEqual(notice["version"], "c29724782854bb5a319f4a1940d0828a58ace3f9")
+            start, end = body["source_byte_range_half_open"]
+            self.assertIn(f"[{start}, {end})", notice["reason"])
+
+    def test_metadata_key_types_duplicates_and_archive_escapes_fail(self):
+        import copy
+        source = self.manifest["proposal"]["components"][47]["source"]
+        cases = [lambda c: c.update(LicenseFiles="LICENSE"), lambda c: c.update(LicenseFiles=[]),
+                 lambda c: c.update(LicenseFiles=[True]), lambda c: c.update(CopyrightFile=["COPYRIGHT.txt"]),
+                 lambda c: c.update(LicenseFile=None), lambda c: c.update(LicenseFile="LICENSE"),
+                 lambda c: c.update(LicenseFiles=["LICENSE", "license"])]
+        for name in ("/LICENSE", "C:/LICENSE", "a\\LICENSE", "LICENSE:stream", "a//b", "a/./b", "x.",
+                     "x ", "../../../../outside", "x\x00", "x\n", "x?", ""):
+            cases.append(lambda c, value=name: c.update(LicenseFiles=[value]))
+        for mutate in cases:
+            candidate = copy.deepcopy(source)
+            mutate(candidate["component"])
+            with self.subTest(component=candidate["component"]), self.assertRaises(RuntimeError):
+                licenses._metadata_notice_paths(candidate)
+        # A legitimate relative reference inside its archive is not an escape.
+        grayraster = self.manifest["proposal"]["components"][22]["source"]
+        self.assertEqual(licenses._metadata_notice_paths(grayraster),
+                         ["qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/LICENSE.txt"])
+
+    def test_reconciliation_schema_duplicate_mapping_and_bounds_fail_closed(self):
+        def body(d):
+            return d["reconciliation"]["additional_bodies"][0]
+        def row(d):
+            return d["reconciliation"]["rows"][0]
+        mutations = [lambda d: d.update(schema_version=1), lambda d: d.pop("reconciliation"),
+                     lambda d: d["reconciliation"].update(extra=True),
+                     lambda d: d["reconciliation"].update(additional_bytes=True),
+                     lambda d: d["reconciliation"].update(additional_bytes=13080),
+                     lambda d: d["reconciliation"]["additional_bodies"].pop(),
+                     lambda d: d["reconciliation"]["rows"].pop(),
+                     lambda d: d["reconciliation"]["additional_bodies"].__setitem__(1, body(d)),
+                     lambda d: d["reconciliation"]["rows"].__setitem__(1, row(d)),
+                     lambda d: body(d).update(bytes=True),
+                     lambda d: body(d)["source"].update(bytes=True),
+                     lambda d: body(d)["source"].update(sha256="x" * 64),
+                     lambda d: body(d).update(selection="rewritten"),
+                     lambda d: body(d).update(selection="entire original file"),
+                     lambda d: body(d)["source"].update(path="../outside"),
+                     lambda d: row(d).update(record_index=True),
+                     lambda d: row(d).update(id="md5"),
+                     lambda d: row(d).update(status="complete"),
+                     lambda d: row(d).update(compiled_inclusion="proved"),
+                     lambda d: row(d).update(proposed_new_bodies=[]),
+                     lambda d: row(d)["proposed_new_bodies"].append(row(d)["proposed_new_bodies"][0]),
+                     lambda d: d["proposal"]["components"][47]["source"]["component"].update(CopyrightFile="other.txt"),
+                     lambda d: d["reconciliation"]["rows"][3]["reuse_existing_bodies"].append(
+                         d["reconciliation"]["rows"][3]["reuse_existing_bodies"][0])]
+        for bounds in (None, [0], [False, 697], [-1, 696], [0, 698], [1, 0], [6594, 7291], [0, "697"]):
+            mutations.append(lambda d, value=bounds: body(d).update(source_byte_range_half_open=value))
+        for i, mutation in enumerate(mutations):
+            self.destination = self.root / str(i)
+            with self.subTest(case=i), self.changed_manifest(mutation):
+                self.rejected()
+
+    def test_tika_ogl_review_cannot_be_silently_closed(self):
+        mutations = [lambda d: d["unresolved_coverage"].update(remaining_text_review_record_indices=[]),
+                     lambda d: d["unresolved_coverage"].update(records_without_notice_file_fields=[]),
+                     lambda d: d["reconciliation"]["remaining_text_review"].update(status="complete"),
+                     lambda d: d["reconciliation"]["remaining_text_review"].update(status=False),
+                     lambda d: d["reconciliation"]["remaining_text_review"].update(record_index=47),
+                     lambda d: d["reconciliation"]["remaining_text_review"].update(observed_read_status="verified"),
+                     lambda d: d["reconciliation"]["remaining_text_review"].update(url="https://example.invalid/")]
+        for i, mutation in enumerate(mutations):
+            self.destination = self.root / str(i)
+            with self.subTest(case=i), self.changed_manifest(mutation):
+                self.rejected()
+
+    def test_current_collector_failure_blocks_recipe_later_stages(self):
+        from test_serial_packaging import build
+        commands = []
+        output = self.root / "recipe"
+        def run(command, **kwargs):
+            command = [str(part) for part in command]
+            commands.append(command)
+            if "--format=json" in command:
+                return "[]"
+            if "PyInstaller" in command:
+                bundle = output / "dist/Motortester"
+                bundle.mkdir(parents=True)
+                (bundle / "Motortester.exe").write_bytes(b"non-executable recipe fixture")
+            if any(part.endswith("collect_licenses.py") for part in command):
+                self.destination = Path(command[-1])
+                with patch.object(licenses, "DEPENDENCY_GUIDE", self.root / "missing-guide"):
+                    try:
+                        self.collect()
+                    except OSError as error:
+                        raise subprocess.CalledProcessError(1, command) from error
+                self.fail("Actual collector accepted its missing pinned guide")
+            return ""
+        with ExitStack() as stack:
+            stack.enter_context(patch.object(sys, "argv", ["build_windows.py", "--output", str(output)]))
+            stack.enter_context(patch.object(build, "sys", SimpleNamespace(
+                argv=["build_windows.py", "--output", str(output)], platform="win32",
+                maxsize=2**63 - 1, version_info=(3, 13, 16), executable="fake-python")))
+            stack.enter_context(patch.object(build.platform, "machine", return_value="AMD64"))
+            stack.enter_context(patch.object(build.sysconfig, "get_config_var", return_value=None))
+            stack.enter_context(patch.object(build.subprocess, "check_output", side_effect=["fixture-revision", ""]))
+            stack.enter_context(patch.object(build, "run_logged", side_effect=run))
+            serial_gate = stack.enter_context(patch.object(build, "run_frozen_serial_smoke", return_value={}))
+            recording_gate = stack.enter_context(patch.object(build, "run_frozen_recording_smoke"))
+            archive = stack.enter_context(patch.object(build.shutil, "make_archive"))
+            with self.assertRaises(subprocess.CalledProcessError):
+                build.main()
+            serial_gate.assert_called_once()
+            recording_gate.assert_not_called()
+            archive.assert_not_called()
+        self.assertTrue(any(any(part.endswith("collect_licenses.py") for part in command) for command in commands))
+        self.assertFalse(any("--screenshot" in command for command in commands))
+        self.assertFalse((self.destination / "inventory.json").exists())
+        self.assertFalse((output / "SHA256SUMS.txt").exists())
+        self.assertFalse((output / "dist/Motortester/build-manifest.json").exists())
+        self.assertFalse((output / "dist/Motortester/CANDIDATE.txt").exists())
+
 
 
 if __name__ == "__main__":

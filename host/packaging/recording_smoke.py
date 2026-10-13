@@ -341,6 +341,133 @@ def _expected_samples(sequence, generation):
     return tuple(values)
 
 
+def _prehistory_checks(window, bridge, panel, wait, events, stops):
+    """Mandatory live-only checks; receipt v1 still describes the pre=0 archive.
+
+    Coverage is bound to this reviewed source and the whole command's success,
+    not inferred from historical v1 receipts. Windowed builds may have no stdout.
+    No extra files, altered device methods, or synthetic GUI states are used.
+    """
+    from motortester.session import EventKind
+
+    def announced(case):
+        if sys.stdout is not None:
+            print("recording-smoke live-only passed: " + case, flush=True)
+
+    def accepted(start, pre, mode, edge):
+        snapshot = bridge.state.snapshot
+        replies = [e.frame for e in events[start:] if e.kind is EventKind.CONFIGURED]
+        payload = struct.pack("<HBBBBHHHI", 1, mode, 0, edge, 0, 2048, pre, 0, 0)
+        _require(len(replies) == 1 and replies[0] is not None
+                 and replies[0].session == snapshot.session and replies[0].request_id > 0
+                 and replies[0].payload == struct.pack("<I", snapshot.config_id) + payload
+                 and snapshot.config is not None and snapshot.config.payload() == payload
+                 and f"Принято по CONFIG_ACK: {pre} отсчётов" in panel.pretrigger_status.text(),
+                 "prehistory-config-unconfirmed")
+
+    def reported(start, code):
+        snapshot = bridge.state.snapshot
+        status = snapshot.device_status
+        frames = [e.frame for e in events[start:] if e.kind is EventKind.STATUS]
+        _require(status is not None and not snapshot.device_status_stale
+                 and int(status.state) == code and status.reason == 0
+                 and status.generation == snapshot.generation
+                 and status.window_id == snapshot.window_id
+                 and any(f is not None and f.session == snapshot.session and f.request_id == 0
+                         and f.payload == struct.pack("<BBHIIIII", code, 0, 0, status.generation,
+                             status.window_id, status.observed_external_edges,
+                             status.busy_external_edges, status.dropped_windows) for f in frames)
+                 and f"(код {code}); причина 0." in panel.device_status.text()
+                 and "не независимая проверка физического состояния" in panel.device_status.text(),
+                 "device-status-unconfirmed")
+
+    _require(panel.pretrigger.isEnabled()
+             and tuple(panel.pretrigger.itemData(i) for i in range(panel.pretrigger.count())) == (0, 512, 1024),
+             "prehistory-capabilities-missing")
+    for pre, edge in ((512, 0), (1024, 1)):
+        start, previous = len(events), window.capture
+        panel.pretrigger.setCurrentIndex(panel.pretrigger.findData(pre))
+        panel.mode.setCurrentIndex(panel.mode.findData(2))
+        panel.edge.setCurrentIndex(panel.edge.findData(edge))
+        panel.level.setValue(2048); panel.simulate.setChecked(True)
+        _require(panel.start_button.isEnabled(), "prehistory-start-disabled")
+        panel.start_button.click()
+        wait(lambda: window.capture is not previous and panel.start_button.isEnabled())
+        accepted(start, pre, 2, edge)
+        capture, snapshot = window.capture, bridge.state.snapshot
+        expected = [(73 * i + 19 * capture.sequence + 7 * snapshot.generation) % 4096 for i in range(2048)]
+        expected[:pre] = [2047 if edge == 0 else 2048] * pre
+        expected[pre], expected[2046], expected[2047] = (2048 if edge == 0 else 2047), 0, 4095
+        raw = bytearray()
+        for event in events[start:]:
+            if event.kind is EventKind.WINDOW_DATA:
+                data = event.frame.payload
+                generation, sequence, offset, count = struct.unpack_from("<IIHH", data)
+                _require(generation == snapshot.generation and sequence == capture.sequence
+                         and offset == len(raw) // 2 and len(data) == 12 + 2 * count,
+                         "prehistory-wire-mismatch")
+                raw.extend(data[12:])
+        _require(capture.origin == "simulator" and UUID(capture.session_id).int == snapshot.session
+                 and capture.nominal_fs_hz == 50000 and capture.pretrigger_samples == pre
+                 and capture.trigger_index == pre and capture.trigger_kind == "signal"
+                 and capture.trigger_edge == ("rising" if edge == 0 else "falling")
+                 and capture.trigger_level_code == 2048 and capture.samples == tuple(expected)
+                 and raw == struct.pack("<2048H", *expected), "prehistory-capture-mismatch")
+        for kind, message, payload in (
+            (EventKind.WINDOW_BEGIN, 144, struct.pack("<IIIHHHHBBBBHHIHHI",
+                snapshot.generation, capture.sequence, snapshot.config_id, 1, 2048, pre, pre,
+                0, 0, edge, 0, 2048, 2, 72000000, 71, 19, 0)),
+            (EventKind.WINDOW_END_ADMITTED, 146, struct.pack("<IIHHI",
+                snapshot.generation, capture.sequence, 2048, 0, zlib.crc32(raw))),
+        ):
+            frames = [e.frame for e in events[start:] if e.kind is kind]
+            _require(len(frames) == 1 and frames[0] is not None
+                     and frames[0].message_type == message and frames[0].session == snapshot.session
+                     and frames[0].request_id == 0 and frames[0].payload == payload,
+                     "prehistory-wire-terminal-mismatch")
+        xs, ys = window.curve.getData()
+        _require(tuple(ys) == tuple(expected) and len(xs) == 2048 and xs[pre] == 0
+                 and all(abs(float(x) - (i - pre) * 0.02) < 1e-9 for i, x in enumerate(xs))
+                 and window.trigger_line.isVisible(), "prehistory-plot-mismatch")
+        announced(f"Single pre={pre} edge={'rising' if edge == 0 else 'falling'} raw=2048 trigger={pre}")
+
+    start, previous = len(events), window.capture
+    panel.mode.setCurrentIndex(panel.mode.findData(1)); panel.edge.setCurrentIndex(panel.edge.findData(0))
+    panel.simulate.setChecked(False)
+    panel.start_button.click()
+    wait(lambda: bridge.state.snapshot.device_status is not None
+         and not bridge.state.snapshot.device_status_stale
+         and int(bridge.state.snapshot.device_status.state) == 2)
+    accepted(start, 1024, 1, 0)
+    reported(start, 2)
+    _require(window.capture is previous and not panel.pretrigger.isEnabled()
+             and panel.stop_button.isEnabled(), "prehistory-wait-mismatch")
+    panel.stop_button.click()
+    wait(lambda: panel.start_button.isEnabled() and bridge.state.snapshot.device_status is not None
+         and not bridge.state.snapshot.device_status_stale
+         and int(bridge.state.snapshot.device_status.state) == 0)
+    reported(start, 0)
+    snapshot = bridge.state.snapshot
+    stopped = [e for e in events[start:] if e.kind is EventKind.STOPPED]
+    _require(len(stopped) == 1 and stopped[0].frame is not None and stopped[0].frame.message_type == 133
+             and stopped[0].request_id == stopped[0].frame.request_id > snapshot.generation
+             and stops and stops[-1] == (stopped[0].request_id, snapshot.session, snapshot.generation)
+             and stopped[0].frame.session == snapshot.session
+             and stopped[0].frame.payload == struct.pack("<IIB3x", snapshot.generation, snapshot.window_id, 0),
+             "prehistory-stop-unconfirmed")
+    _require(window.capture is previous and panel.pretrigger.isEnabled(), "prehistory-stop-mismatch")
+    announced("Normal pre=1024 no-edge STATUS=WAITING->STOPPED; reported, not physical")
+    # A new real emulator session isolates the unchanged recording receipt and
+    # its window/Stop chronology from these live-only captures.
+    panel.disconnect_button.click()
+    wait(lambda: not bridge.state.connected and panel.connect_button.isEnabled())
+    panel.connect_button.click()
+    wait(panel.record_button.isEnabled)
+    panel.pretrigger.setCurrentIndex(panel.pretrigger.findData(0))
+    _require(panel.pretrigger.currentData() == 0, "recording-prehistory-reset-failed")
+    return (512, 1024, "reported-status")
+
+
 def _verify_segment(window, archive, ordinal, observed, recording, sa):
     entry, (before, before_provenance, source_item) = archive.entries[ordinal], observed
     raw = archive.read_segment(ordinal)
@@ -442,7 +569,8 @@ def run(raw_output):
         _require(all(name in sys.modules for name in REQUIRED_IMPORTS), "required-module-missing")
         report["imports"] = list(REQUIRED_IMPORTS)
         report["executable"] = file_info(Path(sys.executable).resolve(), MAX_EXECUTABLE_BYTES)
-        observed, stops, stop_acks = [], [], []
+        observed, stops, stop_acks, precheck_events = [], [], [], []
+        prechecking = True
         original_append, original_stop, original_events = sa.SessionSpool._append, AcquisitionRuntime.stop, acquisition._AcquisitionWorker._events
 
         def append(spool, entry, data, *, source_item=None):
@@ -459,6 +587,10 @@ def run(raw_output):
 
         def events(worker, values):
             for event in values:
+                if prechecking and event.kind in (EventKind.CONFIGURED, EventKind.STATUS, EventKind.WINDOW_BEGIN,
+                                                  EventKind.WINDOW_DATA, EventKind.WINDOW_END_ADMITTED, EventKind.STOPPED):
+                    _require(len(precheck_events) < 64, "too-many-precheck-events")
+                    precheck_events.append(event)
                 if event.kind is EventKind.STOPPED:
                     _require(len(stop_acks) < MAX_SEGMENTS, "too-many-stop-acks")
                     stop_acks.append(event)
@@ -482,6 +614,9 @@ def run(raw_output):
         panel.connect_button.click()
         wait(panel.record_button.isEnabled)
         _require(bridge.state.source == "emulator" and not bridge._worker.device_used, "wrong-source")
+        _require(_prehistory_checks(window, bridge, panel, wait, precheck_events, stops)
+                 == (512, 1024, "reported-status"), "prehistory-checks-incomplete")
+        prechecking = False
         phase("connect")
         panel.mode.setCurrentIndex(panel.mode.findData(1)); panel.edge.setCurrentIndex(panel.edge.findData(0))
         panel.level.setValue(2048); panel.simulate.setChecked(True)

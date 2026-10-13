@@ -3,6 +3,7 @@ import argparse
 from importlib import metadata
 import hashlib
 import json
+import posixpath
 from pathlib import Path
 import re
 import shutil
@@ -42,11 +43,11 @@ QT_DISTRIBUTIONS = {
 
 
 DEPENDENCY_LICENSES = Path(__file__).resolve().parent / "licenses" / "dependency-6.12.0"
-DEPENDENCY_MANIFEST_BYTES = 142332
-DEPENDENCY_MANIFEST_SHA256 = "7166c136548231e009b028caaa8b32f57967cebe05c8899e6669726e1785c084"
+DEPENDENCY_MANIFEST_BYTES = 182368
+DEPENDENCY_MANIFEST_SHA256 = "dde5677a4f9cce86a3e81c20892b7266f89ddc3c609bd7d52a8d9bce4768644b"
 DEPENDENCY_GUIDE = Path(__file__).resolve().parents[1] / "docs" / "dependency-sources.md"
-DEPENDENCY_GUIDE_BYTES = 16721
-DEPENDENCY_GUIDE_SHA256 = "f0f4ef563eec85e3757e44e19099ce144377864d332eb0e3659f3948a0d4b026"
+DEPENDENCY_GUIDE_BYTES = 22049
+DEPENDENCY_GUIDE_SHA256 = "36923624c9723995ed4b2905e198c7e0cd4d2d4ed9b60e5ca5f6602a594a3307"
 DEPENDENCY_DIRECTORY = "dependency-6.12.0"
 
 
@@ -83,6 +84,146 @@ def _unique_object(pairs):
     return result
 
 
+def _metadata_notice_paths(source: dict) -> list[str]:
+    """Resolve declared notice keys inside their archive, without opening paths."""
+    component = source["component"]
+    prefix = source["archive"].removesuffix(".tar.xz") + "/"
+    metadata_path = source["metadata_path"]
+    if not metadata_path.startswith(prefix):
+        raise RuntimeError("Attribution metadata is outside its source archive")
+    result, seen = [], set()
+    for key in ("LicenseFile", "LicenseFiles", "CopyrightFile"):
+        if key not in component:
+            continue
+        value = component[key]
+        if key == "LicenseFiles":
+            if type(value) is not list or not value:
+                raise RuntimeError("Invalid plural notice metadata")
+            values = value
+        else:
+            values = [value]
+        for name in values:
+            if (type(name) is not str or not name or name.startswith("/")
+                    or any(ord(c) < 32 or ord(c) == 127 or c in '\\:<>"|?*' for c in name)
+                    or any(part in ("", ".") or part.endswith((" ", ".")) and part != ".."
+                           for part in name.split("/"))):
+                raise RuntimeError("Unsafe notice metadata path")
+            path = posixpath.normpath(posixpath.join(posixpath.dirname(metadata_path), name))
+            if not path.startswith(prefix):
+                raise RuntimeError("Notice metadata escapes source archive")
+            if path.casefold() in seen:
+                raise RuntimeError("Duplicate/case-alias notice metadata path")
+            seen.add(path.casefold())
+            result.append(path)
+    return result
+
+
+def _reconciled_bodies(manifest: dict, by_hash: dict, historical_missing: list[int]) -> dict:
+    """Validate the finite eleven-row text association, not legal compliance."""
+    rec = manifest["reconciliation"]
+    fields = {"ledger", "target_commit", "target_tree", "previous_manifest_sha256",
+              "source_archive_sha256", "rows", "additional_bodies", "additional_bytes",
+              "text_reuse_checks", "notice_file_metadata_keys", "remaining_text_review", "qualification"}
+    if (type(rec) is not dict or set(rec) != fields
+            or rec["notice_file_metadata_keys"] != ["LicenseFile", "LicenseFiles", "CopyrightFile"]
+            or type(rec["additional_bytes"]) is not int or rec["additional_bytes"] != 13079
+            or type(rec["additional_bodies"]) is not list or len(rec["additional_bodies"]) != 10
+            or type(rec["rows"]) is not list or len(rec["rows"]) != 11):
+        raise RuntimeError("Invalid reconciliation schema/counts")
+    old_hashes = {item["sha256"] for item in manifest["proposal"]["literal_files"]}
+    bodies = {}
+    for body in rec["additional_bodies"]:
+        if (type(body) is not dict or set(body) != {"name", "bytes", "sha256", "saved", "source",
+                                                   "source_byte_range_half_open", "selection", "context"}
+                or type(body["sha256"]) is not str or body["sha256"] not in by_hash
+                or body["sha256"] in old_hashes or body["sha256"] in bodies
+                or type(body["bytes"]) is not int or body["bytes"] != by_hash[body["sha256"]]["bytes"]
+                or type(body["source"]) is not dict):
+            raise RuntimeError("Invalid/duplicate reconciled notice body")
+        source, bounds = body["source"], body["source_byte_range_half_open"]
+        if (type(source.get("path")) is not str or source["path"] != by_hash[body["sha256"]]["source_path"]
+                or type(source.get("bytes")) is not int or not 0 < source["bytes"] <= 1111937
+                or type(source.get("sha256")) is not str or not re.fullmatch(r"[0-9a-f]{64}", source["sha256"])
+                or type(source.get("git_blob")) is not str or not re.fullmatch(r"[0-9a-f]{40}", source["git_blob"])
+                or type(bounds) is not list or len(bounds) != 2 or any(type(n) is not int for n in bounds)
+                or not 0 <= bounds[0] < bounds[1] <= source["bytes"]
+                or bounds[1] - bounds[0] != body["bytes"]):
+            raise RuntimeError("Invalid reconciled source/hash/byte range")
+        if body["selection"] == "entire original file":
+            if bounds != [0, source["bytes"]] or body["sha256"] != source["sha256"]:
+                raise RuntimeError("Whole-file reconciliation is not the complete source")
+        elif body["selection"] not in ("exact original contiguous byte slice; no rewriting",
+                                       "exact original contiguous NOTICE paragraph(s); no rewriting"):
+            raise RuntimeError("Invalid reconciliation selection")
+        if not source["path"].startswith("qtbase-everywhere-src-6.12.0/"):
+            if (source.get("repo") != "apache/tika" or source["path"] != "NOTICE.txt"
+                    or source.get("commit") != "c29724782854bb5a319f4a1940d0828a58ace3f9"
+                    or source.get("sha256") != "4cd09bac8d81bd34decf6b95fb23d42fc9b3d6b653ec4be8ef44674b692c97cd"):
+                raise RuntimeError("Unexpected reconciled notice source")
+        bodies[body["sha256"]] = body
+    if set(bodies) != set(by_hash) - old_hashes or sum(b["bytes"] for b in bodies.values()) != 13079:
+        raise RuntimeError("Reconciled notice body set/total mismatch")
+    seen, referenced = [], set()
+    components = manifest["proposal"]["components"]
+    row_fields = {"record_index", "id", "status", "finding", "metadata_path", "metadata_sha256",
+                  "sbom_package", "source_inputs", "proposed_new_bodies", "reuse_existing_bodies", "compiled_inclusion"}
+    statuses = {7: "add_source_declaration", 8: "add_source_declaration", 10: "add_exact_retained_text",
+                13: "reuse_existing_literal", 14: "partially_resolved_remaining_OGL_review",
+                16: "reuse_existing_literal", 17: "add_exact_retained_text", 18: "add_exact_retained_text",
+                21: "reuse_existing_literal", 40: "add_source_declaration", 47: "add_explicit_plural_license_inputs"}
+    row_bodies = {}
+    for row in rec["rows"]:
+        if (type(row) is not dict or set(row) != row_fields or type(row["record_index"]) is not int
+                or row["record_index"] not in historical_missing or row["record_index"] in seen):
+            raise RuntimeError("Invalid/duplicate reconciliation row")
+        index = row["record_index"]
+        original = components[index]
+        source = original["source"]
+        if (row["id"] != source["component"]["Id"] or row["metadata_path"] != source["metadata_path"]
+                or row["metadata_sha256"] != source["metadata_sha256"]
+                or row["sbom_package"] != original["sbom_package"] or row["status"] != statuses[index]
+                or row["compiled_inclusion"] != "unchanged, not proved by this text review"
+                or type(row["proposed_new_bodies"]) is not list or type(row["reuse_existing_bodies"]) is not list
+                or any(type(h) is not str or h not in bodies for h in row["proposed_new_bodies"])
+                or len(set(row["proposed_new_bodies"])) != len(row["proposed_new_bodies"])):
+            raise RuntimeError("Reconciliation source/qualification/body mismatch")
+        reuse = row["reuse_existing_bodies"]
+        if any(type(item) is not dict or type(item.get("sha256")) is not str
+               or item["sha256"] not in old_hashes or item != by_hash[item["sha256"]] for item in reuse):
+            raise RuntimeError("Invalid existing notice body reuse")
+        if len({item["sha256"] for item in reuse}) != len(reuse):
+            raise RuntimeError("Duplicate existing notice body reuse")
+        if not row["proposed_new_bodies"] and not reuse:
+            raise RuntimeError("Empty reconciliation body mapping")
+        seen.append(index)
+        referenced.update(row["proposed_new_bodies"])
+        row_bodies[index] = row["proposed_new_bodies"]
+    if seen != historical_missing or referenced != set(bodies):
+        raise RuntimeError("Reconciliation row/body coverage mismatch")
+    # Original metadata is immutable. Add associations separately rather than
+    # inventing a singular LicenseFile for the three libjpeg plural/copyright files.
+    absent_fields = []
+    for index, original in enumerate(components):
+        source = original["source"]
+        declared = _metadata_notice_paths(source)
+        if not declared:
+            absent_fields.append(index)
+        associated = {item["path"] for item in source["license_file_inputs"]}
+        associated.update(bodies[h]["source"]["path"] for h in row_bodies.get(index, ()))
+        if not set(declared).issubset(associated):
+            raise RuntimeError("Declared notice metadata file is not mapped to a literal body")
+    coverage = manifest["unresolved_coverage"]
+    remaining = rec["remaining_text_review"]
+    if (coverage.get("records_without_notice_file_fields") != absent_fields
+            or coverage.get("remaining_text_review_record_indices") != [14]
+            or type(remaining) is not dict or remaining.get("record_index") != 14
+            or remaining.get("id") != "tika-mimetypes" or remaining.get("status") != "unresolved"
+            or remaining.get("observed_read_status") != "403 Forbidden"
+            or remaining.get("url") != "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"):
+        raise RuntimeError("Missing unresolved Tika/OGL3 text-review qualification")
+    return bodies
+
+
 def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
     """Validate the entire pinned, bounded input set before copying any of it."""
     raw = _pinned_bytes(DEPENDENCY_LICENSES / "manifest.json",
@@ -90,9 +231,9 @@ def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
     manifest = json.loads(raw.decode("utf-8"), object_pairs_hook=_unique_object,
                           parse_constant=_invalid_constant)
     fields = {"schema_version", "qt_version", "input_files", "proposal", "source_archives",
-              "mesa_source", "llvm_provenance", "unresolved_coverage", "provenance"}
+              "mesa_source", "llvm_provenance", "unresolved_coverage", "provenance", "reconciliation"}
     if (type(manifest) is not dict or set(manifest) != fields
-            or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1
+            or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 2
             or manifest["qt_version"] != QT_VERSION):
         raise RuntimeError("Invalid dependency manifest schema/version")
     canonical = (json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
@@ -108,12 +249,12 @@ def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
             or type(proposal["components"]) is not list or len(proposal["components"]) != 55):
         raise RuntimeError("Invalid dependency attribution/literal counts")
     files = manifest["input_files"]
-    if type(files) is not list or len(files) != 41:
+    if type(files) is not list or len(files) != 51:
         raise RuntimeError("Invalid dependency input file count")
     paths, hashes = set(), set()
     for item in files:
         if (type(item) is not dict or set(item) != {"path", "bytes", "sha256", "source_path"}
-                or type(item["bytes"]) is not int or not 0 < item["bytes"] <= 163526
+                or type(item["bytes"]) is not int or not 0 < item["bytes"] <= 176605
                 or type(item["sha256"]) is not str or not re.fullmatch(r"[0-9a-f]{64}", item["sha256"])
                 or type(item["path"]) is not str or item["path"] != "notices/" + item["sha256"]
                 or type(item["source_path"]) is not str):
@@ -123,7 +264,7 @@ def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
             raise RuntimeError("Duplicate/case-alias dependency input")
         paths.add(folded)
         hashes.add(item["sha256"])
-    if files != sorted(files, key=lambda item: item["path"]) or sum(f["bytes"] for f in files) != 163526:
+    if files != sorted(files, key=lambda item: item["path"]) or sum(f["bytes"] for f in files) != 176605:
         raise RuntimeError("Invalid dependency input ordering/total")
     by_hash = {item["sha256"]: item for item in files}
     literals = proposal["literal_files"]
@@ -159,8 +300,10 @@ def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
     coverage = manifest["unresolved_coverage"]
     if (type(coverage) is not dict or len(missing) != 11
             or coverage.get("missing_license_file_record_indices") != missing
-            or not str(coverage.get("missing_license_file_status", "")).startswith("unresolved:")):
-        raise RuntimeError("Missing unresolved dependency coverage")
+            or coverage.get("missing_license_file_status")
+            != "historical metadata-key observation only; not proof of a legal omission"):
+        raise RuntimeError("Missing historical dependency coverage qualification")
+    reconciled = _reconciled_bodies(manifest, by_hash, missing)
     # A manifest hash is the trust anchor; the checks above also document its
     # schema. Never accept extra files, including case aliases or symlink trees.
     actual = set()
@@ -192,6 +335,18 @@ def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
     for item in files:
         data = _pinned_bytes(DEPENDENCY_LICENSES / item["path"], item["bytes"], item["sha256"])
         prefix = item["source_path"].split("/", 1)[0]
+        if item["sha256"] in reconciled:
+            body = reconciled[item["sha256"]]
+            source = body["source"]
+            url = source.get("requested_url", archives["qtbase-everywhere-src-6.12.0"])
+            version = source.get("commit", QT_VERSION)
+            start, end = body["source_byte_range_half_open"]
+            prepared.append((item["path"], data, common | {
+                "source_url": url, "version": version, "sha256": item["sha256"], "bytes": len(data),
+                "reason": f"Exact retained notice bytes [{start}, {end}) from {source['path']}; "
+                          "whole-source hash and qualification in manifest.json; not compiled/legal closure",
+            }))
+            continue
         if prefix == "Mesa11.2.2":
             url, version = manifest["mesa_source"]["url"], "11.2.2"
         elif prefix == "LLVM3.6.2":
