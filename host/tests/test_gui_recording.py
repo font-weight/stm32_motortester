@@ -167,6 +167,36 @@ class RecordingGuiTests(unittest.TestCase):
         self.wait(lambda: not self.window.busy)
         self.assertEqual(recording.load(ordinary), self.window.capture)
 
+    def test_prehistory_record_stop_save_open_preserves_every_full_segment(self):
+        self.connect()
+        self.assertTrue(self.panel.pretrigger.isEnabled())
+        self.panel.pretrigger.setCurrentIndex(self.panel.pretrigger.findData(1024))
+        self.record()
+        self.wait(lambda: self.bridge.state.recording.snapshot.committed_segments >= 2)
+        self.finish()
+        stopped = self.window.capture
+        self.assertEqual(stopped.pretrigger_samples, 1024)
+        self.assertEqual(stopped.trigger_index, 1024)
+        self.assertFalse(self.panel.pretrigger.isEnabled())
+        path = self.save("предыстория.mtrec")
+        archive = sa.load(path)
+        full = 0
+        self.open(path)
+        for ordinal, entry in enumerate(archive.entries):
+            self.window.segment_selector.setCurrentIndex(ordinal)
+            self.wait(lambda: not self.window.busy)
+            if entry.kind == "capture":
+                full += 1
+                capture = recording.decode(archive.read_segment(ordinal))
+                self.assertEqual(self.window.capture, capture)
+                self.assertEqual((capture.pretrigger_samples, capture.trigger_index), (1024, 1024))
+                self.assertEqual(capture.origin, "simulator")
+                self.assertEqual(capture.time_seconds(0), -1024 / 50000)
+                self.assertEqual(capture.time_seconds(1024), 0)
+                self.assertEqual(tuple(self.window.curve.getData()[1]), capture.samples)
+        self.assertGreaterEqual(full, 2)
+        self.assertTrue(Path(self.bridge.state.recording.spool_path).exists())
+
     def test_single_records_exactly_one_and_can_start_another_saved_recording(self):
         self.connect()
         self.record(mode=2)
@@ -375,6 +405,46 @@ class RecordingGuiTests(unittest.TestCase):
         self.addCleanup(timer.stop)
         return beats
 
+    def _assert_filesystem_heartbeat(self, beats, entered, release, *, seconds=.5):
+        # A timer callback after this baseline proves GUI dispatch while the
+        # filesystem worker is still gated. Qt may coalesce timer expirations;
+        # an arbitrary callback count within one 50 ms pump is not a guarantee.
+        started = time.monotonic()
+        deadline = started + seconds
+        before = len(beats)
+        self.assertTrue(entered.is_set())
+        self.assertFalse(release.is_set())
+        while time.monotonic() < deadline:
+            pump_events(5)
+            self.assertTrue(entered.is_set())
+            self.assertFalse(release.is_set())
+            now = time.monotonic()
+            if now <= deadline and any(started < stamp <= now for stamp in beats[before:]):
+                return
+        self.fail("No post-baseline GUI heartbeat before deadline while filesystem gate stayed closed")
+
+    def test_filesystem_heartbeat_accepts_one_prompt_callback_while_gate_closed(self):
+        entered, release = threading.Event(), threading.Event()
+        entered.set()
+        beats = []
+        QtCore.QTimer.singleShot(31, lambda: beats.append(time.monotonic()))
+        self._assert_filesystem_heartbeat(beats, entered, release)
+        self.assertEqual(len(beats), 1)
+        self.assertFalse(release.is_set())
+
+    def test_filesystem_heartbeat_rejects_blocked_gui_even_with_late_callback(self):
+        entered, release = threading.Event(), threading.Event()
+        entered.set()
+        beats = self._filesystem_heartbeat()
+        # This is deliberately on the GUI thread: a timer becoming overdue
+        # during a blocking callback must not satisfy the bounded handshake.
+        QtCore.QTimer.singleShot(0, lambda: time.sleep(.6))
+        started = time.monotonic()
+        with self.assertRaisesRegex(AssertionError, "No post-baseline GUI heartbeat"):
+            self._assert_filesystem_heartbeat(beats, entered, release)
+        self.assertGreaterEqual(time.monotonic() - started, .6)
+        self.assertFalse(release.is_set())
+
     def _blocked_recovery_preparation(self, *, close):
         self.connect()
         entered, release = threading.Event(), threading.Event()
@@ -397,9 +467,7 @@ class RecordingGuiTests(unittest.TestCase):
             self.assertLess(time.monotonic() - started, .1)
             self.wait(entered.is_set)
             self.wait(lambda: self.bridge.state.recording is not None)
-            before = len(beats)
-            pump_events(50)
-            self.assertGreaterEqual(len(beats) - before, 3)
+            self._assert_filesystem_heartbeat(beats, entered, release)
             self.assertTrue(self.panel.stop_button.isEnabled())
             self.assertTrue(self.panel.disconnect_button.isEnabled())
             self.assertEqual(observed, [self.bridge._worker.recording._writer._thread.ident])
@@ -463,9 +531,7 @@ class RecordingGuiTests(unittest.TestCase):
             self.assertLess(time.monotonic() - started, .1)
             self.wait(entered.is_set)
             self.wait(self.panel.cancel_recording_button.isEnabled)
-            before = len(beats)
-            pump_events(50)
-            self.assertGreaterEqual(len(beats) - before, 3)
+            self._assert_filesystem_heartbeat(beats, entered, release)
             self.assertEqual(observed, [self.bridge._worker.recording._writer._thread.ident])
             self.assertNotEqual(observed[0], threading.get_ident())
             self.assertTrue(self.panel.stop_button.isEnabled())

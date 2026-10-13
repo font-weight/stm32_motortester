@@ -1,0 +1,2687 @@
+{
+  "input_files": [
+    {
+      "bytes": 4011,
+      "path": "notices/197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+      "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENCE.md"
+    },
+    {
+      "bytes": 1664,
+      "path": "notices/1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3",
+      "sha256": "1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/src/LICENSE.chromium"
+    },
+    {
+      "bytes": 7013,
+      "path": "notices/1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+      "sha256": "1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/CC0_LICENSE"
+    },
+    {
+      "bytes": 3763,
+      "path": "notices/288ddfae338be168ef2492c21de42ee2f5c8ebc5a734b4e58b37007141bc2d6d",
+      "sha256": "288ddfae338be168ef2492c21de42ee2f5c8ebc5a734b4e58b37007141bc2d6d",
+      "source_path": "Mesa11.2.2/docs/license.html"
+    },
+    {
+      "bytes": 962,
+      "path": "notices/2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19",
+      "sha256": "2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/ZLIB-LICENSE.txt"
+    },
+    {
+      "bytes": 1084,
+      "path": "notices/2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+      "sha256": "2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/opengl/LICENSE.KHRONOS.txt"
+    },
+    {
+      "bytes": 645,
+      "path": "notices/2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c",
+      "sha256": "2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/BRG_ENDIAN_LICENSE"
+    },
+    {
+      "bytes": 1185,
+      "path": "notices/3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd",
+      "sha256": "3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/util/LICENSE.XSVG.txt"
+    },
+    {
+      "bytes": 1074,
+      "path": "notices/3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e",
+      "sha256": "3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/tinycbor/LICENSE"
+    },
+    {
+      "bytes": 16726,
+      "path": "notices/3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/PSL-LICENSE.txt"
+    },
+    {
+      "bytes": 1425,
+      "path": "notices/40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6",
+      "sha256": "40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/text/LICENSE.AGLFN.txt"
+    },
+    {
+      "bytes": 17914,
+      "path": "notices/4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+      "sha256": "4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/blake2/COPYING"
+    },
+    {
+      "bytes": 3004,
+      "path": "notices/46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d",
+      "sha256": "46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.QIMAGETRANSFORM.txt"
+    },
+    {
+      "bytes": 1327,
+      "path": "notices/46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+      "sha256": "46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+      "source_path": "qtbase-everywhere-src-6.12.0/cmake/3rdparty/kwin/COPYING-CMAKE-SCRIPTS"
+    },
+    {
+      "bytes": 1527,
+      "path": "notices/4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca",
+      "sha256": "4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/double-conversion/LICENSE"
+    },
+    {
+      "bytes": 1099,
+      "path": "notices/5478a2f36b736e13dd3250b9c71a4ab521bc327fb9d112a92c647bf3e69ddb68",
+      "sha256": "5478a2f36b736e13dd3250b9c71a4ab521bc327fb9d112a92c647bf3e69ddb68",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/D3D12MemoryAllocator/LICENSE.txt"
+    },
+    {
+      "bytes": 1496,
+      "path": "notices/5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+      "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+      "source_path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libwebp/COPYING"
+    },
+    {
+      "bytes": 1444,
+      "path": "notices/5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb",
+      "sha256": "5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENSE-SLJIT"
+    },
+    {
+      "bytes": 11473,
+      "path": "notices/5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+      "sha256": "5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/LICENSE.txt"
+    },
+    {
+      "bytes": 2218,
+      "path": "notices/6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
+      "sha256": "6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/PCF-LICENSE.txt"
+    },
+    {
+      "bytes": 5630,
+      "path": "notices/7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd",
+      "sha256": "7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd",
+      "source_path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/libshiboken/bufferprocs_py37.h"
+    },
+    {
+      "bytes": 1568,
+      "path": "notices/7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c",
+      "sha256": "7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/rfc6234/LICENSE"
+    },
+    {
+      "bytes": 1099,
+      "path": "notices/846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
+      "sha256": "846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/VulkanMemoryAllocator/LICENSE.txt"
+    },
+    {
+      "bytes": 1505,
+      "path": "notices/92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
+      "sha256": "92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/easing/LICENSE"
+    },
+    {
+      "bytes": 1062,
+      "path": "notices/9be732e45b638c74f9c0e5248541dd54dc7e8e9a5545df96b5c4b7c9ac0c68ba",
+      "sha256": "9be732e45b638c74f9c0e5248541dd54dc7e8e9a5545df96b5c4b7c9ac0c68ba",
+      "source_path": "qtbase-everywhere-src-6.12.0/util/gradientgen/LICENSE.WEBGRADIENTS.txt"
+    },
+    {
+      "bytes": 463,
+      "path": "notices/9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd",
+      "sha256": "9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/icc/LICENSE.txt"
+    },
+    {
+      "bytes": 2294,
+      "path": "notices/a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c",
+      "sha256": "a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.XCONSORTIUM.txt"
+    },
+    {
+      "bytes": 1971,
+      "path": "notices/ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+      "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/harfbuzz-ng/COPYING"
+    },
+    {
+      "bytes": 5345,
+      "path": "notices/bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+      "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpng/LICENSE"
+    },
+    {
+      "bytes": 26234,
+      "path": "notices/bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+      "sha256": "bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/LICENSE.txt"
+    },
+    {
+      "bytes": 1338,
+      "path": "notices/c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/catch2/LICENSE.txt"
+    },
+    {
+      "bytes": 1023,
+      "path": "notices/cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d",
+      "sha256": "cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/cycle/LICENSE.txt"
+    },
+    {
+      "bytes": 1077,
+      "path": "notices/cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409",
+      "sha256": "cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/gui/rhi/LICENSE.MiniEngine.txt"
+    },
+    {
+      "bytes": 1096,
+      "path": "notices/d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc",
+      "sha256": "d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4c/LICENSE.md"
+    },
+    {
+      "bytes": 1465,
+      "path": "notices/d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+      "sha256": "d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/LICENSE"
+    },
+    {
+      "bytes": 3281,
+      "path": "notices/e3bc36440fc927c62d5cc24efeefe225a14d4e34ffeb0c92e430625cce9ee444",
+      "sha256": "e3bc36440fc927c62d5cc24efeefe225a14d4e34ffeb0c92e430625cce9ee444",
+      "source_path": "LLVM3.6.2/LICENSE.TXT"
+    },
+    {
+      "bytes": 2305,
+      "path": "notices/e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
+      "sha256": "e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/BDF-LICENSE.txt"
+    },
+    {
+      "bytes": 2445,
+      "path": "notices/e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219",
+      "sha256": "e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219",
+      "source_path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/shibokenmodule/files.dir/shibokensupport/signature/PSF-3.7.0.txt"
+    },
+    {
+      "bytes": 1667,
+      "path": "notices/ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e",
+      "sha256": "ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/valgrind/LICENSE.txt"
+    },
+    {
+      "bytes": 18458,
+      "path": "notices/ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815",
+      "sha256": "ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815",
+      "source_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/linux/LICENSE.txt"
+    },
+    {
+      "bytes": 1146,
+      "path": "notices/fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7",
+      "sha256": "fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7",
+      "source_path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libtiff/COPYRIGHT"
+    }
+  ],
+  "llvm_provenance": {
+    "annotated_tag": "98b8caa8c194141f8e22f472d778a56277e13f75",
+    "bytes": 3281,
+    "commit": "ee46064b83e7acd5a215ea5bb1c9708d75de6164",
+    "computed_git_blob": "922092b05217e160241de38926df358159417fa1",
+    "limits": "Binds the literal text to the official release tag. Does not prove every LLVM component notice or compiled Mesa/LLVM build correspondence.",
+    "matches_previously_retained_notice": true,
+    "observed_at": "2026-10-13T10:38:26Z",
+    "path": "llvm/LICENSE.TXT",
+    "qualification": "new official public-repository read, not recovery of the missing original receipt",
+    "sha256": "e3bc36440fc927c62d5cc24efeefe225a14d4e34ffeb0c92e430625cce9ee444",
+    "source_url": "https://api.github.com/repos/llvm/llvm-project/contents/llvm/LICENSE.TXT?ref=ee46064b83e7acd5a215ea5bb1c9708d75de6164",
+    "tag": "llvmorg-3.6.2",
+    "tag_verification": "unsigned; no authentication claim"
+  },
+  "mesa_source": {
+    "bytes": 7860932,
+    "expanded_bytes": 75105294,
+    "identity_limit": "TLS official archive; computed digest, no independently verified release digest or PGP signature",
+    "members": 5055,
+    "not_executed": true,
+    "selected": [
+      {
+        "bytes": 7,
+        "member": "mesa-11.2.2/VERSION",
+        "sha256": "6ee4bf75063c8390f4c0ec761b3b3d3a3239a7c21ad7dbcf90f9f93293d1a777"
+      },
+      {
+        "bytes": 6551,
+        "member": "mesa-11.2.2/docs/relnotes/11.2.2.html",
+        "sha256": "d1947626bf26722e7b2c89ae2c8dc2fb03d4d569516089c0f370cefc2de72e1f"
+      },
+      {
+        "bytes": 3763,
+        "member": "mesa-11.2.2/docs/license.html",
+        "sha256": "288ddfae338be168ef2492c21de42ee2f5c8ebc5a734b4e58b37007141bc2d6d"
+      },
+      {
+        "bytes": 3500,
+        "member": "mesa-11.2.2/SConstruct",
+        "sha256": "f032f9583fe7e1ec347b2c032ed364f7906d94bf50343c423eeb2dfeeef42e4c"
+      },
+      {
+        "bytes": 1008,
+        "member": "mesa-11.2.2/src/gallium/drivers/llvmpipe/SConscript",
+        "sha256": "62f013a5e88be3f3d27e08532c02cf99d52ffc9e335c50f1350f26f9e67ced5d"
+      },
+      {
+        "bytes": 1309,
+        "member": "mesa-11.2.2/src/gallium/targets/libgl-gdi/SConscript",
+        "sha256": "52b7a989e39db136219835a5e022820480054475b91bd62679d508641e24e587"
+      }
+    ],
+    "sha256": "40e148812388ec7c6d7b6657d5a16e2e8dabba8b97ddfceea5197947647bdfb4",
+    "url": "https://archive.mesa3d.org/older-versions/11.x/11.2.2/mesa-11.2.2.tar.xz"
+  },
+  "proposal": {
+    "components": [
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-BundledFreetype-Attribution-freetype-bdf-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": [
+              "Copyright (c) 2000 Computing Research Labs, New Mexico State University",
+              "Copyright (c) 2001-2014 Francesco Zappa Nardelli"
+            ],
+            "Description": "FreeType is a freely available software library to render fonts.",
+            "Homepage": "http://www.freetype.org",
+            "Id": "freetype-bdf",
+            "License": "MIT License",
+            "LicenseFile": "BDF-LICENSE.txt",
+            "LicenseId": "MIT",
+            "Name": "Freetype 2 - Bitmap Distribution Format (BDF) support",
+            "Path": "src/bdf",
+            "QDocModule": "qtgui",
+            "QtUsage": "Optionally used in Qt GUI and platform plugins. Configure with -no-freetype, or -system-freetype to avoid."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 2305,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/BDF-LICENSE.txt",
+              "saved": "notices/e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
+              "sha256": "e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/qt_attribution.json",
+          "metadata_sha256": "628b68bf60eb3bc1616342bc3545b63be2392e78bbebbc4c19f49675dd2ac8a7"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-BundledFreetype-Attribution-freetype-pcf-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": [
+              "Copyright (c) 2001, 2012 David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2000-2014 Francesco Zappa Nardelli",
+              "Copyright (c) 1990, 1994, 1998 The Open Group"
+            ],
+            "Description": "FreeType is a freely available software library to render fonts.",
+            "Homepage": "http://www.freetype.org",
+            "Id": "freetype-pcf",
+            "License": "MIT License and MIT Open Group variant",
+            "LicenseFile": "PCF-LICENSE.txt",
+            "LicenseId": "MIT AND MIT-open-group",
+            "Name": "Freetype 2 - Portable Compiled Format (PCF) support",
+            "Path": "src/pcf",
+            "QDocModule": "qtgui",
+            "QtUsage": "Optionally used in Qt GUI and platform plugins. Configure with -no-freetype, or -system-freetype to avoid."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 2218,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/PCF-LICENSE.txt",
+              "saved": "notices/6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
+              "sha256": "6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/qt_attribution.json",
+          "metadata_sha256": "628b68bf60eb3bc1616342bc3545b63be2392e78bbebbc4c19f49675dd2ac8a7"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-BundledFreetype-Attribution-freetype-zlib-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "Copyright (C) 1995-2024 Jean-loup Gailly and Mark Adler",
+            "Description": "FreeType is a freely available software library to render fonts.",
+            "Homepage": "http://www.freetype.org",
+            "Id": "freetype-zlib",
+            "License": "zlib License",
+            "LicenseFile": "ZLIB-LICENSE.txt",
+            "LicenseId": "Zlib",
+            "Name": "Freetype 2 - zlib",
+            "Path": "src/gzip",
+            "QDocModule": "qtgui",
+            "QtUsage": "Optionally used in Qt GUI and platform plugins. Configure with -no-freetype, or -system-freetype to avoid."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 962,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/ZLIB-LICENSE.txt",
+              "saved": "notices/2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19",
+              "sha256": "2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/qt_attribution.json",
+          "metadata_sha256": "628b68bf60eb3bc1616342bc3545b63be2392e78bbebbc4c19f49675dd2ac8a7"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-BundledPcre2-Attribution-pcre2-sljit-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:pcre:pcre2:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "Copyright Zoltan Herczeg",
+            "Description": "The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5.",
+            "DownloadLocation": "https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.48/pcre2-10.48.tar.bz2",
+            "Homepage": "http://www.pcre.org/",
+            "Id": "pcre2-sljit",
+            "License": "BSD 2-clause \"Simplified\" License",
+            "LicenseFile": "LICENSE-SLJIT",
+            "LicenseId": "BSD-2-Clause",
+            "Name": "PCRE2 - Stack-less Just-In-Time Compiler",
+            "PURL": "pkg:github/PCRE2Project/pcre2@pcre2-$<VERSION>",
+            "Path": "deps/sljit",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QRegularExpression).",
+            "Version": "10.48"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1444,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENSE-SLJIT",
+              "saved": "notices/5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb",
+              "sha256": "5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/qt_attribution.json",
+          "metadata_sha256": "c65e311b057e3ecb8ee9aeddd681add5aa4484485e265d3a6a8e7967abc19948"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-blake2-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:blake2:blake2:*:*:*:*:*:*:*:*",
+            "Copyright": "Copyright 2012, Samuel Neves <sneves@dei.uc.pt>",
+            "Description": "BLAKE2 is a cryptographic hash function faster than MD5, SHA-1, SHA-2, and SHA-3, yet is at least as secure as the latest standard SHA-3.",
+            "DownloadLocation": "https://github.com/BLAKE2/BLAKE2/tree/ed1974ea83433eba7b2d95c5dcd9ac33cb847913",
+            "Files": "src/blake2b-ref.c src/blake2s-ref.c src/blake2.h src/blake2-impl.h",
+            "Homepage": "https://blake2.net/",
+            "Id": "blake2",
+            "License": "Creative Commons Zero v1.0 Universal or Apache License 2.0",
+            "LicenseFile": "COPYING",
+            "LicenseId": "CC0-1.0 OR Apache-2.0",
+            "Name": "BLAKE2 (reference implementation)",
+            "PURL": "pkg:github/BLAKE2/BLAKE2@$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash).",
+            "Version": "ed1974ea83433eba7b2d95c5dcd9ac33cb847913"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 17914,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/blake2/COPYING",
+              "saved": "notices/4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+              "sha256": "4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/blake2/qt_attribution.json",
+          "metadata_sha256": "bab552307bdd03ed9a4cf7f8f1397c3d18d4dbee19ee576033284104785245be"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-doubleconversion-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:google:double-conversion:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "Copyright 2006-2012, the V8 project authors",
+            "DownloadLocation": "https://github.com/google/double-conversion/releases/tag/v3.4.0",
+            "Homepage": "https://github.com/google/double-conversion",
+            "Id": "doubleconversion",
+            "License": "BSD 3-clause \"New\" or \"Revised\" License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles",
+            "PURL": "pkg:github/google/double-conversion@v$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core. Configure with -system-doubleconversion or -no-doubleconversion to avoid.",
+            "Version": "3.4.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1527,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/double-conversion/LICENSE",
+              "saved": "notices/4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca",
+              "sha256": "4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/double-conversion/qt_attribution.json",
+          "metadata_sha256": "4d9c7505a7c12e4e6b57bbee63af926c861abb5515cdf802b8f3491e321146fe"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-easing-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "treat as final, no relevant PURL or CPE found",
+            "Copyright": "Copyright (c) 2001 Robert Penner",
+            "Files": "easing.cpp",
+            "Homepage": "http://robertpenner.com/easing/",
+            "Id": "easing",
+            "License": "BSD 3-clause \"New\" or \"Revised\" License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "Easing Equations by Robert Penner",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QEasingCurve)."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1505,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/easing/LICENSE",
+              "saved": "notices/92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
+              "sha256": "92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/easing/qt_attribution.json",
+          "metadata_sha256": "77d67a1db5882bb0b9a1278b014885bee45a4c059d1da9f835b6da5bc4b9c93d"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-md4-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "Treat as final version; no upstream known, no relevant CPE or PURL found",
+            "Copyright": "Written by Alexander Peslyak - better known as Solar Designer <solar@openwall.com> - in 2001, and placed in the public domain. There's absolutely no warranty.",
+            "Description": "An OpenSSL-compatible implementation of the RSA Data Security, Inc. MD4 Message-Digest Algorithm.",
+            "Id": "md4",
+            "License": "Public Domain",
+            "LicenseId": "CC0-1.0",
+            "Name": "MD4",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash)."
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4/qt_attribution.json",
+          "metadata_sha256": "34bda63a2fcc23c83f2e5364ccd394553b4baa505b1f79ded9cc2161c56a9b4c"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-md5-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "Treat as final version; no upstream known, no relevant CPE or PURL found",
+            "Copyright": "Written by Colin Plumb in 1993, no copyright is claimed. Ian Jackson <ian@chiark.greenend.org.uk>.",
+            "Description": "MD5 message-digest algorithm.",
+            "Id": "md5",
+            "License": "Public Domain",
+            "LicenseId": "CC0-1.0",
+            "Name": "MD5",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash)."
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md5/qt_attribution.json",
+          "metadata_sha256": "20b0f1b17ccd1bd5e8d763b1cdca4b095b8f0c037644b5ee18154536b7d8425e"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-rfc6234-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "The RFC actually contains the code, embedded in RFC-boilerplate; presumably we extracted it; treat as final, no relevant CPE or PURL found",
+            "Copyright": "Copyright (c) 2011 IETF Trust and the persons identified as authors of the code.",
+            "Description": "Implements the Secure Hash Algorithms SHA 384 and SHA-521",
+            "Id": "rfc6234",
+            "License": "BSD 3-clause \"New\" or \"Revised\" License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "Secure Hash Algorithms SHA-384 and SHA-512",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash and QMessageAuthenticationCode)"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1568,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/rfc6234/LICENSE",
+              "saved": "notices/7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c",
+              "sha256": "7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/rfc6234/qt_attribution.json",
+          "metadata_sha256": "fa24413bdc5015fc7fc84297fa17d4c8a598f8f7c76b9495a6e6b26a77b4a324"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-sha1-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": [
+              "Copyright (C) Dominik Reichl <dominik.reichl@t-online.de>",
+              "Copyright (C) 2016 The Qt Company Ltd"
+            ],
+            "Description": "Implements the Secure Hash Algorithms SHA 1",
+            "Homepage": "http://www.dominik-reichl.de/projects/csha1/",
+            "Id": "sha1",
+            "License": "Public Domain",
+            "LicenseId": "LicenseRef-SHA1-Public-Domain",
+            "Name": "Secure Hash Algorithm SHA-1",
+            "PURL": "pkg:generic/csha1?download_url=https://www.dominik-reichl.de/projects/csha1/",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash)."
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha1/qt_attribution.json",
+          "metadata_sha256": "53cab2c771f7f7ffbf6a58ff759e5846b746e91d98dfe467d5145edf8cd7d306"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-sha3-endian-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright (c) 1998-2013, Brian Gladman, Worcester, UK. All rights reserved.",
+            "Description": "SHA-3, originally known as Keccak, is a cryptographic hash function.",
+            "Files": "brg_endian.h",
+            "Id": "sha3_endian",
+            "License": "BSD 2-clause \"Simplified\" License",
+            "LicenseFile": "BRG_ENDIAN_LICENSE",
+            "LicenseId": "BSD-2-Clause",
+            "Name": "Secure Hash Algorithm SHA-3 - brg_endian",
+            "PURL": "pkg:github/BrianGladman/sha@$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash).",
+            "Version": "1.0.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 645,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/BRG_ENDIAN_LICENSE",
+              "saved": "notices/2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c",
+              "sha256": "2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/qt_attribution.json",
+          "metadata_sha256": "d904a6c21c150d9cac693c0806a469480306cb4e5879cc13c994fbadba71a56e"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-sha3-keccak-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche.\nTo the extent possible under law, the implementers have waived all copyright\nand related or neighboring rights to the source code in this file.",
+            "Description": "SHA-3, originally known as Keccak, is a cryptographic hash function.",
+            "Files": [
+              "KeccakF-1600-32-rvk.macros",
+              "KeccakF-1600-32.macros",
+              "KeccakF-1600-64.macros",
+              "KeccakF-1600-interface.h",
+              "KeccakF-1600-opt32.c",
+              "KeccakF-1600-opt64.c",
+              "KeccakF-1600-unrolling.macros",
+              "KeccakNISTInterface.c",
+              "KeccakNISTInterface.h",
+              "KeccakSponge.c",
+              "KeccakSponge.h"
+            ],
+            "Id": "sha3_keccak",
+            "License": "Creative Commons Zero v1.0 Universal",
+            "LicenseFile": "CC0_LICENSE",
+            "LicenseId": "CC0-1.0",
+            "Name": "Secure Hash Algorithm SHA-3 - Keccak",
+            "PURL": "pkg:generic/sha3_keccak@$<VERSION>?download_url=https://keccak.team/obsolete/KeccakReferenceAndOptimized-3.2.zip",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QCryptographicHash).",
+            "Version": "3.2"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 7013,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/CC0_LICENSE",
+              "saved": "notices/1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+              "sha256": "1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/qt_attribution.json",
+          "metadata_sha256": "d904a6c21c150d9cac693c0806a469480306cb4e5879cc13c994fbadba71a56e"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-siphash-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": [
+              "Copyright (C) 2012-2014 Jean-Philippe Aumasson",
+              "Copyright (C) 2012-2014 Daniel J. Bernstein <djb@cr.yp.to>",
+              "Copyright (C) 2016 Intel Corporation"
+            ],
+            "Description": "Implements the SipHash algorithm.",
+            "DownloadLocation": "https://raw.githubusercontent.com/veorq/SipHash/adcbf09b1684a718f594faa650ffc56bacdb0777/siphash24.c",
+            "Files": "siphash.cpp",
+            "Homepage": "https://131002.net/siphash/",
+            "Id": "siphash",
+            "License": "Creative Commons Zero v1.0 Universal",
+            "LicenseId": "CC0-1.0",
+            "Name": "SipHash Algorithm",
+            "PURL": "pkg:github/veorq/SipHash@adcbf09b1684a718f594faa650ffc56bacdb0777",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QHash)"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/siphash/qt_attribution.json",
+          "metadata_sha256": "8614947dfc0ca1d21aad2f88b4400598262ab8c08aa87c4f7acc0c2de6e5619e"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-tika-mimetypes-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:apache:tika:*:*:*:*:*:*:*:*",
+            "Comment": {
+              "Files": "For update, see qtbase/src/corelib/mimetypes/3rdparty/process_tika_mimetypes.py"
+            },
+            "Copyright": "Copyright 2026 The Apache Software Foundation",
+            "Description": "The Apache Tika MimeTypes list many known MIME types and how to match files (using globs and/or 'magic' rules for the file contents)",
+            "DownloadLocation": "https://github.com/apache/tika/blob/c29724782854bb5a319f4a1940d0828a58ace3f9/tika-core/src/main/resources/org/apache/tika/mime/tika-mimetypes.xml",
+            "Files": [
+              "tika-mimetypes.xml"
+            ],
+            "Homepage": "https://github.com/apache/tika/tree/main/tika-core/src/main/resources/org/apache/tika/mime",
+            "Id": "tika-mimetypes",
+            "License": "Apache License 2.0",
+            "LicenseId": "Apache-2.0",
+            "Name": "Apache Tika MimeType Definitions",
+            "PURL": "pkg:github/apache/tika@$<VERSION>#tika-core/src/main/resources/org/apache/tika/mime/tika-mimetypes.xml",
+            "QDocModule": "qtcore",
+            "QtUsage": "Qt Core uses a copy of the Apache Tika MimeType Definitions if shared-mime-info isn't installed on the system.",
+            "Version": "c29724782854bb5a319f4a1940d0828a58ace3f9"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/mimetypes/3rdparty/qt_attribution.json",
+          "metadata_sha256": "329652c93e6b47663115543cfd746cb56b96a98d774d540d58e64614bd9739eb"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-tinycbor-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:tinycbor:tinycbor:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "Copyright (C) 2015-2025 Intel Corporation",
+            "Description": "Concise Binary Object Representation (CBOR) Library",
+            "DownloadLocation": "https://github.com/intel/tinycbor/archive/v7.0/tinycbor-7.0.tar.gz",
+            "Homepage": "https://github.com/intel/tinycbor",
+            "Id": "tinycbor",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "MIT",
+            "Name": "TinyCBOR",
+            "PURL": "pkg:github/intel/tinycbor@v$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used for QCborStreamReader and QCborStreamWriter.",
+            "SecurityCritical": true,
+            "Version": "7.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1074,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/tinycbor/LICENSE",
+              "saved": "notices/3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e",
+              "sha256": "3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/tinycbor/qt_attribution.json",
+          "metadata_sha256": "788408509fb7967042640f24ba78b263712e816d886303ba1733f49753d33863"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-tlexpected-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "To the extent possible under law, Sy Brand has waived all copyright and related or neighboring rights to the expected library. This work is published from: United Kingdom.",
+            "Description": "Single header implementation of std::expected with functional-style extensions.",
+            "DownloadLocation": "https://github.com/TartanLlama/expected/blob/41d3e1f48d682992a2230b2a715bca38b848b269/include/tl/expected.hpp",
+            "Files": [
+              "qexpected_p.h"
+            ],
+            "Homepage": "https://github.com/TartanLlama/expected/",
+            "Id": "tlexpected",
+            "License": "Creative Commons Zero v1.0 Universal",
+            "LicenseId": "CC0-1.0",
+            "Name": "tl::expected",
+            "QDocModule": "qtcore",
+            "QtUsage": "Available as a private type in all Qt modules",
+            "Version": "41d3e1f48d682992a2230b2a715bca38b848b269"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/global/qt_attribution.json",
+          "metadata_sha256": "64698063a65a1502b986bd61163b5eb9c6bde87f93feb28e4eab43ff07a4f10a"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-unicode-character-database-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": {
+              "Version": [
+                "Don't use the Unicode standard version;",
+                "UCD has its own 'Revision' numbers",
+                "see the 'UAX #44, UCD' page (https://www.unicode.org/reports/tr44/)"
+              ]
+            },
+            "Copyright": "Copyright (C) 1991-2025 Unicode, Inc.",
+            "Description": "The Unicode Character Database (UCD) is a set of files that\n define the Unicode character properties and internal mappings.",
+            "Files": [
+              "qunicodetables_p.h",
+              "qunicodetables.cpp"
+            ],
+            "Homepage": "https://www.unicode.org/ucd/",
+            "Id": "unicode-character-database",
+            "License": "Unicode License Agreement - Data Files and Software (2016)",
+            "LicenseId": "Unicode-3.0",
+            "Name": "Unicode Character Database (UCD)",
+            "QDocModule": "qtcore",
+            "QtUsage": "Qt Core uses data obtained from UCD files for working with characters and strings.",
+            "SecurityCritical": false,
+            "Version": "36"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qt_attribution.json",
+          "metadata_sha256": "4e23736600be956e4214849ad8baaa955441656db7324713fab6353c1163b4f5"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Core-Attribution-unicode-cldr-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": {
+              "Files": "For update, see qtbase/util/locale_database/cldr2qlocalexml.py",
+              "General": "no relevant CPE and PURL found"
+            },
+            "Copyright": "Copyright (C) 2004-2025 Unicode, Inc.",
+            "Description": "The Unicode CLDR provides key building blocks for software to support the\n world's languages, with the largest and most extensive standard repository of locale data\n available.",
+            "Files": [
+              "qlocale_data_p.h",
+              "../time/qtimezoneprivate_data_p.h",
+              "../time/qtimezonelocale_data_p.h",
+              "../time/qhijricalendar_data_p.h",
+              "../time/qjalalicalendar_data_p.h",
+              "../time/qromancalendar_data_p.h",
+              "../../../util/locale_database/testlocales/localemodel.cpp"
+            ],
+            "Homepage": "https://cldr.unicode.org/",
+            "Id": "unicode-cldr",
+            "License": "Unicode License v3",
+            "LicenseId": "Unicode-3.0",
+            "Name": "Unicode Common Locale Data Repository (CLDR)",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QTimeZone, QLocale).",
+            "SecurityCritical": false,
+            "Version": "v48.2"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/corelib/text/qt_attribution.json",
+          "metadata_sha256": "4e23736600be956e4214849ad8baaa955441656db7324713fab6353c1163b4f5"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-aglfn-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright 2002, 2003, 2005, 2006, 2008, 2010, 2015 Adobe Systems",
+            "Description": "Provides standardized names for glyphs.",
+            "Files": "qfontsubset_agl.cpp",
+            "Homepage": "https://github.com/adobe-type-tools/agl-aglfn",
+            "Id": "aglfn",
+            "License": "BSD 3-Clause \"New\" or \"Revised\" License",
+            "LicenseFile": "LICENSE.AGLFN.txt",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "Adobe Glyph List For New Fonts",
+            "PURL": "pkg:github/adobe-type-tools/agl-aglfn@0276763a3cdf204a1badc283d90f5bc7ac13130d",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used by PDF generator to make it easier for reader applications to resolve  the original contents of rendered text.",
+            "Version": "1.7"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1425,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/text/LICENSE.AGLFN.txt",
+              "saved": "notices/40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6",
+              "sha256": "40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/text/qt_attribution.json",
+          "metadata_sha256": "7960234e4078c69003e4d9de24c1bf36c9370cfae8a1797ceb1501c4eec81e5d"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-d3d12memoryallocator-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright (c) 2019-2026 Advanced Micro Devices, Inc. All rights reserved.",
+            "Description": "D3D12 Memory Allocator",
+            "Homepage": "https://github.com/GPUOpen-LibrariesAndSDKs/D3D12MemoryAllocator",
+            "Id": "d3d12memoryallocator",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "MIT",
+            "Name": "D3D12 Memory Allocator",
+            "PURL": "pkg:github/GPUOpen-LibrariesAndSDKs/D3D12MemoryAllocator@$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Memory management for the D3D12 backend of QRhi.",
+            "Version": "v3.1.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1099,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/D3D12MemoryAllocator/LICENSE.txt",
+              "saved": "notices/5478a2f36b736e13dd3250b9c71a4ab521bc327fb9d112a92c647bf3e69ddb68",
+              "sha256": "5478a2f36b736e13dd3250b9c71a4ab521bc327fb9d112a92c647bf3e69ddb68",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/D3D12MemoryAllocator/qt_attribution.json",
+          "metadata_sha256": "ad36f74f9d5bb4c2a5d7bce97507711452a2089c1f4f673473bf75d17851f381"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-emoji-segmenter-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright 2019 Google LLC",
+            "Description": "A parser for emoji sequences.",
+            "DownloadLocation": "https://github.com/google/emoji-segmenter/releases/tag/0.4.0",
+            "Homepage": "https://github.com/google/emoji-segmenter",
+            "Id": "emoji-segmenter",
+            "License": "Apache License 2.0",
+            "LicenseId": "Apache-2.0",
+            "Name": "Emoji Segmenter",
+            "PURL": "pkg:github/google/emoji-segmenter@$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in QtGui for parsing complex emoji sequences. Can be configured using the -emojisegmenter option.",
+            "SecurityCritical": true,
+            "Version": "0.4.0"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/emoji-segmenter/qt_attribution.json",
+          "metadata_sha256": "9a980fc0f9e478d2a7e9a571d4cd234c259aaf8e2ea3fb60a0a7cf02cc3c3700"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-grayraster-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright 2000-2016 by David Turner, Robert Wilhelm, and Werner Lemberg.",
+            "Description": "FreeType is a freely available software library to render fonts.",
+            "Files": "qgrayraster.c",
+            "Homepage": "http://www.freetype.org",
+            "Id": "grayraster",
+            "License": "Freetype Project License or GNU General Public License v2.0 only",
+            "LicenseFile": "../../3rdparty/freetype/LICENSE.txt",
+            "LicenseId": "FTL OR GPL-2.0-only",
+            "Name": "Anti-aliasing rasterizer from FreeType 2",
+            "PURL": "pkg:generic/freetype-grayraster?download_url=https://www.freetype.org/",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in Qt GUI."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 26234,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/LICENSE.txt",
+              "saved": "notices/bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+              "sha256": "bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/painting/qt_attribution.json",
+          "metadata_sha256": "8cddd6c73a885f697261c4d6d60e5cd814a2544fcd407504b52a5eb9b7cc3600"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-icc-srgb-color-profile-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "No upstream: treat as final, no relevant CPE found",
+            "Copyright": "Copyright International Color Consortium, 2015",
+            "Description": "An ICC color profile for PDF/A-1b compatible PDF files.",
+            "Files": "sRGB2014.icc",
+            "Homepage": "http://www.color.org/",
+            "Id": "icc-srgb-color-profile",
+            "License": "International Color Consortium License",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "LicenseRef-ICC-License",
+            "Name": "sRGB color profile icc file",
+            "PURL": "pkg:generic/icc-sRGB-color-profile?download_url=http://www.color.org/",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in Qt Gui (Embedded into PDF/A-1b files generated by QPrinter/QPdfWriter)."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 463,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/icc/LICENSE.txt",
+              "saved": "notices/9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd",
+              "sha256": "9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/icc/qt_attribution.json",
+          "metadata_sha256": "509da9bd2b3f769c730aa4627b1080d65f39b0ecd4130111c9e1122e13cd35b5"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-md4c-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:md4c_project:md4c:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "Copyright © 2016-2024 Martin Mitáš",
+            "Description": "A CommonMark-compliant Markdown parser.",
+            "DownloadLocation": "https://github.com/mity/md4c/releases/tag/release-0.5.3",
+            "Homepage": "https://github.com/mity/md4c",
+            "Id": "md4c",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.md",
+            "LicenseId": "MIT",
+            "Name": "MD4C",
+            "PURL": "pkg:github/mity/md4c@release-$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Optionally used in QTextDocument if configured with textmarkdownreader.",
+            "SecurityCritical": true,
+            "Version": "0.5.3"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1096,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4c/LICENSE.md",
+              "saved": "notices/d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc",
+              "sha256": "d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4c/qt_attribution.json",
+          "metadata_sha256": "7b2bc7be22e4be2a2984119ce3d0bfc210ddd0d8ef6193d66e8479d4c22af4ba"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-opengl-es2-headers-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright (c) 2013-2014 The Khronos Group Inc.",
+            "Description": "OpenGL ES 2 header generated from the Khronos OpenGL / OpenGL ES XML API Registry.",
+            "Files": "qopengles2ext.h",
+            "Homepage": "https://www.khronos.org/",
+            "Id": "opengl-es2-headers",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.KHRONOS.txt",
+            "LicenseId": "MIT",
+            "Name": "OpenGL ES 2 Headers",
+            "PURL": "pkg:generic/khronos-opengl-es2-headers?download_url=https://www.khronos.org/?revision=27673",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used on Windows and Linux in the OpenGL related headers of Qt GUI.",
+            "Version": "Revision 27673"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1084,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/opengl/LICENSE.KHRONOS.txt",
+              "saved": "notices/2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+              "sha256": "2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/opengl/qt_attribution.json",
+          "metadata_sha256": "d05626e02386f22186b385b3ce2cd5a6431b84e2fc552c68f7133e38da552fc1"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-opengl-headers-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright (c) 2013-2014 The Khronos Group Inc.",
+            "Description": "OpenGL header generated from the Khronos OpenGL / OpenGL ES XML API Registry.",
+            "Files": "qopenglext.h",
+            "Homepage": "https://www.khronos.org/",
+            "Id": "opengl-headers",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.KHRONOS.txt",
+            "LicenseId": "MIT",
+            "Name": "OpenGL Headers",
+            "PURL": "pkg:generic/khronos-opengl-headers?download_url=https://www.khronos.org/?revision=27684",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used on Windows and Linux in the OpenGL related headers of Qt GUI.",
+            "Version": "Revision 27684"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1084,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/opengl/LICENSE.KHRONOS.txt",
+              "saved": "notices/2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+              "sha256": "2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/opengl/qt_attribution.json",
+          "metadata_sha256": "d05626e02386f22186b385b3ce2cd5a6431b84e2fc552c68f7133e38da552fc1"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-rhi-miniengine-d3d12-mipmap-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright (c) 2015 Microsoft",
+            "Description": "Compute shader for mipmap generation from MiniEngine in DirectX-Graphics-Samples",
+            "Files": [
+              "mipmap.hlsl"
+            ],
+            "Homepage": "https://github.com/microsoft/DirectX-Graphics-Samples",
+            "Id": "rhi-miniengine-d3d12-mipmap",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.MiniEngine.txt",
+            "LicenseId": "MIT",
+            "Name": "Mipmap generator for D3D12",
+            "PURL": "pkg:github/microsoft/DirectX-Graphics-Samples@$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Compute shader for mipmap generation with Direct 3D 12",
+            "Version": "0aa79bad78992da0b6a8279ddb9002c1753cb849"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1077,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/rhi/LICENSE.MiniEngine.txt",
+              "saved": "notices/cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409",
+              "sha256": "cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/rhi/qt_attribution.json",
+          "metadata_sha256": "59df3efb041ed346aa797602a76ef8d284e84c3cc6ace30967d6704fc65dbb47"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-smooth-scaling-algorithm-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE or PURL found",
+            "Copyright": [
+              "Copyright (C) 2004, 2005 Daniel M. Duley.",
+              "(C) Carsten Haitzler and various contributors.",
+              "(C) Willem Monsuwe <willem@stack.nl>"
+            ],
+            "Description": "Normal smoothscale method, based on Imlib2's smoothscale.",
+            "Files": "qimagescale.cpp",
+            "Id": "smooth-scaling-algorithm",
+            "License": "BSD 2-clause \"Simplified\" License and Imlib2 License",
+            "LicenseFile": "LICENSE.QIMAGETRANSFORM.txt",
+            "LicenseId": "BSD-2-Clause AND Imlib2",
+            "Name": "Smooth Scaling Algorithm",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in Qt Gui (QImage::transformed() functions)."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 3004,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.QIMAGETRANSFORM.txt",
+              "saved": "notices/46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d",
+              "sha256": "46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/painting/qt_attribution.json",
+          "metadata_sha256": "8cddd6c73a885f697261c4d6d60e5cd814a2544fcd407504b52a5eb9b7cc3600"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-vulkan-xml-spec-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:khronos:vulkan:1.4.308:*:*:*:*:*:*:*",
+            "Copyright": "Copyright (c) 2015-2025 The Khronos Group Inc.",
+            "Description": "Vulkan XML API Registry.",
+            "Files": "vk.xml",
+            "Homepage": "https://www.khronos.org/",
+            "Id": "vulkan-xml-spec",
+            "License": "Apache License 2.0 or MIT License",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "Apache-2.0 OR MIT",
+            "Name": "Vulkan API Registry",
+            "PURL": "pkg:github/KhronosGroup/Vulkan-Docs@v$<VERSION>?download_url=https://github.com/KhronosGroup/Vulkan-Docs/blob/v1.4.308/xml/vk.xml",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used to dynamically generate the sources for the QVulkan(Device)Functions classes.",
+            "Version": "1.4.308"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 11473,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/LICENSE.txt",
+              "saved": "notices/5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+              "sha256": "5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/qt_attribution.json",
+          "metadata_sha256": "b4beb6ac27b066a6a71408da116fea60131c06ac9799c9763fe9cef28a76e7b9"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-vulkanmemoryallocator-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright (c) 2017-2025 Advanced Micro Devices, Inc. All rights reserved.",
+            "Description": "Vulkan Memory Allocator",
+            "Homepage": "https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator",
+            "Id": "vulkanmemoryallocator",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "MIT",
+            "Name": "Vulkan Memory Allocator",
+            "PURL": "pkg:github/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator@v$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Memory management for the Vulkan backend of QRhi.",
+            "Version": "3.3.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1099,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/VulkanMemoryAllocator/LICENSE.txt",
+              "saved": "notices/846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
+              "sha256": "846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/VulkanMemoryAllocator/qt_attribution.json",
+          "metadata_sha256": "bdadb296dc4d3aadea5f9eb68f8f4abab2e6a9e135fec084d2914c030af5bab2"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-webgradients-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "Copyright (c) 2017 itmeo",
+            "Description": "WebGradients is a free collection of 180 linear gradients.",
+            "Files": "webgradients.css",
+            "Homepage": "https://webgradients.com/",
+            "Id": "webgradients",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.WEBGRADIENTS.txt",
+            "LicenseId": "MIT",
+            "Name": "WebGradients",
+            "PURL": "pkg:generic/webgradients?download_url=https://webgradients.com/",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in Qt GUI to provide presets for QGradient."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1062,
+              "path": "qtbase-everywhere-src-6.12.0/util/gradientgen/LICENSE.WEBGRADIENTS.txt",
+              "saved": "notices/9be732e45b638c74f9c0e5248541dd54dc7e8e9a5545df96b5c4b7c9ac0c68ba",
+              "sha256": "9be732e45b638c74f9c0e5248541dd54dc7e8e9a5545df96b5c4b7c9ac0c68ba",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/util/gradientgen/qt_attribution.json",
+          "metadata_sha256": "6e87ac5d79ab92110e6e517b2c74e4f4fd15878540e93eea0300e529d3318572"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-xserverhelper-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": [
+              "Copyright (c) 1987, 1988 X Consortium",
+              "Copyright 1987, 1988 by Digital Equipment Corporation, Maynard, Massachusetts."
+            ],
+            "Description": "Code from X11's region.h, Region.c, poly.h, and PolyReg.c",
+            "Files": "qregion.cpp",
+            "Homepage": "https://www.x.org/",
+            "Id": "xserverhelper",
+            "License": "X11 License and Historical Permission Notice and Disclaimer",
+            "LicenseFile": "LICENSE.XCONSORTIUM.txt",
+            "LicenseId": "X11 AND HPND",
+            "Name": "X Server helper",
+            "PURL": "pkg:generic/xserverhelper?download_url=https://www.x.org/",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in Qt GUI (QRegion)."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 2294,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.XCONSORTIUM.txt",
+              "saved": "notices/a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c",
+              "sha256": "a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/painting/qt_attribution.json",
+          "metadata_sha256": "8cddd6c73a885f697261c4d6d60e5cd814a2544fcd407504b52a5eb9b7cc3600"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-xsvg-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "No relevant PURL or CPE set, because the dependency is a single file",
+            "Copyright": "Copyright 2002 USC/Information Sciences Institute",
+            "Description": "Some code for arc handling is derived from code from the XSVG project.",
+            "Files": "qguisvg.cpp",
+            "Id": "xsvg",
+            "License": "Historical Permission Notice and Disclaimer - sell variant",
+            "LicenseFile": "LICENSE.XSVG.txt",
+            "LicenseId": "HPND-sell-variant",
+            "Name": "XSVG",
+            "QDocModule": "qtsvg",
+            "QtUsage": "Used in the Qt GUI library."
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1185,
+              "path": "qtbase-everywhere-src-6.12.0/src/gui/util/LICENSE.XSVG.txt",
+              "saved": "notices/3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd",
+              "sha256": "3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/gui/util/qt_attribution.json",
+          "metadata_sha256": "95156a38085638f0e14785cdcf95ff06f009ecfddfd64699366ed94446f164cc"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Gui-Attribution-zlib-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:zlib:zlib:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "(C) 1995-2026 Jean-loup Gailly and Mark Adler",
+            "Description": "zlib is a general purpose data compression library.",
+            "DownloadLocation": "https://github.com/madler/zlib/releases/download/v1.3.2/zlib-1.3.2.tar.gz",
+            "Homepage": "https://zlib.net/",
+            "Id": "zlib",
+            "License": "zlib License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "Zlib",
+            "Name": "Data Compression Library (zlib)",
+            "PURL": "pkg:github/madler/zlib@v$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Optionally used in Qt Core and development tools. Configure with -system-zlib to avoid.",
+            "SecurityCritical": true,
+            "Version": "1.3.2"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1465,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/LICENSE",
+              "saved": "notices/d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+              "sha256": "d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/qt_attribution.json",
+          "metadata_sha256": "0346805e9c4048316dbc7c58d560a20c12482ea0218de264282212e9619b6d64"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Network-Attribution-libpsl-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "no relevant CPE found",
+            "Copyright": "Copyright 2014-2016 The Chromium Authors. All rights reserved.",
+            "Description": "Libpsl allows checking domains against the Public Suffix List.",
+            "Files": [
+              "src/lookup_string_in_fixed_set.c",
+              "src/psl-make-dafsa"
+            ],
+            "Homepage": "https://github.com/rockdaboot/libpsl",
+            "Id": "libpsl",
+            "License": "BSD 3-clause \"New\" or \"Revised\" License",
+            "LicenseFile": "src/LICENSE.chromium",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "libpsl - C library to handle the Public Suffix List",
+            "PURL": "pkg:github/rockdaboot/libpsl@$<VERSION>",
+            "QDocModule": "qtnetwork",
+            "QtUsage": "Used to compress the embedded copy of publicsuffix list and\nto lookup entries in it.",
+            "Version": "664f3dc85259ec65e30248a61fa1c45b7b0e4c3f"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1664,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/src/LICENSE.chromium",
+              "saved": "notices/1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3",
+              "sha256": "1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/qt_attribution.json",
+          "metadata_sha256": "ae227b5f2cf40511fe1a84d4c752f4005917b7eeb44e7c4495b1403c27cc3647"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Network-Attribution-psl-data-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": "Updated by util/update_public_suffix_list.sh; if you add fields here, update the script, too!",
+            "Copyright": "The list was originally provided by Jo Hermans <jo.hermans@gmail.com>.\nIt is now maintained on github (https://github.com/publicsuffix/list).",
+            "Description": "The Public Suffix List is an initiative of Mozilla,\nbut is maintained as a community resource. It is available for use in any software,\nbut was originally created to meet the needs of browser manufacturers.\nIt allows browsers to, for example:\n\n- Avoid privacy-damaging \"supercookies\" being set for high-level domain name suffixes\n\n- Highlight the most important part of a domain name in the user interface\n\n- Accurately sort history entries by site",
+            "DownloadLocation": "https://publicsuffix.org/list/public_suffix_list.dat",
+            "Files": "psl_data.cpp",
+            "Homepage": "http://publicsuffix.org/",
+            "Id": "psl-data",
+            "License": "Mozilla Public License 2.0",
+            "LicenseFile": "PSL-LICENSE.txt",
+            "LicenseId": "MPL-2.0",
+            "Name": "The Public Suffix List",
+            "PURL": "pkg:generic/psl-data@e452c7058d6946bd76952b128c12f5ce87a5acb8?download_url=https://publicsuffix.org/list/public_suffix_list.dat",
+            "QDocModule": "qtnetwork",
+            "QtUsage": "Used in Qt Network to avoid setting \"supercookies\" in the cookie jar\nsupported by Qt (by the QNetworkCookieJar class).",
+            "Version": "2026-05-14_08-35-31_UTC"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 16726,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/PSL-LICENSE.txt",
+              "saved": "notices/3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+              "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/qt_attribution.json",
+          "metadata_sha256": "ae227b5f2cf40511fe1a84d4c752f4005917b7eeb44e7c4495b1403c27cc3647"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Network-Attribution-zlib-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:zlib:zlib:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "(C) 1995-2026 Jean-loup Gailly and Mark Adler",
+            "Description": "zlib is a general purpose data compression library.",
+            "DownloadLocation": "https://github.com/madler/zlib/releases/download/v1.3.2/zlib-1.3.2.tar.gz",
+            "Homepage": "https://zlib.net/",
+            "Id": "zlib",
+            "License": "zlib License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "Zlib",
+            "Name": "Data Compression Library (zlib)",
+            "PURL": "pkg:github/madler/zlib@v$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Optionally used in Qt Core and development tools. Configure with -system-zlib to avoid.",
+            "SecurityCritical": true,
+            "Version": "1.3.2"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1465,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/LICENSE",
+              "saved": "notices/d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+              "sha256": "d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/qt_attribution.json",
+          "metadata_sha256": "0346805e9c4048316dbc7c58d560a20c12482ea0218de264282212e9619b6d64"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Platform-Attribution-extra-cmake-modules-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "Copyright © 2011-2018 The KDE community",
+            "Description": "Additional CMake modules.",
+            "Homepage": "https://api.kde.org/ecm/",
+            "Id": "extra-cmake-modules",
+            "License": "BSD-3-Clause",
+            "LicenseFile": "COPYING-CMAKE-SCRIPTS",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "extra-cmake-modules",
+            "QDocModule": "qtcore",
+            "QtParts": [
+              "tools"
+            ],
+            "QtUsage": "Used as part of the build system.",
+            "Version": "5.84.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1327,
+              "path": "qtbase-everywhere-src-6.12.0/cmake/3rdparty/extra-cmake-modules/COPYING-CMAKE-SCRIPTS",
+              "saved": "notices/46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+              "sha256": "46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/cmake/3rdparty/extra-cmake-modules/qt_attribution.json",
+          "metadata_sha256": "f34f498d6c63a78a882b352fa38c9dd076a59b1696cd6a6f921151a61f2a02e0"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Platform-Attribution-kwin-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": [
+              "Copyright 2014 Alex Merry <alex.merry@kde.org>",
+              "Copyright 2014 Martin Gräßlin <mgraesslin@kde.org>",
+              "Copyright (c) 2006,2007 Laurent Montel, <montel@kde.org>"
+            ],
+            "Description": "Additional CMake modules for graphics system dependencies.",
+            "Homepage": "https://www.kde.org/",
+            "Id": "kwin",
+            "License": "BSD 3-Clause \"New\" or \"Revised\" License",
+            "LicenseFile": "COPYING-CMAKE-SCRIPTS",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "KWin",
+            "QDocModule": "qtcore",
+            "QtParts": [
+              "tools"
+            ],
+            "QtUsage": "Used as part of the build system.",
+            "Version": "5.13.4"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1327,
+              "path": "qtbase-everywhere-src-6.12.0/cmake/3rdparty/kwin/COPYING-CMAKE-SCRIPTS",
+              "saved": "notices/46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+              "sha256": "46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/cmake/3rdparty/kwin/qt_attribution.json",
+          "metadata_sha256": "bf3a3c09e99f1c9fab7553ebc4a7548b71dc23fcfdbe6e5df0fa0e7847c2efc3"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-QWindowsIntegrationPlugin-Attribution-wintab-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "Copyright 1991-1998 by LCS/Telegraphics.",
+            "Description": "Wintab is a de facto API for pointing devices on Windows.",
+            "Files": [
+              "pktdef.h",
+              "wintab.h"
+            ],
+            "Id": "wintab",
+            "License": "LCS-Telegraphics License",
+            "LicenseId": "LicenseRef-Lcs-Telegraphics",
+            "Name": "Wintab API",
+            "PackageComment": "Upstream http://www.pointing.com/Wintab.html no longer offers updates; treat as final, no relevant CPE and PURL found",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in the Qt platform plugin for Windows. Configure with -no-feature-tabletevent to avoid."
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/wintab/qt_attribution.json",
+          "metadata_sha256": "b879ea91b719531d45e1cfe33d2241d060a9260200bd91a09ada074b16063f9c"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Test-Attribution-catch2-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": {
+              "General": "no relevant CPE found",
+              "Generator": "scripts/generateSingleHeader.py",
+              "OldBranch": "Stick to its v2.x branch; no suitable file in v3",
+              "UpstreamFile": "single_include/catch2/catch.hpp"
+            },
+            "Copyright": "Copyright (c) 2022 Two Blue Cubes Ltd. All rights reserved.",
+            "Description": "Catch2 is a multi-paradigm test framework for C++.",
+            "Files": "catch_p.h",
+            "Homepage": "https://github.com/catchorg/Catch2",
+            "Id": "catch2",
+            "License": "Boost Software License 1.0",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "BSL-1.0",
+            "Name": "Catch2",
+            "PURL": "pkg:github/catchorg/Catch2@v$<VERSION>",
+            "QDocModule": "qttestlib",
+            "QtUsage": "Used for testing of the Qt Test module.",
+            "Version": "2.13.10"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1338,
+              "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/catch2/LICENSE.txt",
+              "saved": "notices/c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+              "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/catch2/qt_attribution.json",
+          "metadata_sha256": "8149331a9f68c529955173cbfb12e3f0193c2e4db23ae4117bcd537ee1eacde0"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Test-Attribution-cycle-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": {
+              "File": "kernel/cycle.h",
+              "General": "no relevant CPE found",
+              "Patches": [
+                "00-include-guard.patch",
+                "01-rename-ticks.patch",
+                "02-preprocesor-checks.patch",
+                "03-parisc-compile.patch",
+                "04-wrapper-check.patch"
+              ],
+              "Prepare": "Purge dangling hspace on ends of lines",
+              "Upstream": "https://github.com/FFTW/fftw3"
+            },
+            "Copyright": [
+              "Copyright (c) 2003, 2007-14 Matteo Frigo",
+              "Copyright (c) 2003, 2007-14 Massachusetts Institute of Technology"
+            ],
+            "Description": "Enables access to the CPU's cycle counters.",
+            "Files": "cycle_p.h",
+            "Homepage": "http://fftw.org/",
+            "Id": "cycle",
+            "License": "MIT License",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "MIT",
+            "Name": "Cycle",
+            "PURL": "pkg:github/FFTW/fftw3@fftw-$<VERSION>",
+            "QDocModule": "qttestlib",
+            "QtUsage": "Used in the Qt Test module.",
+            "Version": "3.3.11"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1023,
+              "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/cycle/LICENSE.txt",
+              "saved": "notices/cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d",
+              "sha256": "cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/cycle/qt_attribution.json",
+          "metadata_sha256": "5b4c5fc477cd61b935983b93ec6d09b39a8f5644ea4fe5ac787c84583f521c7c"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Test-Attribution-linuxperf-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": {
+              "General": "no relevant CPE found",
+              "License-note": "The SPDX's 'WITH Linux-syscall-note' is why we can use it",
+              "Repository": "https://github.com/torvalds/linux",
+              "SPDX": [
+                "The upstream's GPL-2.0 is a deprecated identifier",
+                "Prefer our GPL-2.0-only, which is an equivalent replacement"
+              ],
+              "Update": [
+                "Not normally needed unless",
+                "New feature in QtTest needs something in a newer version",
+                "or if a Linux port to some new architecture omits old API"
+              ],
+              "UpstreamFile": "include/uapi/linux/perf_event.h"
+            },
+            "Copyright": [
+              "Copyright (C) 2008-2009, Linutronix GmbH, Thomas Gleixner <tglx@kernel.org>",
+              "Copyright (C) 2008-2011, Red Hat, Inc., Ingo Molnar",
+              "Copyright (C) 2008-2011, Red Hat, Inc., Peter Zijlstra"
+            ],
+            "Description": "Allows access to the Linux kernel's performance events.",
+            "Files": "perf_event_p.h",
+            "Homepage": "https://www.kernel.org",
+            "Id": "linuxperf",
+            "License": "GNU General Public License v2.0 only with Linux Syscall Note",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "GPL-2.0-only WITH Linux-syscall-note",
+            "Name": "Linux Performance Events",
+            "PURL": "pkg:github/torvalds/linux@v$<VERSION>#include/uapi/linux/perf_event.h",
+            "QDocModule": "qttestlib",
+            "QtUsage": "Used on Linux and Android in the Qt Test module.",
+            "Version": "7.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 18458,
+              "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/linux/LICENSE.txt",
+              "saved": "notices/ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815",
+              "sha256": "ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/linux/qt_attribution.json",
+          "metadata_sha256": "a69f1c5519995cb3e77d34a864d9a383b68d0d3304883ee28c6b14a7c4efbe50"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-3rdparty-sources-Test-Attribution-valgrind-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Comment": {
+              "General": "no relevant CPE found",
+              "License": "These two files are BSD; the rest of valgrind is GPL",
+              "UpstreamFiles": [
+                "include/valgrind.h.in",
+                "callgrind/callgrind.h"
+              ]
+            },
+            "Copyright": [
+              "Copyright (C) 2000-2017 Julian Seward",
+              "Copyright (C) 2003-2017 Josef Weidendorfer."
+            ],
+            "Description": "An instrumentation framework for building dynamic analysis tools.",
+            "Files": [
+              "valgrind_p.h",
+              "callgrind_p.h"
+            ],
+            "Homepage": "http://valgrind.org/",
+            "Id": "valgrind",
+            "License": "BSD 4-clause \"Original\" or \"Old\" License",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "BSD-4-Clause",
+            "Name": "Valgrind",
+            "PURL": "pkg:generic/valgrind@$<VERSION>?download_url=https://valgrind.org/",
+            "QDocModule": "qttestlib",
+            "QtUsage": "Used on Linux ond MacOS in the Qt Test module.",
+            "Version": "3.25.1"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1667,
+              "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/valgrind/LICENSE.txt",
+              "saved": "notices/ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e",
+              "sha256": "ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/valgrind/qt_attribution.json",
+          "metadata_sha256": "202daf86588d8cded6c492d490cec190e5790796fff23ec5065b116b78e70fbc"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledFreetype-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": [
+              "cpe:2.3:a:freetype:freetype:$<VERSION>:*:*:*:*:*:*:*"
+            ],
+            "Copyright": [
+              "Copyright (c) 2007-2014 Adobe Systems Incorporated",
+              "Copyright (c) 2004-2026 Albert Chin-A-Young",
+              "Copyright (c) 2018-2026 Armin Hasitzka, David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2000 Computing Research Labs, New Mexico State University",
+              "Copyright (c) 1996-2026 David Turner, Robert Wilhelm, Dominik Röttsches, and Werner Lemberg",
+              "Copyright (c) 2004-2026 David Turner, Robert Wilhelm, Werner Lemberg and George Williams",
+              "Copyright (c) 2022-2026 David Turner, Robert Wilhelm, Werner Lemberg, and Moazin Khatti",
+              "Copyright (c) 2008-2026 David Turner, Robert Wilhelm, Werner Lemberg, and suzuki toshiya",
+              "Copyright (c) 2003-2026 David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2005-2026 David Turner",
+              "Copyright (c) 2007-2026 Derek Clegg and Michael Toftdal",
+              "Copyright (c) 2007 Dmitry Timoshkov for Codeweavers",
+              "Copyright (c) 2001-2015 Francesco Zappa Nardelli",
+              "Copyright (c) 2005, 2007, 2008, 2013 George Williams",
+              "Copyright (c) 2013-2026 Google, Inc. Google Author(s) Behdad Esfahbod and Stuart Gill",
+              "Copyright (c) 2013-2022 Google, Inc.",
+              "Copyright (c) 2003 Huw D M Davies for Codeweavers",
+              "Copyright (c) 2010-2026 Joel Klinghed",
+              "Copyright (c) 1996-2026 Just van Rossum, David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2003-2026 Masatake YAMATO and Redhat K.K.",
+              "Copyright (c) 2004-2026 Masatake YAMATO, Redhat K.K, David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2019-2026 Nikhil Ramakrishnan, David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2009-2026 Oran Agra and Mickey Gabel",
+              "Copyright (c) 2007-2026 Rahul Bhalerao <rahul.bhalerao@redhat.com>",
+              "Copyright (c) 2002-2026 Roberto Alameda",
+              "Copyright (c) 2015-2026 Werner Lemberg",
+              "Copyright (c) 2004-2026 suzuki toshiya, Masatake YAMATO, Red Hat K.K., David Turner, Robert Wilhelm, and Werner Lemberg",
+              "Copyright (c) 2019 nyorain",
+              "Copyright (c) 2022-2026 David Turner, Robert Wilhelm, Werner Lemberg, George Williams, and Dominik Röttsches",
+              "Copyright (C) 2009, 2023  Red Hat, Inc."
+            ],
+            "Description": "FreeType is a freely available software library to render fonts.",
+            "DownloadLocation": "https://download.savannah.gnu.org/releases/freetype/freetype-2.14.3.tar.gz",
+            "Homepage": "http://www.freetype.org",
+            "Id": "freetype",
+            "License": "Freetype Project License or GNU General Public License v2.0 only",
+            "LicenseFile": "LICENSE.txt",
+            "LicenseId": "FTL OR GPL-2.0-only",
+            "Name": "Freetype 2",
+            "PURL": [
+              "pkg:github/freetype/freetype@VER-$<VERSION_DASHED>"
+            ],
+            "QDocModule": "qtgui",
+            "QtUsage": "Optionally used in Qt GUI and platform plugins. Configure with -no-freetype, or -system-freetype to avoid.",
+            "SecurityCritical": true,
+            "Version": "2.14.3"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 26234,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/LICENSE.txt",
+              "saved": "notices/bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+              "sha256": "bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/qt_attribution.json",
+          "metadata_sha256": "628b68bf60eb3bc1616342bc3545b63be2392e78bbebbc4c19f49675dd2ac8a7"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledHarfbuzz-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:harfbuzz_project:harfbuzz:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": [
+              "Copyright © 2010-2022  Google, Inc.",
+              "Copyright © 2015-2020  Ebrahim Byagowi",
+              "Copyright © 2019,2020  Facebook, Inc.",
+              "Copyright © 2012,2015  Mozilla Foundation",
+              "Copyright © 2011  Codethink Limited",
+              "Copyright © 2008,2010  Nokia Corporation and/or its subsidiary(-ies)",
+              "Copyright © 2009  Keith Stribley",
+              "Copyright © 2011  Martin Hosken and SIL International",
+              "Copyright © 2007  Chris Wilson",
+              "Copyright © 2005,2006,2020,2021,2022,2023  Behdad Esfahbod",
+              "Copyright © 2004,2007,2008,2009,2010,2013,2021,2022,2023  Red Hat, Inc.",
+              "Copyright © 1998-2005  David Turner and Werner Lemberg",
+              "Copyright © 2016  Igalia S.L.",
+              "Copyright © 2022  Matthias Clasen",
+              "Copyright © 2018,2021  Khaled Hosny",
+              "Copyright © 2018,2019,2020  Adobe, Inc",
+              "Copyright © 2013-2015  Alexei Podtelezhnikov"
+            ],
+            "Description": "HarfBuzz is an OpenType text shaping engine.",
+            "DownloadLocation": "https://github.com/harfbuzz/harfbuzz/releases/tag/14.5.0",
+            "Homepage": "http://harfbuzz.org",
+            "Id": "harfbuzz-ng",
+            "License": "MIT License",
+            "LicenseFile": "COPYING",
+            "LicenseId": "MIT",
+            "Name": "HarfBuzz-NG",
+            "PURL": "pkg:github/harfbuzz/harfbuzz@$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Optionally used in Qt GUI. Configure with -system-harfbuzz to force the use of the system library, or -qt-harfbuzz to link statically to the library that is bundled with your Qt version.",
+            "SecurityCritical": true,
+            "Version": "14.5.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1971,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/harfbuzz-ng/COPYING",
+              "saved": "notices/ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+              "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/harfbuzz-ng/qt_attribution.json",
+          "metadata_sha256": "b869a7f186e4cfc00cc979e7c4ffd369d823f7a0a94b951a6aedb9b3278c8419"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledLibjpeg-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:libjpeg-turbo:libjpeg-turbo:$<VERSION>:*:*:*:*:*:*:*",
+            "CopyrightFile": "COPYRIGHT.txt",
+            "Description": "The Independent JPEG Group's JPEG software",
+            "DownloadLocation": "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/3.2.0/libjpeg-turbo-3.2.0.tar.gz",
+            "Homepage": "http://libjpeg-turbo.virtualgl.org/",
+            "Id": "libjpeg",
+            "License": "Independent JPEG Group License and BSD 3-Clause \"New\" or \"Revised\" License",
+            "LicenseFiles": [
+              "LICENSE",
+              "ijg-license.txt"
+            ],
+            "LicenseId": "IJG AND BSD-3-Clause",
+            "Name": "LibJPEG-turbo",
+            "PURL": "pkg:github/libjpeg-turbo/libjpeg-turbo@$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in the qjpeg image plugin. Configure with -system-libjpeg or -no-libjpeg to avoid.",
+            "SecurityCritical": true,
+            "Version": "3.2.0"
+          },
+          "license_file_inputs": [],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libjpeg/qt_attribution.json",
+          "metadata_sha256": "ed7cb7abdd9124f664acd26cf552ba821c8cf236c4cd34a6737f202215bd41bc"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledLibpng-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:libpng:libpng:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": [
+              "Copyright (c) 1995-2026 The PNG Reference Library Authors",
+              "Copyright (c) 2000-2026 Cosmin Truta",
+              "Copyright (c) 1998-2018 Glenn Randers-Pehrson",
+              "Copyright (c) 1996-1997 Andreas Dilger",
+              "Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.",
+              "Copyright (c) 2000-2017 Simon-Pierre Cadieux",
+              "Copyright (c) 2000-2017 Eric S. Raymond",
+              "Copyright (c) 2000-2017 Mans Rullgard",
+              "Copyright (c) 2000-2017 Gilles Vollant",
+              "Copyright (c) 2000-2017 James Yu",
+              "Copyright (c) 2000-2017 Mandar Sahastrabuddhe",
+              "Copyright (c) 1998-2000 Tom Lane",
+              "Copyright (c) 1998-2000 Willem van Schaik",
+              "Copyright (c) 1996-1997 John Bowler",
+              "Copyright (c) 1996-1997 Kevin Bracey",
+              "Copyright (c) 1996-1997 Sam Bushell",
+              "Copyright (c) 1996-1997 Magnus Holmgren",
+              "Copyright (c) 1996-1997 Greg Roelofs",
+              "Copyright (c) 1996-1997 Tom Tanner",
+              "Copyright (c) 1995-1996 Dave Martindale",
+              "Copyright (c) 1995-1996 Paul Schmidt",
+              "Copyright (c) 1995-1996 Tim Wegner"
+            ],
+            "Description": "libpng is the official PNG reference library.",
+            "DownloadLocation": "https://download.sourceforge.net/libpng/libpng-1.6.58.tar.xz",
+            "Homepage": "http://www.libpng.org/pub/png/libpng.html",
+            "Id": "libpng",
+            "License": "libpng License and PNG Reference Library version 2",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "Libpng AND libpng-2.0",
+            "Name": "LibPNG",
+            "PURL": "pkg:github/pnggroup/libpng@v$<VERSION>",
+            "QDocModule": "qtgui",
+            "QtUsage": "Used in the qpng image plugin. Configure with -system-libpng or -no-libpng to avoid.",
+            "SecurityCritical": true,
+            "Version": "1.6.58"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 5345,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpng/LICENSE",
+              "saved": "notices/bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+              "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpng/qt_attribution.json",
+          "metadata_sha256": "a43ff8e146c949f7cd14e00bd681f4957e27def06ecafec55ccc7231c451d3fa"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledPcre2-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:pcre:pcre2:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": [
+              "Copyright (c) 1997-2007 University of Cambridge",
+              "Copyright (c) 2007-2024 Philip Hazel",
+              "Copyright (c) 2010-2024 Zoltan Herczeg"
+            ],
+            "Description": "The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5.",
+            "DownloadLocation": "https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.48/pcre2-10.48.tar.bz2",
+            "Homepage": "http://www.pcre.org/",
+            "Id": "pcre2",
+            "License": "BSD 3-clause \"New\" or \"Revised\" License with PCRE2 binary-like Packages Exception",
+            "LicenseFile": "LICENCE.md",
+            "LicenseId": "LicenseRef-BSD-3-Clause-with-PCRE2-Binary-Like-Packages-Exception",
+            "Name": "PCRE2",
+            "PURL": "pkg:github/PCRE2Project/pcre2@pcre2-$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Used in Qt Core (QRegularExpression).",
+            "SecurityCritical": true,
+            "Version": "10.48"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 4011,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENCE.md",
+              "saved": "notices/197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+              "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/qt_attribution.json",
+          "metadata_sha256": "c65e311b057e3ecb8ee9aeddd681add5aa4484485e265d3a6a8e7967abc19948"
+        }
+      },
+      {
+        "sbom_package": "SPDXRef-Package-qtbase-qt-bundled-3rdparty-module-BundledZLIB-b62004158ac8",
+        "scope": "qtbase SDK build-reported reachable attribution for code-region-corresponding native files",
+        "source": {
+          "archive": "qtbase-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": "cpe:2.3:a:zlib:zlib:$<VERSION>:*:*:*:*:*:*:*",
+            "Copyright": "(C) 1995-2026 Jean-loup Gailly and Mark Adler",
+            "Description": "zlib is a general purpose data compression library.",
+            "DownloadLocation": "https://github.com/madler/zlib/releases/download/v1.3.2/zlib-1.3.2.tar.gz",
+            "Homepage": "https://zlib.net/",
+            "Id": "zlib",
+            "License": "zlib License",
+            "LicenseFile": "LICENSE",
+            "LicenseId": "Zlib",
+            "Name": "Data Compression Library (zlib)",
+            "PURL": "pkg:github/madler/zlib@v$<VERSION>",
+            "QDocModule": "qtcore",
+            "QtUsage": "Optionally used in Qt Core and development tools. Configure with -system-zlib to avoid.",
+            "SecurityCritical": true,
+            "Version": "1.3.2"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1465,
+              "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/LICENSE",
+              "saved": "notices/d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+              "sha256": "d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/qt_attribution.json",
+          "metadata_sha256": "0346805e9c4048316dbc7c58d560a20c12482ea0218de264282212e9619b6d64"
+        }
+      },
+      {
+        "scope": "shiboken release-source attribution; actual compiled inclusion needs supplier/build evidence",
+        "source": {
+          "archive": "pyside-setup-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "© Copyright 2001-2018, Python Software Foundation.",
+            "Description": "Qt for Python is an add-on for Python. The libshiboken packages of PySide uses certain parts of the source files (bufferprocs_py37.cpp, bufferprocs_py37.h). See the folder sources/shiboken6/libshiboken .",
+            "Homepage": "https://www.python.org/",
+            "Id": "python",
+            "License": "PSF LICENSE AGREEMENT FOR PYTHON 3.7.0",
+            "LicenseFile": "bufferprocs_py37.h",
+            "Name": "Python",
+            "QDocModule": "QtForPython",
+            "QtUsage": "Used for Qt for Python in the signature extension.",
+            "Version": "3.7.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 5630,
+              "path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/libshiboken/bufferprocs_py37.h",
+              "saved": "notices/7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd",
+              "sha256": "7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/libshiboken/qt_attribution.json",
+          "metadata_sha256": "1b643e281a9ccb592cfb5df7fc457b9b466f35de6e91ccce76589e85e047573c"
+        }
+      },
+      {
+        "scope": "shiboken release-source attribution; actual compiled inclusion needs supplier/build evidence",
+        "source": {
+          "archive": "pyside-setup-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "Copyright": "© Copyright 2001-2018, Python Software Foundation.",
+            "Description": "Qt for Python is an add-on for Python. The signature packages of PySide uses certain copied and adapted source files. See the folder sources/shiboken6/files.dir/shibokensupport .",
+            "Homepage": "https://www.python.org/",
+            "Id": "python",
+            "License": "Python License 2.0",
+            "LicenseFile": "PSF-3.7.0.txt",
+            "LicenseId": "Python-2.0",
+            "Name": "Python",
+            "QDocModule": "QtForPython",
+            "QtUsage": "Used for Qt for Python in the signature extension.",
+            "Version": "3.7.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 2445,
+              "path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/shibokenmodule/files.dir/shibokensupport/signature/PSF-3.7.0.txt",
+              "saved": "notices/e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219",
+              "sha256": "e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/shibokenmodule/files.dir/shibokensupport/signature/qt_attribution.json",
+          "metadata_sha256": "6197e61575b0f1a65fc4a32647e48c6a4897aa104ad9e5e397cec8fecdcc2f59"
+        }
+      },
+      {
+        "scope": "Qt imageformat source candidate; TIFF/WebP plugins shipped, SDK binary-source join outstanding",
+        "source": {
+          "archive": "qtimageformats-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": [
+              "cpe:2.3:a:libtiff:libtiff:$<VERSION>:*:*:*:*:*:*:*"
+            ],
+            "Copyright": "Copyright (c) 1988-1997 Sam Leffler\nCopyright (c) 1991-1997 Silicon Graphics, Inc.",
+            "Description": "",
+            "DownloadLocation": "https://download.osgeo.org/libtiff/tiff-4.7.2.tar.gz",
+            "Homepage": "http://www.simplesystems.org/libtiff/",
+            "Id": "libtiff",
+            "License": "libtiff License",
+            "LicenseFile": "COPYRIGHT",
+            "LicenseId": "libtiff",
+            "Name": "TIFF Software Distribution (libtiff)",
+            "PURL": [
+              "pkg:gitlab/libtiff/libtiff@v$<VERSION>"
+            ],
+            "QDocModule": "qtimageformats",
+            "QtUsage": "Used in the qtiff image plugin if no system libtiff is found.",
+            "SecurityCritical": true,
+            "Version": "4.7.2"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1146,
+              "path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libtiff/COPYRIGHT",
+              "saved": "notices/fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7",
+              "sha256": "fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libtiff/qt_attribution.json",
+          "metadata_sha256": "db4ba26120260df0e74e41e8293af5ceb7c9caedeedaa397fff76c51a2140498"
+        }
+      },
+      {
+        "scope": "Qt imageformat source candidate; TIFF/WebP plugins shipped, SDK binary-source join outstanding",
+        "source": {
+          "archive": "qtimageformats-everywhere-src-6.12.0.tar.xz",
+          "compiled_into_candidate": "unverified",
+          "component": {
+            "CPE": [
+              "cpe:2.3:a:webmproject:libwebp:$<VERSION>:*:*:*:*:*:*:*"
+            ],
+            "Copyright": "Copyright (c) 2010, Google Inc. All rights reserved.",
+            "Description": "WebP is a new image format that provides lossless and lossy compression for images on the web.",
+            "DownloadLocation": "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz",
+            "Homepage": "https://developers.google.com/speed/webp/",
+            "Id": "libwebp",
+            "License": "BSD 3-clause \"New\" or \"Revised\" License",
+            "LicenseFile": "COPYING",
+            "LicenseId": "BSD-3-Clause",
+            "Name": "WebP (libwebp)",
+            "PURL": [
+              "pkg:github/webmproject/libwebp@v$<VERSION>"
+            ],
+            "QDocModule": "qtimageformats",
+            "QtUsage": "Used in the qwebp image plugin if no system libwebp is found.",
+            "SecurityCritical": true,
+            "Version": "1.6.0"
+          },
+          "license_file_inputs": [
+            {
+              "bytes": 1496,
+              "path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libwebp/COPYING",
+              "saved": "notices/5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+              "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+              "status": "exact source-archive bytes retained"
+            }
+          ],
+          "metadata_path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libwebp/qt_attribution.json",
+          "metadata_sha256": "f6d3cead2ec8d7741e6c6bbb87599a50ef2f5fac8da432bb68c02d0332cfd1b8"
+        }
+      }
+    ],
+    "literal_bytes": 163526,
+    "literal_file_count": 41,
+    "literal_files": [
+      {
+        "bytes": 2305,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/BDF-LICENSE.txt",
+        "saved": "notices/e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
+        "sha256": "e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 2218,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/PCF-LICENSE.txt",
+        "saved": "notices/6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
+        "sha256": "6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 962,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/ZLIB-LICENSE.txt",
+        "saved": "notices/2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19",
+        "sha256": "2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1444,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENSE-SLJIT",
+        "saved": "notices/5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb",
+        "sha256": "5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 17914,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/blake2/COPYING",
+        "saved": "notices/4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+        "sha256": "4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1527,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/double-conversion/LICENSE",
+        "saved": "notices/4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca",
+        "sha256": "4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1505,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/easing/LICENSE",
+        "saved": "notices/92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
+        "sha256": "92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1568,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/rfc6234/LICENSE",
+        "saved": "notices/7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c",
+        "sha256": "7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 645,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/BRG_ENDIAN_LICENSE",
+        "saved": "notices/2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c",
+        "sha256": "2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 7013,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/sha3/CC0_LICENSE",
+        "saved": "notices/1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+        "sha256": "1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1074,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/tinycbor/LICENSE",
+        "saved": "notices/3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e",
+        "sha256": "3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1425,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/text/LICENSE.AGLFN.txt",
+        "saved": "notices/40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6",
+        "sha256": "40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1099,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/D3D12MemoryAllocator/LICENSE.txt",
+        "saved": "notices/5478a2f36b736e13dd3250b9c71a4ab521bc327fb9d112a92c647bf3e69ddb68",
+        "sha256": "5478a2f36b736e13dd3250b9c71a4ab521bc327fb9d112a92c647bf3e69ddb68",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 26234,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/freetype/LICENSE.txt",
+        "saved": "notices/bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+        "sha256": "bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 463,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/icc/LICENSE.txt",
+        "saved": "notices/9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd",
+        "sha256": "9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1096,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/md4c/LICENSE.md",
+        "saved": "notices/d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc",
+        "sha256": "d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1084,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/opengl/LICENSE.KHRONOS.txt",
+        "saved": "notices/2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+        "sha256": "2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1077,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/rhi/LICENSE.MiniEngine.txt",
+        "saved": "notices/cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409",
+        "sha256": "cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 3004,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.QIMAGETRANSFORM.txt",
+        "saved": "notices/46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d",
+        "sha256": "46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 11473,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/vulkan/LICENSE.txt",
+        "saved": "notices/5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+        "sha256": "5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1099,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/VulkanMemoryAllocator/LICENSE.txt",
+        "saved": "notices/846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
+        "sha256": "846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1062,
+        "path": "qtbase-everywhere-src-6.12.0/util/gradientgen/LICENSE.WEBGRADIENTS.txt",
+        "saved": "notices/9be732e45b638c74f9c0e5248541dd54dc7e8e9a5545df96b5c4b7c9ac0c68ba",
+        "sha256": "9be732e45b638c74f9c0e5248541dd54dc7e8e9a5545df96b5c4b7c9ac0c68ba",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 2294,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/painting/LICENSE.XCONSORTIUM.txt",
+        "saved": "notices/a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c",
+        "sha256": "a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1185,
+        "path": "qtbase-everywhere-src-6.12.0/src/gui/util/LICENSE.XSVG.txt",
+        "saved": "notices/3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd",
+        "sha256": "3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1465,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/zlib/LICENSE",
+        "saved": "notices/d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+        "sha256": "d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1664,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/src/LICENSE.chromium",
+        "saved": "notices/1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3",
+        "sha256": "1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 16726,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpsl/PSL-LICENSE.txt",
+        "saved": "notices/3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+        "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1327,
+        "path": "qtbase-everywhere-src-6.12.0/cmake/3rdparty/kwin/COPYING-CMAKE-SCRIPTS",
+        "saved": "notices/46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+        "sha256": "46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1338,
+        "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/catch2/LICENSE.txt",
+        "saved": "notices/c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+        "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1023,
+        "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/cycle/LICENSE.txt",
+        "saved": "notices/cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d",
+        "sha256": "cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 18458,
+        "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/linux/LICENSE.txt",
+        "saved": "notices/ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815",
+        "sha256": "ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1667,
+        "path": "qtbase-everywhere-src-6.12.0/src/testlib/3rdparty/valgrind/LICENSE.txt",
+        "saved": "notices/ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e",
+        "sha256": "ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1971,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/harfbuzz-ng/COPYING",
+        "saved": "notices/ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+        "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 5345,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/libpng/LICENSE",
+        "saved": "notices/bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+        "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 4011,
+        "path": "qtbase-everywhere-src-6.12.0/src/3rdparty/pcre2/LICENCE.md",
+        "saved": "notices/197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+        "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 5630,
+        "path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/libshiboken/bufferprocs_py37.h",
+        "saved": "notices/7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd",
+        "sha256": "7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 2445,
+        "path": "pyside-setup-everywhere-src-6.12.0/sources/shiboken6/shibokenmodule/files.dir/shibokensupport/signature/PSF-3.7.0.txt",
+        "saved": "notices/e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219",
+        "sha256": "e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1146,
+        "path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libtiff/COPYRIGHT",
+        "saved": "notices/fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7",
+        "sha256": "fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 1496,
+        "path": "qtimageformats-everywhere-src-6.12.0/src/3rdparty/libwebp/COPYING",
+        "saved": "notices/5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+        "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+        "status": "exact source-archive bytes retained"
+      },
+      {
+        "bytes": 3763,
+        "path": "Mesa11.2.2/docs/license.html",
+        "saved": "notices/288ddfae338be168ef2492c21de42ee2f5c8ebc5a734b4e58b37007141bc2d6d",
+        "sha256": "288ddfae338be168ef2492c21de42ee2f5c8ebc5a734b4e58b37007141bc2d6d"
+      },
+      {
+        "bytes": 3281,
+        "path": "LLVM3.6.2/LICENSE.TXT",
+        "saved": "upstream/llvm-3.6.2-LICENSE.TXT",
+        "sha256": "e3bc36440fc927c62d5cc24efeefe225a14d4e34ffeb0c92e430625cce9ee444"
+      }
+    ],
+    "qualification": "Exact upstream bytes plus preserved attribution metadata. Some SDK edges are build/source-header declarations rather than independently proved compiled objects. No generic license-selection or redistribution approval.",
+    "status": "technical notice-input proposal, not executed collection or complete legal coverage",
+    "still_needed": [
+      "copyright/notice text for attribution records without LicenseFile",
+      "review source-file-specific Mesa/LLVM notices for actually linked code",
+      "review exact QtSvg/imageformats/PySide build correspondence",
+      "document prominent LGPL use notice and recipient source/replacement access",
+      "confirm selected notice set in actual final ZIP"
+    ]
+  },
+  "provenance": {
+    "application_reference_commit": "1930f75b976be17a3df51da079b6d8ba275e3f73",
+    "candidate_index_sha256": "fd5b7abc37c9d68dc2a1104c08cb2b3590384f470020d31f717aafefb875faae",
+    "fresh_llvm_provenance_sha256": "00ef8d59b94c3da5a2ad7ff3ac9be6094c0d1c7b886e14a4ad00efe14a02b91d",
+    "qualification": "Technical source/notice associations, not permission to distribute or proof of complete corresponding source. No source or binary archive is embedded in this manifest.",
+    "source_closure_report_sha256": "ddb6b384ddd54f90a1676243a742b142b8545bf784c0aa16daa029f1b367415e"
+  },
+  "qt_version": "6.12.0",
+  "schema_version": 1,
+  "source_archives": [
+    {
+      "bytes": 51220268,
+      "corresponding_source_completeness": "not established by version/hash identity alone",
+      "name": "qtbase-everywhere-src-6.12.0.tar.xz",
+      "requested_url": "https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtbase-everywhere-src-6.12.0.tar.xz",
+      "resolved_url": "https://mirrors.20i.com/pub/qt.io/archive/qt/6.12/6.12.0/submodules/qtbase-everywhere-src-6.12.0.tar.xz",
+      "sha256": "a951bd163c7b80fc6b8c88d7668fb56abf91c152373e13c10666763238131307",
+      "status": "actual source archive acquired and independently rehashed",
+      "verified_official_metadata": "https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtbase-everywhere-src-6.12.0.tar.xz.mirrorlist"
+    },
+    {
+      "bytes": 2341876,
+      "corresponding_source_completeness": "not established by version/hash identity alone",
+      "name": "qtsvg-everywhere-src-6.12.0.tar.xz",
+      "requested_url": "https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtsvg-everywhere-src-6.12.0.tar.xz",
+      "resolved_url": "https://mirrors.20i.com/pub/qt.io/archive/qt/6.12/6.12.0/submodules/qtsvg-everywhere-src-6.12.0.tar.xz",
+      "sha256": "e4ab39534ec97987b1b9b60ef7f4d3253d5912a69f8c713a01753174a4029331",
+      "status": "actual source archive acquired and independently rehashed",
+      "verified_official_metadata": "https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtsvg-everywhere-src-6.12.0.tar.xz.mirrorlist"
+    },
+    {
+      "bytes": 1848620,
+      "corresponding_source_completeness": "not established by version/hash identity alone",
+      "name": "qtimageformats-everywhere-src-6.12.0.tar.xz",
+      "requested_url": "https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtimageformats-everywhere-src-6.12.0.tar.xz",
+      "resolved_url": "https://mirrors.20i.com/pub/qt.io/archive/qt/6.12/6.12.0/submodules/qtimageformats-everywhere-src-6.12.0.tar.xz",
+      "sha256": "0943132b5db8de6b6a7f1d162682173e8763c7ed94e80fd39113292845f67762",
+      "status": "actual source archive acquired and independently rehashed",
+      "verified_official_metadata": "https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtimageformats-everywhere-src-6.12.0.tar.xz.mirrorlist"
+    },
+    {
+      "bytes": 18211772,
+      "corresponding_source_completeness": "not established by version/hash identity alone",
+      "name": "pyside-setup-everywhere-src-6.12.0.tar.xz",
+      "requested_url": "https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.12.0-src/pyside-setup-everywhere-src-6.12.0.tar.xz",
+      "resolved_url": "https://www.mirrorservice.org/sites/download.qt-project.org/official_releases/QtForPython/pyside6/PySide6-6.12.0-src/pyside-setup-everywhere-src-6.12.0.tar.xz",
+      "sha256": "099c1a597cf33c1b000e11cf68a0b82d216fb802bf81726efc720394f10c7751",
+      "status": "actual source archive acquired and independently rehashed",
+      "verified_official_metadata": "https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.12.0-src/pyside-setup-everywhere-src-6.12.0.tar.xz.mirrorlist"
+    }
+  ],
+  "unresolved_coverage": {
+    "compiled_scope": "Source/header/data/build declarations are not proof of compiled inclusion in either reference wheel. All original compiled_into_candidate qualifications remain unverified.",
+    "missing_license_file_record_indices": [
+      7,
+      8,
+      10,
+      13,
+      14,
+      16,
+      17,
+      18,
+      21,
+      40,
+      47
+    ],
+    "missing_license_file_status": "unresolved: upstream attribution/copyright preserved; applicable notice/source-file coverage still requires review",
+    "remaining_gates": [
+      "copyright/notice text for attribution records without LicenseFile",
+      "review source-file-specific Mesa/LLVM notices for actually linked code",
+      "review exact QtSvg/imageformats/PySide build correspondence",
+      "document prominent LGPL use notice and recipient source/replacement access",
+      "confirm selected notice set in actual final ZIP",
+      "recipient corresponding-source access and distribution terms",
+      "modified native library, PYZ module and native-embedded support-code replacement evidence on Windows",
+      "Microsoft, external OpenSSL and CPython review outside this supplement"
+    ]
+  }
+}

@@ -41,6 +41,193 @@ QT_DISTRIBUTIONS = {
 }
 
 
+DEPENDENCY_LICENSES = Path(__file__).resolve().parent / "licenses" / "dependency-6.12.0"
+DEPENDENCY_MANIFEST_BYTES = 142332
+DEPENDENCY_MANIFEST_SHA256 = "7166c136548231e009b028caaa8b32f57967cebe05c8899e6669726e1785c084"
+DEPENDENCY_GUIDE = Path(__file__).resolve().parents[1] / "docs" / "dependency-sources.md"
+DEPENDENCY_GUIDE_BYTES = 16721
+DEPENDENCY_GUIDE_SHA256 = "f0f4ef563eec85e3757e44e19099ce144377864d332eb0e3659f3948a0d4b026"
+DEPENDENCY_DIRECTORY = "dependency-6.12.0"
+
+
+def _no_links(path: Path) -> None:
+    # Check ancestors too: a regular-looking leaf can escape through a junction.
+    for part in (path, *path.parents):
+        info = part.lstat()
+        if part.is_symlink() or getattr(info, "st_file_attributes", 0) & 0x400:
+            raise RuntimeError(f"Linked/reparse dependency notice input: {part.name}")
+
+
+def _pinned_bytes(path: Path, size: int, sha256: str) -> bytes:
+    _no_links(path)
+    if not path.is_file():
+        raise RuntimeError(f"Non-regular dependency notice input: {path.name}")
+    if path.stat().st_size != size:
+        raise RuntimeError(f"Dependency notice size/SHA-256 mismatch: {path.name}")
+    data = path.read_bytes()
+    if len(data) != size or hashlib.sha256(data).hexdigest() != sha256:
+        raise RuntimeError(f"Dependency notice size/SHA-256 mismatch: {path.name}")
+    return data
+
+
+def _invalid_constant(value):
+    raise RuntimeError(f"Non-JSON dependency manifest constant: {value}")
+
+
+def _unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise RuntimeError(f"Duplicate dependency manifest key: {key}")
+        result[key] = value
+    return result
+
+
+def _dependency_inputs() -> list[tuple[str, bytes, dict]]:
+    """Validate the entire pinned, bounded input set before copying any of it."""
+    raw = _pinned_bytes(DEPENDENCY_LICENSES / "manifest.json",
+                        DEPENDENCY_MANIFEST_BYTES, DEPENDENCY_MANIFEST_SHA256)
+    manifest = json.loads(raw.decode("utf-8"), object_pairs_hook=_unique_object,
+                          parse_constant=_invalid_constant)
+    fields = {"schema_version", "qt_version", "input_files", "proposal", "source_archives",
+              "mesa_source", "llvm_provenance", "unresolved_coverage", "provenance"}
+    if (type(manifest) is not dict or set(manifest) != fields
+            or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1
+            or manifest["qt_version"] != QT_VERSION):
+        raise RuntimeError("Invalid dependency manifest schema/version")
+    canonical = (json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
+    if raw != canonical:
+        raise RuntimeError("Noncanonical dependency manifest JSON")
+    proposal = manifest["proposal"]
+    proposal_fields = {"status", "qualification", "components", "literal_files",
+                       "literal_file_count", "literal_bytes", "still_needed"}
+    if (type(proposal) is not dict or set(proposal) != proposal_fields
+            or type(proposal["literal_file_count"]) is not int or proposal["literal_file_count"] != 41
+            or type(proposal["literal_bytes"]) is not int or proposal["literal_bytes"] != 163526
+            or type(proposal["literal_files"]) is not list or len(proposal["literal_files"]) != 41
+            or type(proposal["components"]) is not list or len(proposal["components"]) != 55):
+        raise RuntimeError("Invalid dependency attribution/literal counts")
+    files = manifest["input_files"]
+    if type(files) is not list or len(files) != 41:
+        raise RuntimeError("Invalid dependency input file count")
+    paths, hashes = set(), set()
+    for item in files:
+        if (type(item) is not dict or set(item) != {"path", "bytes", "sha256", "source_path"}
+                or type(item["bytes"]) is not int or not 0 < item["bytes"] <= 163526
+                or type(item["sha256"]) is not str or not re.fullmatch(r"[0-9a-f]{64}", item["sha256"])
+                or type(item["path"]) is not str or item["path"] != "notices/" + item["sha256"]
+                or type(item["source_path"]) is not str):
+            raise RuntimeError("Invalid or unsafe dependency input path/hash/size")
+        folded = item["path"].casefold()
+        if folded in paths or item["sha256"] in hashes:
+            raise RuntimeError("Duplicate/case-alias dependency input")
+        paths.add(folded)
+        hashes.add(item["sha256"])
+    if files != sorted(files, key=lambda item: item["path"]) or sum(f["bytes"] for f in files) != 163526:
+        raise RuntimeError("Invalid dependency input ordering/total")
+    by_hash = {item["sha256"]: item for item in files}
+    literals = proposal["literal_files"]
+    if (any(type(item) is not dict or item.get("sha256") not in by_hash
+            or item.get("bytes") != by_hash[item["sha256"]]["bytes"]
+            or item.get("path") != by_hash[item["sha256"]]["source_path"] for item in literals)
+            or len({item["sha256"] for item in literals}) != 41):
+        raise RuntimeError("Dependency source/member mapping mismatch")
+    components = proposal["components"]
+    missing, unique_records = [], set()
+    for index, record in enumerate(components):
+        if type(record) is not dict or type(record.get("source")) is not dict:
+            raise RuntimeError("Invalid dependency attribution record")
+        source = record["source"]
+        if (type(source.get("component")) is not dict
+                or source.get("compiled_into_candidate") != "unverified"
+                or type(source.get("license_file_inputs")) is not list):
+            raise RuntimeError("Invalid dependency attribution qualification")
+        key = json.dumps(record, sort_keys=True, ensure_ascii=False)
+        if key in unique_records:
+            raise RuntimeError("Duplicate dependency attribution record")
+        unique_records.add(key)
+        if "LicenseFile" not in source["component"]:
+            missing.append(index)
+            if source["license_file_inputs"]:
+                raise RuntimeError("Unresolved dependency attribution has unexpected literal input")
+        for literal in source["license_file_inputs"]:
+            if (type(literal) is not dict or literal.get("sha256") not in by_hash
+                    or type(literal.get("bytes")) is not int
+                    or literal["bytes"] != by_hash[literal["sha256"]]["bytes"]
+                    or type(literal.get("path")) is not str):
+                raise RuntimeError("Unknown dependency attribution literal input")
+    coverage = manifest["unresolved_coverage"]
+    if (type(coverage) is not dict or len(missing) != 11
+            or coverage.get("missing_license_file_record_indices") != missing
+            or not str(coverage.get("missing_license_file_status", "")).startswith("unresolved:")):
+        raise RuntimeError("Missing unresolved dependency coverage")
+    # A manifest hash is the trust anchor; the checks above also document its
+    # schema. Never accept extra files, including case aliases or symlink trees.
+    actual = set()
+    _no_links(DEPENDENCY_LICENSES)
+    for path in DEPENDENCY_LICENSES.rglob("*"):
+        _no_links(path)
+        relative = path.relative_to(DEPENDENCY_LICENSES).as_posix()
+        if path.is_dir():
+            if relative != "notices":
+                raise RuntimeError("Unexpected dependency input directory")
+        elif path.is_file():
+            actual.add(relative)
+        else:
+            raise RuntimeError("Non-regular dependency notice input")
+    if actual != {"manifest.json", *(item["path"] for item in files)}:
+        raise RuntimeError("Dependency input file set mismatch (missing/extra/case-alias)")
+    # Preserve the existing notice-record fields. Detailed source associations
+    # live in the copied manifest, not in a new inventory/build-manifest schema.
+    common = {"version": QT_VERSION,
+              "scope": "shared-source-attribution-supplement-not-compiled-coverage",
+              "reason": "Shared source/notice inputs; compiled scope, completeness and distribution require review"}
+    prepared = [("manifest.json", raw, common | {"sha256": DEPENDENCY_MANIFEST_SHA256,
+                                                "bytes": len(raw)})]
+    guide = _pinned_bytes(DEPENDENCY_GUIDE, DEPENDENCY_GUIDE_BYTES, DEPENDENCY_GUIDE_SHA256)
+    prepared.append(("dependency-sources.md", guide, common | {"sha256": DEPENDENCY_GUIDE_SHA256,
+                                                             "bytes": len(guide)}))
+    archives = {row["name"].removesuffix(".tar.xz"): row["requested_url"]
+                for row in manifest["source_archives"]}
+    for item in files:
+        data = _pinned_bytes(DEPENDENCY_LICENSES / item["path"], item["bytes"], item["sha256"])
+        prefix = item["source_path"].split("/", 1)[0]
+        if prefix == "Mesa11.2.2":
+            url, version = manifest["mesa_source"]["url"], "11.2.2"
+        elif prefix == "LLVM3.6.2":
+            url, version = manifest["llvm_provenance"]["source_url"], "3.6.2"
+        elif prefix in archives:
+            url, version = archives[prefix], QT_VERSION
+        else:
+            raise RuntimeError("Unknown dependency source archive")
+        prepared.append((item["path"], data, common | {
+            "source_url": url, "version": version, "sha256": item["sha256"], "bytes": len(data),
+            "reason": "Exact upstream member: " + item["source_path"]
+                      + "; shared attribution input, compiled coverage unverified; see manifest.json",
+        }))
+    return sorted(prepared, key=lambda item: item[0])
+
+
+def _dependency_notices(destination: Path) -> list[dict]:
+    prepared = _dependency_inputs()
+    # Reserve a new output subtree. A distribution must not prepopulate or alias
+    # it, even on a case-sensitive test host for this Windows-targeted package.
+    _no_links(destination)
+    if any(path.name.casefold() == DEPENDENCY_DIRECTORY.casefold() for path in destination.iterdir()):
+        raise FileExistsError("Dependency notice output collision/case-alias")
+    output = destination / DEPENDENCY_DIRECTORY
+    output.mkdir(exist_ok=False)
+    (output / "notices").mkdir(exist_ok=False)
+    result = []
+    for relative, data, record in prepared:
+        target = output / relative
+        _no_links(target.parent)
+        with target.open("xb") as stream:
+            stream.write(data)
+        result.append(record | {"path": target.relative_to(destination).as_posix()})
+    return result
+
+
 def _distribution_name(name: str) -> str:
     return re.sub(r"[-_.]+", "-", name).lower()
 
@@ -161,12 +348,13 @@ def collect(destination: Path) -> None:
     # Copy after discovered entries, with exclusive creation, so a distribution
     # cannot silently replace these pinned texts via a colliding notice path.
     qt_notices = _qt_notices(destination)
+    dependency_notices = _dependency_notices(destination)
     for record in inventory:
         name = _distribution_name(record["name"])
         if name not in QT_DISTRIBUTIONS:
             continue
         wheel, wheel_sha256 = QT_DISTRIBUTIONS[name]
-        for notice in qt_notices:
+        for notice in qt_notices + dependency_notices:
             record["vendored_notices"].append(notice | {"reference_wheel": wheel,
                                                       "reference_wheel_sha256": wheel_sha256})
             record["copied_notices"].append(notice["path"])

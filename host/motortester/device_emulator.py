@@ -155,12 +155,13 @@ class DeviceEmulator:
         "_terminal", "_tombstone", "_stage", "_offset", "_crc",
         "_continuation", "_release_pending", "_abort_pending", "_stop_acks",
         "_hold_started", "_diagnostics", "_all_analog_modes",
-        "_wait_started", "_trigger_kind")
+        "_wait_started", "_trigger_kind", "_pretrigger", "_prepare_started")
 
-    def __init__(self, *, all_analog_modes=False):
-        if type(all_analog_modes) is not bool:
+    def __init__(self, *, all_analog_modes=False, pretrigger=False):
+        if type(all_analog_modes) is not bool or type(pretrigger) is not bool:
             raise DeviceError(ErrorCode.ARGUMENT)
         self._all_analog_modes = all_analog_modes
+        self._pretrigger = pretrigger
         self._decoder = StreamDecoder()
         self._samples = bytearray(SAMPLE_BUFFER_BYTES)
         self._queue = []
@@ -185,7 +186,7 @@ class DeviceEmulator:
         self._terminal = self._tombstone = None
         self._stage = ""
         self._offset = self._crc = 0
-        self._hold_started = self._wait_started = None
+        self._hold_started = self._wait_started = self._prepare_started = None
         self._trigger_kind = 0
 
     def snapshot(self):
@@ -224,6 +225,17 @@ class DeviceEmulator:
             self._continuation = False
             self._hold_started = None
             self._set_state(ERROR, 3)
+        if (self._prepare_started is not None and self._state == PREPARING
+                and self._continuation):
+            pre = struct.unpack_from("<H", self._config, 8)[0]
+            # Synthetic 50 kS/s readiness on the public integer-ms clock.
+            # Use the readiness boundary, not a late poll, for Auto's origin.
+            delay_ms = (pre + 49) // 50
+            if now_ms - self._prepare_started >= delay_ms:
+                ready_ms = self._prepare_started + delay_ms
+                self._prepare_started = None
+                self._wait_started = ready_ms if self._config[2] == 0 else None
+                self._set_state(WAITING)
         if (self._wait_started is not None and self._state == WAITING
                 and self._continuation
                 and now_ms - self._wait_started >= struct.unpack_from("<I", self._config, 12)[0]):
@@ -267,7 +279,7 @@ class DeviceEmulator:
         self._active = self._held = self._continuation = False
         self._release_pending = self._abort_pending = False
         self._stop_acks = 0
-        self._hold_started = self._wait_started = None
+        self._hold_started = self._wait_started = self._prepare_started = None
         self._state, self._reason = ERROR, reason
         if reason == 6 and self._session and self._next_tx <= MAX_ID:
             self._enqueue(134, self._status_payload())
@@ -325,8 +337,8 @@ class DeviceEmulator:
             self._last_rx = frame
             self._enqueue(129, struct.pack("<BBBBHHII", 0, 1, 1, 12, 512,
                                           SAMPLE_COUNT, FIRMWARE_BUILD,
-                                          ALL_ANALOG_CAPABILITY_BITS if self._all_analog_modes
-                                          else CAPABILITY_BITS), 1)
+                                          (ALL_ANALOG_CAPABILITY_BITS if self._all_analog_modes
+                                           else CAPABILITY_BITS) | (32 if self._pretrigger else 0)), 1)
             return
         if not self._negotiated:
             self._add(counts, "NEED_HELLO")
@@ -372,7 +384,9 @@ class DeviceEmulator:
         if kind == 2:
             self._enqueue(130, struct.pack("<BBHIHHIHHBBBBHHH", 1, 0, 1, 72000000,
                                           71, 19, 12000000, 143, 2048,
-                                          1, 7 if self._all_analog_modes else 2, 1, 3, 0, 0, 0), request)
+                                          3 if self._pretrigger else 1, 7 if self._all_analog_modes else 2, 1, 3,
+                                          0, 512 if self._pretrigger else 0,
+                                          1024 if self._pretrigger else 0), request)
         elif kind == 3:
             profile, mode, source, edge, reserved, level, pre, reserved2, timeout = (
                 struct.unpack("<HBBBBHHHI", payload))
@@ -380,7 +394,8 @@ class DeviceEmulator:
                 self._error(frame, 6)
             elif (profile != 1 or mode not in ((0, 1, 2) if self._all_analog_modes else (1,))
                   or source != 0 or edge not in (0, 1)
-                  or not 1 <= level <= 4094 or pre != 0
+                  or not 1 <= level <= 4094
+                  or pre not in ((0, 512, 1024) if self._pretrigger else (0,))
                   or (not 100 <= timeout <= 60000 if mode == 0 else timeout != 0)):
                 self._error(frame, 1)
             elif self._state != STOPPED or self._held or self._stop_acks:
@@ -420,9 +435,10 @@ class DeviceEmulator:
         return self._capture(0)
 
     def _wait(self):
-        # Pre=0 готова немедленно; ARM_ACK не является началом ожидания.
-        self._wait_started = self._now if self._config[2] == 0 else None
-        self._set_state(WAITING)
+        pre = struct.unpack_from("<H", self._config, 8)[0]
+        self._prepare_started = self._now if pre else None
+        self._wait_started = self._now if not pre and self._config[2] == 0 else None
+        self._set_state(PREPARING if pre else WAITING)
 
     def _capture(self, trigger_kind):
         if self._window_id >= MAX_COUNTER:
@@ -436,13 +452,18 @@ class DeviceEmulator:
         self._stage = "begin"
         edge = self._config[4]
         level = struct.unpack_from("<H", self._config, 6)[0]
+        pre = struct.unpack_from("<H", self._config, 8)[0]
         for i in range(SAMPLE_COUNT):
             code = (73 * i + 19 * self._window_id + 7 * self._generation) & 4095
-            if i == 0 and trigger_kind == 0:
+            if trigger_kind == 0 and i < pre:
+                # The synthetic prefix stays on the pre-edge side of the
+                # threshold; the advertised event is the transition at pre.
+                code = level - 1 if edge == 0 else level
+            elif trigger_kind == 0 and i == pre:
                 code = level if edge == 0 else level - 1
-            elif i == 511:
+            elif i == (2046 if pre and trigger_kind == 0 else 511):
                 code = 0
-            elif i == 1023:
+            elif i == (2047 if pre and trigger_kind == 0 else 1023):
                 code = 4095
             struct.pack_into("<H", self._samples, 2 * i, code)
         self._crc = zlib.crc32(self._samples)
@@ -451,7 +472,7 @@ class DeviceEmulator:
 
     def _stop(self, request):
         self._continuation = False
-        self._hold_started = self._wait_started = None
+        self._hold_started = self._wait_started = self._prepare_started = None
         self._stage = ""
         self._remove_status()
         if self._active and not self._abort_pending:
@@ -497,10 +518,11 @@ class DeviceEmulator:
         if self._stage == "begin":
             edge = self._config[4]
             level = struct.unpack_from("<H", self._config, 6)[0]
+            pre = struct.unpack_from("<H", self._config, 8)[0]
             return self._descriptor(144, struct.pack(
                 "<IIIHHHHBBBBHHIHHI", self._generation, self._window_id,
-                self._config_id, 1, SAMPLE_COUNT, 0,
-                0xFFFF if self._trigger_kind == 2 else 0, self._trigger_kind, 0, edge, 0,
+                self._config_id, 1, SAMPLE_COUNT, pre,
+                0xFFFF if self._trigger_kind == 2 else pre, self._trigger_kind, 0, edge, 0,
                 level, 3 if self._trigger_kind == 2 else 2, 72000000, 71, 19, 0), completion="begin")
         if self._stage == "data":
             count = min(250, SAMPLE_COUNT - self._offset)

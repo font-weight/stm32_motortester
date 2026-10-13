@@ -57,6 +57,25 @@ def recording_status_text(recording):
     return text
 
 
+def reported_device_status_text(state):
+    """Render a received STATUS separately from host command/ownership phase."""
+    snapshot = state.snapshot if state is not None else None
+    status = getattr(snapshot, "device_status", None)
+    if status is None:
+        return "Состояние прибора по STATUS: ещё не сообщено в этом сеансе."
+    names = {0: "остановлен", 1: "подготовка", 2: "ожидание запуска",
+             3: "захват", 4: "передача", 5: "ошибка", 6: "ожидание подтверждения окна"}
+    name = names.get(status.state, "неизвестный код состояния")
+    text = f"Последний STATUS прибора: {name} (код {int(status.state)}); причина {status.reason}."
+    if not state.connected:
+        text += "\nСоединение закрыто; это прежнее сообщение."
+    elif getattr(snapshot, "device_status_stale", True):
+        text += "\nСообщение устарело после команды или ошибки; новое состояние ещё не сообщено."
+    else:
+        text += "\nСообщено в текущем сеансе; это не независимая проверка физического состояния."
+    return text
+
+
 def recovery_directory():
     """Persistent user-data folder; unlike TemporaryDirectory it is not deleted."""
     base = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.StandardLocation.GenericDataLocation)
@@ -133,21 +152,30 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.level = QtWidgets.QSpinBox()
         self.level.setRange(1, 4094)
         self.level.setValue(2048)
+        self.pretrigger = _ContentSizedComboBox()
+        self.pretrigger.setObjectName("acquisitionPretrigger")
+        self.pretrigger.setAccessibleName("Предыстория: число отсчётов и доля окна")
+        self.pretrigger.addItem("0 отсчётов · 0%", 0)
+        self.pretrigger.setToolTip("Выбор по CAPS текущего соединения. Принятое значение видно ниже после CONFIG_ACK.")
+        self.pretrigger_status = QtWidgets.QLabel("Предыстория: возможности ещё не подтверждены.")
+        self.pretrigger_status.setWordWrap(True)
+        self.pretrigger_status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
         self.timeout = QtWidgets.QSpinBox()
         self.timeout.setRange(100, 60000)
         self.timeout.setValue(1000)
         self.timeout.setSuffix(" мс")
         self.simulate = QtWidgets.QCheckBox("Событие запуска\nв эмуляторе")
         self.simulate.setChecked(True)
-        for title, widget in (("Источник", self.source), ("COM-порт", self.port), ("Режим", self.mode), ("Фронт", self.edge), ("Уровень · код АЦП", self.level), ("Ожидание Auto", self.timeout)):
+        for title, widget in (("Источник", self.source), ("COM-порт", self.port), ("Режим", self.mode), ("Фронт", self.edge), ("Уровень · код АЦП", self.level), ("Предыстория", self.pretrigger), ("Ожидание Auto", self.timeout)):
             form.addRow(title, widget)
         layout.addLayout(form)
+        layout.addWidget(self.pretrigger_status)
         layout.addWidget(self.reset)
         reset_hint = QtWidgets.QLabel("После ошибки перед новым подключением прибора требуется физический сброс / переподключение. Открытие COM-порта не доказывает сброс.")
         reset_hint.setWordWrap(True)
         layout.addWidget(reset_hint)
         layout.addWidget(self.simulate)
-        profile = QtWidgets.QLabel("Профиль LV-001 · один канал · аналоговый запуск · предыстория 0. Обычный «Старт» хранит последнее полное окно; Single требует нового «Старт» после каждого окна. Для архива всех принимаемых сегментов выберите Record. Закрытие панели не останавливает захват.")
+        profile = QtWidgets.QLabel("Профиль LV-001 · один канал · аналоговый запуск. Предыстория выбирается по объявленным возможностям соединения. Обычный «Старт» хранит последнее полное окно; Single требует нового «Старт» после каждого окна. Для архива всех принимаемых сегментов выберите Record. Закрытие панели не останавливает захват.")
         profile.setWordWrap(True)
         layout.addWidget(profile)
         self.device_details = QtWidgets.QLabel("Сведения о соединении: CAPS ещё не подтверждены.")
@@ -172,6 +200,11 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.disconnect_button = QtWidgets.QPushButton("Отключить")
         for button in (self.connect_button, self.start_button, self.record_button, self.stop_button, self.save_recording_button, self.cancel_recording_button, self.disconnect_button):
             layout.addWidget(button)
+        self.device_status = QtWidgets.QLabel(reported_device_status_text(None))
+        self.device_status.setObjectName("acquisitionDeviceStatus")
+        self.device_status.setWordWrap(True)
+        self.device_status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        layout.addWidget(self.device_status)
         self.status = QtWidgets.QLabel("Не подключено")
         self.status.setWordWrap(True)
         self.status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
@@ -229,7 +262,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
 
     def _settings(self):
         mode = self.mode.currentData()
-        return Config(mode=mode, edge=self.edge.currentData(), level_code=self.level.value(), auto_timeout_ms=self.timeout.value() if mode == 0 else 0)
+        return Config(mode=mode, edge=self.edge.currentData(), level_code=self.level.value(), pretrigger_samples=self.pretrigger.currentData(), auto_timeout_ms=self.timeout.value() if mode == 0 else 0)
 
     def _record(self):
         if self.viewer.busy or not self.record_button.isEnabled():
@@ -264,6 +297,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         if phase is Phase.HELLO and previous_phase is not Phase.HELLO:
             self._last_error = ""
         self._show_device_details(state)
+        self.device_status.setText(reported_device_status_text(state))
         current_recording = getattr(state, "recording", None)
         self.recording_status.setText(recording_status_text(current_recording))
         spool = current_recording.spool_path if current_recording is not None else None
@@ -340,6 +374,29 @@ class AcquisitionDialog(QtWidgets.QDialog):
             widget.setEnabled(idle)
         for widget in (self.mode, self.edge, self.level):
             widget.setEnabled((idle or ready) and not self.viewer.busy)
+        current_caps = (snapshot.capabilities if connected and snapshot is not None
+                        and phase in (Phase.READY, Phase.ARMED) else None)
+        choices = (0,)
+        if (current_caps is not None and current_caps.capability_bits & 32
+                and current_caps.pretrigger_samples == (0, 512, 1024)):
+            choices = current_caps.pretrigger_samples
+        if choices != tuple(self.pretrigger.itemData(i) for i in range(self.pretrigger.count())):
+            selected = self.pretrigger.currentData()
+            self.pretrigger.clear()
+            for count in choices:
+                self.pretrigger.addItem(f"{count} отсчётов · {count * 100 // 2048}%", count)
+            self.pretrigger.setCurrentIndex(max(0, self.pretrigger.findData(selected)))
+        self.pretrigger.setEnabled(ready and can_restart and not self.viewer.busy and len(choices) > 1)
+        if current_caps is None:
+            pre_text = "Предыстория: возможности ещё не подтверждены."
+        elif len(choices) == 1:
+            pre_text = "Соединение поддерживает только нулевую предысторию."
+        else:
+            pre_text = "Доступно по CAPS: 0 / 512 / 1024 отсчёта (0 / 25 / 50% окна)."
+        if current_caps is not None and snapshot.config is not None:
+            count = snapshot.config.pretrigger_samples
+            pre_text += f" Принято по CONFIG_ACK: {count} отсчётов ({count * 100 // 2048}%)."
+        self.pretrigger_status.setText(pre_text)
         self.timeout.setEnabled((idle or ready) and self.mode.currentData() == 0 and not self.viewer.busy)
         self.port.setEnabled(idle and self.source.currentData() == "device")
         self.reset.setEnabled(idle and self.source.currentData() == "device")

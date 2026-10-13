@@ -301,11 +301,12 @@ class AcquisitionBridgeTests(unittest.TestCase):
         caps = bridge.state.snapshot.capabilities
         self.assertIsNotNone(caps)
         self.assertEqual((caps.firmware_build, caps.capability_bits, caps.mode_bits,
-                          caps.source_bits, caps.edge_bits), (0, 0x1D, 7, 1, 3))
+                          caps.source_bits, caps.edge_bits, caps.pretrigger_samples),
+                         (0, 0x3D, 7, 1, 3, (0, 512, 1024)))
         text = panel.device_details.text()
         for expected in ("Эмулятор · синтетические данные", "0 (0x00000000)",
-                         "wire 0.1 (draft)", "0x1d/0x7/0x1/0x3",
-                         "Auto, Normal, Single", "предыстория: 0"):
+                         "wire 0.1 (draft)", "0x3d/0x7/0x1/0x3",
+                         "Auto, Normal, Single", "предыстория: 0, 512, 1024"):
             self.assertIn(expected, text)
         pump_events(80)
         self.assertIsNone(bridge.state.snapshot.config)
