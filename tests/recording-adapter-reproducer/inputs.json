@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "a_commit": "c4d4dc2966656b324518c8d0061811d1241870a3",
+  "b_commit": "f0784ae6ac85565b32bc2e564974d500eaa6a32f",
+  "a": [
+    {
+      "path": "firmware/acquisition/acquisition.c",
+      "sha256": "edbc67ef1485d583b0275877efba8383649afa9f8e4b267d953ebda9d97bae3d",
+      "bytes": 8272
+    },
+    {
+      "path": "firmware/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad",
+      "bytes": 4481
+    },
+    {
+      "path": "firmware/app/mt_capture_link.c",
+      "sha256": "7c78f0962c404af847b8e815034290f6938183917050290bc5eb7f9e7f304451",
+      "bytes": 12778
+    },
+    {
+      "path": "firmware/app/mt_capture_link.h",
+      "sha256": "9dcdd4f8119c8ccd8a7f79c6b16406ad686c4e53084c57a8fe55e8c5655be4d5",
+      "bytes": 4972
+    },
+    {
+      "path": "firmware/app/mt_control.c",
+      "sha256": "fbdbfbe460ebed2f5558eaea993ab49fe9c1244d7e76199cc7609a54073d041a",
+      "bytes": 13666
+    },
+    {
+      "path": "firmware/app/mt_control.h",
+      "sha256": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172",
+      "bytes": 2662
+    },
+    {
+      "path": "firmware/app/mt_control_rx.c",
+      "sha256": "b9c067ad72e20d7fb0888a0eb3a4e49a4871359271ee155b2d8027481e0d0322",
+      "bytes": 1995
+    },
+    {
+      "path": "firmware/app/mt_control_rx.h",
+      "sha256": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943",
+      "bytes": 1831
+    },
+    {
+      "path": "firmware/protocol/mt_command.c",
+      "sha256": "7bdc75a975806c4f3e5b422b43df287234c6d7e265a1c8e8cae0ebe7c3cd5294",
+      "bytes": 3566
+    },
+    {
+      "path": "firmware/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84",
+      "bytes": 2397
+    },
+    {
+      "path": "firmware/protocol/mt_session.c",
+      "sha256": "27479b954c187761696d42f2681a6519aa7dbd78d6382a1a8f8b15d933f87c40",
+      "bytes": 2855
+    },
+    {
+      "path": "firmware/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c",
+      "bytes": 2253
+    },
+    {
+      "path": "firmware/protocol/mt_stream.c",
+      "sha256": "5b46dbc832343d6563560b8e5065298bd834906f98e2ba0b5316be402ed8f67d",
+      "bytes": 1470
+    },
+    {
+      "path": "firmware/protocol/mt_stream.h",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3",
+      "bytes": 1921
+    },
+    {
+      "path": "firmware/protocol/mt_wire.c",
+      "sha256": "84677c6054294cc1d3dbf7095352a265fc038288693e890f6673d911da5bdb8c",
+      "bytes": 4102
+    },
+    {
+      "path": "firmware/protocol/mt_wire.h",
+      "sha256": "c61ef9e7beba2947724ef2006ce305cdb7dd22204d03c9524b4a57fe2f3ae547",
+      "bytes": 1679
+    },
+    {
+      "path": "firmware/transport/mt_tx.c",
+      "sha256": "6ff521de04f1c86d26b0d1aba8a96917fc8eb750074cb1364a89700d470293d0",
+      "bytes": 11184
+    },
+    {
+      "path": "firmware/transport/mt_tx.h",
+      "sha256": "6f008a8645dc53130ad2ecce39184ed4a563f71c812800dcf81954af102e2de8",
+      "bytes": 7065
+    },
+    {
+      "path": "tests/native-host-reproducer/snapshots/a-native/tests/wait-release/fixtures/test_wait_release.c",
+      "sha256": "5738c272d2d470428885ec7ac52ffe315c0198817912973290882926846b0cfd",
+      "bytes": 11158
+    },
+    {
+      "path": "tests/recording-session-reproducer/native_bridge.c",
+      "bytes": 3308,
+      "sha256": "75d21f08ac98e952f5b3d4dfed327f8b0981aca1f13cfaed0ffd5fdae099036e"
+    },
+    {
+      "path": "tests/recording-session-reproducer/adapter.py",
+      "bytes": 2470,
+      "sha256": "8d82498165f11b1da20ef282a532b2a1efbba804d4a4fe90fdbf50f0ea633a4d"
+    }
+  ],
+  "b": [
+    {
+      "path": "motortester/__init__.py",
+      "bytes": 87,
+      "sha256": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645"
+    },
+    {
+      "path": "motortester/model.py",
+      "bytes": 6447,
+      "sha256": "c4f86b6b59b7230823d45c55bca3714250a1c60ce0974e00f0ead65b9a7a834b"
+    },
+    {
+      "path": "motortester/recording.py",
+      "bytes": 5789,
+      "sha256": "4383bec4ecba4899f5ec814553bad1d9fc099ed711fd66c7ea1352d69aed6cb4"
+    },
+    {
+      "path": "motortester/recording_controller.py",
+      "bytes": 36272,
+      "sha256": "47ec66dccd64ceed2aedaac94913af9aa84e743fc283f3ae19079bb8c33a7e15"
+    },
+    {
+      "path": "motortester/recording_bridge.py",
+      "bytes": 18261,
+      "sha256": "bd330ff9b3f8eee2077abff22faa2d86b3ea608a64ae203af70d70393eb29f64"
+    },
+    {
+      "path": "motortester/runtime.py",
+      "bytes": 14874,
+      "sha256": "adbfa246fdfe21542dda4e49f0b45fb6c8eeb54bfd544fa8c71124cda9575ba4"
+    },
+    {
+      "path": "motortester/session.py",
+      "bytes": 33994,
+      "sha256": "0bf21924f22971d895fc1ec0b7bcc4c4d041d475a0461a650c0b785078905ca9"
+    },
+    {
+      "path": "motortester/session_archive.py",
+      "bytes": 58662,
+      "sha256": "58016871ff21fde9ffe83d19e32475a2543a9f3c05e46aa79c74972b2bfc799a"
+    },
+    {
+      "path": "motortester/window.py",
+      "bytes": 16034,
+      "sha256": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273"
+    },
+    {
+      "path": "motortester/wire.py",
+      "bytes": 11580,
+      "sha256": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230"
+    }
+  ],
+  "probe": [
+    {
+      "path": "probe.py",
+      "bytes": 14497,
+      "sha256": "578cc7a251458740e56caa03c34127da83f213a1b6094219a73b9d60a29e2d8e"
+    },
+    {
+      "path": "readback.py",
+      "bytes": 1458,
+      "sha256": "07402492756d79ed657054568e5b4080339f334d9818a3e139feb0496a4aba3d"
+    }
+  ]
+}
