@@ -71,7 +71,7 @@ class _Mailbox:
 
 class _EmulatorTransport:
     def __init__(self, clock):
-        self.peer = DeviceEmulator(all_analog_modes=True)
+        self.peer = DeviceEmulator(all_analog_modes=True, pretrigger=True)
         self.clock = clock
 
     def read(self, size):

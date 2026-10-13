@@ -4,7 +4,7 @@ Only this module adopts shared PR14 at SOURCE_SHA. Existing wire.py keeps its
 own older provenance. WINDOW_END_ADMITTED never proves a complete measurement.
 """
 from dataclasses import dataclass, field, replace
-from enum import Enum
+from enum import Enum, IntEnum
 import struct
 import zlib
 
@@ -53,6 +53,18 @@ class Phase(str, Enum):
     READY = "READY"
     ARMED = "ARMED"
     RECOVERY = "RECOVERY"
+
+
+class DeviceState(IntEnum):
+    """State codes reported by wire STATUS, separate from host control Phase."""
+
+    STOPPED = 0
+    PREPARING = 1
+    WAITING = 2
+    CAPTURING = 3
+    TRANSFERRING = 4
+    ERROR = 5
+    WAIT_RELEASE = 6
 
 
 class EventKind(str, Enum):
@@ -304,7 +316,33 @@ class Event:
 
 
 @dataclass(frozen=True, slots=True)
+class DeviceStatus:
+    """One validated STATUS observation, never a physical-state guarantee.
+
+    received_ms is the host monotonic receipt time, not a device timestamp.
+    The counters retain their wire meaning; no external trigger is enabled.
+    """
+
+    state: DeviceState
+    reason: int
+    generation: int
+    window_id: int
+    observed_external_edges: int
+    busy_external_edges: int
+    dropped_windows: int
+    received_ms: int
+
+
+@dataclass(frozen=True, slots=True)
 class Snapshot:
+    """Host control state and the latest device report are independent.
+
+    device_status=None means no validated STATUS in this session. A stale
+    report is retained evidence, invalidated by control/window boundaries or
+    recovery. False does not promise physical liveness: STATUS has no heartbeat
+    deadline, and connection state belongs to the outer transport/bridge.
+    """
+
     phase: Phase
     session: int
     next_tx_sequence: int
@@ -324,6 +362,8 @@ class Snapshot:
     tx_offset: int | None
     source_sha: str = SOURCE_SHA
     validation_scope: str = VALIDATION_SCOPE
+    device_status: DeviceStatus | None = None
+    device_status_stale: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -351,7 +391,7 @@ class SessionController:
                  "_next_request", "_ordinary", "_stop", "_ticket", "_last_rx",
                  "_hello", "_caps", "_config", "_config_id", "_generation",
                  "_window_id", "_active_window", "_window_barrier", "_terminal",
-                 "_released_window")
+                 "_released_window", "_device_status", "_device_status_stale")
 
     def __init__(self):
         self._now = None
@@ -366,6 +406,8 @@ class SessionController:
         self._config_id = self._generation = self._window_id = self._active_window = 0
         self._released_window = 0
         self._window_barrier = False
+        self._device_status = None
+        self._device_status_stale = False
 
     def snapshot(self):
         return Snapshot(self._phase, self._session, self._next_tx,
@@ -375,7 +417,15 @@ class SessionController:
                         self._config, self._config_id, self._generation,
                         self._stop is not None, self._window_barrier,
                         self._window_id, self._terminal, self._caps, self._now,
-                        self._ticket.offset if self._ticket else None)
+                        self._ticket.offset if self._ticket else None,
+                        device_status=self._device_status,
+                        device_status_stale=self._device_status_stale)
+
+    def _stale_device_status(self):
+        # Keep the last report for diagnostics without relabelling it as a new
+        # state. Only another validated STATUS can refresh it; reset clears it.
+        if self._device_status is not None:
+            self._device_status_stale = True
 
     def _time(self, now_ms):
         _uint(now_ms, MAX_TIME_MS)
@@ -385,6 +435,7 @@ class SessionController:
     def _recover(self, reason, fault=None):
         if self._phase is Phase.RECOVERY:
             return ()
+        self._stale_device_status()
         self._phase = Phase.RECOVERY
         self._ordinary = self._stop = self._ticket = None
         return (Event(EventKind.RECOVERY, generation=self._generation,
@@ -440,6 +491,8 @@ class SessionController:
             return events
         if not self._capacity():
             return self._recover(RecoveryReason.EXHAUSTED)
+        if kind in (3, 4, 5, 7):
+            self._stale_device_status()
         pending = _Pending(kind, self._next_request, payload, settings, generation)
         self._next_request += 1
         if kind == 5:
@@ -643,6 +696,7 @@ class SessionController:
                 return self._recover(RecoveryReason.PAYLOAD)
             self._config, self._config_id = pending.settings, self._config_id + 1
             self._ordinary = None
+            self._stale_device_status()
             return (Event(EventKind.CONFIGURED, pending.request_id, frame=frame),)
         if kind == 132:
             if (len(data) != 8 or struct.unpack("<II", data) !=
@@ -650,6 +704,7 @@ class SessionController:
                 return self._recover(RecoveryReason.PAYLOAD)
             self._generation, self._ordinary = pending.request_id, None
             self._phase = Phase.ARMED
+            self._stale_device_status()
             if self._stop is not None:
                 return ()
             return (Event(EventKind.ARMED, pending.request_id,
@@ -664,6 +719,7 @@ class SessionController:
                 return self._recover(RecoveryReason.WINDOW)
             self._stop, self._phase = None, Phase.READY
             self._window_barrier = False
+            self._stale_device_status()
             return (Event(EventKind.STOPPED, pending.request_id,
                           generation, last_window, frame=frame),)
         if kind == 135:
@@ -673,6 +729,7 @@ class SessionController:
             self._ordinary = None
             self._released_window = window
             self._window_barrier = False
+            self._stale_device_status()
             # Single останавливается лишь после полного подтверждения RELEASE.
             # Ожидающий STOP сохраняет собственный барьер даже при READY.
             if self._config.mode == 2:
@@ -711,6 +768,20 @@ class SessionController:
                     or window > MAX_ID or busy > observed
                     or (state != 5 and reason != 0) or (state == 5 and reason == 0)):
                 return self._recover(RecoveryReason.PAYLOAD)
+            self._device_status = DeviceStatus(DeviceState(state), reason,
+                generation, window, observed, busy, dropped, now_ms)
+            # STATUS is transition-based, with no promised heartbeat interval.
+            # An in-flight state-changing command, an older window, or a host
+            # ACK inconsistent with the report prevents treating it as current.
+            # These checks annotate telemetry only; existing wire/control guards
+            # and the reported value itself remain unchanged.
+            self._device_status_stale = bool(
+                self._stop is not None
+                or (self._ordinary is not None and self._ordinary.kind in (3, 4, 7))
+                or window < self._window_id
+                or (state == DeviceState.STOPPED and self._phase is Phase.ARMED)
+                or (state not in (DeviceState.STOPPED, DeviceState.ERROR)
+                    and self._phase is not Phase.ARMED))
             if state == 5:
                 return self._recover(RecoveryReason.DEVICE_ERROR)
             return (Event(EventKind.STATUS, generation=generation,
@@ -737,6 +808,7 @@ class SessionController:
                 return self._recover(RecoveryReason.WINDOW)
             self._window_id = self._active_window = window
             self._window_barrier = True
+            self._stale_device_status()
             return (Event(EventKind.WINDOW_BEGIN, generation=generation,
                           window_id=window, frame=frame),)
         if kind == 147:
@@ -750,6 +822,7 @@ class SessionController:
             self._window_id = window
             self._terminal = TerminalWindow(EventKind.WINDOW_ABORT, generation, window, reason)
             self._active_window, self._window_barrier = 0, True
+            self._stale_device_status()
             return (Event(EventKind.WINDOW_ABORT, generation=generation,
                           window_id=window, reason=reason, frame=frame),)
         if window != self._active_window:
@@ -773,6 +846,7 @@ class SessionController:
             self._terminal = TerminalWindow(EventKind.WINDOW_END_ADMITTED,
                                             generation, window, samples_crc32=crc)
             self._active_window = 0
+            self._stale_device_status()
             return (Event(EventKind.WINDOW_END_ADMITTED, generation=generation,
                           window_id=window, frame=frame),)
         return self._recover(RecoveryReason.REPLY)

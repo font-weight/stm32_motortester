@@ -112,8 +112,11 @@ class NoticeTests(unittest.TestCase):
                                  licenses.PYSERIAL_LICENSE.read_bytes())
                 continue
             self.assertEqual(record["version"], "6.12.0")
-            self.assertEqual(len(record["vendored_notices"]), 3)
-            for notice in record["vendored_notices"]:
+            self.assertEqual(len(record["vendored_notices"]), 56)
+            gnu_notices = [n for n in record["vendored_notices"]
+                           if n["scope"] == "upstream-license-text-only"]
+            self.assertEqual(len(gnu_notices), 3)
+            for notice in gnu_notices:
                 filename = Path(notice["path"]).name
                 size, sha256, git_blob = EXPECTED[filename]
                 self.assertEqual(notice["path"], "qt-6.12.0/" + filename)
@@ -144,7 +147,7 @@ class NoticeTests(unittest.TestCase):
                 distributions[2].metadata["Name"] = "SHIBOKEN6"
                 inventory = self.collect(distributions)
                 self.assertEqual({r["name"] for r in inventory}, {"pyserial", name, "SHIBOKEN6"})
-                self.assertTrue(all(len(r["vendored_notices"]) == 3
+                self.assertTrue(all(len(r["vendored_notices"]) == 56
                                     for r in inventory if r["name"] != "pyserial"))
 
     def test_each_missing_qt_distribution_fails_without_inventory(self):

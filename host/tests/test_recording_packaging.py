@@ -392,6 +392,180 @@ class SourceExecutionTests(unittest.TestCase):
             smoke.validate_report(self.output, executable=sys.executable)
         self.assertEqual(set(p.name for p in smoke.work_path(self.output).iterdir()),
                          {a["name"] for a in report["artifacts"].values()})
+        lines = [line for line in process.stdout.decode().splitlines() if line.startswith("recording-smoke live-only passed:")]
+        self.assertEqual(lines, [
+            "recording-smoke live-only passed: Single pre=512 edge=rising raw=2048 trigger=512",
+            "recording-smoke live-only passed: Single pre=1024 edge=falling raw=2048 trigger=1024",
+            "recording-smoke live-only passed: Normal pre=1024 no-edge STATUS=WAITING->STOPPED; reported, not physical"])
+        # Additional live-only checks do not rewrite v1 or claim that its saved
+        # recording contains the nonzero-prehistory captures.
+        self.assertEqual(report["schema_version"], 1)
+        self.assertTrue(all(s["provenance"]["config_payload_hex"] ==
+                            "01000100000000080000000000000000" for s in report["segments"]))
+
+    def test_omitted_live_prechecks_cannot_produce_final_success(self):
+        process = self.child("smoke._prehistory_checks=lambda *args: None")
+        self.assertEqual(process.returncode, 1)
+        self.assertEqual(self.report()["error"], "prehistory-checks-incomplete")
+        self.assertEqual(self.report()["status"], "failed")
+        self.assertNotIn(b"live-only passed", process.stdout)
+        self.assertFalse(any(smoke.work_path(self.output).iterdir()))
+
+    def test_each_nonzero_selection_is_mandatory_and_cannot_silently_fall_back(self):
+        for pre in (512, 1024):
+            with self.subTest(pre=pre):
+                self.output = self.root / f"missing-{pre}.json"
+                setup = '''from dataclasses import replace
+from motortester.gui_acquisition import AcquisitionDialog
+original=AcquisitionDialog._settings
+def settings(self):
+ value=original(self)
+ return replace(value,pretrigger_samples=0) if value.pretrigger_samples == PRE else value
+AcquisitionDialog._settings=settings
+'''.replace("PRE", str(pre))
+                process = self.child(setup)
+                self.assertEqual(process.returncode, 1)
+                self.assertEqual(self.report()["status"], "failed")
+                self.assertEqual(self.report()["error"], "prehistory-config-unconfirmed")
+                self.assertNotIn(f"Single pre={pre}".encode(), process.stdout)
+                self.assertFalse(any(smoke.work_path(self.output).iterdir()))
+
+    def test_precheck_raw_codes_trigger_metadata_and_axis_are_verified(self):
+        setups = [
+            # Runtime-produced metadata remains in bounds but names the wrong
+            # trigger; independently checked raw bytes alone must not suffice.
+            '''from dataclasses import replace
+from motortester.runtime import AcquisitionRuntime
+original=AcquisitionRuntime._terminal
+def terminal(self,result):
+ events=original(self,result)
+ if self._capture is not None and self._capture.pretrigger_samples == TARGET:
+  self._capture=replace(self._capture,pretrigger_samples=0,trigger_index=0)
+ return events
+AcquisitionRuntime._terminal=terminal
+''',
+            '''from motortester.device_emulator import DeviceEmulator
+import struct,zlib
+original=DeviceEmulator._capture
+def capture(self,kind):
+ result=original(self,kind)
+ if struct.unpack_from('<H',self._config,8)[0] == TARGET:
+  struct.pack_into('<H',self._samples,2*100,123)
+  self._crc=zlib.crc32(self._samples)
+ return result
+DeviceEmulator._capture=capture
+''',
+            '''from motortester.gui import MainWindow
+original=MainWindow.show_capture
+def shifted_capture(self,capture,*args,**kwargs):
+ original(self,capture,*args,**kwargs)
+ if capture.pretrigger_samples == TARGET:
+  xs,ys=self.curve.getData()
+  self.curve.setData(xs+1,ys)
+MainWindow.show_capture=shifted_capture
+''']
+        for pre in (512, 1024):
+            for index, setup in enumerate(setups):
+                with self.subTest(pre=pre, index=index):
+                    self.output = self.root / f"capture-mismatch-{pre}-{index}.json"
+                    process = self.child(setup.replace("TARGET", str(pre)))
+                    self.assertEqual(process.returncode, 1)
+                    self.assertEqual(self.report()["status"], "failed")
+                    self.assertIn(self.report()["error"], ("prehistory-capture-mismatch", "prehistory-plot-mismatch"))
+                    self.assertNotIn(f"Single pre={pre}".encode(), process.stdout)
+                    self.assertFalse(any(smoke.work_path(self.output).iterdir()))
+
+    def test_stale_waiting_or_stopped_status_and_fabricated_no_edge_capture_fail(self):
+        for code in (2, 0):
+            with self.subTest(code=code):
+                self.output = self.root / f"stale-status-{code}.json"
+                setup = '''from dataclasses import replace
+from motortester.session import SessionController
+original=SessionController.snapshot
+def snapshot(self):
+ value=original(self)
+ if value.config is not None and value.config.mode == 1 and value.config.pretrigger_samples == 1024 and value.device_status is not None and int(value.device_status.state) == CODE:
+  return replace(value,device_status_stale=True)
+ return value
+SessionController.snapshot=snapshot
+smoke.PHASE_TIMEOUT=.7
+'''.replace("CODE", str(code))
+                process = self.child(setup)
+                self.assertEqual(process.returncode, 1)
+                self.assertEqual(self.report()["error"], "deadline-exceeded")
+                self.assertEqual(self.report()["status"], "failed")
+                self.assertNotIn(b"Normal pre=1024 no-edge STATUS", process.stdout)
+                self.assertFalse(any(smoke.work_path(self.output).iterdir()))
+        self.output = self.root / "fabricated-no-edge.json"
+        setup = '''from dataclasses import replace
+from motortester.gui import MainWindow
+original=MainWindow._acquisition_state
+def fabricate(self,state):
+ original(self,state)
+ s=state.snapshot
+ if s is not None and s.config is not None and s.config.mode == 1 and s.config.pretrigger_samples == 1024 and self.capture is not None:
+  self.capture=replace(self.capture,sequence=self.capture.sequence+1)
+MainWindow._acquisition_state=fabricate
+'''
+        process = self.child(setup)
+        self.assertEqual(process.returncode, 1)
+        self.assertEqual(self.report()["error"], "prehistory-wait-mismatch")
+        self.assertEqual(self.report()["status"], "failed")
+        self.assertNotIn(b"Normal pre=1024 no-edge STATUS", process.stdout)
+
+    def test_raw_ack_status_and_stop_identity_are_independently_required(self):
+        for kind, expected in (("CONFIGURED", "prehistory-config-unconfirmed"),
+                               ("STATUS", "device-status-unconfirmed"),
+                               ("STOPPED", "prehistory-stop-unconfirmed")):
+            with self.subTest(kind=kind):
+                self.output = self.root / (kind + ".json")
+                setup = '''from dataclasses import replace
+from motortester.runtime import AcquisitionRuntime
+from motortester.session import EventKind
+original=AcquisitionRuntime.pump
+def pump(self):
+ events=original(self)
+ # Retain the real controller/GUI state but corrupt only the observed raw
+ # frame identity; labels and host phase alone must not satisfy the smoke.
+ return tuple(replace(e,frame=replace(e.frame,session=e.frame.session+1)) if e.kind is EventKind.KIND and e.frame is not None else e for e in events)
+AcquisitionRuntime.pump=pump
+'''.replace("KIND", kind)
+                process = self.child(setup)
+                self.assertEqual(process.returncode, 1)
+                self.assertEqual(self.report()["error"], expected)
+                self.assertEqual(self.report()["status"], "failed")
+                self.assertFalse(any(smoke.work_path(self.output).iterdir()))
+
+    def test_received_status_and_accepted_config_cannot_be_replaced_by_labels_or_host_phase(self):
+        setups = [
+            '''from dataclasses import replace
+from motortester.session import SessionController
+original=SessionController.snapshot
+def snapshot(self):
+ value=original(self)
+ return replace(value,device_status=None)
+SessionController.snapshot=snapshot
+smoke.PHASE_TIMEOUT=.7
+''',
+            '''from motortester import gui_acquisition
+gui_acquisition.reported_device_status_text=lambda state: 'Host phase READY is not received STATUS'
+''',
+            '''from motortester.gui_acquisition import AcquisitionDialog
+original=AcquisitionDialog.refresh
+def refresh(self):
+ original(self)
+ self.pretrigger_status.setText('Requested value is not CONFIG_ACK')
+AcquisitionDialog.refresh=refresh
+''']
+        for index, setup in enumerate(setups):
+            with self.subTest(index=index):
+                self.output = self.root / f"status-mismatch-{index}.json"
+                process = self.child(setup)
+                self.assertEqual(process.returncode, 1)
+                self.assertEqual(self.report()["status"], "failed")
+                self.assertIn(self.report()["error"], ("deadline-exceeded", "device-status-unconfirmed", "prehistory-config-unconfirmed"))
+                self.assertNotIn(b"Normal pre=1024 no-edge STATUS", process.stdout)
+                self.assertFalse(any(smoke.work_path(self.output).iterdir()))
 
     def test_real_stop_during_third_window_preserves_partial_and_gaps(self):
         setup = """from motortester.acquisition import AcquisitionBridge, _EmulatorTransport
@@ -402,6 +576,7 @@ def small_reads(self,size):
 _EmulatorTransport.read=small_reads
 original_stop=AcquisitionBridge.stop
 def delayed_stop(self):
+ if self.state.recording is None: return original_stop(self)
  def when_begun():
   state=self.state.snapshot
   if state.window_id>=3 and state.window_barrier and (state.terminal is None or state.terminal.window_id != state.window_id):
@@ -433,6 +608,7 @@ def hold_third_begin(self,size):
 _EmulatorTransport.read=hold_third_begin
 original_stop=AcquisitionBridge.stop
 def delayed_stop(self):
+ if self.state.recording is None: return original_stop(self)
  def when_allocated():
   if allocated.is_set(): original_stop(self)
   else: QtCore.QTimer.singleShot(1,self,when_allocated)

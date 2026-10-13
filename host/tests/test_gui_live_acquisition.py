@@ -118,3 +118,66 @@ class LiveAcquisitionGuiTests(unittest.TestCase):
         self.wait(lambda: not self.bridge.running)
         self.wait(lambda: not self.window.isVisible())
         self.assertTrue(self.window._acq_shutdown_complete)
+
+    def test_prehistory_single_roundtrip_raw_codes_and_nominal_trigger_axis(self):
+        self.connect()
+        self.assertTrue(self.dialog.pretrigger.isEnabled())
+        for pre, edge in ((512, 0), (1024, 1)):
+            self.dialog.pretrigger.setCurrentIndex(self.dialog.pretrigger.findData(pre))
+            self.dialog.mode.setCurrentIndex(2)
+            self.dialog.edge.setCurrentIndex(edge)
+            previous = len(self.captures)
+            self.dialog.start_button.click()
+            self.wait(lambda: len(self.captures) == previous + 1)
+            self.wait(self.dialog.start_button.isEnabled)
+            capture = self.window.capture
+            self.assertEqual((capture.pretrigger_samples, capture.trigger_index), (pre, pre))
+            self.assertEqual(capture.origin, "simulator")
+            self.assertEqual(capture.samples[pre - 1:pre + 1],
+                             (2047, 2048) if edge == 0 else (2048, 2047))
+            self.assertEqual(capture.time_seconds(pre), 0)
+            self.assertEqual(capture.time_seconds(0), -pre / 50000)
+            xs, ys = self.window.curve.getData()
+            self.assertEqual(xs[pre], 0)
+            self.assertEqual(tuple(ys), capture.samples)
+            self.assertTrue(self.window.trigger_line.isVisible())
+            self.assertIn(f"Принято по CONFIG_ACK: {pre}", self.dialog.pretrigger_status.text())
+            with tempfile.TemporaryDirectory() as folder:
+                path = Path(folder) / f"предыстория-{pre}.mtcap"
+                self.window.save_path(path)
+                self.wait(lambda: not self.window.busy)
+                self.assertEqual(recording.load(path), capture)
+                self.window.open_path(path)
+                self.wait(lambda: not self.window.busy)
+                self.assertEqual(self.window.capture, capture)
+
+    def test_prehistory_auto_timeout_keeps_setting_without_event_marker(self):
+        self.connect()
+        self.dialog.pretrigger.setCurrentIndex(self.dialog.pretrigger.findData(1024))
+        self.dialog.mode.setCurrentIndex(0)
+        self.dialog.timeout.setValue(100)
+        self.dialog.simulate.setChecked(False)
+        self.dialog.start_button.click()
+        self.wait(lambda: bool(self.captures))
+        self.dialog.stop_button.click()
+        self.wait(self.dialog.start_button.isEnabled)
+        capture = self.window.capture
+        self.assertEqual(capture.pretrigger_samples, 1024)
+        self.assertEqual(capture.trigger_kind, "auto_timeout")
+        self.assertIsNone(capture.trigger_index)
+        self.assertEqual(capture.time_seconds(0), 0)
+        self.assertFalse(self.window.trigger_line.isVisible())
+
+    def test_prehistory_normal_reports_received_waiting_and_stopped_states(self):
+        self.connect()
+        self.dialog.pretrigger.setCurrentIndex(self.dialog.pretrigger.findData(1024))
+        self.dialog.simulate.setChecked(False)
+        self.dialog.start_button.click()
+        self.wait(lambda: "ожидание запуска (код 2)" in self.dialog.device_status.text())
+        self.assertFalse(self.dialog.pretrigger.isEnabled())
+        self.assertTrue(self.dialog.stop_button.isEnabled())
+        self.assertIsNone(self.window.capture)
+        self.dialog.stop_button.click()
+        self.wait(lambda: "остановлен (код 0)" in self.dialog.device_status.text())
+        self.wait(self.dialog.start_button.isEnabled)
+        self.assertTrue(self.dialog.pretrigger.isEnabled())
