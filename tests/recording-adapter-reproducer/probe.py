@@ -1,4 +1,4 @@
-"""Native byte transport through the exact production PR154 recording adapter."""
+"""Native byte transport and worker PREPARE through the exact PR155 adapter."""
 import argparse
 from dataclasses import asdict, replace
 import hashlib
@@ -63,6 +63,8 @@ def audit(path,wire,commands,source_times):
         require(len(acks)==1 and acks[0]['payload'][4:].hex()==q.config_payload_hex,'CONFIG_ACK identity')
         config=[f for f in outgoing if f['kind']==3 and f['request']==acks[0]['request']]
         require(len(config)==1 and config[0]['payload'].hex()==q.config_payload_hex,'exact configuration')
+        cfg=struct.unpack('<HBBBBHHHI',config[0]['payload'])
+        require((q.acquisition_mode,q.auto_timeout_ms)==(cfg[1],cfg[8]),'CONFIG mode/timeout')
         data=archive.read_segment(ordinal)
         if e.kind=='abort':
             require(not begins and q.begin_request_id is None and q.begin_sequence is None and q.unavailable_reason=='no_begin','no-BEGIN identity')
@@ -72,6 +74,8 @@ def audit(path,wire,commands,source_times):
             require((q.begin_request_id,q.begin_sequence,q.unavailable_reason)==(begin['request'],begin['seq'],None),'BEGIN identities')
             b=struct.unpack('<IIIHHHHBBBBHHIHHI',begin['payload'])
             require(b[2]==q.config_id,'BEGIN config')
+            require((b[3],b[5],b[8],b[9],b[11])==(cfg[0],cfg[6],cfg[2],cfg[3],cfg[5]),'BEGIN/CONFIG profile/pretrigger/source/edge/level')
+            nominal=b[13]/((b[14]+1)*(b[15]+1))
             blocks=[f for f in incoming if f['kind']==145 and struct.unpack_from('<II',f['payload'])==(q.generation,e.sequence)]
             samples=[];ranges=[]
             for f in blocks:
@@ -84,13 +88,15 @@ def audit(path,wire,commands,source_times):
                 capture=decode(data);require(capture.samples==tuple(samples) and len(samples)==2048,'full samples')
                 require(capture.trigger_kind==('auto_timeout' if q.acquisition_mode==0 else 'signal'),'trigger kind')
                 require(capture.trigger_index==(None if q.acquisition_mode==0 else 0),'trigger index')
+                require(capture.trigger_kind=={0:'signal',1:'external',2:'auto_timeout'}[b[7]] and capture.trigger_index==(None if b[6]==65535 else b[6]),'full BEGIN trigger kind/index')
+                require(capture.nominal_fs_hz==nominal,'full nominal Fs')
+                require((capture.trigger_edge,capture.trigger_level_code,capture.pretrigger_samples)==('rising' if b[9]==0 else 'falling',b[11],b[5]),'full edge/level/pretrigger')
                 crc=int.from_bytes(terminal['payload'][12:16],'little')
                 require(q.end_samples_crc32==crc==zlib.crc32(struct.pack('<2048H',*samples)) and q.abort_reason_code is None,'END CRC')
             else:
                 require(data==struct.pack('<%dH'%len(samples),*samples),'partial samples')
                 require(e.partial.fragments==tuple(ranges),'partial offsets')
                 require(e.partial.missing_ranges==((len(samples),2048),),'partial complement')
-                nominal=b[13]/((b[14]+1)*(b[15]+1))
                 require(e.partial.nominal_fs_hz==nominal and q.end_samples_crc32 is None,'partial nominal Fs')
         if terminal['kind']==147:require(q.abort_reason_code==int.from_bytes(terminal['payload'][8:10],'little'),'ABORT reason')
         expected.append(dict(bytes=len(data),sha256=hashlib.sha256(data).hexdigest()))
@@ -102,7 +108,12 @@ class Rig:
         self.lock=threading.RLock();self.events=[];self.sources=[];self.facts=[];self.seen=set();self.adapter=None;self.started=0;self.source_times={}
         self.runtime=AcquisitionRuntime(self.link,origin='simulator',clock_ms=lambda:self.link.now,utc_now=lambda:'2026-10-12T21:00:00Z')
         self.runtime.start(101);self.until(lambda:self.runtime.snapshot().phase is Phase.READY)
-        self.adapter=RecordingSessionAdapter(self.runtime,clock_ms=lambda:self.link.now)
+        self.factory_calls=[]
+        def factory(path,identity):
+            self.factory_calls.append(dict(path=str(path),thread=threading.get_ident(),host_bytes=sum(map(len,self.link.writes))))
+            require(threading.get_ident()==self.adapter._writer._thread.ident,'factory on wrong thread')
+            return S.SessionSpool.create(path,identity)
+        self.adapter=RecordingSessionAdapter(self.runtime,clock_ms=lambda:self.link.now,spool_factory=factory)
     def pump(self):
         events=self.runtime.pump()
         for source in (self.runtime.pending_capture,self.runtime.incomplete_result):
@@ -125,18 +136,19 @@ class Rig:
             if predicate():return
             require(time.monotonic()<deadline,'wait timeout');self.pump()
         raise ValueError('pump bound')
-    def begin(self,index,mode):
+    def begin(self,index,mode,spool_path=None,wait=True):
         snap=self.runtime.snapshot();identity=S.SessionIdentity(str(UUID(int=1000+index)),str(UUID(int=snap.session)),'simulator',str(snap.capabilities.firmware_build),f'draft-0.1@{snap.source_sha}','0.1.0')
         self.config=Config(mode=mode,level_code=2048+100*index,auto_timeout_ms=100 if mode==0 else 0)
         self.started=self.link.now
-        with self.lock:require(self.adapter.record(identity,self.config,self.out/('spool-%d'%index)),'record admission')
-        self.until(lambda:self.runtime.snapshot().phase is Phase.ARMED)
-        for old in self.sources:require(self.runtime.result_provenance(old) is None,'previous source leaked into new generation')
+        with self.lock:require(self.adapter.record(identity,self.config,spool_path or self.out/('spool-%d'%index)),'record admission')
+        if wait:
+            self.until(lambda:self.runtime.snapshot().phase is Phase.ARMED)
+            for old in self.sources:require(self.runtime.result_provenance(old) is None,'previous source leaked into new generation')
     def stop(self):
         with self.lock:require(self.adapter.stop(),'Stop rejected')
     def samples(self,mode,number,count=2048):
         self.link.now+=100;self.link.op('SAMPLES %d %d %d %d'%(self.link.now,mode,number,count))
-    def save(self,index,kinds):
+    def save(self,index,kinds,reason=None,evidence='stop_ack'):
         self.until(lambda:self.adapter.state.ready_to_save)
         token=object();path=self.out/('recording-%d.mtrec'%index)
         with self.lock:require(self.adapter.save(path,operation=token),'Save rejected')
@@ -144,8 +156,8 @@ class Rig:
         require(self.adapter.save_completion.error is None and self.adapter.save_completion.path==str(path),'Save completion')
         expected=audit(path,bytes(self.link.wire),b''.join(self.link.writes),self.source_times)
         require([e.kind for e in expected['entries']]==kinds,'unexpected terminal archive kinds')
-        require(expected['outcome'].stop_evidence=='stop_ack','Stop not proven at protocol level')
-        require(expected['outcome'].reason==('single_complete' if self.config.mode==2 else 'user_stop'),'wrong termination')
+        require(expected['outcome'].stop_evidence==evidence,'wrong Stop evidence')
+        require(expected['outcome'].reason==(reason or ('single_complete' if self.config.mode==2 else 'user_stop')),'wrong termination')
         A.save(self.out/('expected-%d.json'%index),expected)
         for source in self.sources:require(self.runtime.result_provenance(source) is None,'ACK retained stale facts')
     def close(self):
@@ -153,6 +165,7 @@ class Rig:
             with self.lock:self.adapter.observe(self.runtime.disconnect());self.adapter.retire()
             self.adapter._writer._thread.join(5);require(not self.adapter._writer.running,'writer did not retire')
         self.native.dispose();A.save(self.out/'api.json',self.events);A.save(self.out/'native.json',self.native.log)
+        A.save(self.out/'factory.json',self.factory_calls)
         A.save(self.out/'facts.json',self.facts);A.save(self.out/'source-times.json',self.source_times);(self.out/'host.wire').write_bytes(b''.join(self.link.writes));(self.out/'device.wire').write_bytes(self.link.wire)
 
 def held_persist(rig,stop):
@@ -177,6 +190,79 @@ def held_persist(rig,stop):
         finally:
             release.set()
             rig.events.append(dict(kind='writer_barrier',owner_thread=owner,writer_threads=thread_ids,model_delay_ms=5400,user_stop=stop))
+
+def prepare_case(name):
+    r=Rig(args.out/('prepare-'+name),64)
+    target=r.out/'missing'/'nested'/'capture.spool'
+    entered=threading.Event();release=threading.Event();original=Path.mkdir
+    observations=[];owner=threading.get_ident();private='private-mkdir-detail-7391'
+    blocked=name in ('stop','retire-queued','retire-mkdir','disconnect')
+    def no_start():
+        require([f['kind'] for f in frames(b''.join(r.link.writes))]==[1,2],'PREPARE emitted control start')
+        require(not r.sources and not r.link.states[-1]['hw'],'PREPARE acquired samples')
+    def mkdir(path,*pos,**kw):
+        if path==target.parent:
+            require(threading.get_ident()==r.adapter._writer._thread.ident and threading.get_ident()!=owner,'mkdir on owner')
+            observations.append(dict(event='mkdir-enter',thread=threading.get_ident(),path=str(path),host_bytes=sum(map(len,r.link.writes)),exists=target.exists()))
+            no_start();entered.set()
+            if name=='permission':raise PermissionError(private)
+            if blocked:require(release.wait(10),'mkdir gate timeout')
+            observations.append(dict(event='mkdir-release',retired=r.adapter.state.retired))
+        return original(path,*pos,**kw)
+    try:
+        require(not target.parent.exists() and not target.exists(),'parents unexpectedly exist')
+        if name=='parent-file':
+            target=r.out/'collision'/'capture.spool';target.parent.write_bytes(b'preserve-parent-7391')
+        with patch.object(Path,'mkdir',mkdir):
+            try:
+                if name=='retire-queued':
+                    with r.adapter._writer._condition:
+                        r.begin(1,2,target,False)
+                        with r.lock:r.adapter.observe(r.runtime.disconnect());r.adapter.retire()
+                    observations.append(dict(event='retire-queued',state=r.adapter.state))
+                else:
+                    r.begin(1,2,target,False)
+                    if name not in ('parent-file','permission'):
+                        r.until(entered.is_set)
+                    if blocked:
+                        require(not target.exists() and r.adapter.state.spool_path==str(target),'requested path treated as created')
+                        for _ in range(6):r.pump();r.link.now+=900
+                        r.pump();no_start()
+                        if name=='stop':r.stop()
+                        else:
+                            with r.lock:
+                                r.adapter.observe(r.runtime.disconnect())
+                                if name=='retire-mkdir':r.adapter.retire()
+                        observations.append(dict(event=name,state=r.adapter.state,now=r.link.now))
+                        no_start()
+            finally:release.set()
+            if name in ('retire-queued','retire-mkdir'):
+                r.adapter._writer._thread.join(5)
+                require(not r.adapter._writer.running,'retired writer did not settle')
+                r.adapter.observe()
+                require(not r.factory_calls and not target.exists(),'retired preparation created spool')
+                require(not r.adapter.state.ready_to_save and r.adapter.save_completion is None,'late retired success')
+                require(not r.adapter.save(r.out/'forbidden.mtrec'),'retired Save accepted')
+                require(entered.is_set()==(name=='retire-mkdir'),'wrong retirement boundary')
+            elif name in ('parent-file','permission'):
+                r.until(lambda:r.adapter.state.error is not None)
+                require(r.adapter.state.error=='prepare_failed' and private not in repr(r.adapter.state),'prepare error leaked')
+                require(not target.exists() and not r.factory_calls and not r.adapter.state.ready_to_save,'failed preparation published success')
+                require(not r.adapter.save(r.out/'forbidden.mtrec'),'failed Save accepted')
+                if name=='parent-file':require(target.parent.read_bytes()==b'preserve-parent-7391','parent file changed')
+            elif name=='success':
+                r.until(lambda:r.runtime.snapshot().phase is Phase.ARMED)
+                require(target.is_file() and len(r.factory_calls)==1,'missing-parent creation failed')
+                r.samples(2,1);r.save(1,['capture'])
+            else:
+                r.save(1,[],reason='user_stop' if name=='stop' else 'error',evidence='none' if name=='stop' else 'unknown')
+                if name=='disconnect':require(S.load(r.out/'recording-1.mtrec').outcome.diagnostic=='transport_recovery','recovery diagnostic lost')
+        if name!='success':no_start()
+        require(not (r.out/'forbidden.mtrec').exists(),'unexpected archive')
+        observations.append(dict(event='settled',state=r.adapter.state,spool_exists=target.exists(),parent_exists=target.parent.exists()))
+        return dict(case='prepare-'+name,status='PASS',archives=1 if name in ('success','stop','disconnect') else 0)
+    finally:
+        release.set();A.save(r.out/'prepare.json',observations);r.close()
 
 results=[]
 try:
@@ -205,5 +291,8 @@ try:
                     r.until(lambda:r.runtime.pending_capture is not None);r.stop()
             r.save(1,['capture']*number_windows);results.append(dict(case=name,status='PASS',archives=1))
         finally:r.close()
+    for name in ('success','parent-file','permission','stop','retire-queued','retire-mkdir','disconnect'):
+        results.append(prepare_case(name))
+    require(len(results)==10 and sum(x['archives'] for x in results)==8,'case/archive coverage count')
 finally:A.save(args.out/'summary.json',results)
 print(json.dumps(results))

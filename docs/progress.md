@@ -789,3 +789,34 @@ END CRC, сырые фрагменты, nominal Fs и host_elapsed_ms. Oracle с
 определены до реализации этого derivative; независимый вердикт ожидается.
 GUI, физическая плата/USB, полный runtime, непрерывность, полный разряд,
 Windows и power-loss durability этой проверкой не подтверждаются.
+
+## 12.10.2026 — draft native-пары PR155: подготовка spool на worker
+
+Отдельная следующая версия `tests/recording-adapter-reproducer` закрепляет B
+`dbbff7812a9d811d6764dfb80ad83001c8f10bdb`, tree
+`412176cadae21859d677d08d130a654cbeb19643`. Среди десяти исполняемых здесь
+Qt-free модулей B относительно PR154 изменён только recording_bridge:
+worker mkdir и проверки retired вокруг него. В PR155 также изменены GUI-модули,
+которые эта native-проверка не исполняет и не принимает. A не меняет
+host/firmware/wire; native bridge/fixture/IPC остаются прежними.
+
+Исправлено P3 предыдущего checker: full nominal Fs, trigger kind/index/edge/
+level/pretrigger и mode/timeout теперь прямо сопоставляются с BEGIN/CONFIG.
+Добавлены семь PREPARE-сценариев: отсутствующие вложенные родители, parent-file,
+моделируемый PermissionError, blocked mkdir+Stop, queued retirement,
+retirement внутри mkdir и настоящий disconnect с завершением recovery.
+Проверяется отсутствие CONFIG/ARM до подготовки и после отказа/Stop/recovery;
+настоящие пустые архивы различают user_stop/none и error/unknown с diagnostic.
+
+Авторская r2: strict/ASan+UBSan × обычный/optimized Python, десять
+последовательностей и восемь fresh-readback архивов на вариант, итого 40/32.
+Все 11 команд exit0, wire совпал для десяти последовательностей.
+Receipt SHA256: `faf942e642808d9754414259d23eebefcdf74ead0bc66f2a890e698af0a43548`.
+Авторская r1 также прошла, сохранена отдельно; r2 добавляет прямую проверку
+BEGIN trigger kind/index. Предыдущие кандидаты и вердикты не переписаны.
+
+Критерии независимого Critic-A заданы до реализации; текущий draft ещё ждёт
+оценки. Retirement проверен на двух заданных границах: это не отмена уже
+вошедшего syscall/factory и не гарантия отсутствия всех файловых эффектов.
+Qt GUI/worker, Windows, полный firmware runtime и физическая готовность
+в этой native-проверке не выполняются и не принимаются.
