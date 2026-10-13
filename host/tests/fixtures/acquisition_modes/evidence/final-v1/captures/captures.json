@@ -1,0 +1,162 @@
+[
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 1,
+    "timeout": false,
+    "crc": 3390935829
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 2,
+    "timeout": true,
+    "crc": 2676013623
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 3,
+    "timeout": false,
+    "crc": 890021131
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 4,
+    "timeout": true,
+    "crc": 2534524161
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 5,
+    "timeout": false,
+    "crc": 1648487699
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 6,
+    "timeout": true,
+    "crc": 2559690719
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 7,
+    "timeout": false,
+    "crc": 1067500936
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 8,
+    "timeout": true,
+    "crc": 1895680666
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 9,
+    "timeout": false,
+    "crc": 2702624131
+  },
+  {
+    "mode": 0,
+    "edge": 0,
+    "generation": 4,
+    "window": 10,
+    "timeout": true,
+    "crc": 39598838
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 4,
+    "window": 1,
+    "timeout": false,
+    "crc": 2511156439
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 6,
+    "window": 2,
+    "timeout": false,
+    "crc": 250916962
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 8,
+    "window": 3,
+    "timeout": false,
+    "crc": 1735320801
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 10,
+    "window": 4,
+    "timeout": false,
+    "crc": 2338252870
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 12,
+    "window": 5,
+    "timeout": false,
+    "crc": 69755669
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 14,
+    "window": 6,
+    "timeout": false,
+    "crc": 157052473
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 16,
+    "window": 7,
+    "timeout": false,
+    "crc": 2473760795
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 18,
+    "window": 8,
+    "timeout": false,
+    "crc": 664461606
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 20,
+    "window": 9,
+    "timeout": false,
+    "crc": 2897608363
+  },
+  {
+    "mode": 2,
+    "edge": 1,
+    "generation": 22,
+    "window": 10,
+    "timeout": false,
+    "crc": 2394705876
+  }
+]
