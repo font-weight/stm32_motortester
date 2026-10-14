@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "scope": "six-block no-sync structural E1; line hierarchy and heading clearance correction 2026-10-13",
+  "source_snapshot_date": "2026-10-13",
+  "source_identity": "structural-gost-nosync-20261012; per-file hashes below identify exact local bytes",
+  "public_delivery_reference": "https://github.com/font-weight/stm32_motortester/issues/134#issuecomment-6123657910",
+  "owner_clarification_reference": "https://github.com/font-weight/stm32_motortester/issues/134#issuecomment-6123734723",
+  "hardware_validated": false,
+  "full_device_schematic": false,
+  "regenerated_in_this_change": true,
+  "comprehensive_gost_review": false,
+  "current_library_bytes_reverified": false,
+  "provenance_limits": "Preserved local bytes and historical delivery records; fresh Library retrieval unavailable. Historical seven-block diagram review does not apply. Final DOCX clarification/layout review applies only to its exact hash, not diagram standards or hardware. Manifest is archival metadata, not an independent acceptance verdict.",
+  "files": [
+    {
+      "path": "build_scheme.py",
+      "bytes": 8954,
+      "sha256": "5b81f6c4b84ba182db7d09ff289de29566c61fa26846479b3d8c84d1397ecd16",
+      "source_relative_path": "build_scheme.py",
+      "preservation": "Revised line hierarchy and heading clearance; original retained in prior source snapshot",
+      "original_sha256": "adce951e61b804a9a33e55035ce22512647308265b062ee29a0b4e7be6cfee5e"
+    },
+    {
+      "path": "build_description.py",
+      "bytes": 15139,
+      "sha256": "cfca936de97628a21f332a71c0077ff34b864d816444a4a3b43f9fae1e608fe8",
+      "source_relative_path": "build_description.py",
+      "preservation": "unchanged recovered local artifact"
+    },
+    {
+      "path": "assets/FONT_PROVENANCE.md",
+      "bytes": 1262,
+      "sha256": "9f43f0224ce7bdfc3c17f2188e0cb5969456809b4d8ae861081c4110c899e628",
+      "source_relative_path": "assets/FONT_PROVENANCE.md",
+      "preservation": "unchanged recovered local artifact"
+    },
+    {
+      "path": "assets/OpenGOST_LICENSE.txt",
+      "bytes": 4427,
+      "sha256": "6233a6e979c5e000cd8117ab7a33bbfb50212585521f9c1a4f04d8a9fe838ca2",
+      "source_relative_path": "assets/OpenGOST_LICENSE.txt",
+      "preservation": "unchanged recovered local artifact"
+    },
+    {
+      "path": "assets/OpenGOSTtypeB-Regular.ttf",
+      "bytes": 84796,
+      "sha256": "8307a636e921a3be10d36034581caafd8cf36cb85909b8add21d22f71fcde1f8",
+      "source_relative_path": "assets/OpenGOSTtypeB-Regular.ttf",
+      "preservation": "unchanged recovered local artifact"
+    },
+    {
+      "path": "output/Мотортестер_структурная_схема_Э1.pdf",
+      "bytes": 21892,
+      "sha256": "492d1768e0c5f751c9c96d3b1b96c79561dcb7147e5e6ebcd8fbd489b4da42db",
+      "source_relative_path": "output/Мотортестер_структурная_схема_Э1.pdf",
+      "preservation": "Revised line hierarchy and heading clearance; original retained in prior source snapshot",
+      "original_sha256": "642d8a78eaf1edc97ce839301b9aa607b929b2a2ae7ed4e439d44e15caf29ff0"
+    },
+    {
+      "path": "output/Мотортестер_структурная_схема_Э1.svg",
+      "bytes": 150671,
+      "sha256": "f738517621b5a72dfabe566a808b82af99c9c7a8eadbfff3d4630c000a0638d4",
+      "source_relative_path": "output/Мотортестер_структурная_схема_Э1.svg",
+      "preservation": "Revised line hierarchy and heading clearance; original retained in prior source snapshot",
+      "original_sha256": "ef3558b90d65f9e00d32dbb488ade5c0c2979a73a123d1330dbfd22f6dc71fe3"
+    },
+    {
+      "path": "output/Описание_блоков_мотортестера.docx",
+      "bytes": 41872,
+      "sha256": "84e65bd2018b97441d187e4603b5fc001dd201f109f51ecf66f0dbb64b81f168",
+      "source_relative_path": "output/Описание_блоков_мотортестера.docx",
+      "preservation": "unchanged recovered local artifact"
+    }
+  ],
+  "original_diagram_date": "2026-10-12",
+  "historical_original_diagram_delivery_utc": "2026-10-12T11:35:34Z",
+  "historical_description_delivery_utc": "2026-10-12T12:37:50Z",
+  "generation": {
+    "command": "python3 hardware/structural-diagram/build_scheme.py",
+    "reportlab": "4.4.9",
+    "fonttools": "4.61.1",
+    "description_regenerated": false,
+    "change": "21 main/thin line widths revised; five change-table heading anchors shifted upward by 0.5 mm for clearance. Diagram wording, functional blocks/connections, fonts and existing DOCX unchanged",
+    "normative_basis": "GOST 2.104-2006 sections5.1–5.2, Form1, printed page8; https://www.swrit.ru/doc/eskd/2.104-2006.pdf",
+    "review_status": "pending exact corrected-artifact review"
+  }
+}
