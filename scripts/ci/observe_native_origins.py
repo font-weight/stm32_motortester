@@ -23,7 +23,7 @@ MIB = 1024 * 1024
 TOTAL_READ_LIMIT = 128 * MIB
 AUX_READ_RESERVE = 5 * MIB
 INPUT_READ_LIMIT = TOTAL_READ_LIMIT - AUX_READ_RESERVE
-SOURCE = "1930f75b976be17a3df51da079b6d8ba275e3f73"
+SOURCE = "244b0786a18fed19a9e708bb815150475ddd193f"
 INSPECTOR = "54d63be3fdd8eba858bafafbf6cec33c4ed989b8"
 INSPECTOR_HASH = "fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53"
 BASELINE_HASH = "fb864aa52ccf4db813478a41ba256b9f6bc64c711403884d9ef0b8603926a8df"
@@ -675,12 +675,12 @@ def main():
     context = {"run_id": run, "attempt": attempt, "job": os.environ["GITHUB_JOB"],
                "workflow_sha": workflow, "source_commit": SOURCE, "inspector_commit": INSPECTOR,
                "inspector_sha256": INSPECTOR_HASH, "python_base": sys.base_prefix,
-               "source_tree": "c92973b11fbdf31e43bd8d709e20a4a1a03a9f62",
+               "source_tree": "0c0e61fb8aadd4a4380e2d7e0b8818e4c9da0d5e",
                "inspector_tree": "2353f3c2680c53faa5bae08beaa5c35b1d785a64",
                "inspector_parent": "d10e83578718d49f971f034a58e0a77af10ff855",
                "recipe_blob": "be9c0f648681f60a20ee14ce19c65cab5c8a465d",
                "lock_blob": "256a8005b4f7de19651c9b9bdd70419b5b52af3d",
-               "collector_blob": "fed7af5c94a658324b6940021d169417dab05c1e",
+               "collector_blob": "1aaa934cf7a964aa853230d635f1ce8335fc175c",
                "prior_job_status": os.environ["OBSERVER_PRIOR_JOB_STATUS"],
                "image_os": os.environ["ImageOS"], "image_version": os.environ["ImageVersion"]}
     def retain_notice(side, raw):

@@ -355,6 +355,27 @@ class Receipts(unittest.TestCase):
                 self.bind()
             self.provenance[key] = original
 
+    def test_historical_or_mixed_source_tuple_is_refused(self):
+        for old in ("1930f75b976be17a3df51da079b6d8ba275e3f73",
+                    "60c3d262b5597794869b32e0aa27d6981b28e38b"):
+            for stale in ({"manifest"}, {"provenance"}, {"archive"},
+                          {"manifest", "provenance", "archive"}):
+                manifest = dict(self.manifest)
+                provenance = dict(self.provenance)
+                archive = dict(self.archive)
+                if "manifest" in stale:
+                    manifest["source_commit"] = old
+                if "provenance" in stale:
+                    provenance["source_commit"] = old
+                if "archive" in stale:
+                    archive["source_sha"] = old
+                raw = json.dumps(manifest).encode()
+                provenance["build_manifest_sha256"] = o.digest(raw)
+                archive["build_manifest_sha256"] = o.digest(raw)
+                with self.subTest(old=old, stale=sorted(stale)), self.assertRaises(o.Invalid):
+                    o.bind_inputs(raw, json.dumps(provenance).encode(),
+                                  json.dumps(archive).encode(), self.baseline_raw, self.toc)
+
     def test_wrong_recording_join(self):
         self.archive["recording_source_zip_hashes_verified"] = True
         with self.assertRaises(o.Invalid):

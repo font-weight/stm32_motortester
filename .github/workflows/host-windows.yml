@@ -23,14 +23,14 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: '1930f75b976be17a3df51da079b6d8ba275e3f73'
-      SOURCE_TREE: 'c92973b11fbdf31e43bd8d709e20a4a1a03a9f62'
+      SOURCE_SHA: '244b0786a18fed19a9e708bb815150475ddd193f'
+      SOURCE_TREE: '0c0e61fb8aadd4a4380e2d7e0b8818e4c9da0d5e'
       INSPECTOR_SHA: '54d63be3fdd8eba858bafafbf6cec33c4ed989b8'
       INSPECTOR_PARENT_SHA: 'd10e83578718d49f971f034a58e0a77af10ff855'
       INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
       OBSERVER_WORKFLOW_SHA: ${{ github.workflow_sha }}
-      OBSERVER_FILE_SHA256: ac9e391664132755d33773dad6336daa27039773e489a8eea943874672dce3ad
+      OBSERVER_FILE_SHA256: 5b8ca95c9e9ea14f0a06d2edc8735c1bef6bc53d51985bfa0ae75adc37ee922c
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
@@ -52,7 +52,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: '1930f75b976be17a3df51da079b6d8ba275e3f73'
+          ref: '244b0786a18fed19a9e708bb815150475ddd193f'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
@@ -71,7 +71,7 @@ jobs:
           $lock = (git rev-parse HEAD:host/packaging/requirements-win-x64.lock).Trim()
           if ($LASTEXITCODE -ne 0 -or $lock -cne '256a8005b4f7de19651c9b9bdd70419b5b52af3d') { throw 'Unexpected dependency lock' }
           $collector = (git rev-parse HEAD:host/packaging/collect_licenses.py).Trim()
-          if ($LASTEXITCODE -ne 0 -or $collector -cne 'fed7af5c94a658324b6940021d169417dab05c1e') { throw 'Unexpected notice collector' }
+          if ($LASTEXITCODE -ne 0 -or $collector -cne '1aaa934cf7a964aa853230d635f1ce8335fc175c') { throw 'Unexpected notice collector' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
           git config --show-origin --get core.autocrlf
           if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }

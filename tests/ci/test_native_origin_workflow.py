@@ -50,7 +50,7 @@ class Workflow(unittest.TestCase):
         self.assertEqual(document["permissions"], {"contents": "read"})
         self.assertEqual(job["runs-on"], "windows-2022")
         self.assertEqual(job["timeout-minutes"], 30)
-        self.assertEqual(job["env"]["SOURCE_SHA"], "1930f75b976be17a3df51da079b6d8ba275e3f73")
+        self.assertEqual(job["env"]["SOURCE_SHA"], "244b0786a18fed19a9e708bb815150475ddd193f")
         self.assertEqual(job["env"]["INSPECTOR_SHA"], "54d63be3fdd8eba858bafafbf6cec33c4ed989b8")
         self.assertEqual(job["env"]["INSPECTOR_PARENT_SHA"], "d10e83578718d49f971f034a58e0a77af10ff855")
         script = (ROOT / "scripts/ci/observe_native_origins.py").read_bytes()
@@ -61,6 +61,24 @@ class Workflow(unittest.TestCase):
         self.assertNotIn("continue-on-error", WORKFLOW.read_text())
         self.assertNotIn("upload-artifact", WORKFLOW.read_text())
         self.assertNotIn("actions/cache", WORKFLOW.read_text())
+
+    def test_delivery_tuple_is_coherent(self):
+        env = yaml.safe_load(WORKFLOW.read_text())["jobs"]["verify"]["env"]
+        self.assertEqual(env["SOURCE_TREE"], "0c0e61fb8aadd4a4380e2d7e0b8818e4c9da0d5e")
+        checkouts = [x for x in steps() if x.get("uses", "").startswith("actions/checkout@")]
+        self.assertEqual(len(checkouts), 1)
+        self.assertEqual(checkouts[0]["with"]["ref"], env["SOURCE_SHA"])
+        self.assertIn("$collector -cne '1aaa934cf7a964aa853230d635f1ce8335fc175c'", WORKFLOW.read_text())
+        parsed = ast.parse((ROOT / "scripts/ci/observe_native_origins.py").read_text())
+        assignments = [x for x in ast.walk(parsed) if isinstance(x, ast.Assign)]
+        source, = [ast.literal_eval(x.value) for x in assignments
+                   if any(isinstance(t, ast.Name) and t.id == "SOURCE" for t in x.targets)]
+        self.assertEqual(source, env["SOURCE_SHA"])
+        context, = [x.value for x in assignments
+                    if any(isinstance(t, ast.Name) and t.id == "context" for t in x.targets)]
+        values = {ast.literal_eval(k): v for k, v in zip(context.keys, context.values)}
+        self.assertEqual(ast.literal_eval(values["source_tree"]), env["SOURCE_TREE"])
+        self.assertEqual(ast.literal_eval(values["collector_blob"]), "1aaa934cf7a964aa853230d635f1ce8335fc175c")
 
     def test_child_errors_keep_source_guard_and_propagate(self):
         source = embedded("Observe bounded native metadata and original CPython notice")
