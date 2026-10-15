@@ -1,9 +1,0 @@
-In file included from /workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c:32:
-/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h: In function 'btable_set_count':
-/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]
-  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);
-      |                  ^
-/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c: In function 'fsdev_core_reset':
-/workspace/shared/usb-dependencies/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c:46:22: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967293' [-Wconversion]
-   46 |   FSDEV_REG->CNTR &= ~U_CNTR_PDWN;
-      |                      ^

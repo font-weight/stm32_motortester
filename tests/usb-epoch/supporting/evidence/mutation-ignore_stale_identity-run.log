@@ -1,4 +1,0 @@
-$ /workspace/shared/usb-epoch-independent/evidence/mutants/ignore_stale_identity --directed
-FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:32 (lost current enqueue poisons even after configuration): !mt_usb_epoch_enqueued(s, old, 1, 1)
-
-exit=1

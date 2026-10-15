@@ -1,2 +1,0 @@
-Author, supporting, supplemental Critic-A strict/ASan/UBSan and GCC analyzer passed.
-Leak detection disabled; no physical timing, integrated firmware or acceptance claim.

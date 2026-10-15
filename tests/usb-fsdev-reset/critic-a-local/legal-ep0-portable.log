@@ -1,8 +1,0 @@
-PASS legal buffer-only EP0: fixed=0 direction=RX events=1 PMA_reads=1
-PASS legal buffer-only EP0: fixed=0 direction=TX events=1 PMA_reads=0
-PASS legal buffer-only EP0: fixed=0 direction=RX events=1 PMA_reads=1
-PASS legal buffer-only EP0: fixed=0 direction=TX events=1 PMA_reads=0
-PASS legal buffer-only EP0: fixed=1 direction=RX events=0 PMA_reads=0
-PASS legal buffer-only EP0: fixed=1 direction=TX events=0 PMA_reads=0
-PASS legal buffer-only EP0: fixed=1 direction=RX events=0 PMA_reads=0
-PASS legal buffer-only EP0: fixed=1 direction=TX events=0 PMA_reads=0

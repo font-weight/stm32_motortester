@@ -1,8 +1,0 @@
-$ /workspace/shared/usb-epoch-independent-relocated-check/evidence/test-sanitize
-directed: PASS (12 contract scenario groups)
-exhaustive: PASS (1627235 transitions, all length <= 5 sequences over 15 actions from 2 origins)
-random: PASS (1001250 transitions; seed 0x6d6f746f72757362; 1000 walks; boundary-injected origins labeled)
-reference totals: transitions=2628485 permitted_app_queries=24098 denied_app_queries=13118332
-PASS checks=86740537 state_size=48
-
-exit=0

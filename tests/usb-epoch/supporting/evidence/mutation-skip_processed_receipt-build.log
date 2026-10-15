@@ -1,3 +1,0 @@
-$ gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wconversion -Wsign-conversion -Wshadow -Wstrict-prototypes -Wmissing-prototypes -O2 -I/workspace/shared/usb-epoch-independent/inputs /workspace/shared/usb-epoch-independent/tests/epoch_independent.c /workspace/shared/usb-epoch-independent/evidence/mutants/skip_processed_receipt.c -o /workspace/shared/usb-epoch-independent/evidence/mutants/skip_processed_receipt
-
-exit=0

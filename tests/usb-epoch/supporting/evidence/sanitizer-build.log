@@ -1,3 +1,0 @@
-$ gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror -Wconversion -Wsign-conversion -Wshadow -Wstrict-prototypes -Wmissing-prototypes -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -no-pie -I/workspace/shared/usb-epoch-independent/inputs /workspace/shared/usb-epoch-independent/tests/epoch_independent.c /workspace/shared/usb-epoch-independent/inputs/mt_usb_epoch.c -o /workspace/shared/usb-epoch-independent/evidence/test-sanitize
-
-exit=0

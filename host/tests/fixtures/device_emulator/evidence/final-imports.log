@@ -1,3 +1,0 @@
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=host:/tmp/motortester-deps QT_QPA_PLATFORM=offscreen /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -c 'import sys, PySide6, pyqtgraph, numpy; import motortester.device_emulator, motortester.session, motortester.wire; print(sys.version); print('"'"'IMPORTS OK'"'"', PySide6.__version__, numpy.__version__) '
-3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
-IMPORTS OK 6.12.0 2.5.3

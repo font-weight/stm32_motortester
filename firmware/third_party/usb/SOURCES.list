@@ -1,6 +1,0 @@
-vendor/tinyusb/src/class/cdc/cdc_device.c
-vendor/tinyusb/src/common/tusb_fifo.c
-vendor/tinyusb/src/device/usbd.c
-vendor/tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c
-vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.c
-vendor/tinyusb/src/tusb.c

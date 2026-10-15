@@ -1,4 +1,0 @@
-$ /workspace/shared/usb-epoch-independent/evidence/mutants/allow_diagnostic_wrap --directed
-FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:209 (diagnostics saturate, including repeated notifications): s.queue_losses == UINT32_MAX
-
-exit=1

@@ -1,7 +1,0 @@
-{
-  "upstream_commit": "dae3f9a366bfcddbf9dcf1b48d7500286a849539",
-  "source_path": "src/device/usbd.c",
-  "source_sha256": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
-  "patch_sha256": "51492cd96f4f9f8dd0699fe915f8c157c866f04cdc129e4c7c734e21f49b0f37",
-  "result_sha256": "187144971b52e77385809500bd7401b46c3c332acda5f6221a1b45e440b8ddd0"
-}

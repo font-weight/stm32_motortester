@@ -1,4 +1,0 @@
-$ /workspace/shared/usb-epoch-independent/evidence/mutants/ignore_cleanup --directed
-FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:79 (cleanup required before reset dispatch): !mt_usb_epoch_dispatch(&s, e, 1)
-
-exit=1

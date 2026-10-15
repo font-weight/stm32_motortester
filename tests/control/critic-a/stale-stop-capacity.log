@@ -1,2 +1,0 @@
-FAIL stale_stop_with_pending_statuses:15: f.stop_calls==before
-result=2; stops 1->2; ready=0; hardware=0; pending_before=3; tx_before=1

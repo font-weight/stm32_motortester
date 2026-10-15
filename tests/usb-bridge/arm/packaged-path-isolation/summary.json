@@ -1,8 +1,0 @@
-{
-  "runner_sha256": "dc4db5f2d2e1b4a27575e632308afaad9861700b7b9144f22daeb1446c9908bb",
-  "case_count": 58,
-  "passed": 58,
-  "per_case_timeout_seconds": 5,
-  "all_fixture_trees_unchanged": true,
-  "scope": "Disposable owned fixture trees only; no compiler or source-copy commands run on successful preflight or any rejected case."
-}

@@ -1,9 +1,0 @@
-{
-  "repository": "hathach/tinyusb",
-  "commit": "dae3f9a366bfcddbf9dcf1b48d7500286a849539",
-  "path": "src/device/usbd.c",
-  "git_blob": "c4c418cb5e03a76deeab566ddac318eb903dba66",
-  "sha256": "38de54351d81878e6543f2b022d0c39f45d28c8f0888491796398dec45e727be",
-  "bytes": 58890,
-  "local_input_exact": true
-}

@@ -1,2 +1,0 @@
-   text	   data	    bss	    dec	    hex	filename
-  11281	      0	      0	  11281	   2c11	/workspace/shared/adc-control-arm-budget/runs/run-1/modules-relocatable.o

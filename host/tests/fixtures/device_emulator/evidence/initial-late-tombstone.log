@@ -1,6 +1,0 @@
-test_previous_tombstone_release_cannot_free_or_rearm_current_window (test_device_emulator_conformance.LateTombstoneIsolation.test_previous_tombstone_release_cannot_free_or_rearm_current_window) ... ok
-
-----------------------------------------------------------------------
-Ran 1 test in 0.290s
-
-OK

@@ -1,2 +1,0 @@
-FAIL old_tombstone_during_new_frozen_window:17: f.start_calls==before
-before starts=2; after starts=3; phase=1; hardware_running=1; active_window=2; replay_window=1

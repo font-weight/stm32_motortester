@@ -1,2 +1,0 @@
-native_exit=0
-sanitizer_exit=0

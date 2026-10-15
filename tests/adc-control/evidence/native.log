@@ -1,5 +1,0 @@
-cc (Debian 14.2.0-19) 14.2.0
-ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
-ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed
-ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
-ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed

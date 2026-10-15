@@ -1,4 +1,0 @@
-$ /workspace/shared/usb-epoch-independent/evidence/mutants/allow_hard_wrap --directed
-FAIL /workspace/shared/usb-epoch-independent/tests/epoch_independent.c:222 (hard max token is valid once, then permanent shutdown): s.current == UINT32_MAX
-
-exit=1

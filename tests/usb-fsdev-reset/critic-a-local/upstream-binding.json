@@ -1,9 +1,0 @@
-{
-  "upstream": "hathach/tinyusb",
-  "commit": "dae3f9a366bfcddbf9dcf1b48d7500286a849539",
-  "path": "src/portable/st/stm32_fsdev/dcd_stm32_fsdev.c",
-  "blob": "f5a8beb65dbdcef6304748553284cea5c063c0d8",
-  "sha256": "62b73c5fab0cbda70df6bd1bc1c9a7df0c8a59ea02c38c884b24b55e44ddfc9f",
-  "bytes": 30229,
-  "local_exact": true
-}

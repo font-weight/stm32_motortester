@@ -1,9 +1,0 @@
-cc (Debian 14.2.0-19) 14.2.0
-control: stale Stop preflight, 20 encoded window loops and hardware failure recovery passed
-RX: encoded command splits, rejection isolation, timeout/wrap, overflow and recovery suffix passed
-control: stale Stop preflight, 20 encoded window loops and hardware failure recovery passed
-RX: encoded command splits, rejection isolation, timeout/wrap, overflow and recovery suffix passed
-ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
-ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed
-ADC/TIM3/DMA register-model tests passed (not a hardware measurement)
-ADC-control: canonical preflight, actual register-model path, partial freeze, clock wrap and stale Stop passed

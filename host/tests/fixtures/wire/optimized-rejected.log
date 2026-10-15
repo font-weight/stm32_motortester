@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/tmp/motortester-host-wire/host/tests/fixtures/wire/compare_c.py", line 151, in <module>
-    main()
-  File "/tmp/motortester-host-wire/host/tests/fixtures/wire/compare_c.py", line 42, in main
-    raise RuntimeError("Проверка требует включённых assert; не используйте python -O/-OO")
-RuntimeError: Проверка требует включённых assert; не используйте python -O/-OO

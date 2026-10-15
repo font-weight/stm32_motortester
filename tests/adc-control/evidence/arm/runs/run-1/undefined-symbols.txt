@@ -1,4 +1,0 @@
-         U memcmp
-         U memcpy
-         U memmove
-         U memset

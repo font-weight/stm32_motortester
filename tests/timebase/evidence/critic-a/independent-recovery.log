@@ -1,9 +1,0 @@
-+ cc --version
-+ head -n 1
-cc (Debian 14.2.0-19) 14.2.0
-+ cc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -O2 -Isnapshot/firmware/platform snapshot/firmware/platform/mt_timebase.c independent_timebase.c -o build/strict
-+ build/strict
-Critic-A timebase oracle: 462147 scenarios, 32222386 checks passed
-+ cc -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -Isnapshot/firmware/platform snapshot/firmware/platform/mt_timebase.c independent_timebase.c -o build/sanitized
-+ ASAN_OPTIONS=detect_leaks=0 build/sanitized
-Critic-A timebase oracle: 462147 scenarios, 32222386 checks passed

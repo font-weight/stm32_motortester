@@ -1,9 +1,0 @@
-# HOST-001: direct and transitive runtime dependencies, verified 2026-10-10.
-# Core/CLI use only the standard library. GUI/serial packaging additionally needs all six packages.
-# Versions are fixed; this file is not a cross-platform artifact hash lock.
-PySide6-Essentials==6.12.0
-shiboken6==6.12.0
-pyqtgraph==0.14.0
-numpy==2.5.3
-colorama==0.4.6
-pyserial==3.5

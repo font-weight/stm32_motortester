@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "scope": "on-runner-archive-content-only",
+  "source_sha": "244b0786a18fed19a9e708bb815150475ddd193f",
+  "source_files": 304,
+  "binary_files": 544,
+  "recording_required": true,
+  "expected_inspector_recording": {
+    "scope": "recording-receipt-and-artifact-byte-correspondence",
+    "receipt_sha256": "2815dcd588a005e8a12d95283766a42db394daee6f045bc91ca831a624c24254",
+    "receipt_bytes": 5350,
+    "native_success_receipt": true,
+    "runtime_execution_observed_by_inspector": false,
+    "archive_contents_validated": false,
+    "timing_budgets_verified_by_inspector": false,
+    "source_files_binding": "externally asserted; not checked against source.zip",
+    "source_files": {
+      "motortester/__init__.py": "a9e7bc3ad035367282bcc6f940c95cf1cde2c6c1cee0bb4c3ead1f6eae845645",
+      "motortester/__main__.py": "e4872c82c89809b28285bd0ce5444eeae73e4b1600d897d61f9f237e4f67a86f",
+      "motortester/acquisition.py": "76d2a1d66a93e5133768b056784998ff7622a9cbd859c9fc6a10e0877a281cd5",
+      "motortester/device_emulator.py": "9b60c8860d6d7bdc0317a7d1a4fb30bfd82ad3de300c336f7eeb78e931c29653",
+      "motortester/emulator.py": "d44aa6e164a28efcdef1c49719af6b0344f202a8be2626e893b876a07d729b43",
+      "motortester/gui.py": "c9d2cb75c5c200bce024c28496f78dbb876ddd18179f7c05983024b3583a93cf",
+      "motortester/gui_acquisition.py": "1ddce4ec171f5fe0ce549acbdcfabd5286aad3fbb236048d1809189d4ad69e32",
+      "motortester/lv_collector.py": "53dc0b7c0ff442001d6c64d3d48d2af53fe064b248cfdf7917295f02d96b9b04",
+      "motortester/model.py": "c4f86b6b59b7230823d45c55bca3714250a1c60ce0974e00f0ead65b9a7a834b",
+      "motortester/plotting.py": "66503e6c6d0e7b5e2e953a057c28dd50d3f96b85b7acfc56385ecd6a8e10115c",
+      "motortester/recording.py": "4383bec4ecba4899f5ec814553bad1d9fc099ed711fd66c7ea1352d69aed6cb4",
+      "motortester/recording_bridge.py": "4cfd9ed64c2d825ddcb31de0975e20fbfe26e9f0f8f30103a7dc03c9ede47170",
+      "motortester/recording_controller.py": "47ec66dccd64ceed2aedaac94913af9aa84e743fc283f3ae19079bb8c33a7e15",
+      "motortester/runtime.py": "adbfa246fdfe21542dda4e49f0b45fb6c8eeb54bfd544fa8c71124cda9575ba4",
+      "motortester/session.py": "a880198acbcc56ac231be541b3c899d58b0118f5542a9efdc21d8968e3bfa416",
+      "motortester/session_archive.py": "58016871ff21fde9ffe83d19e32475a2543a9f3c05e46aa79c74972b2bfc799a",
+      "motortester/transport.py": "34d2428e2505321cb894181e8e19bc8492ea2093eee0544d3e935e31960b2a86",
+      "motortester/window.py": "4b16f92f688db8f38339bb95a8d091fde4588a803cafe85336eaaed61728a273",
+      "motortester/wire.py": "a8fa8edf58c22e87994674ad23fc654e4da93e229cfe21d482dbec3116bc8230",
+      "motortester/wire_demo.py": "c79f83b68703477c46dc5c6881091b373b6280a4204d5f26ac2c4f0adb0f48ce",
+      "packaging/launch_gui.py": "0ded14eee8957cf2ca4860df674f1a83106131100f38b78ed828aa3a2bf691ed",
+      "packaging/recording_smoke.py": "f6f7263ed943713cd03692a165d968f40cf42612e61fe4b0f9d1fd2b44df3205",
+      "packaging/build_windows.py": "40aecb99f408b292b486c9d9aea7e723173e904116833a924a522582581a7f8a"
+    },
+    "segment_count": 2,
+    "full_segment_count": 2,
+    "artifacts": {
+      "archive": {
+        "path": "frozen-recording.json.work/recording.mtrec",
+        "bytes": 12359,
+        "sha256": "08a203e74388f867c314bb184ec62f2bb5ba8951eeb1c2351ab10b4ce0902756"
+      },
+      "spool": {
+        "path": "frozen-recording.json.work/recording-aaed3dec7ed641948c59e22ab0b97b31.mtspool",
+        "bytes": 11738,
+        "sha256": "27f025b6557d0fc3fcbade2f6be22b3d0bc8e3ee426f7c68c57a040fcc234a75"
+      }
+    },
+    "synthetic": true,
+    "device_io_performed": false,
+    "physical_stop_verified": false
+  },
+  "recording_source_zip_hashes_verified": 23,
+  "artifact_bytes": {
+    "Motortester-windows-x64-candidate.zip": 60355497,
+    "source.zip": 1411889,
+    "frozen-window.png": 74342,
+    "frozen-window.png.smoke.json": 896,
+    "frozen-serial-import.json": 413,
+    "frozen-recording.json": 5350,
+    "frozen-recording.json.work/recording.mtrec": 12359,
+    "frozen-recording.json.work/recording-aaed3dec7ed641948c59e22ab0b97b31.mtspool": 11738
+  },
+  "artifacts_sha256": {
+    "Motortester-windows-x64-candidate.zip": "86b559243f243f060ad9a2787b679732445ffcb57d1302f40838dfd980294734",
+    "source.zip": "6d112f2159fbb28c2f2d5b0bd7c9c512ccb6e2bf3f08400e535be6ae77f48e13",
+    "frozen-window.png": "3de4e6a403976a9e58638333919b70afa05460847c87e17cc12ce5d0a3488be9",
+    "frozen-window.png.smoke.json": "1bf26ae640e0c902b7d10c61544ec72ce9f0121edfb8d1fbe0643b960793fd0c",
+    "frozen-serial-import.json": "ab5d5bca1d75c405dc1c00ff159151f849a0c26ae01b3c5f30c0627f9e709e83",
+    "frozen-recording.json": "2815dcd588a005e8a12d95283766a42db394daee6f045bc91ca831a624c24254",
+    "frozen-recording.json.work/recording.mtrec": "08a203e74388f867c314bb184ec62f2bb5ba8951eeb1c2351ab10b4ce0902756",
+    "frozen-recording.json.work/recording-aaed3dec7ed641948c59e22ab0b97b31.mtspool": "27f025b6557d0fc3fcbade2f6be22b3d0bc8e3ee426f7c68c57a040fcc234a75"
+  },
+  "build_manifest_sha256": "999630dfd15c0eccd9197756731e19b4af44ad7eec49e31abe9ed32180a7d73e",
+  "checksum_file_sha256": "d65262f7e11a58f2d6cf922ba1ca1c81d9a97b17acedc1dd92c9a6737be0bad1",
+  "bytes_delivered": false,
+  "license_review": "required; see LICENSE-REVIEW.md",
+  "hardware_verified": false
+}
