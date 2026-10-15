@@ -30,7 +30,7 @@ class StagingTests(unittest.TestCase):
     def test_exact_staging(self):
         receipt = m.stage(self.args)
         self.assertEqual(receipt['file_count'], 23)
-        self.assertEqual(receipt['payload_bytes'], 1795570)
+        self.assertEqual(receipt['payload_bytes'], 1798567)
         self.assertIs(receipt['tests_executed'], False)
         for row in MANIFEST['files']:
             data = (Path(self.args.output) / row['destination']).read_bytes()

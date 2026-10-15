@@ -12,8 +12,8 @@ import zipfile
 
 LIMIT=256*1024*1024
 META=2*1024*1024
-PRELAUNCH_SHA='4fc635353b240fa763ac6f90b2d2338606a37acdda135ac98ff44c68faffb171'
-PRELAUNCH_BYTES=32430
+PRELAUNCH_SHA='d132cb3515235a2006529c7107409932bec57c8bc47c50a26b031edd9cf5eeec'
+PRELAUNCH_BYTES=32522
 FALSE_FIELDS=('source_pool_admission_verified','runtime_verified','wheel_bodies_verified',
               'build_execution_verified','source_to_bytecode_attestation','launch_authorized')
 
@@ -42,7 +42,8 @@ def bootstrap(path):
         opened=os.fstat(fd)
         need(stat.S_ISREG(opened.st_mode) and not getattr(opened,'st_file_attributes',0)&0x400,
              'bootstrap-open-type')
-        need((opened.st_dev,opened.st_ino,opened.st_size)==(before.st_dev,before.st_ino,before.st_size),
+        need((opened.st_dev,opened.st_ino,opened.st_size,opened.st_mtime_ns)==
+             (before.st_dev,before.st_ino,before.st_size,before.st_mtime_ns),
              'bootstrap-open')
         raw=os.read(fd,PRELAUNCH_BYTES+1)
         end=os.fstat(fd)

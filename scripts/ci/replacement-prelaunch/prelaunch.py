@@ -76,7 +76,8 @@ def regular(s):
     return stat.S_ISREG(s.st_mode) and not getattr(s,'st_file_attributes',0)&0x400
 
 def shared(s):
-    return s.st_dev,s.st_ino,s.st_size
+    # mtime is comparable across path/handle APIs; ctime stays same-API only.
+    return s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns
 
 def stamp(s):
     # Compare only within one stat API: Windows path/fd ctime differ.

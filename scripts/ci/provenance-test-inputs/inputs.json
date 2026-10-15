@@ -55,14 +55,14 @@
       "path": "scripts/ci/replacement-prelaunch/CANDIDATE.json",
       "destination": "prelaunch-rebuild-20261015/scripts/ci/replacement-prelaunch/CANDIDATE.json",
       "bytes": 851,
-      "sha256": "5cc23f553d81d42a3dff9370bf159d59c96ae6475553447529cd6dc5fa17f1a5"
+      "sha256": "b13d04638b6a2be74f1097e85882703d77d65fbd7d79c401af01ad0ee53a9f63"
     },
     {
       "input": "checkout",
       "path": "scripts/ci/replacement-prelaunch/README_RU.md",
       "destination": "prelaunch-rebuild-20261015/scripts/ci/replacement-prelaunch/README_RU.md",
-      "bytes": 15344,
-      "sha256": "48e6b555eb76109d29dd71a0c11cef32ea62540206d0d5a6ab548a7e1edf5bda"
+      "bytes": 16001,
+      "sha256": "c6a49f213aad8246037c6c04d5f03f367e46d828179a5d87bfcd1c36e81ec21c"
     },
     {
       "input": "checkout",
@@ -75,22 +75,22 @@
       "input": "checkout",
       "path": "scripts/ci/replacement-prelaunch/prelaunch.py",
       "destination": "prelaunch-rebuild-20261015/scripts/ci/replacement-prelaunch/prelaunch.py",
-      "bytes": 32430,
-      "sha256": "4fc635353b240fa763ac6f90b2d2338606a37acdda135ac98ff44c68faffb171"
+      "bytes": 32522,
+      "sha256": "d132cb3515235a2006529c7107409932bec57c8bc47c50a26b031edd9cf5eeec"
     },
     {
       "input": "checkout",
       "path": "scripts/ci/replacement-prelaunch/test_prelaunch.py",
       "destination": "prelaunch-rebuild-20261015/scripts/ci/replacement-prelaunch/test_prelaunch.py",
-      "bytes": 18534,
-      "sha256": "bf39d9b804b59409d03b34aca95ac94e1871151590dcac4d0afd210ceec680dd"
+      "bytes": 19186,
+      "sha256": "48680c0cbc12993bcb7c505f356f390df2f2f6ed96b96eafab6716d0c10d517f"
     },
     {
       "input": "checkout",
       "path": "scripts/ci/replacement-source-inputs/CANDIDATE.json",
       "destination": "source-collector-rebuild-20261015/scripts/ci/replacement-source-inputs/CANDIDATE.json",
       "bytes": 691,
-      "sha256": "bd540b611f2beca1c4d4dadde5cb1d8d0fbb78ee24d8bd4cdc074258d2d43b7f"
+      "sha256": "13ad978fd4f577bc21a66c35df1e1df6e867c8a9639da563ae962fb1cbbb70fb"
     },
     {
       "input": "checkout",
@@ -103,22 +103,22 @@
       "input": "checkout",
       "path": "scripts/ci/replacement-source-inputs/README_RU.md",
       "destination": "source-collector-rebuild-20261015/scripts/ci/replacement-source-inputs/README_RU.md",
-      "bytes": 11560,
-      "sha256": "8c80db0ddc8602be6f1ff214899f1de642cfae1e59c3af62e5ed2e378fd55a30"
+      "bytes": 12217,
+      "sha256": "7a4b6a4b07b0695a5aaab7459a9334cc8820e29d6c0e31407cf3de575374dd1d"
     },
     {
       "input": "checkout",
       "path": "scripts/ci/replacement-source-inputs/source_inputs.py",
       "destination": "source-collector-rebuild-20261015/scripts/ci/replacement-source-inputs/source_inputs.py",
-      "bytes": 17491,
-      "sha256": "627a9e04d085e7b9b9b653bc3d3a1cb590a5e9e9e210515b756f533a52e2cc2d"
+      "bytes": 17543,
+      "sha256": "bd1bc321e2801b791aa3038e02f20e9b4f7f99a54808fef07b5cbd9517314b75"
     },
     {
       "input": "checkout",
       "path": "scripts/ci/replacement-source-inputs/test_source_inputs.py",
       "destination": "source-collector-rebuild-20261015/scripts/ci/replacement-source-inputs/test_source_inputs.py",
-      "bytes": 15180,
-      "sha256": "9d2ddaeb31b6e2787465872572791afa74a9b3a8478b647dc08cf75f9154cc97"
+      "bytes": 16067,
+      "sha256": "54b6185e16adc2b993428b5307a59a1e258bbcd19300f9e7c404c9549663935e"
     },
     {
       "input": "observer",
@@ -157,5 +157,5 @@
       "sha256": "e263fbb3b1734d8ca6d57d1db1493f2c6ce219979e2ffd581af56b4646c48d7f"
     }
   ],
-  "helper_base_commit": "6d98b58f46a9003581da22e0aee5b7fd94978984"
+  "helper_base_commit": "20f0f3c9411adb1a1ec29ad98aa46024a72f9eb0"
 }

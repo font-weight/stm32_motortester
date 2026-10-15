@@ -7,7 +7,7 @@ from pathlib import Path
 import stat
 import sys
 
-MANIFEST_SHA256 = '9570de120d76559f00d56db336321c3c3659c6bf26d8493bab1dd8ce3148e3ba'
+MANIFEST_SHA256 = '53ae56a3acf7f23dcdcd39dd90e899df2c7758f1d54682a95e3d430adc9601d3'
 INPUT_NAMES = ('observer', 'baseline', 'inspector', 'companion', 'original_init', 'source_zip')
 
 

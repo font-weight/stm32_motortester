@@ -216,6 +216,27 @@ class Tests(unittest.TestCase):
             fields['st_file_attributes']=0x400
             return types.SimpleNamespace(**fields)
         with mock.patch('os.fstat',redirected):self.reject()
+
+    def cross_api_stamp(self,field,after_bootstrap=False):
+        import types
+        original=os.fstat;calls=[0]
+        def adjusted(fd):
+            value=original(fd);calls[0]+=1
+            fields={key:getattr(value,key) for key in dir(value) if key.startswith('st_')}
+            if not after_bootstrap or calls[0]>2:fields[field]+=500
+            return types.SimpleNamespace(**fields)
+        return mock.patch.object(os,'fstat',adjusted)
+
+    def test_bootstrap_cross_api_mtime_rejected(self):
+        with self.cross_api_stamp('st_mtime_ns'):self.reject()
+
+    def test_reader_cross_api_mtime_rejected(self):
+        with self.cross_api_stamp('st_mtime_ns',after_bootstrap=True):self.reject()
+
+    def test_cross_api_ctime_qualified(self):
+        with self.cross_api_stamp('st_ctime_ns'):
+            self.assertEqual(self.fixture.run()['status'],'SOURCE_BYTES_OBSERVED')
+
     def test_existing_output_case_alias(self):
         target=self.fixture.config['source_output'];alias=target.with_name(target.name.upper())
         put(alias,b'keep');self.reject();self.assertEqual(alias.read_bytes(),b'keep')

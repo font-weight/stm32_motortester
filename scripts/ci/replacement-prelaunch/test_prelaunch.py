@@ -301,4 +301,21 @@ class Tests(unittest.TestCase):
     def test_terminal_bundle_leaf(self):self.terminal_readback_mutation('leaf')
     def test_terminal_output_alias(self):self.terminal_readback_mutation('alias')
 
+    def cross_api_stamp(self,field):
+        import types
+        original=os.fstat
+        def adjusted(fd):
+            value=original(fd)
+            fields={key:getattr(value,key) for key in dir(value) if key.startswith('st_')}
+            fields[field]+=500
+            return types.SimpleNamespace(**fields)
+        return mock.patch.object(os,'fstat',adjusted)
+
+    def test_cross_api_mtime_rejected(self):
+        with self.cross_api_stamp('st_mtime_ns'):self.reject()
+
+    def test_cross_api_ctime_qualified(self):
+        with self.cross_api_stamp('st_ctime_ns'):
+            self.assertEqual(self.f.run()['status'],'PRELAUNCH_BYTES_MATCH')
+
 if __name__=='__main__':unittest.main()

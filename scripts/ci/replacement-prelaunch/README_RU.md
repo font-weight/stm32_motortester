@@ -155,3 +155,11 @@ wheel/runtime/build verification и launch_authorized остаются false.
 новые назначения, исходные serial/GUI/recording проверки с deadline 30/60/60 s
 и 5 s на reap, реальные PID/время/логи/маркеры и genuine negative controls.
 Нужны неизменённые строгие validators и итоговый companion verify.
+
+## Исправление R5: mtime между API
+
+Дополнительная независимая проверка B выявила отсутствие сравнения mtime
+между path-stat и handle-stat. Теперь сравнивается и mtime; несовместимая
+Windows ctime по-прежнему сравнивается только внутри одного API. SOURCE
+проверяет эту границу также при bootstrap. Добавлены отрицательные mtime
+и положительные ctime-only регрессионные модели; Windows-опыт не заявляется.
