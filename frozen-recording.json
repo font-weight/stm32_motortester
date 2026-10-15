@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "scope": "frozen-windows-recording",
+  "phase": "complete",
+  "phases": [
+    {
+      "name": "entry",
+      "utc": "2026-10-14T13:38:30.274115+00:00"
+    },
+    {
+      "name": "gui",
+      "utc": "2026-10-14T13:38:30.790840+00:00"
+    },
+    {
+      "name": "connect",
+      "utc": "2026-10-14T13:38:31.598315+00:00"
+    },
+    {
+      "name": "record",
+      "utc": "2026-10-14T13:38:32.050123+00:00"
+    },
+    {
+      "name": "stop",
+      "utc": "2026-10-14T13:38:32.113961+00:00"
+    },
+    {
+      "name": "save",
+      "utc": "2026-10-14T13:38:32.179430+00:00"
+    },
+    {
+      "name": "open",
+      "utc": "2026-10-14T13:38:32.296441+00:00"
+    },
+    {
+      "name": "navigation",
+      "utc": "2026-10-14T13:38:32.393302+00:00"
+    },
+    {
+      "name": "shutdown",
+      "utc": "2026-10-14T13:38:32.460184+00:00"
+    },
+    {
+      "name": "complete",
+      "utc": "2026-10-14T13:38:32.460397+00:00"
+    }
+  ],
+  "output": "frozen-recording.json",
+  "workdir": "frozen-recording.json.work",
+  "runtime": {
+    "platform": "win32",
+    "os_name": "nt",
+    "os_release": "2022Server",
+    "os_version": "10.0.20348",
+    "machine": "AMD64",
+    "python": "3.13.16",
+    "implementation": "CPython",
+    "python_bits": 64,
+    "qt": "6.12.0",
+    "pyside": "6.12.0",
+    "qt_platform": "windows",
+    "frozen": true,
+    "optimize": 0,
+    "application": "0.1.0"
+  },
+  "imports": [
+    "motortester.gui",
+    "motortester.gui_acquisition",
+    "motortester.acquisition",
+    "motortester.recording_bridge",
+    "motortester.recording_controller",
+    "motortester.session_archive",
+    "motortester.device_emulator",
+    "motortester.runtime",
+    "motortester.session",
+    "motortester.wire",
+    "motortester.window",
+    "motortester.recording",
+    "motortester.model"
+  ],
+  "checks": {
+    "synthetic": true,
+    "device_io_performed": false,
+    "physical_stop_verified": false,
+    "coverage": "segmented",
+    "intersegment_device_gap": "unknown",
+    "time_basis": "per_segment_nominal_unverified",
+    "source_binding": "external-clean-build-manifest",
+    "observed_bytes_and_provenance_match": true,
+    "independent_pattern_match": true,
+    "fresh_gui_open_and_selection": true
+  },
+  "identity": {
+    "recording_id": "04531653-897a-4dd4-98e2-905fe8b23d56",
+    "session_id": "00000000-0000-0000-512a-d1c4558a35a8",
+    "origin": "simulator",
+    "firmware_version": "0",
+    "protocol_version": "draft-0.1@b6ae8025baf1a47e8173997029d2d8b858ada74c",
+    "application_version": "0.1.0"
+  },
+  "stop": {
+    "request_id": 9,
+    "ack_request_id": 9,
+    "wire_session_nonce": 5848717707272926632,
+    "generation": 8,
+    "last_window": 2,
+    "status": 0,
+    "termination_reason": "user_stop",
+    "evidence": "stop_ack"
+  },
+  "segments": [
+    {
+      "ordinal": 0,
+      "kind": "capture",
+      "sequence": 1,
+      "sample_count": 2048,
+      "raw_sha256": "493604f6108e5a72bbf437fd62be0bb423e1ecea4956472979d083c77dc8f59d",
+      "samples_sha256": "0570134a7fb8dbbfa8cdf0aceca42e2270e72166d5c22572d610bfa406c65ed5",
+      "provenance": {
+        "generation": 4,
+        "config_id": 1,
+        "acquisition_mode": 1,
+        "auto_timeout_ms": 0,
+        "host_elapsed_ms": 201,
+        "wire_version": "0.1",
+        "start_operation": "arm",
+        "wire_session_nonce": 5848717707272926632,
+        "config_payload_hex": "01000100000000080000000000000000",
+        "begin_request_id": 0,
+        "begin_sequence": 7,
+        "terminal_kind": "end",
+        "terminal_request_id": 0,
+        "terminal_sequence": 17,
+        "end_samples_crc32": 3390935829,
+        "abort_reason_code": null,
+        "unavailable_reason": null
+      }
+    },
+    {
+      "ordinal": 1,
+      "kind": "capture",
+      "sequence": 2,
+      "sample_count": 2048,
+      "raw_sha256": "c2c67a1e2ab6397f6856fcf046d4d2919886205162512b009a8e061ec5c22bb2",
+      "samples_sha256": "5df63d88acadd11fdcfbcf2a4ed79b6ac885e8b05dd5fc20be00c7a41efb456c",
+      "provenance": {
+        "generation": 6,
+        "config_id": 1,
+        "acquisition_mode": 1,
+        "auto_timeout_ms": 0,
+        "host_elapsed_ms": 401,
+        "wire_version": "0.1",
+        "start_operation": "arm",
+        "wire_session_nonce": 5848717707272926632,
+        "config_payload_hex": "01000100000000080000000000000000",
+        "begin_request_id": 0,
+        "begin_sequence": 24,
+        "terminal_kind": "end",
+        "terminal_request_id": 0,
+        "terminal_sequence": 34,
+        "end_samples_crc32": 1363416992,
+        "abort_reason_code": null,
+        "unavailable_reason": null
+      }
+    }
+  ],
+  "artifacts": {
+    "archive": {
+      "name": "recording.mtrec",
+      "bytes": 12359,
+      "sha256": "08a203e74388f867c314bb184ec62f2bb5ba8951eeb1c2351ab10b4ce0902756"
+    },
+    "spool": {
+      "name": "recording-aaed3dec7ed641948c59e22ab0b97b31.mtspool",
+      "bytes": 11738,
+      "sha256": "27f025b6557d0fc3fcbade2f6be22b3d0bc8e3ee426f7c68c57a040fcc234a75"
+    }
+  },
+  "executable": {
+    "bytes": 6342472,
+    "sha256": "8e4298ec481b401376206762a450dffee10354404ec77b17b6c1dac4b67512e5"
+  },
+  "cleanup": {
+    "acquisition_native_joined": true,
+    "writer_stopped": true,
+    "windows_closed": true,
+    "pending_io": false,
+    "finalization_invalidated": false
+  },
+  "error": null
+}

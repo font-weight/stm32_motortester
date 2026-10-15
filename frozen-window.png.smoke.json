@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "phase": "complete",
+  "phases": [
+    {
+      "name": "entry",
+      "utc": "2026-10-14T13:38:22.055392+00:00"
+    },
+    {
+      "name": "gui-import",
+      "utc": "2026-10-14T13:38:22.055588+00:00"
+    },
+    {
+      "name": "gui-imported",
+      "utc": "2026-10-14T13:38:22.441836+00:00"
+    },
+    {
+      "name": "screenshot",
+      "utc": "2026-10-14T13:38:22.441910+00:00"
+    },
+    {
+      "name": "png-validation",
+      "utc": "2026-10-14T13:38:29.779465+00:00"
+    },
+    {
+      "name": "complete",
+      "utc": "2026-10-14T13:38:29.792125+00:00"
+    }
+  ],
+  "platform": "win32",
+  "frozen": true,
+  "qt_platform": "windows",
+  "output": "frozen-window.png",
+  "png": {
+    "sha256": "3de4e6a403976a9e58638333919b70afa05460847c87e17cc12ce5d0a3488be9",
+    "bytes": 74342,
+    "width": 1028,
+    "height": 749
+  },
+  "error": null
+}
