@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "draft_new_reconstruction",
+  "base_commit": "9a33d2c3d7b16fc189ed1066f49c0b8c242e2243",
+  "scope": "portable helper and synthetic tests only",
+  "actual_windows_verified": false,
+  "original_helper_recovered": false,
+  "origin_bytes_historically_recovered": false,
+  "reference_recovered_exactly": true,
+  "files": {
+    ".gitignore": {
+      "bytes": 19,
+      "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793"
+    },
+    "README_RU.md": {
+      "bytes": 14676,
+      "sha256": "df76792aeebab865b6e81e21aebf0215405e335f00164dfca7f498d836ba1632"
+    },
+    "literal_copy.py": {
+      "bytes": 17100,
+      "sha256": "d758a9762e2c6d5bcf5e44ef2e1d4da0e929d5826b8cf14ab6df811bf4b2765b"
+    },
+    "run18-reference.json": {
+      "bytes": 69692,
+      "sha256": "2cd3be37cbc9737927f6832a5366fc29b835bd5fd9a4f6ea76b288a1d1c1dc61"
+    },
+    "test_literal_copy.py": {
+      "bytes": 14892,
+      "sha256": "bf666f1aefbb9e6f71a18eafe348482ab7f3249000a0a96d3824c8af425bd652"
+    }
+  },
+  "managed_path_plan": {
+    "metadata": 6,
+    "bundle": 46,
+    "literal_origins": 46,
+    "output": 1,
+    "maximum_unique_paths": 99
+  },
+  "managed_read_plus_write_limit": 128974848,
+  "reserved_external_auxiliary_bytes": 5242880,
+  "supplier_package_source_legal_replacement_clearance": false,
+  "revision": 2,
+  "documentation_revision": 1
+}
