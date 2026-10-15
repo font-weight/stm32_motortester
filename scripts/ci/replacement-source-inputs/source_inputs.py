@@ -12,8 +12,8 @@ import zipfile
 
 LIMIT=256*1024*1024
 META=2*1024*1024
-PRELAUNCH_SHA='c885445f3f711894ef6ec431248b14b51b797e3cc0635182fb7508cb134120b2'
-PRELAUNCH_BYTES=31571
+PRELAUNCH_SHA='4fc635353b240fa763ac6f90b2d2338606a37acdda135ac98ff44c68faffb171'
+PRELAUNCH_BYTES=32430
 FALSE_FIELDS=('source_pool_admission_verified','runtime_verified','wheel_bodies_verified',
               'build_execution_verified','source_to_bytecode_attestation','launch_authorized')
 

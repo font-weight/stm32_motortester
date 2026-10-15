@@ -46,7 +46,9 @@ def canonical(value):
         need(p.anchor == '/' and '\\' not in raw, 'Noncanonical POSIX root')
     for part in p.parts[1:]:
         need(not any(c in part for c in ':<>"|?*'), 'ADS/unsafe path component')
-        need(re.match(r'(?i)^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)', part) is None,
+        stem=part.split('.')[0].rstrip(' ').upper()
+        need(stem not in ('CON','PRN','AUX','NUL','CONIN$','CONOUT$','CLOCK$') and
+             re.fullmatch(r'(COM|LPT)[0-9¹²³]',stem) is None,
              'Reserved device component')
     return p
 
@@ -67,8 +69,8 @@ def safe_info(path, missing=False, directory=False):
     return info
 
 def identity(s):
-    # Shared path/handle identity. Windows lstat and fstat ctime semantics differ.
-    return (s.st_dev, s.st_ino, s.st_size)
+    # mtime is comparable across these APIs; Windows ctime semantics differ.
+    return (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns)
 
 def timestamp(s):
     return (s.st_mtime_ns, s.st_ctime_ns)

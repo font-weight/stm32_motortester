@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "DRAFT_UNREVIEWED_R3",
+  "status": "DRAFT_UNREVIEWED_R4",
   "scope": "PRELAUNCH-C1-R1 portable opaque comparator only; B design addendum6185946490",
   "files": {
     "BUILD_RECORD_CONTRACT.md": {
@@ -8,20 +8,20 @@
       "sha256": "af1ab20db7884770dd1521163ca69f837daa25c8dc4caa4a495853e1b5c8e558"
     },
     "README_RU.md": {
-      "bytes": 14402,
-      "sha256": "67447e7ab28d15ef09ccfabf778e6b6c2dc9913b0c963f4256c99f0bc2edb1cf"
+      "bytes": 15344,
+      "sha256": "48e6b555eb76109d29dd71a0c11cef32ea62540206d0d5a6ab548a7e1edf5bda"
     },
     "pins.json": {
       "bytes": 4042,
       "sha256": "d5eb3c4310b91dc509ccb9beef64dc94244453b37c072467aa6ea71459acc27b"
     },
     "prelaunch.py": {
-      "bytes": 31571,
-      "sha256": "c885445f3f711894ef6ec431248b14b51b797e3cc0635182fb7508cb134120b2"
+      "bytes": 32430,
+      "sha256": "4fc635353b240fa763ac6f90b2d2338606a37acdda135ac98ff44c68faffb171"
     },
     "test_prelaunch.py": {
-      "bytes": 17228,
-      "sha256": "70e2b0bc51d03ad4c94122465334e98a836c587a665eaa5679e97b40b7b4bb06"
+      "bytes": 18534,
+      "sha256": "bf39d9b804b59409d03b34aca95ac94e1871151590dcac4d0afd210ceec680dd"
     }
   }
 }

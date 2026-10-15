@@ -156,6 +156,17 @@ class Inputs:
         return sha(encoded({str(p):{'bytes':v[0][2],'sha256':v[2]}
                             for p,v in sorted(self.seen.items(),key=lambda x:str(x[0]))}))
 
+    def existing_output_name(self,path):
+        self.pin_directory(path.parent)
+        found=False;count=0
+        with os.scandir(path.parent) as entries:
+            for entry in entries:
+                count+=1;require(count<=4096,'output-parent-limit')
+                if entry.name.casefold()==path.name.casefold():
+                    require(entry.name==path.name and not found,'output-case-alias')
+                    found=True
+        require(found,'output-name-missing')
+
     def write_report(self,path,raw,companion):
         require(0<len(raw)<=MAX_REPORT and 3*len(raw)<=MAX_IO-self.total,'report-budget')
         self.pin_directory(path.parent)
@@ -568,6 +579,13 @@ def compare(config):
         require(scan_bundle(tool,tool.child(root,variant+'/bundle'),inputs)==directory_sets[variant],
                 'bundle-postwrite-set')
     require(inputs.read(output,MAX_REPORT)==raw,'final-report-bytes')
+    # Output readback is an observation boundary too; it cannot be terminal.
+    inputs.unchanged();fixed_trial(tool,comp,root,inputs)
+    for variant in comp.VARIANTS:
+        require(scan_bundle(tool,tool.child(root,variant+'/bundle'),inputs)==directory_sets[variant],
+                'bundle-terminal-set')
+    inputs.existing_output_name(output)
+    inputs.unchanged()
     return {'schema_version':1,'status':'PRELAUNCH_BYTES_MATCH','report_bytes':len(raw),
             'report_sha256':sha(raw),'inspected_input_set_sha256':binding,
             'read_bytes':inputs.read_bytes,'write_bytes':inputs.write_bytes,

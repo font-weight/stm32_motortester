@@ -7,7 +7,7 @@ from pathlib import Path
 import stat
 import sys
 
-MANIFEST_SHA256 = '20291be94fdd7c5f19831f4f105a2686041310535b09869948e4d62b0a717fff'
+MANIFEST_SHA256 = '9570de120d76559f00d56db336321c3c3659c6bf26d8493bab1dd8ce3148e3ba'
 INPUT_NAMES = ('observer', 'baseline', 'inspector', 'companion', 'original_init', 'source_zip')
 
 
@@ -73,7 +73,7 @@ def stage(args):
         if regular_bytes(output / row['destination'], row['bytes']) != data:
             raise ValueError('staged bytes changed: ' + row['destination'])
     receipt = {'schema_version': 1, 'status': 'PORTABLE_TEST_INPUTS_STAGED',
-               'helper_commit': manifest['helper_commit'], 'manifest_sha256': MANIFEST_SHA256,
+               'helper_base_commit': manifest['helper_base_commit'], 'manifest_sha256': MANIFEST_SHA256,
                'file_count': len(payloads), 'payload_bytes': sum(len(data) for _, data in payloads),
                'tests_executed': False, 'candidate_executions': 0,
                'actual_windows_execution': False, 'launch_authorized': False}

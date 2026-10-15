@@ -122,7 +122,7 @@ class Tests(unittest.TestCase):
     def setUp(self):
         temp=tempfile.TemporaryDirectory(prefix='prelaunch-opaque-');self.addCleanup(temp.cleanup)
         self.f=Fixture(Path(temp.name))
-    def reject(self):
+    def reject(self,output_written=False):
         try:
             self.f.run()
         except Exception as error:
@@ -130,7 +130,7 @@ class Tests(unittest.TestCase):
                 [('prelaunch_tested','Rejected'),('_pinned_companion','Rejected'),
                  ('_pinned_inspector','Invalid')])
         else:self.fail('invalid fixture accepted')
-        self.assertFalse(self.f.output.exists())
+        self.assertEqual(self.f.output.exists(),output_written)
     def test_positive(self):
         result=self.f.run();self.assertEqual(result['status'],'PRELAUNCH_BYTES_MATCH')
         report=json.loads(self.f.output.read_bytes())
@@ -278,5 +278,27 @@ class Tests(unittest.TestCase):
         put(self.f.output,b'keep')
         with self.assertRaises(p.Rejected):self.f.run()
         self.assertEqual(self.f.output.read_bytes(),b'keep')
+
+    def terminal_readback_mutation(self,kind):
+        original=p.Inputs.read;reads=[0]
+        def injected(inputs,path,*args,**kwargs):
+            raw=original(inputs,path,*args,**kwargs)
+            if path==self.f.output:
+                reads[0]+=1
+                if reads[0]==2:
+                    bundle=self.f.root/'modified/bundle'
+                    if kind=='source':put(bundle/'_internal/config.dat',b'changed runtime')
+                    elif kind=='marker':put(bundle/'replacement-probe/late.json',b'{}')
+                    elif kind=='leaf':put(bundle/'late.dat',b'late runtime')
+                    elif kind=='alias':put(self.f.output.with_name('REPORT.JSON'),b'alias')
+            return raw
+        with mock.patch.object(p.Inputs,'read',injected):self.reject(output_written=True)
+        self.assertEqual(reads[0],2)
+        self.assertTrue(self.f.output.exists())  # Late rejection preserves the unaccepted artifact.
+
+    def test_terminal_runtime_change(self):self.terminal_readback_mutation('source')
+    def test_terminal_marker(self):self.terminal_readback_mutation('marker')
+    def test_terminal_bundle_leaf(self):self.terminal_readback_mutation('leaf')
+    def test_terminal_output_alias(self):self.terminal_readback_mutation('alias')
 
 if __name__=='__main__':unittest.main()

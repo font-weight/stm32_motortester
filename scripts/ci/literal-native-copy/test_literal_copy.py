@@ -177,6 +177,29 @@ class LiteralTests(unittest.TestCase):
         with patch.object(m.os,'fstat',changed):r=self.f.run()
         self.assertEqual(r['status'],'observed_literal_byte_equality')
 
+    def test_distinct_path_handle_mtime_is_rejected(self):
+        import types
+        real=m.os.fstat
+        def changed(fd):
+            info=real(fd)
+            values={k:getattr(info,k) for k in
+                    ('st_dev','st_ino','st_mode','st_size','st_mtime_ns','st_ctime_ns')}
+            values['st_mtime_ns']+=500
+            values['st_file_attributes']=getattr(info,'st_file_attributes',0)
+            return types.SimpleNamespace(**values)
+        with patch.object(m.os,'fstat',changed),self.assertRaisesRegex(ValueError,'identity'):
+            self.f.run()
+
+    def test_windows_superscript_devices_rejected(self):
+        import ntpath
+        from pathlib import PureWindowsPath
+        for stem in ('COM¹','COM²','COM³','LPT¹','LPT²','LPT³','CONIN$','CONOUT$',
+                     'CON ','COM1 ','COM¹ ','LPT¹ ','CONIN$ '):
+            with self.subTest(stem=stem),patch.object(m,'Path',PureWindowsPath), \
+                 patch.object(m.os,'name','nt'),patch.object(m.os.path,'normpath',ntpath.normpath):
+                with self.assertRaisesRegex(ValueError,'Reserved device'):
+                    m.canonical('C:\\fixed\\'+stem+'.txt')
+
     def output_handle_reparse(self,number):
         import types
         p=Path(self.temp.name)/'output-handle-control'

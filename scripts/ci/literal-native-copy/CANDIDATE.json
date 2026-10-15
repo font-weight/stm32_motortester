@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "draft_new_reconstruction",
+  "status": "DRAFT_UNREVIEWED_R4B",
   "base_commit": "9a33d2c3d7b16fc189ed1066f49c0b8c242e2243",
   "scope": "portable helper and synthetic tests only",
   "actual_windows_verified": false,
@@ -13,20 +13,20 @@
       "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793"
     },
     "README_RU.md": {
-      "bytes": 14676,
-      "sha256": "df76792aeebab865b6e81e21aebf0215405e335f00164dfca7f498d836ba1632"
+      "bytes": 15623,
+      "sha256": "49130dd00fd232662adfbd19a019c569bef5da12f9a68bbd84776be044fbd1ac"
     },
     "literal_copy.py": {
-      "bytes": 17100,
-      "sha256": "d758a9762e2c6d5bcf5e44ef2e1d4da0e929d5826b8cf14ab6df811bf4b2765b"
+      "bytes": 17219,
+      "sha256": "df5087576283b5174cdad3c203f3164d253e4eb103cc29904cebf14ee415db30"
     },
     "run18-reference.json": {
       "bytes": 69692,
       "sha256": "2cd3be37cbc9737927f6832a5366fc29b835bd5fd9a4f6ea76b288a1d1c1dc61"
     },
     "test_literal_copy.py": {
-      "bytes": 14892,
-      "sha256": "bf666f1aefbb9e6f71a18eafe348482ab7f3249000a0a96d3824c8af425bd652"
+      "bytes": 16068,
+      "sha256": "aff7f09e515c7473aa5a7c402327aead017a718e2a377003e1aa01158e1806df"
     }
   },
   "managed_path_plan": {
