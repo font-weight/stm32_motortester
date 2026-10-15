@@ -1,0 +1,189 @@
+{
+  "source_commit": "54d63be3fdd8eba858bafafbf6cec33c4ed989b8",
+  "source_sha256": "fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53",
+  "segments": [
+    {
+      "lines": [
+        20,
+        20
+      ],
+      "sha256": "08752ab4b250700d7fc69d5f368b3a12088c6a94d7a37d538af8db1b55672171"
+    },
+    {
+      "lines": [
+        22,
+        22
+      ],
+      "sha256": "f540e27e2d4eefb9fd5b0078b778c8a2c122a48768eab74dab06990d0b31b4d6"
+    },
+    {
+      "lines": [
+        25,
+        25
+      ],
+      "sha256": "c469f5aea93a513f904ac240ac2227b70848e922c0344698ca5f81f7aa432672"
+    },
+    {
+      "lines": [
+        30,
+        30
+      ],
+      "sha256": "0461eecaaca9e488567af9f19e2533d0c0df7cae389d41f40150146f8fc2e103"
+    },
+    {
+      "lines": [
+        31,
+        31
+      ],
+      "sha256": "21d88bba119ae1beb2bd9cdb13446fa332f326ab8a93943cbf363c6e187c8ad1"
+    },
+    {
+      "lines": [
+        33,
+        39
+      ],
+      "sha256": "c1206a26788f5e11491dbb54eb32856660a1db681ba57ccf3f243f0853853c1f"
+    },
+    {
+      "lines": [
+        53,
+        53
+      ],
+      "sha256": "d6d73d760897c6853b2331a7a9bf8087e137e1105cd52098a14934dc886a3e42"
+    },
+    {
+      "lines": [
+        54,
+        54
+      ],
+      "sha256": "34792d39471aa5fa9d46eeefa2917c75809c7f0b986b6a3a37795a46ddb3f89f"
+    },
+    {
+      "lines": [
+        55,
+        55
+      ],
+      "sha256": "4e2ef6a62565eda520ddb20f13553a33509c67a8c9519b84c2ede0d4cc4b1c24"
+    },
+    {
+      "lines": [
+        79,
+        166
+      ],
+      "sha256": "96a35d768524fd6e9b099268a854db738a33bb85147ee896ce34b0d922142a83"
+    },
+    {
+      "lines": [
+        167,
+        179
+      ],
+      "sha256": "ac7020bccc5873fd3ef1570f5cabef7d29967acf9cdbd6a415b63938c5de910b"
+    },
+    {
+      "lines": [
+        180,
+        180
+      ],
+      "sha256": "fd6f1a25f4bd61cc1f713786d44937d50727793fe4a2d135837f61b1588b556b"
+    },
+    {
+      "lines": [
+        181,
+        190
+      ],
+      "sha256": "fee531e1e016776336500c894bf36380ee6f792703ccdcf84daef9fdb7886ad3"
+    },
+    {
+      "lines": [
+        191,
+        195
+      ],
+      "sha256": "dc36903474aa583412e67b7355fcce1e9711961e98a91333f95880fd512683c1"
+    },
+    {
+      "lines": [
+        211,
+        214
+      ],
+      "sha256": "0c52ac6cf1bd21d15c0f836bf8b97396b071c0b9a86295d0e5c47e637656fac4"
+    },
+    {
+      "lines": [
+        217,
+        221
+      ],
+      "sha256": "26650dfa626ae48aa9e12d275b1b96eff2e57d760296ebf97932cf6c6fec44c0"
+    },
+    {
+      "lines": [
+        224,
+        237
+      ],
+      "sha256": "85337dd5ae35db0020c364fa41ba8fd7b17bc41a6da7ac8ab8601f869bae3995"
+    },
+    {
+      "lines": [
+        246,
+        248
+      ],
+      "sha256": "901b105dc36571cfb5f2ea19aaa476e5224711fc42bdd2d5a100eb3f11fea767"
+    },
+    {
+      "lines": [
+        668,
+        676
+      ],
+      "sha256": "edc24a3adf3a4b068da6fa6a54a8d7c40962012eae1db0c5d8afaeffa90e18b6"
+    },
+    {
+      "lines": [
+        775,
+        776
+      ],
+      "sha256": "9e79a5de6133d5c8ab62702014440f3b893c23ea3db13eb0886667bb4fb0b0b9"
+    },
+    {
+      "lines": [
+        779,
+        780
+      ],
+      "sha256": "d3a72a7ef5f486285121d319e15f11bd52a2dc11cbd8199ce501e57ec09e7209"
+    },
+    {
+      "lines": [
+        783,
+        785
+      ],
+      "sha256": "effe87c9f8fedd58fd52edad8d54426f016e6e3c16887c4a5ff302e81f985ddb"
+    },
+    {
+      "lines": [
+        788,
+        789
+      ],
+      "sha256": "48f8cd27ea843ded4ae6226f33ff67383fbb81cbd1bdfd8cfa9e2332527832ab"
+    },
+    {
+      "lines": [
+        792,
+        796
+      ],
+      "sha256": "264d7cee158becaf0799d3d0df51ac30b3199804e2e49b570933849ef862d714"
+    },
+    {
+      "lines": [
+        799,
+        807
+      ],
+      "sha256": "6d5b544a327a6035bf6dafa6a5fef6e7758d83f8804ef369f332b88a05dad375"
+    },
+    {
+      "lines": [
+        810,
+        917
+      ],
+      "sha256": "535618c547695ae5e32b4e0d6fa1fd79b1df60aca9c2a052099dd9dad0b0d331"
+    }
+  ],
+  "extraction": "Complete original source lines, including inline comments and terminal newline; unchanged source segments copied into the gate."
+}

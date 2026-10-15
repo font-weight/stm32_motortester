@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT_UNREVIEWED_AUX_R6",
+  "scope": "data-only metadata joins and original-byte retention; no native invocation or workflow admission",
+  "helper_base_commit": "4ba680780879f0a91d52a4ab89bc9febf66f5243",
+  "metadata_snapshot": "83bfcd271546649f289a085dc18b170781d390fa",
+  "files": {
+    "CONTRACT.md": {
+      "bytes": 7072,
+      "sha256": "c38424ab8777f843d71526a69cfc3b4952bee30aa9c232fa045ee0377201e722"
+    },
+    "README_RU.md": {
+      "bytes": 15056,
+      "sha256": "3a1f55efe78c0fa49b486edeff927eb9a966f17bef8578c60f7f43565c26443f"
+    },
+    "VENDORED_VALIDATORS.json": {
+      "bytes": 4123,
+      "sha256": "193b7374a48ad06ce30aaa19a7cc0f1a4a67ce9c92bd177fc9ea66f56eddab74"
+    },
+    "literal_gate.py": {
+      "bytes": 54900,
+      "sha256": "bc6375f86cefbbc33200415106b5232106874c76cb557a1b44480fdaafa8d97c"
+    },
+    "pins.json": {
+      "bytes": 5364,
+      "sha256": "77322f4c0edd2e08a4500fc3e6da99f9ac5fa6e6837c8d735baf419d98fd4c76"
+    },
+    "test_literal_gate.py": {
+      "bytes": 25956,
+      "sha256": "5686cea2b7705859cf4a8d12f3ef28efa831f3dcdf15850bcf903544bfd7d06e"
+    }
+  }
+}

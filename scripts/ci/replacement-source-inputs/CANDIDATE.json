@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT_UNREVIEWED_R5",
+  "scope": "SOURCE-C1 portable source-byte observation consumer",
+  "files": {
+    "CONTRACT.md": {
+      "bytes": 4121,
+      "sha256": "1b91174748c5bac6a80ca979e1ff59e67affe3c14a5c57f85551ea31e02accd7"
+    },
+    "README_RU.md": {
+      "bytes": 12217,
+      "sha256": "7a4b6a4b07b0695a5aaab7459a9334cc8820e29d6c0e31407cf3de575374dd1d"
+    },
+    "source_inputs.py": {
+      "bytes": 17543,
+      "sha256": "bd1bc321e2801b791aa3038e02f20e9b4f7f99a54808fef07b5cbd9517314b75"
+    },
+    "test_source_inputs.py": {
+      "bytes": 16067,
+      "sha256": "54b6185e16adc2b993428b5307a59a1e258bbcd19300f9e7c404c9549663935e"
+    }
+  }
+}
