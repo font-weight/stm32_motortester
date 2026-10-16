@@ -364,8 +364,95 @@ static void test_stop_and_faults(void)
     ++test_count;
 }
 
+static void test_record_now(void)
+{
+    mt_acq_t acq;
+    mt_acq_t before;
+    mt_acq_window_t window;
+    mt_acq_config_t config = config_for(MT_ACQ_SINGLE, 0u, MT_ACQ_RISING);
+    uint16_t code;
+    assert(mt_acq_record_now(NULL, 0u) == MT_ACQ_INVALID_ARGUMENT);
+    assert(mt_acq_init(&acq) == MT_ACQ_OK);
+    memcpy(&before, &acq, sizeof(acq));
+    assert(mt_acq_record_now(&acq, 0u) == MT_ACQ_INVALID_CONFIG);
+    assert(memcmp(&before, &acq, sizeof(acq)) == 0);
+    for (unsigned mode = 0; mode < 3u; ++mode) {
+        for (unsigned pre = 0; pre <= 1024u; pre += 512u) {
+            config = config_for((uint8_t)mode, (uint16_t)pre, MT_ACQ_RISING);
+            assert(mt_acq_configure(&acq, &config) == MT_ACQ_OK);
+            memcpy(&before, &acq, sizeof(acq));
+            if (mode == (unsigned)MT_ACQ_SINGLE && pre == 0u) {
+                continue;
+            }
+            assert(mt_acq_record_now(&acq, 0u) == MT_ACQ_INVALID_CONFIG);
+            assert(memcmp(&before, &acq, sizeof(acq)) == 0);
+            ++test_count;
+        }
+    }
+    for (unsigned edge = 0; edge < 2u; ++edge) {
+        config = config_for(MT_ACQ_SINGLE, 0u, (uint8_t)edge);
+        assert(mt_acq_configure(&acq, &config) == MT_ACQ_OK);
+        assert(mt_acq_record_now(&acq, UINT32_MAX) == MT_ACQ_OK);
+        memcpy(&before, &acq, sizeof(acq));
+        assert(mt_acq_record_now(&acq, 0u) == MT_ACQ_BUSY);
+        assert(memcmp(&before, &acq, sizeof(acq)) == 0);
+        for (unsigned i = 0; i < MT_ACQ_WINDOW_SAMPLES; ++i) {
+            /* Values never cross the configured rising/falling threshold. */
+            assert(mt_acq_window(&acq, &window) == MT_ACQ_NOT_READY);
+            assert(mt_acq_push(&acq, (uint16_t)(i % 100u), 0u) ==
+                   (i == 0u ? MT_ACQ_TRIGGERED :
+                    i + 1u == MT_ACQ_WINDOW_SAMPLES ? MT_ACQ_WINDOW_READY : MT_ACQ_OK));
+        }
+        assert(mt_acq_window(&acq, &window) == MT_ACQ_OK);
+        assert(window.sample_count == MT_ACQ_WINDOW_SAMPLES);
+        assert(window.pretrigger_samples == 0u);
+        assert(window.trigger_index == MT_ACQ_NO_TRIGGER_INDEX);
+        assert(window.trigger_kind == MT_ACQ_TRIGGER_SOFTWARE);
+        assert(window.quality_flags == MT_ACQ_QUALITY_RAIL_CODE);
+        for (unsigned i = 0; i < MT_ACQ_WINDOW_SAMPLES; ++i) {
+            assert(mt_acq_read(&acq, (uint16_t)i, &code) == MT_ACQ_OK);
+            assert(code == i % 100u);
+        }
+        memcpy(&before, &acq, sizeof(acq));
+        assert(mt_acq_push(&acq, 4095u, 1u) == MT_ACQ_IGNORED);
+        assert(mt_acq_record_now(&acq, 1u) == MT_ACQ_BUSY);
+        assert(memcmp(&before, &acq, sizeof(acq)) == 0);
+        assert(mt_acq_release(&acq, 1u) == MT_ACQ_OK);
+        assert(acq.state == MT_ACQ_STOPPED);
+        assert(mt_acq_window(&acq, &window) == MT_ACQ_NOT_READY);
+        ++test_count;
+    }
+    assert(mt_acq_record_now(&acq, 10u) == MT_ACQ_OK);
+    assert(mt_acq_push(&acq, 100u, 10u) == MT_ACQ_TRIGGERED);
+    assert(mt_acq_stop(&acq) == MT_ACQ_OK);
+    assert(mt_acq_read(&acq, 0u, &code) == MT_ACQ_NOT_READY);
+    assert(mt_acq_record_now(&acq, 20u) == MT_ACQ_OK);
+    assert(mt_acq_push(&acq, 4096u, 20u) == MT_ACQ_INPUT_FAULT);
+    assert(acq.state == MT_ACQ_ERROR);
+    assert(mt_acq_record_now(&acq, 20u) == MT_ACQ_BUSY);
+    assert(mt_acq_stop(&acq) == MT_ACQ_OK);
+    assert(mt_acq_record_now(&acq, 30u) == MT_ACQ_OK);
+    assert(mt_acq_push(&acq, 100u, 29u) == MT_ACQ_INPUT_FAULT);
+    assert(acq.fault == MT_ACQ_FAULT_TIME_ORDER);
+    assert(mt_acq_stop(&acq) == MT_ACQ_OK);
+    assert(mt_acq_record_now(&acq, 40u) == MT_ACQ_OK);
+    assert(mt_acq_push(&acq, 100u, 40u) == MT_ACQ_TRIGGERED);
+    finish(&acq, 100u, 40u);
+    assert(mt_acq_window(&acq, &window) == MT_ACQ_OK);
+    assert(window.quality_flags == 0u); /* No fabricated timeout or old rails. */
+    assert(mt_acq_release(&acq, 40u) == MT_ACQ_OK);
+    assert(mt_acq_arm(&acq, 50u) == MT_ACQ_OK);
+    assert(mt_acq_push(&acq, 100u, 50u) == MT_ACQ_OK);
+    assert(acq.state == MT_ACQ_WAITING); /* Ordinary ARM is not sticky-immediate. */
+    memcpy(&before, &acq, sizeof(acq));
+    assert(mt_acq_record_now(&acq, 50u) == MT_ACQ_BUSY);
+    assert(memcmp(&before, &acq, sizeof(acq)) == 0);
+    ++test_count;
+}
+
 int main(void)
 {
+    test_record_now();
     test_arguments_and_configs();
     test_crossing_and_readiness();
     test_chronological_oracle();
