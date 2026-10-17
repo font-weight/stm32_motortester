@@ -11,8 +11,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   verify:
-    # Standard public-repository runner only. No artifact/cache upload or purchase.
+    # LOCAL DRAFT ONLY: disabled until final bindings and independent review.
+    # No upload in this patch; optional transport patch requires separate approval.
     if: >-
+      false &&
       github.repository == 'font-weight/stm32_motortester' &&
       github.event.repository.private == false &&
       (github.event_name == 'workflow_dispatch' ||
@@ -23,14 +25,21 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: '244b0786a18fed19a9e708bb815150475ddd193f'
-      SOURCE_TREE: '0c0e61fb8aadd4a4380e2d7e0b8818e4c9da0d5e'
+      SOURCE_SHA: 'dcafc5638bc6c3ddef6cba25a7a55016fe8e8933'
+      SOURCE_TREE: '61a9bd025081acec80997dff950d947eeceb3f4b'
       INSPECTOR_SHA: '54d63be3fdd8eba858bafafbf6cec33c4ed989b8'
       INSPECTOR_PARENT_SHA: 'd10e83578718d49f971f034a58e0a77af10ff855'
       INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
-      OBSERVER_WORKFLOW_SHA: ${{ github.workflow_sha }}
-      OBSERVER_FILE_SHA256: 5b8ca95c9e9ea14f0a06d2edc8735c1bef6bc53d51985bfa0ae75adc37ee922c
+      EVALUATED_WORKFLOW_SHA: ${{ github.workflow_sha }}
+      RETENTION_SHA: '49c271104939a9c6ca6027ec239a904cac11a1a3'
+      CALLER_FILE_SHA256: '53f4a869c7b4991f5a238e848da552d7dc0d6611ea8d6a9a56a2a085cf2432dd'
+      PAYLOAD_CHECKER_SHA256: 'b6264f445d9c7abf3170e3072d25632f3bb6e9b3980c0af5bfa8e206bf0dd8e7'
+      # External source-input disposition; does not grant distribution clearance.
+      SUPPORT_SOURCE_SHA: 'dcafc5638bc6c3ddef6cba25a7a55016fe8e8933'
+      SUPPORT_MANIFEST_GIT_PATH: 'scripts/ci/windows-first-test/support-manifest.json'
+      SUPPORT_MANIFEST_SHA256: 'd3d9943abd61debbe92898af1a876245513505e37b1d52c88dcef6f28305c934'
+      SOURCE_NOTICE_REVIEW: 'https://github.com/font-weight/stm32_motortester/issues/33#issuecomment-6233217133'
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
@@ -39,12 +48,24 @@ jobs:
     steps:
       - name: Prepare temporary output location
         run: |
-          "BUILD_DIR=$env:RUNNER_TEMP/motortester-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "INSPECTOR_PATH=$env:RUNNER_TEMP/inspector-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "PROVENANCE_PATH=$env:RUNNER_TEMP/provenance-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "OBSERVER_PATH=$env:RUNNER_TEMP/native-observer-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "OBSERVER_BASELINE=$env:RUNNER_TEMP/native-baseline-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "OBSERVER_REPORT=$env:RUNNER_TEMP/native-observation-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $generatedPath = [IO.Path]::GetFullPath((Join-Path -Path $env:RUNNER_TEMP -ChildPath "motortester-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"))
+          "BUILD_DIR=$generatedPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $generatedPath = [IO.Path]::GetFullPath((Join-Path -Path $env:RUNNER_TEMP -ChildPath "inspector-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.py"))
+          "INSPECTOR_PATH=$generatedPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $generatedPath = [IO.Path]::GetFullPath((Join-Path -Path $env:RUNNER_TEMP -ChildPath "provenance-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json"))
+          "PROVENANCE_PATH=$generatedPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $generatedPath = [IO.Path]::GetFullPath((Join-Path -Path $env:RUNNER_TEMP -ChildPath "reduced-payload-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json"))
+          "PAYLOAD_REPORT=$generatedPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $generatedPath = [IO.Path]::GetFullPath((Join-Path -Path $env:RUNNER_TEMP -ChildPath "cpython-notice-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT.json"))
+          "NOTICE_REPORT=$generatedPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $callerRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:RUNNER_TEMP -ChildPath "first-test-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"))
+          $callerOutput = [IO.Path]::GetFullPath((Join-Path -Path $callerRoot -ChildPath 'accepted'))
+          $callerDiagnostics = [IO.Path]::GetFullPath((Join-Path -Path $callerRoot -ChildPath 'diagnostics'))
+          $callerZip = [IO.Path]::GetFullPath((Join-Path -Path $callerOutput -ChildPath 'kit.zip'))
+          "CALLER_ROOT=$callerRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "CALLER_OUTPUT=$callerOutput" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "CALLER_DIAGNOSTICS=$callerDiagnostics" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "CALLER_ZIP=$callerZip" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Preserve Git blob line endings in hosted checkout
         run: |
           git config --global core.autocrlf false
@@ -52,12 +73,13 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: '244b0786a18fed19a9e708bb815150475ddd193f'
+          ref: 'dcafc5638bc6c3ddef6cba25a7a55016fe8e8933'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
           lfs: false
       - name: Verify clean source and record provenance
+        id: verify_source
         run: |
           $ErrorActionPreference = 'Stop'
           $head = (git rev-parse HEAD).Trim()
@@ -72,6 +94,10 @@ jobs:
           if ($LASTEXITCODE -ne 0 -or $lock -cne '256a8005b4f7de19651c9b9bdd70419b5b52af3d') { throw 'Unexpected dependency lock' }
           $collector = (git rev-parse HEAD:host/packaging/collect_licenses.py).Trim()
           if ($LASTEXITCODE -ne 0 -or $collector -cne '1aaa934cf7a964aa853230d635f1ce8335fc175c') { throw 'Unexpected notice collector' }
+          $spec = (git rev-parse HEAD:host/packaging/motortester.spec).Trim()
+          if ($LASTEXITCODE -ne 0 -or $spec -cne 'a4ef30566e9f6ed8bfad2db322cc8ba7f8bace94') { throw 'Unexpected selected runtime spec' }
+          $selector = (git rev-parse HEAD:host/packaging/select_windows_runtime.py).Trim()
+          if ($LASTEXITCODE -ne 0 -or $selector -cne '4455b92a3fd1937bbbec94b820640418e13e24c0') { throw 'Unexpected selected runtime policy' }
           Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
           git config --show-origin --get core.autocrlf
           if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
@@ -85,6 +111,7 @@ jobs:
           allow-prereleases: false
           check-latest: false
       - name: Verify every tracked worktree file against its raw Git blob
+        id: verify_raw_blobs
         run: |
           $ErrorActionPreference = 'Stop'
           $check = @'
@@ -108,11 +135,14 @@ jobs:
                   print('RAW_BLOB_MISMATCH', os.fsdecode(name), expected.decode(), actual)
               checked += 1
           print('Raw Git blob verification:', checked, 'files;', len(mismatches), 'mismatches')
+          if checked != 1501:
+              raise RuntimeError('Unexpected dcaf source file count')
           sys.exit(bool(mismatches))
           '@
           python -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
       - name: Bind separate reviewed inspector without changing application
+        id: bind_inspector
         timeout-minutes: 3
         run: |
           $ErrorActionPreference = 'Stop'
@@ -142,39 +172,190 @@ jobs:
           '@
           python -I -S -B -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Inspector binding failed' }
-      - name: Bind separate metadata-only supplement from evaluated workflow
-        id: bind_native_observer
-        timeout-minutes: 3
+      - name: Bind reviewed caller helpers and reduced-payload checker
+        id: bind_retention_caller
+        timeout-minutes: 4
         run: |
           $ErrorActionPreference = 'Stop'
-          git fetch --no-tags --depth=1 origin $env:OBSERVER_WORKFLOW_SHA
-          if ($LASTEXITCODE -ne 0) { throw 'Observer source fetch failed' }
+          if ($env:EVALUATED_WORKFLOW_SHA -notmatch '^[0-9a-f]{40}$') { throw 'Evaluated workflow source missing' }
+          git fetch --no-tags --depth=1 origin $env:RETENTION_SHA $env:EVALUATED_WORKFLOW_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'Retention/evaluated-workflow source fetch failed' }
           $bind = @'
           import hashlib
+          import json
           import os
           from pathlib import Path
           import re
           import subprocess
-          sha = os.environ['OBSERVER_WORKFLOW_SHA']
-          if re.fullmatch('[0-9a-f]{40}', sha) is None:
-              raise RuntimeError('Invalid evaluated workflow SHA')
-          inputs = [
-              ('scripts/ci/observe_native_origins.py', 'OBSERVER_PATH', os.environ['OBSERVER_FILE_SHA256']),
-              ('scripts/ci/run17-native-baseline.json', 'OBSERVER_BASELINE',
-               'fb864aa52ccf4db813478a41ba256b9f6bc64c711403884d9ef0b8603926a8df')]
-          for relative, destination, expected in inputs:
-              raw = subprocess.check_output(['git', 'show', sha + ':' + relative], timeout=60)
-              if not 0 < len(raw) <= 65536 or hashlib.sha256(raw).hexdigest() != expected:
-                  raise RuntimeError('Observer input does not match reviewed bytes')
-              with Path(os.environ[destination]).open('xb') as stream:
-                  stream.write(raw)
-              print('OBSERVER_INPUT', sha, relative, len(raw), hashlib.sha256(raw).hexdigest())
-          if subprocess.check_output(['git', 'rev-parse', 'HEAD'], timeout=60).decode().strip() != os.environ['SOURCE_SHA']:
-              raise RuntimeError('Application checkout changed while binding observer')
+          import types
+          root = Path(os.environ['CALLER_ROOT'])
+          root.mkdir()
+          helpers, support = root / 'helpers', root / 'support'
+          helpers.mkdir()
+          support.mkdir()
+          # Bounded local Git object reads; fetch itself has a workflow timeout.
+          def git_bytes(spec, cap):
+              process = subprocess.Popen(['git', 'show', spec], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+              try:
+                  raw = process.stdout.read(cap + 1)
+                  if len(raw) > cap:
+                      raise ValueError('Git object exceeds bound')
+                  if process.wait(timeout=30) != 0 or not raw:
+                      raise ValueError('Missing Git object')
+                  return raw
+              finally:
+                  process.stdout.close()
+                  if process.poll() is None:
+                      process.kill()
+                      process.wait(timeout=10)
+          def save(path, raw):
+              with path.open('xb') as out:
+                  out.write(raw)
+          for name, size, digest in [('retain.py', 20066, '3ab02204cf20771c1ff67ca0ec05c8d8c6cb639a93ed56a653ba487fc856b08c'), ('zip_kit.py', 8419, '1270725f73afe9c947e7ce5835779eee28c7604d429a30f244aff06684fe40b6')]:
+              raw = git_bytes(os.environ['RETENTION_SHA'] + ':scripts/ci/windows-first-test/' + name, size)
+              if len(raw) != size or hashlib.sha256(raw).hexdigest() != digest:
+                  raise ValueError('Retention helper bytes differ')
+              save(helpers / name, raw)
+          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/stage_plan.py', 39812)
+          if len(raw) != 39812 or hashlib.sha256(raw).hexdigest() != os.environ['CALLER_FILE_SHA256']:
+              raise ValueError('Evaluated caller bytes differ')
+          save(helpers / 'stage_plan.py', raw)
+          module = types.ModuleType('_evaluated_caller')
+          module.__file__ = str(helpers / 'stage_plan.py')
+          exec(compile(raw, module.__file__, 'exec', dont_inherit=True), module.__dict__)
+          h = module.helpers(helpers)
+          # The payload checker also comes from the actual evaluated workflow, with exact
+          # reviewed source bytes. No cached bytecode loader is used.
+          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/check_reduced_payload.py', 24424)
+          h.require(len(raw) == 24424 and hashlib.sha256(raw).hexdigest() == os.environ['PAYLOAD_CHECKER_SHA256'], 'payload-checker-pin')
+          save(helpers / 'check_reduced_payload.py', raw)
+          manifest = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':' + os.environ['SUPPORT_MANIFEST_GIT_PATH'], 65536)
+          h.require(hashlib.sha256(manifest).hexdigest() == os.environ['SUPPORT_MANIFEST_SHA256'], 'support-inventory-pin')
+          module.support_inventory(h, manifest)
+          save(support / 'support-manifest.json', manifest)
+          # The evaluated workflow itself is retained as original source evidence.
+          save(root / 'evaluated-workflow.yml', git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':.github/workflows/host-windows.yml', 131072))
+          if subprocess.run(['git', 'diff', '--exit-code'], timeout=30, check=False).returncode:
+              raise ValueError('Application checkout changed')
           '@
           python -I -S -B -c $bind
-          if ($LASTEXITCODE -ne 0) { throw 'Observer binding failed' }
+          if ($LASTEXITCODE -ne 0) { throw 'Retention caller binding failed' }
+      - name: Prepare externally reviewed support inventory and exact bodies
+        id: prepare_required_support
+        timeout-minutes: 5
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $support = @'
+          
+          import hashlib, os, stat
+          from pathlib import Path
+          def bound_raw(path, size, digest):
+              path = Path(path)
+              def checked():
+                  for part in (*reversed(path.parents), path):
+                      info = part.lstat()
+                      if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                          raise ValueError('helper-redirected')
+                      if part != path and not stat.S_ISDIR(info.st_mode):
+                          raise ValueError('helper-ancestor')
+                  if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size != size:
+                      raise ValueError('helper-type-size')
+                  return info
+              before = checked()
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(size + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked()
+              shared = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns, stat.S_IFMT(x.st_mode))
+              stable = lambda x: shared(x) + (x.st_ctime_ns, x.st_nlink)
+              if (len(raw) != size or hashlib.sha256(raw).hexdigest() != digest
+                      or shared(before) != shared(opened) or shared(after) != shared(final)
+                      or stable(before) != stable(final) or stable(opened) != stable(after)
+                      or opened.st_nlink != 1 or getattr(opened, 'st_file_attributes', 0) & 0x400):
+                  raise ValueError('helper-body-identity')
+              return raw
+          
+          import os
+          import sys
+          import types
+          from pathlib import Path
+          helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
+          path = helper_root / 'stage_plan.py'
+          raw = bound_raw(path, 39812, os.environ['CALLER_FILE_SHA256'])
+          caller = types.ModuleType('_evaluated_caller')
+          caller.__file__ = str(path)
+          exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
+          
+          import hashlib
+          import time
+          import urllib.error
+          import urllib.request
+          SUPPORT_DOWNLOADS = (('sources/qtbase-everywhere-src-6.12.0.tar.xz', 'https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtbase-everywhere-src-6.12.0.tar.xz', 'https://mirrors.20i.com/pub/qt.io/archive/qt/6.12/6.12.0/submodules/qtbase-everywhere-src-6.12.0.tar.xz'), ('sources/qtsvg-everywhere-src-6.12.0.tar.xz', 'https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtsvg-everywhere-src-6.12.0.tar.xz', 'https://mirrors.20i.com/pub/qt.io/archive/qt/6.12/6.12.0/submodules/qtsvg-everywhere-src-6.12.0.tar.xz'), ('sources/qtimageformats-everywhere-src-6.12.0.tar.xz', 'https://download.qt.io/official_releases/qt/6.12/6.12.0/submodules/qtimageformats-everywhere-src-6.12.0.tar.xz', 'https://mirrors.20i.com/pub/qt.io/archive/qt/6.12/6.12.0/submodules/qtimageformats-everywhere-src-6.12.0.tar.xz'), ('sources/pyside-setup-everywhere-src-6.12.0.tar.xz', 'https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.12.0-src/pyside-setup-everywhere-src-6.12.0.tar.xz', 'https://www.mirrorservice.org/sites/download.qt-project.org/official_releases/QtForPython/pyside6/PySide6-6.12.0-src/pyside-setup-everywhere-src-6.12.0.tar.xz'), ('sources/mesa-11.2.2.tar.xz', 'https://archive.mesa3d.org/older-versions/11.x/11.2.2/mesa-11.2.2.tar.xz', 'https://archive.mesa3d.org/older-versions/11.x/11.2.2/mesa-11.2.2.tar.xz'))
+          h = caller.helpers(helper_root)
+          support = h.absolute(Path(os.environ['CALLER_ROOT']) / 'support')
+          h.require(os.environ['SUPPORT_SOURCE_SHA'] == caller.APP_COMMIT, 'support-source-pin')
+          reader = h.IO()
+          reader.read_limit, reader.write_limit = caller.MAX_SUPPORT_TOTAL, caller.MAX_SUPPORT_TOTAL
+          identity, manifest_raw, _ = reader.read(support / 'support-manifest.json', maximum=65536, collect=True)
+          h.require(identity['sha256'] == os.environ['SUPPORT_MANIFEST_SHA256'], 'support-inventory-pin')
+          rows = caller.support_inventory(h, manifest_raw)
+          by_path = {row['path']: row for row in rows}
+          h.require(len(rows) == 11 and all(path in by_path for path, _, _ in SUPPORT_DOWNLOADS), 'support-exact-inventory')
+          # Redirects are bounded and limited to the exact retained mirror URLs declared in
+          # the pinned source manifest. A changed mirror route needs review, not a bypass.
+          class ExactRedirect(urllib.request.HTTPRedirectHandler):
+              max_redirections, max_repeats = 3, 1
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  h.require(newurl in self.allowed, 'support-redirect-not-pinned')
+                  return super().redirect_request(req, fp, code, msg, headers, newurl)
+          deadline = time.monotonic() + 240
+          for relative, url, resolved in SUPPORT_DOWNLOADS:
+              row = by_path[relative]
+              h.mkdirs(support, h.relative(relative)[:-1])
+              target = support.joinpath(*h.relative(relative))
+              h.no_alias(target.parent, target.name, absent=True)
+              handler = ExactRedirect()
+              handler.allowed = (url, resolved)
+              opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), handler)
+              h.require(time.monotonic() < deadline, 'support-fetch-timeout')
+              request = urllib.request.Request(url, headers={'Accept-Encoding': 'identity'})
+              with opener.open(request, timeout=15) as response:
+                  h.require(response.status == 200 and response.geturl() in handler.allowed, 'support-response')
+                  length = response.headers.get('Content-Length')
+                  h.require(length is None or length == str(row['bytes']), 'support-response-length')
+                  h.require(response.headers.get('Content-Encoding', 'identity') == 'identity', 'support-content-encoding')
+                  total, digest = 0, hashlib.sha256()
+                  with target.open('xb') as stream:
+                      while True:
+                          h.require(time.monotonic() < deadline, 'support-fetch-timeout')
+                          block = response.read(min(1048576, row['bytes'] - total + 1))
+                          if not block:
+                              break
+                          total += len(block)
+                          h.require(total <= row['bytes'], 'support-response-oversize')
+                          stream.write(block)
+                          digest.update(block)
+                  h.require(total == row['bytes'] and digest.hexdigest() == row['sha256'], 'support-download-identity')
+              reader.read(target, {key: row[key] for key in ('bytes', 'sha256')}, 67108864)
+          # Guidance bytes come from the already clean, raw-Git-verified application tree.
+          for row in rows:
+              if row['path'] in {relative for relative, _, _ in SUPPORT_DOWNLOADS}:
+                  continue
+              h.require(row['path'].startswith('host/'), 'support-guidance-path')
+              expected = {key: row[key] for key in ('bytes', 'sha256')}
+              source = Path.cwd().joinpath(*h.relative(row['path']))
+              reader.read(source, expected, 1048576)
+              h.mkdirs(support, h.relative(row['path'])[:-1])
+              target = support.joinpath(*h.relative(row['path']))
+              h.new_file(target, reader, source=source, expected=expected)
+              reader.read(target, expected, 1048576)
+          print('SUPPORT_EXACT_BYTES_ONLY', len(rows), sum(row['bytes'] for row in rows), identity['sha256'])
+          '@
+          python -I -S -B -c $support
+          if ($LASTEXITCODE -ne 0) { throw 'Required source accompaniment is incomplete' }
       - name: Build and exercise unchanged host recipe
+        id: build_candidate
         run: |
           $ErrorActionPreference = 'Stop'
           python host/packaging/build_windows.py --output "$env:BUILD_DIR"
@@ -182,6 +363,7 @@ jobs:
           $dirty = git status --porcelain --untracked-files=all
           if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Source mutated during build' }
       - name: Verify completed archives against source and manifest
+        id: verify_archives
         run: |
           $ErrorActionPreference = 'Stop'
           $check = @'
@@ -481,6 +663,7 @@ jobs:
           python -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Archive content verification failed' }
       - name: Inspect completed candidate with separate reviewed companion
+        id: inspect_candidate
         timeout-minutes: 6
         run: |
           $ErrorActionPreference = 'Stop'
@@ -580,71 +763,127 @@ jobs:
           '@
           python -I -S -B -c $check
           if ($LASTEXITCODE -ne 0) { throw 'Provenance observation incomplete' }
-      - name: Observe bounded native metadata and original CPython notice
-        if: ${{ always() && steps.bind_native_observer.outcome == 'success' }}
-        timeout-minutes: 6
-        env:
-          OBSERVER_PRIOR_JOB_STATUS: ${{ job.status }}
+      - name: Verify selected payload in final onedir and ZIP
+        id: verify_reduced_payload
+        timeout-minutes: 3
         run: |
           $ErrorActionPreference = 'Stop'
-          $observe = @'
-          import hashlib
-          import os
+          $check = @'
+          
+          import hashlib, os, stat
           from pathlib import Path
-          import stat
-          import subprocess
+          def bound_raw(path, size, digest):
+              path = Path(path)
+              def checked():
+                  for part in (*reversed(path.parents), path):
+                      info = part.lstat()
+                      if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                          raise ValueError('helper-redirected')
+                      if part != path and not stat.S_ISDIR(info.st_mode):
+                          raise ValueError('helper-ancestor')
+                  if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size != size:
+                      raise ValueError('helper-type-size')
+                  return info
+              before = checked()
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(size + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked()
+              shared = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns, stat.S_IFMT(x.st_mode))
+              stable = lambda x: shared(x) + (x.st_ctime_ns, x.st_nlink)
+              if (len(raw) != size or hashlib.sha256(raw).hexdigest() != digest
+                      or shared(before) != shared(opened) or shared(after) != shared(final)
+                      or stable(before) != stable(final) or stable(opened) != stable(after)
+                      or opened.st_nlink != 1 or getattr(opened, 'st_file_attributes', 0) & 0x400):
+                  raise ValueError('helper-body-identity')
+              return raw
+          
+          import os
           import sys
-          script = Path(os.environ['OBSERVER_PATH'])
-          def checked(path):
-              for ancestor in reversed(path.parents):
-                  info = ancestor.lstat()
-                  if not stat.S_ISDIR(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
-                      raise RuntimeError('Observer source ancestor is redirected')
-              info = path.lstat()
-              if not stat.S_ISREG(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
-                  raise RuntimeError('Observer source is redirected')
-              return info
-          before = checked(script)
-          with script.open('rb') as stream:
-              opened = os.fstat(stream.fileno())
-              if not stat.S_ISREG(opened.st_mode) or getattr(opened, 'st_file_attributes', 0) & 0x400:
-                  raise RuntimeError('Nonregular observer source handle')
-              raw = stream.read(65537)
-              after = os.fstat(stream.fileno())
-          final = checked(script)
-          identity = lambda x: (x.st_dev, x.st_ino, x.st_size)
-          if (not 0 < len(raw) <= 65536 or len(raw) != before.st_size
-                  or any(not stat.S_ISREG(x.st_mode) or getattr(x, 'st_file_attributes', 0) & 0x400
-                         for x in (before, opened, after, final))
-                  or any(identity(x) != identity(before) for x in (opened, after, final))
-                  or before.st_mtime_ns != final.st_mtime_ns or opened.st_mtime_ns != after.st_mtime_ns
-                  or hashlib.sha256(raw).hexdigest() != os.environ['OBSERVER_FILE_SHA256']):
-              raise RuntimeError('Observer executable source differs')
-          command = [sys.executable, '-I', '-S', '-B', str(script),
-              '--build-root', os.environ['BUILD_DIR'], '--baseline', os.environ['OBSERVER_BASELINE'],
-              '--output', os.environ['OBSERVER_REPORT']]
-          try:
-              subprocess.run(command, check=True, timeout=300)
-          finally:
-              dirty = subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'], timeout=60)
-              if dirty:
-                  raise RuntimeError('Application source changed during supplemental observation')
-              checked(script)
-              with script.open('rb') as stream:
-                  final_opened = os.fstat(stream.fileno())
-                  if not stat.S_ISREG(final_opened.st_mode) or getattr(final_opened, 'st_file_attributes', 0) & 0x400:
-                      raise RuntimeError('Nonregular final observer source handle')
-                  final_raw = stream.read(65537)
-                  final_after = os.fstat(stream.fileno())
-              final_info = checked(script)
-              if (final_raw != raw or any(not stat.S_ISREG(x.st_mode)
-                      or getattr(x, 'st_file_attributes', 0) & 0x400 for x in (final_opened, final_after, final_info))
-                      or any(identity(x) != identity(before) for x in (final_opened, final_after, final_info))):
-                  raise RuntimeError('Observer executable source changed during observation')
+          import types
+          from pathlib import Path
+          helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
+          path = helper_root / 'stage_plan.py'
+          raw = bound_raw(path, 39812, os.environ['CALLER_FILE_SHA256'])
+          caller = types.ModuleType('_evaluated_caller')
+          caller.__file__ = str(path)
+          exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
+          
+          h = caller.helpers(helper_root)
+          reader = h.IO()
+          build = h.absolute(os.environ['BUILD_DIR'])
+          manifest_info, _, _ = reader.read(build / h.BUILD_MANIFEST, maximum=4194304)
+          archive_info, archive_raw, _ = reader.read(build / 'archive-verification.json', maximum=1048576, collect=True)
+          archive = h.parse_json(archive_raw)
+          h.require(archive.get('status') == 'PASS' and archive.get('source_sha') == caller.APP_COMMIT
+                    and archive.get('build_manifest_sha256') == manifest_info['sha256'], 'original-archive-join')
+          path = helper_root / 'check_reduced_payload.py'
+          raw = caller.bound_raw(path, *caller.PAYLOAD_CHECKER)
+          sys.argv = [str(path), '--source-root', str(Path.cwd()), '--build-root', str(build),
+                      '--expected-manifest-sha256', manifest_info['sha256'],
+                      '--expected-archive-report-sha256', archive_info['sha256'],
+                      '--output', os.environ['PAYLOAD_REPORT']]
+          exec(compile(raw, str(path), 'exec', dont_inherit=True),
+               {'__name__': '__main__', '__file__': str(path), '__package__': None})
           '@
-          python -I -S -B -c $observe
-          if ($LASTEXITCODE -ne 0) { throw 'Supplemental origin observation incomplete or baseline drifted' }
-      - name: Preserve bounded supplemental receipt independently
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'verify_reduced_payload failed; retention cannot be accepted' }
+      - name: Verify and preserve original CPython notice bytes
+        id: verify_cpython_notices
+        timeout-minutes: 3
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          
+          import hashlib, os, stat
+          from pathlib import Path
+          def bound_raw(path, size, digest):
+              path = Path(path)
+              def checked():
+                  for part in (*reversed(path.parents), path):
+                      info = part.lstat()
+                      if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                          raise ValueError('helper-redirected')
+                      if part != path and not stat.S_ISDIR(info.st_mode):
+                          raise ValueError('helper-ancestor')
+                  if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size != size:
+                      raise ValueError('helper-type-size')
+                  return info
+              before = checked()
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(size + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked()
+              shared = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns, stat.S_IFMT(x.st_mode))
+              stable = lambda x: shared(x) + (x.st_ctime_ns, x.st_nlink)
+              if (len(raw) != size or hashlib.sha256(raw).hexdigest() != digest
+                      or shared(before) != shared(opened) or shared(after) != shared(final)
+                      or stable(before) != stable(final) or stable(opened) != stable(after)
+                      or opened.st_nlink != 1 or getattr(opened, 'st_file_attributes', 0) & 0x400):
+                  raise ValueError('helper-body-identity')
+              return raw
+          
+          import os
+          import sys
+          import types
+          from pathlib import Path
+          helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
+          path = helper_root / 'stage_plan.py'
+          raw = bound_raw(path, 39812, os.environ['CALLER_FILE_SHA256'])
+          caller = types.ModuleType('_evaluated_caller')
+          caller.__file__ = str(path)
+          exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
+          
+          caller.capture_cpython_notices(helper_root=helper_root, build_root=os.environ['BUILD_DIR'],
+              reports_root=str(Path(os.environ['RUNNER_TEMP'])), run_id=os.environ['GITHUB_RUN_ID'],
+              attempt=os.environ['GITHUB_RUN_ATTEMPT'], workflow_sha=os.environ['EVALUATED_WORKFLOW_SHA'])
+          '@
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'verify_cpython_notices failed; retention cannot be accepted' }
+      - name: Preserve original CPython notice receipt independently
+        id: retain_notice_logs
         if: ${{ always() }}
         timeout-minutes: 2
         run: |
@@ -660,8 +899,8 @@ jobs:
           if re.fullmatch('[0-9]{1,20}', run) is None or re.fullmatch('[0-9]{1,4}', attempt) is None:
               raise RuntimeError('Invalid retention identity')
           temp = Path(os.environ['RUNNER_TEMP'])
-          report = temp / ('native-observation-' + run + '-' + attempt + '.json')
-          if Path(os.environ['OBSERVER_REPORT']) != report:
+          report = temp / ('cpython-notice-' + run + '-' + attempt + '.json')
+          if Path(os.environ['NOTICE_REPORT']) != report:
               raise RuntimeError('Unexpected supplemental report path')
           def checked(path):
               for ancestor in reversed(path.parents):
@@ -688,13 +927,13 @@ jobs:
                       or any(identity(x) != identity(before) for x in (opened, after, final))
                       or before.st_mtime_ns != final.st_mtime_ns or opened.st_mtime_ns != after.st_mtime_ns):
                   raise RuntimeError('Supplemental evidence bounds/identity mismatch')
-              print('NATIVE_EVIDENCE ' + label + ' bytes=' + str(len(raw)) + ' sha256=' + hashlib.sha256(raw).hexdigest())
+              print('CPYTHON_NOTICE_EVIDENCE ' + label + ' bytes=' + str(len(raw)) + ' sha256=' + hashlib.sha256(raw).hexdigest())
               print('BEGIN ' + label + ' BASE64')
               encoded = base64.b64encode(raw).decode('ascii')
               for offset in range(0, len(encoded), 4096):
                   print(encoded[offset:offset + 4096])
               print('END ' + label + ' BASE64')
-          items = [(report, 2097152, 'native-observation.json')]
+          items = [(report, 2097152, 'cpython-notice.json')]
           items += [(temp / ('native-notice-' + side + '-' + run + '-' + attempt + '.bin'),
                      1048576, 'native-notice-' + side + '.bin') for side in ('source', 'copy')]
           errors = 0
@@ -710,6 +949,7 @@ jobs:
           python -I -S -B -c $retain
           if ($LASTEXITCODE -ne 0) { throw 'Supplemental receipt was not completely retained' }
       - name: Preserve evidence in job logs only
+        id: retain_job_logs
         if: ${{ always() }}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -769,12 +1009,14 @@ jobs:
           }
           @"
           Source SHA: $env:SOURCE_SHA
-          No ZIP artifact retained. Synthetic PNG is encoded in logs only when present and <= 2 MiB.
+          This step preserves job-log evidence. The separate retention caller reports any local ZIP result.
+          Synthetic PNG is encoded in logs only when present and <= 2 MiB.
           Original recording JSON has its own always-run bounded byte-retention step.
-          Logs retain build/smoke diagnostics without Actions artifact storage; missing or oversized PNG is explicit.
+          This step uses no Actions artifact storage; missing or oversized PNG is explicit.
           Windows 10 manual, license, USB and independent acceptance remain open.
           "@ | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
       - name: Preserve original recording receipt independently
+        id: retain_recording_logs
         if: ${{ always() }}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -825,3 +1067,165 @@ jobs:
           '@
           python -I -S -B -c $recordingBytes
           if ($LASTEXITCODE -ne 0) { throw 'Original recording receipt retention incomplete' }
+      - name: Retain and package exact successful local kit
+        id: stage_accepted
+        if: ${{ success() && steps.bind_retention_caller.outcome == 'success' }}
+        timeout-minutes: 8
+        env:
+          CALLER_STEP_OUTCOMES: ${{ toJSON(steps) }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $context = @'
+          import json
+          import os
+          from pathlib import Path
+          steps = json.loads(os.environ['CALLER_STEP_OUTCOMES'])
+          body = {'schema_version': 1, 'repository': os.environ['GITHUB_REPOSITORY'],
+                  'run_id': os.environ['GITHUB_RUN_ID'], 'attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+                  'workflow_sha': os.environ['EVALUATED_WORKFLOW_SHA'], 'application_commit': os.environ['SOURCE_SHA'],
+                  'application_tree': os.environ['SOURCE_TREE'], 'inspector_commit': os.environ['INSPECTOR_SHA'],
+                  'inspector_sha256': os.environ['INSPECTOR_FILE_SHA256'],
+                  'payload_checker_sha256': os.environ['PAYLOAD_CHECKER_SHA256'],
+                  'source_notice_review': os.environ['SOURCE_NOTICE_REVIEW'],
+                  'steps': {key: steps[key]['outcome'] for key in ('verify_source', 'verify_raw_blobs', 'bind_inspector', 'bind_retention_caller', 'prepare_required_support', 'build_candidate', 'verify_archives', 'inspect_candidate', 'verify_reduced_payload', 'verify_cpython_notices', 'retain_notice_logs', 'retain_job_logs', 'retain_recording_logs')}}
+          path = Path(os.environ['CALLER_ROOT']) / 'workflow-run-accepted.json'
+          with path.open('x', encoding='utf-8', newline='\n') as stream:
+              json.dump(body, stream, sort_keys=True, indent=2)
+              stream.write('\n')
+          '@
+          python -I -S -B -c $context
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot retain exact original step outcomes' }
+          $launch = @'
+          
+          import hashlib, os, stat
+          from pathlib import Path
+          def bound_raw(path, size, digest):
+              path = Path(path)
+              def checked():
+                  for part in (*reversed(path.parents), path):
+                      info = part.lstat()
+                      if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                          raise ValueError('helper-redirected')
+                      if part != path and not stat.S_ISDIR(info.st_mode):
+                          raise ValueError('helper-ancestor')
+                  if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size != size:
+                      raise ValueError('helper-type-size')
+                  return info
+              before = checked()
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(size + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked()
+              shared = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns, stat.S_IFMT(x.st_mode))
+              stable = lambda x: shared(x) + (x.st_ctime_ns, x.st_nlink)
+              if (len(raw) != size or hashlib.sha256(raw).hexdigest() != digest
+                      or shared(before) != shared(opened) or shared(after) != shared(final)
+                      or stable(before) != stable(final) or stable(opened) != stable(after)
+                      or opened.st_nlink != 1 or getattr(opened, 'st_file_attributes', 0) & 0x400):
+                  raise ValueError('helper-body-identity')
+              return raw
+          
+          import sys
+          path, size, digest = sys.argv[1:4]
+          raw = bound_raw(path, int(size), digest)
+          sys.argv = [path] + sys.argv[4:]
+          exec(compile(raw, path, 'exec', dont_inherit=True),
+               {'__name__': '__main__', '__file__': path, '__package__': None})
+          '@
+          # These fixed workflow-generated arguments are canonical Windows paths.
+          $helperRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'helpers'))
+          $callerScript = [IO.Path]::GetFullPath((Join-Path -Path $helperRoot -ChildPath 'stage_plan.py'))
+          $buildRoot = [IO.Path]::GetFullPath($env:BUILD_DIR)
+          $reportsRoot = [IO.Path]::GetFullPath($env:RUNNER_TEMP)
+          $supportRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'support'))
+          $outputRoot = [IO.Path]::GetFullPath($env:CALLER_OUTPUT)
+          $workflowRun = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'workflow-run-accepted.json'))
+          python -I -S -B -c $launch "$callerScript" '39812' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode accepted --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
+          if ($LASTEXITCODE -ne 0) { throw 'Local retention/package incomplete; do not consume partial output' }
+          $terminalPath = [IO.Path]::GetFullPath((Join-Path -Path $outputRoot -ChildPath 'caller-terminal.json'))
+          if ((Get-Item -LiteralPath $terminalPath).Length -gt 65536) { throw 'Caller terminal exceeds bound' }
+          $terminal = Get-Content -LiteralPath $terminalPath -Raw -Encoding utf8 | ConvertFrom-Json
+          if ($terminal.status -cne 'LOCAL_KIT_BYTES_VERIFIED_ONLY' -or $terminal.mode -cne 'accepted' -or $terminal.retention_exit_code -ne 0 -or $terminal.zip_exit_code -ne 0) { throw 'Missing successful terminal result' }
+          $zip = Get-Item -LiteralPath $env:CALLER_ZIP
+          if ($zip.Length -ne $terminal.zip.bytes -or $zip.Length -gt 538968064 -or (Get-FileHash -LiteralPath $zip.FullName -Algorithm SHA256).Hash.ToLowerInvariant() -cne $terminal.zip.sha256) { throw 'Terminal ZIP identity mismatch' }
+          "Local kit bytes verified. SHA-256: $($terminal.zip.sha256). No upload/download performed; Windows 10, hardware and distribution acceptance remain separate." | Add-Content -Encoding utf8 $env:GITHUB_STEP_SUMMARY
+      - name: Retain explicitly incomplete text diagnostics
+        id: stage_diagnostics
+        if: ${{ always() && steps.bind_retention_caller.outcome == 'success' && steps.stage_accepted.outcome != 'success' }}
+        timeout-minutes: 8
+        env:
+          CALLER_STEP_OUTCOMES: ${{ toJSON(steps) }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $context = @'
+          import json
+          import os
+          from pathlib import Path
+          steps = json.loads(os.environ['CALLER_STEP_OUTCOMES'])
+          body = {'schema_version': 1, 'repository': os.environ['GITHUB_REPOSITORY'],
+                  'run_id': os.environ['GITHUB_RUN_ID'], 'attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+                  'workflow_sha': os.environ['EVALUATED_WORKFLOW_SHA'], 'application_commit': os.environ['SOURCE_SHA'],
+                  'application_tree': os.environ['SOURCE_TREE'], 'inspector_commit': os.environ['INSPECTOR_SHA'],
+                  'inspector_sha256': os.environ['INSPECTOR_FILE_SHA256'],
+                  'payload_checker_sha256': os.environ['PAYLOAD_CHECKER_SHA256'],
+                  'source_notice_review': os.environ['SOURCE_NOTICE_REVIEW'],
+                  'steps': {key: steps[key]['outcome'] for key in ('verify_source', 'verify_raw_blobs', 'bind_inspector', 'bind_retention_caller', 'prepare_required_support', 'build_candidate', 'verify_archives', 'inspect_candidate', 'verify_reduced_payload', 'verify_cpython_notices', 'retain_notice_logs', 'retain_job_logs', 'retain_recording_logs')}}
+          path = Path(os.environ['CALLER_ROOT']) / 'workflow-run-diagnostics.json'
+          with path.open('x', encoding='utf-8', newline='\n') as stream:
+              json.dump(body, stream, sort_keys=True, indent=2)
+              stream.write('\n')
+          '@
+          python -I -S -B -c $context
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot retain exact original step outcomes' }
+          $launch = @'
+          
+          import hashlib, os, stat
+          from pathlib import Path
+          def bound_raw(path, size, digest):
+              path = Path(path)
+              def checked():
+                  for part in (*reversed(path.parents), path):
+                      info = part.lstat()
+                      if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                          raise ValueError('helper-redirected')
+                      if part != path and not stat.S_ISDIR(info.st_mode):
+                          raise ValueError('helper-ancestor')
+                  if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size != size:
+                      raise ValueError('helper-type-size')
+                  return info
+              before = checked()
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(size + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked()
+              shared = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns, stat.S_IFMT(x.st_mode))
+              stable = lambda x: shared(x) + (x.st_ctime_ns, x.st_nlink)
+              if (len(raw) != size or hashlib.sha256(raw).hexdigest() != digest
+                      or shared(before) != shared(opened) or shared(after) != shared(final)
+                      or stable(before) != stable(final) or stable(opened) != stable(after)
+                      or opened.st_nlink != 1 or getattr(opened, 'st_file_attributes', 0) & 0x400):
+                  raise ValueError('helper-body-identity')
+              return raw
+          
+          import sys
+          path, size, digest = sys.argv[1:4]
+          raw = bound_raw(path, int(size), digest)
+          sys.argv = [path] + sys.argv[4:]
+          exec(compile(raw, path, 'exec', dont_inherit=True),
+               {'__name__': '__main__', '__file__': path, '__package__': None})
+          '@
+          # These fixed workflow-generated arguments are canonical Windows paths.
+          $helperRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'helpers'))
+          $callerScript = [IO.Path]::GetFullPath((Join-Path -Path $helperRoot -ChildPath 'stage_plan.py'))
+          $buildRoot = [IO.Path]::GetFullPath($env:BUILD_DIR)
+          $reportsRoot = [IO.Path]::GetFullPath($env:RUNNER_TEMP)
+          $supportRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'support'))
+          $outputRoot = [IO.Path]::GetFullPath($env:CALLER_DIAGNOSTICS)
+          $workflowRun = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'workflow-run-diagnostics.json'))
+          python -I -S -B -c $launch "$callerScript" '39812' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode diagnostics --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
+          $diagnosticExit = $LASTEXITCODE
+          # Diagnostics deliberately exits 1 even when its bounded ZIP succeeded.
+          Write-Output "Diagnostic caller terminal exit: $diagnosticExit; original failure is preserved."
+          throw 'INCOMPLETE_DIAGNOSTICS_ONLY; never promote diagnostic retention to build success'

@@ -1,0 +1,57 @@
+[
+  {
+    "bytes": 51220268,
+    "path": "sources/qtbase-everywhere-src-6.12.0.tar.xz",
+    "sha256": "a951bd163c7b80fc6b8c88d7668fb56abf91c152373e13c10666763238131307"
+  },
+  {
+    "bytes": 2341876,
+    "path": "sources/qtsvg-everywhere-src-6.12.0.tar.xz",
+    "sha256": "e4ab39534ec97987b1b9b60ef7f4d3253d5912a69f8c713a01753174a4029331"
+  },
+  {
+    "bytes": 1848620,
+    "path": "sources/qtimageformats-everywhere-src-6.12.0.tar.xz",
+    "sha256": "0943132b5db8de6b6a7f1d162682173e8763c7ed94e80fd39113292845f67762"
+  },
+  {
+    "bytes": 18211772,
+    "path": "sources/pyside-setup-everywhere-src-6.12.0.tar.xz",
+    "sha256": "099c1a597cf33c1b000e11cf68a0b82d216fb802bf81726efc720394f10c7751"
+  },
+  {
+    "bytes": 7860932,
+    "path": "sources/mesa-11.2.2.tar.xz",
+    "sha256": "40e148812388ec7c6d7b6657d5a16e2e8dabba8b97ddfceea5197947647bdfb4"
+  },
+  {
+    "bytes": 22049,
+    "path": "host/docs/dependency-sources.md",
+    "sha256": "36923624c9723995ed4b2905e198c7e0cd4d2d4ed9b60e5ca5f6602a594a3307"
+  },
+  {
+    "bytes": 182368,
+    "path": "host/packaging/licenses/dependency-6.12.0/manifest.json",
+    "sha256": "dde5677a4f9cce86a3e81c20892b7266f89ddc3c609bd7d52a8d9bce4768644b"
+  },
+  {
+    "bytes": 1068,
+    "path": "host/LICENSE",
+    "sha256": "536638fe2c4a6fb63131e26d706b08aa51c8eb4ebf93bf955ed1566668aab38d"
+  },
+  {
+    "bytes": 9680,
+    "path": "host/docs/project-license.md",
+    "sha256": "a78bcb105bff52fe05e17c59e2c7d8a6a639331fc18490b132fb113e37cbb225"
+  },
+  {
+    "bytes": 20669,
+    "path": "host/packaging/LICENSE-REVIEW.md",
+    "sha256": "34f326d14114023bd099934bf27a51cedc5a5169cf99aa129b44b249995a77c8"
+  },
+  {
+    "bytes": 29535,
+    "path": "host/docs/windows-smoke.md",
+    "sha256": "a5a094b24cdf86161e32b3f9d040c1f01d2caaef3368bff4e1084d5e6fe6597e"
+  }
+]
