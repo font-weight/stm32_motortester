@@ -6,10 +6,13 @@
 выдать бинарный файл. Общий workflow/провайдер хранения добавляются отдельно.
 
 Основание: [B, issue33#6232479247](https://github.com/font-weight/stm32_motortester/issues/33#issuecomment-6232479247).
-Выбранное приложение: `244b0786a18fed19a9e708bb815150475ddd193f`, дерево
-`0c0e61fb8aadd4a4380e2d7e0b8818e4c9da0d5e`.
-Исходный builder, spec, lock, collector, source tests, frozen serial/GUI/recording
-и archive/provenance/native validators не меняются. PR174, AUX и PRELAUNCH
+Выбранное приложение: `dcafc5638bc6c3ddef6cba25a7a55016fe8e8933`, дерево
+`61a9bd025081acec80997dff950d947eeceb3f4b`.
+Builder, lock, collector и 23 runtime source тела сохранены от app244b.
+Spec и новый selector PR179 задают отдельно рассмотренное исключение47
+путей и сохранение7 зависимостей до замораживания. Полные исходные
+serial/GUI/recording и archive/provenance проверки сохраняются; historical
+fixed46 origin-observer неприменим к исключённым файлам и не выдаётся за PASS. PR174, AUX и PRELAUNCH
 не являются зависимостями обычного retention. Их отдельные W1–W8 и
 исторический source-ZIP pin не ослабляются этим helper.
 
@@ -26,7 +29,8 @@
 
 Обязательные проверки caller:
 
-- неизменённая app244b recipe и source/unit checks;
+- неизменённый builder в новой appdcafc563 и её актуальные source/unit checks;
+- отдельная проверка actual47 отсутствующих/7 сохранённых путей в onedir и ZIP;
 - исходные native serial/GUI/recording команды и строгие validators;
 - исходная проверка всех членов candidate ZIP, manifest и source ZIP по
   фактическим Git blob/commit; новый обычный source.zip получает свой SHA,
@@ -73,7 +77,7 @@ evidence и output взаимно не вложены, их предки уже 
 {
   "schema_version": 1,
   "mode": "accepted",
-  "application_commit": "244b0786a18fed19a9e708bb815150475ddd193f",
+  "application_commit": "dcafc5638bc6c3ddef6cba25a7a55016fe8e8933",
   "build_files": [
     {"path": "source.zip", "bytes": 123, "sha256": "64 lowercase hex characters"}
   ],
@@ -262,3 +266,12 @@ manifest по64 KiB, итоговый ZIP не более514 MiB. EXE не ду�
 Upload/download, действительность прежних validator results, Windows10,
 physical test и distribution permission упаковщик не подтверждает.
 Caller проверяет terminal и exact ZIP перед отдельной разрешённой передачей.
+
+## Привязка к PR179
+
+Это явный successor исходного PR178, а не перенос его оценки. Изменены
+только application pin, соответствующий hash/размер retainer в ZIP helper
+и это описание consumer условий. Проверки восьми checksum payloads,
+структур receipt, no-clobber и bounded IO не ослаблены. Caller и workflow
+должны дополнительно закрепить spec/selector и новую source inventory;
+сам helper их не проверяет. До нового независимого review — draft.

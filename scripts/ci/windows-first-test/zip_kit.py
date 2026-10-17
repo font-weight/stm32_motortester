@@ -9,7 +9,7 @@ import sys
 import zipfile
 
 # Bind the independently tested retainer before importing its path checks.
-RETAINER_SHA256 = '9e51a4bc9d8cde8ad52c3f286dfff1f262eeb322d96b10f7f0263fc811c11dd7'
+RETAINER_SHA256 = '3ab02204cf20771c1ff67ca0ec05c8d8c6cb639a93ed56a653ba487fc856b08c'
 MAX_ZIP = 514 * 1024 * 1024
 CHUNK = 65536
 
@@ -21,8 +21,8 @@ def helper():
     with path.open('rb') as source:
         if not stat.S_ISREG(os.fstat(source.fileno()).st_mode):
             raise ValueError('retainer-not-regular')
-        raw = source.read(20064)
-    if len(raw) != 20063 or hashlib.sha256(raw).hexdigest() != RETAINER_SHA256:
+        raw = source.read(20067)
+    if len(raw) != 20066 or hashlib.sha256(raw).hexdigest() != RETAINER_SHA256:
         raise ValueError('retainer-body-mismatch')
     module = types.ModuleType('_kit_retainer')
     module.__file__ = str(path)
