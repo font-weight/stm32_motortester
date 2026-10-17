@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "input_kind": "caller_board",
+  "board": {
+    "verified_hse_hz": 8000000,
+    "clock_poll_budget": 1000000,
+    "usb_irq_priority": 0,
+    "firmware_build": 20261017,
+    "hse_mode": "crystal",
+    "require_dtr": 1,
+    "verified_fixed_pullup": 1,
+    "usb": {
+      "vid": 4617,
+      "pid": 1,
+      "bcd_device": 256,
+      "bus_power_ma": 100,
+      "manufacturer": "font-weight",
+      "product": "Motortester private LV test",
+      "serial": "AH20261017001"
+    }
+  },
+  "caller_attestations": {
+    "physical_mcu_and_memory": true,
+    "hse_frequency_and_mode": true,
+    "fixed_pullup_topology": true,
+    "usb_bus_power_budget": true,
+    "usb_vid_pid_authorized": true,
+    "stable_unique_physical_serial": true
+  }
+}
