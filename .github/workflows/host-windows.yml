@@ -11,10 +11,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   verify:
-    # LOCAL DRAFT ONLY: disabled until final bindings and independent review.
+    # Draft bounded Windows verification; no binary publication in this job.
     # No upload in this patch; optional transport patch requires separate approval.
     if: >-
-      false &&
       github.repository == 'font-weight/stm32_motortester' &&
       github.event.repository.private == false &&
       (github.event_name == 'workflow_dispatch' ||
