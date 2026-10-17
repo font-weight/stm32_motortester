@@ -33,7 +33,7 @@ jobs:
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
       EVALUATED_WORKFLOW_SHA: ${{ github.workflow_sha }}
       RETENTION_SHA: '49c271104939a9c6ca6027ec239a904cac11a1a3'
-      CALLER_FILE_SHA256: '0ded9c2dcc43f433b7462af2911ee2354e9c5ba11d29254abd1074fa80b2eee4'
+      CALLER_FILE_SHA256: '9404b5e824dcef3f8735b62180b12d4ab3f0b7df56be0c117669327e140783db'
       PAYLOAD_CHECKER_SHA256: '53f9e66afd56c1dd78e1257fd95591f0c15fa4d3c67c6b629d5fc2e79e09d61c'
       # External source-input disposition; does not grant distribution clearance.
       SUPPORT_SOURCE_SHA: 'dcafc5638bc6c3ddef6cba25a7a55016fe8e8933'
@@ -217,8 +217,8 @@ jobs:
               if len(raw) != size or hashlib.sha256(raw).hexdigest() != digest:
                   raise ValueError('Retention helper bytes differ')
               save(helpers / name, raw)
-          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/stage_plan.py', 51834)
-          if len(raw) != 51834 or hashlib.sha256(raw).hexdigest() != os.environ['CALLER_FILE_SHA256']:
+          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/stage_plan.py', 52733)
+          if len(raw) != 52733 or hashlib.sha256(raw).hexdigest() != os.environ['CALLER_FILE_SHA256']:
               raise ValueError('Evaluated caller bytes differ')
           save(helpers / 'stage_plan.py', raw)
           module = types.ModuleType('_evaluated_caller')
@@ -317,7 +317,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 52733, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -848,7 +848,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 52733, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -914,7 +914,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 52733, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -967,7 +967,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 52733, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -1237,7 +1237,7 @@ jobs:
           $supportRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'support'))
           $outputRoot = [IO.Path]::GetFullPath($env:CALLER_OUTPUT)
           $workflowRun = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'workflow-run-accepted.json'))
-          python -I -S -B -c $launch "$callerScript" '51834' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode accepted --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
+          python -I -S -B -c $launch "$callerScript" '52733' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode accepted --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
           if ($LASTEXITCODE -ne 0) { throw 'Local retention/package incomplete; do not consume partial output' }
           $terminalPath = [IO.Path]::GetFullPath((Join-Path -Path $outputRoot -ChildPath 'caller-terminal.json'))
           if ((Get-Item -LiteralPath $terminalPath).Length -gt 65536) { throw 'Caller terminal exceeds bound' }
@@ -1320,7 +1320,7 @@ jobs:
           $supportRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'support'))
           $outputRoot = [IO.Path]::GetFullPath($env:CALLER_DIAGNOSTICS)
           $workflowRun = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'workflow-run-diagnostics.json'))
-          python -I -S -B -c $launch "$callerScript" '51834' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode diagnostics --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
+          python -I -S -B -c $launch "$callerScript" '52733' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode diagnostics --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
           $diagnosticExit = $LASTEXITCODE
           # Diagnostics deliberately exits 1 even when its bounded ZIP succeeded.
           Write-Output "Diagnostic caller terminal exit: $diagnosticExit; original failure is preserved."

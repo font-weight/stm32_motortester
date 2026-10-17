@@ -3,7 +3,7 @@
 This successor is isolated from the redirect-fixed evaluated workflow at commit
 `a5ca2caecc584ded0d4720bbe1ad1b3bc15660c8` and its original Windows run. That run completed its build and original archive/
 inspector checks, then the old checker failed before retention. Its logs remain
-preserved; the full v2 terms composition snapshot is under `history/checker-v2/`. It changes no
+preserved; the full v2 terms composition snapshot is under `../history/checker-v2/`. It changes no
 `host/**` files, recipe, inner candidate ZIP, strict 11 build outputs, app/source
 pins, retention helpers or caps. It binds the separately reviewed payload checker
 Windows fresh-stat successor (24,668 bytes, SHA-256
@@ -34,11 +34,17 @@ optional transport patch has been dispatched or uploaded by this worker.
    `e30bc507ab0ce4d1794efd15ff2bfb8286588ab5df8b46db1dde9c4be82d1b5d`.
    That reference is historical attribution. The new receipt measures fresh files,
    joins their manifest and payload inventory entries, and binds the fresh
-   manifest/archive/payload reports. The source pair uses exactly
+   manifest/archive/payload reports. The source pair uses the fixed logical leaves under exactly
    `C:\hostedtoolcache\windows\Python\3.13.16\x64\VCRUNTIME140.dll` and
-   `VCRUNTIME140_1.dll`. Their exact path case is corroborated by the original
+   `VCRUNTIME140_1.dll`. Those logical source names are recorded by the original
    `literal-gate-design/provenance.json`, SHA-256
-   `f7e3bceca4d001f80d727e2cd0aa5001b76b3227784080e5c1123d7dd708ac5e`. No DLL is loaded, registered or executed. Signature and
+   `f7e3bceca4d001f80d727e2cd0aa5001b76b3227784080e5c1123d7dd708ac5e`.
+   They do not establish actual source directory-entry case. Revision r2 selects
+   exactly one case-insensitive match for each of the two fixed source leaves
+   under the checked CPython root, using the existing 4096-entry bound without
+   recursion. It records actual spelling and then invokes unchanged strict IO;
+   duplicates, links/reparse points, non-files and hardlinks reject. Final bundle
+   paths remain exactly uppercase. No DLL is loaded, registered or executed. Signature and
    version metadata explicitly remain `not-collected`. No legal-clearance field
    is introduced. Accepted staging rechecks the 11 bundle members and retains
    `evidence/runtime-identity.json` within the existing cap.
@@ -133,3 +139,13 @@ availability from source, not an executed result. The delivered, SHA-bound EXE
 still needs the separately reviewed interactive rehearsal proving 2048 samples,
 `auto_timeout`, and absent trigger index/marker before any real COM use. No new
 host change or external UI-driving framework is included in this draft.
+
+## R2 source-case correction
+
+The parent directory preserves the published/frozen r1 composition and its
+manifest. R1 assumed the source DLL leaf case from the inspector's logical path
+string, although the inspector did not enforce actual directory-entry spelling.
+The inert regression reproduces the strict retainer rejection for a sole
+lowercase source leaf. R2 corrects only this trusted source-name lookup and receipt
+spelling validation. It does not relax the retainer or final bundle path contract.
+The finite R1-to-R2 patches accompany the unchanged a5-relative full draft patch.

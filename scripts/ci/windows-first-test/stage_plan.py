@@ -385,6 +385,18 @@ def runtime_payload_join(h, payload, manifest, rows):
                   "runtime-payload-member-join")
 
 
+def cpython_runtime_sources(h, python_root):
+    """Choose only two fixed leaves under the trusted root; preserve actual case."""
+    h.checked(python_root, "directory")
+    names = h.members(python_root)  # Existing 4096-entry bound; no recursion/stat cache.
+    sources = {}
+    for fixed in CPYTHON_RUNTIME_NAMES:
+        matches = [name for name in names if name.casefold() == fixed.casefold()]
+        h.require(len(matches) == 1, "runtime-source-name-match")
+        sources[fixed] = python_root / matches[0]
+    return sources
+
+
 def _capture_runtime_inputs(h, *, build, reports, python_root, run_id, attempt, workflow_sha):
     """Read exactly nine wheel members and two interpreter pairs; never load code."""
     build, reports, python_root = map(h.absolute, (build, reports, python_root))
@@ -423,8 +435,9 @@ def _capture_runtime_inputs(h, *, build, reports, python_root, run_id, attempt, 
         identity, _, snapshot = reader.read(path, expected, MIB)
         snapshots[path] = snapshot
         wheel_rows.append({"path": relative, **identity})
+    source_paths = cpython_runtime_sources(h, python_root)
     for name in CPYTHON_RUNTIME_NAMES:
-        source = python_root / name
+        source = source_paths[name]
         bundle_relative = "_internal/" + name
         bundle = build / "dist/Motortester" / bundle_relative
         identity, _, snapshot = reader.read(source, maximum=MIB)
@@ -432,7 +445,7 @@ def _capture_runtime_inputs(h, *, build, reports, python_root, run_id, attempt, 
         snapshots[source] = snapshot
         _, _, snapshot = reader.read(bundle, identity, MIB)
         snapshots[bundle] = snapshot
-        python_rows.append({"source_path": str(PYTHON_ROOT / name), "path": bundle_relative, **identity})
+        python_rows.append({"source_path": str(PYTHON_ROOT / source.name), "path": bundle_relative, **identity})
     runtime_payload_join(h, payload, manifest, wheel_rows +
                          [{k: row[k] for k in ("path", "bytes", "sha256")} for row in python_rows])
     for path, snapshot in snapshots.items():
@@ -477,7 +490,12 @@ def validate_runtime_receipt(h, reader, build, report, run, manifest, payload, i
     rows = list(expected_wheel)
     for name, row in zip(CPYTHON_RUNTIME_NAMES, report["cpython_pairs"]):
         h.keys(row, ("source_path", "path", "bytes", "sha256"))
-        h.require(row["source_path"] == str(PYTHON_ROOT / name) and row["path"] == "_internal/" + name
+        source_prefix = str(PYTHON_ROOT) + "\\"
+        source = row["source_path"]
+        h.require(type(source) is str and source.startswith(source_prefix), "runtime-interpreter-pair")
+        actual_name = source[len(source_prefix):]
+        h.require(actual_name.casefold() == name.casefold() and source == str(PYTHON_ROOT / actual_name)
+                  and row["path"] == "_internal/" + name
                   and type(row["bytes"]) is int and row["bytes"] > 0, "runtime-interpreter-pair")
         h.info_value({k: row[k] for k in ("bytes", "sha256")}, MIB)
         rows.append({k: row[k] for k in ("path", "bytes", "sha256")})
