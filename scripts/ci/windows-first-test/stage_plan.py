@@ -27,8 +27,8 @@ HELPERS = {
     "retain.py": (20066, "3ab02204cf20771c1ff67ca0ec05c8d8c6cb639a93ed56a653ba487fc856b08c"),
     "zip_kit.py": (8419, "1270725f73afe9c947e7ce5835779eee28c7604d429a30f244aff06684fe40b6"),
 }
-# Rebound when the independently reviewed checker revision is frozen.
-PAYLOAD_CHECKER = (24424, "b6264f445d9c7abf3170e3072d25632f3bb6e9b3980c0af5bfa8e206bf0dd8e7")
+# Independently reviewed Windows fresh-stat successor; all original caps retained.
+PAYLOAD_CHECKER = (24668, "53f9e66afd56c1dd78e1257fd95591f0c15fa4d3c67c6b629d5fc2e79e09d61c")
 SOURCE_PINS = {
     "host/packaging/select_windows_runtime.py": {"bytes": 5686, "sha256": "f4144a5318f4607a207531559c03365d2351473b40b5431ddfb4f7c3d381712b"},
     "host/packaging/motortester.spec": {"bytes": 1867, "sha256": "b754e84f96be7c8d8c8284a29457c83567f02c53344a99235857a60386d3e492"},
@@ -38,10 +38,15 @@ DEPENDENCY_MANIFEST = {"bytes": 182368, "sha256": "dde5677a4f9cce86a3e81c20892b7
 DEPENDENCY_GUIDE = {"bytes": 22049, "sha256": "36923624c9723995ed4b2905e198c7e0cd4d2d4ed9b60e5ca5f6602a594a3307"}
 NOTICE_HASH = "62bec384df47b0328307db41455ff6ea2559e5546b394ac69148561b21703120"
 PYTHON_ROOT = PureWindowsPath(r"C:\hostedtoolcache\windows\Python\3.13.16\x64")
+TERMS_FILES = {'launcher/Start-Motortester.ps1': {'bytes': 7069, 'sha256': '07f49b0867123f7c2e09edf674a7a219d4436aef86a4c49cd851a94c4e214a9f'}, 'launcher/terms/COMPONENT-TERMS.txt': {'bytes': 2881, 'sha256': '9f3c6158a504e61df2c6f35eb48727f96dc637edabfb6680b2211208339ca0b0'}, 'launcher/terms/MICROSOFT-RUNTIME-NOTICE.txt': {'bytes': 1965, 'sha256': '70af32c535680c16680fdecdc7cea0bd946cce0525ee5f182bf02743a2736ed0'}, 'launcher/terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.txt': {'bytes': 11893, 'sha256': '3dfd057b91025067c08bd73c3cb0e6f712f76b6198b54413e14365d529f17ea6'}, 'launcher/terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.docx': {'bytes': 39553, 'sha256': '08651651a7602fc7c0e2763de0fde1ff9f868df2780597cd1775ee9d6441c783'}}
+# Exact supplier-wheel member bytes; historical reference is attribution, not fresh proof.
+RUNTIME_REFERENCE_SHA256 = 'e30bc507ab0ce4d1794efd15ff2bfb8286588ab5df8b46db1dde9c4be82d1b5d'
+WHEEL_RUNTIME_PINS = {'_internal/PySide6/MSVCP140.dll': {'bytes': 549176, 'sha256': 'f6f1d55bfd64027820ddce48f9cd8cf46d53bfa34047e6acf4ef348d492a05cb'}, '_internal/PySide6/MSVCP140_1.dll': {'bytes': 27448, 'sha256': '2be87527c41e1ba8aff48e326e0adcd4743516e0bbcc9304986c726e27de6aca'}, '_internal/PySide6/MSVCP140_2.dll': {'bytes': 271672, 'sha256': '6a72ed8a87eae1671640bd1ca98eccb989f1772ae46ab84594e385bf6d4ac4fb'}, '_internal/PySide6/VCRUNTIME140.dll': {'bytes': 116024, 'sha256': 'a36e0cb185eb89533ed96d4568138f86a1315756a8b2644c5963a8ce23e32101'}, '_internal/PySide6/VCRUNTIME140_1.dll': {'bytes': 41272, 'sha256': '302b1e160e858602490a55e32ae2e29ddfc0bec2a188e19550cb655cdaa58f9c'}, '_internal/numpy.libs/msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll': {'bytes': 575056, 'sha256': 'a4c2229bdc2a2a630acdc095b4d86008e5c3e3bc7773174354f3da4f5beb9cde'}, '_internal/shiboken6/MSVCP140.dll': {'bytes': 549176, 'sha256': '1ba4d7c0a95d375da138a057a57593b33510ad5bda6c5e2686afd68faa5b4231'}, '_internal/shiboken6/VCRUNTIME140.dll': {'bytes': 116024, 'sha256': 'e7be9112ee9a5b9f44b44bff24cb761cca9b1ed7550b612f77b70edfcf5fdabf'}, '_internal/shiboken6/VCRUNTIME140_1.dll': {'bytes': 41272, 'sha256': 'f02cd4a862b85a9a3153d27e15e5a213f5df8e3d77004ed2e87b8a7e8873d97c'}}
+CPYTHON_RUNTIME_NAMES = ("VCRUNTIME140.dll", "VCRUNTIME140_1.dll")
 REQUIRED_STEPS = (
     "verify_source", "verify_raw_blobs", "bind_inspector", "bind_retention_caller",
-    "prepare_required_support", "build_candidate", "verify_archives", "inspect_candidate",
-    "verify_reduced_payload", "verify_cpython_notices", "retain_notice_logs",
+    "test_inert_launcher", "prepare_required_support", "build_candidate", "verify_archives", "inspect_candidate",
+    "verify_reduced_payload", "verify_runtime_identity", "verify_cpython_notices", "retain_notice_logs",
     "retain_job_logs", "retain_recording_logs",
 )
 MIB = 1024 * 1024
@@ -210,6 +215,24 @@ def selection_observation(h, raw, approved):
             "final_absence_used_to_infer_removal": False, "native_origin_authenticated": False}
 
 
+def launcher_manifest(h, executable, support_rows):
+    """Recipient launch identities only; never consent or distribution clearance."""
+    h.info_value(executable, 64 * MIB)
+    index = {row["path"]: {key: row[key] for key in ("bytes", "sha256")} for row in support_rows}
+    h.require(all(index.get(path) == identity for path, identity in TERMS_FILES.items()), "launcher-input-pins")
+    roles = {"componentTerms": "terms/COMPONENT-TERMS.txt",
+             "runtimeNotice": "terms/MICROSOFT-RUNTIME-NOTICE.txt",
+             "runtimeText": "terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.txt",
+             "runtimeOriginal": "terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.docx"}
+    documents = {role: {"path": path, "sha256": TERMS_FILES["launcher/" + path]["sha256"]}
+                 for role, path in roles.items()}
+    # Reuse the actual original notice validated before this function is called.
+    # The recipient manually extracts the unchanged inner ZIP under launcher/app/.
+    documents["pythonLicense"] = {"path": "app/Motortester/licenses/CPython-LICENSE.txt", "sha256": NOTICE_HASH}
+    return {"application": {"path": "app/Motortester/Motortester.exe", "sha256": executable["sha256"]},
+            "documents": documents}
+
+
 def notice_coverage(h, reader, build, support, manifest, snapshots):
     """Join actual packaged notices and original collector inventory to pinned inputs."""
     _, raw, _ = reader.read(support / "host/packaging/licenses/dependency-6.12.0/manifest.json",
@@ -351,6 +374,120 @@ def capture_cpython_notices(*, helper_root, build_root, reports_root, run_id, at
         source_notice=str(PYTHON_ROOT / "LICENSE.txt"), run_id=run_id, attempt=attempt, workflow_sha=workflow_sha)
 
 
+
+def runtime_payload_join(h, payload, manifest, rows):
+    inventory = payload.get("actual_onedir")
+    h.require(type(inventory) is dict and type(inventory.get("files")) is list,
+              "runtime-payload-inventory")
+    for row in rows:
+        matches = [entry for entry in inventory["files"] if type(entry) is dict and entry.get("path") == row["path"]]
+        h.require(matches == [row] and manifest["files"].get(row["path"]) == row["sha256"],
+                  "runtime-payload-member-join")
+
+
+def _capture_runtime_inputs(h, *, build, reports, python_root, run_id, attempt, workflow_sha):
+    """Read exactly nine wheel members and two interpreter pairs; never load code."""
+    build, reports, python_root = map(h.absolute, (build, reports, python_root))
+    for root in (build, reports, python_root):
+        h.checked(root, "directory")
+    h.require(reports != build and build not in reports.parents, "runtime-output-overlap")
+    for value, pattern in ((run_id, r"[0-9]{1,20}"), (attempt, r"[0-9]{1,4}"),
+                           (workflow_sha, r"[0-9a-f]{40}")):
+        h.require(type(value) is str and re.fullmatch(pattern, value), "runtime-context")
+    suffix = run_id + "-" + attempt
+    output = reports / ("runtime-identity-" + suffix + ".json")
+    h.no_alias(reports, output.name, absent=True)
+    reader = h.IO()
+    reader.read_limit, reader.write_limit = 32 * MIB, MIB
+    inputs, snapshots = {}, {}
+    for key, path, cap in (("manifest", build / h.BUILD_MANIFEST, 4 * MIB),
+                          ("archive", build / "archive-verification.json", MIB),
+                          ("payload", reports / ("reduced-payload-" + suffix + ".json"), 4 * MIB)):
+        identity, raw, snapshot = reader.read(path, maximum=cap, collect=True)
+        inputs[key] = (identity, raw)
+        snapshots[path] = snapshot
+    manifest, archive, payload = (h.parse_json(inputs[key][1]) for key in ("manifest", "archive", "payload"))
+    h.require(all(type(value) is dict for value in (manifest, archive, payload)), "runtime-report-object")
+    h.require(manifest.get("source_commit") == APP_COMMIT and manifest.get("python") == "3.13.16"
+              and type(manifest.get("files")) is dict, "runtime-manifest")
+    h.require(archive.get("status") == "PASS" and archive.get("source_sha") == APP_COMMIT
+              and archive.get("build_manifest_sha256") == inputs["manifest"][0]["sha256"], "runtime-archive")
+    h.require(payload.get("status") == "PASS" and payload.get("application_commit") == APP_COMMIT
+              and payload.get("application_tree") == APP_TREE
+              and payload.get("actual_checker") == {"bytes": PAYLOAD_CHECKER[0], "sha256": PAYLOAD_CHECKER[1]}
+              and payload.get("actual_build_manifest") == inputs["manifest"][0]
+              and payload.get("actual_archive_verification_report") == inputs["archive"][0], "runtime-payload")
+    wheel_rows, python_rows = [], []
+    for relative, expected in WHEEL_RUNTIME_PINS.items():
+        path = build / "dist/Motortester" / relative
+        identity, _, snapshot = reader.read(path, expected, MIB)
+        snapshots[path] = snapshot
+        wheel_rows.append({"path": relative, **identity})
+    for name in CPYTHON_RUNTIME_NAMES:
+        source = python_root / name
+        bundle_relative = "_internal/" + name
+        bundle = build / "dist/Motortester" / bundle_relative
+        identity, _, snapshot = reader.read(source, maximum=MIB)
+        h.require(identity["bytes"] > 0, "runtime-empty-interpreter")
+        snapshots[source] = snapshot
+        _, _, snapshot = reader.read(bundle, identity, MIB)
+        snapshots[bundle] = snapshot
+        python_rows.append({"source_path": str(PYTHON_ROOT / name), "path": bundle_relative, **identity})
+    runtime_payload_join(h, payload, manifest, wheel_rows +
+                         [{k: row[k] for k in ("path", "bytes", "sha256")} for row in python_rows])
+    for path, snapshot in snapshots.items():
+        h.require(h.stable(h.checked(path, "file")) == snapshot, "runtime-source-changed")
+    result = {"schema_version": 1, "status": "BYTE_IDENTITY_MATCH",
+              "scope": "nine-pinned-wheel-members-and-two-cpython-source-bundle-pairs",
+              "context": {"run_id": run_id, "attempt": attempt, "workflow_sha": workflow_sha,
+                          "source_commit": APP_COMMIT, "source_tree": APP_TREE},
+              "reference_sha256": RUNTIME_REFERENCE_SHA256,
+              "input_hashes": {key: inputs[key][0]["sha256"] for key in inputs},
+              "wheel_members": wheel_rows, "cpython_pairs": python_rows,
+              "signature_metadata": "not-collected", "version_metadata": "not-collected"}
+    raw = encoded(result)
+    h.require(len(raw) <= h.MAX_PLAN, "runtime-receipt-limit")
+    h.new_file(output, reader, data=raw)
+    return result
+
+
+def capture_runtime_identity(*, helper_root, build_root, reports_root, run_id, attempt, workflow_sha):
+    h = helpers(helper_root)
+    h.require(os.name == "nt" and sys.version_info[:3] == (3, 13, 16) and struct.calcsize("P") == 8
+              and PureWindowsPath(sys.base_prefix) == PYTHON_ROOT, "runtime-interpreter")
+    return _capture_runtime_inputs(h, build=build_root, reports=reports_root,
+        python_root=str(PYTHON_ROOT), run_id=run_id, attempt=attempt, workflow_sha=workflow_sha)
+
+
+def validate_runtime_receipt(h, reader, build, report, run, manifest, payload, input_hashes, snapshots):
+    h.keys(report, ("schema_version", "status", "scope", "context", "reference_sha256", "input_hashes",
+                    "wheel_members", "cpython_pairs", "signature_metadata", "version_metadata"))
+    h.require(type(report["schema_version"]) is int and report["schema_version"] == 1
+              and report["status"] == "BYTE_IDENTITY_MATCH"
+              and report["scope"] == "nine-pinned-wheel-members-and-two-cpython-source-bundle-pairs"
+              and report["reference_sha256"] == RUNTIME_REFERENCE_SHA256
+              and report["signature_metadata"] == report["version_metadata"] == "not-collected", "runtime-receipt")
+    h.require(report["context"] == {"run_id": run["run_id"], "attempt": run["attempt"],
+              "workflow_sha": run["workflow_sha"], "source_commit": APP_COMMIT, "source_tree": APP_TREE}
+              and report["input_hashes"] == input_hashes, "runtime-receipt-joins")
+    expected_wheel = [{"path": path, **identity} for path, identity in WHEEL_RUNTIME_PINS.items()]
+    h.require(encoded(report["wheel_members"]) == encoded(expected_wheel), "runtime-wheel-pins")
+    h.require(type(report["cpython_pairs"]) is list and len(report["cpython_pairs"]) == 2,
+              "runtime-interpreter-pairs")
+    rows = list(expected_wheel)
+    for name, row in zip(CPYTHON_RUNTIME_NAMES, report["cpython_pairs"]):
+        h.keys(row, ("source_path", "path", "bytes", "sha256"))
+        h.require(row["source_path"] == str(PYTHON_ROOT / name) and row["path"] == "_internal/" + name
+                  and type(row["bytes"]) is int and row["bytes"] > 0, "runtime-interpreter-pair")
+        h.info_value({k: row[k] for k in ("bytes", "sha256")}, MIB)
+        rows.append({k: row[k] for k in ("path", "bytes", "sha256")})
+    runtime_payload_join(h, payload, manifest, rows)
+    for row in rows:
+        path = build / "dist/Motortester" / row["path"]
+        _, _, snapshot = reader.read(path, {k: row[k] for k in ("bytes", "sha256")}, MIB)
+        snapshots[path] = snapshot
+
+
 def stage(*, helper_root, build_root, reports_root, support_root, output_root, workflow_run,
           mode, support_manifest_sha256=None, source_notice_review=None):
     h = helpers(helper_root)
@@ -398,6 +535,7 @@ def stage(*, helper_root, build_root, reports_root, support_root, output_root, w
         (reports / ("provenance-" + suffix + ".json"), "provenance.json", 8 * MIB),
         (reports / ("reduced-payload-" + suffix + ".json"), "reduced-payload.json", 4 * MIB),
         (reports / ("cpython-notice-" + suffix + ".json"), "cpython-notice.json", 2 * MIB),
+        (reports / ("runtime-identity-" + suffix + ".json"), "runtime-identity.json", MIB),
     )
     if mode == "accepted":
         copy(helper_root.parent / "evaluated-workflow.yml", "evaluated-workflow.yml", 128 * 1024)
@@ -414,7 +552,8 @@ def stage(*, helper_root, build_root, reports_root, support_root, output_root, w
                  {"bytes": row["bytes"], "sha256": row["sha256"]})
         reports_json = {}
         for name, cap in (("archive-verification.json", MIB), ("provenance.json", 8 * MIB),
-                          ("reduced-payload.json", 4 * MIB), ("cpython-notice.json", 2 * MIB)):
+                          ("reduced-payload.json", 4 * MIB), ("cpython-notice.json", 2 * MIB),
+                          ("runtime-identity.json", MIB)):
             _, raw, _ = io.read(evidence / name, maximum=cap, collect=True)
             reports_json[name] = h.parse_json(raw)
         h.require(all(type(v) is dict for v in reports_json.values()), "original-report-object")
@@ -541,6 +680,17 @@ def stage(*, helper_root, build_root, reports_root, support_root, output_root, w
                   and payload.get("actual_artifacts") ==
                   {name: {k: build_index[name][k] for k in ("bytes", "sha256")} for name in payload_names},
                   "payload-archive-join")
+        validate_runtime_receipt(h, io, build, reports_json["runtime-identity.json"], run, manifest, payload,
+            {"manifest": manifest_identity["sha256"],
+             "archive": evidence_index["archive-verification.json"]["sha256"],
+             "payload": evidence_index["reduced-payload.json"]["sha256"]}, snapshots)
+        launch_raw = encoded(launcher_manifest(h, executable, support_rows))
+        h.require(len(launch_raw) <= h.MAX_PLAN, "launcher-manifest-limit")
+        launch_relative = "support/launcher/launch-manifest.json"
+        h.mkdirs(evidence, h.relative(launch_relative)[:-1])
+        h.new_file(evidence.joinpath(*h.relative(launch_relative)), io, data=launch_raw)
+        evidence_rows.append({"path": launch_relative, "bytes": len(launch_raw),
+                              "sha256": hashlib.sha256(launch_raw).hexdigest()})
         coverage, inventory_info = notice_coverage(h, io, build, support, manifest, snapshots)
         copy(build / "dist/Motortester/licenses/inventory.json", "license-inventory.json", 4 * MIB, inventory_info)
         raw = encoded(coverage)

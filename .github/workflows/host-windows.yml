@@ -11,9 +11,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   verify:
-    # Draft bounded Windows verification; no binary publication in this job.
+    # LOCAL DRAFT ONLY: disabled until final bindings and independent review.
     # No upload in this patch; optional transport patch requires separate approval.
     if: >-
+      false &&
       github.repository == 'font-weight/stm32_motortester' &&
       github.event.repository.private == false &&
       (github.event_name == 'workflow_dispatch' ||
@@ -32,12 +33,12 @@ jobs:
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
       EVALUATED_WORKFLOW_SHA: ${{ github.workflow_sha }}
       RETENTION_SHA: '49c271104939a9c6ca6027ec239a904cac11a1a3'
-      CALLER_FILE_SHA256: '53f4a869c7b4991f5a238e848da552d7dc0d6611ea8d6a9a56a2a085cf2432dd'
-      PAYLOAD_CHECKER_SHA256: 'b6264f445d9c7abf3170e3072d25632f3bb6e9b3980c0af5bfa8e206bf0dd8e7'
+      CALLER_FILE_SHA256: '0ded9c2dcc43f433b7462af2911ee2354e9c5ba11d29254abd1074fa80b2eee4'
+      PAYLOAD_CHECKER_SHA256: '53f9e66afd56c1dd78e1257fd95591f0c15fa4d3c67c6b629d5fc2e79e09d61c'
       # External source-input disposition; does not grant distribution clearance.
       SUPPORT_SOURCE_SHA: 'dcafc5638bc6c3ddef6cba25a7a55016fe8e8933'
       SUPPORT_MANIFEST_GIT_PATH: 'scripts/ci/windows-first-test/support-manifest.json'
-      SUPPORT_MANIFEST_SHA256: 'd3d9943abd61debbe92898af1a876245513505e37b1d52c88dcef6f28305c934'
+      SUPPORT_MANIFEST_SHA256: '6f390a3fa0ffa4a4894dede11d826770875f118835235dbb5468b99f634d3088'
       SOURCE_NOTICE_REVIEW: 'https://github.com/font-weight/stm32_motortester/issues/33#issuecomment-6233217133'
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
@@ -189,9 +190,10 @@ jobs:
           import types
           root = Path(os.environ['CALLER_ROOT'])
           root.mkdir()
-          helpers, support = root / 'helpers', root / 'support'
+          helpers, support, terms = root / 'helpers', root / 'support', root / 'terms-input'
           helpers.mkdir()
           support.mkdir()
+          terms.mkdir()
           # Bounded local Git object reads; fetch itself has a workflow timeout.
           def git_bytes(spec, cap):
               process = subprocess.Popen(['git', 'show', spec], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
@@ -215,8 +217,8 @@ jobs:
               if len(raw) != size or hashlib.sha256(raw).hexdigest() != digest:
                   raise ValueError('Retention helper bytes differ')
               save(helpers / name, raw)
-          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/stage_plan.py', 39812)
-          if len(raw) != 39812 or hashlib.sha256(raw).hexdigest() != os.environ['CALLER_FILE_SHA256']:
+          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/stage_plan.py', 51834)
+          if len(raw) != 51834 or hashlib.sha256(raw).hexdigest() != os.environ['CALLER_FILE_SHA256']:
               raise ValueError('Evaluated caller bytes differ')
           save(helpers / 'stage_plan.py', raw)
           module = types.ModuleType('_evaluated_caller')
@@ -225,9 +227,18 @@ jobs:
           h = module.helpers(helpers)
           # The payload checker also comes from the actual evaluated workflow, with exact
           # reviewed source bytes. No cached bytecode loader is used.
-          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/check_reduced_payload.py', 24424)
-          h.require(len(raw) == 24424 and hashlib.sha256(raw).hexdigest() == os.environ['PAYLOAD_CHECKER_SHA256'], 'payload-checker-pin')
+          raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/check_reduced_payload.py', 24668)
+          h.require(len(raw) == 24668 and hashlib.sha256(raw).hexdigest() == os.environ['PAYLOAD_CHECKER_SHA256'], 'payload-checker-pin')
           save(helpers / 'check_reduced_payload.py', raw)
+          # Finite source/data inputs from the same actually evaluated workflow commit.
+          # These are separate from the application tree and from archive download routes.
+          terms_pins = dict(module.TERMS_FILES)
+          terms_pins['launcher/tests/Test-InertLauncher.ps1'] = {'bytes': 8985, 'sha256': '8b6455fc9cfc68cb98c9c4a20386ffb8218356e761f0f4025184560f9007da84'}
+          for relative, pin in terms_pins.items():
+              raw = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':scripts/ci/windows-first-test/' + relative, pin['bytes'])
+              h.require(len(raw) == pin['bytes'] and hashlib.sha256(raw).hexdigest() == pin['sha256'], 'launcher-source-pin')
+              h.mkdirs(terms, h.relative(relative)[:-1])
+              save(terms.joinpath(*h.relative(relative)), raw)
           manifest = git_bytes(os.environ['EVALUATED_WORKFLOW_SHA'] + ':' + os.environ['SUPPORT_MANIFEST_GIT_PATH'], 65536)
           h.require(hashlib.sha256(manifest).hexdigest() == os.environ['SUPPORT_MANIFEST_SHA256'], 'support-inventory-pin')
           module.support_inventory(h, manifest)
@@ -239,6 +250,31 @@ jobs:
           '@
           python -I -S -B -c $bind
           if ($LASTEXITCODE -ne 0) { throw 'Retention caller binding failed' }
+      - name: Exercise recipient launcher with inert Windows PowerShell 5.1 fixtures
+        id: test_inert_launcher
+        timeout-minutes: 2
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $termsRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'terms-input'))
+          $harnessPath = [IO.Path]::GetFullPath((Join-Path -Path $termsRoot -ChildPath 'launcher/tests/Test-InertLauncher.ps1'))
+          $ps51 = [IO.Path]::GetFullPath((Join-Path -Path $env:SystemRoot -ChildPath 'System32/WindowsPowerShell/v1.0/powershell.exe'))
+          $pins = @'
+          [{"path":"launcher/Start-Motortester.ps1","bytes":7069,"sha256":"07f49b0867123f7c2e09edf674a7a219d4436aef86a4c49cd851a94c4e214a9f"},{"path":"launcher/terms/COMPONENT-TERMS.txt","bytes":2881,"sha256":"9f3c6158a504e61df2c6f35eb48727f96dc637edabfb6680b2211208339ca0b0"},{"path":"launcher/terms/MICROSOFT-RUNTIME-NOTICE.txt","bytes":1965,"sha256":"70af32c535680c16680fdecdc7cea0bd946cce0525ee5f182bf02743a2736ed0"},{"path":"launcher/terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.txt","bytes":11893,"sha256":"3dfd057b91025067c08bd73c3cb0e6f712f76b6198b54413e14365d529f17ea6"},{"path":"launcher/terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.docx","bytes":39553,"sha256":"08651651a7602fc7c0e2763de0fde1ff9f868df2780597cd1775ee9d6441c783"},{"path":"launcher/tests/Test-InertLauncher.ps1","bytes":8985,"sha256":"8b6455fc9cfc68cb98c9c4a20386ffb8218356e761f0f4025184560f9007da84"}]
+          '@ | ConvertFrom-Json
+          function Assert-LauncherInputs {
+            foreach ($pin in $pins) {
+              $path = [IO.Path]::GetFullPath((Join-Path -Path $termsRoot -ChildPath $pin.path))
+              $item = Get-Item -LiteralPath $path
+              if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -or $item.Length -ne $pin.bytes -or (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $pin.sha256) { throw 'Launcher/harness exact source changed' }
+            }
+          }
+          Assert-LauncherInputs
+          & $ps51 -NoProfile -NonInteractive -Command 'if ($PSVersionTable.PSVersion.Major -ne 5 -or $PSVersionTable.PSVersion.Minor -ne 1) { exit 1 }; $PSVersionTable.PSVersion.ToString()'
+          if ($LASTEXITCODE -ne 0) { throw 'Existing Windows PowerShell 5.1 required for inert harness' }
+          & $ps51 -NoProfile -NonInteractive -File "$harnessPath"
+          if ($LASTEXITCODE -ne 0) { throw 'Inert launcher harness failed; no real agreement or application was exercised' }
+          Assert-LauncherInputs
+          Write-Output 'INERT_LAUNCHER_ONLY: mocked choices/process/text; no recipient assent or native application execution.'
       - name: Prepare externally reviewed support inventory and exact bodies
         id: prepare_required_support
         timeout-minutes: 5
@@ -281,7 +317,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 39812, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -300,7 +336,9 @@ jobs:
           h.require(identity['sha256'] == os.environ['SUPPORT_MANIFEST_SHA256'], 'support-inventory-pin')
           rows = caller.support_inventory(h, manifest_raw)
           by_path = {row['path']: row for row in rows}
-          h.require(len(rows) == 11 and all(path in by_path for path, _, _ in SUPPORT_DOWNLOADS), 'support-exact-inventory')
+          h.require(len(rows) == 16 and all(path in by_path for path, _, _ in SUPPORT_DOWNLOADS), 'support-exact-inventory')
+          h.require(all(path in by_path and {key: by_path[path][key] for key in ('bytes', 'sha256')} == pin
+                        for path, pin in caller.TERMS_FILES.items()), 'launcher-inventory-pins')
           # Redirects are bounded and limited to the exact retained mirror URLs declared in
           # the pinned source manifest. A changed mirror route needs review, not a bypass.
           class ExactRedirect(urllib.request.HTTPRedirectHandler):
@@ -343,9 +381,13 @@ jobs:
           for row in rows:
               if row['path'] in {relative for relative, _, _ in SUPPORT_DOWNLOADS}:
                   continue
-              h.require(row['path'].startswith('host/'), 'support-guidance-path')
+              if row['path'] in caller.TERMS_FILES:
+                  source = Path(os.environ['CALLER_ROOT']) / 'terms-input'
+              else:
+                  h.require(row['path'].startswith('host/'), 'support-guidance-path')
+                  source = Path.cwd()
               expected = {key: row[key] for key in ('bytes', 'sha256')}
-              source = Path.cwd().joinpath(*h.relative(row['path']))
+              source = source.joinpath(*h.relative(row['path']))
               reader.read(source, expected, 1048576)
               h.mkdirs(support, h.relative(row['path'])[:-1])
               target = support.joinpath(*h.relative(row['path']))
@@ -806,7 +848,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 39812, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -830,6 +872,59 @@ jobs:
           '@
           python -I -S -B -c $check
           if ($LASTEXITCODE -ne 0) { throw 'verify_reduced_payload failed; retention cannot be accepted' }
+      - name: Join nine wheel runtime members and two CPython runtime pairs
+        id: verify_runtime_identity
+        timeout-minutes: 3
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          
+          import hashlib, os, stat
+          from pathlib import Path
+          def bound_raw(path, size, digest):
+              path = Path(path)
+              def checked():
+                  for part in (*reversed(path.parents), path):
+                      info = part.lstat()
+                      if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+                          raise ValueError('helper-redirected')
+                      if part != path and not stat.S_ISDIR(info.st_mode):
+                          raise ValueError('helper-ancestor')
+                  if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size != size:
+                      raise ValueError('helper-type-size')
+                  return info
+              before = checked()
+              with path.open('rb') as stream:
+                  opened = os.fstat(stream.fileno())
+                  raw = stream.read(size + 1)
+                  after = os.fstat(stream.fileno())
+              final = checked()
+              shared = lambda x: (x.st_dev, x.st_ino, x.st_size, x.st_mtime_ns, stat.S_IFMT(x.st_mode))
+              stable = lambda x: shared(x) + (x.st_ctime_ns, x.st_nlink)
+              if (len(raw) != size or hashlib.sha256(raw).hexdigest() != digest
+                      or shared(before) != shared(opened) or shared(after) != shared(final)
+                      or stable(before) != stable(final) or stable(opened) != stable(after)
+                      or opened.st_nlink != 1 or getattr(opened, 'st_file_attributes', 0) & 0x400):
+                  raise ValueError('helper-body-identity')
+              return raw
+          
+          import os
+          import sys
+          import types
+          from pathlib import Path
+          helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
+          path = helper_root / 'stage_plan.py'
+          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
+          caller = types.ModuleType('_evaluated_caller')
+          caller.__file__ = str(path)
+          exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
+          
+          caller.capture_runtime_identity(helper_root=helper_root, build_root=os.environ['BUILD_DIR'],
+              reports_root=str(Path(os.environ['RUNNER_TEMP'])), run_id=os.environ['GITHUB_RUN_ID'],
+              attempt=os.environ['GITHUB_RUN_ATTEMPT'], workflow_sha=os.environ['EVALUATED_WORKFLOW_SHA'])
+          '@
+          python -I -S -B -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'verify_runtime_identity failed; retention cannot be accepted' }
       - name: Verify and preserve original CPython notice bytes
         id: verify_cpython_notices
         timeout-minutes: 3
@@ -872,7 +967,7 @@ jobs:
           from pathlib import Path
           helper_root = Path(os.environ['CALLER_ROOT']) / 'helpers'
           path = helper_root / 'stage_plan.py'
-          raw = bound_raw(path, 39812, os.environ['CALLER_FILE_SHA256'])
+          raw = bound_raw(path, 51834, os.environ['CALLER_FILE_SHA256'])
           caller = types.ModuleType('_evaluated_caller')
           caller.__file__ = str(path)
           exec(compile(raw, str(path), 'exec', dont_inherit=True), caller.__dict__)
@@ -1088,7 +1183,7 @@ jobs:
                   'inspector_sha256': os.environ['INSPECTOR_FILE_SHA256'],
                   'payload_checker_sha256': os.environ['PAYLOAD_CHECKER_SHA256'],
                   'source_notice_review': os.environ['SOURCE_NOTICE_REVIEW'],
-                  'steps': {key: steps[key]['outcome'] for key in ('verify_source', 'verify_raw_blobs', 'bind_inspector', 'bind_retention_caller', 'prepare_required_support', 'build_candidate', 'verify_archives', 'inspect_candidate', 'verify_reduced_payload', 'verify_cpython_notices', 'retain_notice_logs', 'retain_job_logs', 'retain_recording_logs')}}
+                  'steps': {key: steps[key]['outcome'] for key in ('verify_source', 'verify_raw_blobs', 'bind_inspector', 'bind_retention_caller', 'test_inert_launcher', 'prepare_required_support', 'build_candidate', 'verify_archives', 'inspect_candidate', 'verify_reduced_payload', 'verify_runtime_identity', 'verify_cpython_notices', 'retain_notice_logs', 'retain_job_logs', 'retain_recording_logs')}}
           path = Path(os.environ['CALLER_ROOT']) / 'workflow-run-accepted.json'
           with path.open('x', encoding='utf-8', newline='\n') as stream:
               json.dump(body, stream, sort_keys=True, indent=2)
@@ -1142,7 +1237,7 @@ jobs:
           $supportRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'support'))
           $outputRoot = [IO.Path]::GetFullPath($env:CALLER_OUTPUT)
           $workflowRun = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'workflow-run-accepted.json'))
-          python -I -S -B -c $launch "$callerScript" '39812' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode accepted --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
+          python -I -S -B -c $launch "$callerScript" '51834' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode accepted --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
           if ($LASTEXITCODE -ne 0) { throw 'Local retention/package incomplete; do not consume partial output' }
           $terminalPath = [IO.Path]::GetFullPath((Join-Path -Path $outputRoot -ChildPath 'caller-terminal.json'))
           if ((Get-Item -LiteralPath $terminalPath).Length -gt 65536) { throw 'Caller terminal exceeds bound' }
@@ -1171,7 +1266,7 @@ jobs:
                   'inspector_sha256': os.environ['INSPECTOR_FILE_SHA256'],
                   'payload_checker_sha256': os.environ['PAYLOAD_CHECKER_SHA256'],
                   'source_notice_review': os.environ['SOURCE_NOTICE_REVIEW'],
-                  'steps': {key: steps[key]['outcome'] for key in ('verify_source', 'verify_raw_blobs', 'bind_inspector', 'bind_retention_caller', 'prepare_required_support', 'build_candidate', 'verify_archives', 'inspect_candidate', 'verify_reduced_payload', 'verify_cpython_notices', 'retain_notice_logs', 'retain_job_logs', 'retain_recording_logs')}}
+                  'steps': {key: steps[key]['outcome'] for key in ('verify_source', 'verify_raw_blobs', 'bind_inspector', 'bind_retention_caller', 'test_inert_launcher', 'prepare_required_support', 'build_candidate', 'verify_archives', 'inspect_candidate', 'verify_reduced_payload', 'verify_runtime_identity', 'verify_cpython_notices', 'retain_notice_logs', 'retain_job_logs', 'retain_recording_logs')}}
           path = Path(os.environ['CALLER_ROOT']) / 'workflow-run-diagnostics.json'
           with path.open('x', encoding='utf-8', newline='\n') as stream:
               json.dump(body, stream, sort_keys=True, indent=2)
@@ -1225,7 +1320,7 @@ jobs:
           $supportRoot = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'support'))
           $outputRoot = [IO.Path]::GetFullPath($env:CALLER_DIAGNOSTICS)
           $workflowRun = [IO.Path]::GetFullPath((Join-Path -Path $env:CALLER_ROOT -ChildPath 'workflow-run-diagnostics.json'))
-          python -I -S -B -c $launch "$callerScript" '39812' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode diagnostics --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
+          python -I -S -B -c $launch "$callerScript" '51834' $env:CALLER_FILE_SHA256 --helper-root "$helperRoot" --build-root "$buildRoot" --reports-root "$reportsRoot" --support-root "$supportRoot" --output-root "$outputRoot" --workflow-run "$workflowRun" --mode diagnostics --support-manifest-sha256 $env:SUPPORT_MANIFEST_SHA256 --source-notice-review $env:SOURCE_NOTICE_REVIEW
           $diagnosticExit = $LASTEXITCODE
           # Diagnostics deliberately exits 1 even when its bounded ZIP succeeded.
           Write-Output "Diagnostic caller terminal exit: $diagnosticExit; original failure is preserved."

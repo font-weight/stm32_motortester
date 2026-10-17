@@ -211,7 +211,10 @@ def directory_inventory(root):
                 count += 1
                 require(count <= MAX_ENTRIES, 'entry_limit')
                 rel = prefix + entry.name
-                info = entry.stat(follow_symlinks=False)
+                # Windows DirEntry.stat caches st_nlink/st_ino/st_dev as zero.
+                # A fresh no-follow path stat supplies the actual link count;
+                # retain the same ordinary-file, hardlink and reparse guards.
+                info = os.stat(entry.path, follow_symlinks=False)
                 require(not stat.S_ISLNK(info.st_mode) and not (getattr(info, 'st_file_attributes', 0) & 0x400),
                         'redirected_path')
                 directory = stat.S_ISDIR(info.st_mode)

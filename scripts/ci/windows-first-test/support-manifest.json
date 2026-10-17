@@ -53,5 +53,30 @@
     "bytes": 29535,
     "path": "host/docs/windows-smoke.md",
     "sha256": "a5a094b24cdf86161e32b3f9d040c1f01d2caaef3368bff4e1084d5e6fe6597e"
+  },
+  {
+    "bytes": 7069,
+    "path": "launcher/Start-Motortester.ps1",
+    "sha256": "07f49b0867123f7c2e09edf674a7a219d4436aef86a4c49cd851a94c4e214a9f"
+  },
+  {
+    "bytes": 2881,
+    "path": "launcher/terms/COMPONENT-TERMS.txt",
+    "sha256": "9f3c6158a504e61df2c6f35eb48727f96dc637edabfb6680b2211208339ca0b0"
+  },
+  {
+    "bytes": 1965,
+    "path": "launcher/terms/MICROSOFT-RUNTIME-NOTICE.txt",
+    "sha256": "70af32c535680c16680fdecdc7cea0bd946cce0525ee5f182bf02743a2736ed0"
+  },
+  {
+    "bytes": 11893,
+    "path": "launcher/terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.txt",
+    "sha256": "3dfd057b91025067c08bd73c3cb0e6f712f76b6198b54413e14365d529f17ea6"
+  },
+  {
+    "bytes": 39553,
+    "path": "launcher/terms/MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.docx",
+    "sha256": "08651651a7602fc7c0e2763de0fde1ff9f868df2780597cd1775ee9d6441c783"
   }
 ]
