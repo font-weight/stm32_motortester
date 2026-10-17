@@ -1,0 +1,41 @@
+MICROSOFT VISUAL C++ RUNTIME COMPONENTS
+
+Copyright Microsoft Corporation. All rights reserved.
+
+This notice identifies nine Microsoft runtime files included with Motortester.
+The project MIT license, NumPy BSD license and Qt/shiboken licenses do not
+relicense these Microsoft files. Those other components retain their own
+licenses and rights.
+
+Microsoft object code is supplied with this application under the publisher's
+existing Visual Studio Community 2026 Distributable Code permission, subject
+to Microsoft's conditions and the Visual Studio 2026 REDIST list:
+https://visualstudio.microsoft.com/license-terms/vs2026-ga-community/
+https://learn.microsoft.com/en-us/visualstudio/releases/2026/redistribution#visual-c-runtime-files
+
+Covered file paths, relative to the application directory:
+  _internal/PySide6/MSVCP140.dll
+  _internal/PySide6/MSVCP140_1.dll
+  _internal/PySide6/MSVCP140_2.dll
+  _internal/PySide6/VCRUNTIME140.dll
+  _internal/PySide6/VCRUNTIME140_1.dll
+  _internal/numpy.libs/msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll
+  _internal/shiboken6/MSVCP140.dll
+  _internal/shiboken6/VCRUNTIME140.dll
+  _internal/shiboken6/VCRUNTIME140_1.dll
+
+The eight Qt-family files have file version 14.44.35211.0. The NumPy file
+has file version 14.40.33810.0. Keep the original file names and bytes;
+the NumPy hash-named file is an application dependency.
+
+The two additional Microsoft runtime files supplied by CPython at
+_internal/VCRUNTIME140.dll and _internal/VCRUNTIME140_1.dll are separately
+covered by the preserved CPython Windows build notice in the Python license
+file. Keep that notice with the Python interpreter.
+
+Microsoft runtime use terms are provided separately in
+MICROSOFT-VISUAL-C++-V14-RUNTIME-LICENSE.txt. That use agreement is not a
+standalone redistribution grant. Further distribution of Microsoft runtime
+code needs an applicable permission and must satisfy its conditions.
+
+This application is not supplied or endorsed by Microsoft.
