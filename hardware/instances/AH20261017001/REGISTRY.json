@@ -16,8 +16,8 @@
       "sha256": "76d3ad6b483c461348f07100137bff366336320f953e98355205e8a9c1583d10"
     },
     "DECISIONS_RU.md": {
-      "bytes": 5479,
-      "sha256": "454f9e3d1e63c21f81e51cf673cb6f949ddf73177229f6be0ccc66786eb907af"
+      "bytes": 6019,
+      "sha256": "a26e859030e4cdc37b798d7adfbd31d864b745bbfc19ca82bab7339f2c9949c9"
     },
     "image-r1/RESULTS.json": {
       "bytes": 242118,
@@ -42,7 +42,13 @@
   },
   "hardware_verified": false,
   "flash_approved": false,
-  "dtr_policy_accepted_by_B": false,
+  "dtr_policy_accepted_by_B": true,
   "usb_private_test_only": true,
-  "public_redaction": "Photo identifiers and private evidence references omitted; firmware bytes unchanged."
+  "public_redaction": "Photo identifiers and private evidence references omitted; firmware bytes unchanged.",
+  "dtr_policy_agreement_scope": "Source-policy compatibility only; actual DTR/USB behavior unverified.",
+  "dtr_policy_application_commit": "dcafc5638bc6c3ddef6cba25a7a55016fe8e8933",
+  "dtr_policy_evidence": [
+    "https://github.com/font-weight/stm32_motortester/issues/94#issuecomment-6232771809",
+    "https://github.com/font-weight/stm32_motortester/pull/180#issuecomment-6233045958"
+  ]
 }
