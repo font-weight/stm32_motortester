@@ -32,6 +32,7 @@ jobs:
       INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
       EVALUATED_WORKFLOW_SHA: ${{ github.workflow_sha }}
+      PUBLIC_BINARY_UPLOAD_ENABLED: 'false' # Pending exact distribution and transport integration review.
       RETENTION_SHA: '49c271104939a9c6ca6027ec239a904cac11a1a3'
       CALLER_FILE_SHA256: '9404b5e824dcef3f8735b62180b12d4ab3f0b7df56be0c117669327e140783db'
       PAYLOAD_CHECKER_SHA256: '53f9e66afd56c1dd78e1257fd95591f0c15fa4d3c67c6b629d5fc2e79e09d61c'
@@ -1325,3 +1326,14 @@ jobs:
           # Diagnostics deliberately exits 1 even when its bounded ZIP succeeded.
           Write-Output "Diagnostic caller terminal exit: $diagnosticExit; original failure is preserved."
           throw 'INCOMPLETE_DIAGNOSTICS_ONLY; never promote diagnostic retention to build success'
+      - name: Publish one approved kit ZIP for one day
+        if: ${{ success() && steps.stage_accepted.outcome == 'success' && env.PUBLIC_BINARY_UPLOAD_ENABLED == 'true' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7; separately approved transport
+        with:
+          name: windows-first-test-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.CALLER_ZIP }}
+          archive: true
+          retention-days: 1
+          overwrite: false
+          include-hidden-files: false
+          if-no-files-found: error
