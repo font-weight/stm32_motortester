@@ -11,9 +11,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   verify:
-    # One supervised diagnostic delivery run authorized; disable after completion.
-    # Preserve the exact reviewed producer and single-upload transport checks.
+    # One-off delivery finished: job and upload disabled pending a new decision.
+    # Preserve the exact reviewed producer and transport checks for audit.
     if: >-
+      false &&
       github.repository == 'font-weight/stm32_motortester' &&
       github.event.repository.private == false &&
       (github.event_name == 'workflow_dispatch' ||
@@ -31,7 +32,7 @@ jobs:
       INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
       EVALUATED_WORKFLOW_SHA: ${{ github.workflow_sha }}
-      PUBLIC_BINARY_UPLOAD_ENABLED: 'true' # Exact accepted-kit-only transport; no failed diagnostics upload.
+      PUBLIC_BINARY_UPLOAD_ENABLED: 'false' # Exact accepted-kit-only transport; no failed diagnostics upload.
       RETENTION_SHA: '70d7f0fa661cb16d77c3b325e6fd4e5616b1eab7'
       CALLER_FILE_SHA256: '8b0c524d8ef6ea658c07899ba5211f604372e7993d4b4abeb9ff61cc6f8048e8'
       PAYLOAD_CHECKER_SHA256: '0924338f5ce4bd13ca20d4db42a052464ba4c9805bdc0bff44c395bbc3ca60a6'
