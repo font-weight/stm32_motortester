@@ -16,6 +16,7 @@ import re
 import stat
 import struct
 import sys
+import tempfile
 import time
 from unittest.mock import patch
 from uuid import UUID
@@ -341,6 +342,187 @@ def _expected_samples(sequence, generation):
     return tuple(values)
 
 
+def _remove_recovery_directory(directory, identity):
+    # Only this exclusively created, flat synthetic directory is disposable.
+    _parents(directory)
+    _directory(directory)
+    status = directory.stat()
+    _require((status.st_dev, status.st_ino) == identity, "recovery-directory-replaced")
+    files = tuple(directory.iterdir())
+    _require(len(files) <= 3 and all(p.name == "recovery.mtrec"
+             or re.fullmatch(r"recording-[0-9a-f]{32}\.mtspool", p.name)
+             or re.fullmatch(r"\.motortester-session-[A-Za-z0-9_-]+", p.name) for p in files),
+             "recovery-directory-unexpected")
+    for path in files:
+        _require(_regular(path).st_size <= MAX_ARTIFACT_BYTES, "artifact-too-large")
+    for path in files:
+        path.unlink()
+    directory.rmdir()
+    _require(not os.path.lexists(directory), "recovery-directory-retained")
+
+
+def _recovery_check(QtCore, wait, work):
+    """Mandatory ephemeral CONFIG timeout/Save/reopen, outside receipt v1.
+
+    Only the synthetic transport's RX is held, after an independently decoded
+    complete accepted CONFIG. The real default runtime timeout, recording writer
+    and both GUI windows run unchanged. Source pin plus whole-command success
+    binds this check; neither optional stdout nor the clean v1 archive does.
+    """
+    from motortester import acquisition, gui_acquisition, session_archive as sa
+    from motortester.gui import MainWindow
+    from motortester.session import Phase, RESPONSE_TIMEOUT_MS
+    from motortester.wire import StreamDecoder
+
+    parent = Path(tempfile.gettempdir()).absolute()
+    _parents(parent); _directory(parent)
+    _require(parent != work and work not in parent.parents and len(str(parent)) <= 140,
+             "recovery-temporary-location")
+    directory = Path(tempfile.mkdtemp(prefix="mtrec-recovery-", dir=parent))
+    status = directory.stat()
+    identity = (status.st_dev, status.st_ino)
+    window = viewer = bridge = adapter = None
+    decoder, frames = StreamDecoder(), []
+    accepted_at = None
+    completed = False
+    original_read, original_write = acquisition._EmulatorTransport.read, acquisition._EmulatorTransport.write
+
+    def write(transport, data):
+        nonlocal accepted_at
+        accepted = original_write(transport, data)
+        _require(type(accepted) is int and 0 <= accepted <= len(data), "recovery-write-invalid")
+        result = decoder.feed(bytes(data[:accepted]), transport.clock())
+        _require(not result.diagnostics and len(frames) + len(result.frames) <= 4,
+                 "recovery-wire-invalid")
+        for frame in result.frames:
+            frames.append(frame)
+            if frame.message_type == 3:
+                _require(accepted_at is None, "recovery-config-duplicate")
+                accepted_at = time.monotonic()
+        return accepted
+
+    def read(transport, size):
+        return b"" if accepted_at is not None else original_read(transport, size)
+
+    def settled():
+        state = bridge.state.recording
+        snapshot = state.snapshot if state is not None else None
+        return bool(state is not None and state.ready_to_save and not state.retired
+            and not state.error and not state.writer_busy and not state.saving
+            and snapshot is not None and not snapshot.writer_pending
+            and not snapshot.pending and not snapshot.source_retention_required
+            and not snapshot.finalization_invalidated and snapshot.phase.value == "finished")
+
+    with ExitStack() as scope:
+        scope.enter_context(patch.object(gui_acquisition, "recovery_directory", return_value=directory))
+        scope.enter_context(patch.object(acquisition._EmulatorTransport, "write", write))
+        scope.enter_context(patch.object(acquisition._EmulatorTransport, "read", read))
+        try:
+            _parents(directory); _directory(directory)
+            _require(len(str(directory)) <= 180 and RESPONSE_TIMEOUT_MS == 1000, "recovery-preconditions")
+            window = MainWindow(); window.show(); window.show_acquisition()
+            bridge, panel = window._acquisition, window._acquisition_dialog
+            panel.source.setCurrentIndex(panel.source.findData("emulator"))
+            _require(panel.source.currentData() == "emulator", "wrong-source")
+            panel.connect_button.click()
+            wait(panel.record_button.isEnabled)
+            _require(bridge.state.source == "emulator" and not bridge._worker.device_used, "wrong-source")
+            panel.mode.setCurrentIndex(panel.mode.findData(1))
+            panel.pretrigger.setCurrentIndex(panel.pretrigger.findData(0))
+            panel.edge.setCurrentIndex(panel.edge.findData(0)); panel.level.setValue(2048)
+            panel.simulate.setChecked(False)
+            panel.record_button.click()
+            wait(lambda: settled() and panel.save_recording_button.isEnabled())
+            adapter = bridge._worker.recording
+            snapshot, runtime = bridge.state.recording.snapshot, bridge.state.snapshot
+            _require([f.message_type for f in frames] == [1, 2, 3] and accepted_at is not None
+                     and time.monotonic() - accepted_at >= 0.99, "recovery-config-unobserved")
+            config = frames[-1]
+            _require(config.session == runtime.session > 0 and config.request_id > 0
+                     and config.payload == struct.pack("<HBBBBHHHI", 1, 1, 0, 0, 0, 2048, 0, 0, 0),
+                     "recovery-config-mismatch")
+            expected = ("RECOVERY reason=TIMEOUT; fault=none; command=CONFIG; "
+                        f"request_id={config.request_id}; pending=CONFIG/{config.request_id}; stop_request_id=0")
+            recovery = runtime.recovery
+            _require(runtime.phase is Phase.RECOVERY and recovery is not None
+                     and recovery.reason.value == "TIMEOUT" and recovery.fault is None
+                     and recovery.command_type == recovery.pending_command_type == 3
+                     and recovery.request_id == recovery.pending_request_id == config.request_id
+                     and recovery.pending_stop_id == 0 and snapshot.recovery_diagnostic == expected
+                     and snapshot.termination_reason == "error" and snapshot.fault == "transport_recovery"
+                     and snapshot.stop_evidence == "unknown" and not snapshot.user_stop_requested
+                     and snapshot.committed_segments == 0 and window.capture is None
+                     and expected in panel.recording_status.text(), "recovery-context-mismatch")
+            spool, path = Path(bridge.state.recording.spool_path), directory / "recovery.mtrec"
+            _require(spool.parent == directory and not path.exists(), "recovery-path-mismatch")
+            _require(window.save_recording_path(path) is True, "recovery-save-not-admitted")
+            wait(lambda: settled() and bridge.state.recording.saved_path == str(path))
+            file_info(path); file_info(spool)
+            archive = sa.load(path)
+            _require(archive.identity == adapter.controller._identity
+                     and UUID(archive.identity.session_id).int == config.session
+                     and archive.identity.origin == "simulator" and not archive.entries and not archive.issues
+                     and archive.outcome.reason == "error" and archive.outcome.stop_evidence == "unknown"
+                     and archive.outcome.diagnostic == "transport_recovery; " + expected,
+                     "recovery-archive-mismatch")
+            _require(expected in panel.recording_status.text() and expected in window.status_label.text()
+                     and "Сеанс сохранён" in window.status_label.text(), "recovery-saved-label-missing")
+            viewer = MainWindow(); viewer.show()
+            _require(viewer._archive is None and viewer._recording is None and viewer._acquisition is None,
+                     "recovery-viewer-not-fresh")
+            viewer.open_path(path)
+            wait(lambda: not viewer.busy)
+            _require(viewer.opened_from_disk and viewer._archive is not None
+                     and viewer._archive is not archive and viewer._archive.path == path
+                     and viewer._archive.identity == archive.identity and viewer._archive.outcome == archive.outcome
+                     and not viewer._archive.entries and not viewer._archive.issues
+                     and viewer._recording is None and viewer._acquisition is None
+                     and viewer.archive_label.isVisible()
+                     and viewer.archive_label.textFormat() == QtCore.Qt.TextFormat.PlainText
+                     and archive.outcome.diagnostic in viewer.archive_label.text(), "recovery-open-mismatch")
+            _require([f.message_type for f in frames] == [1, 2, 3], "recovery-unexpected-command")
+            completed = True
+        finally:
+            # Never remove a writer's files while it might still complete late.
+            # A cleanup failure is fatal and deliberately retains that directory.
+            try:
+                cleanup_deadline = time.monotonic() + CLEANUP_TIMEOUT
+                if bridge is not None:
+                    if adapter is None and bridge._worker is not None:
+                        adapter = bridge._worker.recording
+                    bridge.cancel_recording_save(); bridge.shutdown()
+                    _wait(lambda: not bridge.running and bridge._closed
+                          and (adapter is None or not adapter._writer.running), QtCore,
+                          cleanup_deadline)
+                    _require(not bridge.state.close_failed, "recovery-close-failed")
+                _wait(lambda: all(current is None or not current.busy for current in (viewer, window))
+                      and QtCore.QThreadPool.globalInstance().activeThreadCount() == 0,
+                      QtCore, cleanup_deadline)
+                for current in (viewer, window):
+                    if current is not None:
+                        with patch.object(current, "confirm_recording_exit", return_value=True):
+                            current.close()
+                        _require(not current.isVisible() and not current.busy, "recovery-window-busy")
+                _pump(QtCore)
+                if adapter is not None:
+                    final, snapshot = adapter.state, adapter.state.snapshot
+                    _require(final.retired and not final.writer_busy and not final.saving
+                             and snapshot is not None and not snapshot.writer_pending and not snapshot.pending
+                             and not snapshot.source_retention_required and not snapshot.finalization_invalidated,
+                             "recovery-io-unresolved")
+                    if completed:
+                        _require(final.error is None and snapshot.phase.value == "finished"
+                                 and snapshot.fault == "transport_recovery" and snapshot.recovery_diagnostic == expected
+                                 and final.saved_path == str(path), "recovery-final-state-mismatch")
+                _remove_recovery_directory(directory, identity)
+                _require(not os.path.lexists(directory), "recovery-directory-retained")
+            except BaseException:
+                raise SmokeFailure("recovery-cleanup-unconfirmed") from None
+    if sys.stdout is not None:
+        print("recording-smoke ephemeral passed: CONFIG TIMEOUT -> Save -> fresh Open; removed", flush=True)
+    return ("config-timeout", "durable-reopen", "removed")
+
+
 def _prehistory_checks(window, bridge, panel, wait, events, stops):
     """Mandatory live-only checks; receipt v1 still describes the pre=0 archive.
 
@@ -601,11 +783,13 @@ def run(raw_output):
 
         # Instrument only this smoke process; no application feature or global
         # user-data directory changes. All original methods run unchanged.
+        stack.enter_context(patch.object(SerialTransport, "__init__", forbid_device))
+        _require(_recovery_check(QtCore, wait, work) == ("config-timeout", "durable-reopen", "removed"),
+                 "recovery-check-incomplete")
         stack.enter_context(patch.object(gui_acquisition, "recovery_directory", return_value=work))
         stack.enter_context(patch.object(sa.SessionSpool, "_append", append))
         stack.enter_context(patch.object(AcquisitionRuntime, "stop", stop))
         stack.enter_context(patch.object(acquisition._AcquisitionWorker, "_events", events))
-        stack.enter_context(patch.object(SerialTransport, "__init__", forbid_device))
         window = MainWindow(); window.show(); window.show_acquisition()
         bridge, panel = window._acquisition, window._acquisition_dialog
         phase("gui")
@@ -624,6 +808,9 @@ def run(raw_output):
         wait(lambda: bridge.state.recording is not None and bridge.state.recording.snapshot is not None
              and bridge.state.recording.snapshot.committed_segments >= 2)
         adapter = bridge._worker.recording
+        _require(bridge.state.snapshot.recovery is None
+                 and bridge.state.recording.snapshot.recovery_diagnostic == ""
+                 and "RECOVERY" not in panel.recording_status.text(), "recovery-context-not-reset")
         phase("record")
         panel.stop_button.click()
         wait(lambda: _settled(bridge.state) and panel.save_recording_button.isEnabled())
@@ -649,7 +836,8 @@ def run(raw_output):
         archive = sa.load(archive_path)
         _require(not archive.issues and len(archive.entries) == len(observed)
                  and sum(entry.kind == "capture" for entry in archive.entries) >= 2
-                 and archive.outcome.reason == "user_stop" and archive.outcome.stop_evidence == "stop_ack", "archive-mismatch")
+                 and archive.outcome.reason == "user_stop" and archive.outcome.stop_evidence == "stop_ack"
+                 and archive.outcome.diagnostic == "", "archive-mismatch")
         # A fresh MainWindow cannot display the acquisition's last in-memory Capture.
         viewer = MainWindow(); viewer.show(); viewer.open_path(archive_path)
         wait(lambda: not viewer.busy)
