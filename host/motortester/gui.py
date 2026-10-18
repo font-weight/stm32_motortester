@@ -207,6 +207,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.segment_selector.hide()
         side.addWidget(self.segment_selector)
         self.archive_label = _label("", "muted", wrap=True)
+        self.archive_label.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        self.archive_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.archive_label.hide()
         side.addWidget(self.archive_label)
         side.addStretch(1)
@@ -577,6 +579,7 @@ class MainWindow(QtWidgets.QMainWindow):
             f"Сегментов: {len(archive.entries)}. Завершение: {archive.outcome.reason}.\n"
             f"Свидетельство Stop: {archive.outcome.stop_evidence}; физическая остановка не доказана.\n"
             "Каждый сегмент показан отдельно. Промежутки времени прибора неизвестны."
+            + ("\nДиагностика сеанса: " + archive.outcome.diagnostic if archive.outcome.diagnostic else "")
             + ("\nАрхив восстановлен; имеются потерянные / незавершённые записи." if archive.issues else ""))
         self.archive_label.show()
         if archive.entries:
@@ -704,7 +707,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self._acq_requested = True
         if self._acquisition_dialog is not None:
             self._acquisition_dialog.clear_error()
-        self._status("Сохраняем сеанс .mtrec… Файл восстановления будет оставлен.")
+        self._status("Сохраняем сеанс .mtrec… Файл восстановления будет оставлен."
+                     + self._recording_recovery_status())
         self._set_actions()
         return True
 
@@ -725,8 +729,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 or str(path) != pending[0] or current.saved_path != str(path)):
             return
         self._pending_recording_save = None
-        self._status(f"Сеанс сохранён: {Path(path).name}. Все сегменты в .mtrec; файл восстановления оставлен.")
+        self._status(f"Сеанс сохранён: {Path(path).name}. Все сегменты в .mtrec; файл восстановления оставлен."
+                     + self._recording_recovery_status())
         self._set_actions()
+
+    def _recording_recovery_status(self):
+        snapshot = self._recording.snapshot if self._recording is not None else None
+        return ("\nПричина восстановления: " + snapshot.recovery_diagnostic
+                if snapshot is not None and snapshot.recovery_diagnostic else "")
 
     def confirm_recording_exit(self, action):
         current = self._recording
@@ -949,7 +959,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Keep its current error visible and suggest a safe explicit retry.
         advice = (" Выберите новое имя; проверьте место и права. Существующие файлы не заменяются."
                   if self._recording is not None and self._recording.error == "save_failed" else "")
-        self._status(str(text) + advice, error=True)
+        self._status(str(text) + advice + self._recording_recovery_status(), error=True)
 
     def _acquisition_state(self, state):
         self._acq_state = state
@@ -996,7 +1006,8 @@ class MainWindow(QtWidgets.QMainWindow):
             close_warning = "Закрытие порта не подтверждено; повторите отключение / закрытие. " if state.close_failed else ""
             self._status(close_warning + text[0] + " " + (text[1] if len(text) > 1 else "")
                 + (f" Показано последнее полное окно №{self.capture.sequence}." if self.capture is not None else " Полного окна для графика нет.")
-                + " Промежутки между сегментами неизвестны.", error=bool(self._recording.error or state.close_failed))
+                + " Промежутки между сегментами неизвестны." + self._recording_recovery_status(),
+                error=bool(self._recording.error or state.close_failed))
             return
         phase = state.snapshot.phase.value if state.snapshot is not None else "IDLE"
         retained = (f"Показано последнее полное окно №{self.capture.sequence}; это не новое измерение."

@@ -301,6 +301,45 @@ class TerminalWindow:
 
 
 @dataclass(frozen=True, slots=True)
+class RecoveryDiagnostic:
+    """First recovery's bounded control context, captured before cancellation.
+
+    command_type/request_id identify a known triggering request only (deadline
+    expiry or uncertain write). Pending lanes are context, not a claim that a
+    particular request caused a read/protocol failure. No payload/backend text.
+    """
+    reason: RecoveryReason
+    fault: FaultCode | None = None
+    command_type: int = 0
+    request_id: int = 0
+    pending_command_type: int = 0
+    pending_request_id: int = 0
+    pending_stop_id: int = 0
+
+    def __post_init__(self):
+        if (type(self.reason) is not RecoveryReason
+                or (self.fault is not None and type(self.fault) is not FaultCode)):
+            raise SessionError(ErrorCode.ARGUMENT)
+        for kind, request in ((self.command_type, self.request_id),
+                              (self.pending_command_type, self.pending_request_id)):
+            _uint(kind, 7)
+            _uint(request, MAX_ID)
+            if kind not in (0, 1, 2, 3, 4, 5, 7) or bool(kind) != bool(request):
+                raise SessionError(ErrorCode.ARGUMENT)
+        _uint(self.pending_stop_id, MAX_ID)
+
+    def text(self):
+        self.__post_init__()
+        commands = {0: "none", 1: "HELLO", 2: "GET_CAPS", 3: "CONFIG",
+                    4: "ARM", 5: "STOP", 7: "RELEASE"}
+        return (f"RECOVERY reason={self.reason.value}; "
+                f"fault={self.fault.value if self.fault else 'none'}; "
+                f"command={commands[self.command_type]}; request_id={self.request_id}; "
+                f"pending={commands[self.pending_command_type]}/{self.pending_request_id}; "
+                f"stop_request_id={self.pending_stop_id}")
+
+
+@dataclass(frozen=True, slots=True)
 class Event:
     kind: EventKind
     request_id: int = 0
@@ -313,6 +352,7 @@ class Event:
     fault: FaultCode | None = None
     source_sha: str = SOURCE_SHA
     validation_scope: str = VALIDATION_SCOPE
+    recovery: RecoveryDiagnostic | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -364,6 +404,7 @@ class Snapshot:
     validation_scope: str = VALIDATION_SCOPE
     device_status: DeviceStatus | None = None
     device_status_stale: bool = False
+    recovery: RecoveryDiagnostic | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -391,7 +432,8 @@ class SessionController:
                  "_next_request", "_ordinary", "_stop", "_ticket", "_last_rx",
                  "_hello", "_caps", "_config", "_config_id", "_generation",
                  "_window_id", "_active_window", "_window_barrier", "_terminal",
-                 "_released_window", "_device_status", "_device_status_stale")
+                 "_released_window", "_device_status", "_device_status_stale",
+                 "_recovery_diagnostic")
 
     def __init__(self):
         self._now = None
@@ -408,6 +450,7 @@ class SessionController:
         self._window_barrier = False
         self._device_status = None
         self._device_status_stale = False
+        self._recovery_diagnostic = None
 
     def snapshot(self):
         return Snapshot(self._phase, self._session, self._next_tx,
@@ -419,7 +462,8 @@ class SessionController:
                         self._window_id, self._terminal, self._caps, self._now,
                         self._ticket.offset if self._ticket else None,
                         device_status=self._device_status,
-                        device_status_stale=self._device_status_stale)
+                        device_status_stale=self._device_status_stale,
+                        recovery=self._recovery_diagnostic)
 
     def _stale_device_status(self):
         # Keep the last report for diagnostics without relabelling it as a new
@@ -432,22 +476,29 @@ class SessionController:
         if self._now is not None and now_ms < self._now:
             raise SessionError(ErrorCode.CLOCK_ROLLBACK)
 
-    def _recover(self, reason, fault=None):
+    def _recover(self, reason, fault=None, *, request=None):
         if self._phase is Phase.RECOVERY:
             return ()
+        self._recovery_diagnostic = RecoveryDiagnostic(reason, fault,
+            request.kind if request else 0, request.request_id if request else 0,
+            self._ordinary.kind if self._ordinary else 0,
+            self._ordinary.request_id if self._ordinary else 0,
+            self._stop.request_id if self._stop else 0)
         self._stale_device_status()
         self._phase = Phase.RECOVERY
         self._ordinary = self._stop = self._ticket = None
-        return (Event(EventKind.RECOVERY, generation=self._generation,
+        return (Event(EventKind.RECOVERY, request_id=self._recovery_diagnostic.request_id,
+                      generation=self._generation,
                       window_id=self._window_id, reason=reason,
-                      preserve_fragments=True, reset_transport=True, fault=fault),)
+                      preserve_fragments=True, reset_transport=True, fault=fault,
+                      recovery=self._recovery_diagnostic),)
 
     def _advance(self, now_ms):
         self._now = now_ms
         for request in (self._ordinary, self._stop):
             if (request is not None and request.sent_ms is not None
                     and now_ms - request.sent_ms >= RESPONSE_TIMEOUT_MS):
-                return self._recover(RecoveryReason.TIMEOUT)
+                return self._recover(RecoveryReason.TIMEOUT, request=request)
         return ()
 
     def _capacity(self):
@@ -600,7 +651,11 @@ class SessionController:
     def unknown_write(self, now_ms):
         self._time(now_ms)
         self._now = now_ms
-        return self._recover(RecoveryReason.UNKNOWN_WRITE)
+        request = None
+        if self._ticket is not None:
+            request = (self._stop if self._ticket.frame.message_type == 5
+                       else self._ordinary)
+        return self._recover(RecoveryReason.UNKNOWN_WRITE, request=request)
 
     def protocol_fault(self, code, now_ms):
         self._time(now_ms)
