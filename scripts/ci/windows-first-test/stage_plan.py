@@ -18,17 +18,17 @@ import struct
 import sys
 import types
 
-APP_COMMIT = "dcafc5638bc6c3ddef6cba25a7a55016fe8e8933"
-APP_TREE = "61a9bd025081acec80997dff950d947eeceb3f4b"
+APP_COMMIT = "c49472cd60d53cdcfed890f57b16162bccb48f91"
+APP_TREE = "2edd887d9dbd09a84c8e15986c203ce81bf74bbf"
 INSPECTOR_COMMIT = "54d63be3fdd8eba858bafafbf6cec33c4ed989b8"
 INSPECTOR_HASH = "fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53"
-RETENTION_COMMIT = "49c271104939a9c6ca6027ec239a904cac11a1a3"
+RETENTION_COMMIT = "1e8cc646e1b1364e81c2ad26494a6a24a984c069"
 HELPERS = {
-    "retain.py": (20066, "3ab02204cf20771c1ff67ca0ec05c8d8c6cb639a93ed56a653ba487fc856b08c"),
-    "zip_kit.py": (8419, "1270725f73afe9c947e7ce5835779eee28c7604d429a30f244aff06684fe40b6"),
+    "retain.py": (20066, "56653884af4a9b238e71dd864e9d85682a4e8e776b435b54d4781b217e811f3d"),
+    "zip_kit.py": (8419, "fc3a3a8d62fa689ff2af74d5053df71cd857946e61e15e08158cb7851e05fba7"),
 }
 # Independently reviewed Windows fresh-stat successor; all original caps retained.
-PAYLOAD_CHECKER = (24668, "53f9e66afd56c1dd78e1257fd95591f0c15fa4d3c67c6b629d5fc2e79e09d61c")
+PAYLOAD_CHECKER = (24668, "44761f34c7ffb8c5ca8cae8e3bdbb3a7c7d0d09c4fe0753faa41cabdcf6ccd19")
 SOURCE_PINS = {
     "host/packaging/select_windows_runtime.py": {"bytes": 5686, "sha256": "f4144a5318f4607a207531559c03365d2351473b40b5431ddfb4f7c3d381712b"},
     "host/packaging/motortester.spec": {"bytes": 1867, "sha256": "b754e84f96be7c8d8c8284a29457c83567f02c53344a99235857a60386d3e492"},
@@ -303,7 +303,7 @@ def notice_coverage(h, reader, build, support, manifest, snapshots):
             "collector_inventory": inventory_info, "inventory_distributions": sorted(seen),
             "packaged_guidance": [name for _, name in guidance],
             "candidate_zip_correspondence": "mandatory original archive validator and bound reduced-payload checker",
-            "source_zip_correspondence": "mandatory original validator verifies all 306 Git member bodies",
+            "source_zip_correspondence": "mandatory original validator verifies all 307 Git member bodies",
             "legal_clearance": False, "native_source_completeness": False, "replacement_verified": False}, inventory_info
 
 
@@ -581,7 +581,7 @@ def stage(*, helper_root, build_root, reports_root, support_root, output_root, w
                   and archive.get("recording_required") is True
                   and type(archive.get("recording_source_zip_hashes_verified")) is int
                   and archive["recording_source_zip_hashes_verified"] == 23
-                  and type(archive.get("source_files")) is int and archive["source_files"] == 306,
+                  and type(archive.get("source_files")) is int and archive["source_files"] == 307,
                   "original-archive-incomplete")
         h.require(provenance.get("source_commit") == APP_COMMIT
                   and provenance.get("inspector_commit") == INSPECTOR_COMMIT
