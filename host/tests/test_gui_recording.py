@@ -109,6 +109,132 @@ class RecordingGuiTests(unittest.TestCase):
             self.window.open_button.click()
         self.wait(lambda: not self.window.busy)
 
+    def _record_recovery_save_reopen(self, kind):
+        # Actual bridge/runtime/writer with a synthetic serial backend; no COM
+        # handle or physical device is opened by this injected factory.
+        from test_acquisition_bridge import SerialPeer
+        from motortester.transport import SerialTransport
+        controls, calls = {}, []
+
+        class FailingPeer(SerialPeer):
+            def write(self, data):
+                if controls.get("write_fail"):
+                    raise OSError("COM9 /private/token=SECRET")
+                return super().write(data)
+
+        def create(parent):
+            def backend(**kwargs):
+                return FailingPeer(calls=calls, controls=controls, **kwargs)
+            bridge = AcquisitionBridge(parent, interval_ms=1,
+                serial_factory=lambda: SerialTransport(backend_factory=backend))
+            self.bridges.append(bridge)
+            bridge.recording_saved.connect(self.saved.append)
+            return bridge
+
+        with patch("motortester.acquisition.AcquisitionBridge", side_effect=create):
+            self.window.show_acquisition()
+        self.panel = self.window._acquisition_dialog
+        self.bridge = self.window._acquisition
+        self.panel.source.setCurrentIndex(1)
+        self.panel.port.setText("COM9")
+        self.panel.connect_button.click()
+        self.wait(self.panel.record_button.isEnabled)
+        if kind == "ordinary_timeout":
+            controls["hold_config"] = True
+        elif kind == "unknown_write":
+            controls["write_fail"] = True
+        self.record(edge=False)
+        if kind not in ("ordinary_timeout", "unknown_write"):
+            self.wait(lambda: self.bridge.state.snapshot.phase is Phase.ARMED)
+            if kind == "stop_timeout":
+                controls["hold_config"] = True
+                self.panel.stop_button.click()
+            elif kind == "transport_lost":
+                controls["read_fail"] = True
+            else:
+                controls["read_bytes_once"] = b"\x01\x00"
+        self.wait(lambda: self.bridge.state.recording.ready_to_save)
+        self.wait(self.panel.save_recording_button.isEnabled)
+        snapshot = self.bridge.state.recording.snapshot
+        diagnostic = snapshot.recovery_diagnostic
+        expected = {"ordinary_timeout": "TIMEOUT", "stop_timeout": "TIMEOUT",
+                    "unknown_write": "UNKNOWN_WRITE", "transport_lost": "TRANSPORT_LOST",
+                    "protocol_fault": "PROTOCOL_FAULT"}[kind]
+        self.assertIn("reason=" + expected, diagnostic)
+        if kind in ("ordinary_timeout", "unknown_write"):
+            self.assertIn("command=CONFIG; request_id=3", diagnostic)
+        elif kind == "stop_timeout":
+            self.assertIn("command=STOP; request_id=5", diagnostic)
+        elif kind == "protocol_fault":
+            self.assertIn("fault=DECODE", diagnostic)
+        self.assertNotIn("COM9", diagnostic)
+        self.assertNotIn("SECRET", diagnostic)
+        self.assertEqual(snapshot.stop_evidence, "unknown")
+        self.assertIn(diagnostic, self.panel.recording_status.text())
+
+        # A real failed Save is separate from the acquisition cause, and an
+        # explicit successful retry still reports both the saved file and cause.
+        exists = self.root / "previous.mtrec"
+        exists.write_bytes(b"keep previous")
+        self.assertTrue(self.window.save_recording_path(exists))
+        self.wait(lambda: self.bridge.state.recording.error == "save_failed")
+        self.assertEqual(exists.read_bytes(), b"keep previous")
+        self.assertIn(diagnostic, self.panel.recording_status.text())
+        self.assertIn("save_failed", self.panel.recording_status.text())
+        path = self.save(kind + ".mtrec")
+        self.assertIn("Сеанс сохранён", self.window.status_label.text())
+        self.assertIn(diagnostic, self.window.status_label.text())
+        self.assertIn(diagnostic, self.panel.recording_status.text())
+        self.assertIsNone(self.bridge.state.recording.error)
+        self.assertIn(diagnostic, sa.load(path).outcome.diagnostic)
+
+        # Another viewer has no acquisition/recording state to fill missing
+        # metadata. Its visible diagnostic must come only from the saved file.
+        viewer = MainWindow()
+        try:
+            viewer.show()
+            viewer.open_path(path)
+            self.wait(lambda: not viewer.busy)
+            self.assertIsNone(viewer._recording)
+            self.assertIn(diagnostic, viewer.archive_label.text())
+            self.assertTrue(viewer.archive_label.isVisible())
+            self.assertEqual(viewer.archive_label.textFormat(), QtCore.Qt.TextFormat.PlainText)
+        finally:
+            viewer.close()
+            viewer.deleteLater()
+            pump_events(5)
+
+        # Explicit reconnect starts with no old recovery context; Record never
+        # restarts automatically and a later clean recording has no old cause.
+        controls.clear()
+        self.panel.reset.setChecked(True)
+        self.panel.connect_button.click()
+        self.wait(self.panel.record_button.isEnabled)
+        self.assertIsNone(self.bridge.state.snapshot.recovery)
+        self.assertIsNone(self.bridge.state.recording)
+        self.record(edge=False)
+        self.wait(lambda: self.bridge.state.snapshot.phase is Phase.ARMED)
+        self.assertEqual(self.bridge.state.recording.snapshot.recovery_diagnostic, "")
+        self.assertNotIn(expected, self.panel.recording_status.text())
+        self.finish()
+        clean = self.save("clean-" + kind + ".mtrec")
+        self.assertEqual(sa.load(clean).outcome.diagnostic, "")
+
+    def test_recovery_config_timeout_remains_visible_after_save_and_fresh_open(self):
+        self._record_recovery_save_reopen("ordinary_timeout")
+
+    def test_recovery_stop_timeout_remains_visible_after_save_and_fresh_open(self):
+        self._record_recovery_save_reopen("stop_timeout")
+
+    def test_recovery_unknown_write_remains_visible_after_save_and_fresh_open(self):
+        self._record_recovery_save_reopen("unknown_write")
+
+    def test_recovery_transport_lost_remains_visible_after_save_and_fresh_open(self):
+        self._record_recovery_save_reopen("transport_lost")
+
+    def test_recovery_protocol_fault_remains_visible_after_save_and_fresh_open(self):
+        self._record_recovery_save_reopen("protocol_fault")
+
     def test_real_record_four_windows_stop_save_open_every_bit_and_provenance(self):
         self.connect()
         original = sa.SessionSpool._append

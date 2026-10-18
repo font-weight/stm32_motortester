@@ -52,8 +52,12 @@ def recording_status_text(recording):
         text += "\nЗавершение не подтверждено: обычное сохранение недоступно; сохраните spool для отдельного восстановления."
     if snapshot.source_retention_required or snapshot.writer_pending or recording.writer_busy:
         text += "\nЕсть незавершённая запись / удерживаемые данные."
-    if snapshot.fault or recording.error:
-        text += "\nОшибка: " + str(recording.error or snapshot.fault)
+    if snapshot.recovery_diagnostic:
+        text += "\nПричина восстановления: " + snapshot.recovery_diagnostic
+    if snapshot.fault:
+        text += "\nОшибка записи: " + snapshot.fault
+    if recording.error:
+        text += "\nОшибка сохранения / записи: " + recording.error
     return text
 
 

@@ -26,7 +26,8 @@ import struct
 from uuid import UUID
 
 from .model import Capture
-from .session import Config, Event, EventKind, Phase, Snapshot, MAX_TIME_MS
+from .session import (Config, Event, EventKind, Phase, RecoveryDiagnostic,
+                      Snapshot, MAX_TIME_MS)
 from .session_archive import (AbortEvent, Capacity, CommitReceipt, FullSegment,
     PartialSegment, SegmentProvenance, SessionIdentity, SessionOutcome, segment_digest)
 from .window import WindowCode, WindowResult
@@ -179,6 +180,7 @@ class RecordingSnapshot:
     finalization_invalidated: bool
     coverage: str = "segmented"
     intersegment_device_gap: str = "unknown"
+    recovery_diagnostic: str = ""
 
 
 @dataclass(frozen=True, slots=True)
@@ -214,6 +216,7 @@ class RecordingController:
         self._started = 0
         self._ended_ms = None
         self._fence = self._fault = None
+        self._recovery_diagnostic = ""
         self._user_stop = self._finished = self._prepare_failed = False
         self._settlement_failed = self._transport_failed = self._source_pending = False
         self._finalization_invalidated = False
@@ -265,7 +268,8 @@ class RecordingController:
              or (IntentKind.FINALIZE_READY in self._ops
                  and self._ops[IntentKind.FINALIZE_READY].claimed)),
             self._user_stop, self._source_pending,
-            self._finalization_invalidated)
+            self._finalization_invalidated,
+            recovery_diagnostic=self._recovery_diagnostic)
 
     def _time(self, now_ms):
         _uint(now_ms)
@@ -342,6 +346,7 @@ class RecordingController:
         self._ops, self._held = {}, ()
         self._capacity = self._issuer = None
         self._fence = self._fault = None
+        self._recovery_diagnostic = ""
         self._user_stop = self._finished = self._prepare_failed = self._settlement_failed = self._transport_failed = self._source_pending = False
         self._finalization_invalidated = False
         self._invalidated_finish = None
@@ -479,6 +484,13 @@ class RecordingController:
                  and all(type(result) is RecordingResult for result in results))
         _require(self._runtime_matches(runtime_state))
         self._time(now_ms)
+        # Snapshot retention also covers a recovery dispatched by the runtime
+        # before an exception prevented delivery of its event tuple. A fresh
+        # session resets this evidence; stale event tuples cannot supply it.
+        if (runtime_state.phase is Phase.RECOVERY and not self._recovery_diagnostic
+                and runtime_state.recovery is not None):
+            _require(type(runtime_state.recovery) is RecoveryDiagnostic)
+            self._recovery_diagnostic = runtime_state.recovery.text()
         arm = self._ops.get(IntentKind.ARM)
         if (arm and arm.claimed and arm.request_id
                 and runtime_state.generation == arm.request_id):
@@ -714,7 +726,7 @@ class RecordingController:
         op = self._ops.get(IntentKind.FINALIZE_READY)
         if op is None:
             return
-        outcome = SessionOutcome(self._fence, self._evidence, self._fault or "")
+        outcome = self._outcome()
         if (op.intent.payload == outcome and not self._held and not self._source_pending
                 and self._safe and not self._settlement_failed):
             return
@@ -727,6 +739,14 @@ class RecordingController:
             self._finalization_invalidated = True
             self._invalidated_finish = op.intent
             self._settlement_failed = True
+
+    def _outcome(self):
+        # Preserve the original controller/storage fault independently of the
+        # first transport recovery. The existing v1 diagnostic string needs no
+        # new archive fields, and every finalization comparison includes it.
+        diagnostic = "; ".join(part for part in
+            (self._fault, self._recovery_diagnostic) if part)
+        return SessionOutcome(self._fence, self._evidence, diagnostic)
 
     def _drive(self):
         if self._session is None or self._finished:
@@ -748,7 +768,7 @@ class RecordingController:
             return
         if self._fence is not None:
             if not self._ops and not self._source_pending:
-                outcome = SessionOutcome(self._fence, self._evidence, self._fault or "")
+                outcome = self._outcome()
                 self._emit(IntentKind.FINALIZE_READY, outcome)
             return
         if self._ops:
