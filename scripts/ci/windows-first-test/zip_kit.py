@@ -9,7 +9,7 @@ import sys
 import zipfile
 
 # Bind the independently tested retainer before importing its path checks.
-RETAINER_SHA256 = '56653884af4a9b238e71dd864e9d85682a4e8e776b435b54d4781b217e811f3d'
+RETAINER_SHA256 = 'dac7433a4cc964f71081f0dad0639f907c1df1408c10e4d32109684f5c405b6a'
 MAX_ZIP = 514 * 1024 * 1024
 CHUNK = 65536
 
