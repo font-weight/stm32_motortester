@@ -372,9 +372,22 @@ class SourceExecutionTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def child(self, setup="", *, optimized=False, timeout=20):
+    def child(self, setup="", *, optimized=None, timeout=20, after_recovery=False):
+        if optimized is None:
+            optimized = bool(sys.flags.optimize)
+        if after_recovery:
+            # Existing fault gates still target the original clean flow. In
+            # particular their shortened waits must not replace the new real
+            # 1000 ms recovery deadline with a premature harness timeout.
+            setup = ("original_recovery=smoke._recovery_check\n"
+                     "def check_then_inject(*args):\n"
+                     " result=original_recovery(*args)\n"
+                     " exec(" + repr(setup) + ",globals())\n"
+                     " return result\n"
+                     "smoke._recovery_check=check_then_inject\n")
         code = "import sys;sys.path.insert(0,sys.argv[1]);import recording_smoke as smoke\n" + setup + "\nraise SystemExit(smoke.run(sys.argv[2]))\n"
-        env = os.environ | {"QT_QPA_PLATFORM": "offscreen", "PYTHONDONTWRITEBYTECODE": "1"}
+        env = os.environ | {"QT_QPA_PLATFORM": "offscreen", "PYTHONDONTWRITEBYTECODE": "1",
+                            "TMPDIR": str(self.root), "TEMP": str(self.root), "TMP": str(self.root)}
         return subprocess.run([sys.executable, *(["-O"] if optimized else []), "-c", code, str(PACKAGING), str(self.output)],
                               cwd=HOST, env=env, capture_output=True, timeout=timeout)
 
@@ -392,6 +405,7 @@ class SourceExecutionTests(unittest.TestCase):
             smoke.validate_report(self.output, executable=sys.executable)
         self.assertEqual(set(p.name for p in smoke.work_path(self.output).iterdir()),
                          {a["name"] for a in report["artifacts"].values()})
+        self.assertIn(b"recording-smoke ephemeral passed: CONFIG TIMEOUT -> Save -> fresh Open; removed", process.stdout)
         lines = [line for line in process.stdout.decode().splitlines() if line.startswith("recording-smoke live-only passed:")]
         self.assertEqual(lines, [
             "recording-smoke live-only passed: Single pre=512 edge=rising raw=2048 trigger=512",
@@ -402,6 +416,330 @@ class SourceExecutionTests(unittest.TestCase):
         self.assertEqual(report["schema_version"], 1)
         self.assertTrue(all(s["provenance"]["config_payload_hex"] ==
                             "01000100000000080000000000000000" for s in report["segments"]))
+
+    def recovery_failure(self, setup, expected, *, timeout=20):
+        process = self.child(setup, timeout=timeout)
+        self.assertEqual(process.returncode, 1, process.stderr.decode(errors="replace")[-2000:])
+        report = self.report()
+        self.assertEqual(report["status"], "failed")
+        self.assertIn(report["error"], expected)
+        self.assertNotIn(b"recording-smoke ephemeral passed", process.stdout)
+        self.assertFalse(any(smoke.work_path(self.output).iterdir()))
+        with self.assertRaises(smoke.SmokeFailure):
+            smoke.validate_report(self.output, executable=sys.executable, require_frozen_windows=False)
+        return process
+
+    def test_recovery_precheck_has_durable_effect_even_without_console(self):
+        setup = """from motortester import recording_bridge
+from pathlib import Path
+original=recording_bridge.finalize
+saved=[]
+def finalize(*args,**kwargs):
+ archive=original(*args,**kwargs)
+ saved.append((Path(args[1]),archive.outcome.reason,archive.outcome.stop_evidence))
+ return archive
+recording_bridge.finalize=finalize
+original_run=smoke.run
+def checked(output):
+ result=original_run(output)
+ if [(reason,stop) for path,reason,stop in saved] != [('error','unknown'),('user_stop','stop_ack')]:
+  raise RuntimeError('mandatory durable recovery save did not execute')
+ if saved[0][0].parent.exists() or not saved[1][0].is_file(): raise RuntimeError('wrong artifact lifetime')
+ return result
+smoke.run=checked
+sys.stdout=sys.stderr=None
+"""
+        process = self.child(setup)
+        self.assertEqual(process.returncode, 0)
+        self.assertEqual(self.report()["status"], "passed")
+
+    def test_recovery_temporary_location_and_owned_file_cleanup_are_guarded(self):
+        setup = "smoke.tempfile.tempdir=str(smoke.work_path(Path(sys.argv[2])))"
+        self.recovery_failure("from pathlib import Path\n" + setup, ("recovery-temporary-location",))
+        directory = self.root / "owned"
+        directory.mkdir()
+        state = directory.stat()
+        identity = (state.st_dev, state.st_ino)
+        (directory / "unrecognized.txt").write_bytes(b"keep")
+        with self.assertRaises(smoke.SmokeFailure):
+            smoke._remove_recovery_directory(directory, identity)
+        self.assertEqual((directory / "unrecognized.txt").read_bytes(), b"keep")
+        (directory / "unrecognized.txt").unlink()
+        with self.assertRaises(smoke.SmokeFailure):
+            smoke._remove_recovery_directory(directory, (identity[0], identity[1] + 1))
+        target = self.root / "outside"
+        target.write_bytes(b"keep outside")
+        if os.name != "nt" and hasattr(os, "symlink"):
+            (directory / "recovery.mtrec").symlink_to(target)
+            with self.assertRaises(smoke.SmokeFailure):
+                smoke._remove_recovery_directory(directory, identity)
+            self.assertEqual(target.read_bytes(), b"keep outside")
+
+    def test_omitted_recovery_directory_removal_cannot_report_success(self):
+        self.recovery_failure("smoke._remove_recovery_directory=lambda *args: None",
+                              ("recovery-cleanup-unconfirmed",))
+        retained = list(self.root.glob("mtrec-recovery-*"))
+        self.assertEqual(len(retained), 1)
+        self.assertTrue((retained[0] / "recovery.mtrec").is_file())
+
+    def test_recovery_precheck_is_mandatory_and_raised_failure_is_not_swallowed(self):
+        for index, setup in enumerate((
+                "smoke._recovery_check=lambda *args: None",
+                "def failure(*args): raise smoke.SmokeFailure('deliberate-precheck-failure')\nsmoke._recovery_check=failure")):
+            self.output = self.root / f"omitted-recovery-{index}.json"
+            self.recovery_failure(setup, ("recovery-check-incomplete", "deliberate-precheck-failure"))
+
+    def test_actual_config_identity_is_observed_after_fragmented_accepted_writes(self):
+        # Shift the real request allocator; hard-coding CONFIG request 3 cannot
+        # pass. Fragmented writes require observing complete accepted bytes.
+        setup = """from motortester.acquisition import _EmulatorTransport
+from motortester.session import SessionController
+original_start=SessionController.start
+def start(self,*args,**kwargs):
+ result=original_start(self,*args,**kwargs)
+ self._next_request=41
+ return result
+SessionController.start=start
+original_write=_EmulatorTransport.write
+def write(self,data): return original_write(self,data[:7])
+_EmulatorTransport.write=write
+"""
+        # Restrict allocator mutation to the temporary precheck so the original
+        # deterministic recording chronology and legacy receipt stay unchanged.
+        setup += """original_check=smoke._recovery_check
+def check(*args):
+ try: return original_check(*args)
+ finally:
+  SessionController.start=original_start
+  _EmulatorTransport.write=original_write
+smoke._recovery_check=check
+original_remove=smoke._remove_recovery_directory
+def remove(directory,identity):
+ from motortester.session_archive import load
+ if 'request_id=42; pending=CONFIG/42' not in load(directory/'recovery.mtrec').outcome.diagnostic:
+  raise RuntimeError('request allocator control did not reach CONFIG')
+ original_remove(directory,identity)
+smoke._remove_recovery_directory=remove
+"""
+        process = self.child(setup)
+        self.assertEqual(process.returncode, 0, process.stderr.decode(errors="replace")[-2000:])
+        self.assertIn(b"recording-smoke ephemeral passed", process.stdout)
+
+    def test_recovery_exact_cause_request_pending_and_recording_context_are_required(self):
+        changes = ("reason=RecoveryReason.TRANSPORT_LOST", "request_id=value.request_id+1",
+                   "pending_request_id=value.pending_request_id+1", "pending_stop_id=77",
+                   "fault=FaultCode.DECODE")
+        for index, change in enumerate(changes):
+            self.output = self.root / f"recovery-identity-{index}.json"
+            setup = """from dataclasses import replace
+from motortester.session import SessionController, RecoveryReason, FaultCode
+original=SessionController.snapshot
+def snapshot(self):
+ result=original(self)
+ value=result.recovery
+ return replace(result,recovery=replace(value,CHANGE)) if value is not None else result
+SessionController.snapshot=snapshot
+""".replace("CHANGE", change)
+            self.recovery_failure(setup, ("recovery-context-mismatch",))
+        self.output = self.root / "lost-recording-context.json"
+        setup = """from dataclasses import replace
+from motortester.recording_controller import RecordingController
+original=RecordingController.snapshot
+def snapshot(self): return replace(original(self),recovery_diagnostic='')
+RecordingController.snapshot=snapshot
+"""
+        self.recovery_failure(setup, ("recovery-context-mismatch",))
+
+    def test_recovery_archive_must_durably_retain_original_fault_and_exact_context(self):
+        setup = """from dataclasses import replace
+from motortester.recording_controller import RecordingController
+original=RecordingController._outcome
+def outcome(self):
+ result=original(self)
+ return replace(result,diagnostic='transport_recovery') if result.reason == 'error' else result
+RecordingController._outcome=outcome
+"""
+        self.recovery_failure(setup, ("recovery-archive-mismatch",))
+        self.output = self.root / "no-durable-file.json"
+        setup = """from pathlib import Path
+from motortester import recording_bridge
+original=recording_bridge.finalize
+def finalize(*args,**kwargs):
+ result=original(*args,**kwargs)
+ Path(args[1]).unlink()
+ return result
+recording_bridge.finalize=finalize
+"""
+        self.recovery_failure(setup, ("operation-failed",))
+
+    def test_recovery_fresh_viewer_and_plain_visible_disk_diagnostic_are_required(self):
+        setups = [
+            """from motortester.gui import MainWindow
+MainWindow.open_path=lambda *args: None
+""",
+            """from motortester.gui import MainWindow
+original=MainWindow._show_archive
+def show(self,*args,**kwargs):
+ original(self,*args,**kwargs)
+ self.archive_label.setText('transport_recovery')
+MainWindow._show_archive=show
+""",
+            """from motortester.gui import MainWindow
+original=MainWindow._show_archive
+def show(self,*args,**kwargs):
+ original(self,*args,**kwargs)
+ self.opened_from_disk=False
+MainWindow._show_archive=show
+""",
+            """from motortester.gui import MainWindow
+from PySide6 import QtCore
+original=MainWindow._show_archive
+def show(self,*args,**kwargs):
+ original(self,*args,**kwargs)
+ self.archive_label.setTextFormat(QtCore.Qt.TextFormat.RichText)
+MainWindow._show_archive=show
+"""]
+        for index, setup in enumerate(setups):
+            self.output = self.root / f"recovery-viewer-{index}.json"
+            self.recovery_failure(setup, ("recovery-open-mismatch",))
+
+    def test_recovery_save_failure_and_missing_live_saved_text_fail(self):
+        setups = [
+            """from motortester.gui import MainWindow
+MainWindow.save_recording_path=lambda *args: False
+""",
+            """from motortester.gui import MainWindow
+original=MainWindow._recording_saved
+def saved(self,*args):
+ original(self,*args)
+ self.status_label.setText('Saved without recovery context')
+MainWindow._recording_saved=saved
+"""]
+        for index, setup in enumerate(setups):
+            self.output = self.root / f"recovery-save-{index}.json"
+            self.recovery_failure(setup, ("recovery-save-not-admitted", "recovery-saved-label-missing"))
+
+    def test_recovery_cleanup_occurs_only_after_native_join_writer_and_windows_close(self):
+        setup = """from motortester.gui import MainWindow
+from pathlib import Path
+original_init=MainWindow.__init__
+windows=[]
+def init(self,*args,**kwargs):
+ original_init(self,*args,**kwargs)
+ windows.append(self)
+MainWindow.__init__=init
+original_remove=smoke._remove_recovery_directory
+removed=[]
+def remove(directory,identity):
+ if len(windows)!=2 or any(w.isVisible() or w.busy for w in windows): raise RuntimeError('windows unresolved')
+ bridge=windows[0]._acquisition
+ adapter=bridge._worker.recording
+ if bridge.running or not bridge._closed or adapter._writer.running or not adapter.state.retired: raise RuntimeError('workers unresolved')
+ if {p.suffix for p in directory.iterdir()} != {'.mtrec','.mtspool'}: raise RuntimeError('missing durable files')
+ original_remove(directory,identity)
+ if directory.exists(): raise RuntimeError('temporary directory retained')
+ removed.append(directory)
+smoke._remove_recovery_directory=remove
+original_run=smoke.run
+def checked(output):
+ result=original_run(output)
+ if len(removed)!=1 or removed[0].exists() or removed[0]==smoke.work_path(Path(output)): raise RuntimeError('cleanup not observed')
+ return result
+smoke.run=checked
+"""
+        process = self.child(setup)
+        self.assertEqual(process.returncode, 0, process.stderr.decode(errors="replace")[-2000:])
+
+    def test_failed_recovery_cleanup_is_fatal_and_retains_owned_evidence(self):
+        setup = """from pathlib import Path
+original_remove=smoke._remove_recovery_directory
+retained=[]
+def remove(directory,identity):
+ retained.append((directory,identity))
+ raise OSError('private cleanup error')
+smoke._remove_recovery_directory=remove
+original_run=smoke.run
+def checked(output):
+ result=original_run(output)
+ if result!=1 or len(retained)!=1 or not retained[0][0].is_dir(): raise RuntimeError('lost retained evidence')
+ # Test-owned disposal follows confirmed worker closure, after failed receipt.
+ original_remove(*retained[0])
+ return result
+smoke.run=checked
+"""
+        process = self.recovery_failure(setup, ("recovery-cleanup-unconfirmed",))
+        self.assertNotIn(b"private cleanup error", process.stdout + self.output.read_bytes())
+
+    def test_recovery_late_save_is_cancelled_and_unjoined_cleanup_never_passes(self):
+        setup = """from motortester.recording_bridge import _DiskWriter
+from motortester.gui import MainWindow
+from pathlib import Path
+import time
+original_perform=_DiskWriter._perform
+def perform(self,job):
+ if job.kind=='save': time.sleep(1.2)
+ return original_perform(self,job)
+_DiskWriter._perform=perform
+original_save=MainWindow.save_recording_path
+paths=[]
+def save(self,path):
+ paths.append(Path(path))
+ result=original_save(self,path)
+ smoke.PHASE_TIMEOUT=.05
+ smoke.CLEANUP_TIMEOUT=.02
+ return result
+MainWindow.save_recording_path=save
+original_run=smoke.run
+def checked(output):
+ result=original_run(output)
+ time.sleep(1.4)
+ if len(paths)!=1 or paths[0].exists(): raise RuntimeError('late recovery export')
+ if not paths[0].parent.exists(): raise RuntimeError('unjoined evidence was removed')
+ return result
+smoke.run=checked
+"""
+        self.recovery_failure(setup, ("recovery-cleanup-unconfirmed",))
+
+    def test_recovery_post_retirement_pending_or_invalidated_state_cannot_pass(self):
+        for field in ("writer_pending", "source_retention_required", "finalization_invalidated"):
+            self.output = self.root / f"recovery-retired-{field}.json"
+            setup = """from dataclasses import replace
+from motortester.recording_bridge import RecordingSessionAdapter
+original=RecordingSessionAdapter.retire
+def retire(self):
+ original(self)
+ value=self.controller.snapshot()
+ if value.recovery_diagnostic:
+  self.controller.snapshot=lambda: replace(value,FIELD=True)
+RecordingSessionAdapter.retire=retire
+""".replace("FIELD", field)
+            self.recovery_failure(setup, ("recovery-cleanup-unconfirmed",))
+
+    def test_fresh_clean_recording_and_saved_archive_cannot_inherit_recovery(self):
+        setups = [
+            """from dataclasses import replace
+from motortester.recording_controller import RecordingController
+original=RecordingController.snapshot
+def snapshot(self):
+ value=original(self)
+ return replace(value,recovery_diagnostic='RECOVERY stale cause') if value.committed_segments else value
+RecordingController.snapshot=snapshot
+""",
+            """from dataclasses import replace
+from motortester.recording_controller import RecordingController
+original=RecordingController._outcome
+def outcome(self):
+ value=original(self)
+ return replace(value,diagnostic='RECOVERY stale cause') if value.reason == 'user_stop' else value
+RecordingController._outcome=outcome
+"""]
+        for index, setup in enumerate(setups):
+            self.output = self.root / f"recovery-stale-{index}.json"
+            process = self.child(setup)
+            self.assertEqual(process.returncode, 1)
+            self.assertEqual(self.report()["status"], "failed")
+            self.assertIn(self.report()["error"], ("recovery-context-not-reset", "archive-mismatch"))
+            self.assertIn(b"recording-smoke ephemeral passed", process.stdout)
 
     def test_omitted_live_prechecks_cannot_produce_final_success(self):
         process = self.child("smoke._prehistory_checks=lambda *args: None")
@@ -490,7 +828,7 @@ def snapshot(self):
 SessionController.snapshot=snapshot
 smoke.PHASE_TIMEOUT=.7
 '''.replace("CODE", str(code))
-                process = self.child(setup)
+                process = self.child(setup, after_recovery=True)
                 self.assertEqual(process.returncode, 1)
                 self.assertEqual(self.report()["error"], "deadline-exceeded")
                 self.assertEqual(self.report()["status"], "failed")
@@ -507,7 +845,7 @@ def fabricate(self,state):
   self.capture=replace(self.capture,sequence=self.capture.sequence+1)
 MainWindow._acquisition_state=fabricate
 '''
-        process = self.child(setup)
+        process = self.child(setup, after_recovery=True)
         self.assertEqual(process.returncode, 1)
         self.assertEqual(self.report()["error"], "prehistory-wait-mismatch")
         self.assertEqual(self.report()["status"], "failed")
@@ -560,7 +898,7 @@ AcquisitionDialog.refresh=refresh
         for index, setup in enumerate(setups):
             with self.subTest(index=index):
                 self.output = self.root / f"status-mismatch-{index}.json"
-                process = self.child(setup)
+                process = self.child(setup, after_recovery=True)
                 self.assertEqual(process.returncode, 1)
                 self.assertEqual(self.report()["status"], "failed")
                 self.assertIn(self.report()["error"], ("deadline-exceeded", "device-status-unconfirmed", "prehistory-config-unconfirmed"))
@@ -683,7 +1021,7 @@ gui.MainWindow.show_acquisition=action
         for operation in ("save_recording_path", "open_path"):
             self.output = self.root / (operation + ".json")
             setup = "from motortester import gui\nsmoke.PHASE_TIMEOUT=0.7\ngui.MainWindow." + operation + "=lambda *args: False"
-            process = self.child(setup)
+            process = self.child(setup, after_recovery=True)
             self.assertNotEqual(process.returncode, 0)
             self.assertEqual(self.report()["status"], "failed")
 
@@ -706,7 +1044,7 @@ def snapshot(self):
 RecordingController.snapshot=snapshot
 smoke.PHASE_TIMEOUT=1.5
 '''.replace("FIELD", field)
-            self.assertNotEqual(self.child(setup).returncode, 0)
+            self.assertNotEqual(self.child(setup, after_recovery=True).returncode, 0)
             self.assertEqual(self.report()["status"], "failed")
             self.assertFalse((smoke.work_path(self.output) / "recording.mtrec").exists())
 
@@ -722,7 +1060,7 @@ def delayed(self,job):
 _DiskWriter._perform=delayed
 smoke.PHASE_TIMEOUT=.6
 """.replace("KIND", repr(kind))
-            self.assertNotEqual(self.child(setup).returncode, 0)
+            self.assertNotEqual(self.child(setup, after_recovery=True).returncode, 0)
             self.assertEqual(self.report()["status"], "failed")
             self.assertFalse((smoke.work_path(self.output) / "recording.mtrec").exists())
 
@@ -745,7 +1083,7 @@ def checked_run(output):
  return result
 smoke.run=checked_run
 """
-        process = self.child(setup)
+        process = self.child(setup, after_recovery=True)
         self.assertEqual(process.returncode, 1, process.stderr.decode(errors="replace")[-1000:])
         self.assertEqual(self.report()["error"], "cleanup-unconfirmed")
         self.assertIsNone(self.report()["cleanup"])
