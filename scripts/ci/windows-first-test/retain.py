@@ -1,4 +1,4 @@
-"""Bounded local byte retention for the reviewed appdcafc563 ordinary candidate.
+"""Bounded local byte retention for the reviewed appc49472cd ordinary candidate.
 
 No application imports, archive extraction, process launch or network operation.
 A caller-supplied expected digest establishes byte identity, not authorization.
@@ -14,7 +14,7 @@ import re
 import stat
 import sys
 
-APP_COMMIT = "dcafc5638bc6c3ddef6cba25a7a55016fe8e8933"
+APP_COMMIT = "c49472cd60d53cdcfed890f57b16162bccb48f91"
 MIB = 1024 * 1024
 MAX_PLAN = 64 * 1024
 MAX_FILES = 64
