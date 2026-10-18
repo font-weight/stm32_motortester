@@ -14,8 +14,8 @@ import struct
 import sys
 import zipfile
 
-APP_COMMIT = 'c49472cd60d53cdcfed890f57b16162bccb48f91'
-APP_TREE = '2edd887d9dbd09a84c8e15986c203ce81bf74bbf'
+APP_COMMIT = 'e38a36004befe453923f3e86165b7fd6d83076d9'
+APP_TREE = 'ffab972586afff8d0a4e13a1e73d56af49190292'
 SOURCE_PINS = {
     'host/packaging/select_windows_runtime.py': (5686, 'f4144a5318f4607a207531559c03365d2351473b40b5431ddfb4f7c3d381712b'),
     'host/packaging/motortester.spec': (1867, 'b754e84f96be7c8d8c8284a29457c83567f02c53344a99235857a60386d3e492'),
@@ -362,7 +362,7 @@ def verify(source_root, build_root, manifest_sha256, archive_sha256):
     require(type(archive) is dict and archive.get('status') == 'PASS'
             and archive.get('scope') == 'on-runner-archive-content-only'
             and archive.get('source_sha') == APP_COMMIT
-            and type(archive.get('source_files')) is int and archive['source_files'] == 307
+            and type(archive.get('source_files')) is int and archive['source_files'] == 308
             and archive.get('recording_required') is True
             and type(archive.get('recording_source_zip_hashes_verified')) is int
             and archive['recording_source_zip_hashes_verified'] == 23

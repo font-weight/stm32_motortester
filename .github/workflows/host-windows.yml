@@ -25,19 +25,19 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: 'c49472cd60d53cdcfed890f57b16162bccb48f91'
-      SOURCE_TREE: '2edd887d9dbd09a84c8e15986c203ce81bf74bbf'
+      SOURCE_SHA: 'e38a36004befe453923f3e86165b7fd6d83076d9'
+      SOURCE_TREE: 'ffab972586afff8d0a4e13a1e73d56af49190292'
       INSPECTOR_SHA: '54d63be3fdd8eba858bafafbf6cec33c4ed989b8'
       INSPECTOR_PARENT_SHA: 'd10e83578718d49f971f034a58e0a77af10ff855'
       INSPECTOR_TREE: '2353f3c2680c53faa5bae08beaa5c35b1d785a64'
       INSPECTOR_FILE_SHA256: 'fa017e8ab7a348d45c74c86bb877968bac9aef77f963642cc7af396a5f2c8c53'
       EVALUATED_WORKFLOW_SHA: ${{ github.workflow_sha }}
       PUBLIC_BINARY_UPLOAD_ENABLED: 'false' # Exact accepted-kit-only transport; no failed diagnostics upload.
-      RETENTION_SHA: '1e8cc646e1b1364e81c2ad26494a6a24a984c069'
-      CALLER_FILE_SHA256: '168fcce77d6410c9193e1777d9075a1d952a7f4937756448a0ac4927f5bc86d7'
-      PAYLOAD_CHECKER_SHA256: '44761f34c7ffb8c5ca8cae8e3bdbb3a7c7d0d09c4fe0753faa41cabdcf6ccd19'
+      RETENTION_SHA: '70d7f0fa661cb16d77c3b325e6fd4e5616b1eab7'
+      CALLER_FILE_SHA256: '8b0c524d8ef6ea658c07899ba5211f604372e7993d4b4abeb9ff61cc6f8048e8'
+      PAYLOAD_CHECKER_SHA256: '0924338f5ce4bd13ca20d4db42a052464ba4c9805bdc0bff44c395bbc3ca60a6'
       # External source-input disposition; does not grant distribution clearance.
-      SUPPORT_SOURCE_SHA: 'c49472cd60d53cdcfed890f57b16162bccb48f91'
+      SUPPORT_SOURCE_SHA: 'e38a36004befe453923f3e86165b7fd6d83076d9'
       SUPPORT_MANIFEST_GIT_PATH: 'scripts/ci/windows-first-test/support-manifest.json'
       SUPPORT_MANIFEST_SHA256: '6f390a3fa0ffa4a4894dede11d826770875f118835235dbb5468b99f634d3088'
       SOURCE_NOTICE_REVIEW: 'https://github.com/font-weight/stm32_motortester/issues/33#issuecomment-6233217133'
@@ -74,7 +74,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: 'c49472cd60d53cdcfed890f57b16162bccb48f91'
+          ref: 'e38a36004befe453923f3e86165b7fd6d83076d9'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
@@ -136,8 +136,8 @@ jobs:
                   print('RAW_BLOB_MISMATCH', os.fsdecode(name), expected.decode(), actual)
               checked += 1
           print('Raw Git blob verification:', checked, 'files;', len(mismatches), 'mismatches')
-          if checked != 1502:
-              raise RuntimeError('Unexpected c494 source file count')
+          if checked != 1503:
+              raise RuntimeError('Unexpected e38a source file count')
           sys.exit(bool(mismatches))
           '@
           python -c $check
@@ -213,7 +213,7 @@ jobs:
           def save(path, raw):
               with path.open('xb') as out:
                   out.write(raw)
-          for name, size, digest in [('retain.py', 20066, '56653884af4a9b238e71dd864e9d85682a4e8e776b435b54d4781b217e811f3d'), ('zip_kit.py', 8419, 'fc3a3a8d62fa689ff2af74d5053df71cd857946e61e15e08158cb7851e05fba7')]:
+          for name, size, digest in [('retain.py', 20066, 'dac7433a4cc964f71081f0dad0639f907c1df1408c10e4d32109684f5c405b6a'), ('zip_kit.py', 8419, '7051ecc513414685d0fdca73d01ac191925179fddd11a5b2e4152ee22aace057')]:
               raw = git_bytes(os.environ['RETENTION_SHA'] + ':scripts/ci/windows-first-test/' + name, size)
               if len(raw) != size or hashlib.sha256(raw).hexdigest() != digest:
                   raise ValueError('Retention helper bytes differ')
