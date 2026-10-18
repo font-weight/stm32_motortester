@@ -89,10 +89,22 @@ def recovery_directory():
 
 
 class _ContentSizedComboBox(QtWidgets.QComboBox):
+    def wheelEvent(self, event):
+        # Scrolling the panel must not edit acquisition settings, even with
+        # keyboard focus. The popup's item view keeps its native scrolling.
+        event.ignore()
+
     def minimumSizeHint(self):
         # Qt can cache the unstyled native-font minimum while sizeHint already
         # reflects the stylesheet. Keep the full styled item/arrow/padding size.
         return self.sizeHint()
+
+
+class _SettingsSpinBox(QtWidgets.QSpinBox):
+    def wheelEvent(self, event):
+        # Let the enclosing scroll area handle the wheel; keys/buttons still
+        # edit the value through the ordinary QSpinBox behavior.
+        event.ignore()
 
 
 class AcquisitionDialog(QtWidgets.QDialog):
@@ -153,7 +165,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.edge = _ContentSizedComboBox()
         self.edge.addItem("Нарастающий", 0)
         self.edge.addItem("Спадающий", 1)
-        self.level = QtWidgets.QSpinBox()
+        self.level = _SettingsSpinBox()
         self.level.setRange(1, 4094)
         self.level.setValue(2048)
         self.pretrigger = _ContentSizedComboBox()
@@ -164,7 +176,7 @@ class AcquisitionDialog(QtWidgets.QDialog):
         self.pretrigger_status = QtWidgets.QLabel("Предыстория: возможности ещё не подтверждены.")
         self.pretrigger_status.setWordWrap(True)
         self.pretrigger_status.setTextFormat(QtCore.Qt.TextFormat.PlainText)
-        self.timeout = QtWidgets.QSpinBox()
+        self.timeout = _SettingsSpinBox()
         self.timeout.setRange(100, 60000)
         self.timeout.setValue(1000)
         self.timeout.setSuffix(" мс")
