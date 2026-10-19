@@ -65,7 +65,7 @@ typedef struct {
 
 typedef struct {
     const uint16_t *samples; /* Snapshot owned by driver, NOT the DMA ring. */
-    uint32_t first_sample_index; /* First sample after start is index zero. */
+    uint64_t first_sample_index; /* First sample after start is index zero. */
     uint32_t count;
     uint32_t nominal_rate_hz;
     /* Timer CEN write is bracketed by these clock reads. First timer update
@@ -93,13 +93,23 @@ typedef struct {
     uint32_t start_after_us;
     uint32_t last_poll_us;
     uint32_t last_progress_us;
-    uint32_t first_sample_index;
+    uint64_t first_sample_index;
     uint32_t last_remaining;
     mt_adc_dma_state_t state;
     mt_adc_dma_fault_t fault;
     bool next_half;
     bool initialized;
     bool owns_peripherals;
+    /* Stream opt-in retains legacy u32 limits unless explicitly enabled. */
+    bool stream_mode;
+    bool stream_history_valid;
+    bool stop_captured;
+    bool stop_dma_known;
+    uint32_t stop_count;
+    uint32_t stop_offset;
+    uint64_t stop_first_index;
+    uint64_t stop_dma_end;
+    mt_adc_dma_fault_t first_fault;
 } mt_adc_dma_t;
 
 /* Helpers for native STM32 memory-mapped I/O. They ignore user. Native startup
@@ -141,6 +151,14 @@ typedef struct {
     int (*allowed)(void *context);
     void (*leave)(void *context, uint32_t previous);
     void *context;
+    /* Optional integrated timestamp/admission operation. Each call must obtain
+     * a NEW fully validated observation of the same clock as io.now_us, then
+     * check the original actor and publish its us value only on success.
+     * Called immediately before/after CEN; NULL preserves legacy behavior.
+     * Every constructor must explicitly initialize this member (NULL or a
+     * valid callback); assigning only the older four members is invalid.
+     * The early allowed check and all other guard contracts still apply. */
+    int (*timed_allowed)(void *context, uint32_t *us);
 } mt_adc_dma_start_guard;
 mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *driver,
                                             const mt_adc_dma_start_guard *guard);
@@ -152,10 +170,41 @@ mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *driver,
 mt_adc_dma_result_t mt_adc_dma_read_block(mt_adc_dma_t *driver,
                                        mt_adc_dma_block_t *block);
 /* Stops TIM3, powers ADC1 down, disables DMA and verifies readback. Idempotent.
- * Success invalidates partial/snapshot data. Failure retains ownership and the
+ * Legacy success invalidates partial/snapshot views. Stream opt-in preserves
+ * stopped-ring metadata for stop_snapshot (old BLOCK views still expire).
+ * Failure retains ownership and the
  * caller MUST keep the context alive and must not reuse its ring/peripherals.
  * RCC gates are left enabled (GPIO/DMA clocks can have other users).
  */
 mt_adc_dma_result_t mt_adc_dma_stop(mt_adc_dma_t *driver);
+
+/* Native draft stop certificate. dma_end counts completed DMA transfers only;
+ * it does NOT prove all ADC conversions/triggers were drained before abort.
+ * Unknown history gives dma_end_known=false, dma_end=0 and count=0. Samples
+ * are an independent copy in source order, not a view of the circular ring.
+ */
+typedef struct {
+    bool hardware_off;
+    bool dma_end_known;
+    uint64_t first_sample_index;
+    uint64_t dma_end;
+    uint32_t count;
+    mt_adc_dma_fault_t first_fault;
+    uint16_t samples[MT_ADC_DMA_SAMPLES];
+} mt_adc_dma_stop_snapshot_t;
+/* One-time foreground opt-in before starting, while stopped and unowned.
+ * Does not perform MMIO or certify off. Do not mix legacy control with this mode.
+ */
+mt_adc_dma_result_t mt_adc_dma_enable_stream(mt_adc_dma_t *driver);
+/* Propagate a failed external validated clock/history observation before any
+ * further read or stop. No MMIO; does not itself stop acquisition. */
+void mt_adc_dma_invalidate_stream_history(mt_adc_dma_t *driver,
+                                         mt_adc_dma_fault_t fault);
+/* Includes bounded stop and actual off readback, even on initial unowned state.
+ * Never takes over active unowned peripherals. Failure keeps owned storage alive.
+ * Output is filled for valid stream arguments even on failure. A successful
+ * repeated stop returns the same frozen tail until the next start. */
+mt_adc_dma_result_t mt_adc_dma_stop_snapshot(mt_adc_dma_t *driver,
+                                           mt_adc_dma_stop_snapshot_t *snapshot);
 
 #endif

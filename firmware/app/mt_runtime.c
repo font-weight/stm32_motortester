@@ -19,12 +19,11 @@ static uint32_t adc_time(void *context) {
 static int stable(void *context) {
     mt_runtime *r = context;
     uint32_t key, token;
-    mt_usb_epoch snapshot;
     int ok;
     if (!r || !r->initialized || r->pending || r->clock_fault ||
         !mt_timebase_healthy(r->clock)) return 0;
     key = mt_usb_bridge_lock();
-    snapshot = mt_usb_bridge_snapshot();
+    mt_usb_epoch snapshot = mt_usb_bridge_snapshot();
     token = mt_usb_bridge_actor();
     if (!token) token = snapshot.current;
     ok = token == r->epoch && snapshot.soft_serial == r->soft_serial &&
@@ -47,6 +46,18 @@ static void commit_leave(void *context, uint32_t previous) {
     (void)context;
     mt_usb_bridge_unlock(previous);
 }
+static int commit_timed_allowed(void *context, uint32_t *us) {
+    mt_runtime *r = context;
+    uint32_t observed_us, observed_ms;
+    /* The returned sample belongs to this fresh full validation, not a cached
+     * healthy flag. The guard preserves the original command actor throughout.
+     * Its validation time remains part of the measured CEN bracket. */
+    if (!mt_usb_bridge_actor() ||
+        !mt_timebase_snapshot(r->clock, &observed_us, &observed_ms) ||
+        !stable(r)) return 0;
+    *us = observed_us;
+    return 1;
+}
 mt_runtime_result mt_runtime_init(mt_runtime *r, mt_timebase *clock,
     const mt_runtime_mmio *mmio, uint32_t hse_hz,
     mt_usb_lock_fn enter, mt_usb_unlock_fn leave,
@@ -67,8 +78,10 @@ mt_runtime_result mt_runtime_init(mt_runtime *r, mt_timebase *clock,
         return MT_RUNTIME_ARGUMENT;
     guard.enter = commit_enter; guard.allowed = commit_allowed;
     guard.leave = commit_leave; guard.context = r;
-    if (mt_adc_control_init_guarded(&r->binding, &r->control, &r->adc,
-            mt_timebase_now_ms, clock, firmware_build, &guard) != MT_CONTROL_OK ||
+    guard.timed_allowed = commit_timed_allowed;
+    if (mt_adc_control_init_coherent_guarded(&r->binding, &r->control, &r->adc,
+            mt_timebase_now_ms, clock, firmware_build, &guard,
+            mt_timebase_snapshot) != MT_CONTROL_OK ||
         mt_control_rx_init(&r->rx, &r->control) != MT_CONTROL_OK ||
         mt_usb_cdc_init(&r->usb, &r->rx, stable, r, require_dtr) != MT_CONTROL_OK)
         return MT_RUNTIME_ARGUMENT;
