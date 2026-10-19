@@ -45,6 +45,10 @@ int mt_timebase_healthy(const mt_timebase *clock);
  * A stale value is not a valid clock. No sleep/debug-halt continuity guarantee. */
 uint32_t mt_timebase_now_us(void *clock);
 uint32_t mt_timebase_now_ms(void *clock);
+/* One fully validated CNT observation supplies both modulo clocks. Foreground
+ * only, no reentrancy; outputs must be distinct and outside the clock object.
+ * Returns 0 without publishing outputs on any fault or invalid argument. */
+int mt_timebase_snapshot(void *clock, uint32_t *us, uint32_t *ms);
 /* Stop TIM2 only after its application consumers have been stopped. */
 int mt_timebase_stop(mt_timebase *clock);
 #endif

@@ -966,3 +966,155 @@ Critic-A назначен и объявил критерии v1 до правк�
 сохранение прежнего progress и ограничение двумя документами; независимое
 заключение на точный кандидат ожидается. Недоступные после перезапуска
 неопубликованные изменения 14.10 не восстановлены этим документом.
+
+## 19.10.2026 — draft: first binding-start failure (issue 188)
+
+Новая диагностика приложения e38a сохранила ARM/4 TIMEOUT при нуле сегментов.
+После отдельного ограниченного повтора read-only HotPlug снимок показал
+initialized/STOPPED ADC с fault=0, нулевыми CEN/progress fields, работающим
+stored timebase и binding epoch_ms=78847, first_sample_delay_us=0. Это
+подтверждает вход в start hook, но не устанавливает точную ветку отказа.
+Корреляционный предел 20 мкс — гипотеза, не измеренный виновник.
+
+Dot A лично добавил ограниченный 52-байтовый first-failure latch в
+mt_adc_control.c/.h и focused tests. Порог, wire, admission и Stop не меняются.
+Исходный driver fault трактуется как returned snapshot, а не гарантия
+сохранения причины до внутреннего cleanup. Формат и ограничения чтения —
+в tests/adc-control/README.md. Независимый Critic-A назначен до изменения.
+
+Закреплённый GCC14.2.1/binutils2.44 восстановлен из официальных Debian inputs;
+171 toolchain pin и отдельный objcopy pin совпали. Исторический baseline96002ce
+objects/image воспроизведён отдельно с прежними gates. Новый diagnostic ELF
+строится отдельно; старые immutable image/layout/stack claims на него не
+переносятся автоматически. До нового exact-image review остаётся draft,
+без merge/прошивки/аппаратного PASS. Имеющиеся source tests не заменяют
+проверку таймингов реального MCU; подлинность MCU по маркировке не установлена.
+
+## 19.10.2026 — draft: coherent start-clock snapshot after physical diagnostic
+
+После отдельного разрешения владелец записал диагностический BIN 33716 B,
+SHA-256 71d4ade19038eec368bc13829f3a3f784f499f39a1261313b1b760e019e5111b.
+Проверка программатора и отдельное полное обратное чтение совпали. После
+перезапуска питания один Auto Record снова дал ARM/4 TIMEOUT и 0 сегментов.
+Сначала отдельно прочитан magic, затем 52 B по адресу 0x20002C64:
+
+    4D544431 00000001 00000001 000289CD
+    000289CE 09EA4CEB 09EA4D0C 00000000
+    00000000 00000000 00000000 00000000
+    00000000
+
+Это stage 1: интервал корреляции 33 мкс превышает 20 мкс, драйвер не вызван.
+Разница command/epoch равна 1 мс. Свидетельство устанавливает ветку отказа,
+но не разделяет время исполнения callbacks и задержку возможного USB IRQ.
+Подлинность MCU, точность времени и успешный захват этим не подтверждены.
+Обсуждение: PR189 comment6261582027. Исторические результаты сохранены.
+
+Dot A готовит узкий кандидат: один полностью проверенный TIM2 snapshot даёт
+согласованные us/ms из одного наблюдения. Runtime явно выбирает новый
+initializer; standalone triple-read и его предел 20 мкс сохраняются.
+Неудачный snapshot отвергает запуск до драйвера (diagnostic stage 5; нулевые
+before/after не являются измерением, epoch_ms в этой ветке невалиден).
+Равные before/after успешного coherent path обозначают общее наблюдение,
+а не нулевую длительность выполнения. Задержка до driver start остаётся
+в first_sample_delay_us. Существующая миллисекундная квантизация сохранена.
+
+Область: firmware/platform/mt_timebase.c/.h, app/mt_adc_control.c/.h,
+app/mt_runtime.c, относящиеся native tests и документация. Critic-A назначен
+до реализации. Критерии: один CNT sample, полные pre/post clock/timer checks,
+fail-closed, wrap/delta границы, legacy fallback, runtime abort и неизменные
+Stop/admission/wire. Отдельный CEN bracket <=20 мкс не изменяется и может
+оказаться следующим аппаратным ограничением. Новый image требует новых
+ARM/stack/layout/export доказательств. Пока draft, без merge/приёмки/новой
+прошивки; физическое повторение ещё не выполнено.
+
+Авторские strict C11 и ASan/UBSan TIME/coherent snapshot/ADC-binding проверки
+прошли. Новый current-source runtime runner также прошёл 39 сценариев в каждом
+режиме: 27 прежних, 11 новых и один явно обновлённый deadline oracle.
+Исторический supporting main ожидал recovery; нынешний controller штатно
+сохраняет session, останавливает ADC и отправляет STATUS state5/reason2.
+Старый oracle оставлен под историческим условием; это не 28 неизменных PASS.
+Исторические reproduce.py/inputs.json не менялись и должны отвергать новый
+supporting source по старому hash. Новый runner хранит отличия и команды.
+
+Модель с ненулевой ценой каждого MMIO показала важную границу: при 0,6 мкс
+на callback старый correlation даёт 32 мкс и stage1; coherent путь проходит
+корреляцию, но неизменённый CEN bracket даёт 37 мкс и stage3/TIMEBASE с cleanup.
+При 0,2 мкс CEN bracket 12 мкс проходит. Это синтетические условия, не
+измеренная длительность callbacks платы. Отдельно 20 мкс принимается,
+21 мкс отвергается. Поэтому этот checkpoint — частичное исправление; перед
+новой передачей владельцу исследуется отдельное сокращение CEN bracket
+без повышения порога и без ослабления свежих clock/admission проверок.
+
+## 19.10.2026 — separate draft: fresh timed admission around CEN
+
+Checkpoint coherent-only 0e9032d4f67732aca9b82cb86ebd30d0c9cbf36f сохранён
+отдельно. Его синтетический CEN37us отказ не скрывается. Следующая узкая
+итерация сохраняет ранние now_us + полный allowed, программирование DMA/ADC
+и clock_plan/gates. Новый необязательный timed_allowed получает свежее
+полностью проверенное наблюдение TIME и проверяет исходного command actor
+непосредственно до и после CEN. Только после успеха публикует timestamp.
+Внутри измеряемого интервала больше нет ранней подготовки периферии;
+длительность полных наблюдений по-прежнему учитывается. Порог 20 мкс не растёт.
+NULL callback сохраняет прежний guarded путь; unguarded путь неизменён.
+
+Critic-A до реализации задал критерии: оба timestamps свежие и охватывают
+реальную запись CEN; исходный actor, pre/post clock checks, readbacks, mask
+restore и cleanup сохраняются. Отказ до CEN запрещает его запись, отказ после
+CEN приводит к прежнему Stop/ownership поведению. Обязательны мутации после
+предыдущего now_us, внутри pre/post TIME проверок, reset/suspend, 20/21 и wrap,
+модель цены MMIO и новый exact-image/stack/layout review. Это отдельный draft,
+не утверждение аппаратного исправления и не разрешение новой прошивки.
+
+Автор повторил driver/binding strict+ASan/UBSan и current-source runtime
+66 сценариев в каждом режиме; все прошли с одинаковыми результатами и
+неизменными входными файлами. При синтетических 0,6 мкс/MMIO новый CEN bracket
+равен 17 мкс; старые отрицательные контроли correlation32 и CEN37 сохранены
+через явный legacy режим. Проверены отказы свежих наблюдений/actor до и
+после CEN, 20/21 мкс, wrap, медленный callback, Stop/ownership и восстановление
+маски. Значение 17 мкс — модель, не измерение платы. Независимый финальный
+вердикт и точные ARM/image/export доказательства ещё требуются.
+
+## 19.10.2026 — separate draft: flatten validated clock hot path
+
+Владелец отдельно разрешил TIMED_ADMISSION BIN 33984 B, SHA-256
+0efb63c5905fa5cbc0e289f0c54f6481b13b021eeb8d51977129f1303e66bb89;
+прошивка и полное обратное чтение совпали. После перезапуска питания один
+Auto Record снова завершился ARM/4 TIMEOUT, 0 сегментов. Magic и полный
+снимок по 0x20002C6C прочитаны отдельно:
+
+    4D544431 00000001 00000003 000067B9
+    000067BA 01952FA5 01952FA5 00000001
+    FFFFFFFD 00000003 00000002 01953056
+    0195306D
+
+Stage3, driver_called1, result-3, TIMEBASE fault3, FAULTED state2: CEN bracket
+23 nominal microsecond ticks >20. Coherent correlation прошла, успешного
+захвата нет. Синтетические 17 мкс предыдущего кандидата не были обещанием
+аппаратного результата. Обсуждение: PR190 comment6262311997.
+
+Dot A сохраняет compiler flags и все проверки. Пять существующих TIME
+helpers (read_reg, valid, accessible, clock_matches, timer_matches) принудительно
+inline при закреплённом -Os; тела функций не меняются. Дополнительно отдельная
+декларация/присваивание snapshot в stable заменена initializer сразу после
+того же lock: порядок вызовов и предикаты прежние, из ARM убирается лишняя
+48-байтовая копия. No API/ABI/layout/threshold/host/wire changes intended.
+Это GCC-ориентированная оптимизация под закреплённый toolchain, не общий
+перенос обещаний тайминга на другие компиляторы.
+
+Critic-A до реализации задал exact old/new MMIO trace equality для успешных
+и отказных pre/post observations, init/Stop, тех же семантических состояний;
+negative controls, пять focused suites и 66 runtime strict/sanitizer сценариев.
+Расширение scope для declaration initializer зафиксировано отдельно.
+Новый exact ARM/image/stack/export review обязателен. Уменьшение инструкций
+и ветвлений не выдаётся за измерение или гарантию CEN<=20 на плате.
+
+Focused trace suite прошёл: 91 сценарий, 1170 строк фактических MMIO и
+именованных полей состояния одинаковы побайтно для baseline8657722,
+нового strict -O2 и ASan/UBSan -O1. Проверены все pre/post отказные префиксы,
+init, Stop/retry/ownership и fault precedence. Четыре negative controls
+(пропуск/перестановка чтений, дубликат Stop readback, задержка отказа gate)
+отвергнуты. Раннер работает в распакованном source-only дереве без .git.
+Остальные native suites и runtime66 strict/sanitizer прошли; прямое сравнение
+с явно закреплённым8657722 сохраняет все outcomes. Первоначальное ошибочное
+сравнение с плавающим HEAD выявлено проверкой хешей и не засчитано.
+Новый полный ARM ELF собран; независимые финальные review остаются отдельными.

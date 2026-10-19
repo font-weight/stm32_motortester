@@ -141,6 +141,14 @@ typedef struct {
     int (*allowed)(void *context);
     void (*leave)(void *context, uint32_t previous);
     void *context;
+    /* Optional integrated timestamp/admission operation. Each call must obtain
+     * a NEW fully validated observation of the same clock as io.now_us, then
+     * check the original actor and publish its us value only on success.
+     * Called immediately before/after CEN; NULL preserves legacy behavior.
+     * Every constructor must explicitly initialize this member (NULL or a
+     * valid callback); assigning only the older four members is invalid.
+     * The early allowed check and all other guard contracts still apply. */
+    int (*timed_allowed)(void *context, uint32_t *us);
 } mt_adc_dma_start_guard;
 mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *driver,
                                             const mt_adc_dma_start_guard *guard);
