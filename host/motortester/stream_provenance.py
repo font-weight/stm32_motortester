@@ -1,7 +1,7 @@
 """Finite, declared counter semantics. No producer discovery or authentication.
 
-Ordinary admission remains SYNTHETIC-only. A separate exact image declaration
-can be rehearsed with explicit fake transport; it never admits physical use.
+Ordinary profiles remain SYNTHETIC-only. Exact STR1 operational source context
+is separate; the invocation owns selection/intent checks, not these carriers.
 Existing generic/synthetic identity strings keep their previous meaning.
 """
 from dataclasses import asdict, dataclass, fields
@@ -92,6 +92,34 @@ def rehearsal_identity_metadata(declaration):
 PHYSICAL_DIAGNOSTIC_FORMAT = "motortester-str1-device-declaration-1"
 
 
+@dataclass(frozen=True, slots=True)
+class PhysicalDiagnosticContext:
+    """Source-path selection, never an approval or authenticated identity.
+
+    Injected operational tests use the non-fake transport seam but must keep
+    synthetic journal/report provenance. The public invocation chooses this
+    field from its construction seam, never from deployment JSON.
+    """
+    execution_kind: str
+    declaration: ProducerProfile = STR1_DIAGNOSTIC_DECLARATION
+
+
+def validate_physical_context(context):
+    if (type(context) is not PhysicalDiagnosticContext or
+            type(context.execution_kind) is not str or
+            context.execution_kind not in ("physical", "injected-test")):
+        raise ProvenanceError("Exact physical/test source context required")
+    admit_fake_diagnostic_declaration(context.declaration)
+    return context
+
+
+def physical_context_identity(context):
+    context = validate_physical_context(context)
+    if context.execution_kind == "injected-test":
+        return "synthetic", rehearsal_identity_metadata(context.declaration)
+    return "device", physical_identity_metadata(context.declaration)
+
+
 def physical_identity_metadata(declaration):
     """Read-only prospective carrier. This does not enroll a runnable profile."""
     declaration = admit_fake_diagnostic_declaration(declaration)
@@ -103,8 +131,8 @@ def physical_identity_metadata(declaration):
 def validate_physical_carrier(carrier):
     """Pure schema check for explicitly declared device evidence, never admission.
 
-    Source tests supply fabricated dictionaries. No collector in this release
-    produces these records; a fake report cannot be relabeled through this API.
+    Source tests supply fabricated dictionaries. The operational collector uses
+    its separate trace format; a fake report cannot be relabeled through this API.
     Observed negotiation can be absent. Matching observations do not identify the
     executing binary, USB device or physical board.
     """

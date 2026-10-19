@@ -17,7 +17,8 @@ from . import stream_endpoint as wire
 from .stream_bridge import BridgeSnapshot, StreamBridge
 from .stream_model import StreamBlock, StreamError, StreamIdentity
 from .stream_recording import StreamLimits
-from .stream_provenance import ProvenanceError, admit_profile, admit_fake_diagnostic_declaration
+from .stream_provenance import (ProvenanceError, admit_profile, admit_fake_diagnostic_declaration,
+                                validate_physical_context)
 from .stream_session import SessionLimits
 from .stream_serial import SerialPeerStatus, SerialStreamPeer
 from .stream_view import (DetectorStatus, Envelope, EventConfig, EventDetector,
@@ -161,15 +162,22 @@ class StreamController:
     """
     def __init__(self, peer, *, event_config: EventConfig, threaded=True,
                  session_limits=SessionLimits(), storage_limits=StreamLimits(),
-                 clock=None, managed_peer=False, producer_profile=None, fake_diagnostic_declaration=None):
+                 clock=None, managed_peer=False, producer_profile=None, fake_diagnostic_declaration=None,
+                 physical_diagnostic_context=None):
         if type(event_config) is not EventConfig:
-            raise ValueError("Explicit synthetic waveform EventConfig required")
+            raise ValueError("Explicit HOST display EventConfig required")
         event_config.__post_init__()
         session_limits.__post_init__(); storage_limits.__post_init__()
         if type(managed_peer) is not bool or (managed_peer and type(peer) is not SerialStreamPeer):
             raise ValueError("Managed mode requires an explicit SerialStreamPeer")
         self._fake_diagnostic_declaration = (None if fake_diagnostic_declaration is None else
                                             admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
+        self._physical_diagnostic_context = (None if physical_diagnostic_context is None else
+                                             validate_physical_context(physical_diagnostic_context))
+        if self._physical_diagnostic_context is not None and (producer_profile is not None or
+                fake_diagnostic_declaration is not None or not managed_peer or
+                type(peer) is not SerialStreamPeer or peer.fake_backend_selected or peer._factory is None):
+            raise ProvenanceError("Operational STR1 requires its exclusive managed backend seam")
         if self._fake_diagnostic_declaration is not None and (producer_profile is not None or
                 not managed_peer or type(peer) is not SerialStreamPeer or not peer.fake_backend_selected):
             raise ProvenanceError("str1 требует только явный managed fake backend; physical activation запрещён")
@@ -512,7 +520,8 @@ class StreamController:
         self._bridge = StreamBridge(uuid.uuid4().hex, session_limits=self._limits,
                                     storage_limits=self._storage_limits,
                                     producer_profile=self._producer_profile,
-                                    fake_diagnostic_declaration=self._fake_diagnostic_declaration)
+                                    fake_diagnostic_declaration=self._fake_diagnostic_declaration,
+                                    physical_diagnostic_context=self._physical_diagnostic_context)
         self._pending_action = command
         self._negotiation = "hello"
         self._detector = EventDetector(self._config, EVENT_CAPACITY, retention="recent")

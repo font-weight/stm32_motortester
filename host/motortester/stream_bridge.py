@@ -14,7 +14,8 @@ from .stream_model import (FailureEvidence, StreamBlock, StreamError,
 from .stream_recording import PreparedStreamWriter, StreamLimits
 from .stream_provenance import (ProvenanceError, admit_profile, validate_negotiation,
                                admit_fake_diagnostic_declaration,
-                               validate_fake_diagnostic_negotiation, rehearsal_identity_metadata)
+                               validate_fake_diagnostic_negotiation, rehearsal_identity_metadata,
+                               validate_physical_context, physical_context_identity)
 from .stream_session import (JobCompletion, JobFailure, SessionLimits,
                              SourceEnd, SourceStarted, StopAcknowledgement,
                              StreamSession)
@@ -275,7 +276,7 @@ class StreamBridge:
     this transport-free component cannot authenticate a caller's byte source.
     """
     def __init__(self, attempt_id, *, session_limits=SessionLimits(), storage_limits=StreamLimits(),
-                 producer_profile=None, fake_diagnostic_declaration=None):
+                 producer_profile=None, fake_diagnostic_declaration=None, physical_diagnostic_context=None):
         text(attempt_id, 128)
         require(type(session_limits) is SessionLimits and type(storage_limits) is StreamLimits,
                 "Exact limits required")
@@ -283,6 +284,11 @@ class StreamBridge:
         storage_limits.__post_init__()
         self._fake_diagnostic_declaration = (None if fake_diagnostic_declaration is None else
                                             admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
+        self._physical_diagnostic_context = (None if physical_diagnostic_context is None else
+                                             validate_physical_context(physical_diagnostic_context))
+        if self._physical_diagnostic_context is not None and (producer_profile is not None or
+                fake_diagnostic_declaration is not None):
+            raise ProvenanceError("Operational STR1 context must be exclusive")
         if self._fake_diagnostic_declaration is not None and producer_profile is not None:
             raise ProvenanceError("Нельзя смешивать producer profile и fake-rehearsal declaration")
         self._producer_profile = None if producer_profile is None else admit_profile(producer_profile)
@@ -496,6 +502,9 @@ class StreamBridge:
         if self._fake_diagnostic_declaration is not None:
             validate_fake_diagnostic_negotiation(self._fake_diagnostic_declaration,
                                                 self._build, self._caps)
+        if self._physical_diagnostic_context is not None:
+            validate_fake_diagnostic_negotiation(self._physical_diagnostic_context.declaration,
+                                                self._build, self._caps)
         events = self._endpoint.plan_start(self._now)
         self._events(events)
         plans = [x for x in events if isinstance(x, wire.StartPlan)]
@@ -506,9 +515,12 @@ class StreamBridge:
                     "isolated-stream-bridge") if self._producer_profile is None else self._producer_profile.identity_metadata
         if self._fake_diagnostic_declaration is not None:
             metadata = rehearsal_identity_metadata(self._fake_diagnostic_declaration)
+        origin = "synthetic"
+        if self._physical_diagnostic_context is not None:
+            origin, metadata = physical_context_identity(self._physical_diagnostic_context)
         self._identity = StreamIdentity("wire-0.2:" + format(self._plan.nonce, "016x"),
             self._plan.generation, caps.config_id, caps.fs_num // caps.fs_den,
-            "synthetic", *metadata)
+            origin, *metadata)
         self._session = StreamSession(self._identity, self._attempt_id, self._limits)
 
     def preview(self, now_ms):

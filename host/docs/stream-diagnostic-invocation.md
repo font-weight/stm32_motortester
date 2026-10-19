@@ -1,13 +1,14 @@
-# STR1: ограниченная HOST-репетиция prospective policy
+# STR1: один явный диагностический вызов, неактивный по умолчанию
 
 ## Результат и текущая граница
 
-Это source-only подготовка: чистая проверка выбора, один явно синтетический
-запуск принятого collector, отдельный bounded export и строгая проверка
-quiescence-qualified incomplete evidence. Физический entry
-`collect_physical(selection)` всегда отказывает с `NOT_FLASH_APPROVED` до
-создания backend, worker, transport, handle или файла. Нет CLI, discovery,
-COM scan, DTR операции, flash, RAM-чтения или упаковки.
+Это source-only подготовка полного будущего operational route. Принятый
+policy-only baseline PR213 сохранён в истории; новый путь использует тот же
+collector, controller, Stop/close и owned export. Import/default/help ничего
+не запускают. Фактический образ остаётся `NOT_FLASH_APPROVED`; реальные final
+deployment/owner inputs отсутствуют. Все исполняемые source-тесты используют
+обязательные injected fakes. Порты, плата, DTR устройства, flash, RAM и package
+в рамках этих проверок не затрагиваются.
 
 Различаются три результата:
 
@@ -15,9 +16,11 @@ COM scan, DTR операции, flash, RAM-чтения или упаковки.
 2. `evaluate_evidence` проверяет связанное runtime-свидетельство конкретной
    синтетической попытки. Положительный результат имеет scope
    `synthetic-rehearsal`, `physical_admitted=False`, `clean_completion=False`.
-3. `physical_admission` всегда возвращает `admitted=False`: в этой версии
-   отсутствует отдельно проверенный operational route и фактическое решение
-   A/владельца. Boolean, файл или caller attestation не открывают этот gate.
+3. Для старого `Selection` `physical_admission` по-прежнему возвращает false.
+   Отдельный `PhysicalSelection` допускает только явно согласованные selection,
+   deployment и operator confirmation. `admitted` означает прохождение этих
+   программных проверок, а не аутентификацию внешнего решения A/владельца.
+   Missing/current-stage/mismatched inputs отказывают до backend/workers/outputs.
 
 Синтетический PASS не допускает реальную плату, не разрешает RAM retrieval и не
 доказывает физическое прекращение преобразований. Двухчтительная RAM-процедура
@@ -26,7 +29,10 @@ COM scan, DTR операции, flash, RAM-чтения или упаковки.
 
 ## Точные зависимости
 
-Непосредственное основание: [PR211](https://github.com/font-weight/stm32_motortester/pull/211),
+Непосредственное основание successor: [PR213](https://github.com/font-weight/stm32_motortester/pull/213),
+commit `5c0d8d64ef1a83fc5ffe2dad348356e48474aa58`, tree
+`b0cd7d86831450df87b8e4458c72fb3be8ffa613`. Legacy rehearsal продолжает сохранять
+своё основание [PR211](https://github.com/font-weight/stm32_motortester/pull/211),
 commit `4a7ddfc074ce4685f7a15536680a6777a06697ff`, tree
 `3ce428067727165e4f5a98418d265443d548bd45`. Это идентичность reviewed API baseline,
 а не хеш новой исполняемой версии. Конкретные новые файлы наблюдаются отдельно
@@ -53,12 +59,16 @@ Public-equivalent `9ec9430fe83aa5e8ad9c504f9627e185f3285c36` не подменя
 compiled-local source. ELF-derived BIN digest не является восстановлением
 исходного BIN. Совпадение HELLO/CAPS не удостоверяет прошитый образ.
 
-Меняются только пять HOST-файлов: новый invocation module/test/guide и узкие
-расширения diagnostic/provenance. Controller, bridge, endpoint, wire, session,
-serial, journal schema, firmware, CI и лицензии сохранены. Используются прежние
-pre-START build/CAPS guards и receiver ownership; второго wire parser нет.
+Меняются семь существующих HOST-файлов: invocation module/test/guide,
+diagnostic/provenance/controller/bridge. Endpoint, wire, session, serial,
+transport, journal schema, firmware, CI и лицензии сохранены. Controller/bridge
+получают узкий mutually exclusive context; все восемь CAPS и build проверяются
+до START plan/writer/generation/R. Второго wire parser или serial loop нет.
 
 ## Входы и side-effect-free подготовка
+
+Следующие `Selection`/`RehearsalInvocation` сохраняют прежний fake-only API.
+Полный operational API описан отдельно ниже.
 
 `Selection` содержит обязательные invocation ID (32 lowercase hex), отдельные
 абсолютные пути нового sample journal и report, `Association`, точные `Bindings`,
@@ -168,7 +178,8 @@ known zero/short writes остаются точными наблюдениями
 Результаты `InvocationResult.outcome`:
 
 - `quiescence-qualified-incomplete`: весь prospective predicate выполнен на
-  синтетике; physical admission и clean completion остаются false.
+  выбранном типе evidence; synthetic scope не становится physical. В любом
+  случае clean completion остаётся false, RAM action автоматически не следует.
 - `ineligible`: недостающее/несовместимое evidence; краткая причина в decision.
 - `export-unresolved`: owner не settled за отдельные 1000 ms. Frozen result не
   улучшается автоматически после позднего завершения.
@@ -184,8 +195,9 @@ known zero/short writes остаются точными наблюдениями
 `motortester-str1-device-declaration-1`, mode `physical-declaration`, origin
 `device`, exact selected declaration и раздельные expected/observed negotiation.
 Observed может отсутствовать; декларация не превращает отсутствие в observation.
-Это read-only schema, а не operational physical report. Все соответствующие
-тестовые dictionaries и identities явно fabricated.
+Это read-only carrier schema, а не разрешение запуска. Operational report
+использует отдельный format `motortester-str1-physical-callback-trace-1` и origin
+`device`. Все physical schema fixtures явно fabricated, без owned physical proof.
 
 Журнальный carrier `physical:str1:…` отличен от `rehearsal:str1:…`; fresh reader
 отклоняет смешанные/частичные/неизвестные tuples. Старый reader не знает новый
@@ -193,6 +205,132 @@ physical marker и должен отказаться от интерпретац
 DMA markers. Чтение carrier не разрешает execution. Домен охватывает completed
 DMA records, не ADC_DR overwrites, незавершённые conversion или missed triggers.
 Индекс / nominal Fs не означает калиброванное физическое время.
+
+## Operational selection, внешнее решение и явное намерение
+
+Маршрут выбран A в [6275425310](https://github.com/font-weight/stm32_motortester/issues/191#issuecomment-6275425310).
+`PhysicalSelection` связывает invocation ID, тот же явный COM/serial/board/PC,
+свежие пути, точную STR1 декларацию и policy, а также:
+
+- `HostFreeze(commit, tree, module_sha256)`: immutable sorted pairs для
+  фиксированного source map; JSON представляет их объектом. Перед I/O bounded
+  чтение файлов сравнивает их hashes, при export проводится новое наблюдение.
+  Commit/tree и эти hashes не аутентифицируют исполняемый Python.
+- `package_sha256`, `exe_sha256`: точные идентичности будущего согласованного
+  delivery, а не указание построить/проверить package этой командой.
+- `ReadbackIdentity(sha256, coverage, artifact_identity)`: отдельная внешняя
+  декларация readback. Выбранный BIN остаётся в declaration.artifact_sha256.
+  HOST не наблюдал flash/readback и не сравнивает hashes разных/неизвестных
+  диапазонов как доказательство физической идентичности. Интерпретация coverage
+  и окончательная применимость принадлежат внешнему combined gate A.
+
+Физические `board_instance` и `windows_pc` требуют непустых конкретных
+деклараций: literal placeholders `unknown`, `TBD`, `TODO`, `pending`,
+`placeholder`, `none` (без учёта регистра) отказывают до backend/workers/output.
+Прежняя policy-only `Selection` сохраняет свои правила.
+
+`DeploymentRecord` содержит полный точный selection, его canonical ASCII JSON
+SHA256, version `str1-final-disposition-reference-1`, disposition и две
+`DecisionReference(reference, content_sha256)`: A final disposition и owner
+authorization. `APPROVED_FOR_ONE_STR1_DIAGNOSTIC_ATTEMPT` — внутренний consistency
+enum, не токен. `NOT_FLASH_APPROVED`, отсутствующие/несовпадающие bindings,
+неверные types, placeholders или лишние JSON keys отклоняются. Reference bytes
+не скачиваются; запись не подтверждает issuer, физический образ или полномочия.
+
+Отдельный `OperatorConfirmation(operator, invocation_id, selection_sha256,
+action="collect-one-str1-attempt")` выражает намерение caller выполнить именно
+этот выбор. Digest предотвращает случайное несовпадение, не является подписью.
+Ответственный оператор/координатор обязан независимо проверить реальное решение
+A и разрешение владельца. Нового сервиса authentication, expiry или persistent
+attempt registry нет: объект/CLI выполняет одну операцию, внешняя координация
+должна исключать повторную попытку через новый процесс.
+
+Selection ограничен 4096 bytes; полный local deployment JSON — 12288 bytes;
+bundle deployment+confirmation, сохраняемый collector, — 4096 bytes. Действует
+прежний общий metadata limit 8192 bytes. Все строки и source-file reads конечны.
+До Connect проверяется отсутствие обоих output paths, включая symlink; actual
+writers также создают их exclusive. Между проверкой и create возможна гонка;
+она даёт отказ writer, а не overwrite или успешное evidence.
+
+Реальные owner references, output paths и board/PC labels могут быть приватны.
+Они остаются в локальном/private deployment и диагностическом evidence. CLI
+не печатает их и не публикует отчёты. Public examples/CI используют только явно
+fabricated сведения. Не копировать реальные private references в issue/PR/CI.
+
+## Два construction seams, один collector
+
+`PhysicalInvocation(selection, deployment=..., confirmation=..., event_config=...)`
+нужно сохранить в переменной до вызова `collect()` и удерживать после возврата
+или исключения, пока cleanup не settled. Convenience `collect_physical(...)`
+безусловно отказывает до создания invocation/backend/workers/output, даже при
+полностью согласованных входах: один возвращённый `InvocationResult` не владеет
+незавершённым cleanup. Использовать retained class API, а не временный
+`PhysicalInvocation(...).collect()`. Source CLI уже сохраняет свой owner.
+
+Конструктор `PhysicalInvocation(...)`
+инертен. Единственное `collect()` выбирает обычную real serial factory без
+public factory override, один заданный port и прежний receiver owner. Нет scan,
+automatic reconnect, нового START или автоматической второй попытки.
+
+`PhysicalInvocation.for_rehearsal(..., fake_backend_factory=..., fixture_name=...)`
+требует явную fake factory. Она идёт через non-fake `backend_factory` seam
+`SerialStreamPeer`, но construction context безусловно `injected-test`:
+journal origin `synthetic` с `rehearsal:` carrier, report прежнего fake format с
+явным operational-test context. Device-only `evaluate_physical_evidence` всегда
+отказывает такому результату. API не является sandbox для hostile Python.
+
+Future genuine construction задаёт journal origin `device` и `physical:` carrier.
+Reader строго проверяет format/origin/context/selection/carrier и не разрешает
+смешивать physical и fake. Actual HELLO/CAPS находятся в immutable bridge
+observations; image/USB/board/deployment остаются отдельными декларациями.
+
+После того как `SerialTransport` получил и владеет закрытым backend proxy,
+proxy.open на receiver запрашивает `backend.dtr = True`, затем вызывает open.
+Callback `dtr` сохраняет возврат/исключение. При ошибке setup реального open нет,
+а прежний owner сохраняет cleanup и handle, включая close failure. Already-open
+factory object отказывается/закрывается до DTR/open. Этот request не доказывает
+электрический уровень, CDC signal или физический reset.
+
+KeyboardInterrupt supervisor сохраняется как first run cause; Stop/drain/close
+и доступный export выполняются в исходных budgets. Повторный interrupt или
+невернувшийся OS callback не может быть принудительно устранён. Unresolved
+состояние остаётся ineligible; late facts не переписывают result. API caller
+сохраняет объект для cleanup-only snapshot/join. Его явный `retry_close()`
+делегирует уже существующему owner только retry failed close. Повторный `close()`
+сам retry не запускает. Нет нового backend/START/reconnect, сброса исходных
+deadline или изменения уже возвращённого ineligible result. До failed close
+или после settlement `retry_close()` возвращает false. В процессе source CLI последний
+объект доступен через `retained_cli_invocation()`; unresolved owner запрещает
+следующий вызов main. Это не отменяет внешние failure/power-off правила A.
+
+## Source CLI и последующие gates
+
+Source CLI в том же module вызывает этот же API. Default/help/validation не
+создают backend/workers/outputs; validation читает только явно выбранный local
+deployment JSON. Для source review из точного checkout:
+
+```text
+set PYTHONPATH=host
+py -3.12 -m motortester.stream_diagnostic_invocation --help
+py -3.12 -m motortester.stream_diagnostic_invocation --deployment C:\FABRICATED-EXAMPLE\deployment.json
+```
+
+Это явно вымышленные пути, не команда текущего запуска платы. Будущее действие
+потребует дополнительно `--execute-one-attempt`, `--operator`, `--invocation-id`
+и `--confirm-selection` с точным displayed digest. CLI не загружает dynamic
+factory/import path. Его программный `fake_backend_factory` параметр предназначен
+для явно синтетических source-тестов и принудительно сохраняет test provenance.
+Вывод различает incomplete eligible, ineligible, export-failed/unresolved и всегда
+пишет `clean_completion=false`; код 0 означает только заявленный scoped predicate,
+1 — результат ineligible/unresolved, 2 — отказ input/preflight. RAM action нет.
+
+Этот source launch — review interface, не альтернативный launcher/distribution
+для обхода paused package review. До настоящего owner start нужны exact A/B
+source reviews, один pinned Windows source-only run финального reviewed successor,
+согласованный package/EXE/HOST/firmware bundle и применимые terms, завершение
+отдельного package/amendment gate, final combined gate A и явный owner start.
+Текущий образ/filename не переименовывается в approved. Эта итерация не выполняет
+ни package review/build, ни COM/board/flash/RAM действия.
 
 ## Воспроизведение source-only проверок
 
