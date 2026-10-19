@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "source_snapshot": "3caaa9106a3b6356e471c5e03ae0594e20472f7a",
+  "source_files": 182,
+  "boot_parser_introduced_at": "5d04613da6d3676399af1ac3a2d6e3f672a7f17f",
+  "native_cases": {
+    "strict": 86,
+    "asan_ubsan": 86
+  },
+  "parser_controls": 625,
+  "runner_controls": 8,
+  "source_unchanged": true,
+  "staged_unchanged": true,
+  "receipt_sha256": {
+    "native-final/receipt.json": "40e779d656de7efd331820049c8b2083d3cd732bda7cfbd5f00c4f4fde017066",
+    "runner-controls-final/controls.json": "579c77b1551883afacfff9e81e3c23a3658b2a7f5a306de355173dd0b39f46c2"
+  },
+  "receipt_locations": "External evidence only; not bundled. Each replay creates fresh receipts in the caller-selected output.",
+  "compiler": "/usr/bin/x86_64-linux-gnu-gcc-14",
+  "compiler_sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f",
+  "physical_verification": false,
+  "transaction_bound_qualified": false,
+  "full_image_verification": false,
+  "flash_approved": false,
+  "seams": [
+    "MMIO",
+    "Cortex-M CPU mask/admit/halt",
+    "DCD initialization and IRQ registers",
+    "CTR rearm",
+    "loop exit longjmp"
+  ]
+}
