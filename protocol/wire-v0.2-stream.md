@@ -243,7 +243,8 @@ require physical USB reset/reconnect instead of acknowledging the new session.
 During handshake only, host may discard bounded partial/invalid old-tail frames
 until matching fresh-nonce HELLO_ACK(sequence1/request1); it cannot publish samples
 or treat another response as successful handshake. Failure to receive ACK within
-2000ms leaves disconnected/incompatible-unknown, with no automatic START. Reopening
+the absolute HELLO request deadline defined below leaves disconnected/incompatible-unknown,
+with no automatic START. Reopening
 a CDC handle alone does not prove old bytes were removed. In healthy old sessions,
 HELLO still finishes the started old frame first, then the new ACK as described above.
 
@@ -256,8 +257,67 @@ A matching END ends the DATA liveness timer; awaiting STOP_ACK still uses its
 request timer. During a pending Stop, whichever applicable liveness/request timer
 expires first causes incomplete recording and recovery. Any expired timer retains
 the verified prefix and first cause; no automatic same-session retry or interpolation.
-Host ordinary-response and Stop timeouts are2000ms from request. Only one ordinary request plus one Stop may
-be outstanding. No new ordinary requests while Stop pending. No automatic retry
+### Host request admission, transmission and response deadline
+
+HELLO, GET_CAPS, STREAM_START and STOP each use one absolute 2000 ms budget.
+The start event is atomic admission into the bounded pending-request slot: bind
+the request type, nonce, request id, intended sequence and monotonic timestamp
+`t_admit` before any transport write. The deadline is `t_admit + 2000 ms`.
+For recovery HELLO this includes sending its preceding resynchronization delimiter.
+If the required slot is unavailable, reject the action locally without allocating
+a pending request or sending bytes; never place it in an unbounded pre-admission
+queue. The pending identity is not replaced by later actions or failed writes.
+
+At every send/receive dispatch, first expire any applicable deadline when
+`now >= deadline`, then process completion/progress only if still live. A
+timer wake must also be scheduled independently of send/receive activity: silence
+after a complete write cannot postpone expiry. If the scheduler wakes late, expire
+before processing any queued completion; the deadline itself never moves. A matching
+response must have been fully received, validated and correlated at a monotonic
+time strictly before the deadline. Bytes merely buffered by the OS before expiry
+are not proof of timely validation. Equality is timeout, including a response or
+last write completion observed at that exact instant. Use a non-wrapping monotonic
+clock with sufficient precision; checked arithmetic must not turn overflow into
+an extended budget.
+
+Queue wait, zero-byte acceptance, partial acceptance, trickle progress, completing
+the request write, unrelated responses and duplicate frames do not restart or
+extend this budget. Transport writes must be nonblocking or bounded by the earliest
+remaining applicable deadline; a blocking write cannot postpone timeout handling.
+Only one TX owner writes frames. A STOP admitted behind a partly sent ordinary
+request has its own admission deadline but cannot interleave into that frame.
+The earlier applicable timer still wins; later STOP admission does not cancel an
+outstanding ordinary request deadline. Sequence commitment remains at the first
+accepted encoded byte as specified above, independently of admission.
+
+On expiry, stop issuing the unaccepted suffix and abandon not-started queued
+requests of the old session. Retain the timed-out pending identity, accepted-byte
+count if known, verified sample prefix and first failure cause. Even if zero bytes
+were accepted, do not retry the same request/session automatically. A partial or
+fully accepted request has an uncertain remote outcome. Enter recovery using a
+fresh HELLO and the bounded resynchronization rules; never splice an emergency
+STOP into an unfinished encoded frame. Accepted bytes may still arrive and are
+old-session evidence, not a reason to revive an expired request. A failed HELLO
+leaves the host disconnected/unknown with no automatic START. This host timeout
+does not itself prove that acquisition stopped; actual quiescence remains a
+device/connection recovery requirement.
+
+Before writing the recovery delimiter, establish that no outstanding old write
+can append bytes after it. Cancellation is not assumed to retract bytes already
+accepted by the OS/device. The transport adapter must prove completion/cancellation
+isolation and FIFO ordering within an absolute 2000 ms cleanup budget starting at
+entry to recovery (when the failure is detected, before any cancellation call).
+Cleanup progress does not extend it; `now >= cleanup_deadline` is failure and is
+checked independently of I/O activity, before accepting a completion at that instant.
+If this isolation cannot be established within that budget, require physical USB
+reset/reconnect and validated startup rather than sending a new HELLO through an
+uncertain writer. Do not block indefinitely on cancellation. The recovery HELLO
+budget starts only after this isolation is established and its slot is admitted;
+failure to establish isolation leaves disconnected/unknown, never a usable session.
+
+Only one ordinary request (including HELLO) plus one Stop may be outstanding;
+STOP is not admissible during HELLO negotiation or before a START generation is
+known. No new ordinary requests while Stop pending. No automatic retry
 START/STOP after uncertain outcome. Cleanly ended streams require a fresh HELLO
 before another START in this initial revision; session separation is preferred over
 an implicit same-session reset. Thus preview restarts with a fresh nonce/generation.
