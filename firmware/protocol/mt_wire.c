@@ -33,15 +33,17 @@ uint32_t mt_wire_crc32(const uint8_t *bytes, size_t length) {
     }
     return crc ^ UINT32_C(0xffffffff);
 }
-mt_wire_result mt_wire_encode(const mt_wire_message *m,
-                             uint8_t *out, size_t capacity, size_t *written) {
+mt_wire_result mt_wire_encode_revision(const mt_wire_message *m,
+                                      uint8_t major, uint8_t minor,
+                                      uint8_t *out, size_t capacity,
+                                      size_t *written) {
     uint8_t raw[MT_WIRE_RAW_MAX];
     size_t n, read, write = 1, mark = 0;
     uint8_t code = 1;
     if (!m || !out || !written) return MT_WIRE_ARGUMENT;
     if (m->payload_length > MT_WIRE_PAYLOAD_MAX) return MT_WIRE_LENGTH;
     if (capacity < MT_WIRE_FRAME_MAX) return MT_WIRE_CAPACITY;
-    raw[0] = MT_WIRE_MAJOR; raw[1] = MT_WIRE_MINOR; raw[2] = m->type; raw[3] = 0;
+    raw[0] = major; raw[1] = minor; raw[2] = m->type; raw[3] = 0;
     put16(raw + 4, m->payload_length); put16(raw + 6, 0);
     put64(raw + 8, m->session); put32(raw + 16, m->sequence);
     put32(raw + 20, m->request);
@@ -61,8 +63,9 @@ mt_wire_result mt_wire_encode(const mt_wire_message *m,
     out[mark] = code; out[write++] = 0; *written = write;
     return MT_WIRE_OK;
 }
-mt_wire_result mt_wire_decode(const uint8_t *frame, size_t length,
-                             mt_wire_message *m) {
+mt_wire_result mt_wire_decode_revision(const uint8_t *frame, size_t length,
+                                      uint8_t major, uint8_t minor,
+                                      mt_wire_message *m) {
     uint8_t raw[MT_WIRE_RAW_MAX];
     size_t read = 0, n = 0, count, i;
     uint8_t code; uint16_t payload_length;
@@ -88,7 +91,7 @@ mt_wire_result mt_wire_decode(const uint8_t *frame, size_t length,
     if (payload_length > MT_WIRE_PAYLOAD_MAX ||
         n != MT_WIRE_HEADER + (size_t)payload_length + 4u) return MT_WIRE_LENGTH;
     if (mt_wire_crc32(raw, n - 4u) != get32(raw + n - 4u)) return MT_WIRE_CRC;
-    if (raw[0] != MT_WIRE_MAJOR || raw[1] != MT_WIRE_MINOR) return MT_WIRE_VERSION;
+    if (raw[0] != major || raw[1] != minor) return MT_WIRE_VERSION;
     if (raw[3] != 0 || get16(raw + 6) != 0) return MT_WIRE_RESERVED;
     /* No fallible operation after this point; commit outputs only after validation. */
     m->type = raw[2]; m->session = get64(raw + 8);
@@ -96,4 +99,15 @@ mt_wire_result mt_wire_decode(const uint8_t *frame, size_t length,
     m->payload_length = payload_length;
     memcpy(m->payload, raw + MT_WIRE_HEADER, payload_length);
     return MT_WIRE_OK;
+}
+
+mt_wire_result mt_wire_encode(const mt_wire_message *m,
+                             uint8_t *out, size_t capacity, size_t *written) {
+    return mt_wire_encode_revision(m, MT_WIRE_MAJOR, MT_WIRE_MINOR,
+                                   out, capacity, written);
+}
+
+mt_wire_result mt_wire_decode(const uint8_t *frame, size_t length,
+                             mt_wire_message *m) {
+    return mt_wire_decode_revision(frame, length, MT_WIRE_MAJOR, MT_WIRE_MINOR, m);
 }
