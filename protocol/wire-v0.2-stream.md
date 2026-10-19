@@ -365,6 +365,9 @@ preview R>0 recording, stop during started frame, unsolicited fault then Stop,
 queue/DMA overrun, blocked drain, disconnect/reset and disk-failure precedence.
 Reference byte fixtures are in vectors-v0.2-stream.json, reproduced by
 tests/stream-contract/make_vectors.py. They are not endpoint conformance tests.
+Executable synthetic request-deadline examples are in
+tests/stream-contract/request-deadlines/README.md. They exercise a separate test
+model, not either production endpoint, and do not cover the full stream state machine.
 Implementation and executable state/negative conformance checks remain separate
 deliverables. Until they exist and both
 critics review the same SHA, this is BLOCKED_EVIDENCE, not an accepted contract.

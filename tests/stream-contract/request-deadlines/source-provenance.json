@@ -1,0 +1,15 @@
+{
+  "source_repository": "https://github.com/font-weight/stm32_motortester",
+  "source_commit": "174148a550c385785c8e28ba424aef09995bff69",
+  "source_document": "protocol/wire-v0.2-stream.md",
+  "source_document_sha256": "174aed3c570a204d865c1a446c7878c628a972222d00ef8f60d33ad9c92c998a",
+  "source_section": "Host request admission, transmission and response deadline",
+  "proposal_status": "BLOCKED_EVIDENCE",
+  "scope": "Pure-state executable deadline examples only",
+  "production_host_modified": false,
+  "production_firmware_modified": false,
+  "endpoint_conformance_claimed": false,
+  "hardware_measured": false,
+  "published_source_commit": "08172114403273ecfac2fb1e8e49d92f9c68756f",
+  "source_tree": "6904eee03586eb35fe65c1e5e65fa1cb1e82797e"
+}
