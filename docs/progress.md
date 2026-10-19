@@ -1145,3 +1145,25 @@ access shims; она не является полным TinyUSB/USB hardware. П
 байтов default/off с прежним USB005 при тех же flags, но не full image/WCET.
 Тайминги NVIC, aggregate IRQ, очередь и epoch нового runtime ещё открыты;
 цикл с конечным счётчиком не выдан за доказательство их ограничения.
+
+
+## 19.10.2026 — начат stream-only owner с настоящим TinyUSB
+
+Dot A реализовал отдельный mt_live_runtime без legacy window/control/TX owners:
+общие ADC/TIME/live объекты, настоящий guarded USB bridge/CDC, RX actor admission,
+hard/soft/DTR cleanup и queue-aware CTR rearm. TX core step защищён до конечной
+публикации состояния, включая вложенные stop/failure пути; это не выдаётся за
+подтверждённый masked WCET. Свежие TIME и epoch проверки выполнены также после
+flush и внутри CTR grant guard. Native real-TinyUSB/fake-DCD проверки и независимое
+ревью продолжаются. Полный boot/image, target stack/timing и физический поток
+ещё открыты; прежний рабочий оконный бинарник не изменён.
+
+
+Переносимые native-проверки stream owner включены в tests/stream-runtime.
+На исходных production-байтах cc2c938 независимо воспроизведены 47 случаев
+в strict и ASan/UBSan, включая 256 длин хвоста и настоящую композицию
+TinyUSB/CDC/FIFO/epoch с ADC/TIME/live. Проверка cleanup выявила и закрыла
+публикацию cleaned receipt до свежего post-stop TIME: при отказе времени
+receipt и RESET dispatch теперь не происходят. Точный результат и команды
+сохраняет runner; физические USB/ADC, полный образ и transaction bound
+не квалифицированы. Финальная упаковка передана на независимое ревью.

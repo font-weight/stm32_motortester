@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "source_head": "cc2c938b122cc580d959740e16d11a2ac046b265",
+  "native_cases_per_mode": 47,
+  "stop_lengths_per_mode": 256,
+  "modes": [
+    "strict",
+    "ASan+UBSan"
+  ],
+  "runner_controls": 8,
+  "source_unchanged": true,
+  "native_receipt_sha256": "68c3c5329d48eb267895dab3b10bafa1bf6de860b1b24ac50f1b9c2805cd8d77",
+  "runner_controls_receipt_sha256": "579c77b1551883afacfff9e81e3c23a3658b2a7f5a306de355173dd0b39f46c2",
+  "compiler": "/usr/bin/x86_64-linux-gnu-gcc-14",
+  "compiler_sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "physical_verification": false,
+  "full_image_build": false,
+  "transaction_bound_qualified": false,
+  "legacy_runtime_linked": false,
+  "production_files_changed_by_fixture": false,
+  "fixture_sha256": "ca30a5533e0669fd37be168f942bf833a24e688598df2f6ec2df61070cbd9c1d",
+  "runner_sha256": "361544c0afed53c3321e766374fb081cacfb844213f2430754a1e34b869d7c4d",
+  "controls_sha256": "a59ce73014531a3673f58890fdebdc5d9501633b85151eda3f9da4da41de7d12"
+}
