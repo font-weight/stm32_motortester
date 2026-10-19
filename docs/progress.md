@@ -1167,3 +1167,27 @@ TinyUSB/CDC/FIFO/epoch с ADC/TIME/live. Проверка cleanup выявила
 receipt и RESET dispatch теперь не происходят. Точный результат и команды
 сохраняет runner; физические USB/ADC, полный образ и transaction bound
 не квалифицированы. Финальная упаковка передана на независимое ревью.
+
+
+## 19.10.2026 — отдельный draft STREAM boot и provisional declaration
+
+Новый entry заменяет legacy owner только в будущем отдельном профиле. Сохраняет
+board ABI, порядок clock/TIME/USB и повторяет runtime/ADC gate/reset/off проверки
+перед IRQ admission. Отдельный строгий JSON parser создаёт const timing object;
+число 1..499 не является доказанным transaction bound. Ни full image, ни новый
+бинарник для пользователя на данном шаге не заявляются.
+
+
+Переносимый пакет tests/stream-boot проверяет 86 native случаев в strict и
+ASan/UBSan, 625 parser controls и отдельные runner controls. Исполняется настоящий
+boot/runtime/ADC/TIME/USB код с явно описанными CPU/MMIO/DCD/CTR seams. Root
+повторил полный integrated запуск; независимый Critic проверяет финальный снимок.
+Отдельный рецепт уже создал synthetic-only ELF: 29 input objects, text 32256,
+data 128, bss 8940 байт, SHA-256
+1480750bf9802e90a543369f03922ff060dd61c42fde7bfaf1b8eca19bd60bb2.
+Повторная сборка после evidence-only изменений дала тот же ELF. Явные 8192 байта
+stack reserve и 1 мс timing input — геометрический резерв и синтетическая
+provisional декларация соответственно; они не заявлены как доказанные bounds.
+Generic BOOT/layout/vector проверки и независимый replay 29 objects прошли.
+Полный callback/stack proof, timing и реальный STREAM опыт остаются отдельными
+открытыми проверками; BIN/HEX не выпускались, владельцу этот ELF не передавался.

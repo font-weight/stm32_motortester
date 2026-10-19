@@ -1,0 +1,42 @@
+{
+  "format": 1,
+  "files": {
+    "PROVENANCE.md": {
+      "sha256": "6c3e931cfd220ee7f4439ee5a0b877b304a2fad86315b9401254219c14f2f534",
+      "bytes": 4562
+    },
+    "README.md": {
+      "sha256": "44da238da43fc404cdea56191535104a9427a1a05e8daaa52ac109aa04066da9",
+      "bytes": 7604
+    },
+    "RESULTS.json": {
+      "sha256": "033ba152790ca86b9746f5d91136c9472d647569a5e5d0e80140da4c1c290523",
+      "bytes": 1150
+    },
+    "check_runner.py": {
+      "sha256": "9189947638636bcc630552177abbe479d9ca9d4472a0e9da155504b1999b6972",
+      "bytes": 4664
+    },
+    "run.py": {
+      "sha256": "390a36bcdf733a1207d97e2773131c7d1b44b4bf0add2f841ba5789a43f44af0",
+      "bytes": 9269
+    },
+    "source-manifest.json": {
+      "sha256": "6122b396b6809c483d575651d89b854163e0648fe337121cbd824a850d14883e",
+      "bytes": 24896
+    },
+    "test_boot.c": {
+      "sha256": "86c0c2187463f1642ec8b1437054af36b0cd078d904a7dfc35db6524ac3d5b6a",
+      "bytes": 15280
+    },
+    "test_parser.py": {
+      "sha256": "4ec0c0cb1426a9ccd008a1b01c64920d167dae47b914fc480c8e7fcadf3d24d3",
+      "bytes": 6842
+    }
+  },
+  "source_only_pins": true,
+  "bundled_production_source": false,
+  "bundled_build_logs": false,
+  "bundled_binaries": false,
+  "total_files_including_manifest": 9
+}
