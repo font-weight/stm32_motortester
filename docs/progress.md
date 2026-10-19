@@ -1191,3 +1191,37 @@ provisional декларация соответственно; они не за�
 Generic BOOT/layout/vector проверки и независимый replay 29 objects прошли.
 Полный callback/stack proof, timing и реальный STREAM опыт остаются отдельными
 открытыми проверками; BIN/HEX не выпускались, владельцу этот ELF не передавался.
+
+
+## 19.10.2026 — диагностическая foreground телеметрия, ревью не завершено
+
+Отдельный opt-in профиль собирается с DWT telemetry; default-off полный ELF
+сохранил SHA 1480750b...bb2. Инструментированный snapshot 28dab682 даёт ELF
+2801bbd8d792ecf88f7250129a1354d8651014a86429a4df3c6214220054a966;
+это synthetic-only NEVER_FLASH, не комплект для владельца.
+Root повторил 62 runtime + 32 module + 90 boot случаев в каждом из strict/ASan+UBSan
+режимов, затем 8 runner controls. Переносимый пакет включён в tests/stream-telemetry.
+Причины/nonce/generation сохраняются до нового HELLO; freeze требует actual-off
+и терминального состояния, запись публикуется после DMB. Наблюдения не являются
+WCET или qualified transaction bound и не скрывают modulo/debugger assumptions.
+Финальное независимое source ревью и новый exact-image stack/callback proof
+инструментированного профиля не завершены. Их промежуточные повторы не заменяют
+вердикт; score не назначен, merge/приёмка/новая прошивка владельцу не разрешены.
+
+
+Независимая перепроверка выявила P1: отказ preliminary quiesce валидного START
+происходил до прежней точки BEGIN, и первый неудачный запуск отсутствовал в
+телеметрии. Dot A перенёс BEGIN на вход предварительного quiesce после
+валидации команды и резервирования generation/response. Невалидный START не
+активирует запись; freeze по-прежнему требует действительного hardware_off.
+Добавляется регрессия отказа до аппаратного start; прежний инструментированный
+ELF и его static proof исторические, новый образ потребует отдельной проверки.
+
+
+Исправление первой попытки 8c51c780 независимо проверено на integrated
+fa9daee: scoped source/native PASS 9.85, P0/P1 нет в этой области.
+Лично повторены 64 runtime + 32 module + 90 boot случаев strict/ASan+UBSan,
+8 runner controls, отвержение прежнего runtime новой регрессией. Root повторил
+полный integrated replay. Исторический REWORK 9.255 и новый отчёт сохранены
+в tests/stream-telemetry/reviews. Новый synthetic ELF 56cf7b05...b3e576
+имеет отдельный ещё проверяемый stack proof; аппаратная приёмка не заявлена.

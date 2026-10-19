@@ -1,3 +1,4 @@
+#include "mt_stream_diag.h"
 #include "adc_timer_dma.h"
 
 #include <stddef.h>
@@ -523,6 +524,7 @@ mt_adc_dma_result_t mt_adc_dma_read_block(mt_adc_dma_t *d, mt_adc_dma_block_t *b
         return fail(d, d->first_fault == MT_ADC_DMA_FAULT_NONE ?
                     MT_ADC_DMA_FAULT_DEADLINE : d->first_fault);
     stamp = now(d);
+    MT_DIAG_POLL((uint32_t)(stamp - d->last_poll_us));
     if ((uint32_t)(stamp - d->last_poll_us) >= MT_ADC_DMA_BLOCK_US) {
         return fail(d, MT_ADC_DMA_FAULT_DEADLINE);
     }
@@ -558,6 +560,7 @@ mt_adc_dma_result_t mt_adc_dma_read_block(mt_adc_dma_t *d, mt_adc_dma_block_t *b
     remaining = rd(d, DMA_CNDTR);
     flags = rd(d, DMA_ISR) & DMA_EVENTS;
     end = now(d);
+    MT_DIAG_COPY((uint32_t)(end - stamp));
     if ((flags & DMA_TE) != 0u) { return fail(d, MT_ADC_DMA_FAULT_TRANSFER); }
     if (!safe_half(d->next_half, remaining) || (flags & other) != 0u ||
         (flags & expected) == 0u || (uint32_t)(end - stamp) >= MT_ADC_DMA_BLOCK_US) {

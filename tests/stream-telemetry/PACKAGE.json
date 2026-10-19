@@ -1,0 +1,71 @@
+{
+  "files": {
+    "DEFAULT_OFF_EVIDENCE.json": {
+      "sha256": "f08c722e8bb774a1017a4991075b7a66aa89d238b29dd676f2c35dd7415cbb3c",
+      "bytes": 1884
+    },
+    "PROVENANCE.md": {
+      "sha256": "64626faaba8dc4365c8ee96f7e888e13e787ad8c3090ba0475b870a1161163a5",
+      "bytes": 5185
+    },
+    "README.md": {
+      "sha256": "cf07e78e450d2c96e46dbda46f0e8d2524875e2f11a6d3cda28fe07104dc17bc",
+      "bytes": 10416
+    },
+    "RESULTS.json": {
+      "sha256": "e6cc7dd841ca26467397909f698f3fadd9826644e38dadbbf9073a4c56a47d5f",
+      "bytes": 1174
+    },
+    "check_runner.py": {
+      "sha256": "3a65035d1e50cbd520b4af76fd3f599130862a56124e8a77bb615702dec83e1e",
+      "bytes": 4725
+    },
+    "run.py": {
+      "sha256": "d0afbc8a77fad145594dc0cf34eab2782892a2d255e0e8b25113896ba4b8b259",
+      "bytes": 9519
+    },
+    "run_boot.py": {
+      "sha256": "17bb3bd899b69cd85f4177823b61c11b3ae90a97a080e9d559fb03ea0bda9459",
+      "bytes": 9123
+    },
+    "source-manifest.json": {
+      "sha256": "74ac6a9530ff5e201596313a513eb18c4666987707d6a6831910e7b06ba11941",
+      "bytes": 25575
+    },
+    "test_boot.c": {
+      "sha256": "c26c1d88c6a607271decd682cc644375f39191fead90ab748c513e6666ed82d2",
+      "bytes": 16870
+    },
+    "test_diag_unit.c": {
+      "sha256": "2ddecf2e286bebdcf48bc67a513cd2524b218d346f68e6b9d02471cd8106f560",
+      "bytes": 23290
+    },
+    "test_integration.h": {
+      "sha256": "9d233d779f7dda40c938627c4169f852f5aaba8a6aa1f8dcf936f289b6f67053",
+      "bytes": 367
+    },
+    "test_runtime.c": {
+      "sha256": "7b6d1e4e9b19c0c4b8641b01cff654004d9455a70774d099e4b6d6746902101b",
+      "bytes": 52919
+    },
+    "reviews/REVIEW_ORIGINAL_RU.md": {
+      "sha256": "2e3730c93db54de56f45ba8443a4c8a31a6da4120791635ef9beeccc87ef14c0",
+      "bytes": 13416
+    },
+    "reviews/review.json": {
+      "sha256": "96549d41b2952e7eeb5b10f0fe88269f76b48e6382cc0a5e54688fa49a4c0c0e",
+      "bytes": 2898
+    },
+    "reviews/review-fixed.json": {
+      "sha256": "d1ff00055ce731888c90dafe38bc577437307bb7a412d2e60d9c6655d4a7fd28",
+      "bytes": 3071
+    },
+    "reviews/CRITIC_A_FINAL_RU.md": {
+      "sha256": "281040f77f7d9693d40d2f0a16a207c6c604879be76c942b7259f40910505db0",
+      "bytes": 15364
+    }
+  },
+  "production_code_included": false,
+  "logs_included": false,
+  "review_status": "SOURCE_NATIVE_SCOPED_PASS"
+}

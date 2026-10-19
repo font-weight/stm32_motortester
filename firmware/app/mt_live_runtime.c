@@ -1,4 +1,5 @@
 #include "mt_live_runtime.h"
+#include "../platform/mt_stream_diag.h"
 #include "../platform/mt_usb_ctr.h"
 #include "tusb.h"
 #include <stddef.h>
@@ -52,7 +53,14 @@ static int live_start(void *context,uint32_t generation) {
     return usable(r) && mt_usb_bridge_actor() && mt_live_adc_start(&r->acquisition,generation);
 }
 static void live_stop(void *context,mt_live_snapshot *snapshot) {
-    mt_live_runtime *r=context; mt_live_adc_quiesce(&r->acquisition,snapshot);
+    mt_live_runtime *r=context;
+#if CFG_MT_STREAM_DIAGNOSTICS
+    /* The core reserves a validated START before its preliminary quiesce.
+     * Bind here so a failed barrier cannot hide the first attempted run. */
+    if(r->device.state==MT_LIVE_STOPPED && r->device.want_start)
+        MT_DIAG_BEGIN(r->device.generation,r->device.nonce);
+#endif
+    mt_live_adc_quiesce(&r->acquisition,snapshot);
 }
 static size_t live_write(void *context,const uint8_t *bytes,size_t length) {
     mt_live_runtime *r=context; mt_usb_scope scope; size_t accepted;
@@ -187,7 +195,16 @@ static mt_live_runtime_result step(mt_live_runtime *r) {
     if(!usable(r))return MT_LIVE_RUNTIME_IDLE;
     /* Preserve epoch and forbid USB ISR preemption through the core's final
      * post-write observation and state publication. Bound still needs proof. */
+#if CFG_MT_STREAM_DIAGNOSTICS
+    /* Preserve pre-TX causes and queue peak before HELLO commit or DATA pop. */
+    mt_stream_diag_note(UINT32_MAX,r->epoch,(uint32_t)r->device.queue.used,
+        r->device.local_error,r->device.first_reason,(uint32_t)r->adc.first_fault);
+    if(quiescent(r) && r->device.state==MT_LIVE_HELLO_PENDING)
+        mt_stream_diag_replaced((uint32_t)r->device.state,r->epoch,(uint32_t)r->adc.state);
+#endif
+    MT_DIAG_STAMP(diag_tx);
     key=mt_usb_bridge_lock(); tx_ok=mt_live_device_step(&r->device); mt_usb_bridge_unlock(key);
+    MT_DIAG_TX_END(diag_tx);
     if(live_time(r)==UINT64_MAX)return time_fault(r);
     if(!synchronize_loss(r))return loss_result(r);
     if(mt_usb_bridge_app_enter(&scope)) {
@@ -201,6 +218,7 @@ static mt_live_runtime_result step(mt_live_runtime *r) {
 mt_live_runtime_result mt_live_runtime_step(mt_live_runtime *r) {
     mt_live_runtime_result result; uint32_t key;
     if(!r || !r->initialized || r->in_step || !tud_inited())return MT_LIVE_RUNTIME_ARGUMENT;
+    MT_DIAG_STAMP(diag_step);
     r->in_step=1; result=step(r);
     if(!r->clock_fault && !r->pending && !r->faults && !r->exhausted &&
        mt_timebase_healthy(r->clock)) {
@@ -213,5 +231,17 @@ mt_live_runtime_result mt_live_runtime_step(mt_live_runtime *r) {
            !tud_task_event_ready())(void)mt_usb_fsdev_ctr_rearm();
         mt_usb_bridge_unlock(key);
     }
+#if CFG_MT_STREAM_DIAGNOSTICS
+    if(quiescent(r) && (r->device.state==MT_LIVE_HELLO_PENDING || r->device.state==MT_LIVE_STOPPED)) {
+        mt_stream_diag_note((uint32_t)result,r->epoch,(uint32_t)r->device.queue.used,
+            r->device.local_error,r->device.first_reason,(uint32_t)r->adc.first_fault);
+        mt_stream_diag_replaced((uint32_t)r->device.state,r->epoch,(uint32_t)r->adc.state);
+    }
+    mt_stream_diag_observe(diag_step,(uint32_t)result,(uint32_t)r->device.state,
+        r->epoch,(uint32_t)r->adc.state,r->adc.owns_peripherals?1u:0u,
+        r->device.hardware_off,(uint32_t)r->device.queue.used,r->device.local_error,
+        r->device.first_reason,(uint32_t)r->adc.first_fault,
+        quiescent(r) && (r->device.state==MT_LIVE_NEEDS_HELLO || r->device.state==MT_LIVE_FAULT));
+#endif
     r->in_step=0; return result;
 }

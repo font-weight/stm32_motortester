@@ -6,6 +6,7 @@
 #include "mt_irq_guard.h"
 #include "mt_live_runtime.h"
 #include "mt_stream_timing.h"
+#include "mt_stream_diag.h"
 #include "mt_usb_time.h"
 #include "tusb.h"
 #include <stddef.h>
@@ -24,7 +25,7 @@ volatile mt_live_runtime_result mt_main_last_runtime;
 
 enum { BOOT_CPU = 1, BOOT_INPUT, BOOT_DESC, BOOT_CLOCK, BOOT_TIME,
        BOOT_TIME_BIND, BOOT_RUNTIME, BOOT_USB_PREP, BOOT_USB_INIT,
-       BOOT_FINAL, BOOT_ADMIT };
+       BOOT_FINAL, BOOT_ADMIT, BOOT_DIAGNOSTICS };
 static _Noreturn void failed(unsigned reason) {
     mt_main_boot_failure = reason;
     mt_boot_cpu_halt();
@@ -103,6 +104,10 @@ int main(void) {
     if (mt_boot_time_start(&time_start, &startup, &timebase) != MT_BOOT_TIME_OK)
         failed(BOOT_TIME);
     if (!mt_usb_time_bind(&timebase)) failed(BOOT_TIME_BIND);
+#if CFG_MT_STREAM_DIAGNOSTICS
+    if (!mt_stream_diag_init(mt_clock_mmio_read32, mt_clock_mmio_write32, NULL,
+                            mt_board.firmware_build)) failed(BOOT_DIAGNOSTICS);
+#endif
     if (mt_live_runtime_init(&runtime, &timebase, &runtime_io, mt_board.verified_hse_hz,
             mt_irq_guard_enter, mt_irq_guard_leave, mt_board.firmware_build,
             mt_board.require_dtr, mt_stream_timing.declared_transaction_bound_ms) != MT_LIVE_RUNTIME_OK) failed(BOOT_RUNTIME);

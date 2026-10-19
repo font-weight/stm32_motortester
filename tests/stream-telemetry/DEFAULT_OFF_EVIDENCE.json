@@ -1,0 +1,40 @@
+{
+  "scope": "External previously produced default-off equality evidence; not executed by this native package.",
+  "object_comparison": {
+    "producer": "independent image-recipe auditor",
+    "receipt_sha256": "7268041a7dd74dede6dde3425bc45567623a2bc90d6bcdbd68bb65340cad4b5a",
+    "status": "DEFAULT_OFF_TWO_CHANGED_OBJECTS_BYTE_IDENTICAL",
+    "source_hashes": {
+      "firmware/platform/adc_timer_dma.c": "ddd022b79a3d07ea745a384cc4db5a258ad31feb31e68bc23b5c364054f4f52e",
+      "firmware/app/mt_live_runtime.c": "f562f8e0b63b68605a2e7f69bf2288ade4ddf91dc2d282353e70dd226e70bc97",
+      "firmware/platform/mt_stream_diag.h": "e5a518d1cfae4ccd6aa09c199bda08ca11bcf26100f402bebdcca3ee450a43c8"
+    },
+    "objects": [
+      {
+        "object": "1-adc_timer_dma.o",
+        "actual": "72002510659917740ee0c51024cba83258b69d8a330e931e70b8c597c5cde952",
+        "expected": "72002510659917740ee0c51024cba83258b69d8a330e931e70b8c597c5cde952",
+        "equal": true
+      },
+      {
+        "object": "21-mt_live_runtime.o",
+        "actual": "a984a76274db2f7d3b7b59bcd5507090b35fc76c5c1984322671c4ebf056f63d",
+        "expected": "a984a76274db2f7d3b7b59bcd5507090b35fc76c5c1984322671c4ebf056f63d",
+        "equal": true
+      }
+    ]
+  },
+  "full_image_comparison": {
+    "producer": "root firmware author",
+    "receipt_sha256": "7f4b61d9be931cb3bccabde8abaed020f30aed9dd6c9110b052164a00ebc2967",
+    "source_commit": "d5d43d42d804d0488d496e4c458fc858ba68af7e",
+    "status": "DIAGNOSTIC_LINK_ONLY_NOT_QUALIFIED",
+    "instrumentation_profile": "none",
+    "elf_outputs": {
+      "DIAGNOSTIC_UNQUALIFIED_NEVER_FLASH.elf": "1480750bf9802e90a543369f03922ff060dd61c42fde7bfaf1b8eca19bd60bb2"
+    },
+    "equal_to_prior_stream_elf_sha256": "1480750bf9802e90a543369f03922ff060dd61c42fde7bfaf1b8eca19bd60bb2"
+  },
+  "physical_timing_qualified": false,
+  "instrumented_image_proof": false
+}
