@@ -1,4 +1,5 @@
 """Synthetic indexed-storage controls; no hardware, transport, GUI or timing proof."""
+from contextlib import contextmanager
 from dataclasses import FrozenInstanceError, asdict, replace
 import hashlib
 import json
@@ -74,6 +75,73 @@ def fixed_fixture():
     block = frame(head, b"B", struct.pack("<QI", 100, 7) + RAW)
     checkpoint = frame(block, b"C", struct.pack("<QQ", 107, 1))
     return head, block, checkpoint
+
+
+def stat_fields(info, **changes):
+    fields = {name: getattr(info, name) for name in
+              ("st_mode", "st_dev", "st_ino", "st_size", "st_mtime_ns", "st_ctime_ns")}
+    fields["st_file_attributes"] = getattr(info, "st_file_attributes", 0)
+    fields.update(changes)
+    return SimpleNamespace(**fields)
+
+
+def changed_lstat(target, kind="identity", active=lambda: True):
+    """Inject an OS observation, leaving every production path guard intact."""
+    real = Path.lstat
+    def lstat(path, *args, **kwargs):
+        info = real(path, *args, **kwargs)
+        if path != target or not active():
+            return info
+        if kind == "identity":
+            return stat_fields(info, st_ino=info.st_ino + 1)
+        if kind == "reparse":
+            return stat_fields(info, st_file_attributes=getattr(info, "st_file_attributes", 0) | 0x400)
+        raise AssertionError("Unknown observation fault")
+    return lstat
+
+
+def after_read(opener, change):
+    class Reader:
+        def __init__(self, stream): self.stream = stream
+        def __enter__(self): return self
+        def __exit__(self, *args): self.stream.close()
+        def __getattr__(self, name): return getattr(self.stream, name)
+        def read(self, count):
+            data = self.stream.read(count)
+            change()
+            return data
+    return lambda path: Reader(opener(path))
+
+
+def native_mutation_result(test, error, *, windows_error, operation):
+    """Windows prevention is fixture evidence, never evidence of a path guard."""
+    if os.name == "nt":
+        test.assertIsInstance(error, PermissionError)
+        test.assertEqual(error.winerror, windows_error)
+    else:
+        test.assertIsInstance(error, StreamError)
+    print("native_mutation_outcome " + json.dumps(dict(operation=operation,
+        outcome="windows_prevented_fixture" if os.name == "nt" else "mutation_guard_rejected",
+        winerror=windows_error if os.name == "nt" else None,
+        guard_exercised=os.name != "nt"), sort_keys=True), flush=True)
+
+
+@contextmanager
+def unchanged_metadata(saved):
+    """Model equal timestamps without changing bytes, identity, size, or guards."""
+    real_lstat, real_fstat = Path.lstat, os.fstat
+    def lstat(path, *args, **kwargs):
+        info = real_lstat(path, *args, **kwargs)
+        return (stat_fields(info, st_mtime_ns=saved._path_fingerprint[3],
+                            st_ctime_ns=saved._path_fingerprint[4])
+                if path == saved.path else info)
+    def fstat(fd):
+        info = real_fstat(fd)
+        return (stat_fields(info, st_mtime_ns=saved._fingerprint[3],
+                            st_ctime_ns=saved._fingerprint[4])
+                if (info.st_dev, info.st_ino) == saved._fingerprint[:2] else info)
+    with mock.patch.object(Path, "lstat", lstat), mock.patch.object(os, "fstat", fstat):
+        yield
 
 
 class ModelTests(unittest.TestCase):
@@ -318,16 +386,88 @@ class FileTests(unittest.TestCase):
             list(saved.iter_raw(chunk_samples=8193))
         self.assertEqual(len(saved.read_raw(999, 65536)), 131072)
 
-    def test_lazy_mutation_replacement_and_midread_mutation(self):
+    def test_fast_tail_mutation_observations_and_fresh_recovery(self):
         writer = self.writer()
         writer.append(StreamBlock(identity(), 0, RAW))
         writer.finish(terminal(7))
         saved = recover(self.path)
         original = self.path.read_bytes()
+        # Preserve the original fast same-size terminal-digest mutation. Its
+        # timestamps need not advance; this does not corrupt the requested B.
         self.path.write_bytes(original[:-1] + bytes([original[-1] ^ 1]))
-        with self.assertRaises(StreamError):
+        observations = []
+        handle_reads, path_reads = [], []
+        real_fstat, real_lstat = os.fstat, Path.lstat
+        def fstat(fd):
+            info = real_fstat(fd)
+            handle_reads.append(recording._path_fingerprint(info))
+            return info
+        def lstat(path, *args, **kwargs):
+            info = real_lstat(path, *args, **kwargs)
+            if path == self.path:
+                path_reads.append(recording._path_fingerprint(info))
+            return info
+        real_observe = recording._observe
+        def observe(stream, path):
+            value = real_observe(stream, path)
+            observations.append(value)
+            return value
+        rejected = False
+        with mock.patch.object(recording, "_observe", observe), \
+                mock.patch.object(os, "fstat", fstat), mock.patch.object(Path, "lstat", lstat):
+            try:
+                self.assertEqual(saved.read_raw(0, 1), RAW[:2])
+            except StreamError:
+                rejected = True
+        expected = (saved._fingerprint, saved._path_fingerprint, saved._ancestor_fingerprint)
+        if not rejected:
+            self.assertTrue(observations)
+            self.assertTrue(all(value == expected for value in observations))
+        fresh = recover(self.path)
+        self.assertEqual(fresh.recovery_issue, "invalid_tail")
+        self.assertIsNone(fresh.terminal)
+        self.assertFalse(fresh.clean_stop_reported)
+        print("fast_tail_mutation_probe " + json.dumps(dict(
+            saved_handle=saved._fingerprint, saved_path=saved._path_fingerprint,
+            handle_reads=handle_reads, path_reads=path_reads,
+            read_observations=[dict(handle=value[0], path=value[1]) for value in observations],
+            original_sha256=hashlib.sha256(original).hexdigest(),
+            mutated_sha256=hashlib.sha256(self.path.read_bytes()).hexdigest(),
+            lazy_rejected=rejected, fresh_recovery_issue=fresh.recovery_issue,
+            fresh_end=fresh.end_sample_index, fresh_clean_stop=fresh.clean_stop_reported),
+            sort_keys=True), flush=True)
+
+    def test_lazy_same_metadata_selected_block_corruption(self):
+        writer = self.writer()
+        writer.append(StreamBlock(identity(), 0, RAW))
+        writer.finish(terminal(7))
+        saved = recover(self.path)
+        data = bytearray(self.path.read_bytes())
+        data[saved._entries[0].offset + recording._FRAME.size + recording._BLOCK.size] ^= 1
+        self.path.write_bytes(data)
+        with unchanged_metadata(saved), self.assertRaisesRegex(StreamError, "целостность блока"):
             saved.read_raw(0, 1)
-        self.path.write_bytes(original)
+
+    def test_lazy_same_metadata_terminal_tail_keeps_recovery_snapshot(self):
+        writer = self.writer()
+        writer.append(StreamBlock(identity(), 0, RAW))
+        writer.finish(terminal(7))
+        saved = recover(self.path)
+        data = self.path.read_bytes()
+        self.path.write_bytes(data[:-1] + bytes([data[-1] ^ 1]))
+        # Lazy access rehashes selected blocks, not a fresh whole-file recovery.
+        with unchanged_metadata(saved):
+            self.assertEqual(saved.read_raw(0, 1), RAW[:2])
+        self.assertTrue(saved.clean_stop_reported)  # The earlier recovery snapshot.
+        fresh = recover(self.path)
+        self.assertEqual(fresh.recovery_issue, "invalid_tail")
+        self.assertFalse(fresh.clean_stop_reported)
+
+    def test_lazy_replacement_and_midread_mutation(self):
+        writer = self.writer()
+        writer.append(StreamBlock(identity(), 0, RAW))
+        writer.finish(terminal(7))
+        original = self.path.read_bytes()
         saved = recover(self.path)
         replacement = self.directory / "replacement"
         replacement.write_bytes(original)
@@ -646,19 +786,37 @@ class PathObservationTests(unittest.TestCase):
         self.path.rename(self.root / "original")
         self.path.write_bytes(b"unrelated file must remain untouched")
 
-    def test_checkpoint_rejects_replacement_before_publication(self):
+    def test_native_checkpoint_replacement_or_windows_prevention(self):
         writer = self.writer()
+        if os.name == "nt":
+            before = self.path.read_bytes()
+            with self.assertRaises(PermissionError) as result: self.replace_leaf()
+            native_mutation_result(self, result.exception, windows_error=32, operation="v1_before_checkpoint")
+            self.assertEqual(self.path.read_bytes(), before)
+            self.assertFalse((self.root / "original").exists())
+            self.assertEqual(writer.checkpointed_end_sample_index, 7)
+            return
         self.replace_leaf()
-        with self.assertRaises(StreamError): writer.checkpoint()
+        with self.assertRaises(StreamError) as result: writer.checkpoint()
+        native_mutation_result(self, result.exception, windows_error=32, operation="v1_before_checkpoint")
         self.assertTrue(writer.closed)
         self.assertEqual(writer.checkpointed_end_sample_index, 7)
         self.assertEqual(recover(self.root / "original").end_sample_index, 7)
         self.assertEqual(self.path.read_bytes(), b"unrelated file must remain untouched")
 
-    def test_finish_rejects_replacement_before_publication(self):
+    def test_native_finish_replacement_or_windows_prevention(self):
         writer = self.writer()
+        if os.name == "nt":
+            before = self.path.read_bytes()
+            with self.assertRaises(PermissionError) as result: self.replace_leaf()
+            native_mutation_result(self, result.exception, windows_error=32, operation="v1_before_finish")
+            self.assertEqual(self.path.read_bytes(), before)
+            self.assertFalse((self.root / "original").exists())
+            self.assertEqual(writer.checkpointed_end_sample_index, 7)
+            return
         self.replace_leaf()
-        with self.assertRaises(StreamError): writer.finish(terminal(14))
+        with self.assertRaises(StreamError) as result: writer.finish(terminal(14))
+        native_mutation_result(self, result.exception, windows_error=32, operation="v1_before_finish")
         self.assertTrue(writer.closed)
         self.assertEqual(writer.checkpointed_end_sample_index, 7)
         self.assertIsNone(recover(self.root / "original").terminal)
@@ -671,7 +829,22 @@ class PathObservationTests(unittest.TestCase):
         self.assertEqual(self.path.stat().st_size, 0)
         self.assertEqual(writer.first_failure.code, "host_io")
 
-    def test_publication_rechecks_after_fsync(self):
+    def test_observed_leaf_change_rejected_before_publication(self):
+        for operation in ("checkpoint", "finish"):
+            for kind in ("identity", "reparse"):
+                with self.subTest(operation=operation, kind=kind):
+                    self.path.unlink(missing_ok=True)
+                    writer = self.writer()
+                    before = self.path.read_bytes()
+                    with mock.patch.object(Path, "lstat", changed_lstat(self.path, kind)):
+                        with self.assertRaises(StreamError):
+                            writer.checkpoint() if operation == "checkpoint" else writer.finish(terminal(14))
+                    self.assertTrue(writer.closed)
+                    self.assertEqual(writer.checkpointed_end_sample_index, 7)
+                    self.assertEqual(self.path.read_bytes(), before)
+                    self.assertIsNone(recover(self.path).terminal)
+
+    def test_native_after_fsync_replacement_or_windows_prevention(self):
         for operation in ("checkpoint", "finish"):
             with self.subTest(operation=operation):
                 self.path.unlink(missing_ok=True)
@@ -682,12 +855,38 @@ class PathObservationTests(unittest.TestCase):
                     sync(stream)
                     self.replace_leaf()
                 with mock.patch.object(recording, "_sync", side_effect=changed):
-                    with self.assertRaises(StreamError):
+                    with self.assertRaises(PermissionError if os.name == "nt" else StreamError) as result:
                         writer.checkpoint() if operation == "checkpoint" else writer.finish(terminal(14))
+                native_mutation_result(self, result.exception, windows_error=32, operation="v1_after_" + operation)
                 self.assertTrue(writer.closed)
                 self.assertEqual(writer.checkpointed_end_sample_index, 7)
-                self.assertEqual(recover(self.root / "original").end_sample_index, 14)
-                self.assertEqual(self.path.read_bytes(), b"unrelated file must remain untouched")
+                original = self.path if os.name == "nt" else self.root / "original"
+                self.assertEqual(recover(original).end_sample_index, 14)
+                if os.name == "nt":
+                    self.assertFalse((self.root / "original").exists())
+                else:
+                    self.assertEqual(self.path.read_bytes(), b"unrelated file must remain untouched")
+
+    def test_observed_leaf_change_rejected_after_fsync(self):
+        for operation in ("checkpoint", "finish"):
+            for kind in ("identity", "reparse"):
+                with self.subTest(operation=operation, kind=kind):
+                    self.path.unlink(missing_ok=True)
+                    writer = self.writer()
+                    active = False
+                    sync = recording._sync
+                    def changed(stream):
+                        nonlocal active
+                        sync(stream)
+                        active = True
+                    with mock.patch.object(Path, "lstat", changed_lstat(self.path, kind, lambda: active)), \
+                            mock.patch.object(recording, "_sync", changed):
+                        with self.assertRaises(StreamError):
+                            writer.checkpoint() if operation == "checkpoint" else writer.finish(terminal(14))
+                    self.assertTrue(active)
+                    self.assertTrue(writer.closed)
+                    self.assertEqual(writer.checkpointed_end_sample_index, 7)
+                    self.assertEqual(recover(self.path).end_sample_index, 14)
 
     def ctime_drift(self):
         real = Path.lstat
@@ -734,16 +933,43 @@ class PathObservationTests(unittest.TestCase):
                 return data
         return lambda path: Swap(real(path))
 
-    def test_recover_rejects_final_changed_ancestor(self):
+    def test_native_recovery_ancestor_swap_or_windows_prevention(self):
         self.path.write_bytes(b"".join(fixed_fixture()))
         with mock.patch.object(recording, "_open_read", self.swapped_ancestor_reader()):
-            with self.assertRaises(StreamError): recover(self.path)
+            with self.assertRaises(PermissionError if os.name == "nt" else StreamError) as result:
+                recover(self.path)
+        native_mutation_result(self, result.exception, windows_error=5, operation="v1_recovery_ancestor")
+        if os.name == "nt":
+            self.assertFalse((self.root / "renamed").exists())
+            self.assertEqual(self.path.read_bytes(), b"".join(fixed_fixture()))
 
-    def test_lazy_read_rejects_final_changed_ancestor(self):
+    def test_native_lazy_ancestor_swap_or_windows_prevention(self):
         self.path.write_bytes(b"".join(fixed_fixture()))
         saved = recover(self.path)
         with mock.patch.object(recording, "_open_read", self.swapped_ancestor_reader()):
-            with self.assertRaises(StreamError): saved.read_raw(100, 1)
+            with self.assertRaises(PermissionError if os.name == "nt" else StreamError) as result:
+                saved.read_raw(100, 1)
+        native_mutation_result(self, result.exception, windows_error=5, operation="v1_lazy_ancestor")
+        if os.name == "nt":
+            self.assertFalse((self.root / "renamed").exists())
+            self.assertEqual(saved.read_raw(100, 1), RAW[:2])
+
+    def test_observed_final_ancestor_change_rejected(self):
+        self.path.write_bytes(b"".join(fixed_fixture()))
+        saved = recover(self.path)
+        for operation in ("recover", "lazy"):
+            for kind in ("identity", "reparse"):
+                with self.subTest(operation=operation, kind=kind):
+                    active = False
+                    def change():
+                        nonlocal active
+                        active = True
+                    opener = after_read(recording._open_read, change)
+                    with mock.patch.object(Path, "lstat", changed_lstat(self.directory, kind, lambda: active)), \
+                            mock.patch.object(recording, "_open_read", opener):
+                        with self.assertRaises(StreamError):
+                            recover(self.path) if operation == "recover" else saved.read_raw(100, 1)
+                    self.assertTrue(active)
 
 
 class PreparedAttemptTests(unittest.TestCase):
@@ -774,6 +1000,7 @@ class PreparedAttemptTests(unittest.TestCase):
         with self.assertRaises(AttributeError): prepared.readiness_token = token
         with self.assertRaises(FrozenInstanceError): token.token_id = "0" * 32
         with self.assertRaises(StreamError): recover(self.path)
+        prepared.close()  # The following v1 fixture is unrelated to the open attempt.
         self.path.unlink()
         self.path.write_bytes(b"".join(fixed_fixture()))
         with self.assertRaises(StreamError): recover_attempt(self.path)
@@ -915,15 +1142,41 @@ class PreparedAttemptTests(unittest.TestCase):
                 self.assertFalse(hasattr(report, "readiness_token"))
             else:
                 with self.assertRaises(StreamError): recover_attempt(path)
+    def test_native_pre_readiness_swap_or_windows_prevention(self):
         real_sync = recording._sync
         def swapped(stream):
             real_sync(stream)
             self.path.rename(self.root / "original")
             self.path.write_bytes(b"unrelated")
         with mock.patch.object(recording, "_sync", side_effect=swapped):
-            with self.assertRaises(StreamError): self.prepare()
-        self.assertEqual(self.path.read_bytes(), b"unrelated")
-        self.assertIsNone(recover_attempt(self.root / "original").selected_start)
+            with self.assertRaises(PermissionError if os.name == "nt" else StreamError) as result:
+                self.prepare()
+        native_mutation_result(self, result.exception, windows_error=32, operation="v2_pre_readiness")
+        original = self.path if os.name == "nt" else self.root / "original"
+        self.assertIsNone(recover_attempt(original).selected_start)
+        if os.name == "nt":
+            self.assertFalse((self.root / "original").exists())
+        else:
+            self.assertEqual(self.path.read_bytes(), b"unrelated")
+
+    def test_observed_pre_readiness_leaf_change_returns_no_token(self):
+        for kind in ("identity", "reparse"):
+            with self.subTest(kind=kind):
+                path = self.root / kind
+                active = False
+                sync = recording._sync
+                def changed(stream):
+                    nonlocal active
+                    sync(stream)
+                    active = True
+                with mock.patch.object(Path, "lstat", changed_lstat(path, kind, lambda: active)), \
+                        mock.patch.object(recording, "_sync", changed):
+                    with self.assertRaises(StreamError): self.prepare(path=path)
+                self.assertTrue(active)
+                report = recover_attempt(path)
+                self.assertIsNone(report.selected_start)
+                self.assertIsNone(report.recording)
+                self.assertFalse(hasattr(report, "readiness_token"))
 
     def test_bind_io_failure_does_not_invent_r_or_success(self):
         prepared = self.prepare()
@@ -1131,23 +1384,66 @@ class PreparedAttemptTests(unittest.TestCase):
         report = recover_attempt(self.path)
         self.assertEqual(report.recording.read_raw(100, 7), RAW)
 
-    def test_version_two_publication_path_and_metadata_guards(self):
+    def publication_writer(self, operation, path):
+        prepared = self.prepare(path=path)
+        writer = None
+        if operation in ("checkpoint", "finish"):
+            writer = prepared.bind_first_block(prepared.readiness_token, StreamBlock(identity(), 100, RAW))
+            self.addCleanup(writer.close)
+        return prepared, writer
+
+    def publish(self, operation, prepared, writer):
+        if operation == "bind":
+            return prepared.bind_first_block(prepared.readiness_token, StreamBlock(identity(), 100, RAW))
+        if operation == "unbound":
+            return prepared.finish_unbound(prepared.readiness_token, UnboundOutcome("ended_unbound"))
+        if operation == "checkpoint":
+            return writer.checkpoint()
+        return writer.finish(terminal(107))
+
+    def test_native_version_two_replacement_or_windows_prevention(self):
         for operation in ("bind", "unbound", "checkpoint", "finish"):
-            path = self.root / operation
-            prepared = self.prepare(path=path)
-            writer = None
-            if operation in ("checkpoint", "finish"):
-                writer = prepared.bind_first_block(prepared.readiness_token, StreamBlock(identity(), 100, RAW))
-            original = self.root / (operation + "-original")
-            path.rename(original)
-            path.write_bytes(b"must not change")
-            with self.assertRaises(StreamError):
-                if operation == "bind": prepared.bind_first_block(prepared.readiness_token, StreamBlock(identity(), 100, RAW))
-                elif operation == "unbound": prepared.finish_unbound(prepared.readiness_token, UnboundOutcome("ended_unbound"))
-                elif operation == "checkpoint": writer.checkpoint()
-                else: writer.finish(terminal(107))
-            self.assertEqual(path.read_bytes(), b"must not change")
-            self.assertIsNone(recover_attempt(original).recording)
+            with self.subTest(operation=operation):
+                path = self.root / operation
+                prepared, writer = self.publication_writer(operation, path)
+                original = self.root / (operation + "-original")
+                if os.name == "nt":
+                    before = path.read_bytes()
+                    with self.assertRaises(PermissionError) as result: path.rename(original)
+                    native_mutation_result(self, result.exception, windows_error=32, operation="v2_before_" + operation)
+                    self.assertEqual(path.read_bytes(), before)
+                    self.assertFalse(original.exists())
+                    self.assertIsNone(recover_attempt(path).recording)
+                    continue
+                path.rename(original)
+                path.write_bytes(b"must not change")
+                with self.assertRaises(StreamError) as result: self.publish(operation, prepared, writer)
+                native_mutation_result(self, result.exception, windows_error=32, operation="v2_before_" + operation)
+                self.assertEqual(path.read_bytes(), b"must not change")
+                self.assertIsNone(recover_attempt(original).recording)
+
+    def test_observed_version_two_leaf_change_before_publication(self):
+        for operation in ("bind", "unbound", "checkpoint", "finish"):
+            for kind in ("identity", "reparse"):
+                with self.subTest(operation=operation, kind=kind):
+                    path = self.root / (operation + "-" + kind)
+                    prepared, writer = self.publication_writer(operation, path)
+                    before = path.read_bytes()
+                    # Binding first selects an empty in-process interval. A
+                    # failed first B must still leave no selected R on disk.
+                    receipt = 100 if operation == "bind" else prepared._writer.checkpointed_end_sample_index
+                    with mock.patch.object(Path, "lstat", changed_lstat(path, kind)):
+                        with self.assertRaises(StreamError): self.publish(operation, prepared, writer)
+                    self.assertTrue(prepared._writer.closed)
+                    self.assertEqual(prepared._writer.checkpointed_end_sample_index, receipt)
+                    self.assertEqual(path.read_bytes(), before)
+                    report = recover_attempt(path)
+                    self.assertIsNone(report.recording)
+                    self.assertIsNone(report.unbound_outcome)
+                    if operation in ("bind", "unbound"):
+                        self.assertIsNone(report.selected_start)
+
+    def test_native_unbound_after_sync_swap_or_windows_prevention(self):
         prepared = self.prepare()
         real_sync = recording._sync
         def changed(stream):
@@ -1155,20 +1451,49 @@ class PreparedAttemptTests(unittest.TestCase):
             self.path.rename(self.root / "unbound-original")
             self.path.write_bytes(b"new path")
         with mock.patch.object(recording, "_sync", side_effect=changed):
-            with self.assertRaises(StreamError):
+            with self.assertRaises(PermissionError if os.name == "nt" else StreamError) as result:
                 prepared.finish_unbound(prepared.readiness_token, UnboundOutcome("ended_unbound"))
-        self.assertEqual(self.path.read_bytes(), b"new path")
+        native_mutation_result(self, result.exception, windows_error=32, operation="v2_unbound_after_sync")
+        self.assertTrue(prepared._writer.closed)
+        self.assertIsNone(prepared._writer.checkpointed_end_sample_index)
+        original = self.path if os.name == "nt" else self.root / "unbound-original"
+        if os.name == "nt":
+            self.assertFalse((self.root / "unbound-original").exists())
+        else:
+            self.assertEqual(self.path.read_bytes(), b"new path")
         # Readable U after unsuccessful call is not a completion receipt.
-        self.assertEqual(recover_attempt(self.root / "unbound-original").unbound_outcome.reason, "ended_unbound")
+        self.assertEqual(recover_attempt(original).unbound_outcome.reason, "ended_unbound")
 
-    def test_version_two_lazy_read_final_ancestor_and_ctime_checks(self):
-        directory = self.root / "data"
-        directory.mkdir()
-        path = directory / "attempt"
+    def test_observed_unbound_leaf_change_after_sync(self):
+        for kind in ("identity", "reparse"):
+            with self.subTest(kind=kind):
+                path = self.root / kind
+                prepared = self.prepare(path=path)
+                active = False
+                sync = recording._sync
+                def changed(stream):
+                    nonlocal active
+                    sync(stream)
+                    active = True
+                with mock.patch.object(Path, "lstat", changed_lstat(path, kind, lambda: active)), \
+                        mock.patch.object(recording, "_sync", changed):
+                    with self.assertRaises(StreamError):
+                        prepared.finish_unbound(prepared.readiness_token, UnboundOutcome("ended_unbound"))
+                self.assertTrue(active)
+                self.assertTrue(prepared._writer.closed)
+                self.assertIsNone(prepared._writer.checkpointed_end_sample_index)
+                self.assertEqual(recover_attempt(path).unbound_outcome.reason, "ended_unbound")
+
+    def finished_attempt(self, path):
         prepared = self.prepare(path=path)
         writer = prepared.bind_first_block(prepared.readiness_token, StreamBlock(identity(), 100, RAW))
+        self.addCleanup(writer.close)
         writer.finish(terminal(107))
-        saved = recover_attempt(path).recording
+        return recover_attempt(path).recording
+
+    def test_version_two_lazy_read_same_api_ctime_drift(self):
+        path = self.path
+        saved = self.finished_attempt(path)
         real_lstat = Path.lstat
         calls = 0
         def drift(target, *a, **kw):
@@ -1176,30 +1501,50 @@ class PreparedAttemptTests(unittest.TestCase):
             info = real_lstat(target, *a, **kw)
             if target != path: return info
             calls += 1
-            fields = {name: getattr(info, name) for name in
-                      ("st_mode", "st_dev", "st_ino", "st_size", "st_mtime_ns", "st_ctime_ns")}
-            fields["st_ctime_ns"] += int(calls > 1)
-            return SimpleNamespace(**fields, st_file_attributes=0)
+            return stat_fields(info, st_ctime_ns=info.st_ctime_ns + int(calls > 1))
         with mock.patch.object(Path, "lstat", drift):
             with self.assertRaises(StreamError): saved.read_raw(100, 1)
+
+    def test_native_version_two_ancestor_swap_or_windows_prevention(self):
+        directory = self.root / "data"
+        directory.mkdir()
+        path = directory / "attempt"
+        saved = self.finished_attempt(path)
         real_open = recording._open_attempt_read
         renamed = self.root / "renamed"
         swapped = False
-        class Swap:
-            def __init__(self, stream): self.stream = stream
-            def __enter__(self): return self
-            def __exit__(self, *a): self.stream.close()
-            def __getattr__(self, name): return getattr(self.stream, name)
-            def read(self, count):
-                nonlocal swapped
-                data = self.stream.read(count)
-                if not swapped:
-                    swapped = True
-                    directory.rename(renamed)
-                    directory.symlink_to(renamed, target_is_directory=True)
-                return data
-        with mock.patch.object(recording, "_open_attempt_read", side_effect=lambda p: Swap(real_open(p))):
-            with self.assertRaises(StreamError): saved.read_raw(100, 1)
+        def change():
+            nonlocal swapped
+            if not swapped:
+                swapped = True
+                directory.rename(renamed)
+                directory.symlink_to(renamed, target_is_directory=True)
+        with mock.patch.object(recording, "_open_attempt_read", after_read(real_open, change)):
+            with self.assertRaises(PermissionError if os.name == "nt" else StreamError) as result:
+                saved.read_raw(100, 1)
+        native_mutation_result(self, result.exception, windows_error=5, operation="v2_lazy_ancestor")
+        if os.name == "nt":
+            self.assertFalse(renamed.exists())
+            self.assertEqual(saved.read_raw(100, 1), RAW[:2])
+
+    def test_observed_version_two_final_ancestor_change(self):
+        directory = self.root / "data"
+        directory.mkdir()
+        path = directory / "attempt"
+        saved = self.finished_attempt(path)
+        for operation in ("recover", "lazy"):
+            for kind in ("identity", "reparse"):
+                with self.subTest(operation=operation, kind=kind):
+                    active = False
+                    def change():
+                        nonlocal active
+                        active = True
+                    opener = after_read(recording._open_attempt_read, change)
+                    with mock.patch.object(Path, "lstat", changed_lstat(directory, kind, lambda: active)), \
+                            mock.patch.object(recording, "_open_attempt_read", opener):
+                        with self.assertRaises(StreamError):
+                            recover_attempt(path) if operation == "recover" else saved.read_raw(100, 1)
+                    self.assertTrue(active)
 
 
 if __name__ == "__main__":
