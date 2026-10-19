@@ -1,0 +1,29 @@
+{
+  "production_commit": "24e597444f03b3826b3affd99f79653f0d74c9f5",
+  "result": "PASS native tests only; independent acceptance verdict belongs to Critic",
+  "groups": 22,
+  "scenarios": 550,
+  "behavioral_mutants_killed": 10,
+  "sha256": {
+    "test_live_adc.c": "e473082267d2026ebb64c5ad0f69dfce1586ec4612db741ae1b989fa48838916",
+    "run.py": "896e41f3a479aab1059280fad830420717a1705eaddacf5d20fe5761c4f31670",
+    "mutations.py": "6c15423ccb425637f7c42709b45b3e3465cd09a718fbf042977abb96f191c6b9",
+    "check_runner.py": "64fd1cdbb7fd81c47bb5aab0557c24f46658bae24c3b05a5fda22766d61c60be",
+    "source-manifest.json": "d16dab46948e30a60fa23f95f8e54a67e0296480667da64c3965cbb6d3d347bb",
+    "README.md": "cc30c4fc3a96a6a84a7b0ec8848ea07a043295a62e872f8e50bf151b60e5042a",
+    "PROVENANCE.md": "d638c293a3be739fd6b824e9093f9905744dd5ae5c3a558b553689c482ca95b3"
+  },
+  "evidence": [
+    "frozen-native-24e5974/provenance.json",
+    "frozen-mutations-24e5974/results.json",
+    "frozen-runner-controls/results.json"
+  ],
+  "limitations": [
+    "native register model",
+    "synthetic TX/guard",
+    "no physical acquisition/drain certificate",
+    "no actual USB/Windows host integration",
+    "LeakSanitizer unsupported under ptrace"
+  ],
+  "evidence_location": "External original test evidence, not bundled in this repository; rerun supplied recipes for new logs."
+}
