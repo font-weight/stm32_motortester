@@ -3,6 +3,30 @@
 #include "mt_control.h"
 #include "../platform/adc_timer_dma.h"
 
+/* Debugger-only first failed binding start since reset. Not a wire message or
+ * a physical timing certificate. One foreground writer; readers accept only
+ * magic == MT_ADC_START_DIAGNOSTIC_MAGIC, published after all fields. Ordinary
+ * Stop, recovery and a new HELLO do not clear this record. */
+#define MT_ADC_START_DIAGNOSTIC_MAGIC UINT32_C(0x4d544431)
+typedef enum {
+    MT_ADC_START_CORRELATION = 1,
+    MT_ADC_START_COMMAND_TIME = 2,
+    MT_ADC_START_DRIVER = 3,
+    MT_ADC_START_POSTCHECK = 4
+} mt_adc_start_stage;
+typedef struct {
+    uint32_t magic, version, stage;
+    uint32_t command_ms, epoch_ms, before_us, after_us;
+    uint32_t driver_called;
+    int32_t driver_result;
+    /* Raw returned driver snapshot: its internal cleanup may have replaced
+     * fault; timestamps may belong to an earlier start on an early rejection.
+     * driver_result is meaningful only when driver_called is 1. */
+    uint32_t driver_fault, driver_state;
+    uint32_t start_before_us, start_after_us;
+} mt_adc_start_diagnostic;
+extern volatile mt_adc_start_diagnostic mt_adc_first_start_failure;
+
 /* This binding owns no second sample buffer. Driver and controller must remain
  * alive even when hardware Stop fails. One foreground owner, no ISR calls. */
 typedef struct {

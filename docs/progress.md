@@ -966,3 +966,26 @@ Critic-A назначен и объявил критерии v1 до правк�
 сохранение прежнего progress и ограничение двумя документами; независимое
 заключение на точный кандидат ожидается. Недоступные после перезапуска
 неопубликованные изменения 14.10 не восстановлены этим документом.
+
+## 19.10.2026 — draft: first binding-start failure (issue 188)
+
+Новая диагностика приложения e38a сохранила ARM/4 TIMEOUT при нуле сегментов.
+После отдельного ограниченного повтора read-only HotPlug снимок показал
+initialized/STOPPED ADC с fault=0, нулевыми CEN/progress fields, работающим
+stored timebase и binding epoch_ms=78847, first_sample_delay_us=0. Это
+подтверждает вход в start hook, но не устанавливает точную ветку отказа.
+Корреляционный предел 20 мкс — гипотеза, не измеренный виновник.
+
+Dot A лично добавил ограниченный 52-байтовый first-failure latch в
+mt_adc_control.c/.h и focused tests. Порог, wire, admission и Stop не меняются.
+Исходный driver fault трактуется как returned snapshot, а не гарантия
+сохранения причины до внутреннего cleanup. Формат и ограничения чтения —
+в tests/adc-control/README.md. Независимый Critic-A назначен до изменения.
+
+Закреплённый GCC14.2.1/binutils2.44 восстановлен из официальных Debian inputs;
+171 toolchain pin и отдельный objcopy pin совпали. Исторический baseline96002ce
+objects/image воспроизведён отдельно с прежними gates. Новый diagnostic ELF
+строится отдельно; старые immutable image/layout/stack claims на него не
+переносятся автоматически. До нового exact-image review остаётся draft,
+без merge/прошивки/аппаратного PASS. Имеющиеся source tests не заменяют
+проверку таймингов реального MCU; подлинность MCU по маркировке не установлена.
