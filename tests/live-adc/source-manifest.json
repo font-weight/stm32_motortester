@@ -1,0 +1,19 @@
+{
+  "commit": "24e597444f03b3826b3affd99f79653f0d74c9f5",
+  "sha256": {
+    "firmware/acquisition/mt_sample_queue.c": "3ec95dc93d61db0f33fa227deea4606ee272d43632b6cdc19a0b65837830886c",
+    "firmware/acquisition/mt_sample_queue.h": "4c856b9b312b93bdd0fbf4d616316b2d101cad0a807734c4e7488fd03968edc4",
+    "firmware/app/mt_live_adc.c": "43955136b4e44b4dc7ff572d7513981b506b6a6e9b07229a1f9fcaec24957f9f",
+    "firmware/app/mt_live_adc.h": "01fe54216725ead7178dbc37519467009922fb04190e472d875f2fa3b76273a1",
+    "firmware/platform/adc_timer_dma.c": "efa9ae38a0b26ddc38b59fae17b0fcd859093694e6a3701b3516e3c9294e340d",
+    "firmware/platform/adc_timer_dma.h": "09ddf6894143475dba83441228dbd0ba03ae4fba56416a54152832e9797b0365",
+    "firmware/platform/mt_live_clock.c": "625ff34655620306b1d23dbcdc861e0233fc74e472d98b71ad08b03abebab22b",
+    "firmware/platform/mt_live_clock.h": "403108fd56d9cf66b2dd3eab4ca59d40db23bfefe66e7a289322c8c67e34db93",
+    "firmware/platform/mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "firmware/platform/mt_timebase.h": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39",
+    "firmware/protocol/mt_live_device.c": "be3effe882ebc209c68645fe1140f83a102ca54286d0b9677ab538d7fce3ab4d",
+    "firmware/protocol/mt_live_device.h": "b7a5b34239e87268d20e537c5b34d8333590f3a33d06ba8958f3cc275e469641",
+    "firmware/protocol/mt_wire.c": "9649b9d23b03deaff9fd66bb2c28b886811b88f844288bba365837f8f20b5c7b",
+    "firmware/protocol/mt_wire.h": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d"
+  }
+}

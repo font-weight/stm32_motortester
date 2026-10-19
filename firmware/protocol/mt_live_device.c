@@ -27,6 +27,9 @@ static void raw_barrier(mt_live_device *d) {
     memset(&s,0,sizeof s);
     d->io.quiesce(d->io.context,&s);
     d->hardware_off=(s.hardware_off==1u);
+    /* Raw recovery discards tails (including a legitimate cached old tail),
+     * but retains the bounded acquisition diagnostic before later failures. */
+    if(s.acquisition_reason>0u && s.acquisition_reason<=6u)cause(d,s.acquisition_reason);
 }
 static void recover(mt_live_device *d,unsigned reason) {
     local_cause(d,reason);
@@ -88,6 +91,7 @@ static void terminate(mt_live_device *d,uint16_t reason,uint64_t n) {
     mt_live_snapshot s;
     unsigned b;
     uint64_t after;
+    int valid_snapshot;
     if(reason)cause(d,reason);
     if(d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)return;
     if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING) {
@@ -99,8 +103,13 @@ static void terminate(mt_live_device *d,uint16_t reason,uint64_t n) {
     memset(&s,0,sizeof s);
     d->io.quiesce(d->io.context,&s);
     d->hardware_off=(s.hardware_off==1u);
+    valid_snapshot=snapshot_valid(d,&s);
+    /* Quiesce observed its acquisition cause before the following clock read.
+     * Preserve diagnostics now; tail/prefix publication still waits for time. */
+    if(!valid_snapshot)cause(d,2);
+    else if(s.acquisition_reason)cause(d,s.acquisition_reason);
     if(!now(d,&after) || !expire(d,after))return;
-    if(!snapshot_valid(d,&s)) {
+    if(!valid_snapshot) {
         cause(d,2); d->produced_known=0; d->produced_end=0;
     } else {
         if(s.acquisition_reason)cause(d,s.acquisition_reason);
@@ -436,7 +445,12 @@ int mt_live_device_offer(mt_live_device *d,uint64_t first_index,const uint16_t *
 }
 void mt_live_device_fault(mt_live_device *d,uint16_t reason) {
     uint64_t n;
-    if(!d || reason==0u || reason>6u || !now(d,&n) || !expire(d,n))return;
+    if(!d || reason==0u || reason>6u)return;
+    /* The caller has already observed this acquisition fault. A later clock
+     * failure during recovery must not replace that earlier cause. */
+    if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING ||
+       d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)cause(d,reason);
+    if(!now(d,&n) || !expire(d,n))return;
     if(d->end_started) { cause(d,reason); recover(d,MT_LIVE_ERR_CALLBACK); return; }
     if(d->tx_type==END && d->tx_length && !d->tx_offset)d->tx_length=0;
     terminate(d,reason,n);
