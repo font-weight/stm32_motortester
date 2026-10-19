@@ -147,12 +147,10 @@ def physical_admission(selection, *, deployment=None, confirmation=None):
 
 
 def collect_physical(selection, *, deployment=None, confirmation=None, event_config=None):
-    """Explicit one-shot request; current/missing deployment refuses before I/O."""
-    admission = physical_admission(selection, deployment=deployment, confirmation=confirmation)
-    if not admission.admitted:
-        raise RuntimeError(STAGE + ": physical collection unavailable")
-    return PhysicalInvocation(selection, deployment=deployment, confirmation=confirmation,
-                              event_config=event_config).collect()
+    """Refuse the owner-losing convenience route, even for consistent inputs."""
+    stage = STAGE + ": " if type(selection) is Selection else ""
+    raise RuntimeError(stage + "collect_physical is disabled; retain a PhysicalInvocation instance, "
+                       "call its collect(), and keep it for cleanup-only retry_close()/join()")
 
 
 DEPLOYED_STAGE = "APPROVED_FOR_ONE_STR1_DIAGNOSTIC_ATTEMPT"

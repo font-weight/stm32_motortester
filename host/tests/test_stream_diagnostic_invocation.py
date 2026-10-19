@@ -1183,6 +1183,51 @@ class OperationalSeamTests(unittest.TestCase):
             self.assertNotIn("open", [call[0] for call in fake.calls])
             self.assertNotIn(8, [call[0] for call in fake.backends[0].peer.commands])
 
+    def test_convenience_refuses_valid_admission_before_owner_or_io(self):
+        selected, deployed, confirmed = operational_inputs(self.root)
+        self.assertTrue(invocation.physical_admission(selected, deployment=deployed,
+                                                      confirmation=confirmed).admitted)
+        with patch.object(invocation, "PhysicalInvocation") as constructor, \
+             patch("threading.Thread") as workers, patch("builtins.open") as files:
+            for chosen, deployment, confirmation in ((selected, deployed, confirmed),
+                    (selected, None, None), (selection(self.root), None, None)):
+                with self.subTest(selection=type(chosen).__name__, deployed=deployment is not None), \
+                     self.assertRaisesRegex(RuntimeError, "retain a PhysicalInvocation"):
+                    collect_physical(chosen, deployment=deployment, confirmation=confirmation, event_config=CONFIG)
+            constructor.assert_not_called(); workers.assert_not_called(); files.assert_not_called()
+        self.assertEqual(list(self.root.iterdir()), [])
+
+    def test_retained_class_handles_preopen_and_full_flow_close_failures(self):
+        for preopen in (True, False):
+            with self.subTest(preopen=preopen):
+                def configure(backend):
+                    backend.close_fail = True
+                    if preopen:
+                        backend.dtr_fail = True
+                    else:
+                        self.periodic(backend)
+                owner, fake, _, _ = self.make_invocation("retained-" + str(preopen), configure=configure)
+                result = owner.collect()
+                frozen = (result.outcome, result.evidence, result.report.final, result.export, result.proof)
+                final = json.loads(result.report.final)
+                self.assertTrue(final["serial_unresolved"])
+                self.assertFalse(final["serial"]["handle_settled"])
+                self.assertTrue(owner.snapshot().controller.can_retry_close)
+                self.assertFalse(result.evidence.prospective_eligible)
+                if not preopen:
+                    self.assertGreaterEqual(final["stop_intent_ns"] - final["record_intent_return_ns"], 2_000_000_000)
+                    self.assertTrue(final["bridge"]["session"]["stop_acknowledgement"]["quiescence_reported"])
+                for backend in fake.backends:
+                    backend.close_fail = False
+                self.assertTrue(owner.retry_close())
+                self.assertTrue(owner.join(3))
+                self.assertEqual(frozen, (result.outcome, result.evidence, result.report.final, result.export, result.proof))
+                self.assertEqual(sum(call[0] == "factory" for call in fake.calls), 1)
+                self.assertEqual(sum(call[0] == "open" for call in fake.calls), 0 if preopen else 1)
+                self.assertEqual(sum(call[0] == 8 for call in fake.backends[0].peer.commands), 0 if preopen else 1)
+                with self.assertRaises(RuntimeError):
+                    owner.collect()
+
 
 if __name__ == "__main__":
     unittest.main()

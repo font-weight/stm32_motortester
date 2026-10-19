@@ -260,6 +260,14 @@ fabricated сведения. Не копировать реальные private 
 ## Два construction seams, один collector
 
 `PhysicalInvocation(selection, deployment=..., confirmation=..., event_config=...)`
+нужно сохранить в переменной до вызова `collect()` и удерживать после возврата
+или исключения, пока cleanup не settled. Convenience `collect_physical(...)`
+безусловно отказывает до создания invocation/backend/workers/output, даже при
+полностью согласованных входах: один возвращённый `InvocationResult` не владеет
+незавершённым cleanup. Использовать retained class API, а не временный
+`PhysicalInvocation(...).collect()`. Source CLI уже сохраняет свой owner.
+
+Конструктор `PhysicalInvocation(...)`
 инертен. Единственное `collect()` выбирает обычную real serial factory без
 public factory override, один заданный port и прежний receiver owner. Нет scan,
 automatic reconnect, нового START или автоматической второй попытки.
