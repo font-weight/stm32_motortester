@@ -1,0 +1,38 @@
+{
+  "schema": "stream-diag-decoder-independent-review-provenance-v1",
+  "candidate_sha256": "37b76dc0d2722ca699646ec92121916c66bf42749d2c8ca5a3fa39637a8adc29",
+  "candidate_readme_sha256": "440f9c86fd2b2d434c2105368b949bea1ece20104f32bd5ba518902076177861",
+  "candidate_destination": "firmware/build/decode_stream_diag.py",
+  "reference_repo": "font-weight/stm32_motortester",
+  "reference_repo_head_at_review": "31b93659164dec376bea5b973b597196c6a4a0ad",
+  "reference_source_sha256": {
+    "firmware/platform/mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+    "firmware/platform/mt_stream_diag.c": "8ead5517425c540a7876eaa540edca7205af5c904970e5688aec17b1718251c3",
+    "firmware/app/mt_live_runtime.h": "900f229fe02997e7d8c2e1dbe12c8386923fb46b7a3a4f8666e9044d9edd2562",
+    "firmware/protocol/mt_live_device.h": "b7a5b34239e87268d20e537c5b34d8333590f3a33d06ba8958f3cc275e469641",
+    "firmware/platform/adc_timer_dma.h": "09ddf6894143475dba83441228dbd0ba03ae4fba56416a54152832e9797b0365",
+    "firmware/acquisition/mt_sample_queue.h": "4c856b9b312b93bdd0fbf4d616316b2d101cad0a807734c4e7488fd03968edc4"
+  },
+  "fixture_writer": {
+    "path": "emit_records.c",
+    "sha256": "f08e4b2233cd0d14391f81d9f306d4a3ae8e52eb20ef60cd945196964852c56c",
+    "authorship": "Independent reviewer; not decoder or production implementation author",
+    "provenance": "Compiles exact pinned firmware/platform/mt_stream_diag.c as a separate translation unit with its exact pinned header. Calls public init/begin/note/poll/copy/tx/observe/replaced functions using scripted fake MMIO. Emits host-native uint32 record; replay is verified only on the documented little-endian Linux host. Native ABI offsetof checks and decoder explicit <34I unpack are separate checks. Seeded saturation is a boundary stimulus, not endurance/hardware evidence."
+  },
+  "scope": "Offline saved dump decoder; no device/network/timing qualification",
+  "independent_review_score": 9.83,
+  "rubric_weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "rubric_scores": {
+    "C1": 10,
+    "C2": 9.8,
+    "C3": 9.8,
+    "C4": 9.6,
+    "C5": 9.8
+  }
+}

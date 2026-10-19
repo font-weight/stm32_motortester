@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "scope": "Conditional static exact-image stack/callback/ABI only. No timing, hardware, release or flash acceptance.",
+  "source_commit": "31b93659164dec376bea5b973b597196c6a4a0ad",
+  "public_source_tree": "a5d59500dedf376fefa5209589c8a1d7c5a1f78c",
+  "public_source_commit": "9ec9430fe83aa5e8ad9c504f9627e185f3285c36",
+  "elf_sha256": "e32461ba94ce8d105ced09dd56ee82689f4fbdc4b8c8bdb15419e74a94b807f2",
+  "archive": "board-instrumented-stack-proof-e32461ba-20261019.tar.gz",
+  "archive_sha256": "81e2ee6262d43422385e4dc691661779d77a888fe20fe53964c946f2a8dae3ef",
+  "manifest_sha256": "8e502bea8ca2f403dcc432e2a35f74166297537c3701a30d0a5432d0f55cffb4",
+  "verifier_sha256": "9ef1933d22f827201eb0fad796c39596b606523c547908d3c72190f9edd844e6",
+  "conditional_bound_bytes": 3228,
+  "aligned_bound_bytes": 3232,
+  "declared_reserve_bytes": 8192,
+  "hardware_verified": false,
+  "flash_approved": false,
+  "transaction_bound_qualified": false
+}
