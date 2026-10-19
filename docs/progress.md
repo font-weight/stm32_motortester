@@ -1225,3 +1225,28 @@ fa9daee: scoped source/native PASS 9.85, P0/P1 нет в этой области
 полный integrated replay. Исторический REWORK 9.255 и новый отчёт сохранены
 в tests/stream-telemetry/reviews. Новый synthetic ELF 56cf7b05...b3e576
 имеет отдельный ещё проверяемый stack proof; аппаратная приёмка не заявлена.
+
+
+## 19.10.2026 — exact board diagnostic evidence и offline decoder
+
+Отдельный caller-board diagnostic ELF e32461ba94ce8d105ced09dd56ee82689f4fbdc4b8c8bdb15419e74a94b807f2
+собран из source31b9365 (public tree соответствует PR206); firmware build0x53545231.
+Исторические caller attestations не стали новыми аппаратными свидетельствами.
+Свежий условный stack/callback/ABI/data расчёт даёт3228/3232 байт, независимо
+перепроверен: scoped static PASS9.60 и crosscheckPASS9.65. Переносимый архив,
+reference и независимый отчёт включены в tests/stream-diagnostic-image.
+Root также повторил frozen replay. Резерв8192 — не измеренный high-water.
+
+Исправлен reviewer lexer, поглощавший addcc как machine bytes. Для прежнего
+PR204 воспроизводимая поправка9→10 visited instructions не изменила3164/3168;
+исторический архив не переписан. Новые proof используют исправленный parser.
+
+Dot A добавил offline decode_stream_diag.py: два136-byte дампа, ожидаемые
+build/generation/nonce, raw JSON, null для ненаблюдённых метрик и явные ограничения.
+Независимый review выявил и проверил исправление ложных semantic acceptances и
+блокирования на FIFO. Scoped offline PASS9.83; portable replay384 assertions,
+12 file checks и6 C-generated records прошёл у Critic и root. Linux execution
+не означает проверку Windows. История отрицательных результатов сохранена.
+
+Ни это свидетельство, ни decoder не разрешают прошивку. Windows STREAM collector,
+реальный опыт, qualified timing, аппаратная и общая приёмка остаются открытыми.

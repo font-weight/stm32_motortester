@@ -1,0 +1,42 @@
+[
+  {
+    "path": "HISTORY.json",
+    "bytes": 47445,
+    "sha256": "697f492d0bbd4236aca07d697a203b842dd276a3a3481413d0b9db25b4278366"
+  },
+  {
+    "path": "PROVENANCE.json",
+    "bytes": 2190,
+    "sha256": "b6c195c304de6bb0b4808d7267084c1e4ef6bfe361a732633418d6e07f384369"
+  },
+  {
+    "path": "README_RU.md",
+    "bytes": 4284,
+    "sha256": "4cd7102952999df693fae39212eda44f785e3403234c20003370d56f169710ac"
+  },
+  {
+    "path": "REVIEW_RU.md",
+    "bytes": 14042,
+    "sha256": "f7283b5ae055c4f794002a8a121dd9a2d597ce691c82d274931d85ce2cee2d3c"
+  },
+  {
+    "path": "check_decoder.py",
+    "bytes": 13194,
+    "sha256": "a170553a2d5898aa868f34c3fa31237d5ccaaa5d17888296ef553cfe79b63fbb"
+  },
+  {
+    "path": "check_filetypes.py",
+    "bytes": 2993,
+    "sha256": "eb175af2d2bd4fa8f2b4e3ab38d8f391c6b1343f9daf7bda1f0626902d7b0260"
+  },
+  {
+    "path": "emit_records.c",
+    "bytes": 1543,
+    "sha256": "f08e4b2233cd0d14391f81d9f306d4a3ae8e52eb20ef60cd945196964852c56c"
+  },
+  {
+    "path": "run.py",
+    "bytes": 6062,
+    "sha256": "c6b47eddd9e279d125a7b719c33d8b7aabc0457e383bcaee835c35ab85ba0a2f"
+  }
+]

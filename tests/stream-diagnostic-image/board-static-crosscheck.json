@@ -1,0 +1,41 @@
+{
+  "verdict": "CROSSCHECK_PASS",
+  "score": 9.65,
+  "rubric": {
+    "C1": 9.6,
+    "C2": 9.6,
+    "C3": 9.8,
+    "C4": 9.6,
+    "C5": 9.6
+  },
+  "P0": [],
+  "P1": [],
+  "scope": "Conditional exact board-image static stack/ABI/callback plus caller declaration data binding only",
+  "source_commit": "31b93659164dec376bea5b973b597196c6a4a0ad",
+  "elf_sha256": "e32461ba94ce8d105ced09dd56ee82689f4fbdc4b8c8bdb15419e74a94b807f2",
+  "manifest_sha256": "8e502bea8ca2f403dcc432e2a35f74166297537c3701a30d0a5432d0f55cffb4",
+  "frozen_files": 234,
+  "bound_bytes": 3228,
+  "rounded_reservation_bytes": 3232,
+  "fresh_independent_graph_calculation": true,
+  "automatic_numeric_transfer": false,
+  "historical_attestations_not_hardware_evidence": true,
+  "qualification_flags_still_false": true,
+  "code_production_edits": false,
+  "reports": [
+    "BOARD_STATIC_CROSSCHECK_RU.md"
+  ],
+  "report_sha256": "e8cc41cfeb9020c7b3e3cbd9171a8ba1b6741fbb51124796113ef3cafe3ac777",
+  "receipts": {
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/check_board_inputs.py": "05c53ee6a7f4b31207be9958af63fe687a40e6c97e4f5f03e68bb33af79a7da2",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/board-inputs.json": "249a431a8f1b8ce9e0f5a429fda0e5c3116f929918b1dfe2dfd7f1f345b32f4e",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/check_graph.py": "8a8f0d33cf2c8d7c1bd5e7364ff8331b32e4ef8123183fe074aabee2859a488d",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/crosscheck.json": "dba21f931ec4b20b84bac265aa0fb1ece01a005dcb345611e8acf0be8a36f771",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/board-abi-independent.json": "1ff66a708431b08b517b4bb3661dbfff314b15eb4c5dad0fdd354533c2e3e799",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/frozen-replay.stdout": "f3445ffb6556281a01a7b6d911f06b6df29df6e19af614a76f624892c8dfbedc",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/frozen-replay.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/check_board_rejections.py": "ce4f2e6ec3f1b362c03cfa0aa24c82bbee7f267869fb65f51c1103c5b6d1e96e",
+    "/tmp/stream-telemetry-independent-board-crosscheck-20261019/negative-board-data/receipt.json": "c1323f10b591a83861064a9ad5e0cde86a0fb7edecf5108eb4beacca4595d6bc"
+  },
+  "hardware_WCET_flash_approved": false
+}
