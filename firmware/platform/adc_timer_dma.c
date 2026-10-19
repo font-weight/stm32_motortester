@@ -321,11 +321,23 @@ static mt_adc_dma_result_t start(mt_adc_dma_t *d, const mt_adc_dma_start_guard *
         goto committed;
     }
     if (!guard) d->start_before_us = now(d);
-    wr(d, TIM_CR1, 1u);
-    d->start_after_us = now(d);
-    if (guard && !guard->allowed(guard->context)) {
+    if (guard && guard->timed_allowed &&
+        !guard->timed_allowed(guard->context, &d->start_before_us)) {
         commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
         goto committed;
+    }
+    wr(d, TIM_CR1, 1u);
+    if (guard && guard->timed_allowed) {
+        if (!guard->timed_allowed(guard->context, &d->start_after_us)) {
+            commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+            goto committed;
+        }
+    } else {
+        d->start_after_us = now(d);
+        if (guard && !guard->allowed(guard->context)) {
+            commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+            goto committed;
+        }
     }
     if ((uint32_t)(d->start_after_us - d->start_before_us) > MT_ADC_DMA_SAMPLE_US) {
         commit_fault = MT_ADC_DMA_FAULT_TIMEBASE;

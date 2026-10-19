@@ -46,10 +46,23 @@ static int start(void *context, uint32_t command_ms) {
     uint32_t before_us;
     uint32_t after_us;
     uint32_t delay;
-    before_us = d->io.now_us(d->io.user);
-    b->epoch_ms = b->now_ms(b->clock_context);
-    /* Bound clock correlation even if an interrupt delays either callback. */
-    after_us = d->io.now_us(d->io.user);
+    if (b->snapshot) {
+        uint32_t epoch_ms;
+        if (!b->snapshot(b->clock_context, &before_us, &epoch_ms)) {
+            record_failure(b, MT_ADC_START_SNAPSHOT, command_ms, 0u, 0u,
+                           0u, MT_ADC_DMA_OK);
+            return 0;
+        }
+        b->epoch_ms = epoch_ms;
+        /* Shared observation, not a claim that the callback takes zero time.
+         * Subsequent latency remains included in first_sample_delay_us. */
+        after_us = before_us;
+    } else {
+        before_us = d->io.now_us(d->io.user);
+        b->epoch_ms = b->now_ms(b->clock_context);
+        /* Bound correlation even if an interrupt delays either callback. */
+        after_us = d->io.now_us(d->io.user);
+    }
     if ((uint32_t)(after_us - before_us) > MT_ADC_DMA_SAMPLE_US) {
         record_failure(b, MT_ADC_START_CORRELATION, command_ms, before_us,
                        after_us, 0u, MT_ADC_DMA_OK);
@@ -81,13 +94,15 @@ static int start(void *context, uint32_t command_ms) {
 }
 static mt_control_result init(mt_adc_control *b,
     mt_control *c, mt_adc_dma_t *d, uint32_t (*now_ms)(void *context),
-    void *clock_context, uint32_t firmware_build, const mt_adc_dma_start_guard *guard) {
+    void *clock_context, uint32_t firmware_build, const mt_adc_dma_start_guard *guard,
+    int (*snapshot)(void *, uint32_t *, uint32_t *)) {
     mt_control_io io;
     if (!b || !c || !d || !now_ms || !d->initialized)
         return MT_CONTROL_ARGUMENT;
     b->control = c; b->driver = d; b->now_ms = now_ms;
     b->clock_context = clock_context; b->epoch_ms = 0;
     b->first_sample_delay_us = 0;
+    b->snapshot = snapshot;
     b->guarded = guard != NULL;
     b->guard = guard ? *guard : (mt_adc_dma_start_guard){0};
     io.profile_ready = profile; io.start = start; io.stop = stop;
@@ -97,14 +112,22 @@ static mt_control_result init(mt_adc_control *b,
 mt_control_result mt_adc_control_init(mt_adc_control *b,
     mt_control *c, mt_adc_dma_t *d, uint32_t (*now_ms)(void *context),
     void *clock_context, uint32_t firmware_build) {
-    return init(b, c, d, now_ms, clock_context, firmware_build, NULL);
+    return init(b, c, d, now_ms, clock_context, firmware_build, NULL, NULL);
 }
 mt_control_result mt_adc_control_init_guarded(mt_adc_control *b,
     mt_control *c, mt_adc_dma_t *d, uint32_t (*now_ms)(void *context),
     void *clock_context, uint32_t firmware_build, const mt_adc_dma_start_guard *guard) {
     if (!guard || !guard->enter || !guard->allowed || !guard->leave)
         return MT_CONTROL_ARGUMENT;
-    return init(b, c, d, now_ms, clock_context, firmware_build, guard);
+    return init(b, c, d, now_ms, clock_context, firmware_build, guard, NULL);
+}
+mt_control_result mt_adc_control_init_coherent_guarded(mt_adc_control *b,
+    mt_control *c, mt_adc_dma_t *d, uint32_t (*now_ms)(void *context),
+    void *clock_context, uint32_t firmware_build, const mt_adc_dma_start_guard *guard,
+    int (*snapshot)(void *, uint32_t *, uint32_t *)) {
+    if (!guard || !guard->enter || !guard->allowed || !guard->leave || !snapshot)
+        return MT_CONTROL_ARGUMENT;
+    return init(b, c, d, now_ms, clock_context, firmware_build, guard, snapshot);
 }
 mt_control_result mt_adc_control_service(mt_adc_control *b) {
     mt_adc_dma_block_t block;

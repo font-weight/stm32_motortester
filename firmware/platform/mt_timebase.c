@@ -108,6 +108,13 @@ uint32_t mt_timebase_now_ms(void *clock) {
     (void)mt_timebase_update(t);
     return t->ms;
 }
+int mt_timebase_snapshot(void *clock, uint32_t *us, uint32_t *ms) {
+    mt_timebase *t = clock;
+    if (!us || !ms || us == ms || !mt_timebase_update(t)) return 0;
+    *us = t->us;
+    *ms = t->ms;
+    return 1;
+}
 int mt_timebase_stop(mt_timebase *t) {
     if (!valid(t)) return 0;
     if (t->owns_timer) {

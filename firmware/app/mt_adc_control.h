@@ -12,7 +12,8 @@ typedef enum {
     MT_ADC_START_CORRELATION = 1,
     MT_ADC_START_COMMAND_TIME = 2,
     MT_ADC_START_DRIVER = 3,
-    MT_ADC_START_POSTCHECK = 4
+    MT_ADC_START_POSTCHECK = 4,
+    MT_ADC_START_SNAPSHOT = 5
 } mt_adc_start_stage;
 typedef struct {
     uint32_t magic, version, stage;
@@ -37,6 +38,11 @@ typedef struct {
     uint32_t epoch_ms, first_sample_delay_us;
     mt_adc_dma_start_guard guard;
     unsigned guarded;
+    /* Optional coherent same-observation pair. Fixed by init. Uses
+     * clock_context; returns 1 only
+     * for a freshly validated pair, or 0 on failure. Same clock as now_us/ms.
+     * NULL retains the standalone bounded triple-read correlation path. */
+    int (*snapshot)(void *context, uint32_t *us, uint32_t *ms);
 } mt_adc_control;
 /* driver was initialized with MMIO/time callbacks and verified nominal HSE.
  * now_ms and driver's now_us describe the SAME monotonic clock; each read has
@@ -57,6 +63,14 @@ mt_control_result mt_adc_control_init_guarded(mt_adc_control *binding,
     mt_control *control, mt_adc_dma_t *driver,
     uint32_t (*now_ms)(void *context), void *clock_context,
     uint32_t firmware_build, const mt_adc_dma_start_guard *guard);
+/* Explicit opt-in for a shared, freshly validated ms/us observation. Callback
+ * failure rejects start before touching the driver. All other init contracts
+ * apply; this does not change the driver's separate CEN timing bound. */
+mt_control_result mt_adc_control_init_coherent_guarded(mt_adc_control *binding,
+    mt_control *control, mt_adc_dma_t *driver,
+    uint32_t (*now_ms)(void *context), void *clock_context,
+    uint32_t firmware_build, const mt_adc_dma_start_guard *guard,
+    int (*snapshot)(void *context, uint32_t *us, uint32_t *ms));
 /* Call frequently enough to meet driver <2560us service budget, even with USB
  * backpressure. Reads at most one128-code block, no output write or busy wait.
  * Stop consuming the snapshot immediately when the controller freezes/stops it.
