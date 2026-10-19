@@ -15,7 +15,7 @@ jobs:
       github.repository == 'font-weight/stm32_motortester' &&
       github.event.repository.private == false &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'dot-a/stream-source-windows-r2-20261019' &&
+      github.head_ref == 'dot-a/stream-source-windows-r3-20261019' &&
       github.run_attempt == 1
     runs-on: windows-2022
     timeout-minutes: 25
@@ -23,8 +23,8 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: '4a7ddfc074ce4685f7a15536680a6777a06697ff'
-      SOURCE_TREE: '3ce428067727165e4f5a98418d265443d548bd45'
+      SOURCE_SHA: '5c0d8d64ef1a83fc5ffe2dad348356e48474aa58'
+      SOURCE_TREE: 'b0cd7d86831450df87b8e4458c72fb3be8ffa613'
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: '4a7ddfc074ce4685f7a15536680a6777a06697ff'
+          ref: '5c0d8d64ef1a83fc5ffe2dad348356e48474aa58'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
@@ -144,7 +144,7 @@ jobs:
           $env:PYTHONPATH = 'host;host/tests'
           $run = @'
           import base64, hashlib, json, os, pathlib, subprocess, sys
-          modules = 'test_stream_wire test_stream_endpoint test_stream_recording test_stream_session test_stream_view test_stream_bridge test_stream_controller test_stream_serial test_stream_provenance test_stream_diagnostic test_gui_stream test_gui_stream_controls'.split()
+          modules = 'test_stream_wire test_stream_endpoint test_stream_recording test_stream_session test_stream_view test_stream_bridge test_stream_controller test_stream_serial test_stream_provenance test_stream_diagnostic test_stream_diagnostic_invocation test_gui_stream test_gui_stream_controls'.split()
           root = pathlib.Path(os.environ['RUNNER_TEMP']) / ('stream-source-logs-' + os.environ['GITHUB_RUN_ID'] + '-' + os.environ['GITHUB_RUN_ATTEMPT'])
           root.mkdir(exist_ok=False)
           failures = []
