@@ -4,7 +4,7 @@ Ordinary admission remains SYNTHETIC-only. A separate exact image declaration
 can be rehearsed with explicit fake transport; it never admits physical use.
 Existing generic/synthetic identity strings keep their previous meaning.
 """
-from dataclasses import dataclass, fields
+from dataclasses import asdict, dataclass, fields
 
 
 DMA_DOMAIN = "completed-dma-v1"
@@ -89,6 +89,48 @@ def rehearsal_identity_metadata(declaration):
             f"rehearsal:{declaration.profile_id}:{declaration.source_commit}:{declaration.expected_build_id:08x}")
 
 
+PHYSICAL_DIAGNOSTIC_FORMAT = "motortester-str1-device-declaration-1"
+
+
+def physical_identity_metadata(declaration):
+    """Read-only prospective carrier. This does not enroll a runnable profile."""
+    declaration = admit_fake_diagnostic_declaration(declaration)
+    return (declaration.provenance_revision + "|" + declaration.accounting_domain,
+            declaration.artifact_sha256,
+            f"physical:{declaration.profile_id}:{declaration.source_commit}:{declaration.expected_build_id:08x}")
+
+
+def validate_physical_carrier(carrier):
+    """Pure schema check for explicitly declared device evidence, never admission.
+
+    Source tests supply fabricated dictionaries. No collector in this release
+    produces these records; a fake report cannot be relabeled through this API.
+    Observed negotiation can be absent. Matching observations do not identify the
+    executing binary, USB device or physical board.
+    """
+    if type(carrier) is not dict or set(carrier) != {"format", "mode", "origin", "selected_declaration",
+            "expected_negotiation", "observed_negotiation"}:
+        raise ProvenanceError("Physical carrier schema required")
+    expected = {"format": PHYSICAL_DIAGNOSTIC_FORMAT, "mode": "physical-declaration",
+                "origin": "device", "selected_declaration": asdict(STR1_DIAGNOSTIC_DECLARATION),
+                "expected_negotiation": {"build_id": 0x53545231, "caps": list(STR1_DIAGNOSTIC_CAPS)}}
+    # A canonical typed comparison forbids bool-as-int and mixed carrier fields.
+    def exact(actual, value):
+        if type(actual) is not type(value):
+            return False
+        if type(value) is dict:
+            return set(actual) == set(value) and all(exact(actual[k], v) for k, v in value.items())
+        if type(value) is list:
+            return len(actual) == len(value) and all(exact(a, v) for a, v in zip(actual, value))
+        return actual == value
+    if any(not exact(carrier[key], value) for key, value in expected.items()):
+        raise ProvenanceError("Unsupported or mixed physical carrier")
+    observed = carrier["observed_negotiation"]
+    if observed is not None and not exact(observed, expected["expected_negotiation"]):
+        raise ProvenanceError("Physical observed negotiation mismatch")
+    return STR1_DIAGNOSTIC_DECLARATION
+
+
 def admit_profile(profile):
     """Return only the exact immutable declaration; no partial/build-ID lookup."""
     expected = SYNTHETIC_DMA_PROFILE
@@ -122,10 +164,15 @@ def profile_for_identity(identity):
                                     identity.application_version)
     marked = ("dma-sequence" in (revision or "") or
               "completed-dma" in (revision or "") or
-              (producer or "").startswith(("producer:", "rehearsal:")))
+              (producer or "").startswith(("producer:", "rehearsal:", "physical:")))
     if not marked:
         return None
     rehearsal = STR1_DIAGNOSTIC_DECLARATION
+    if ((revision, artifact, producer) == physical_identity_metadata(rehearsal) and
+            identity.origin == "device" and type(identity.config_id) is int and
+            identity.config_id == rehearsal.config_id and type(identity.nominal_fs_hz) is int and
+            identity.nominal_fs_hz == rehearsal.nominal_fs_hz):
+        return rehearsal
     if ((revision, artifact, producer) == rehearsal_identity_metadata(rehearsal) and
             identity.origin == "synthetic" and identity.config_id == rehearsal.config_id and
             identity.nominal_fs_hz == rehearsal.nominal_fs_hz):
@@ -145,6 +192,16 @@ def provenance_text(identity):
         return (f"Прежняя декларация: protocol {identity.protocol_revision}; "
                 f"firmware {identity.firmware_version}; application {identity.application_version}. "
                 "Новый DMA-домен не заявлен; исходный смысл метаданных сохранён.")
+    if profile is STR1_DIAGNOSTIC_DECLARATION and identity.origin == "device":
+        return (f"Физическая ДЕКЛАРАЦИЯ {profile.profile_id}; origin device; домен {profile.accounting_domain}; "
+                f"revision {profile.provenance_revision}; compiled-local Git {profile.source_commit}; "
+                f"заявленный BIN SHA-256 {profile.artifact_sha256}. "
+                "Чтение декларации не разрешает физический запуск: текущий этап NOT_FLASH_APPROVED. "
+                "Этот reader не подтверждает прошитый образ, плату или реальное измерение; "
+                "HELLO/CAPS не аутентифицируют образ. ELF-derived digest не восстанавливает исходный BIN. "
+                "Счётчики относятся только к завершённым DMA-записям; ADC_DR overwrite, незавершённые "
+                "преобразования и пропущенные триггеры не охвачены. Неизвестный produced_end/loss остаётся "
+                "неизвестным. Индекс / номинальная Fs не является калиброванным физическим временем.")
     if profile is STR1_DIAGNOSTIC_DECLARATION:
         return (f"СИНТЕТИЧЕСКАЯ репетиция декларации {profile.profile_id}; фактический origin synthetic, "
                 f"предполагаемый origin device; NOT_FLASH_APPROVED. Домен {profile.accounting_domain}; "

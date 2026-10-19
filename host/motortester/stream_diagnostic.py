@@ -33,6 +33,7 @@ MODULES = ("stream_diagnostic.py", "stream_controller.py", "stream_serial.py",
            "stream_session.py", "stream_recording.py", "stream_provenance.py",
            "../tests/test_stream_controller.py", "../tests/test_stream_serial.py",
            "../tests/test_stream_diagnostic.py")
+INVOCATION_MODULES = MODULES + ("stream_diagnostic_invocation.py", "../tests/test_stream_diagnostic_invocation.py")
 _open_file = open
 
 
@@ -267,7 +268,7 @@ class DiagnosticRun:
     """
     def __init__(self, settings, *, fake_backend_factory, fake_origin, fixture_name,
                  event_config, limits=DiagnosticLimits(), clock_ns=time.monotonic_ns,
-                 fake_diagnostic_declaration=None):
+                 fake_diagnostic_declaration=None, invocation_selection=None):
         if type(settings) is not SerialSettings or type(event_config) is not EventConfig:
             raise ValueError("exact serial settings and event configuration required")
         settings.__post_init__(); event_config.__post_init__()
@@ -281,6 +282,14 @@ class DiagnosticRun:
         _text(fixture_name, 128)
         self._fake_diagnostic_declaration = (None if fake_diagnostic_declaration is None else
                                             admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
+        self._invocation_selection = None
+        if invocation_selection is not None:
+            from .stream_diagnostic_invocation import validate_selection, INVOCATION_LIMITS, FAKE_SETTINGS
+            selection = validate_selection(invocation_selection)
+            if (self._fake_diagnostic_declaration is None or limits != INVOCATION_LIMITS or
+                    settings != FAKE_SETTINGS):
+                raise ValueError("Invocation requires exact STR1 fake settings and limits")
+            self._invocation_selection = selection
         self._settings, self._limits = settings, limits
         self._factory, self._clock, self._config = fake_backend_factory, clock_ns, event_config
         self._fixture, self._run_id = fixture_name, uuid.uuid4().hex
@@ -296,6 +305,7 @@ class DiagnosticRun:
         self._connect_intent_ns = self._record_intent_return_ns = None
         self._stop_intent_ns = self._close_intent_ns = None
         self._export_status = ExportStatus()
+        self._export_evidence = self._export_proof = None
         self._metadata = None
 
     @property
@@ -476,6 +486,8 @@ class DiagnosticRun:
         handshake/preparation. It is not a START_ACK or device-time budget.
         """
         _text(recording_path, 4096)
+        if self._invocation_selection is not None and recording_path != self._invocation_selection.recording_path:
+            raise ValueError("Recording path differs from selected invocation")
         with self._lock:
             if self._started:
                 raise RuntimeError("one collect call per DiagnosticRun")
@@ -502,6 +514,10 @@ class DiagnosticRun:
                     "coverage": "raw backend callbacks plus sampled persistent controller state",
                     "source_hash_scope": "export-time HOST files and reference fake tests; not factory authentication",
                     "volatile_until_export": True}
+            if self._invocation_selection is not None:
+                meta["invocation"] = asdict(self._invocation_selection)
+                meta["base_commit"] = self._invocation_selection.bindings.source_commit
+                meta["base_tree"] = self._invocation_selection.bindings.source_tree
             self._metadata = _freeze_tree(meta)
             peer = SerialStreamPeer(self.settings, fake_backend_factory=self._backend_factory)
             self._controller = StreamController(peer, event_config=self._config, managed_peer=True,
@@ -519,7 +535,7 @@ class DiagnosticRun:
                 s = self._observe()
                 if self._stop.is_set() or self._trace_error or s.error:
                     break
-                if s.phase == "connected":
+                if s.phase == "connected" and (self._invocation_selection is None or self._now() < deadline):
                     connected = True
                     break
                 self._stop.wait(.001)
@@ -540,7 +556,11 @@ class DiagnosticRun:
             self.request_stop()
             deadline = (self._now() if self._stop_intent_ns is None else self._stop_intent_ns) + self.limits.drain_ms * 1000000
             while self._now() < deadline:
-                if self._settled_attempt(self._observe()):
+                settled = self._settled_attempt(self._observe())
+                if self._invocation_selection is not None and self._now() >= deadline:
+                    self._run_error = self._run_error or "drain_unresolved"
+                    break
+                if settled:
                     break
                 # Stop is already latched: do not busy-poll the set event.
                 time.sleep(.001)
@@ -555,7 +575,9 @@ class DiagnosticRun:
                 close_origin = self._close_intent_ns
                 remaining_ns = (self.limits.close_ms * 1000000 if close_origin is None else
                     max(0, close_origin + self.limits.close_ms * 1000000 - self._now()))
-                if not controller.join(remaining_ns / 1000000000):
+                joined = controller.join(remaining_ns / 1000000000)
+                if (not joined or (self._invocation_selection is not None and close_origin is not None and
+                        self._now() >= close_origin + self.limits.close_ms * 1000000)):
                     self._run_error = self._run_error or "cleanup_unresolved"
             try:
                 self._report = self._freeze()
@@ -588,6 +610,8 @@ class DiagnosticRun:
     def write_report(self, path):
         """One explicit asynchronous export of the immutable collect result."""
         _text(path, 4096)
+        if self._invocation_selection is not None and path != self._invocation_selection.report_path:
+            raise ValueError("Report path differs from selected invocation")
         if not self._done.is_set() or self._report is None:
             raise RuntimeError("collect must produce a frozen as-of report first")
         with self._lock:
@@ -600,11 +624,13 @@ class DiagnosticRun:
 
     def _export(self, path, report):
         synced = False
+        capture = report
         try:
+            capture_digest = _capture_sha256(capture)
             # These are export-time file observations, not authentication of
             # executed Python. The immutable capture itself stays unchanged.
             hashes = {}
-            for name in MODULES:
+            for name in (INVOCATION_MODULES if self._invocation_selection is not None else MODULES):
                 with _open_file(Path(__file__).parent / name, "rb") as source:
                     content = source.read(1024 * 1024 + 1)
                 if len(content) > 1024 * 1024:
@@ -629,10 +655,93 @@ class DiagnosticRun:
             complete = bool(json.loads(report.final)["trace_complete"] and
                             not json.loads(report.final)["run_error"])
             status = ExportStatus("verified", True, True, complete)
+            self._export_evidence = (capture, capture_digest, report, expected_file)
         except Exception as exc:
             status = ExportStatus("failed", synced, False, False, _error(exc))
         with self._lock:
             self._export_status = status
+
+
+    def owned_export_proof(self):
+        """Return runtime-owned evidence only after the export owner has settled.
+
+        This association prevents accidental receipt/capture substitution, not
+        hostile Python or post-readback filesystem changes. It cannot be rebuilt
+        from a footer, run ID, caller booleans or a fresh file reader.
+        """
+        with self._lock:
+            if (self._export_thread is None or self._export_thread.is_alive() or
+                    self._export_evidence is None):
+                return None
+            if self._export_proof is None:
+                self._export_proof = OwnedExportProof(_PROOF_SEAL, *self._export_evidence,
+                    replace(self._export_status, owner_settled=True))
+            return self._export_proof
+
+
+_PROOF_SEAL = object()
+
+
+@dataclass(frozen=True, slots=True, init=False)
+class OwnedExportProof:
+    """Opaque in-process association issued by the settled export owner only."""
+    _capture: DiagnosticReport
+    capture_sha256: str
+    _exported: DiagnosticReport
+    file_bytes: int
+    file_sha256: str
+    status: ExportStatus
+    _seal: object
+
+    def __init__(self, seal, capture, capture_sha256, exported, expected_file, status):
+        if seal is not _PROOF_SEAL:
+            raise TypeError("Only the settled diagnostic export owner issues proof")
+        for key, value in (("_capture", capture), ("capture_sha256", capture_sha256),
+                ("_exported", exported), ("file_bytes", expected_file[0]),
+                ("file_sha256", expected_file[1]), ("status", status), ("_seal", seal)):
+            object.__setattr__(self, key, value)
+
+
+def _capture_sha256(report):
+    digest = hashlib.sha256()
+    def add(value):
+        digest.update(len(value).to_bytes(8, "big")); digest.update(value)
+    add(report.metadata)
+    for row in report.callbacks:
+        add(_json(row.payload()))
+    for value in report.snapshots:
+        add(value)
+    add(report.final)
+    return digest.hexdigest()
+
+
+def validate_owned_export(report, proof):
+    """Pure evidence association check. No file access, waits or authority."""
+    if (type(report) is not DiagnosticReport or type(proof) is not OwnedExportProof or
+            proof._seal is not _PROOF_SEAL or proof._capture is not report or
+            proof.capture_sha256 != _capture_sha256(report)):
+        raise ValueError("No owned export for this exact frozen capture")
+    status = proof.status
+    if (type(status) is not ExportStatus or status.state != "verified" or
+            status.fsync_returned is not True or status.readback_verified is not True or
+            status.complete_receipt is not True or status.owner_settled is not True or
+            status.error is not None):
+        raise ValueError("Export is incomplete, failed or unsettled")
+    if (proof._exported.run_id != report.run_id or proof._exported.callbacks != report.callbacks or
+            proof._exported.snapshots != report.snapshots or proof._exported.final != report.final):
+        raise ValueError("Export content differs from frozen capture")
+    metadata, exported = json.loads(report.metadata), json.loads(proof._exported.metadata)
+    for key in ("module_sha256", "source_hash_observed_ns"):
+        metadata.pop(key, None); exported.pop(key, None)
+    if metadata != exported:
+        raise ValueError("Export metadata differs from capture")
+    # Recompute the exact deterministic serialization without opening any file.
+    class DigestSink:
+        def write(self, data):
+            return len(data)
+    if _write_report(DigestSink(), proof._exported, MAX_FILE) != (proof.file_bytes, proof.file_sha256):
+        raise ValueError("Export byte commitment differs from owned content")
+    return proof
 
 
 def _write_report(output, report, file_limit):
@@ -734,7 +843,8 @@ def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
                     if expected_run_id is not None and run_id != expected_run_id:
                         raise ValueError("unexpected run")
                     hashes = payload.get("module_sha256")
-                    if type(hashes) is not dict or set(hashes) != set(MODULES):
+                    source_modules = INVOCATION_MODULES if "invocation" in payload else MODULES
+                    if type(hashes) is not dict or set(hashes) != set(source_modules):
                         raise ValueError("source hash schema")
                     for value in hashes.values():
                         _hex(value, 32, length=32)
