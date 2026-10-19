@@ -14,7 +14,7 @@ A stream starts only after an explicit Preview or Record action. Opening a port
 or reading capabilities does not arm the ADC. During preview, Record selects the
 next whole validated DATA block after the host writer is ready. It records the
 actual first absolute sample index R; it does not claim R is the button timestamp
-or the first sample acquired by the device. If END/fault wins the race before the
+or the first completed-DMA sample in the generation. If END/fault wins the race before the
 next selected block arrives, report no recorded samples and no established R; do
 not fabricate a successful indexed interval. If Record is invoked without preview,
 prepare storage before START and select R=0. The receiver/storage boundary must
@@ -30,6 +30,67 @@ hysteresis and holdoff. Events may cross DATA boundaries. Missing prehistory,
 truncated tails, clipping and overlap remain visible. This is waveform-event
 navigation, not burn diagnosis, cylinder attribution or proof of a full physical
 spark. No external trigger or first-cylinder input is introduced.
+
+## 1.1 Explicit sample-accounting domain (proposed clarification)
+
+Domain identifier: `completed-dma-v1`. Document/provenance revision:
+`0.2-draft-dma-sequence-20261019`. These identifiers are not new wire fields.
+This clarification requires both teams' exact-version review before a real
+adapter changes its current conservative unknown-end mapping.
+
+The indexed source sequence contains only the channel's certified completed
+DMA halfword writes of ADC codes into its reserved sample storage. Index zero
+is the first such write after this generation's successful driver START,
+including writes completed before START_ACK is serialized or received. The ACK
+does not reset the source index. Each later completed write advances the source index once, whether or not the software
+queue or USB transport retains that sample. Do not renumber around a queue
+rejection, overwritten ring range, missing block or failed transport. Source
+cursor, queued prefix, serialized prefix and host-durable recording are distinct.
+
+A known `produced_end` is the final exclusive index of this completed-DMA
+sequence after the ownership barrier. It requires unbroken, validated counting
+and ring-ownership history from generation start through stop, checked u64
+arithmetic, and a certified no-future-write barrier. A stable final CNDTR alone
+is insufficient. If wrap/event history, count, clock, ownership or the final
+barrier is ambiguous, retain unknown/incomplete. Later cleanup or a matching
+modulo count cannot restore lost history. The present driver treats missed
+service, unexpected/both events, TE, ambiguous zero/reload and overflow as
+unknown rather than claiming an exact omitted range.
+
+For known ends, `produced_end - prefix_end` counts only completed-DMA samples
+missing from the serialized contiguous prefix. Queue-rejected blocks still
+contribute to the source count when its history remains certified. This number
+does not count unseen ADC conversions, ADC_DR overwrite before DMA, uncompleted
+DMA requests, missed triggers or physical time gaps. A conversion/request
+aborted by Stop before its DMA memory write is outside this sequence; excluding
+it does not establish a fully drained ADC/trigger interval. Whole-run absence
+of those physical losses requires separate acquisition evidence.
+
+No reason, unknown/incomplete flag, failed-quiescence condition or host writer
+failure is cleared merely because known DMA counters happen to be equal.
+A complete software recording means verified transport/storage accounting in
+this named domain, not complete physical sampling. Prefix CRC still covers
+[0,P); a recording selected during preview stores [R,P) with its separate CRC.
+Bookmarks, nominal index/Fs time and a visually continuous trace do not prove
+uniform physical timing or a complete spark.
+
+Real-device activation must bind the declared domain/revision durably to the
+selected firmware artifact/source manifest, its expected handshake build ID,
+the HOST boundary configuration and the saved recording. The build ID alone is
+not authenticated proof of a flashed binary; retain the actual image/readback
+provenance when available. Merely seeing wire0.2 must not silently assign this
+new interpretation to an unknown producer. Without an agreed matching profile,
+keep unknown accounting and visible uncertainty rather than claiming zero loss.
+The HOST must preserve the declaration on reopen and label completeness/loss
+as DMA-sequence accounting, with physical acquisition/timing qualification
+separate and nominal sample-time axis explicitly identified. Older archives
+retain their original domain/revision; they are never relabeled on load.
+
+This clarification does not change envelope versions, field offsets, reference
+frame bytes, index continuity checks, first-cause or deadline rules. Neither a
+new wire version nor an archive schema migration is implied by the identifiers;
+if existing provenance fields cannot preserve the distinction, activation stays
+blocked until an explicitly reviewed representation is available.
 
 ## 2. Framing and compatibility
 
@@ -166,7 +227,8 @@ the already-reserved START_FAILED response. Never acknowledge stopping a nonexis
 DATA count is 1..128, codes 0..4095. Full blocks contain128 samples; only the final
 block may be shorter. Start at index0 and require next.first_index=previous end;
 addition is checked without u64 wrap. No missing index, overlap or reordered block
-is repaired. Source index increments for actual acquired samples, not packet time.
+is repaired. Source index increments for certified completed-DMA writes in section1.1,
+not packet time.
 A missing block causes termination/recovery with the verified prefix retained.
 Host arrival timestamps must not be used to fill sample-time gaps.
 
@@ -179,7 +241,7 @@ STREAM_END has request=0 and these exact offsets:
 | 0 | 4 | generation |
 | 4 | 4 | config_id=1 |
 | 8 | 8 | prefix_end: exclusive index after last DATA serialized before END |
-| 16 | 8 | produced_end: exclusive acquired end, or zero when unknown flag set |
+| 16 | 8 | produced_end: exclusive completed-DMA sequence end, or zero when unknown flag set |
 | 24 | 4 | last_data_sequence, zero if no DATA |
 | 28 | 4 | prefix_crc32 over every raw little-endian sample from index0 to prefix_end |
 | 32 | 2 | reason |
@@ -199,8 +261,10 @@ flush. A matching received END plus checked prefix is stronger evidence than ACK
 On first acquisition fault: latch its cause, disable acquisition, retain the valid
 queued prefix and enter DRAINING. No later sampling or rearm in that generation.
 On user STOP: disable the trigger timer and stop DMA/ADC by the driver ownership
-barrier, then establish the stable DMA endpoint before collecting a final partial
-block. If the endpoint is ambiguous, set unknown/incomplete; never invent a count.
+barrier, then establish the stable DMA endpoint under section1.1's whole-history
+conditions before collecting a final partial block. This Stop may abort ADC work
+not yet committed by DMA; no all-trigger/all-conversion drain claim follows.
+If the endpoint is ambiguous, set unknown/incomplete; never invent a count.
 If stop quiescence fails, set bit2 and forbid clean STOP_ACK. This driver snapshot
 and partial-block handling require new implementation/tests; not proved by this doc.
 
@@ -430,7 +494,7 @@ an implicit same-session reset. Thus preview restarts with a fresh nonce/generat
 | FAULT_HARDWARE | bounded stop-barrier retry or validated power-reset startup | no ACK/new session/START until hardware quiescence is established |
 
 ERROR codes:1 invalid payload,2 bad state,3 stale generation,4 start failed,
-5 unsupported type. Reject invalid request without changing acquired samples;
+5 unsupported type. Reject invalid request without rewriting retained source samples;
 Stop rejection or any integrity/correlation fault requires host recovery.
 ERROR.generation is the admitted START attempt's request id once an attempt exists,
 including START_FAILED; it is zero before any admitted START in that connection.

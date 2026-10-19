@@ -129,6 +129,8 @@ def build():
              expected='whole_transaction_bound_must_prevent_this_not_just_callback_bound'),
     ]
     return dict(status='draft_reference_fixtures_not_endpoint_tests', wire='0.2',
+                accounting_domain='completed-dma-v1',
+                provenance_revision='0.2-draft-dma-sequence-20261019',
                 positive_frames=positive, negative_frames=negative, state_cases=cases,
                 device_transition_expectations=device_cases)
 
