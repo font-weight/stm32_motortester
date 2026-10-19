@@ -84,12 +84,47 @@ class DiagnosticTests(unittest.TestCase):
         self.release.append(release)
         return entered, release
 
-    def background(self, run):
+    def background(self, run, name="sample.mtstream"):
         result = []
-        thread = threading.Thread(target=lambda: result.append(self.collect(run)))
+        thread = threading.Thread(target=lambda: result.append(self.collect(run, name)))
         thread.start()
         self.addCleanup(lambda: thread.join(3))
         return result, thread
+
+    def collect_when_ready(self, run, expected_end, name="sample.mtstream"):
+        """Positive fixture: Stop follows observed R/data, never a short sleep.
+
+        These finite observation/cleanup budgets are test bounds, not an owner
+        scheduling guarantee or a change to the production protocol deadlines.
+        """
+        result, thread = self.background(run, name)
+        def ready():
+            status = run.snapshot()
+            controller = status.controller
+            bridge = None if controller is None else controller.bridge
+            session = None if bridge is None else bridge.session
+            if (status.trace_error or status.run_error or
+                    (controller is not None and controller.error) or
+                    (bridge is not None and bridge.endpoint_first_fault) or
+                    (session is not None and session.first_failure)):
+                self.fail("Unexpected failure before positive precondition: " + repr(status))
+            if not thread.is_alive():
+                self.fail("Collector returned before positive precondition: " + repr(status))
+            return (controller is not None and controller.phase == "recording" and
+                    session is not None and session.source_started and
+                    session.selected_start_sample_index == 0 and
+                    session.accepted_end_sample_index == expected_end)
+        try:
+            try:
+                wait_for(ready, timeout=4)
+            except AssertionError as exc:
+                self.fail(str(exc) + "; last status: " + repr(run.snapshot()))
+        finally:
+            run.request_stop()
+            thread.join(6)
+        self.assertFalse(thread.is_alive(), repr(run.snapshot()))
+        self.assertEqual(len(result), 1, repr(run.snapshot()))
+        return result[0]
 
     def test_construct_inert_explicit_fake_contract_and_one_run(self):
         run, factory = self.make()
@@ -161,14 +196,22 @@ class DiagnosticTests(unittest.TestCase):
                     return 0
                 return original(data)
             b.hooks["write"] = write
-        run, _ = self.make(configure, limits=DiagnosticLimits(connect_ms=200, run_ms=150, drain_ms=300, close_ms=200))
-        report = self.collect(run)
+        run, _ = self.make(configure, limits=DiagnosticLimits(
+            connect_ms=2000, run_ms=5000, drain_ms=4500, close_ms=1000))
+        report = self.collect_when_ready(run, 128)
         tx = [r for r in report.callbacks if r.kind == "write"]
         self.assertEqual(tx[0].accepted_count, 0)
         self.assertTrue(any(0 < r.accepted_count < len(r.offered) for r in tx))
         stream = b"".join(r.offered[:r.accepted_count] for r in tx)
         self.assertEqual([decoded(part + b"\0")[0] for part in stream.split(b"\0") if part], [1, 2, 8, 5])
         self.assertTrue(json.loads(report.final)["bridge"]["session"]["clean_completion_reported"])
+
+    def test_fragmented_ready_stop_survives_slow_owner_schedule(self):
+        from motortester import stream_controller
+        # Only the test process's owner wait is slowed. No clock/deadline moves;
+        # success still requires every original raw-prefix/finalization check.
+        with patch.object(stream_controller, "OWNER_POLL_SECONDS", .016):
+            self.test_fragmented_rx_zero_short_writes_are_exact()
 
     def test_unknown_invalid_exception_write_no_fabricated_zero_or_retry(self):
         for value in (None, -1, True, 999999, "bad", OSError("private text")):
@@ -301,12 +344,73 @@ class DiagnosticTests(unittest.TestCase):
         report = self.collect(run)
         self.assertFalse(any(c[0] == "write" for c in factory.calls))
         self.assertIsNone(json.loads(report.final)["bridge"])
-        run, _ = self.make(data=False)
-        report = self.collect(run, "empty.mtstream")
+        self.empty_recording()
+
+    def empty_recording(self, configure=None):
+        run, _ = self.make(configure, data=False, limits=DiagnosticLimits(
+            connect_ms=2000, run_ms=5000, drain_ms=4500, close_ms=1000))
+        report = self.collect_when_ready(run, 0, "empty.mtstream")
         session = json.loads(report.final)["bridge"]["session"]
         self.assertEqual(session["selected_start_sample_index"], 0)
         self.assertEqual(session["finalized_end_sample_index"], 0)
         self.assertTrue(session["clean_completion_reported"])
+
+    def test_empty_ready_stop_survives_delayed_caps_return(self):
+        def configure(backend):
+            original = backend.peer.read
+            calls = [0]
+            def read(maximum):
+                calls[0] += 1
+                if calls[0] == 2:
+                    # Adversarial delay, not the condition for a passing test.
+                    time.sleep(.060)
+                return original(maximum)
+            backend.peer.read = read
+        self.empty_recording(configure)
+
+    def test_short_run_budget_during_caps_keeps_no_start_or_R(self):
+        entered, release = self.hold()
+        stopped = threading.Event()
+        now = [0]
+        def configure(backend):
+            original = backend.peer.read
+            calls = [0]
+            def read(maximum):
+                calls[0] += 1
+                if calls[0] == 2:
+                    entered.set()
+                    if not release.wait(3):
+                        raise RuntimeError("finite CAPS barrier expired")
+                return original(maximum)
+            backend.peer.read = read
+        run, factory = self.make(configure, data=False, clock_ns=lambda: now[0])
+        original_stop = run.request_stop
+        def stop():
+            result = original_stop()
+            stopped.set()
+            return result
+        with patch.object(run, "request_stop", side_effect=stop):
+            result, thread = self.background(run)
+            try:
+                self.assertTrue(entered.wait(2), repr(run.snapshot()))
+                # Time advances only while CAPS is held. The unchanged 40 ms
+                # collector budget expires before the response may return.
+                now[0] = 41_000_000
+                self.assertTrue(stopped.wait(2), repr(run.snapshot()))
+            finally:
+                run.request_stop()
+                release.set()
+                thread.join(3)
+        self.assertFalse(thread.is_alive(), repr(run.snapshot()))
+        self.assertEqual(len(result), 1)
+        final = json.loads(result[0].final)
+        session = final["bridge"]["session"]
+        self.assertEqual([command[0] for command in factory.backends[0].peer.commands], [1, 2])
+        self.assertEqual(final["stop_intent_ns"] - final["record_intent_return_ns"], 41_000_000)
+        self.assertIsNone(final["bridge"]["endpoint_first_fault"])
+        self.assertFalse(session["source_started"])
+        self.assertIsNone(session["selected_start_sample_index"])
+        self.assertFalse(session["clean_completion_reported"])
 
     def test_open_failure_cleanup_failure_retains_owner_for_explicit_retry(self):
         run, factory = self.make(lambda b: (setattr(b, "open_fail", True), setattr(b, "close_fail", True)),
