@@ -41,24 +41,34 @@ class SerialStreamPeer:
 
     backend_factory is the existing SerialTransport test seam. The factory and
     transport are invoked/created only by the receiver's explicit open action.
+    fake_backend_factory is an exclusive explicit fake-rehearsal contract; it
+    never falls back to the default factory or authenticates injected Python.
     There is no scan, retry, reconnect, flush, reset or recovery-proof API.
     """
-    def __init__(self, settings: SerialSettings, *, backend_factory=None):
+    def __init__(self, settings: SerialSettings, *, backend_factory=None, fake_backend_factory=None):
         if type(settings) is not SerialSettings:
             raise TransportArgumentError("Exact immutable SerialSettings required")
         settings.__post_init__()
         if backend_factory is not None and not callable(backend_factory):
             raise TransportArgumentError("Backend factory must be callable")
+        if fake_backend_factory is not None and (not callable(fake_backend_factory) or backend_factory is not None):
+            raise TransportArgumentError("Explicit fake factory must be callable and exclusive")
         self._settings = settings
         self.initial_status = SerialPeerStatus(settings.port)
         self._status = self.initial_status
-        self._factory = backend_factory
+        self._fake_backend_selected = fake_backend_factory is not None
+        self._factory = fake_backend_factory if self._fake_backend_selected else backend_factory
         self._transport = None
         self._owner_id = None
 
     @property
     def settings(self):
         return self._settings
+
+    @property
+    def fake_backend_selected(self):
+        """Explicit caller contract, not authentication of arbitrary Python."""
+        return self._fake_backend_selected
 
     def _owner(self):
         current = threading.get_ident()

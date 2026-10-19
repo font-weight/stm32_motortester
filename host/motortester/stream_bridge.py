@@ -12,7 +12,9 @@ from .stream_model import (FailureEvidence, StreamBlock, StreamError,
                            StreamIdentity, StreamPreparation, StreamTerminal,
                            require, text)
 from .stream_recording import PreparedStreamWriter, StreamLimits
-from .stream_provenance import admit_profile, validate_negotiation
+from .stream_provenance import (ProvenanceError, admit_profile, validate_negotiation,
+                               admit_fake_diagnostic_declaration,
+                               validate_fake_diagnostic_negotiation, rehearsal_identity_metadata)
 from .stream_session import (JobCompletion, JobFailure, SessionLimits,
                              SourceEnd, SourceStarted, StopAcknowledgement,
                              StreamSession)
@@ -259,6 +261,8 @@ class BridgeSnapshot:
     late_fault: FailureEvidence | None
     closed: bool
     mailbox: MailboxState | None
+    accepted_build_id: int | None = None
+    accepted_caps: tuple[int, ...] | None = None
 
 
 class StreamBridge:
@@ -267,14 +271,20 @@ class StreamBridge:
     Normalized observations and storage completions are not public inputs. Bytes
     reach the session only through this owned endpoint. Snapshots are observations,
     not mutable control handles. The caller supplies integral monotonic ms.
+    fake_diagnostic_declaration selects only synthetic rehearsal interpretation;
+    this transport-free component cannot authenticate a caller's byte source.
     """
     def __init__(self, attempt_id, *, session_limits=SessionLimits(), storage_limits=StreamLimits(),
-                 producer_profile=None):
+                 producer_profile=None, fake_diagnostic_declaration=None):
         text(attempt_id, 128)
         require(type(session_limits) is SessionLimits and type(storage_limits) is StreamLimits,
                 "Exact limits required")
         session_limits.__post_init__()
         storage_limits.__post_init__()
+        self._fake_diagnostic_declaration = (None if fake_diagnostic_declaration is None else
+                                            admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
+        if self._fake_diagnostic_declaration is not None and producer_profile is not None:
+            raise ProvenanceError("Нельзя смешивать producer profile и fake-rehearsal declaration")
         self._producer_profile = None if producer_profile is None else admit_profile(producer_profile)
         self._owner_thread = get_ident()
         self._attempt_id, self._limits, self._storage_limits = attempt_id, session_limits, storage_limits
@@ -358,7 +368,11 @@ class StreamBridge:
             if (self._session is not None and self._session.snapshot().finalization_started and
                     isinstance(event, (wire.Started, wire.ValidatedData, wire.ValidatedEnd, wire.StopAcknowledged))):
                 continue  # The already-issued terminal job is immutable.
-            if isinstance(event, wire.WriteOffer):
+            if isinstance(event, wire.Pending) and event.kind == Kind.HELLO:
+                # Clear only for an actually admitted new handshake. A refused
+                # HELLO cannot erase accepted evidence from the current attempt.
+                self._build = self._caps = None
+            elif isinstance(event, wire.WriteOffer):
                 self._active_offer = event
             elif isinstance(event, wire.Negotiated):
                 self._build = event.firmware_build
@@ -479,6 +493,9 @@ class StreamBridge:
         if self._producer_profile is not None:
             require(self._build is not None and self._caps is not None, "Validated negotiation required")
             validate_negotiation(self._producer_profile, self._build, self._caps)
+        if self._fake_diagnostic_declaration is not None:
+            validate_fake_diagnostic_negotiation(self._fake_diagnostic_declaration,
+                                                self._build, self._caps)
         events = self._endpoint.plan_start(self._now)
         self._events(events)
         plans = [x for x in events if isinstance(x, wire.StartPlan)]
@@ -487,6 +504,8 @@ class StreamBridge:
         caps = self._plan.capabilities
         metadata = ("0.2-draft-081721", "build:" + format(self._build, "08x"),
                     "isolated-stream-bridge") if self._producer_profile is None else self._producer_profile.identity_metadata
+        if self._fake_diagnostic_declaration is not None:
+            metadata = rehearsal_identity_metadata(self._fake_diagnostic_declaration)
         self._identity = StreamIdentity("wire-0.2:" + format(self._plan.nonce, "016x"),
             self._plan.generation, caps.config_id, caps.fs_num // caps.fs_den,
             "synthetic", *metadata)
@@ -636,4 +655,7 @@ class StreamBridge:
             ep.received_end, ep.received_crc32, ep.terminal, ep.first_fault, ep.last_recovery,
             ep.ordinary, ep.stop_pending, None if self._job is None else self._job.operation_id,
             self._late_fault, self._closed,
-            None if self._storage is None else self._storage.snapshot())
+            None if self._storage is None else self._storage.snapshot(),
+            self._build, None if self._caps is None else
+            tuple(getattr(self._caps, name) for name in ("config_id", "profile", "channel", "adc_bits",
+                                                        "fs_num", "fs_den", "max_block", "flags")))

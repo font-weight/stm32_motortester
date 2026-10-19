@@ -20,9 +20,10 @@ from .stream_controller import StreamController
 from .stream_recording import StreamLimits
 from .stream_serial import SerialSettings, SerialStreamPeer
 from .stream_view import EventConfig
+from .stream_provenance import admit_fake_diagnostic_declaration, STR1_DIAGNOSTIC_CAPS
 
-BASE_COMMIT = "91778fcbb63f86a6bbf28567bbfbdced888b21f7"
-BASE_TREE = "749ad8e771bd4522cb844ca7500b518960b40f9c"
+BASE_COMMIT = "db124e280ca020dd6af8356eadd2fdd45a7f9ae2"
+BASE_TREE = "63a88e0b15b63da601642ba87dacdb7e612d9d66"
 FORMAT = "motortester-fake-callback-trace-1"
 MAX_CALLBACKS, MAX_RAW, MAX_SNAPSHOTS = 16384, 4 * 1024 * 1024, 128
 MAX_FILE, MAX_LINE, MAX_METADATA = 32 * 1024 * 1024, 32768, 8192
@@ -222,7 +223,7 @@ def _summary(status, observed_ns):
     if bridge is not None:
         fields = ("identity", "source_received_end", "source_prefix_crc32", "source_terminal",
                   "endpoint_first_fault", "recovery", "pending_start", "pending_stop",
-                  "late_fault", "closed", "storage", "mailbox")
+                  "late_fault", "closed", "storage", "mailbox", "accepted_build_id", "accepted_caps")
         values = {}
         for name in fields:
             value = getattr(bridge, name)
@@ -248,6 +249,8 @@ def _transition(status):
     b = status.bridge
     s = None if b is None else b.session
     return (status.phase, status.error, None if status.serial is None else status.serial.state,
+            None if b is None else b.accepted_build_id,
+            None if b is None else b.accepted_caps,
             None if b is None else b.endpoint_first_fault,
             None if b is None else b.source_terminal,
             None if s is None else s.selected_start_sample_index,
@@ -263,7 +266,8 @@ class DiagnosticRun:
     owner. Arbitrary injected Python is trusted, not authenticated or sandboxed.
     """
     def __init__(self, settings, *, fake_backend_factory, fake_origin, fixture_name,
-                 event_config, limits=DiagnosticLimits(), clock_ns=time.monotonic_ns):
+                 event_config, limits=DiagnosticLimits(), clock_ns=time.monotonic_ns,
+                 fake_diagnostic_declaration=None):
         if type(settings) is not SerialSettings or type(event_config) is not EventConfig:
             raise ValueError("exact serial settings and event configuration required")
         settings.__post_init__(); event_config.__post_init__()
@@ -275,6 +279,8 @@ class DiagnosticRun:
         if not callable(fake_backend_factory) or not callable(clock_ns):
             raise ValueError("explicit fake factory and clock required")
         _text(fixture_name, 128)
+        self._fake_diagnostic_declaration = (None if fake_diagnostic_declaration is None else
+                                            admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
         self._settings, self._limits = settings, limits
         self._factory, self._clock, self._config = fake_backend_factory, clock_ns, event_config
         self._fixture, self._run_id = fixture_name, uuid.uuid4().hex
@@ -480,15 +486,27 @@ class DiagnosticRun:
                     "module_sha256": {}, "source_hash_observed_ns": None, "settings": asdict(self.settings), "limits": asdict(self.limits),
                     "utc_label": datetime.now(timezone.utc).isoformat(), "python": platform.python_version(),
                     "platform": platform.system(), "producer_profile": None,
+                    "selected_declaration": (None if self._fake_diagnostic_declaration is None else
+                                             asdict(self._fake_diagnostic_declaration)),
+                    "expected_negotiation": (None if self._fake_diagnostic_declaration is None else
+                                             {"build_id": self._fake_diagnostic_declaration.expected_build_id,
+                                              "caps": STR1_DIAGNOSTIC_CAPS}),
+                    "flash_status": (None if self._fake_diagnostic_declaration is None else "NOT_FLASH_APPROVED"),
+                    "rehearsal_notice": (None if self._fake_diagnostic_declaration is None else
+                        "Synthetic rehearsal of an intended device declaration; NOT_FLASH_APPROVED. "
+                        "Completed-DMA records exclude ADC_DR overwrites, unfinished conversions and missed triggers. "
+                        "Index / nominal Fs is not calibrated physical time. Unknown produced_end/loss stay unknown. "
+                        "Accepted HELLO/CAPS do not authenticate an executing image."),
                     "firmware_image": None, "usb_identity": None, "telemetry": None,
                     "clock": "injected monotonic_ns; controller uses integer ns//1000000",
                     "coverage": "raw backend callbacks plus sampled persistent controller state",
                     "source_hash_scope": "export-time HOST files and reference fake tests; not factory authentication",
                     "volatile_until_export": True}
             self._metadata = _freeze_tree(meta)
-            peer = SerialStreamPeer(self.settings, backend_factory=self._backend_factory)
+            peer = SerialStreamPeer(self.settings, fake_backend_factory=self._backend_factory)
             self._controller = StreamController(peer, event_config=self._config, managed_peer=True,
-                storage_limits=StreamLimits(2 * 1024 * 1024, 16384), clock=lambda: self._now() // 1000000)
+                storage_limits=StreamLimits(2 * 1024 * 1024, 16384), clock=lambda: self._now() // 1000000,
+                fake_diagnostic_declaration=self._fake_diagnostic_declaration)
             controller = self._controller
             connect_at = self._now()
             if not self._stop.is_set():
