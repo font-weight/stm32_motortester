@@ -1,0 +1,26 @@
+{
+  "production_commit": "b6d127385e0a666e8ea78b7b872b9c638befb826",
+  "level": "native register model and isolated production legacy adapter",
+  "compiler": "GCC 14.2.0",
+  "driver_groups": 25,
+  "valid_forward_cases": 1536,
+  "invalid_flag_count_cases": 3616,
+  "selected_mutations_killed": 9,
+  "source_sha256": {
+    "firmware/platform/adc_timer_dma.c": "efa9ae38a0b26ddc38b59fae17b0fcd859093694e6a3701b3516e3c9294e340d",
+    "firmware/platform/adc_timer_dma.h": "09ddf6894143475dba83441228dbd0ba03ae4fba56416a54152832e9797b0365",
+    "firmware/app/mt_adc_control.c": "9530136226ab50fcfcdd691c6f136f5f7afd30dfc218dd7cfc4992d14f4f21f8"
+  },
+  "package_sha256": {
+    "README.md": "d64061dc9ddf3a4b69c9adcda86d6464a405aa9250aee3d4966be1c14ce35e46",
+    "mutations.py": "76d87d38fe1fde814a36e771febb49d9d14135f08ed223eb55299e7109d3eead",
+    "run.py": "a128ccd98bde3d3e19d2681f74d38154cf626d073bca99254459ad923586707a",
+    "test_legacy_narrowing.c": "3cd3e025ba4bf3a9046b0a9adca59290cdd0a09b2ac1e6936e557792bad35cec",
+    "test_stop_certificate.c": "b8761aa9fc22891adedbf3026d15c5a21fdae1a65eb702078da4c2fe670e350a"
+  },
+  "sanitizer_options": {
+    "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1",
+    "compile_flag": "-fno-sanitize-recover=all"
+  }
+}
