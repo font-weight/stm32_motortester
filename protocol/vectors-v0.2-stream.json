@@ -1,6 +1,8 @@
 {
   "status": "draft_reference_fixtures_not_endpoint_tests",
   "wire": "0.2",
+  "accounting_domain": "completed-dma-v1",
+  "provenance_revision": "0.2-draft-dma-sequence-20261019",
   "positive_frames": [
     {
       "name": "hello",
