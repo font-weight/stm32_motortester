@@ -6,6 +6,7 @@ carrier dictionaries below are fabricated schemas, never a physical report.
 from copy import deepcopy
 from dataclasses import asdict, fields, replace
 import hashlib
+import io
 import json
 from pathlib import Path
 import subprocess
@@ -63,6 +64,25 @@ def parent(tree, path):
     for key in path[:-1]:
         tree = tree[key]
     return tree
+
+
+def operational_inputs(root, name="sample"):
+    """Conspicuously fabricated approval/identity values, never real authority."""
+    old = selection(root, name)
+    digest = lambda text: hashlib.sha256(text.encode("ascii")).hexdigest()
+    chosen = invocation.PhysicalSelection(old.invocation_id, old.association,
+        old.recording_path, old.report_path,
+        invocation.HostFreeze("1" * 40, "2" * 40, invocation.observed_source_hashes()),
+        digest("fabricated package"), digest("fabricated EXE"),
+        invocation.ReadbackIdentity(digest("fabricated separate readback"),
+            "fabricated byte extent 0..4095; not observed hardware", "fabricated-readback-fixture"))
+    selected = invocation.selection_digest(chosen)
+    deployed = invocation.DeploymentRecord(chosen, selected,
+        invocation.DecisionReference("fabricated:A-final-test-only", digest("fabricated A decision")),
+        invocation.DecisionReference("fabricated:owner-test-only", digest("fabricated owner decision")),
+        invocation.DEPLOYED_STAGE)
+    confirmed = invocation.OperatorConfirmation("fabricated-test-operator", chosen.invocation_id, selected)
+    return chosen, deployed, confirmed
 
 
 class InvocationTests(unittest.TestCase):
@@ -570,6 +590,598 @@ class InvocationTests(unittest.TestCase):
             diagnostic.DiagnosticRun(invocation.FAKE_SETTINGS, fake_backend_factory=factory(),
                 fake_origin="synthetic-fake", fixture_name="generic", event_config=CONFIG,
                 limits=invocation.INVOCATION_LIMITS, invocation_selection=selected)
+
+
+class OperationalSeamTests(unittest.TestCase):
+    """Only inspected injected bytes; the real factory is always a tripwire."""
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="str1-operational-fake-")
+        self.root = Path(self.temp.name)
+        self.runs = []
+        self.guard = patch("motortester.transport._serial_factory",
+                           side_effect=AssertionError("Real serial forbidden"))
+        self.real_factory = self.guard.start()
+
+    def tearDown(self):
+        for run, fake in self.runs:
+            for backend in fake.backends:
+                backend.close_fail = False
+            run.close()
+            deadline = time.monotonic() + 3
+            while not run.join(.01) and time.monotonic() < deadline:
+                run.retry_close()  # Test cleanup only; never another acquisition.
+            self.assertTrue(run.join(0), "retained fake owner did not settle")
+        self.real_factory.assert_not_called()
+        self.guard.stop()
+        self.temp.cleanup()
+
+    def make(self, *, configure=None, reason=0, data=True):
+        from test_stream_serial import FakeBackend
+        class ObservedDtrBackend(FakeBackend):
+            @property
+            def dtr(self):
+                return getattr(self, "requested_dtr", None)
+            @dtr.setter
+            def dtr(self, value):
+                self._call("dtr", (value, self.is_open, self.port))
+                if getattr(self, "dtr_fail", False):
+                    raise OSError("fabricated DTR setup failure")
+                self.requested_dtr = value
+        def setup(backend):
+            backend.__class__ = ObservedDtrBackend
+            if configure:
+                configure(backend)
+        fake = factory(reason=reason, data=data, configure=setup)
+        run = diagnostic._PhysicalDiagnosticRun(invocation.SerialSettings("COM7", 230400, 0, .025),
+            context=provenance.PhysicalDiagnosticContext("injected-test"),
+            backend_factory=fake, fixture_name="fabricated operational source fixture", event_config=CONFIG)
+        self.runs.append((run, fake))
+        return run, fake
+
+    def capture(self, run, name="sample", expected=128):
+        results, errors = [], []
+        def collect():
+            try:
+                results.append(run.collect() if isinstance(run, invocation.PhysicalInvocation) else
+                               run.collect(str(self.root / (name + ".mtstream"))))
+            except BaseException as exc:
+                errors.append(exc)
+        thread = threading.Thread(target=collect)
+        thread.start()
+        try:
+            def ready():
+                if errors or not thread.is_alive():
+                    raise AssertionError((errors, results))
+                status = run.snapshot().controller
+                return (status is not None and status.phase == "recording" and
+                        status.bridge.session.source_started and
+                        status.bridge.session.accepted_end_sample_index == expected)
+            wait_for(ready, timeout=4)
+        finally:
+            run.request_stop()
+            thread.join(7)
+        self.assertFalse(thread.is_alive())
+        self.assertEqual(errors, [])
+        self.assertEqual(len(results), 1)
+        return results[0]
+
+    def export(self, run, name="trace"):
+        path = self.root / (name + ".jsonl")
+        run.write_report(str(path))
+        self.assertTrue(run.join(3))
+        checked = diagnostic.read_report(path)
+        self.assertTrue(checked.complete, checked.error)
+        return checked
+
+    def test_inert_real_and_explicit_test_construction_and_controller_guards(self):
+        from motortester.stream_controller import StreamController
+        from motortester.stream_serial import SerialStreamPeer
+        settings = invocation.SerialSettings("COM7", 230400, 0, .025)
+        context = provenance.PhysicalDiagnosticContext("physical")
+        with patch("threading.Thread") as workers, patch.object(diagnostic, "_open_file") as files:
+            real = diagnostic._PhysicalDiagnosticRun(settings, context=context, event_config=CONFIG)
+            self.assertIsNone(real.snapshot().controller)
+            with self.assertRaises(ValueError):
+                diagnostic._PhysicalDiagnosticRun(settings, context=context,
+                    backend_factory=factory(), event_config=CONFIG)
+            with self.assertRaises(ValueError):
+                diagnostic._PhysicalDiagnosticRun(settings,
+                    context=provenance.PhysicalDiagnosticContext("injected-test"), event_config=CONFIG)
+            for peer, options in ((SerialStreamPeer(settings, fake_backend_factory=factory()), {}),
+                    (SerialStreamPeer(settings), {}),
+                    (SerialStreamPeer(settings, backend_factory=factory()),
+                     {"fake_diagnostic_declaration": provenance.STR1_DIAGNOSTIC_DECLARATION})):
+                with self.assertRaises(ValueError):
+                    StreamController(peer, event_config=CONFIG, managed_peer=True,
+                        physical_diagnostic_context=context, **options)
+            workers.assert_not_called(); files.assert_not_called()
+
+    def test_full_nonfake_seam_dtr_owned_export_and_synthetic_reopen(self):
+        from motortester.stream_recording import recover_attempt
+        run, fake = self.make()
+        report = self.capture(run)
+        checked = self.export(run)
+        self.assertIs(diagnostic.validate_owned_export(report, run.owned_export_proof()), run.owned_export_proof())
+        self.assertFalse(run._controller._peer.fake_backend_selected)
+        metadata, final = json.loads(report.metadata), json.loads(report.final)
+        self.assertEqual(metadata["format"], diagnostic.FORMAT)
+        self.assertEqual(metadata["origin"], "synthetic-fake")
+        self.assertEqual(metadata["physical_context"]["execution_kind"], "injected-test")
+        self.assertFalse(metadata["external_authority_verified"])
+        self.assertIsNone(metadata["usb_identity"])
+        self.assertIsNone(metadata["dtr_electrical_observation"])
+        identity = final["bridge"]["identity"]
+        self.assertEqual(identity["origin"], "synthetic")
+        self.assertTrue(identity["application_version"].startswith("rehearsal:"))
+        self.assertFalse(final["bridge"]["session"]["clean_completion_reported"])
+        self.assertIsNone(final["bridge"]["source_terminal"]["terminal"]["produced_end"])
+        reader = recover_attempt(self.root / "sample.mtstream")
+        self.assertEqual(reader.preparation.identity.origin, "synthetic")
+        kinds = [call[0] for call in fake.calls]
+        self.assertEqual(kinds.count("factory"), 1)
+        self.assertLess(kinds.index("dtr"), kinds.index("open"))
+        dtr = next(call for call in fake.calls if call[0] == "dtr")
+        self.assertEqual(dtr[2], (True, False, "COM7"))
+        self.assertEqual(len({call[1] for call in fake.calls}), 1)
+        self.assertIn("dtr", [row.kind for row in report.callbacks])
+        header = json.loads(checked.records[0])["payload"]
+        self.assertEqual(set(header["module_sha256"]), set(diagnostic.PHYSICAL_MODULES))
+
+    def test_dtr_setup_failure_is_recorded_and_closed_without_open(self):
+        run, fake = self.make(configure=lambda backend: setattr(backend, "dtr_fail", True))
+        report = run.collect(str(self.root / "never-started.mtstream"))
+        checked = self.export(run)
+        self.assertTrue(checked.complete)
+        self.assertNotIn("open", [call[0] for call in fake.calls])
+        self.assertIn("close", [call[0] for call in fake.calls])
+        self.assertFalse(fake.backends[0].is_open)
+        dtr = next(row for row in report.callbacks if row.kind == "dtr")
+        self.assertEqual((dtr.outcome, dtr.error_type), ("exception", "OSError"))
+        final = json.loads(report.final)
+        self.assertIsNotNone(final["serial"]["first_error"])
+        self.assertFalse(run.snapshot().export.complete_receipt)
+        self.assertFalse((self.root / "never-started.mtstream").exists())
+
+    def test_already_open_factory_object_is_closed_before_dtr_or_open(self):
+        run, fake = self.make(configure=lambda backend: setattr(backend, "is_open", True))
+        report = run.collect(str(self.root / "already-open.mtstream"))
+        self.export(run)
+        kinds = [call[0] for call in fake.calls]
+        self.assertNotIn("dtr", kinds); self.assertNotIn("open", kinds)
+        self.assertIn("close", kinds)
+        self.assertIsNotNone(json.loads(report.final)["serial"]["first_error"])
+
+    def test_dtr_and_cleanup_failure_preserve_both_and_retained_owner(self):
+        def configure(backend):
+            backend.dtr_fail = backend.close_fail = True
+        run, fake = self.make(configure=configure)
+        report = run.collect(str(self.root / "failed-close.mtstream"))
+        final = json.loads(report.final)
+        self.assertIsNotNone(final["serial"]["first_error"])
+        self.assertIsNotNone(final["serial"]["close_error"])
+        self.assertFalse(final["serial"]["handle_settled"])
+        self.assertTrue(final["serial_unresolved"])
+        self.assertEqual({row.kind for row in report.callbacks if row.outcome == "exception"}, {"dtr", "close"})
+        self.assertNotIn("open", [call[0] for call in fake.calls])
+        self.assertIsNotNone(run._controller)
+
+    def test_strict_physical_test_header_and_carrier_pairing(self):
+        run, _ = self.make()
+        report = self.capture(run)
+        self.export(run)
+        header, final = json.loads(report.metadata), json.loads(report.final)
+        context = diagnostic._report_context(header)
+        diagnostic._summary_context(final, context)
+        for field, value in (("format", diagnostic.PHYSICAL_FORMAT), ("origin", "device"),
+                             ("dtr_request", True), ("external_authority_verified", True)):
+            mutated = deepcopy(header); mutated[field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                diagnostic._report_context(mutated)
+        fabricated = deepcopy(header)
+        fabricated["format"], fabricated["origin"] = diagnostic.PHYSICAL_FORMAT, "device"
+        fabricated["physical_context"]["execution_kind"] = "physical"
+        selected, deployed, confirmed = operational_inputs(self.root, "fabricated-schema")
+        fabricated["physical_selection"] = {"deployment": invocation.deployment_payload(deployed),
+                                            "confirmation": asdict(confirmed)}
+        fabricated["base_commit"], fabricated["base_tree"] = selected.host.commit, selected.host.tree
+        fabricated["module_sha256"] = dict(selected.host.module_sha256)
+        physical = diagnostic._report_context(fabricated)
+        with self.assertRaises(ValueError):
+            diagnostic._summary_context(final, physical)
+        fabricated.pop("physical_context")
+        with self.assertRaises(ValueError):
+            diagnostic._report_context(fabricated)
+
+    def make_invocation(self, name="sample", *, reason=0, configure=None, data=True):
+        selected, deployed, confirmed = operational_inputs(self.root, name)
+        # Reuse the inspected DTR/encoded-byte fake, with one new shared owner.
+        core, fake = self.make(reason=reason, configure=configure, data=data)
+        self.runs.remove((core, fake))
+        run = invocation.PhysicalInvocation.for_rehearsal(selected, deployment=deployed,
+            confirmation=confirmed, event_config=CONFIG, fake_backend_factory=fake,
+            fixture_name="fabricated complete operational API fixture")
+        self.runs.append((run._run, fake))
+        return run, fake, deployed, confirmed
+
+    def test_complete_operational_api_is_synthetic_and_device_evaluator_rejects_it(self):
+        run, fake, deployed, confirmed = self.make_invocation()
+        result = self.capture(run)
+        self.assertTrue(result.evidence.prospective_eligible, result.evidence)
+        self.assertEqual(result.evidence.scope, "physical-path-synthetic-rehearsal")
+        self.assertFalse(result.evidence.physical_admitted)
+        self.assertFalse(result.evidence.clean_completion)
+        self.assertTrue(result.export.complete_receipt)
+        self.assertTrue(diagnostic.read_report(run.selection.report_path).complete)
+        self.assertFalse(invocation.evaluate_physical_evidence(result.report, result.proof,
+            run.selection, deployed, confirmed).prospective_eligible)
+        with self.assertRaises(RuntimeError):
+            run.collect()
+        self.assertEqual(sum(call[0] == "factory" for call in fake.calls), 1)
+
+    def test_operational_reason2_complete_export_is_still_ineligible(self):
+        run, _, _, _ = self.make_invocation(reason=2)
+        result = self.capture(run)
+        self.assertTrue(result.export.complete_receipt)
+        self.assertFalse(result.evidence.prospective_eligible)
+
+    def test_physical_inputs_current_stage_missing_mismatched_and_mutated_are_inert(self):
+        selected, deployed, confirmed = operational_inputs(self.root)
+        cases = [(selected, None, confirmed), (selected, deployed, None),
+                 (selected, replace(deployed, disposition=invocation.STAGE), confirmed),
+                 (selected, replace(deployed, disposition=True), confirmed),
+                 (selected, replace(deployed, selection_sha256="0" * 64), confirmed),
+                 (selected, deployed, replace(confirmed, invocation_id="2" * 32)),
+                 (selected, deployed, replace(confirmed, selection_sha256="0" * 64)),
+                 (selected, deployed, replace(confirmed, action="approve")),
+                 (selected, replace(deployed, owner_authorization=None), confirmed)]
+        for name, value in (("package_sha256", None), ("exe_sha256", True),
+                            ("readback", None), ("version", "unknown")):
+            cases.append((replace(selected, **{name: value}), deployed, confirmed))
+        cases.extend((replace(selected, association=replace(selected.association, **{name: value})), deployed, confirmed)
+            for name, value in (("port", "COM8"), ("usb_serial", "OTHER"), ("require_dtr", True)))
+        with patch("threading.Thread") as workers, patch.object(diagnostic, "_open_file") as files:
+            for chosen, deployment, confirmation in cases:
+                with self.subTest(chosen=chosen.version), self.assertRaises(ValueError):
+                    invocation.PhysicalInvocation(chosen, deployment=deployment, confirmation=confirmation,
+                                                   event_config=CONFIG)
+            workers.assert_not_called(); files.assert_not_called()
+        self.assertEqual(list(self.root.iterdir()), [])
+
+    def test_source_mismatch_or_existing_output_refuses_before_workers_and_factory(self):
+        for existing in (False, True):
+            run, fake, _, _ = self.make_invocation("preflight" + str(existing))
+            if existing:
+                Path(run.selection.report_path).write_text("preserve existing", encoding="ascii")
+            with patch("threading.Thread") as workers:
+                if existing:
+                    with self.assertRaises(ValueError):
+                        run.collect()
+                else:
+                    with patch.object(invocation, "observed_source_hashes", return_value=()):
+                        with self.assertRaises(ValueError):
+                            run.collect()
+                workers.assert_not_called()
+            self.assertEqual(fake.calls, [])
+            self.assertFalse(Path(run.selection.recording_path).exists())
+            if existing:
+                self.assertEqual(Path(run.selection.report_path).read_text(), "preserve existing")
+
+    def test_every_deployment_json_field_missing_or_wrong_type_fails_closed(self):
+        selected, deployed, confirmed = operational_inputs(self.root)
+        payload = invocation.deployment_payload(deployed)
+        restored = invocation.parse_deployment(payload)
+        self.assertEqual(restored, deployed)
+        invocation.validate_deployment(selected, restored, confirmed)
+        for path, value in leaves(payload):
+            for replacement in ("delete", None, True, 1.0):
+                mutated = deepcopy(payload)
+                if replacement == "delete":
+                    del parent(mutated, path)[path[-1]]
+                else:
+                    parent(mutated, path)[path[-1]] = replacement
+                with self.subTest(path=path, replacement=replacement), self.assertRaises(ValueError):
+                    parsed = invocation.parse_deployment(mutated)
+                    invocation.validate_deployment(selected, parsed, confirmed)
+        mutated = deepcopy(payload); mutated["approval"] = True
+        with self.assertRaises(ValueError):
+            invocation.parse_deployment(mutated)
+
+    def test_every_encoded_build_caps_mismatch_precedes_start_writer_generation_and_R(self):
+        from test_stream_diagnostic import STR1_BUILD, STR1_CAPS
+        mismatches = [("build", {"build": STR1_BUILD + 1})]
+        for index in range(8):
+            caps = list(STR1_CAPS); caps[index] += 1
+            mismatches.append(("caps" + str(index), {"caps": tuple(caps)}))
+        for name, change in mismatches:
+            fake = str1_factory(**change)
+            run = diagnostic._PhysicalDiagnosticRun(invocation.SerialSettings("COM7", 230400, 0, .025),
+                context=provenance.PhysicalDiagnosticContext("injected-test"), backend_factory=fake,
+                fixture_name="fabricated mismatched negotiation", event_config=CONFIG)
+            self.runs.append((run, fake))
+            path = self.root / (name + ".mtstream")
+            with self.subTest(name=name), patch("motortester.stream_endpoint.Endpoint.plan_start") as plan, \
+                 patch("motortester.stream_bridge.StreamSession") as session, \
+                 patch("motortester.stream_bridge.StorageExecutor") as storage:
+                report = run.collect(str(path))
+                plan.assert_not_called(); session.assert_not_called(); storage.assert_not_called()
+            final = json.loads(report.final)
+            self.assertIsNone(final["bridge"]["identity"])
+            self.assertIsNone(final["bridge"]["session"])
+            self.assertEqual(fake.backends[0].peer.generation, 0)
+            self.assertNotIn(8, [command[0] for command in fake.backends[0].peer.commands])
+            self.assertFalse(path.exists())
+            self.assertEqual(final["bridge"]["accepted_build_id"], change.get("build", STR1_BUILD))
+
+    @staticmethod
+    def periodic(backend):
+        original, last = backend.peer.read, [0.0]
+        def read(maximum):
+            result = original(maximum)
+            now = time.monotonic()
+            if (backend.peer.generation and backend.peer.start_waiting is None and
+                    not backend.peer.stop_request and now - last[0] >= .05 and len(backend.peer.raw) < 128 * 256):
+                backend.peer.data(); last[0] = now
+            return result
+        backend.peer.read = read
+
+    def test_natural_operational_two_second_policy_uses_one_attempt(self):
+        run, fake, _, _ = self.make_invocation(configure=self.periodic)
+        result = run.collect()
+        final = json.loads(result.report.final)
+        self.assertTrue(result.evidence.prospective_eligible, result.evidence)
+        self.assertGreaterEqual(final["stop_intent_ns"] - final["record_intent_return_ns"], 2_000_000_000)
+        self.assertEqual(sum(call[0] == "factory" for call in fake.calls), 1)
+        self.assertEqual(sum(command[0] == 8 for command in fake.backends[0].peer.commands), 1)
+
+    def test_started_empty_is_distinct_from_no_R(self):
+        empty, _, _, _ = self.make_invocation("empty", data=False)
+        result = self.capture(empty, expected=0)
+        final = json.loads(result.report.final)
+        self.assertTrue(final["bridge"]["session"]["source_started"])
+        self.assertTrue(result.evidence.prospective_eligible, result.evidence)
+        no_R, _, _, _ = self.make_invocation("no-R", data=False,
+            configure=lambda backend: setattr(backend.peer, "auto_start", False))
+        result = no_R.collect()
+        self.assertFalse(result.evidence.prospective_eligible)
+        self.assertFalse(json.loads(result.report.final)["bridge"]["session"]["source_started"])
+
+    def test_known_partial_writes_preserve_prefixes_and_unknown_counts_are_ineligible(self):
+        partial, _, _, _ = self.make_invocation("partial",
+            configure=lambda backend: setattr(backend.peer, "accepted_prefix", 7))
+        result = self.capture(partial)
+        self.assertTrue(result.evidence.prospective_eligible, result.evidence)
+        self.assertTrue(any(row.kind == "write" and 0 < row.accepted_count < len(row.offered)
+                            for row in result.report.callbacks))
+        unknown, _, _, _ = self.make_invocation("unknown",
+            configure=lambda backend: setattr(backend.peer, "unknown_write", True))
+        result = unknown.collect()
+        self.assertFalse(result.evidence.prospective_eligible)
+        self.assertTrue(any(row.outcome == "unknown" for row in result.report.callbacks))
+
+    def test_operator_interrupt_preserves_first_cause_stop_close_and_available_export(self):
+        run, fake, _, _ = self.make_invocation()
+        original, interrupted = run._run._observe, [False]
+        def observe():
+            status = original()
+            if (not interrupted[0] and status.phase == "recording" and
+                    status.bridge.session.accepted_end_sample_index == 128):
+                interrupted[0] = True
+                raise KeyboardInterrupt()
+            return status
+        with patch.object(run._run, "_observe", side_effect=observe):
+            result = run.collect()
+        self.assertTrue(interrupted[0])
+        final = json.loads(result.report.final)
+        self.assertEqual(final["run_error"], "collector_KeyboardInterrupt")
+        self.assertIsNotNone(final["stop_intent_ns"])
+        self.assertIsNotNone(final["close_intent_ns"])
+        self.assertTrue(final["controller_joined"])
+        self.assertTrue(result.export.fsync_returned)
+        self.assertTrue(result.export.readback_verified)
+        self.assertFalse(result.evidence.prospective_eligible)
+        self.assertEqual(sum(call[0] == "factory" for call in fake.calls), 1)
+
+    def test_late_operational_export_receipt_never_rewrites_expired_result(self):
+        run, _, _, _ = self.make_invocation()
+        entered, release = threading.Event(), threading.Event()
+        original = diagnostic._fsync
+        def fsync(fd):
+            entered.set()
+            if not release.wait(3):
+                raise OSError("finite fabricated fsync gate")
+            return original(fd)
+        try:
+            with patch.object(diagnostic, "_fsync", side_effect=fsync):
+                result = self.capture(run)
+                self.assertTrue(entered.is_set())
+                self.assertEqual(result.outcome, "export-unresolved")
+                self.assertFalse(result.evidence.prospective_eligible)
+                self.assertFalse(result.export.owner_settled)
+                release.set()
+                self.assertTrue(run.join(3))
+        finally:
+            release.set()
+        self.assertTrue(run.snapshot().export.fsync_returned)
+        self.assertTrue(run.snapshot().export.readback_verified)
+        self.assertTrue(run.snapshot().export.owner_settled)
+        self.assertFalse(result.evidence.prospective_eligible)
+        self.assertFalse(result.export.owner_settled)
+
+    def test_fabricated_physical_trace_reopens_but_cannot_borrow_test_owned_proof(self):
+        run, _, deployed, confirmed = self.make_invocation()
+        result = self.capture(run)
+        original = result.proof._exported
+        header = json.loads(original.metadata)
+        header.update(format=diagnostic.PHYSICAL_FORMAT, origin="device", rehearsal_notice=None,
+                      fixture_name="EXPLICITLY FABRICATED PHYSICAL SCHEMA ONLY")
+        header["physical_context"]["execution_kind"] = "physical"
+        def fabricate(value):
+            if type(value) is dict:
+                for key, child in value.items():
+                    if key == "identity" and type(child) is dict:
+                        child["origin"] = "device"
+                        for name, item in zip(("protocol_revision", "firmware_version", "application_version"),
+                                provenance.physical_identity_metadata(provenance.STR1_DIAGNOSTIC_DECLARATION)):
+                            child[name] = item
+                    fabricate(child)
+            elif type(value) is list:
+                for child in value:
+                    fabricate(child)
+            return value
+        fabricated = replace(original, _metadata=diagnostic._freeze_tree(header),
+            _final=diagnostic._freeze_tree(fabricate(json.loads(original.final))),
+            _snapshots=tuple(diagnostic._freeze_tree(fabricate(json.loads(item))) for item in original.snapshots))
+        path = self.root / "EXPLICITLY-FABRICATED-PHYSICAL-SCHEMA.jsonl"
+        with open(path, "xb") as output:
+            diagnostic._write_report(output, fabricated, diagnostic.MAX_FILE)
+        self.assertTrue(diagnostic.read_report(path).complete)
+        command = [sys.executable] + (["-O"] if sys.flags.optimize else [])
+        script = "from motortester.stream_diagnostic import read_report; import sys; print(read_report(sys.argv[1]).complete)"
+        checked = subprocess.run(command + ["-c", script, str(path)], capture_output=True, text=True, timeout=5)
+        self.assertEqual((checked.returncode, checked.stdout), (0, "True\n"), checked.stderr)
+        self.assertFalse(invocation.evaluate_physical_evidence(fabricated, result.proof,
+            run.selection, deployed, confirmed).prospective_eligible)
+        for key, value in (("origin", "synthetic-fake"), ("format", diagnostic.FORMAT),
+                           ("unexpected", "field"), ("limits", {**header["limits"], "run_ms": 1000})):
+            changed = deepcopy(header); changed[key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                diagnostic._report_context(changed)
+
+    def test_cli_is_inactive_by_default_and_executes_only_the_explicit_fake_seam(self):
+        selected, deployed, confirmed = operational_inputs(self.root)
+        path = self.root / "fabricated-local-deployment.json"
+        path.write_bytes(invocation._canonical(invocation.deployment_payload(deployed)))
+        output = io.StringIO()
+        with patch("sys.stdout", output), patch("threading.Thread") as workers:
+            self.assertEqual(invocation.main([]), 2)
+            self.assertEqual(invocation.main(["--deployment", str(path)]), 0)
+            self.assertEqual(invocation.main(["--deployment", str(path), "--execute-one-attempt"]), 2)
+            workers.assert_not_called()
+        self.assertIn("Inactive", output.getvalue())
+        for private in (deployed.owner_authorization.reference, selected.association.board_instance,
+                        selected.recording_path):
+            self.assertNotIn(private, output.getvalue())
+        core, fake = self.make(configure=self.periodic)
+        self.runs.remove((core, fake))
+        with patch("sys.stdout", output):
+            code = invocation.main(["--deployment", str(path), "--execute-one-attempt",
+                "--operator", confirmed.operator, "--invocation-id", confirmed.invocation_id,
+                "--confirm-selection", confirmed.selection_sha256], fake_backend_factory=fake)
+        retained = invocation.retained_cli_invocation()
+        self.runs.append((retained._run, fake))
+        self.assertEqual(code, 0, output.getvalue())
+        self.assertIn("physical-path-synthetic-rehearsal", output.getvalue())
+        self.assertIn("clean_completion=false", output.getvalue())
+        self.assertNotIn(deployed.owner_authorization.reference, output.getvalue())
+        self.assertTrue(diagnostic.read_report(selected.report_path).complete)
+
+    def test_fresh_cli_help_and_default_have_no_backend_or_worker(self):
+        script = ("import sys,threading; threading.Thread.start=lambda *a,**k: "
+                  "(_ for _ in ()).throw(AssertionError('worker forbidden')); "
+                  "from motortester import transport; transport._serial_factory=lambda **k: "
+                  "(_ for _ in ()).throw(AssertionError('real factory forbidden')); "
+                  "from motortester.stream_diagnostic_invocation import main; "
+                  "raise SystemExit(main(sys.argv[1:]))")
+        command = [sys.executable] + (["-O"] if sys.flags.optimize else [])
+        for args, expected in (([], 2), (["--help"], 0)):
+            result = subprocess.run(command + ["-c", script] + args,
+                                    capture_output=True, text=True, timeout=5)
+            self.assertEqual(result.returncode, expected, result.stderr)
+
+    def test_physical_carrier_kind_cannot_use_implicit_serial_factory(self):
+        from motortester.stream_controller import StreamController
+        from motortester.stream_serial import SerialStreamPeer
+        settings = invocation.SerialSettings("COM7", 230400, 0, .025)
+        with patch("threading.Thread") as workers:
+            for kind in ("physical", "injected-test"):
+                with self.subTest(kind=kind), self.assertRaises(ValueError):
+                    StreamController(SerialStreamPeer(settings), managed_peer=True, event_config=CONFIG,
+                        physical_diagnostic_context=provenance.PhysicalDiagnosticContext(kind))
+            workers.assert_not_called()
+
+    def test_physical_target_placeholders_refuse_without_changing_legacy_selection(self):
+        selected, deployed, confirmed = operational_inputs(self.root)
+        for field in ("board_instance", "windows_pc"):
+            for value in ("unknown", "TBD", "TODO", "pending", "placeholder", "none", "UnKnOwN"):
+                with self.subTest(field=field, value=value):
+                    association = replace(selected.association, **{field: value})
+                    legacy = replace(selection(self.root), association=association)
+                    self.assertIs(validate_selection(legacy), legacy)
+                    chosen = replace(selected, association=association)
+                    fake = factory()
+                    with patch("threading.Thread") as workers, patch.object(diagnostic, "_open_file") as files:
+                        with self.assertRaises(ValueError):
+                            invocation.selection_digest(chosen)
+                        with self.assertRaises(ValueError):
+                            invocation.physical_admission(chosen, deployment=deployed, confirmation=confirmed)
+                        with self.assertRaises(ValueError):
+                            invocation.PhysicalInvocation.for_rehearsal(chosen, deployment=deployed,
+                                confirmation=confirmed, event_config=CONFIG, fake_backend_factory=fake,
+                                fixture_name="fabricated placeholder refusal")
+                        workers.assert_not_called(); files.assert_not_called()
+                    self.assertEqual(fake.calls, [])
+        self.assertEqual(list(self.root.iterdir()), [])
+        self.assertIs(invocation.validate_deployment(selected, deployed, confirmed), deployed)
+
+    def test_public_cleanup_retry_keeps_same_owner_budgets_and_immutable_failure(self):
+        run, fake, _, _ = self.make_invocation(configure=lambda backend: setattr(backend, "close_fail", True))
+        self.assertFalse(run.retry_close())
+        self.assertEqual(fake.calls, [])
+        result = self.capture(run)
+        frozen = (result.outcome, result.evidence, result.report.final, result.export, result.proof)
+        origins = (run._run._connect_intent_ns, run._run._record_intent_return_ns,
+                   run._run._stop_intent_ns, run._run._close_intent_ns)
+        first_error = run.snapshot().controller.serial.first_error
+        self.assertTrue(run.snapshot().controller.can_retry_close)
+        self.assertFalse(result.evidence.prospective_eligible)
+        for backend in fake.backends:
+            backend.close_fail = False
+        run.close(); time.sleep(.02)
+        self.assertFalse(run.join(0))
+        self.assertTrue(run.retry_close())
+        self.assertTrue(run.join(3))
+        self.assertFalse(run.retry_close())
+        self.assertEqual(run.snapshot().controller.serial.first_error, first_error)
+        self.assertEqual(origins, (run._run._connect_intent_ns, run._run._record_intent_return_ns,
+                                  run._run._stop_intent_ns, run._run._close_intent_ns))
+        self.assertEqual(frozen, (result.outcome, result.evidence, result.report.final, result.export, result.proof))
+        self.assertEqual(sum(call[0] == "factory" for call in fake.calls), 1)
+        self.assertEqual(sum(call[0] == "open" for call in fake.calls), 1)
+        self.assertEqual(sum(call[0] == 8 for call in fake.backends[0].peer.commands), 1)
+        with self.assertRaises(RuntimeError):
+            run.collect()
+
+    def test_retained_cli_handle_exposes_only_explicit_same_owner_cleanup_retry(self):
+        selected, deployed, confirmed = operational_inputs(self.root)
+        path = self.root / "fabricated-cleanup-deployment.json"
+        path.write_bytes(invocation._canonical(invocation.deployment_payload(deployed)))
+        def configure(backend):
+            backend.dtr_fail = backend.close_fail = True
+        core, fake = self.make(configure=configure)
+        self.runs.remove((core, fake))
+        args = ["--deployment", str(path), "--execute-one-attempt", "--operator", confirmed.operator,
+                "--invocation-id", confirmed.invocation_id, "--confirm-selection", confirmed.selection_sha256]
+        with patch.object(invocation, "_CLI_OWNER", None), patch("sys.stdout", io.StringIO()):
+            self.assertEqual(invocation.main(args, fake_backend_factory=fake), 1)
+            retained = invocation.retained_cli_invocation()
+            self.runs.append((retained._run, fake))
+            frozen = retained._run._report.final
+            origin = retained._run._close_intent_ns
+            self.assertFalse(retained.join(0))
+            self.assertEqual(invocation.main(args, fake_backend_factory=fake), 2)
+            self.assertIs(invocation.retained_cli_invocation(), retained)
+            for backend in fake.backends:
+                backend.close_fail = False
+            retained.close(); time.sleep(.02)
+            self.assertFalse(retained.join(0))
+            self.assertTrue(retained.retry_close())
+            self.assertTrue(retained.join(3))
+            self.assertFalse(retained.retry_close())
+            self.assertEqual(retained._run._report.final, frozen)
+            self.assertEqual(retained._run._close_intent_ns, origin)
+            self.assertEqual(sum(call[0] == "factory" for call in fake.calls), 1)
+            self.assertNotIn("open", [call[0] for call in fake.calls])
+            self.assertNotIn(8, [call[0] for call in fake.backends[0].peer.commands])
 
 
 if __name__ == "__main__":

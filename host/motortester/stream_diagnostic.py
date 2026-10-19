@@ -1,7 +1,8 @@
-"""Opt-in, volatile fake-callback transcript around the accepted controller.
+"""Opt-in, volatile callback transcript around the accepted controller.
 
-Injected Python is a caller contract, not a sandbox. There is no real-backend
-fallback, physical producer admission, new wire parser or receiver event hook.
+The legacy public DiagnosticRun stays fake-only. The explicit invocation's
+separate physical/test core shares its supervisor and owned export. Injected
+Python is a caller contract, not a sandbox; there is no new wire parser.
 """
 from __future__ import annotations
 
@@ -20,11 +21,14 @@ from .stream_controller import StreamController
 from .stream_recording import StreamLimits
 from .stream_serial import SerialSettings, SerialStreamPeer
 from .stream_view import EventConfig
-from .stream_provenance import admit_fake_diagnostic_declaration, STR1_DIAGNOSTIC_CAPS
+from .stream_provenance import (admit_fake_diagnostic_declaration, STR1_DIAGNOSTIC_CAPS,
+                                STR1_DIAGNOSTIC_DECLARATION, PhysicalDiagnosticContext,
+                                validate_physical_context, physical_context_identity)
 
 BASE_COMMIT = "db124e280ca020dd6af8356eadd2fdd45a7f9ae2"
 BASE_TREE = "63a88e0b15b63da601642ba87dacdb7e612d9d66"
 FORMAT = "motortester-fake-callback-trace-1"
+PHYSICAL_FORMAT = "motortester-str1-physical-callback-trace-1"
 MAX_CALLBACKS, MAX_RAW, MAX_SNAPSHOTS = 16384, 4 * 1024 * 1024, 128
 MAX_FILE, MAX_LINE, MAX_METADATA = 32 * 1024 * 1024, 32768, 8192
 MAX_NS = (1 << 63) - 1
@@ -34,6 +38,7 @@ MODULES = ("stream_diagnostic.py", "stream_controller.py", "stream_serial.py",
            "../tests/test_stream_controller.py", "../tests/test_stream_serial.py",
            "../tests/test_stream_diagnostic.py")
 INVOCATION_MODULES = MODULES + ("stream_diagnostic_invocation.py", "../tests/test_stream_diagnostic_invocation.py")
+PHYSICAL_MODULES = INVOCATION_MODULES + ("transport.py",)
 _open_file = open
 
 
@@ -194,6 +199,14 @@ class _BackendProxy:
         self._backend.port = value
 
     def open(self):
+        if self._run._physical_context is not None:
+            # Transport already owns this proxy. A setup exception therefore
+            # retains its ordinary cleanup/handle-settlement responsibility.
+            def request_dtr():
+                if self._backend.is_open is not False:
+                    raise ValueError("DTR request requires a closed backend")
+                self._backend.dtr = True
+            self._run._callback("dtr", request_dtr)
         return self._run._callback("open", self._backend.open)
 
     def read(self, maximum):
@@ -259,27 +272,32 @@ def _transition(status):
             None if s is None else s.first_failure)
 
 
-class DiagnosticRun:
-    """One explicitly requested fake run. Constructor opens nothing and starts no thread.
+class _DiagnosticRun:
+    """Shared collector; public construction seams choose provenance and transport.
 
     collect runs the supervisor on its caller; accepted controller threads own
     receiver/sample disk/display roles. write_report starts ONE separate export
     owner. Arbitrary injected Python is trusted, not authenticated or sandboxed.
     """
-    def __init__(self, settings, *, fake_backend_factory, fake_origin, fixture_name,
+    def __init__(self, settings, *, backend_factory, fixture_name,
                  event_config, limits=DiagnosticLimits(), clock_ns=time.monotonic_ns,
-                 fake_diagnostic_declaration=None, invocation_selection=None):
+                 fake_diagnostic_declaration=None, invocation_selection=None,
+                 physical_context=None, physical_metadata=None):
         if type(settings) is not SerialSettings or type(event_config) is not EventConfig:
             raise ValueError("exact serial settings and event configuration required")
         settings.__post_init__(); event_config.__post_init__()
         if type(limits) is not DiagnosticLimits:
             raise ValueError("exact diagnostic limits required")
         limits.__post_init__()
-        if fake_origin != "synthetic-fake" or type(fake_origin) is not str:
-            raise ValueError("explicit synthetic-fake origin required")
-        if not callable(fake_backend_factory) or not callable(clock_ns):
-            raise ValueError("explicit fake factory and clock required")
+        if not callable(backend_factory) or not callable(clock_ns):
+            raise ValueError("explicit selected factory and clock required")
         _text(fixture_name, 128)
+        self._physical_context = (None if physical_context is None else
+                                  validate_physical_context(physical_context))
+        if self._physical_context is not None and (fake_diagnostic_declaration is not None or
+                                                   invocation_selection is not None):
+            raise ValueError("Physical/test context cannot mix with legacy fake selection")
+        self._physical_metadata = physical_metadata
         self._fake_diagnostic_declaration = (None if fake_diagnostic_declaration is None else
                                             admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
         self._invocation_selection = None
@@ -291,7 +309,7 @@ class DiagnosticRun:
                 raise ValueError("Invocation requires exact STR1 fake settings and limits")
             self._invocation_selection = selection
         self._settings, self._limits = settings, limits
-        self._factory, self._clock, self._config = fake_backend_factory, clock_ns, event_config
+        self._factory, self._clock, self._config = backend_factory, clock_ns, event_config
         self._fixture, self._run_id = fixture_name, uuid.uuid4().hex
         self._lock = threading.Lock()
         self._stop = threading.Event()
@@ -307,6 +325,10 @@ class DiagnosticRun:
         self._export_status = ExportStatus()
         self._export_evidence = self._export_proof = None
         self._metadata = None
+
+    @property
+    def _bounded_invocation(self):
+        return self._invocation_selection is not None or self._physical_context is not None
 
     @property
     def settings(self):
@@ -479,6 +501,21 @@ class DiagnosticRun:
             return status.phase == "stopped before START" or b.closed
         return bool(b.closed and not status.worker_unresolved)
 
+    def _stop_and_drain(self):
+        self.request_stop()
+        origin = self._now() if self._stop_intent_ns is None else self._stop_intent_ns
+        deadline = origin + self.limits.drain_ms * 1000000
+        while self._now() < deadline:
+            settled = self._settled_attempt(self._observe())
+            if self._bounded_invocation and self._now() >= deadline:
+                self._run_error = self._run_error or "drain_unresolved"
+                break
+            if settled:
+                break
+            time.sleep(.001)
+        else:
+            self._run_error = self._run_error or "drain_unresolved"
+
     def collect(self, recording_path):
         """Explicitly connect, Record once, Stop and observe bounded cleanup.
 
@@ -518,11 +555,35 @@ class DiagnosticRun:
                 meta["invocation"] = asdict(self._invocation_selection)
                 meta["base_commit"] = self._invocation_selection.bindings.source_commit
                 meta["base_tree"] = self._invocation_selection.bindings.source_tree
+            if self._physical_context is not None:
+                injected = self._physical_context.execution_kind == "injected-test"
+                meta.update(format=FORMAT if injected else PHYSICAL_FORMAT,
+                    origin="synthetic-fake" if injected else "device",
+                    physical_context=asdict(self._physical_context),
+                    selected_declaration=asdict(STR1_DIAGNOSTIC_DECLARATION),
+                    expected_negotiation={"build_id": STR1_DIAGNOSTIC_DECLARATION.expected_build_id,
+                                          "caps": STR1_DIAGNOSTIC_CAPS},
+                    physical_selection=self._physical_metadata,
+                    flash_status=None,
+                    rehearsal_notice=("Injected synthetic test of the operational source path; "
+                                      "not a physical device run." if injected else None),
+                    dtr_request=1, dtr_electrical_observation=None,
+                    external_authority_verified=False,
+                    clock="selected monotonic_ns callback; controller uses integer ns//1000000",
+                    firmware_image=None, usb_identity=None)
+                if self._physical_metadata is not None:
+                    host = self._physical_metadata["deployment"]["selection"]["host"]
+                    meta.update(base_commit=host["commit"], base_tree=host["tree"])
+                if len(_json(meta)) > MAX_METADATA:
+                    raise ValueError("metadata capacity")
             self._metadata = _freeze_tree(meta)
-            peer = SerialStreamPeer(self.settings, fake_backend_factory=self._backend_factory)
+            peer = (SerialStreamPeer(self.settings, fake_backend_factory=self._backend_factory)
+                    if self._physical_context is None else
+                    SerialStreamPeer(self.settings, backend_factory=self._backend_factory))
             self._controller = StreamController(peer, event_config=self._config, managed_peer=True,
                 storage_limits=StreamLimits(2 * 1024 * 1024, 16384), clock=lambda: self._now() // 1000000,
-                fake_diagnostic_declaration=self._fake_diagnostic_declaration)
+                fake_diagnostic_declaration=self._fake_diagnostic_declaration,
+                physical_diagnostic_context=self._physical_context)
             controller = self._controller
             connect_at = self._now()
             if not self._stop.is_set():
@@ -535,7 +596,7 @@ class DiagnosticRun:
                 s = self._observe()
                 if self._stop.is_set() or self._trace_error or s.error:
                     break
-                if s.phase == "connected" and (self._invocation_selection is None or self._now() < deadline):
+                if s.phase == "connected" and (not self._bounded_invocation or self._now() < deadline):
                     connected = True
                     break
                 self._stop.wait(.001)
@@ -553,32 +614,28 @@ class DiagnosticRun:
                     self._stop.wait(.001)
             elif not self._stop.is_set() and not self._trace_error:
                 self._run_error = "connect_not_observed"
-            self.request_stop()
-            deadline = (self._now() if self._stop_intent_ns is None else self._stop_intent_ns) + self.limits.drain_ms * 1000000
-            while self._now() < deadline:
-                settled = self._settled_attempt(self._observe())
-                if self._invocation_selection is not None and self._now() >= deadline:
-                    self._run_error = self._run_error or "drain_unresolved"
-                    break
-                if settled:
-                    break
-                # Stop is already latched: do not busy-poll the set event.
-                time.sleep(.001)
-            else:
-                self._run_error = self._run_error or "drain_unresolved"
-        except Exception as exc:
+            self._stop_and_drain()
+        except (Exception, KeyboardInterrupt) as exc:
             self._run_error = self._run_error or "collector_" + _error(exc)
+            if self._physical_context is not None and self._controller is not None:
+                try:
+                    self._stop_and_drain()  # Uses the original intent, never another budget.
+                except (Exception, KeyboardInterrupt):
+                    pass  # First cause remains; finally still requests bounded close.
         finally:
             controller = self._controller
             if controller is not None:
-                self.close()
-                close_origin = self._close_intent_ns
-                remaining_ns = (self.limits.close_ms * 1000000 if close_origin is None else
-                    max(0, close_origin + self.limits.close_ms * 1000000 - self._now()))
-                joined = controller.join(remaining_ns / 1000000000)
-                if (not joined or (self._invocation_selection is not None and close_origin is not None and
-                        self._now() >= close_origin + self.limits.close_ms * 1000000)):
-                    self._run_error = self._run_error or "cleanup_unresolved"
+                try:
+                    self.close()
+                    close_origin = self._close_intent_ns
+                    remaining_ns = (self.limits.close_ms * 1000000 if close_origin is None else
+                        max(0, close_origin + self.limits.close_ms * 1000000 - self._now()))
+                    joined = controller.join(remaining_ns / 1000000000)
+                    if (not joined or (self._bounded_invocation and close_origin is not None and
+                            self._now() >= close_origin + self.limits.close_ms * 1000000)):
+                        self._run_error = self._run_error or "cleanup_unresolved"
+                except (Exception, KeyboardInterrupt) as exc:
+                    self._run_error = self._run_error or "cleanup_" + _error(exc)
             try:
                 self._report = self._freeze()
             finally:
@@ -589,7 +646,11 @@ class DiagnosticRun:
         controller = self._controller
         status = None if controller is None else controller.snapshot()
         settled = controller is None or controller.join(0)
-        final = _summary(status, self._stamp())
+        observed = self._stamp()
+        if (self._bounded_invocation and self._close_intent_ns is not None and observed is not None and
+                observed >= self._close_intent_ns + self.limits.close_ms * 1000000):
+            self._run_error = self._run_error or "cleanup_unresolved"
+        final = _summary(status, observed)
         with self._lock:
             callbacks = tuple(self._records)
             trace_error, dropped = self._trace_error, self._dropped
@@ -630,7 +691,9 @@ class DiagnosticRun:
             # These are export-time file observations, not authentication of
             # executed Python. The immutable capture itself stays unchanged.
             hashes = {}
-            for name in (INVOCATION_MODULES if self._invocation_selection is not None else MODULES):
+            modules = (PHYSICAL_MODULES if self._physical_context is not None else
+                       INVOCATION_MODULES if self._invocation_selection is not None else MODULES)
+            for name in modules:
                 with _open_file(Path(__file__).parent / name, "rb") as source:
                     content = source.read(1024 * 1024 + 1)
                 if len(content) > 1024 * 1024:
@@ -677,6 +740,52 @@ class DiagnosticRun:
                 self._export_proof = OwnedExportProof(_PROOF_SEAL, *self._export_evidence,
                     replace(self._export_status, owner_settled=True))
             return self._export_proof
+
+
+class DiagnosticRun(_DiagnosticRun):
+    """Legacy fake-only public seam; never falls back to a real backend."""
+    def __init__(self, settings, *, fake_backend_factory, fake_origin, fixture_name,
+                 event_config, limits=DiagnosticLimits(), clock_ns=time.monotonic_ns,
+                 fake_diagnostic_declaration=None, invocation_selection=None):
+        if fake_origin != "synthetic-fake" or type(fake_origin) is not str:
+            raise ValueError("explicit synthetic-fake origin required")
+        if not callable(fake_backend_factory):
+            raise ValueError("explicit fake factory required")
+        super().__init__(settings, backend_factory=fake_backend_factory, fixture_name=fixture_name,
+            event_config=event_config, limits=limits, clock_ns=clock_ns,
+            fake_diagnostic_declaration=fake_diagnostic_declaration,
+            invocation_selection=invocation_selection)
+
+
+class _PhysicalDiagnosticRun(_DiagnosticRun):
+    """Operational core, constructed only by the explicit invocation boundary.
+
+    Injected tests must say so; their context forces synthetic journal/report
+    identity. Real construction has no caller factory override. Neither mode
+    establishes an external deployment decision or owner authority.
+    """
+    def __init__(self, settings, *, context, event_config, backend_factory=None,
+                 fixture_name="selected-physical-attempt", clock_ns=time.monotonic_ns,
+                 selection_metadata=None):
+        context = validate_physical_context(context)
+        if context.execution_kind == "physical":
+            if backend_factory is not None:
+                raise ValueError("Real construction does not accept an injected factory")
+            # Lazy import/call: construction performs no backend or port action.
+            def factory(**kwargs):
+                from .transport import _serial_factory
+                return _serial_factory(**kwargs)
+        else:
+            if not callable(backend_factory):
+                raise ValueError("Injected operational test requires its fake factory")
+            factory = backend_factory
+        if selection_metadata is not None:
+            if type(selection_metadata) is not dict or len(_json(selection_metadata)) > 4096:
+                raise ValueError("bounded physical selection metadata required")
+            selection_metadata = _thaw(_freeze_tree(selection_metadata))
+        super().__init__(settings, backend_factory=factory, fixture_name=fixture_name,
+            event_config=event_config, limits=DiagnosticLimits(run_ms=2000), clock_ns=clock_ns,
+            physical_context=context, physical_metadata=selection_metadata)
 
 
 _PROOF_SEAL = object()
@@ -796,6 +905,81 @@ def _hex(value, maximum, *, length=None):
     return bytes.fromhex(value)
 
 
+def _report_context(header):
+    """Strict format/provenance pairing; context is data, never admission."""
+    if "physical_context" not in header:
+        if header.get("format") != FORMAT or header.get("origin") != "synthetic-fake":
+            raise ValueError("legacy fake header identity")
+        return None
+    raw = header["physical_context"]
+    keys = ("format run_id origin fixture_name base_commit base_tree module_sha256 source_hash_observed_ns "
+            "settings limits utc_label python platform producer_profile selected_declaration expected_negotiation "
+            "flash_status rehearsal_notice firmware_image usb_identity telemetry clock coverage source_hash_scope "
+            "volatile_until_export physical_context physical_selection dtr_request dtr_electrical_observation "
+            "external_authority_verified").split()
+    if set(header) != set(keys):
+        raise ValueError("physical trace header schema")
+    if type(raw) is not dict or set(raw) != {"execution_kind", "declaration"}:
+        raise ValueError("physical context schema")
+    context = validate_physical_context(PhysicalDiagnosticContext(raw["execution_kind"]))
+    if _json(raw) != _json(asdict(context)):
+        raise ValueError("physical context declaration")
+    injected = context.execution_kind == "injected-test"
+    expected = {"format": FORMAT if injected else PHYSICAL_FORMAT,
+                "origin": "synthetic-fake" if injected else "device",
+                "selected_declaration": asdict(context.declaration),
+                "expected_negotiation": {"build_id": context.declaration.expected_build_id,
+                                         "caps": list(STR1_DIAGNOSTIC_CAPS)},
+                "dtr_request": 1, "dtr_electrical_observation": None,
+                "external_authority_verified": False,
+                "firmware_image": None, "usb_identity": None, "telemetry": None,
+                "producer_profile": None, "flash_status": None,
+                "limits": asdict(DiagnosticLimits(run_ms=2000))}
+    if any(key not in header or _json(header[key]) != _json(value) for key, value in expected.items()):
+        raise ValueError("mixed physical/test header provenance")
+    selected = header["physical_selection"]
+    if selected is None:
+        if not injected:
+            raise ValueError("physical trace requires its declared deployment")
+    else:
+        from .stream_diagnostic_invocation import (parse_deployment, OperatorConfirmation,
+                                                  validate_deployment, _object)
+        if type(selected) is not dict or set(selected) != {"deployment", "confirmation"}:
+            raise ValueError("physical selection schema")
+        deployment = parse_deployment(selected["deployment"])
+        confirmation = _object(OperatorConfirmation, selected["confirmation"])
+        validate_deployment(deployment.selection, deployment, confirmation)
+        if (header["base_commit"] != deployment.selection.host.commit or
+                header["base_tree"] != deployment.selection.host.tree or
+                _json(header["module_sha256"]) != _json(dict(deployment.selection.host.module_sha256)) or
+                _json(header["settings"]) != _json(asdict(SerialSettings(deployment.selection.association.port, 230400, 0, .025)))):
+            raise ValueError("physical source/port binding")
+    return context
+
+
+def _summary_context(summary, context):
+    if context is None:
+        return
+    origin, metadata = physical_context_identity(context)
+    def visit(value):
+        if type(value) is dict:
+            for key, child in value.items():
+                if key == "identity" and child is not None:
+                    from .stream_model import StreamIdentity
+                    if type(child) is not dict:
+                        raise ValueError("physical identity schema")
+                    StreamIdentity(**child)
+                    if (type(child) is not dict or child.get("origin") != origin or
+                            tuple(child.get(k) for k in ("protocol_revision", "firmware_version",
+                                                       "application_version")) != metadata):
+                        raise ValueError("mixed physical/test identity carrier")
+                visit(child)
+        elif type(value) is list:
+            for child in value:
+                visit(child)
+    visit(summary)
+
+
 def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
     """Validate finite records; corruption exposes only the verified prefix.
 
@@ -809,6 +993,7 @@ def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
     file_digest = hashlib.sha256()
     callbacks = snapshots = previous_callback = 0
     seen_snapshot = False
+    context = None
     limits = DiagnosticLimits()
     try:
         with _open_file(path, "rb") as source:
@@ -833,17 +1018,18 @@ def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
                 if type(payload) is not dict:
                     raise ValueError("payload schema")
                 if not records:
-                    if (kind != "header" or payload.get("format") != FORMAT or
-                            payload.get("origin") != "synthetic-fake" or payload.get("run_id") != obj["run_id"] or
+                    if (kind != "header" or payload.get("run_id") != obj["run_id"] or
                             payload.get("volatile_until_export") is not True):
                         raise ValueError("header identity")
+                    context = _report_context(payload)
                     if len(_json(payload)) > MAX_METADATA:
                         raise ValueError("header capacity")
                     run_id = obj["run_id"]
                     if expected_run_id is not None and run_id != expected_run_id:
                         raise ValueError("unexpected run")
                     hashes = payload.get("module_sha256")
-                    source_modules = INVOCATION_MODULES if "invocation" in payload else MODULES
+                    source_modules = (PHYSICAL_MODULES if context is not None else
+                                      INVOCATION_MODULES if "invocation" in payload else MODULES)
                     if type(hashes) is not dict or set(hashes) != set(source_modules):
                         raise ValueError("source hash schema")
                     for value in hashes.values():
@@ -861,7 +1047,9 @@ def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
                         raise ValueError("callback schema/order/capacity")
                     _integer(payload["callback_id"], previous_callback + 1, MAX_NS)
                     previous_callback = payload["callback_id"]
-                    if payload["kind"] not in ("factory", "open", "read", "write", "close"):
+                    if payload["kind"] not in (("factory", "open", "read", "write", "close", "dtr")
+                                               if context is not None else
+                                               ("factory", "open", "read", "write", "close")):
                         raise ValueError("callback kind")
                     for name in ("begin_ns", "return_ns"):
                         if payload[name] is not None:
@@ -918,6 +1106,7 @@ def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
                         raise ValueError("raw capacity")
                     callbacks += 1
                 elif kind == "snapshot":
+                    _summary_context(payload, context)
                     seen_snapshot = True
                     snapshots += 1
                     if snapshots > limits.max_snapshots:
@@ -932,6 +1121,7 @@ def read_report(path, *, expected_run_id=None, expected_source_hashes=None):
                     summary = payload["summary"]
                     if type(summary) is not dict or summary.get("run_id") != run_id or type(summary.get("trace_complete")) is not bool:
                         raise ValueError("final run/summary")
+                    _summary_context(summary, context)
                     if summary["trace_complete"]:
                         if summary.get("trace_error") is not None or summary.get("dropped_callbacks") != 0 or summary.get("controller_joined") is not True or previous_callback != callbacks:
                             raise ValueError("false trace completion")
