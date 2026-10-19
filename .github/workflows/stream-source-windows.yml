@@ -15,7 +15,7 @@ jobs:
       github.repository == 'font-weight/stm32_motortester' &&
       github.event.repository.private == false &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'dot-a/stream-source-windows-20261019' &&
+      github.head_ref == 'dot-a/stream-source-windows-r2-20261019' &&
       github.run_attempt == 1
     runs-on: windows-2022
     timeout-minutes: 25
@@ -23,8 +23,8 @@ jobs:
       run:
         shell: pwsh
     env:
-      SOURCE_SHA: 'ab0b69ef2d4057baaf48f86745a0179c9057d334'
-      SOURCE_TREE: '86d6283bf158aea4924ee93a35a1b9344a427c90'
+      SOURCE_SHA: '4a7ddfc074ce4685f7a15536680a6777a06697ff'
+      SOURCE_TREE: '3ce428067727165e4f5a98418d265443d548bd45'
       PYTHONNOUSERSITE: '1'
       PYTHONOPTIMIZE: '0'
       PYTHONUTF8: '1'
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout immutable host candidate
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: 'ab0b69ef2d4057baaf48f86745a0179c9057d334'
+          ref: '4a7ddfc074ce4685f7a15536680a6777a06697ff'
           fetch-depth: 1
           persist-credentials: false
           submodules: false
