@@ -18,13 +18,15 @@
 #define TIM_ARR UINT32_C(0x4000002c)
 #define CLOCK_CR_MASK UINT32_C(0x030f00fb)
 #define CLOCK_CFGR_MASK UINT32_C(0x003f3fff)
-static uint32_t read_reg(mt_timebase *t, uint32_t reg) {
+/* Flatten the validated observation at pinned -Os without removing any
+ * register read, short-circuit check or clock-fault handling. */
+static inline __attribute__((always_inline)) uint32_t read_reg(mt_timebase *t, uint32_t reg) {
     return t->io.read32(t->io.context, reg);
 }
 static void write_reg(mt_timebase *t, uint32_t reg, uint32_t value) {
     t->io.write32(t->io.context, reg, value);
 }
-static int valid(const mt_timebase *t) {
+static inline __attribute__((always_inline)) int valid(const mt_timebase *t) {
     return t && t->initialized && t->io.read32 && t->io.write32;
 }
 static int fault(mt_timebase *t, mt_timebase_fault why) {
@@ -32,15 +34,15 @@ static int fault(mt_timebase *t, mt_timebase_fault why) {
     t->fault = why;
     return 0;
 }
-static int accessible(mt_timebase *t) {
+static inline __attribute__((always_inline)) int accessible(mt_timebase *t) {
     return (read_reg(t, RCC_APB1ENR) & 1u) && !(read_reg(t, RCC_APB1RSTR) & 1u);
 }
-static int clock_matches(mt_timebase *t) {
+static inline __attribute__((always_inline)) int clock_matches(mt_timebase *t) {
     return accessible(t) &&
         (read_reg(t, RCC_CR) & CLOCK_CR_MASK) == t->clock_cr &&
         (read_reg(t, RCC_CFGR) & CLOCK_CFGR_MASK) == t->clock_cfgr;
 }
-static int timer_matches(mt_timebase *t) {
+static inline __attribute__((always_inline)) int timer_matches(mt_timebase *t) {
     return read_reg(t, TIM_CR1) == 1u && read_reg(t, TIM_CR2) == 0u &&
         read_reg(t, TIM_SMCR) == 0u && read_reg(t, TIM_DIER) == 0u &&
         read_reg(t, TIM_CCER) == 0u && read_reg(t, TIM_CCMR1) == 0u &&

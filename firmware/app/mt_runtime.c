@@ -19,12 +19,11 @@ static uint32_t adc_time(void *context) {
 static int stable(void *context) {
     mt_runtime *r = context;
     uint32_t key, token;
-    mt_usb_epoch snapshot;
     int ok;
     if (!r || !r->initialized || r->pending || r->clock_fault ||
         !mt_timebase_healthy(r->clock)) return 0;
     key = mt_usb_bridge_lock();
-    snapshot = mt_usb_bridge_snapshot();
+    mt_usb_epoch snapshot = mt_usb_bridge_snapshot();
     token = mt_usb_bridge_actor();
     if (!token) token = snapshot.current;
     ok = token == r->epoch && snapshot.soft_serial == r->soft_serial &&

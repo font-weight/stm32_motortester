@@ -1073,3 +1073,48 @@ CEN приводит к прежнему Stop/ownership поведению. Об
 после CEN, 20/21 мкс, wrap, медленный callback, Stop/ownership и восстановление
 маски. Значение 17 мкс — модель, не измерение платы. Независимый финальный
 вердикт и точные ARM/image/export доказательства ещё требуются.
+
+## 19.10.2026 — separate draft: flatten validated clock hot path
+
+Владелец отдельно разрешил TIMED_ADMISSION BIN 33984 B, SHA-256
+0efb63c5905fa5cbc0e289f0c54f6481b13b021eeb8d51977129f1303e66bb89;
+прошивка и полное обратное чтение совпали. После перезапуска питания один
+Auto Record снова завершился ARM/4 TIMEOUT, 0 сегментов. Magic и полный
+снимок по 0x20002C6C прочитаны отдельно:
+
+    4D544431 00000001 00000003 000067B9
+    000067BA 01952FA5 01952FA5 00000001
+    FFFFFFFD 00000003 00000002 01953056
+    0195306D
+
+Stage3, driver_called1, result-3, TIMEBASE fault3, FAULTED state2: CEN bracket
+23 nominal microsecond ticks >20. Coherent correlation прошла, успешного
+захвата нет. Синтетические 17 мкс предыдущего кандидата не были обещанием
+аппаратного результата. Обсуждение: PR190 comment6262311997.
+
+Dot A сохраняет compiler flags и все проверки. Пять существующих TIME
+helpers (read_reg, valid, accessible, clock_matches, timer_matches) принудительно
+inline при закреплённом -Os; тела функций не меняются. Дополнительно отдельная
+декларация/присваивание snapshot в stable заменена initializer сразу после
+того же lock: порядок вызовов и предикаты прежние, из ARM убирается лишняя
+48-байтовая копия. No API/ABI/layout/threshold/host/wire changes intended.
+Это GCC-ориентированная оптимизация под закреплённый toolchain, не общий
+перенос обещаний тайминга на другие компиляторы.
+
+Critic-A до реализации задал exact old/new MMIO trace equality для успешных
+и отказных pre/post observations, init/Stop, тех же семантических состояний;
+negative controls, пять focused suites и 66 runtime strict/sanitizer сценариев.
+Расширение scope для declaration initializer зафиксировано отдельно.
+Новый exact ARM/image/stack/export review обязателен. Уменьшение инструкций
+и ветвлений не выдаётся за измерение или гарантию CEN<=20 на плате.
+
+Focused trace suite прошёл: 91 сценарий, 1170 строк фактических MMIO и
+именованных полей состояния одинаковы побайтно для baseline8657722,
+нового strict -O2 и ASan/UBSan -O1. Проверены все pre/post отказные префиксы,
+init, Stop/retry/ownership и fault precedence. Четыре negative controls
+(пропуск/перестановка чтений, дубликат Stop readback, задержка отказа gate)
+отвергнуты. Раннер работает в распакованном source-only дереве без .git.
+Остальные native suites и runtime66 strict/sanitizer прошли; прямое сравнение
+с явно закреплённым8657722 сохраняет все outcomes. Первоначальное ошибочное
+сравнение с плавающим HEAD выявлено проверкой хешей и не засчитано.
+Новый полный ARM ELF собран; независимые финальные review остаются отдельными.

@@ -186,7 +186,10 @@ static void test_preemption_after_counter_sample(void) {
     puts("PASS 5-ms modeled preemption preserves one coherent earlier pair; next sample accounts for elapsed time");
 }
 
-int main(void) {
+#ifndef MT_COHERENT_CLOCK_MAIN
+#define MT_COHERENT_CLOCK_MAIN main
+#endif
+int MT_COHERENT_CLOCK_MAIN(void) {
     assert(historical_timebase_main() == 0);
     test_coherent_rollover();
     test_snapshot_arguments_and_stale_states();
