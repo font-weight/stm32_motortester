@@ -57,7 +57,7 @@ incompatibility, never an instruction to try ARM. A timeout is an unknown failur
 not proof of an old device. No automatic fallback or automatic arming under 0.1.
 An explicit user-selected legacy mode may establish a separate 0.1 connection.
 
-Validation order: bounded framing/CRC/version/header; direction; special HELLO;
+Validation order: bounded framing/CRC/version/header; direction/type admissibility; special HELLO;
 nonce; exact sequence; request correlation; payload and state. Bad framing/CRC
 is discarded without executing a command. A subsequent sequence gap is fatal.
 While awaiting START_ACK or in STREAMING/DRAINING, host treats any nonempty
@@ -78,18 +78,33 @@ the same hardware-off condition. All state-table transitions are conditional on
 this interlock.
 
 HELLO has header nonce=0, sequence=1, request=1; payload fresh nonzero u64 nonce.
-A fresh nonce in any state stops sampling and abandons old not-started TX frames.
+Before invoking its barrier, retain the last attempted valid HELLO nonce even
+when the barrier subsequently fails. A nonce equal to the current or last attempted
+nonce is ignored without another barrier, reset or reply. A genuinely fresh nonce
+may retry the real bounded barrier; it cannot clear the hardware interlock alone.
+A fresh nonce in any state initiates the bounded stop barrier, inhibits new START
+and abandons old not-started TX frames. It does not prove sampling stopped if the
+barrier fails; the hardware interlock and unknown quiescence remain explicit.
 Finish an already-started frame before HELLO_ACK, except physical USB reset may
-truncate it. Same current nonce HELLO is ignored without reset/reply. Host ignores
+truncate it. Host ignores
 old-nonce frames, uses a fresh nonce on every recovery and retains old recording
 as incomplete when no matching terminal was received. Nonces are correlation,
 not authentication. USB disconnect/reset immediately disables acquisition.
+On the device, a valid old-nonce ordinary frame is ignored before sequence/request
+or payload/state validation. Here valid means bounded envelope, CRC, exact revision,
+header and direction/type admissibility have passed. Wrong-direction or unsupported
+active-phase types are not hidden by a stale nonce. This discard executes no command
+and consumes no current-session sequence. It is not an authenticity/security claim.
+Ignored old-nonce input does not replace the previous accepted-frame duplicate history.
 
 After HELLO_ACK both direction sequences start at 2 and increase by one; no wrap.
 Host request IDs increase strictly from 2 (gaps allowed); events use request=0,
 replies echo the request. Immediate byte-identical duplicate of the most recently
 accepted frame may be ignored without applying it twice; any other old, duplicate,
 conflicting or reordered frame is fatal. No DATA retransmission with a new sequence.
+Byte-identical means the exact encoded frame bytes, excluding its delimiter,
+not merely equal decoded fields. Retain the bounded previous accepted encoded
+frame for this check; alternative valid COBS encodings are not identical duplicates.
 Begin controlled counter-limit termination before assigning ordinary DATA transport
 sequence 0xffffff00 or accepting an ordinary request_id at/above 0xffffff00. The
 remaining 256 sequence values are reserved only for bounded tail and control work.
@@ -114,6 +129,8 @@ Types not listed are unsupported. Known wrong-direction messages cause recovery.
 Unknown host type in an otherwise valid idle exchange gets ERROR; unknown device
 type is fatal to the host. During STOP drain, any new ordinary request causes
 recovery without adding an ERROR; HELLO is the sole recovery exception.
+Unknown host types in STARTING or STREAMING likewise require recovery without
+an extra ERROR. Known wrong-direction types fail before nonce handling in all phases.
 
 | Type | Direction | Name | Payload in order | Bytes |
 | ---: | --- | --- | --- | ---: |
@@ -143,7 +160,8 @@ sampling was enabled, not that samples reached the host. On a failed start, send
 ERROR(code=4 START_FAILED), do not send START_ACK or DATA, and require a new HELLO.
 Successful START_ACK precedes every DATA/END of that generation. Stop arriving
 while START_ACK is pending targets that START request id. If START failed, reject
-STOP as stale and require HELLO; never acknowledge stopping a nonexistent stream.
+STOP locally as stale and require HELLO: no STOP_ACK or additional ERROR beyond
+the already-reserved START_FAILED response. Never acknowledge stopping a nonexistent stream.
 
 DATA count is 1..128, codes 0..4095. Full blocks contain128 samples; only the final
 block may be shorter. Start at index0 and require next.first_index=previous end;
@@ -220,7 +238,12 @@ deliver that response by its deadline requires FAULT_NO_TERMINAL/recovery, retai
 the already-received END as evidence, not deleting it. A STOP while an END is in
 flight uses the remaining original drain budget, never extends that budget.
 
-Drain timeout starts at acquisition stop, maximum500ms, including all queued bytes
+The termination budget starts on the first transition into shutdown caused by
+Stop, acquisition fault or counter limit, BEFORE invoking any driver stop/barrier.
+Latch that monotonic time once; the absolute deadline is that time plus500ms.
+A failed barrier, a stop retry, duplicate request, later Stop or TX progress cannot
+restart it. This origin remains defined even when hardware never becomes quiescent.
+It includes all queued bytes
 and any already-started frame. Check the absolute deadline independently of TX
 progress; trickle progress does not extend it. Before expiry, finish a started
 frame and drain certified queued data in order. At expiry, stop the old-session TX
@@ -229,7 +252,8 @@ may have an incomplete frame: no terminal or ACK is guaranteed. Host timeout
 classifies the tail as unknown and requires a fresh connection/HELLO (with bounded
 framing resynchronization as specified below), never silently joins the next stream. A deadline failure
 cannot be reported as a clean terminal merely because some old bytes later arrive.
-Acquisition remains disabled regardless of transport recovery. Reason6 is reserved
+New acquisition starts remain inhibited regardless of transport recovery;
+actual hardware-off is asserted only after the real barrier proves it. Reason6 is reserved
 for a detected drain failure that can be reported before the absolute deadline;
 at/after the deadline the first local fault is retained without promising delivery.
 After any timeout/recovery, host resets its local frame accumulator and sends an
@@ -247,6 +271,73 @@ the absolute HELLO request deadline defined below leaves disconnected/incompatib
 with no automatic START. Reopening
 a CDC handle alone does not prove old bytes were removed. In healthy old sessions,
 HELLO still finishes the started old frame first, then the new ACK as described above.
+
+### Device deadline service and HELLO budget
+
+Every valid fresh HELLO has a separate absolute500ms service budget. Start it at
+completion of full HELLO validation, before any quiescence call or old-TX handling.
+It covers the barrier, old started frame, any recovery delimiter and the complete
+HELLO_ACK. A superseding HELLO never extends an already-active frame's budget,
+including an earlier HELLO_ACK budget. While that old frame remains live, the
+earlier applicable deadline wins. Expiry abandons unaccepted output, suppresses
+the pending new ACK and leaves acquisition inhibited; it does not create STOPPED
+or clear a hardware interlock. A failed barrier likewise sends no HELLO_ACK.
+
+For all device500ms budgets, expire at `now >= deadline` before processing a
+completion at that instant. Service timers independently of RX/TX activity and
+again after any bounded callback returns. Late wake or progress never moves a
+deadline. The late-Stop response budget after completed unsolicited END uses the
+same comparison and begins when that complete Stop request has been validated.
+
+Driver/transport calls must be bounded; a nonreturning callback cannot be rescued
+by a later timer check. In particular, checking only AFTER a write is insufficient:
+an already-accepted late END/ACK cannot be retracted. Before invoking TX, its adapter
+must guarantee that accepted bytes enter the ordered FIFO AND that the callback
+returns with completion observable AND that the immediately following completion
+validation, budget discharge and any session/state publication all finish strictly
+before the earliest active deadline. Use a verified worst-case transaction bound B
+(write plus the entire completion decision/state commit) and checked admission guard
+`now + B < effective_deadline`; equality refuses the call. A deadline-aware write
+alone is insufficient if its completion or post-return state commit can be delayed
+too late. Include post-return preemption through the final state store in B, or
+provide an equally strong atomic commit seam. If the adapter/endpoint composition
+cannot guarantee the full bound, do
+not issue the write; expire/recover rather than claim a timely terminal. No new
+bytes may be accepted at/after the deadline. Any observed late/unknown acceptance
+is a transport-contract failure; retain diagnostics and never promote the local
+result to clean completion. This guarantee requires real adapter evidence and is
+not established by synthetic callback tests. Host2000ms/1000ms deadlines remain
+independent and do not prove the device met its500ms obligations.
+
+The effective write deadline is the minimum of every still-active termination,
+late-Stop response and HELLO budget governing that output. Keep the original
+budget identities through supersession; do not relabel old live bytes as new work.
+A termination budget is discharged only when its complete END and any already
+pending matching STOP_ACK have been accepted in time; without a pending Stop,
+timely complete unsolicited END discharges it. A later Stop starts its separate
+response budget. A HELLO budget is discharged only by timely complete HELLO_ACK;
+a late-Stop response budget only by timely complete matching ACK. Failure/abandonment
+closes the budget as failed, never as successful completion. A frame frozen before
+expiry but not completely accepted does not discharge its budget.
+Abandoning not-started frames may mark their parent budget failed, but does not
+retire that budget's deadline while an already-started frame still inherits it.
+Keep that inherited bound until the old frame completes with timely observed
+acceptance, or until transport isolation certifies it can append no further bytes.
+Only then may the failed old budget cease governing later new-session output.
+An expiry also fails/suppresses any already-pending new HELLO_ACK; later isolation
+does not revive that HELLO. A further fresh HELLO is required after recovery.
+Publish the new STOPPED session only after verified quiescence and complete
+HELLO_ACK acceptance observed strictly within every applicable active budget.
+
+Acceptance means entry into the adapter's ordered irrevocable FIFO, not physical
+USB delivery or HOST validation. Bytes accepted before expiry may be delivered
+later. The qualified write bound must include preemption, scheduling, time reads
+and call/return overhead; it is not just an average measured write duration.
+Use valid non-wrapping monotonic time and checked deadline arithmetic. If either
+is unavailable or timing becomes uncertain, fail closed and retain that uncertainty.
+Software inhibition/timeout alone never proves hardware off; failed quiescence
+retains its independent sticky interlock and first-cause evidence until a real
+barrier establishes otherwise.
 
 Host liveness timers use its monotonic clock: the first valid DATA or END must
 arrive within1000ms of START_ACK; thereafter each complete valid DATA restarts a
@@ -328,9 +419,11 @@ an implicit same-session reset. Thus preview restarts with a fresh nonce/generat
 | --- | --- | --- |
 | NO_SESSION | fresh HELLO | STOPPED; HELLO_ACK |
 | STOPPED | GET_CAPS then START; fresh HELLO | STARTING or new connection |
-| STARTING | matching Stop or fresh HELLO | finish START response first; stop/recovery |
+| STARTING | matching Stop | finish successful START response first; Stop ordering |
+| STARTING | fresh HELLO | barrier/recovery; only an already-started old frame may finish; abandon unstarted responses |
 | STREAMING | matching Stop; fresh HELLO | DRAINING or recovery |
-| DRAINING | receive previous reply/tail; matching Stop if none pending; HELLO | one END then optional ACK; no new sampling |
+| DRAINING | receive previous reply/tail; matching Stop if none pending | one END then optional ACK; no new sampling |
+| DRAINING | fresh HELLO | barrier/recovery; finish only started old frame within inherited deadline; abandon unstarted DATA/END/ACK |
 | TERMINAL | matching Stop if unsolicited END; HELLO | reference same END or new connection |
 | FAULT_NO_TERMINAL | fresh HELLO with verified quiescence | old prefix incomplete; never infer clean Stop |
 | NEEDS_HELLO | fresh HELLO only | no repeated ordinary reply or acquisition |
@@ -339,6 +432,11 @@ an implicit same-session reset. Thus preview restarts with a fresh nonce/generat
 ERROR codes:1 invalid payload,2 bad state,3 stale generation,4 start failed,
 5 unsupported type. Reject invalid request without changing acquired samples;
 Stop rejection or any integrity/correlation fault requires host recovery.
+ERROR.generation is the admitted START attempt's request id once an attempt exists,
+including START_FAILED; it is zero before any admitted START in that connection.
+This identifies the causal attempt, not successful acquisition. Following failed
+START, only the reserved START_FAILED ERROR may finish; subsequent ordinary/Stop
+requests get no additional response and require a fresh HELLO.
 Malformed or stalled DATA, host queue exhaustion and disk failure preserve the
 first local cause, stop accepting new record data, request Stop if framing permits,
 and retain verified durable prefix as incomplete. Later normal END cannot erase a
