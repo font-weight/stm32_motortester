@@ -52,6 +52,14 @@ Python, Git и patch не являются частью ARM toolchain; executabl
 Проверки рассчитаны на стабильную cooperative filesystem, а не на враждебную
 параллельную подмену файлов.
 
+## Опциональная диагностическая телеметрия
+
+Явный --diagnostics добавляет foreground DWT telemetry: 27 C units и 30 link
+inputs, instrumentation_profile=foreground-dwt-v1. Имя результата:
+DIAGNOSTIC_INSTRUMENTED_NEVER_FLASH.elf. По умолчанию опция выключена.
+См. ../platform/STREAM_DIAG_README.md. Старый exact-image stack proof не
+переносится на инструментированный ELF. Все qualification flags остаются false.
+
 ## Чего результат не утверждает
 
 Успешный статус: DIAGNOSTIC_LINK_ONLY_NOT_QUALIFIED. Всегда false:

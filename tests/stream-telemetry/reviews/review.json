@@ -1,0 +1,65 @@
+{
+  "verdict": "REWORK",
+  "score": 9.255,
+  "source_head": "e533e53dc5e1d614b9e6c9d6d3026f7fc72e9e31",
+  "compiled_source_head": "28dab6824fe7ce45cbce9c910012df8adaaddbca",
+  "base": "01824efd2571d5b2af8ab8fb4360cda8eb6c372d",
+  "independent": true,
+  "production_edits": false,
+  "rubric": {
+    "C1": 8.5,
+    "C2": 9.5,
+    "C3": 9.8,
+    "C4": 9.7,
+    "C5": 9.0
+  },
+  "native": {
+    "strict": {
+      "runtime": 62,
+      "module": 32,
+      "boot": 90
+    },
+    "ASan_UBSan": {
+      "runtime": 62,
+      "module": 32,
+      "boot": 90
+    },
+    "runner_controls": 8,
+    "mutants_rejected": 5,
+    "activation_boundary_strict_and_sanitized": true
+  },
+  "receipts": {
+    "/tmp/stream-telemetry-independent-source-20261019/receipt.json": "359cdf211ee3bb2748d295a839aaad49a3a3ca2c60c4b646585242dd1ca1b3aa",
+    "/tmp/stream-telemetry-independent-source-20261019/boot/receipt.json": "655f050cd3a1b9f57d371876ac125bb1c934f47a94cd615cf0e06ede4f7d6f55",
+    "/tmp/stream-telemetry-independent-controls-20261019/controls.json": "579c77b1551883afacfff9e81e3c23a3658b2a7f5a306de355173dd0b39f46c2",
+    "/tmp/stream-telemetry-independent-extra-20261019/extra-results.json": "360eeacb3354d816731e339a5408128c752b6de0a6cc352a47dcedd9c5bf704f",
+    "/tmp/stream-telemetry-independent-extra-20261019/activation-boundary/receipt.json": "a3accccdb9edb276698b9fc682f039fefce5e3d2d93bd25bdd883e382f22a99a"
+  },
+  "new_source_hashes": {
+    "firmware/platform/mt_stream_diag.c": "8ead5517425c540a7876eaa540edca7205af5c904970e5688aec17b1718251c3",
+    "firmware/platform/mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+    "firmware/app/mt_live_runtime.c": "f562f8e0b63b68605a2e7f69bf2288ade4ddf91dc2d282353e70dd226e70bc97",
+    "firmware/platform/adc_timer_dma.c": "ddd022b79a3d07ea745a384cc4db5a258ad31feb31e68bc23b5c364054f4f52e",
+    "firmware/boot/mt_stream_main.c": "86bb96542f34dc958df1281526e1b0f483ec419b592d00c240558adda5c80fb0"
+  },
+  "source_status_porcelain": "",
+  "limitations": [
+    "No target full-image/stack/ABI proof",
+    "No physical ADC/USB or clock accuracy check",
+    "No flash",
+    "No worst-case timing or transaction-bound qualification",
+    "No HOST delivery proof",
+    "LeakSanitizer disabled"
+  ],
+  "blockers": [
+    {
+      "priority": "P1",
+      "id": "DIAG-START-001",
+      "finding": "Valid first START can fail preliminary quiesce before telemetry begin, leaving record armed and unbound; later start can replace the missing failed attempt.",
+      "core_location": "firmware/protocol/mt_live_device.c:213-230",
+      "telemetry_location": "firmware/app/mt_live_runtime.c:51-56",
+      "documentation": "firmware/platform/STREAM_DIAG_README.md:25",
+      "required_fix": "Bind the first validated START before fallible preliminary quiesce; preserve its failure/session and retain actual-off freeze predicate."
+    }
+  ]
+}

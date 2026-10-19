@@ -1,0 +1,62 @@
+{
+  "verdict": "PASS",
+  "score": 9.85,
+  "rubric_version": "docs/quality-gate.md v1.0",
+  "scope": "Independent source/native software review only; no physical/target full-image/stack/WCET/flash acceptance",
+  "reviewed_head": "fa9daee885c976ae4e90ac6914c1503ddea2b92b",
+  "compiled_production_source": "8c51c78024a2e1bcd1e5575ef9189737a3ddce88",
+  "executed_package_head": "b4657447a1bf654e1e22ef61ce402df189c684b7",
+  "base": "01824efd2571d5b2af8ab8fb4360cda8eb6c372d",
+  "metadata_delta_personally_reviewed": [
+    "tests/stream-telemetry/PACKAGE.json",
+    "tests/stream-telemetry/PROVENANCE.md",
+    "tests/stream-telemetry/README.md",
+    "tests/stream-telemetry/RESULTS.json"
+  ],
+  "independent_non_author": true,
+  "production_edits": false,
+  "P0": [],
+  "P1": [],
+  "resolved": [
+    "DIAG-START-001"
+  ],
+  "C1": 10,
+  "C2": 9.8,
+  "C3": 9.8,
+  "C4": 9.6,
+  "C5": 10,
+  "runtime_cases_per_mode": 64,
+  "module_cases_per_mode": 32,
+  "boot_cases_per_mode": 90,
+  "modes": [
+    "strict",
+    "ASan/UBSan"
+  ],
+  "runner_controls": 8,
+  "current_source_mutants_rejected": 5,
+  "new_regression_rejects_old_runtime_both_modes": true,
+  "default_off_three_arm_objects_equal_base": true,
+  "ARM_diag_DMB_before_phase3_both_paths": true,
+  "production_manifest_checked": true,
+  "package_hashes_checked": true,
+  "receipts": {
+    "/tmp/stream-telemetry-independent-source-fixed-20261019/receipt.json": "d511784313d18c62c271e0aafc525654fd72f952be54e0c47237de342133c670",
+    "/tmp/stream-telemetry-independent-source-fixed-20261019/boot/receipt.json": "d39a236071aac38115d2c8b888be3830a52cccb8b267c1fda4efd4f2c26692e6",
+    "/tmp/stream-telemetry-independent-controls-fixed-20261019/controls.json": "579c77b1551883afacfff9e81e3c23a3658b2a7f5a306de355173dd0b39f46c2",
+    "/tmp/stream-telemetry-independent-extra-fixed-20261019/extra-results.json": "da3842a93f514e18eeef13f6bff245651eb7597ae4b810442818cb721259611f",
+    "/tmp/stream-telemetry-independent-extra-20261019/fixed-boundary/receipt.json": "18d716cf3001093a6ccfa64b38fde26ac797c256e25ea69176389a98ceccfca5",
+    "/tmp/stream-telemetry-independent-extra-20261019/new-case-rejects-old-runtime/receipt.json": "780c6c0afb976a1abe4ac1abfd948ca4676706fe3cb01d5cef5700fff7aa87e9"
+  },
+  "current_source_hashes": {
+    "firmware/app/mt_live_runtime.c": "96ebd81a52b15a4d10abc2501d7c6ff3bb7369418ce78d88eaeaaea249bdb7bf",
+    "firmware/platform/mt_stream_diag.c": "8ead5517425c540a7876eaa540edca7205af5c904970e5688aec17b1718251c3",
+    "firmware/platform/mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+    "tests/stream-telemetry/test_runtime.c": "7b6d1e4e9b19c0c4b8641b01cff654004d9455a70774d099e4b6d6746902101b",
+    "tests/stream-telemetry/source-manifest.json": "74ac6a9530ff5e201596313a513eb18c4666987707d6a6831910e7b06ba11941",
+    "tests/stream-telemetry/PACKAGE.json": "a273f506bbf01b6a50ca15ed5cb87d99f9f99b9653e80c383bff3eff20b4fc8d"
+  },
+  "full_target_image_proof": false,
+  "physical_verification": false,
+  "WCET_qualified": false,
+  "flash_approved": false
+}

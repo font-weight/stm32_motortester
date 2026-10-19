@@ -57,6 +57,7 @@ def main():
     for key in ('source-commit', 'toolchain', 'board', 'timing', 'out'):
         parser.add_argument('--'+key, required=True)
     parser.add_argument('--stack-reserve', type=int, required=True)
+    parser.add_argument('--diagnostics', action='store_true', help='opt-in foreground DWT telemetry; still unqualified')
     args = parser.parse_args()
     require(re.fullmatch('[0-9a-f]{40}', args.source_commit) is not None, 'full source SHA required')
     require(0 < args.stack_reserve <= 20480 and args.stack_reserve % 8 == 0, 'aligned explicit stack reserve required')
@@ -95,6 +96,7 @@ def main():
               'transaction_bound_qualified':False, 'stack_bound_qualified':False,
               'runtime_profile_accepted':False, 'hardware_verified':False, 'flash_approved':False,
               'stack_reserve_bytes':args.stack_reserve,
+              'instrumentation_profile':'foreground-dwt-v1' if args.diagnostics else 'none',
               'open_gates':['full callback/ABI/stack proof','target TX and IRQ WCET',
                             'USB traffic/fault scheduling','physical ADC/USB stream','independent profile review']}
     def save():
@@ -184,13 +186,16 @@ def main():
         entries = [x for x in manifest['components'] if x['source'] not in REMOVE]
         require(len(entries) == 20, 'retained composition mismatch')
         entries += [{'source':x,'flags':flags} for x in ADD]
+        if args.diagnostics:
+            entries.append({'source':'firmware/platform/mt_stream_diag.c','flags':flags})
         includes = ['-I'+str(source/'firmware'/p) for p in ('boot','platform','app','protocol','transport','acquisition')]
         for path in [tc/'include/newlib',*(vendor/p for p in ('tinyusb/src','cmsis-device-f1/Include','cmsis-core/CMSIS/Core/Include','tinyusb/src/portable/st/stm32_fsdev'))]:
             includes += ['-isystem',str(path)]
         objects = []
         def compile_c(name, src, opts):
             obj = out/'objects'/(name+'.o'); dep = obj.with_suffix('.d')
-            run('compile-'+name,[tools['gcc'],*opts,'-DCFG_MT_USB_CTR_FAIRNESS=1',*includes,'-MD','-MF',dep,'-c',src,'-o',obj])
+            run('compile-'+name,[tools['gcc'],*opts,'-DCFG_MT_USB_CTR_FAIRNESS=1',
+                '-DCFG_MT_STREAM_DIAGNOSTICS='+str(int(args.diagnostics)),*includes,'-MD','-MF',dep,'-c',src,'-o',obj])
             for item in shlex.split(dep.read_text().replace('\\\n',' ').split(':',1)[1]):
                 path = canonical(os.path.normpath(item))
                 expected = inputs.get(str(path),result['generated'].get(str(path)))
@@ -214,11 +219,11 @@ def main():
         board_obj = compile_c('board',board_c,data_flags)
         result['board_object_check'] = load(build/'board_object.py').validate(board_obj.read_bytes(),board.read_bytes())
         compile_c('timing',timing_c,data_flags)
-        require(len(objects)==29,'explicit object count mismatch')
+        require(len(objects)==(30 if args.diagnostics else 29),'explicit object count mismatch')
         checker = source/'tests/boot-link/tools/check_boot_image.py'
         vectors = source/'tests/boot-link/vector_map.json'
         result['input_audit'] = json.loads(run('input-audit',[*py,checker,'inputs','--readelf',tools['readelf'],'--reset-object',reset,'--vector-map',vectors,*objects]))
-        elf = out/'DIAGNOSTIC_UNQUALIFIED_NEVER_FLASH.elf'
+        elf = out/('DIAGNOSTIC_INSTRUMENTED_NEVER_FLASH.elf' if args.diagnostics else 'DIAGNOSTIC_UNQUALIFIED_NEVER_FLASH.elf')
         run('link',[tools['ld'],'--fatal-warnings','--no-gc-sections','--orphan-handling=error','--defsym=__boot_stack_bytes='+str(args.stack_reserve),'-T',source/'firmware/boot/stm32f103c8.ld','-Map='+str(out/'image.map'),'-o',elf,*objects])
         result['elf_audit'] = json.loads(run('elf-audit',[*py,checker,'elf','--elf',elf,'--vector-map',vectors,'--objdump',tools['objdump'],'--readelf',tools['readelf'],'--stack',args.stack_reserve]))
         require(not run('undefined',[tools['nm'],'-u',elf]).strip(),'unresolved ELF symbols')

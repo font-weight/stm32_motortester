@@ -1,0 +1,26 @@
+{
+  "status": "NATIVE_SOURCE_SCOPED_PASS",
+  "source_head": "8c51c78024a2e1bcd1e5575ef9189737a3ddce88",
+  "runtime_cases_per_mode": 64,
+  "unit_cases_per_mode": 32,
+  "boot_cases_per_mode": 90,
+  "modes": [
+    "strict",
+    "ASan+UBSan"
+  ],
+  "runner_controls": 8,
+  "native_receipt_sha256": "d511784313d18c62c271e0aafc525654fd72f952be54e0c47237de342133c670",
+  "controls_receipt_sha256": "579c77b1551883afacfff9e81e3c23a3658b2a7f5a306de355173dd0b39f46c2",
+  "source_unchanged": true,
+  "independent_final_review_complete": true,
+  "physical_verification": false,
+  "transaction_bound_qualified": false,
+  "instrumented_stack_proof_complete": false,
+  "flash_approved": false,
+  "current_production_source": "8c51c78024a2e1bcd1e5575ef9189737a3ddce88",
+  "boot_receipt_sha256": "d39a236071aac38115d2c8b888be3830a52cccb8b267c1fda4efd4f2c26692e6",
+  "evidence_attribution": "Independent Critic source/native replay and final package review; root also replayed integrated64+32+90. Image/physical gates are separate.",
+  "independent_source_native_score": 9.85,
+  "reviewed_head": "fa9daee885c976ae4e90ac6914c1503ddea2b92b",
+  "review_report": "reviews/CRITIC_A_FINAL_RU.md"
+}
