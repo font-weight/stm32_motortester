@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "scope": "Conditional exact-image static stack/callback/ABI only; no profile, timing, hardware or flash acceptance",
+  "source_commit": "01824efd2571d5b2af8ab8fb4360cda8eb6c372d",
+  "elf_sha256": "1480750bf9802e90a543369f03922ff060dd61c42fde7bfaf1b8eca19bd60bb2",
+  "proof_archive_filename": "stream-static-proof-1480750b-r2.tar.gz",
+  "proof_archive_sha256": "e964d723808c078c85c372c5b6ef7132f3804b474a204985d7c1925ddd3ce3b0",
+  "proof_manifest_sha256": "1a5d46455e3d56cf4dec242d64e4c0d65f76122a70757d37fffa36eed132049e",
+  "proof_verifier_sha256": "6365f71d77141b9ac6f156f84ba31b16ecdb1e60a40cdbefb27daffc3bc72a90",
+  "proof_report_sha256": "bcfc0a11229181fd78f304b8332af47cb53ded42600ac559caacb3e94d67932e",
+  "objdump_sha256": "bcf47eb777c4ac452c765af3e61b4e7b19ad62060a226b74eb189fd9547910e0",
+  "foreground_bytes": 2792,
+  "usb_software_bytes": 264,
+  "exception_levels": 3,
+  "exception_bytes_each": 36,
+  "conditional_bound_bytes": 3164,
+  "eight_byte_reserve_minimum": 3168
+}
