@@ -1,0 +1,5 @@
+#include "preamble.h"
+#include "common.inc"
+#include "driver.inc"
+#include "reset.inc"
+#include "tests.c"

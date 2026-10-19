@@ -1,0 +1,7 @@
+{
+  "patch": "0004-stream-ctr-fairness.patch",
+  "source_sha256": "d35b9af93def9280db2cd7c8380842b846a99d471612c37ba708d2f2e8db7ddf",
+  "patch_sha256": "496273dc6fd87f28b99e8965b1378401aa75224153c5d93d16c47497ac11a90b",
+  "result_sha256": "ff734b0c3a80884006927f172ebddf7986e07ef71d63eda31764d761469635c6",
+  "scope": "Opt-in native draft: one endpoint CTR quantum plus foreground rearm; no aggregate IRQ/WCET guarantee"
+}
