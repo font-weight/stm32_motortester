@@ -1128,3 +1128,20 @@ TIME/ADC и проверяет реальные encoded команды/decoded D
 79 native endpoint-сценариев, actual PR195 HOST coupling (22 метода во всех
 четырёх режимах) и clock-регрессии/13 мутаций на исправленном core. Итоговый
 интегрированный SHA передан Critic-A; новые физические свойства не заявлены.
+
+
+## 19.10.2026 — отдельный opt-in CTR fairness, до включения в runtime
+
+Dot A добавил hash-pinned слой поверх reset/USB005 DCD. Опция по умолчанию
+выключена; opt-in даёт одну endpoint-итерацию CTR, затем сохраняет pending flags
+и маскирует дальнейший CTR до foreground grant. Повторный lifecycle IRQ не
+обходит software deferred. ISO и неподходящие endpoint-типы запрещены до
+allocation; это закрывает выявленный независимым ревью пробел профиля.
+
+Native-модель выполняет извлечённые настоящие тела DCD/FSDEV с явными MMIO
+access shims; она не является полным TinyUSB/USB hardware. Переносимый пакет
+в tests/usb-ctr-fairness, scope/обязательства в platform/USB_CTR_README.md.
+Отдельная полная ARM translation-unit компиляция подтверждает совпадение
+байтов default/off с прежним USB005 при тех же flags, но не full image/WCET.
+Тайминги NVIC, aggregate IRQ, очередь и epoch нового runtime ещё открыты;
+цикл с конечным счётчиком не выдан за доказательство их ограничения.

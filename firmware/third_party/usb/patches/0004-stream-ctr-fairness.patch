@@ -1,0 +1,129 @@
+--- input.c
++++ result.c
+@@ -125,6 +125,36 @@
+ static xfer_ctl_t xfer_status[CFG_TUD_ENDPPOINT_MAX][2];
+ static ep_alloc_t ep_alloc_status[FSDEV_EP_COUNT];
+ static uint8_t    remoteWakeCountdown; // When wake is requested
++
++// Opt-in F103 single-buffer stream profile. Legacy builds retain the old loop.
++#ifndef CFG_MT_USB_CTR_FAIRNESS
++#define CFG_MT_USB_CTR_FAIRNESS 0
++#endif
++#if CFG_MT_USB_CTR_FAIRNESS != 0 && CFG_MT_USB_CTR_FAIRNESS != 1
++#error "CTR fairness must be exactly zero or one"
++#endif
++#if CFG_MT_USB_CTR_FAIRNESS
++#if !CFG_MT_USB_BRIDGE || CFG_TUSB_MCU != OPT_MCU_STM32F1 || !defined(STM32F103xB)
++#error "CTR fairness requires the guarded STM32F103xB stream profile"
++#endif
++static volatile bool mt_ctr_deferred;
++
++bool mt_usb_fsdev_ctr_deferred(void) {
++  return mt_ctr_deferred;
++}
++
++// Foreground only, under the same save/restore guard as the DCD ISR. The owner
++// must service ADC/TIME and empty queued USB work before granting a new quantum.
++// This never clears pending CTR or fabricates completion/epoch evidence.
++bool mt_usb_fsdev_ctr_rearm(void) {
++  if ((FSDEV_REG->ISTR & (U_ISTR_RESET | U_ISTR_PMAOVR | U_ISTR_SUSP)) ||
++      (FSDEV_REG->CNTR & (U_CNTR_FRES | U_CNTR_PDWN | U_CNTR_FSUSP)) ||
++      !(FSDEV_REG->DADDR & U_DADDR_EF)) return false;
++  mt_ctr_deferred = false;
++  FSDEV_REG->CNTR |= U_CNTR_CTRM;
++  return true;
++}
++#endif
+ #if defined(TUP_USBIP_FSDEV_CH32)
+ static bool       ep0_ctrl_dir_in;
+ static bool       ep0_ctrl_has_data;
+@@ -245,6 +275,10 @@
+ 
+ static void handle_bus_reset(uint8_t rhport) {
+   FSDEV_REG->DADDR = 0u; // disable USB Function
++#if CFG_MT_USB_CTR_FAIRNESS
++  mt_ctr_deferred = false;
++  FSDEV_REG->CNTR |= U_CNTR_CTRM;
++#endif
+ 
+   for (uint32_t i = 0; i < FSDEV_EP_COUNT; i++) {
+ #if defined(STM32F103xB)
+@@ -470,8 +504,18 @@
+     FSDEV_REG->ISTR = (fsdev_bus_t)~U_ISTR_ESOF;
+   }
+ 
+-  // loop to handle all pending CTR interrupts
++  // One endpoint iteration may enqueue both RX and TX events. Defer further
++  // CTR entries until foreground grants another quantum; a loop cap alone
++  // would allow immediate IRQ tail-chaining to starve the ADC foreground.
++#if CFG_MT_USB_CTR_FAIRNESS
++  unsigned mt_ctr_budget = 1u;
++  bool mt_ctr_serviced = false;
++  while (!mt_ctr_deferred && mt_ctr_budget && (FSDEV_REG->ISTR & U_ISTR_CTR)) {
++    --mt_ctr_budget;
++    mt_ctr_serviced = true;
++#else
+   while (FSDEV_REG->ISTR & U_ISTR_CTR) {
++#endif
+     // skip DIR bit, and use CTR TX/RX instead, since there is chance we have both TX/RX completed in one interrupt
+     const uint32_t ep_id  = FSDEV_REG->ISTR & U_ISTR_EP_ID;
+     const uint32_t ep_reg = ep_read(ep_id);
+@@ -494,6 +538,13 @@
+       handle_ctr_tx(ep_id);
+     }
+   }
++
++#if CFG_MT_USB_CTR_FAIRNESS
++  if (mt_ctr_serviced) {
++    mt_ctr_deferred = true;
++    FSDEV_REG->CNTR &= (fsdev_bus_t)~U_CNTR_CTRM;
++  }
++#endif
+ 
+   if (int_status & U_ISTR_PMAOVR) {
+     TU_BREAKPOINT();
+@@ -612,6 +663,10 @@
+ }
+ 
+ bool dcd_edpt_open(uint8_t rhport, const tusb_desc_endpoint_t *desc_ep) {
++#if CFG_MT_USB_CTR_FAIRNESS
++  if (!desc_ep || (desc_ep->bmAttributes.xfer != TUSB_XFER_BULK &&
++                  desc_ep->bmAttributes.xfer != TUSB_XFER_INTERRUPT)) return false;
++#endif
+   (void)rhport;
+   const uint8_t    ep_addr     = desc_ep->bEndpointAddress;
+   const uint8_t    ep_num      = tu_edpt_number(ep_addr);
+@@ -680,6 +735,10 @@
+ }
+ 
+ bool dcd_edpt_iso_alloc(uint8_t rhport, uint8_t ep_addr, uint16_t largest_packet_size) {
++#if CFG_MT_USB_CTR_FAIRNESS
++  (void)rhport; (void)ep_addr; (void)largest_packet_size;
++  return false; // ISO/HP service is outside this single-buffer profile.
++#else
+   (void)rhport;
+ 
+   const uint8_t ep_num = tu_edpt_number(ep_addr);
+@@ -706,9 +765,14 @@
+   xfer->ep_idx     = ep_idx;
+ 
+   return true;
++#endif
+ }
+ 
+ bool dcd_edpt_iso_activate(uint8_t rhport, const tusb_desc_endpoint_t *desc_ep) {
++#if CFG_MT_USB_CTR_FAIRNESS
++  (void)rhport; (void)desc_ep;
++  return false; // ISO/HP service is outside this single-buffer profile.
++#else
+   (void)rhport;
+   const uint8_t    ep_addr = desc_ep->bEndpointAddress;
+   const uint8_t    ep_num  = tu_edpt_number(ep_addr);
+@@ -742,6 +806,7 @@
+   ep_write(ep_idx, ep_reg, true);
+ 
+   return true;
++#endif
+ }
+ 
+ // Currently, single-buffered, and only 64 bytes at a time (max)
