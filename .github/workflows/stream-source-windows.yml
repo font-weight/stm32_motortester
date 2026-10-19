@@ -1,0 +1,188 @@
+name: STREAM Windows source tests
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/stream-source-windows.yml']
+    types: [opened]
+permissions:
+  contents: read
+concurrency:
+  group: stream-windows-source-tests
+  cancel-in-progress: false
+jobs:
+  source-tests:
+    if: >-
+      github.repository == 'font-weight/stm32_motortester' &&
+      github.event.repository.private == false &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'dot-a/stream-source-windows-r2-20261019' &&
+      github.run_attempt == 1
+    runs-on: windows-2022
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      SOURCE_SHA: '4a7ddfc074ce4685f7a15536680a6777a06697ff'
+      SOURCE_TREE: '3ce428067727165e4f5a98418d265443d548bd45'
+      PYTHONNOUSERSITE: '1'
+      PYTHONOPTIMIZE: '0'
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_NO_CACHE_DIR: '1'
+      QT_QPA_PLATFORM: offscreen
+      PYQTGRAPH_QT_LIB: PySide6
+      PYTHONHASHSEED: '0'
+    steps:
+      - name: Preserve Git blob line endings in hosted checkout
+        run: |
+          git config --global core.autocrlf false
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot disable checkout newline conversion' }
+      - name: Checkout immutable host candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: '4a7ddfc074ce4685f7a15536680a6777a06697ff'
+          fetch-depth: 1
+          persist-credentials: false
+          submodules: false
+          lfs: false
+      - name: Verify clean source and record provenance
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $head = (git rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $head -cne $env:SOURCE_SHA) { throw 'Unexpected source SHA' }
+          $tree = (git rev-parse 'HEAD^{tree}').Trim()
+          if ($LASTEXITCODE -ne 0 -or $tree -cne $env:SOURCE_TREE) { throw 'Unexpected source tree' }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Dirty source' }
+          $lock = (git rev-parse HEAD:host/packaging/requirements-win-x64.lock).Trim()
+          if ($LASTEXITCODE -ne 0 -or $lock -cne '256a8005b4f7de19651c9b9bdd70419b5b52af3d') { throw 'Unexpected dependency lock' }
+          Write-Output "source=$head workflow=${{ github.workflow_sha }} image=$env:ImageOS/$env:ImageVersion"
+          git config --show-origin --get core.autocrlf
+          if ($LASTEXITCODE -ne 0) { throw 'Missing checkout newline policy' }
+          Write-Output 'Windows source tests only; no packaging, physical invocation or Windows 10 acceptance.'
+      - name: Set up regular CPython 3.13.16 x64
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13.16'
+          architecture: x64
+          freethreaded: false
+          allow-prereleases: false
+          check-latest: false
+      - name: Verify every tracked worktree file against its raw Git blob
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $check = @'
+          import hashlib
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          entries = subprocess.check_output(['git', 'ls-tree', '-rz', '--full-tree', 'HEAD']).split(b'\0')
+          checked = 0
+          mismatches = []
+          for entry in filter(None, entries):
+              metadata, name = entry.split(b'\t', 1)
+              mode, kind, expected = metadata.split()
+              if kind != b'blob' or mode not in (b'100644', b'100755'):
+                  raise RuntimeError('Unsupported tracked entry: ' + os.fsdecode(name))
+              data = Path(os.fsdecode(name)).read_bytes()
+              actual = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              if actual != expected.decode():
+                  mismatches.append(os.fsdecode(name))
+                  print('RAW_BLOB_MISMATCH', os.fsdecode(name), expected.decode(), actual)
+              checked += 1
+          print('Raw Git blob verification:', checked, 'files;', len(mismatches), 'mismatches')
+          sys.exit(bool(mismatches))
+          '@
+          python -c $check
+          if ($LASTEXITCODE -ne 0) { throw 'Checkout bytes differ from the pinned Git tree' }
+      - name: Install hash-locked dependencies in isolated environment
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $venv = Join-Path $env:RUNNER_TEMP ('stream-tests-' + $env:GITHUB_RUN_ID + '-' + $env:GITHUB_RUN_ATTEMPT)
+          python -m venv $venv
+          if ($LASTEXITCODE -ne 0) { throw 'Virtual environment creation failed' }
+          $py = Join-Path $venv 'Scripts/python.exe'
+          "TEST_PYTHON=$py" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $wheels = Join-Path $venv 'wheelhouse'
+          & $py -m pip --isolated download --disable-pip-version-check --no-cache-dir --index-url https://pypi.org/simple --require-hashes --only-binary=:all: --dest $wheels -r host/packaging/requirements-win-x64.lock
+          if ($LASTEXITCODE -ne 0) { throw 'Locked dependency download failed' }
+          & $py -m pip --isolated install --disable-pip-version-check --no-cache-dir --no-index --find-links $wheels --require-hashes --only-binary=:all: -r host/packaging/requirements-win-x64.lock
+          if ($LASTEXITCODE -ne 0) { throw 'Locked dependency installation failed' }
+          & $py -m pip check
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency consistency failed' }
+      - name: Verify interpreter and native Qt imports
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $preflight = @'
+          import importlib.metadata as md
+          import json, os, platform, struct, sys, sysconfig
+          import PySide6, shiboken6, numpy, pyqtgraph, serial
+          from PySide6 import QtCore, QtGui, QtWidgets, QtTest
+          if sys.version_info[:3] != (3, 13, 16) or struct.calcsize('P') != 8:
+              raise RuntimeError('Wrong Python version or architecture')
+          if sysconfig.get_config_var('Py_GIL_DISABLED'):
+              raise RuntimeError('Free-threaded interpreter is not admitted')
+          app = QtWidgets.QApplication([])
+          if app.platformName() != 'offscreen':
+              raise RuntimeError('Unexpected Qt platform')
+          print(json.dumps({'python': sys.version, 'executable': sys.executable,
+              'platform': platform.platform(), 'qpa': app.platformName(),
+              'qt': QtCore.qVersion(), 'qt_core_path': QtCore.__file__,
+              'qt_widgets_path': QtWidgets.__file__, 'pyside_path': PySide6.__file__,
+              'numpy_path': numpy.__file__, 'serial_path': serial.__file__,
+              'dependencies': sorted((d.metadata['Name'], d.version) for d in md.distributions())},
+              sort_keys=True))
+          '@
+          & $env:TEST_PYTHON -c $preflight
+          if ($LASTEXITCODE -ne 0) { throw 'Native Qt/interpreter preflight failed' }
+      - name: Run exact source modules sequentially in both modes
+        timeout-minutes: 18
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $env:PYTHONPATH = 'host;host/tests'
+          $run = @'
+          import base64, hashlib, json, os, pathlib, subprocess, sys
+          modules = 'test_stream_wire test_stream_endpoint test_stream_recording test_stream_session test_stream_view test_stream_bridge test_stream_controller test_stream_serial test_stream_provenance test_stream_diagnostic test_gui_stream test_gui_stream_controls'.split()
+          root = pathlib.Path(os.environ['RUNNER_TEMP']) / ('stream-source-logs-' + os.environ['GITHUB_RUN_ID'] + '-' + os.environ['GITHUB_RUN_ATTEMPT'])
+          root.mkdir(exist_ok=False)
+          failures = []
+          for optimized in (False, True):
+              for module in modules:
+                  label = ('optimized-' if optimized else 'normal-') + module
+                  command = [sys.executable] + (['-O'] if optimized else []) + ['-m', 'unittest', '-v', module]
+                  path = root / (label + '.log')
+                  print('COMMAND ' + json.dumps(command), flush=True)
+                  timed_out = False
+                  with path.open('xb') as log:
+                      try:
+                          result = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, timeout=120)
+                          code = result.returncode
+                      except subprocess.TimeoutExpired:
+                          timed_out, code = True, None
+                  raw = path.read_bytes()
+                  print(raw.decode('utf-8', errors='replace'), flush=True)
+                  print('ORIGINAL_LOG ' + json.dumps({'label': label, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'exit': code, 'timeout': timed_out}), flush=True)
+                  # Retain exact original bytes, including diagnostics that do not decode as UTF-8.
+                  print('BEGIN_BASE64 ' + label, flush=True)
+                  encoded = base64.b64encode(raw).decode('ascii')
+                  for offset in range(0, len(encoded), 4096):
+                      print(encoded[offset:offset+4096], flush=True)
+                  print('END_BASE64 ' + label, flush=True)
+                  if timed_out or code != 0:
+                      failures.append(label)
+          print('TEST_FAILURES ' + json.dumps(failures), flush=True)
+          sys.exit(bool(failures))
+          '@
+          & $env:TEST_PYTHON -c $run
+          if ($LASTEXITCODE -ne 0) { throw 'Source tests failed; original outputs above' }
+      - name: Check source unchanged after execution
+        if: ${{ always() }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $head = (git rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $head -cne $env:SOURCE_SHA) { throw 'Source HEAD changed' }
+          $dirty = git status --porcelain --untracked-files=all
+          if ($LASTEXITCODE -ne 0 -or $dirty) { throw 'Source worktree changed' }
+          Write-Output 'Source-only Windows Server evidence. No package, physical capture, timing qualification or Windows 10 acceptance.'
