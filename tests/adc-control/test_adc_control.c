@@ -207,6 +207,7 @@ static void test_clock_correlation(void) {
     const uint32_t gaps[] = {0u, 19u, 20u, 4999u};
     for (wrap = 0; wrap < 2u; ++wrap) {
         for (i = 0; i < sizeof gaps / sizeof gaps[0]; ++i) {
+            mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
             setup();
             clock_origin_us = wrap ? UINT32_MAX - 10u : 1000u;
             clock_origin_ms = wrap ? UINT32_MAX : 1u;
@@ -218,17 +219,147 @@ static void test_clock_correlation(void) {
                 assert(driver.state == MT_ADC_DMA_RUNNING);
                 assert(binding.first_sample_delay_us >= gaps[i] + 20u);
                 assert(control.io.stop(control.io.context));
+                assert(mt_adc_first_start_failure.magic == 0u);
             } else {
                 assert(!control.io.start(control.io.context, clock_origin_ms));
                 assert(hw.write_count == 0u && !driver.owns_peripherals);
+                assert(hw.time_reads == 2u);
+                assert(mt_adc_first_start_failure.magic == MT_ADC_START_DIAGNOSTIC_MAGIC);
+                assert(mt_adc_first_start_failure.version == 1u);
+                assert(mt_adc_first_start_failure.stage == MT_ADC_START_CORRELATION);
+                assert(mt_adc_first_start_failure.driver_called == 0u);
+                assert((uint32_t)(mt_adc_first_start_failure.after_us -
+                       mt_adc_first_start_failure.before_us) == gaps[i] + 1u);
             }
         }
     }
+}
+static void diagnostic_setup(void) {
+    setup(); clock_origin_us = hw.tick; clock_origin_ms = 100u;
+    assert(mt_adc_control_init(&binding, &control, &driver, millis, &hw, 0) == MT_CONTROL_OK);
+}
+static uint32_t diag_enter(void *context) { (void)context; return 7u; }
+static int diag_deny(void *context) { (void)context; return 0; }
+static void diag_leave(void *context, uint32_t key) { (void)context; assert(key == 7u); }
+static uint32_t desired_start_delay;
+static uint32_t diag_jump_enter(void *context) {
+    fake_t *f = context;
+    f->tick = clock_origin_us + desired_start_delay;
+    return 7u;
+}
+static int diag_allow(void *context) { (void)context; return 1; }
+static void test_diagnostic_delay_boundary(void) {
+    const uint32_t delays[] = {UINT32_C(0x7fffffff), UINT32_C(0x80000000)};
+    for (unsigned i = 0; i < 2u; ++i) {
+        const mt_adc_dma_start_guard guard = {diag_jump_enter, diag_allow, diag_leave, &hw};
+        mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+        diagnostic_setup(); desired_start_delay = delays[i];
+        assert(mt_adc_control_init_guarded(&binding, &control, &driver, millis,
+               &hw, 0, &guard) == MT_CONTROL_OK);
+        assert(control.io.start(control.io.context, 100u) == (i == 0u));
+        if (i == 0u) {
+            assert(mt_adc_first_start_failure.magic == 0u);
+            assert(control.io.stop(control.io.context));
+        } else {
+            assert(mt_adc_first_start_failure.stage == MT_ADC_START_POSTCHECK);
+            assert(mt_adc_first_start_failure.driver_called == 1u);
+            assert(mt_adc_first_start_failure.driver_result == MT_ADC_DMA_OK);
+            assert((uint32_t)(mt_adc_first_start_failure.start_before_us -
+                   mt_adc_first_start_failure.before_us) == delays[i]);
+            assert(driver.state == MT_ADC_DMA_STOPPED && !driver.owns_peripherals);
+        }
+    }
+}
+static void test_first_failure_diagnostic(void) {
+    mt_adc_start_diagnostic saved;
+    /* Fixture reset represents a fresh boot; production has no reset API. */
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup();
+    assert(!control.io.start(control.io.context, 101u));
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_COMMAND_TIME);
+    assert(mt_adc_first_start_failure.command_ms == 101u);
+    assert(mt_adc_first_start_failure.epoch_ms == 100u);
+    assert(mt_adc_first_start_failure.driver_called == 0u);
+    saved = mt_adc_first_start_failure;
+    assert(mt_control_recover(&control) == MT_CONTROL_RECOVERY);
+    diagnostic_setup();
+    hw.cal_stuck = true;
+    assert(!control.io.start(control.io.context, 100u));
+    assert(driver.fault == MT_ADC_DMA_FAULT_CALIBRATION);
+    assert(memcmp(&saved, (const void *)&mt_adc_first_start_failure, sizeof saved) == 0);
+    assert(control.io.stop(control.io.context));
+    diagnostic_setup();
+    assert(control.io.start(control.io.context, 100u));
+    assert(control.io.stop(control.io.context));
+    assert(memcmp(&saved, (const void *)&mt_adc_first_start_failure, sizeof saved) == 0);
+
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup(); hw.cal_stuck = true;
+    assert(!control.io.start(control.io.context, 100u));
+    assert(mt_adc_first_start_failure.magic == MT_ADC_START_DIAGNOSTIC_MAGIC);
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_DRIVER);
+    assert(mt_adc_first_start_failure.driver_called == 1u);
+    assert(mt_adc_first_start_failure.driver_result == MT_ADC_DMA_ERROR);
+    assert(mt_adc_first_start_failure.driver_fault == MT_ADC_DMA_FAULT_CALIBRATION);
+    saved = mt_adc_first_start_failure;
+    assert(mt_control_recover(&control) == MT_CONTROL_RECOVERY);
+    assert(memcmp(&saved, (const void *)&mt_adc_first_start_failure, sizeof saved) == 0);
+
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup(); driver.state = MT_ADC_DMA_RUNNING;
+    assert(!control.io.start(control.io.context, 100u));
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_DRIVER);
+    assert(mt_adc_first_start_failure.driver_result == MT_ADC_DMA_BUSY);
+    assert(mt_adc_first_start_failure.driver_fault == MT_ADC_DMA_FAULT_NONE);
+    assert(mt_adc_first_start_failure.driver_state == MT_ADC_DMA_RUNNING);
+    assert(hw.write_count == 0u);
+
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup();
+    assert(!control.io.start(control.io.context, 100u - UINT32_C(0x80000000)));
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_COMMAND_TIME);
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup();
+    assert(control.io.start(control.io.context, 100u - UINT32_C(0x7fffffff)));
+    assert(mt_adc_first_start_failure.magic == 0u);
+    assert(control.io.stop(control.io.context));
+
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup(); driver.initialized = false;
+    assert(!control.io.start(control.io.context, 100u));
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_DRIVER);
+    assert(mt_adc_first_start_failure.driver_result == MT_ADC_DMA_BAD_ARGUMENT);
+
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup();
+    {
+        const mt_adc_dma_start_guard guard = {diag_enter, diag_deny, diag_leave, NULL};
+        assert(mt_adc_control_init_guarded(&binding, &control, &driver, millis,
+               &hw, 0, &guard) == MT_CONTROL_OK);
+    }
+    assert(!control.io.start(control.io.context, 100u));
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_DRIVER);
+    assert(mt_adc_first_start_failure.driver_result == MT_ADC_DMA_ERROR);
+    assert(mt_adc_first_start_failure.driver_fault == MT_ADC_DMA_FAULT_ADMISSION);
+
+    /* A legal noncanonical clock can reach the binding postcheck when the
+     * hook is invoked directly, bypassing the controller's profile preflight. */
+    mt_adc_first_start_failure = (mt_adc_start_diagnostic){0};
+    diagnostic_setup(); driver.hse_hz = 0;
+    *slot(&hw, R_CR) = 3u | (3u << 24);
+    *slot(&hw, R_CFGR) = 2u | 8u | (4u << 8) | (1u << 14) | (10u << 18);
+    assert(!control.io.start(control.io.context, 100u));
+    assert(mt_adc_first_start_failure.stage == MT_ADC_START_POSTCHECK);
+    assert(mt_adc_first_start_failure.driver_result == MT_ADC_DMA_OK);
+    assert(mt_adc_first_start_failure.driver_state == MT_ADC_DMA_RUNNING);
+    assert(driver.state == MT_ADC_DMA_STOPPED && !driver.owns_peripherals);
 }
 int main(void) {
     assert(platform_regression_main() == 0);
     test_profile_no_writes();
     test_clock_correlation();
+    test_first_failure_diagnostic();
+    test_diagnostic_delay_boundary();
     test_window_and_time(1000, 1);
     test_window_and_time(UINT32_MAX - 1000u, UINT32_MAX - 20u);
     test_stale_and_driver_fault();
