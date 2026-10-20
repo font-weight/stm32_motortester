@@ -1,8 +1,10 @@
 # Wire 0.2 stream — DRAFT for issue #191
 
 Author: Dot A. Base: main `96002ce62bb5c065ac665ca81059c4a62e90d1dd`.
-This document proposes a new endpoint contract, not an implemented or accepted
-protocol. It needs exact-version review by both teams and independent critics.
+This document specifies a draft endpoint contract with separately published draft
+implementations. Publication does not establish shared acceptance or hardware
+qualification. Exact-version review by both teams and independent critics remains
+required; see ../docs/progress.md for version-bound implementation evidence.
 No field below may be enabled in the existing wire 0.1 firmware by implication.
 The known window candidate in PR190 and old segmented archives remain unchanged.
 
