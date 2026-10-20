@@ -1,0 +1,582 @@
+      "path": "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/matrix.json",
+      "mode": "100644",
+      "blob": "1add6923ada1ec00e60b6f9ade7daa47636e3ee2",
+      "size": 6823,
+      "sha256": "3935a753c4b851899001564d940a961d85b92cedd5f41918464502d3c3148361"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-fixed-sanitized/receipt.json",
+      "mode": "100644",
+      "blob": "ef59f8ef2e33d089cb80853edeb321970bff334f",
+      "size": 566,
+      "sha256": "f73ce9393015a81425e021d1c277a99509c694c22c5077ad20c1069dd1f7dad6"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-native/commands.json",
+      "mode": "100644",
+      "blob": "fd186d20595d26a1ba15ff8b13f54beca84c3dd9",
+      "size": 24394,
+      "sha256": "1b26401600a38c205337d9b79cf1dd64b510d96ffb8c744be2c3e5899bd390d5"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-native/commands.log",
+      "mode": "100644",
+      "blob": "05e0f1283bf08b06b39fea67fc8c25d06dad44d5",
+      "size": 17291,
+      "sha256": "2f409a8e5e9ee17fe17319164e07863523f35933d5911965ad3a7f782cc7202d"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-native/input-manifest.json",
+      "mode": "100644",
+      "blob": "77f1acfcda75809128835798e513b7d96f1be7e5",
+      "size": 6357,
+      "sha256": "65c63299060a45b08e3b4972c3484e014233748f648a72eda79ea74301bfb411"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-native/matrix.json",
+      "mode": "100644",
+      "blob": "771f29b00c0458619a871f94728bf076831e207f",
+      "size": 7175,
+      "sha256": "cfd69691cbc92ec8f42012794e41b08305fc89222060b7e0fb718865e18b9238"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-native/receipt.json",
+      "mode": "100644",
+      "blob": "0d0286f4ec2c63ebb996c72daf905348e0bb5800",
+      "size": 491,
+      "sha256": "1c73db4e5d61bd7c209a426d9116044fc82e6045efb58f4628d98ff4936f041d"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/commands.json",
+      "mode": "100644",
+      "blob": "7299afe55428a6f6a923184bbd1a2b0db2bfd6bd",
+      "size": 25686,
+      "sha256": "7ba9808b7e378a83a9d34ddb1eeb5b4f9c3175246957e0af30707bc7e2c39ffc"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/commands.log",
+      "mode": "100644",
+      "blob": "6b4b8de6c7acb99186475b6c95d365b1c2c81435",
+      "size": 18223,
+      "sha256": "740956543a5e802bc3b3865121c814c9ee8693792667a90614a5a13110b93b16"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/input-manifest.json",
+      "mode": "100644",
+      "blob": "77f1acfcda75809128835798e513b7d96f1be7e5",
+      "size": 6357,
+      "sha256": "65c63299060a45b08e3b4972c3484e014233748f648a72eda79ea74301bfb411"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/matrix.json",
+      "mode": "100644",
+      "blob": "ba771aa44434e7df5a36d26dd23ebdc1e25e638d",
+      "size": 7175,
+      "sha256": "25e29cfd6555a880059365da14cec1b2855560d60f338ed36714508e0e0dced8"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/evidence-upstream-sanitized/receipt.json",
+      "mode": "100644",
+      "blob": "2b95bbcf2588bbb8260025e45f6384ba0df1b3a1",
+      "size": 578,
+      "sha256": "966981b78b94eba966f807f00ff81ba2e4d9929f6c028389cfe401e74861de5f"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/original-additions-manifest.json",
+      "mode": "100644",
+      "blob": "97a565af2e88444ae23001903778f8ce75cee49a",
+      "size": 8999,
+      "sha256": "6dddb986a145755dc16daffe67bafc615449df96eee7ed9639d9f7bfcbc8a799"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/output-separation-results.json",
+      "mode": "100644",
+      "blob": "acfb8f6bcb6587ff3952a244a7c5c5d35b5a3ce8",
+      "size": 5393,
+      "sha256": "7570dfb1759de4bf49caba62fe9704fe27a1b11eb5b4a7c09a931ea7c40ec32a"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/package-verification.json",
+      "mode": "100644",
+      "blob": "341f3a53e213cddb9c4fb0a8d9d011a6f71c64ee",
+      "size": 609,
+      "sha256": "d1f1d9ee38de977b759a3df33c132b2b1f1263b78a2971da2c310467d0ff145c"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/patch-tool-results.json",
+      "mode": "100644",
+      "blob": "a45de42a97cbbdcba8eaef22a18c5d43c6d1e102",
+      "size": 9575,
+      "sha256": "738010a21892bbac4f689d8f5ac73a56a7916ab386ee67590e5cdb3837e48452"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/patch-tool.log",
+      "mode": "100644",
+      "blob": "5597407d510476bb4b5890996325188bfbfa5ce2",
+      "size": 107,
+      "sha256": "557df83fb5fe1ca54d4b25f0ee3d76e6414955f05c31659d80495ffa201fcc27"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/relocated-supplemental/commands.json",
+      "mode": "100644",
+      "blob": "26b9aa8245933b80eeb487d48d8c55eb52c92f77",
+      "size": 672,
+      "sha256": "7a96e7dc116a89a0c17180ad525f97d71aba5e395ebe4104ee5d182fa5cb7485"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/relocated-supplemental/output-separation-results.json",
+      "mode": "100644",
+      "blob": "97fc0be733213c6133a06169578388af310b78ad",
+      "size": 5671,
+      "sha256": "7a35fac1e79d31b12e6974ea8ed15d58f39521eae05a8c123bdd7bfb9cd6292b"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/relocated-supplemental/patch-tool-results.json",
+      "mode": "100644",
+      "blob": "a32a343dc1cbe99047a7361f5a823595907cc203",
+      "size": 9704,
+      "sha256": "053e35e1e3273c0c48c49f65e486c56d8799488a048f5721850eb1825f496b8b"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/relocated-supplemental/receipt.json",
+      "mode": "100644",
+      "blob": "699c8988f9272c965b5482c9e2069645492971f0",
+      "size": 1720,
+      "sha256": "7c1a1007c2de568ed009ddda079f95d01dc106c3a5f3ebf69fd0ecdc7f4396a2"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/relocated-supplemental/test_output_separation.py.log",
+      "mode": "100644",
+      "blob": "f33976141e8f36c7d04b92cd0ec1deb2a05fd29d",
+      "size": 103,
+      "sha256": "6369af65c308c09ea504c3bf89a1575cf5b7acb7614c3c12d9f716800f8d2569"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/relocated-supplemental/test_patch_tool.py.log",
+      "mode": "100644",
+      "blob": "5597407d510476bb4b5890996325188bfbfa5ce2",
+      "size": 107,
+      "sha256": "557df83fb5fe1ca54d4b25f0ee3d76e6414955f05c31659d80495ffa201fcc27"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/review-manifest.json",
+      "mode": "100644",
+      "blob": "ad7f231e8b438eb88ad776a8a5a4366c9142003f",
+      "size": 2109,
+      "sha256": "cbb7a10f1fff57182a6872ba833db4ce8cfab3fb04d767fc60fb0a51cda139df"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/run_supplemental.py",
+      "mode": "100644",
+      "blob": "f1dd6c9b385f3d9a1cfef1d0acb959e2ec0030f8",
+      "size": 4289,
+      "sha256": "64f5ae9efd4f7585317fd501ece5ff7e76e272154dd957861d42128b3bb9fbac"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/successful-stream-equality.json",
+      "mode": "100644",
+      "blob": "975e8c91f9f4692a48004ebd0dadb409dd55ba18",
+      "size": 2287,
+      "sha256": "0113504b13564d69e6e2685fd88d19f43fe4618c6f5eb8e19cf70bc54983f44e"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/test_output_separation.py",
+      "mode": "100644",
+      "blob": "3f4b93c4e6a0b52cf04507e3ba7545906dbfdb7a",
+      "size": 1656,
+      "sha256": "cfe46a9aa7797cbc0d6bcabcefbe777bd28f8f3eb2487959796f88a838947f08"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/test_patch_tool.py",
+      "mode": "100644",
+      "blob": "53f1a51cdb2843222556a938746bce1b707a23da",
+      "size": 4277,
+      "sha256": "55f379b38bf3490c98eebbe1dd27c3afee95e96ce5ca6c6a51f190af19aa3704"
+    },
+    {
+      "path": "tests/usb-setup/critic-a-local/upstream-remote-binding.json",
+      "mode": "100644",
+      "blob": "02f1533373aa3682c7d61bec04a781ca46cac063",
+      "size": 310,
+      "sha256": "e74dfbb0a0e116a14cd6b91ce27e5d92dfffda5e20dd60f4e457bcc46ec01409"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/commands.json",
+      "mode": "100644",
+      "blob": "a3902d3c0825f8b685d6627a989fb4a5357ca17e",
+      "size": 160844,
+      "sha256": "9edaf9a6b3dc22bdd847d8f72cfea8bfdc79082b00947e780df45c57e649dfa6"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/nm.txt",
+      "mode": "100644",
+      "blob": "cdd5419b68c19a11224032f634c33a1f061d2fe1",
+      "size": 840,
+      "sha256": "e430eded515f0b533d851f6a2adda8d29192dc5e434c071c4b0efde5ddcf9deb"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/objdump.txt",
+      "mode": "100644",
+      "blob": "acd54a818525341f3f9ccbb42271b036b348600d",
+      "size": 70506,
+      "sha256": "d8ea446ed643d1b33c7ff96a5607bdc138653f30914a29ea635e87180682db69"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/size.txt",
+      "mode": "100644",
+      "blob": "8fd1322530d084af27c8d45db892d0d8518dc1b9",
+      "size": 4989,
+      "sha256": "1491a819fe097db7db3d72f865ac7ca67ffbd1def7f6e3e10e426c7f5f6c87cc"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/summary.json",
+      "mode": "100644",
+      "blob": "e56cdb34153ee79b63978e5771329c20574c2113",
+      "size": 617,
+      "sha256": "9b177c3151eb7ee2575f956b0926a24c4f2d917b6401c3b14a46af033c77cc3e"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build-f1/adapter-receipt.json",
+      "mode": "100644",
+      "blob": "0b61c2d0d7f7c771fadd44a417439d4649632a04",
+      "size": 19725,
+      "sha256": "7e19b59e0a08f5c61f1e4c0e3d90f790b4232911e952815432e448b7a01a389e"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build-f1/core-receipt.json",
+      "mode": "100644",
+      "blob": "fb50b5eb532c59045baa4211d1c6674c24324dee",
+      "size": 7855,
+      "sha256": "376b8f80856e401baca91c44bf2f19209fa386fd04253a5426f3fde344edae08"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize-f1/adapter-receipt.json",
+      "mode": "100644",
+      "blob": "33e13a53ebfff8a489aa48c963abf13279a6c967",
+      "size": 20736,
+      "sha256": "e658f3570135292e184d02d404723e70b6fe3ef707ccb30473ccac0b5f662e65"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize-f1/core-receipt.json",
+      "mode": "100644",
+      "blob": "24df8379dfdaed3927d12f45eded509dfe9d1459",
+      "size": 8306,
+      "sha256": "0a0bef8db757171d0baaa8dba072f41f887d61aacc31f997ac63f2fec34577e8"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize/adapter-receipt.json",
+      "mode": "100644",
+      "blob": "48c60ffa5df55350e37e72cb7774a275bd097ee3",
+      "size": 20369,
+      "sha256": "21ac499b4aa579b2de4d631c2772b89a5b2d1673e6208cb3b7f3d3ea437e6103"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build-sanitize/core-receipt.json",
+      "mode": "100644",
+      "blob": "c61c696c508e29e9d97d35089c2f5ff4390d97c2",
+      "size": 8169,
+      "sha256": "a7c039d38c42a92de6cbfaa4259d1b69369f52eb03d54a6ec5c441d5cb8f54a4"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build/adapter-receipt.json",
+      "mode": "100644",
+      "blob": "6792cc5aeb3d443e74719847e1c4519055fed12e",
+      "size": 19358,
+      "sha256": "1b38146735ff7e3d777e857af1f5d81e593bba3aa404887062fcae8b7824f197"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/supporting/build/core-receipt.json",
+      "mode": "100644",
+      "blob": "7bd73672d778bc4230d2ac7ff85c942f68a4f319",
+      "size": 7718,
+      "sha256": "0e89e887bf0b4cc196b6e16b367b6dd4af34d259b862c93268b0d64dafe88dc6"
+    },
+    {
+      "path": "tests/usb-setup/evidence-author-final/usbd.su",
+      "mode": "100644",
+      "blob": "62f79f958fc64706a730ca2342de739d3441b392",
+      "size": 5704,
+      "sha256": "7108bb570ad56575f3d68cdd538aa7228e519323fd98d0eb17419184a94186f7"
+    },
+    {
+      "path": "tests/usb-setup/evidence-root-targeted/commands.json",
+      "mode": "100644",
+      "blob": "80956f5999d0d57517fc78b6d38463904a628cf5",
+      "size": 23640,
+      "sha256": "c105346bca5d0b761794c5ac49c58aef0edb8088f9733ab074da3d504a41beea"
+    },
+    {
+      "path": "tests/usb-setup/evidence-root-targeted/input-manifest.json",
+      "mode": "100644",
+      "blob": "f6a5b6a0699eede2aacbd6ae06d7ffcaa5806929",
+      "size": 6435,
+      "sha256": "b7507a79e3be2aa4fab97328cec51c38570b2a8c079fd7a126475a1eea05c7cc"
+    },
+    {
+      "path": "tests/usb-setup/evidence-root-targeted/matrix.json",
+      "mode": "100644",
+      "blob": "0c9185a9804125b22ce740c07d153fbc25e22668",
+      "size": 6823,
+      "sha256": "bdc2c59d57b90f0109ad11c6df80ed2bdbcf8ee38cde001f8e786706e515a8e5"
+    },
+    {
+      "path": "tests/usb-setup/evidence-root-targeted/receipt.json",
+      "mode": "100644",
+      "blob": "b2e3eddbdd7e7b621c09350a0bda1cc52d201f38",
+      "size": 554,
+      "sha256": "219a52340dc186f827916fec46555b63525473be3decb8dbcf4d0be61812e2a0"
+    },
+    {
+      "path": "tests/usb-setup/output-separation-checks.json",
+      "mode": "100644",
+      "blob": "f4e9c1c2b7fe1d000506be16e55f38b46810c889",
+      "size": 6195,
+      "sha256": "2b92da96184e470fb9e516f0a675f12c9b835c47b4bff75f6d2bee59c63ab143"
+    },
+    {
+      "path": "tests/usb-setup/root-targeted.log",
+      "mode": "100644",
+      "blob": "3fb50eee62619667a62e950b81805cdd26ec5bc8",
+      "size": 15803,
+      "sha256": "74f624cda9810bcee08da61fd539e8338546b482bdb531065b726fb101e1055f"
+    },
+    {
+      "path": "tests/usb-setup/supporting/REPORT_RU.md",
+      "mode": "100644",
+      "blob": "20ef9e49255e018c95177ae36480472c1eb2c8cf",
+      "size": 12167,
+      "sha256": "e5b9aa5defd052acce6e898fb6c4460f39da0aca7cce7b84db7a9e17c52c2a97"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-native/commands.json",
+      "mode": "100644",
+      "blob": "d41e33dc168d6c9498ec12bdc30da3fe504eb3de",
+      "size": 22492,
+      "sha256": "9777bddbd514850c6c869a7a0841946b5cc72bf7a1ae40e37c61e67a0a1469cb"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-native/input-manifest.json",
+      "mode": "100644",
+      "blob": "f6a5b6a0699eede2aacbd6ae06d7ffcaa5806929",
+      "size": 6435,
+      "sha256": "b7507a79e3be2aa4fab97328cec51c38570b2a8c079fd7a126475a1eea05c7cc"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-native/matrix.json",
+      "mode": "100644",
+      "blob": "365f12e89b4d65a75f8db1d2167753f63d565a99",
+      "size": 6823,
+      "sha256": "1466434c30dc15d21d668445b6631487f014388b301b39121aeda19816600275"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-native/receipt.json",
+      "mode": "100644",
+      "blob": "4f059d45a8ac29a50e5f97acafd4320ddf7df6e4",
+      "size": 467,
+      "sha256": "36b6bf5f8c9fecbd740911f6528be65d930b84cc777b116bca2662ade980f4e2"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/commands.json",
+      "mode": "100644",
+      "blob": "46f7b1d9428667b3e79e679e7eafd35cc6906baf",
+      "size": 23784,
+      "sha256": "03882fe08a6244e374df6b0a8026eed3470efae2581184ee7649de62104a8a4e"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/input-manifest.json",
+      "mode": "100644",
+      "blob": "f6a5b6a0699eede2aacbd6ae06d7ffcaa5806929",
+      "size": 6435,
+      "sha256": "b7507a79e3be2aa4fab97328cec51c38570b2a8c079fd7a126475a1eea05c7cc"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/matrix.json",
+      "mode": "100644",
+      "blob": "0c9185a9804125b22ce740c07d153fbc25e22668",
+      "size": 6823,
+      "sha256": "bdc2c59d57b90f0109ad11c6df80ed2bdbcf8ee38cde001f8e786706e515a8e5"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-fixed-sanitized/receipt.json",
+      "mode": "100644",
+      "blob": "b2e3eddbdd7e7b621c09350a0bda1cc52d201f38",
+      "size": 554,
+      "sha256": "219a52340dc186f827916fec46555b63525473be3decb8dbcf4d0be61812e2a0"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-native/commands.json",
+      "mode": "100644",
+      "blob": "c8cc065ada75baabab4f82c2bd7b9a0d44e8a2bf",
+      "size": 23632,
+      "sha256": "caefaccee9870440984b15a150a34d8feb604931bdfeb1f77403b5b99812adb6"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-native/input-manifest.json",
+      "mode": "100644",
+      "blob": "91a03abc8c23c5caff11fa078ee09a6dfc79e86a",
+      "size": 6315,
+      "sha256": "d1fe49cb78c39df1b621d6bec4141f32ce926702188e5963dc31d20058f3ca34"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-native/matrix.json",
+      "mode": "100644",
+      "blob": "930b2160ce0e7951ace1ed2672657285d4fe6f9d",
+      "size": 7175,
+      "sha256": "10721a7580cc8532d3aca21761cb011aebc7ecbacc89a9667eee4c152738315d"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-native/receipt.json",
+      "mode": "100644",
+      "blob": "0d0286f4ec2c63ebb996c72daf905348e0bb5800",
+      "size": 491,
+      "sha256": "1c73db4e5d61bd7c209a426d9116044fc82e6045efb58f4628d98ff4936f041d"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/commands.json",
+      "mode": "100644",
+      "blob": "3e644d033a3ada7ef62cc84da5689f45be37cb08",
+      "size": 24924,
+      "sha256": "ca386c20c0875346875ede841919f1a37be41b141b8580a4e6bd2b1c3800594e"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/input-manifest.json",
+      "mode": "100644",
+      "blob": "91a03abc8c23c5caff11fa078ee09a6dfc79e86a",
+      "size": 6315,
+      "sha256": "d1fe49cb78c39df1b621d6bec4141f32ce926702188e5963dc31d20058f3ca34"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/matrix.json",
+      "mode": "100644",
+      "blob": "1368715a7feba2b2f7bf95ff89ae8139e7f892f5",
+      "size": 7175,
+      "sha256": "3fb4fcc98984dfa212ef90dd717b1342524179f29004638b6bbc38fe3872cd22"
+    },
+    {
+      "path": "tests/usb-setup/supporting/evidence-upstream-sanitized/receipt.json",
+      "mode": "100644",
+      "blob": "2b95bbcf2588bbb8260025e45f6384ba0df1b3a1",
+      "size": 578,
+      "sha256": "966981b78b94eba966f807f00ff81ba2e4d9929f6c028389cfe401e74861de5f"
+    },
+    {
+      "path": "tests/usb-setup/supporting/historical-full-package-SHA256SUMS.txt",
+      "mode": "100644",
+      "blob": "3646c2426c70685cc4d432a35d7525733968cf59",
+      "size": 11163,
+      "sha256": "b124ba6e669d178d03e60a8c5015be4ccdf97eaa2cdb52361f803c544c2b86c6"
+    },
+    {
+      "path": "tests/usb-setup/supporting/old-negative-verification.log",
+      "mode": "100644",
+      "blob": "c006160aaa5f7e0850a048848a47fa66b335afbe",
+      "size": 940,
+      "sha256": "93ada6701d9d2e86cb98587f078650adf3c936bcc183e70e57c6dc4713d2b1da"
+    },
+    {
+      "path": "tests/usb-setup/supporting/original-harness-verification.log",
+      "mode": "100644",
+      "blob": "6b626afc6e83b6183378a6012924165934ae3cda",
+      "size": 1761,
+      "sha256": "c248c82ac68db7fcab9fb8a5c3553dbf0700bc08ac61ef145a9fc57abf6d9d60"
+    },
+    {
+      "path": "tests/usb-setup/supporting/root-patch-diff.txt",
+      "mode": "100644",
+      "blob": "2b30ebaf663610abdabaf3dcf3d92a120e574b03",
+      "size": 557,
+      "sha256": "c6a28c3a141af1092a80aa8bc49bd0609f50a90baa5e4d28173bda74345e3866"
+    },
+    {
+      "path": "tests/usb-setup/supporting/run.py",
+      "mode": "100644",
+      "blob": "897d36d4cdffa734a484c247563a0acf9fd4249e",
+      "size": 6929,
+      "sha256": "1565549e4d00124efea8105ba376bc50295195b8da1bff4b31252d8f68e8addc"
+    },
+    {
+      "path": "tests/usb-setup/supporting/test_setup_queue.c",
+      "mode": "100644",
+      "blob": "3c847865c1d345dcb9824263dcd91def9c722d92",
+      "size": 8705,
+      "sha256": "069d5996c665934db088c5a9cf0d70040efe7cf04b7beb6c5bea2e431cccc5dc"
+    },
+    {
+      "path": "tests/wait-release/PROVENANCE.md",
+      "mode": "100644",
+      "blob": "c1b76dd2cd63cad9aab2642a9f00a177c9e1c46c",
+      "size": 4463,
+      "sha256": "974a1b20caf2eeb259f12d393a5badbda0ee60f5d317d996b6c696c32e840102"
+    },
+    {
+      "path": "tests/wait-release/README.md",
+      "mode": "100644",
+      "blob": "1555c2d6549b3c0e88a947351b349d32bf19727b",
+      "size": 5771,
+      "sha256": "a89956351b5ffcf1c850377183580012adcad3f37d7067a60c1a93319d80d3a1"
+    },
+    {
+      "path": "tests/wait-release/decode_wire.py",
+      "mode": "100644",
+      "blob": "0f228aebd05f049e5afa5f1b330f82e59a91d6f4",
+      "size": 3329,
+      "sha256": "aa53562fd94885027619a4bec909d8a4a864080506aeb6af94a077e48b4bf4a3"
+    },
+    {
+      "path": "tests/wait-release/fixtures/test_wait_release.c",
+      "mode": "100644",
+      "blob": "2ec857a53e2ff19b6267a7ec29b324074dacbadb",
+      "size": 11158,
+      "sha256": "5738c272d2d470428885ec7ac52ffe315c0198817912973290882926846b0cfd"
+    },
+    {
+      "path": "tests/wait-release/package-manifest.json",
+      "mode": "100644",
+      "blob": "892dc75e8a6b4eafd67212aa286aeb7f5cbf5fb3",
+      "size": 14385,
+      "sha256": "f1c77a245be2ef7d6793d79441b7403526d17278d18ad398b82d14b3080bdfeb"
+    },
+    {
+      "path": "tests/wait-release/reproduce.py",
+      "mode": "100644",
+      "blob": "2499035a8a0b90936f4daec2479099f4ec417d9a",
+      "size": 10033,
+      "sha256": "aac016e29e100a19239c1c9615e3136841f9aeb301bbe5246aca5404ddcb2cc2"
+    },
+    {
+      "path": "tests/wait-release/stop/run.sh",
+      "mode": "100644",
+      "blob": "8d0ae06d478ac8dfde485e93ce0cbb6dbc8005d0",
+      "size": 830,
+      "sha256": "e1209a77b8768a18c46edbd598a232f7b56b2f58bd7e17f9671369a49c8ae006"
+    },
+    {
+      "path": "tests/wait-release/stop/test_stop_barrier.c",
+      "mode": "100644",
+      "blob": "678eb933c78d136446baae6972e71f4b5c250b35",
+      "size": 8502,
+      "sha256": "979cbede3d78c2647e376f9a1dc674daf33b59312917f7845b6d2c48dcd5ec51"
+    },
+    {
+      "path": "tests/wait-release/test_mode_retention.c",
+      "mode": "100644",
+      "blob": "dd9a395eab6ec863c1ac8446a66d17677b8aed4f",
+      "size": 2441,
+      "sha256": "07494d244a48f16fbf1337d57730626535e178ba5ffde4aa0c62ca9be1ab4afb"
+    },
+    {
+      "path": "tests/wait-release/test_wait_release_proposal.c",
+      "mode": "100644",
+      "blob": "e3d4e777f9f77f351243e0914914d2c3877b6950",
+      "size": 15143,
+      "sha256": "cd418b39ce5bab2ffa35c03aebb9a90d405d82c77f6f7b2888b9281fe1c489bc"
+    },
+    {
+      "path": "tests/wait-release/validate_run.py",
+      "mode": "100644",
+      "blob": "abaea184307317b0643e1ae78bc49e09603bd842",
+      "size": 1665,
+      "sha256": "d4f01cea583aef99711e4caa9e54ff1f8cb2578f43e5c21bd3b2ba354efc27c5"
+    }
+  ]
+}

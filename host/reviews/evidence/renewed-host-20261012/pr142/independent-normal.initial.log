@@ -1,0 +1,20 @@
+test_01_success_and_baseline_control (__main__.Probe.test_01_success_and_baseline_control) ... FAIL
+test_02_distribution_guards (__main__.Probe.test_02_distribution_guards) ... ok
+test_03_each_missing_or_changed_notice (__main__.Probe.test_03_each_missing_or_changed_notice) ... ok
+test_04_inherited_guard_and_existing_output (__main__.Probe.test_04_inherited_guard_and_existing_output) ... ok
+test_05_partial_copy_fails_without_inventory (__main__.Probe.test_05_partial_copy_fails_without_inventory) ... ok
+
+======================================================================
+FAIL: test_01_success_and_baseline_control (__main__.Probe.test_01_success_and_baseline_control)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/notice-supplement-critic/evidence/independent_probes.py", line 91, in test_01_success_and_baseline_control
+    self.positive('installed-linux-inputs',actual=True)
+  File "/tmp/notice-supplement-critic/evidence/independent_probes.py", line 75, in positive
+    self.assertTrue(any('LicenseRef-Qt-Commercial.txt' in name for name in record['copied_notices']))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.143s
+
+FAILED (failures=1)

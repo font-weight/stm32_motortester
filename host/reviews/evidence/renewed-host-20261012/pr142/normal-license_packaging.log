@@ -1,0 +1,19 @@
+test_collection_needs_no_network_subprocess_or_qt_import (test_license_packaging.NoticeTests.test_collection_needs_no_network_subprocess_or_qt_import) ... ok
+test_complete_supplement_has_truthful_provenance_and_retains_other_notices (test_license_packaging.NoticeTests.test_complete_supplement_has_truthful_provenance_and_retains_other_notices) ... ok
+test_copy_error_cannot_produce_complete_inventory (test_license_packaging.NoticeTests.test_copy_error_cannot_produce_complete_inventory) ... ok
+test_cpython_notice_is_still_required (test_license_packaging.NoticeTests.test_cpython_notice_is_still_required) ... ok
+test_distribution_normalization_preserves_reported_names (test_license_packaging.NoticeTests.test_distribution_normalization_preserves_reported_names) ... ok
+test_duplicate_canonical_qt_distributions_fail_without_inventory (test_license_packaging.NoticeTests.test_duplicate_canonical_qt_distributions_fail_without_inventory) ... ok
+test_each_missing_notice_fails_without_inventory (test_license_packaging.NoticeTests.test_each_missing_notice_fails_without_inventory) ... ok
+test_each_missing_qt_distribution_fails_without_inventory (test_license_packaging.NoticeTests.test_each_missing_qt_distribution_fails_without_inventory) ... ok
+test_each_modified_notice_fails_for_size_and_same_size_corruption (test_license_packaging.NoticeTests.test_each_modified_notice_fails_for_size_and_same_size_corruption) ... ok
+test_each_wrong_qt_version_fails_without_inventory (test_license_packaging.NoticeTests.test_each_wrong_qt_version_fails_without_inventory) ... ok
+test_exact_upstream_bytes_and_git_blobs (test_license_packaging.NoticeTests.test_exact_upstream_bytes_and_git_blobs) ... ok
+test_existing_destination_is_untouched_before_metadata_read (test_license_packaging.NoticeTests.test_existing_destination_is_untouched_before_metadata_read) ... ok
+test_existing_pinned_notice_is_never_overwritten (test_license_packaging.NoticeTests.test_existing_pinned_notice_is_never_overwritten) ... ok
+test_pyserial_guards_still_run_with_valid_qt_pair (test_license_packaging.NoticeTests.test_pyserial_guards_still_run_with_valid_qt_pair) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.028s
+
+OK

@@ -1,0 +1,11 @@
+{
+  "report": "HOST-axis-zoom-review.md",
+  "report_sha256": "77d3d71a7a1e122ef98f6af49f2f7e4cb66b39aa48e783b30534d978b36d09f6",
+  "archive": "critic-axis-zoom-da469cea.tar.gz",
+  "archive_sha256": "19ba90a97cd94528d7eabb88159ff04b82e5ebd22e415a0a648642b05bcdf6e5",
+  "archive_bytes": 4918017,
+  "archive_members": 101,
+  "checksummed_files": 100,
+  "manifest_sha256": "cd1501ddd7cbee397e0eb7b5efe880e8432b371760de05f1c2ca468ff675b537",
+  "every_archive_member_matches_local": true
+}

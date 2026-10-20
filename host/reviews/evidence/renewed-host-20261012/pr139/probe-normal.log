@@ -1,0 +1,31 @@
+test_01_actual_axis_and_plot_gestures (__main__.IndependentZoom.test_01_actual_axis_and_plot_gestures) ... ok
+test_02_limits_extreme_fractional_rates_and_replacement (__main__.IndependentZoom.test_02_limits_extreme_fractional_rates_and_replacement) ... ok
+test_03_cursors_bytes_home_and_png (__main__.IndependentZoom.test_03_cursors_bytes_home_and_png) ... FAIL
+test_04_file_and_live_replacement (__main__.IndependentZoom.test_04_file_and_live_replacement) ... This plugin does not support propagateSizeHints()
+This plugin does not support raise()
+FAIL
+test_05_guidance_reachable_and_rendered (__main__.IndependentZoom.test_05_guidance_reachable_and_rendered) ... This plugin does not support propagateSizeHints()
+ok
+
+======================================================================
+FAIL: test_03_cursors_bytes_home_and_png (__main__.IndependentZoom.test_03_cursors_bytes_home_and_png)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 118, in test_03_cursors_bytes_home_and_png
+    self.drag(pt,31,0);self.assertNotEqual(indices[0],self.w._cursor_indices[0])
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 682 == 682
+
+======================================================================
+FAIL: test_04_file_and_live_replacement (__main__.IndependentZoom.test_04_file_and_live_replacement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d2a4dc03255e/critic-axis-zoom-review/axis_probe.py", line 134, in test_04_file_and_live_replacement
+    self.assertIs(self.w.capture,short);self.assertFalse(d.stop_button.isEnabled())
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Capture(samples=(0, 4095), session_id='cc425348-9ce8-4619-bfba-d5b6b9e14c51', sequence=0, nominal_fs_hz=1.25, received_at_utc='2026-10-12T13:44:18.409844+00:00', origin='simulator', trigger_kind='signal', trigger_index=1, trigger_edge='rising', trigger_level_code=2048, pretrigger_samples=1, firmware_version=None, protocol_version=None, sensor='synthetic sine; no sensor', quality_flags=(), application_version='0.1.0', complete=True) is not Capture(samples=(0, 4095), session_id='cc425348-9ce8-4619-bfba-d5b6b9e14c51', sequence=0, nominal_fs_hz=1.25, received_at_utc='2026-10-12T13:44:18.409844+00:00', origin='simulator', trigger_kind='signal', trigger_index=1, trigger_edge='rising', trigger_level_code=2048, pretrigger_samples=1, firmware_version=None, protocol_version=None, sensor='synthetic sine; no sensor', quality_flags=(), application_version='0.1.0', complete=True)
+
+----------------------------------------------------------------------
+Ran 5 tests in 44.380s
+
+FAILED (failures=2)

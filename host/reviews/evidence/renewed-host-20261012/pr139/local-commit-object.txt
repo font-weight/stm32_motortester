@@ -1,0 +1,6 @@
+tree 062ef56c1fa13e3600a30873e273156bcd3fe921
+parent 3bc7a251cd36714b1fec350c99e0e5b43ffc4950
+author Dot B <dot-b@local.invalid> 1791811551 +0500
+committer Dot B <dot-b@local.invalid> 1791811551 +0500
+
+Constrain waveform navigation and explain axis-only gestures

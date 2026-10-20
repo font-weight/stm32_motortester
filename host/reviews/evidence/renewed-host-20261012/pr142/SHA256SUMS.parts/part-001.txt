@@ -1,0 +1,545 @@
+2c482d30da52fb1da64213021a45a2222661d7c4dde3fad00804f723a73bdd60  AUTHOR-REPORT.attributed.md
+f75d2393fccf656e86816c7213a1aee6753762bde53e0efd972a3ac6dfbed169  FINAL-BINDING.json
+a7fc379a94e8fbe374060a346ec74dae1b21367c581411a8c5bded13379aa8dc  FOCUSED-RESULTS.json
+462575dcd73418667cf1b62b63906a56166b57a243e82b5ddfc76327f442197f  NOTICE-SUPPLEMENT-PROPOSAL.reviewed.md
+e5f46e3eb2d06380bdf647f5afe2f7831d39996b60e349b4cda64f679d780d8c  SOURCE-BINDING.json
+1111a58503a5193f977ab8304380c722bca8ab30ca7d06d2bb1f3a999d162ccf  UPSTREAM-VERIFIED.json
+976d60fa85cb7824470aa102c208709259e4074a7e10398d98253f94cc5a8794  author-SOURCE-FREEZE.json
+50dff4c3f9ad76a21a9a5a503641ce2b969f901b91f62f2738b96da01a2132d6  bind_source.py
+1a757cb77977a5210e1311cbf0fa82b7afbc8c584c23f620e618d70a2a7b48f5  candidate-commit.txt
+22331eaf37cbb348cdb36a1cd993c14b767430901ec8ffa9698c49ce71d2d04c  candidate.patch
+f75d2393fccf656e86816c7213a1aee6753762bde53e0efd972a3ac6dfbed169  final-binding.log
+a7fc379a94e8fbe374060a346ec74dae1b21367c581411a8c5bded13379aa8dc  focused-run.log
+b20691b99d3d5664bcb2ed8788a58205d6fbaf5324ddfc6a37b5c6062f74bfd6  independent-normal/RESULTS.json
+51a354c8c4d43e05e927db11d32e29c755a51b6b1f71ecaa2401ac30f2e629e6  independent-normal/base-collector.py
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/cpython-absent тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/cpython-absent тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/cpython-absent тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/cpython-absent тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/cpython-absent тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/duplicate-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/duplicate-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/duplicate-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/duplicate-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/happy тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/happy тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/happy тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+eeff3237990adb2295a8cb9bc5576cf9731aba4eb55ecdb9e0d706566d0d26fc  independent-normal/happy тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/happy тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/happy тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/happy тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/happy тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/happy тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/happy тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/happy тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/installed-linux-inputs тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/installed-linux-inputs тест/output лицензии/CPython-LICENSE.txt
+cac35c02686e5d04a5a7140bfb3b36e73aed496656e891102e428886d7930318  independent-normal/installed-linux-inputs тест/output лицензии/colorama/colorama-0.4.6.dist-info/licenses/LICENSE.txt
+95be1a7cb5c40b9a5443979702c64f1e4373d55a98281c24bcab27c3ab591f4c  independent-normal/installed-linux-inputs тест/output лицензии/inventory.json
+fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy/_core/include/numpy/random/LICENSE.txt
+05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy/ma/LICENSE
+103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy/random/LICENSE.md
+4860083caa0de2ac3292ca98bd074bd8f45d8b32624e37b1e70a240bff61e488  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/LICENSE.txt
+fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt
+3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING
+e340270d4f64384569a91d546acb5b094d69ce47f0c015db77abb74dc6f815af  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/highway/LICENSE
+f7b14309e5f54e5022b26448eefd419988ada2aec01d3c1162d84a0ea8f21f2c  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt
+211e7d737d6179a08f791ebb0a99897ce7cd2457410c542876d125576edfe910  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md
+c17011467b4fe6e20fbfbeda4df09e58c2bca5480a063e55735a4000a379aad9  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE
+a85ca13fdf90160b64a0698215868c13b74d835ad0a4e2ba44713b8c5058a056  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md
+a14cc25e10d40a3aa705b7de2fb764a6535d8ee9b2db4e1724900585457dfd55  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt
+05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/ma/LICENSE
+103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/LICENSE.md
+469778be8f33d54e1bcaab28c281cc472916d2d273f835e55bc487d30503face  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/distributions/LICENSE.md
+0e111337b25494a773106695f0e799f642b8567aaacca4f116a74a8177179156  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md
+e7d4f4fb20358f314210a892ae17351e04993813646f697ec387385ca2a36918  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md
+6f5828a57223d4cc7f8ea505a2623e7b978b242752c1515e355f46ba2cec1800  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/philox/LICENSE.md
+9d4098846018319cd68e228ee6220361787f73bccbf00237a85e4fc9621b998f  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md
+268b0ca06759d31ea3ca68dd35f20e877916e927b1c2a835e4592a3c4354b1f9  independent-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md
+c97deeeca4ae375a0334bc7f7af5f707aabfcec959c53c783b9f8771d28fd5b3  independent-normal/installed-linux-inputs тест/output лицензии/pyqtgraph/pyqtgraph/colors/maps/CC-BY license - applies to CET color map data.txt
+b4ed24d468da61df9028a52abe9283a592e63f315943a1c86cd96a9ea5b62079  independent-normal/installed-linux-inputs тест/output лицензии/pyqtgraph/pyqtgraph-0.14.0.dist-info/licenses/LICENSE.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/installed-linux-inputs тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/installed-linux-inputs тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/installed-linux-inputs тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/installed-linux-inputs тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/installed-linux-inputs тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/late-copy-fault тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/late-copy-fault тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/late-copy-fault тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/late-copy-fault тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/late-copy-fault тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/late-copy-fault тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/late-copy-fault тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/late-copy-fault тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/late-copy-fault тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/missing-qt-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/missing-qt-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/missing-qt-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/missing-qt-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/normalized тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/normalized тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/normalized тест/output лицензии/PYSIDE6..__Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/normalized тест/output лицензии/SHIBOKEN6/LicenseRef-Qt-Commercial.txt
+ecf1007a237ea7af8cd1f8e19273d2d2a985b26fece24854502851e960563b4c  independent-normal/normalized тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/normalized тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/normalized тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/normalized тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/normalized тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/normalized тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/normalized тест/python runtime/LICENSE.txt
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-normal/preexisting-directory/out/inventory.json
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-normal/preexisting-file/out
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-normal/preexisting-symlink/real/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-absent тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-absent тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-absent тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/pyserial-absent тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-missing тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/pyserial-missing тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-modified тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-modified тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+faa0ba7c4f1617e35e07400001037e47159bc1aa25b036b7c13e1731cbd72c8b  independent-normal/pyserial-modified тест/pyserial-license.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/pyserial-modified тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-version тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/pyserial-version тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/pyserial-version тест/python runtime/LICENSE.txt
+dc1f7f831399b9ad6f6ec510fc5b23ad4afed3c7eb57c46cf79f8ce090649442  independent-normal/text-0-extra-byte тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/text-0-extra-byte тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/text-0-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-0-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-0-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-0-extra-byte тест/python runtime/LICENSE.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/text-0-missing тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/text-0-missing тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-0-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-0-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-0-missing тест/python runtime/LICENSE.txt
+ee1778be02302c5a7311fea217237b8898b31169a883b99c569440b9acef5e75  independent-normal/text-0-same-size тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/text-0-same-size тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/text-0-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-0-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-0-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-0-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-0-same-size тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/text-1-extra-byte тест/altered texts/GPL-2.0-only.txt
+db08dc22f0e1d89ae9cf87718c486cc632f5474ca2edf51b104088a2aef3f2ab  independent-normal/text-1-extra-byte тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/text-1-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-1-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-1-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-1-extra-byte тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/text-1-missing тест/altered texts/GPL-2.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/text-1-missing тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-1-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-1-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-1-missing тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/text-1-same-size тест/altered texts/GPL-2.0-only.txt
+d8818eb53b2368539a231bccb2882d75f0bd2638995aca9dfeb8b1df4257408f  independent-normal/text-1-same-size тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-normal/text-1-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-1-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-1-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-1-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-1-same-size тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/text-2-extra-byte тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/text-2-extra-byte тест/altered texts/GPL-3.0-only.txt
+c42e8c37beb0c18eb09529f262ea718ab4511efb89bb229c8a3594710916d55d  independent-normal/text-2-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-2-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-2-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-2-extra-byte тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/text-2-missing тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/text-2-missing тест/altered texts/GPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-2-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-2-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-2-missing тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-normal/text-2-same-size тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-normal/text-2-same-size тест/altered texts/GPL-3.0-only.txt
+f5a8e4154462a0a0fa43ef270ab01cae81dcf7f77725bcc929c089cfa10acd43  independent-normal/text-2-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-2-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-normal/text-2-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/text-2-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/text-2-same-size тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-1-0 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-1-0 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-1-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-1-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-1-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-1-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-1-3 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-1-3 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-2-0 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-2-0 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-2-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-2-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-2-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-2-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-normal/version-2-3 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-normal/version-2-3 тест/python runtime/LICENSE.txt
+6e4cebadd39bcf3929f55c8a633b2b73e24a61bbdf6d6812232b67cefb41428d  independent-normal.initial.log
+645b94cda9c3bfffae7943d6480e4d32d9b65871c9479ffb9447886ece2faf0f  independent-normal.log
+e2948d964b7776ae6f93a3671febcb8ac865886b140f866ec96a5cc5323c6b33  independent-optimized/RESULTS.json
+51a354c8c4d43e05e927db11d32e29c755a51b6b1f71ecaa2401ac30f2e629e6  independent-optimized/base-collector.py
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/cpython-absent тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/cpython-absent тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/cpython-absent тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/cpython-absent тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/cpython-absent тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/duplicate-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/duplicate-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/duplicate-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/duplicate-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/happy тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/happy тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/happy тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+eeff3237990adb2295a8cb9bc5576cf9731aba4eb55ecdb9e0d706566d0d26fc  independent-optimized/happy тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/happy тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/happy тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/happy тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/happy тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/happy тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/happy тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/happy тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/installed-linux-inputs тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/installed-linux-inputs тест/output лицензии/CPython-LICENSE.txt
+cac35c02686e5d04a5a7140bfb3b36e73aed496656e891102e428886d7930318  independent-optimized/installed-linux-inputs тест/output лицензии/colorama/colorama-0.4.6.dist-info/licenses/LICENSE.txt
+95be1a7cb5c40b9a5443979702c64f1e4373d55a98281c24bcab27c3ab591f4c  independent-optimized/installed-linux-inputs тест/output лицензии/inventory.json
+fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy/_core/include/numpy/random/LICENSE.txt
+05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy/ma/LICENSE
+103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy/random/LICENSE.md
+4860083caa0de2ac3292ca98bd074bd8f45d8b32624e37b1e70a240bff61e488  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/LICENSE.txt
+fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt
+3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING
+e340270d4f64384569a91d546acb5b094d69ce47f0c015db77abb74dc6f815af  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/highway/LICENSE
+f7b14309e5f54e5022b26448eefd419988ada2aec01d3c1162d84a0ea8f21f2c  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt
+211e7d737d6179a08f791ebb0a99897ce7cd2457410c542876d125576edfe910  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md
+c17011467b4fe6e20fbfbeda4df09e58c2bca5480a063e55735a4000a379aad9  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE
+a85ca13fdf90160b64a0698215868c13b74d835ad0a4e2ba44713b8c5058a056  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md
+a14cc25e10d40a3aa705b7de2fb764a6535d8ee9b2db4e1724900585457dfd55  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt
+05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/ma/LICENSE
+103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/LICENSE.md
+469778be8f33d54e1bcaab28c281cc472916d2d273f835e55bc487d30503face  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/distributions/LICENSE.md
+0e111337b25494a773106695f0e799f642b8567aaacca4f116a74a8177179156  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md
+e7d4f4fb20358f314210a892ae17351e04993813646f697ec387385ca2a36918  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md
+6f5828a57223d4cc7f8ea505a2623e7b978b242752c1515e355f46ba2cec1800  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/philox/LICENSE.md
+9d4098846018319cd68e228ee6220361787f73bccbf00237a85e4fc9621b998f  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md
+268b0ca06759d31ea3ca68dd35f20e877916e927b1c2a835e4592a3c4354b1f9  independent-optimized/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md
+c97deeeca4ae375a0334bc7f7af5f707aabfcec959c53c783b9f8771d28fd5b3  independent-optimized/installed-linux-inputs тест/output лицензии/pyqtgraph/pyqtgraph/colors/maps/CC-BY license - applies to CET color map data.txt
+b4ed24d468da61df9028a52abe9283a592e63f315943a1c86cd96a9ea5b62079  independent-optimized/installed-linux-inputs тест/output лицензии/pyqtgraph/pyqtgraph-0.14.0.dist-info/licenses/LICENSE.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/installed-linux-inputs тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/installed-linux-inputs тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/installed-linux-inputs тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/installed-linux-inputs тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/installed-linux-inputs тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/late-copy-fault тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/late-copy-fault тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/late-copy-fault тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/late-copy-fault тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/late-copy-fault тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/late-copy-fault тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/late-copy-fault тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/late-copy-fault тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/late-copy-fault тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/missing-qt-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/missing-qt-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/missing-qt-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/missing-qt-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/normalized тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/normalized тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/normalized тест/output лицензии/PYSIDE6..__Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/normalized тест/output лицензии/SHIBOKEN6/LicenseRef-Qt-Commercial.txt
+ecf1007a237ea7af8cd1f8e19273d2d2a985b26fece24854502851e960563b4c  independent-optimized/normalized тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/normalized тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/normalized тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/normalized тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/normalized тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/normalized тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/normalized тест/python runtime/LICENSE.txt
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-optimized/preexisting-directory/out/inventory.json
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-optimized/preexisting-file/out
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-optimized/preexisting-symlink/real/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-absent тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-absent тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-absent тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/pyserial-absent тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-missing тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/pyserial-missing тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-modified тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-modified тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+faa0ba7c4f1617e35e07400001037e47159bc1aa25b036b7c13e1731cbd72c8b  independent-optimized/pyserial-modified тест/pyserial-license.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/pyserial-modified тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-version тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/pyserial-version тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/pyserial-version тест/python runtime/LICENSE.txt
+dc1f7f831399b9ad6f6ec510fc5b23ad4afed3c7eb57c46cf79f8ce090649442  independent-optimized/text-0-extra-byte тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/text-0-extra-byte тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/text-0-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-0-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-0-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-0-extra-byte тест/python runtime/LICENSE.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/text-0-missing тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/text-0-missing тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-0-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-0-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-0-missing тест/python runtime/LICENSE.txt
+ee1778be02302c5a7311fea217237b8898b31169a883b99c569440b9acef5e75  independent-optimized/text-0-same-size тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/text-0-same-size тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/text-0-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-0-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-0-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-0-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-0-same-size тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/text-1-extra-byte тест/altered texts/GPL-2.0-only.txt
+db08dc22f0e1d89ae9cf87718c486cc632f5474ca2edf51b104088a2aef3f2ab  independent-optimized/text-1-extra-byte тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/text-1-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-1-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-1-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-1-extra-byte тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/text-1-missing тест/altered texts/GPL-2.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/text-1-missing тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-1-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-1-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-1-missing тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/text-1-same-size тест/altered texts/GPL-2.0-only.txt
+d8818eb53b2368539a231bccb2882d75f0bd2638995aca9dfeb8b1df4257408f  independent-optimized/text-1-same-size тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-optimized/text-1-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-1-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-1-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-1-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-1-same-size тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/text-2-extra-byte тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/text-2-extra-byte тест/altered texts/GPL-3.0-only.txt
+c42e8c37beb0c18eb09529f262ea718ab4511efb89bb229c8a3594710916d55d  independent-optimized/text-2-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-2-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-2-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-2-extra-byte тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/text-2-missing тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/text-2-missing тест/altered texts/GPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-2-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-2-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-2-missing тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-optimized/text-2-same-size тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-optimized/text-2-same-size тест/altered texts/GPL-3.0-only.txt
+f5a8e4154462a0a0fa43ef270ab01cae81dcf7f77725bcc929c089cfa10acd43  independent-optimized/text-2-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-2-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-optimized/text-2-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/text-2-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/text-2-same-size тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-1-0 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-1-0 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-1-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-1-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-1-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-1-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-1-3 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-1-3 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-2-0 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-2-0 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-2-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-2-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-2-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-2-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-optimized/version-2-3 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-optimized/version-2-3 тест/python runtime/LICENSE.txt
+f3f4b47f84de3e4401b7107c8177b76c3e72378d6a6dd9fd04ea597f314d004d  independent-optimized.initial.log
+4a69bc7190cc3bcc1c9635691723fd414c04f06ddd5e480be55e7ece04439a5e  independent-optimized.log
+fb73421ecf813738fc09d4516cc2f1a5b97330a24e6baf19959b092fb45c8e37  independent-replay-normal/RESULTS.json
+51a354c8c4d43e05e927db11d32e29c755a51b6b1f71ecaa2401ac30f2e629e6  independent-replay-normal/base-collector.py
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/baseline-gap тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/baseline-gap тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/baseline-gap тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+2e65cfe0bf194500de1d8731b2136211626db27012893bcd02f7d8b4e53b9d9a  independent-replay-normal/baseline-gap тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/baseline-gap тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/baseline-gap тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/baseline-gap тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/baseline-gap тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/cpython-absent тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/cpython-absent тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/cpython-absent тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/cpython-absent тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/cpython-absent тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/duplicate-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/duplicate-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/duplicate-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/duplicate-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/happy тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/happy тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/happy тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+eeff3237990adb2295a8cb9bc5576cf9731aba4eb55ecdb9e0d706566d0d26fc  independent-replay-normal/happy тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/happy тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/happy тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-replay-normal/happy тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/happy тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/happy тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/happy тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/happy тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/installed-linux-inputs тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/installed-linux-inputs тест/output лицензии/CPython-LICENSE.txt
+cac35c02686e5d04a5a7140bfb3b36e73aed496656e891102e428886d7930318  independent-replay-normal/installed-linux-inputs тест/output лицензии/colorama/colorama-0.4.6.dist-info/licenses/LICENSE.txt
+95be1a7cb5c40b9a5443979702c64f1e4373d55a98281c24bcab27c3ab591f4c  independent-replay-normal/installed-linux-inputs тест/output лицензии/inventory.json
+fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy/_core/include/numpy/random/LICENSE.txt
+05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy/ma/LICENSE
+103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy/random/LICENSE.md
+4860083caa0de2ac3292ca98bd074bd8f45d8b32624e37b1e70a240bff61e488  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/LICENSE.txt
+fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt
+3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING
+e340270d4f64384569a91d546acb5b094d69ce47f0c015db77abb74dc6f815af  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/highway/LICENSE
+f7b14309e5f54e5022b26448eefd419988ada2aec01d3c1162d84a0ea8f21f2c  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt
+211e7d737d6179a08f791ebb0a99897ce7cd2457410c542876d125576edfe910  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md
+c17011467b4fe6e20fbfbeda4df09e58c2bca5480a063e55735a4000a379aad9  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE
+a85ca13fdf90160b64a0698215868c13b74d835ad0a4e2ba44713b8c5058a056  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md
+a14cc25e10d40a3aa705b7de2fb764a6535d8ee9b2db4e1724900585457dfd55  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt
+05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/ma/LICENSE
+103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/LICENSE.md
+469778be8f33d54e1bcaab28c281cc472916d2d273f835e55bc487d30503face  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/distributions/LICENSE.md
+0e111337b25494a773106695f0e799f642b8567aaacca4f116a74a8177179156  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md
+e7d4f4fb20358f314210a892ae17351e04993813646f697ec387385ca2a36918  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md
+6f5828a57223d4cc7f8ea505a2623e7b978b242752c1515e355f46ba2cec1800  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/philox/LICENSE.md
+9d4098846018319cd68e228ee6220361787f73bccbf00237a85e4fc9621b998f  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md
+268b0ca06759d31ea3ca68dd35f20e877916e927b1c2a835e4592a3c4354b1f9  independent-replay-normal/installed-linux-inputs тест/output лицензии/numpy/numpy-2.5.3.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md
+c97deeeca4ae375a0334bc7f7af5f707aabfcec959c53c783b9f8771d28fd5b3  independent-replay-normal/installed-linux-inputs тест/output лицензии/pyqtgraph/pyqtgraph/colors/maps/CC-BY license - applies to CET color map data.txt
+b4ed24d468da61df9028a52abe9283a592e63f315943a1c86cd96a9ea5b62079  independent-replay-normal/installed-linux-inputs тест/output лицензии/pyqtgraph/pyqtgraph-0.14.0.dist-info/licenses/LICENSE.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/installed-linux-inputs тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-replay-normal/installed-linux-inputs тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/installed-linux-inputs тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/installed-linux-inputs тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/installed-linux-inputs тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/late-copy-fault тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/late-copy-fault тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/late-copy-fault тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/late-copy-fault тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/late-copy-fault тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-replay-normal/late-copy-fault тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/late-copy-fault тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/late-copy-fault тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/late-copy-fault тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/missing-qt-1 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/missing-qt-1 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/missing-qt-2 тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/missing-qt-2 тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/normalized тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/normalized тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/normalized тест/output лицензии/PYSIDE6..__Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/normalized тест/output лицензии/SHIBOKEN6/LicenseRef-Qt-Commercial.txt
+ecf1007a237ea7af8cd1f8e19273d2d2a985b26fece24854502851e960563b4c  independent-replay-normal/normalized тест/output лицензии/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/normalized тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/normalized тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-replay-normal/normalized тест/output лицензии/qt-6.12.0/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/normalized тест/output лицензии/qt-6.12.0/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/normalized тест/output лицензии/qt-6.12.0/LGPL-3.0-only.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/normalized тест/python runtime/LICENSE.txt
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-replay-normal/preexisting-directory/out/inventory.json
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-replay-normal/preexisting-file/out
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453  independent-replay-normal/preexisting-symlink/real/inventory.json
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-absent тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-absent тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-absent тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/pyserial-absent тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-missing тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/pyserial-missing тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-modified тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-modified тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+faa0ba7c4f1617e35e07400001037e47159bc1aa25b036b7c13e1731cbd72c8b  independent-replay-normal/pyserial-modified тест/pyserial-license.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/pyserial-modified тест/python runtime/LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-version тест/installed/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/pyserial-version тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/pyserial-version тест/python runtime/LICENSE.txt
+dc1f7f831399b9ad6f6ec510fc5b23ad4afed3c7eb57c46cf79f8ce090649442  independent-replay-normal/text-0-extra-byte тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/text-0-extra-byte тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/text-0-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/text-0-extra-byte тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-extra-byte тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-extra-byte тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/text-0-extra-byte тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-extra-byte тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/text-0-extra-byte тест/python runtime/LICENSE.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/text-0-missing тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/text-0-missing тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-missing тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/text-0-missing тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-missing тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-missing тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/text-0-missing тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-missing тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/text-0-missing тест/python runtime/LICENSE.txt
+ee1778be02302c5a7311fea217237b8898b31169a883b99c569440b9acef5e75  independent-replay-normal/text-0-same-size тест/altered texts/GPL-2.0-only.txt
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  independent-replay-normal/text-0-same-size тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/text-0-same-size тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-same-size тест/installed/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/text-0-same-size тест/output лицензии/CPython-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-same-size тест/output лицензии/PySide6_Essentials/LicenseRef-Qt-Commercial.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-same-size тест/output лицензии/pyserial/LicenseRef-Qt-Commercial.txt
+f91cb9813de6a5b142b8f7f2dede630b5134160aedaeaf55f4d6a7e2593ca3f3  independent-replay-normal/text-0-same-size тест/output лицензии/pyserial/pyserial-3.5-LICENSE.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-0-same-size тест/output лицензии/shiboken6/LicenseRef-Qt-Commercial.txt
+aeb42a36a2f36e47025a9bb3ee43260ed1cb017ea25c0309e206450b0709946d  independent-replay-normal/text-0-same-size тест/python runtime/LICENSE.txt
+8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  independent-replay-normal/text-1-extra-byte тест/altered texts/GPL-2.0-only.txt
+db08dc22f0e1d89ae9cf87718c486cc632f5474ca2edf51b104088a2aef3f2ab  independent-replay-normal/text-1-extra-byte тест/altered texts/GPL-3.0-only.txt
+da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  independent-replay-normal/text-1-extra-byte тест/altered texts/LGPL-3.0-only.txt
+e31a13ce826426f135b38038c3320f1ca2d2d5094cf1d921a7cd83abb305b2c7  independent-replay-normal/text-1-extra-byte тест/installed/LicenseRef-Qt-Commercial.txt

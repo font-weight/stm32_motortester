@@ -1,0 +1,6 @@
+tree 03e334c06f3adabad704b5113b40a13f8b25ee36
+parent 3bc7a251cd36714b1fec350c99e0e5b43ffc4950
+author Dot B <dot-b@local.invalid> 1791811732 +0500
+committer Dot B <dot-b@local.invalid> 1791811732 +0500
+
+Pin GNU license-text supplement for Qt 6.12.0 packaging
