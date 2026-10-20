@@ -1250,3 +1250,36 @@ build/generation/nonce, raw JSON, null для ненаблюдённых мет�
 
 Ни это свидетельство, ни decoder не разрешают прошивку. Windows STREAM collector,
 реальный опыт, qualified timing, аппаратная и общая приёмка остаются открытыми.
+
+
+## 20.10.2026 — статус STREAM и смысл непрерывной записи (документационный draft)
+
+Устранено устаревшее утверждение «реализации потока нет» в требованиях,
+MVP и преамбуле wire0.2. Программные draft-реализации опубликованы; это
+не общий релиз и не аппаратная приёмка. Поля и правила протокола не изменены.
+В существующий раздел MVP добавлено пояснение границ DATA-блоков, одной
+записи и отдельного разряда, а также неизвестного acquired end после Stop.
+
+Проверяемые опорные версии:
+- Firmware [PR206](https://github.com/font-weight/stm32_motortester/pull/206),
+  source `9ec9430fe83aa5e8ad9c504f9627e185f3285c36`; отдельные статические
+  доказательства и offline decoder — [PR207](https://github.com/font-weight/stm32_motortester/pull/207)
+  `9289caaa347ff393d845fd895c7e750cf04adeee`. Ни один из этих статусов не разрешает
+  прошивку и не подтверждает физический поток.
+- HOST [PR214](https://github.com/font-weight/stm32_motortester/pull/214),
+  source `3ebfe1479056d64ce9c4a1eadad048f60ade100f`, tree
+  `dcaa169b0f55335ef5522a1bbf48489023edb052`. Исправлена потеря владельца
+  незавершённого закрытия через convenience-вызов; прежний REWORK сохранён.
+- [Windows source run 39324278116](https://github.com/font-weight/stm32_motortester/actions/runs/39324278116),
+  attempt1/job118305955169, caller `68e175b98c5962156db563c78f989a917eb6c7b3`.
+  Независимо сверены 26 исходных журналов и 504 одинаковых method IDs в каждом
+  режиме, 1008 выполнений без failures/errors/skips/timeouts. Это Windows Server
+  2022, Python3.13.16 и Qt offscreen, не проверка EXE на Windows10 или реального
+  COM. По13 fixture-prevention событий на режим отмечены guard_exercised=false;
+  отдельные guard-проверки прошли. Различие fast-tail результатов связано
+  с различающимися наблюдениями metadata; причинность режима оптимизации не
+  установлена. Полный результат и ограничения — [PR215, отчёт](https://github.com/font-weight/stm32_motortester/pull/215#issuecomment-6277506969).
+
+Готовый общий пакет, физическая передача/остановка, фактическая частота выборок
+и полнота искры остаются неподтверждёнными. Документационная правка не снимает
+отдельные блокеры упаковки и не меняет выбранный диагностический образ.
